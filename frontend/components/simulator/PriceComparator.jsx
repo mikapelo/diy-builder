@@ -53,7 +53,7 @@ function StoreCard({ store, isBest, hasSlab, slabTotal }) {
         aria-label={`Voir l'offre chez ${store.name}`}
       >
         <span className="material-symbols-outlined" style={{ fontSize: 16 }}>open_in_new</span>
-        Voir l'offre
+        Voir l&apos;offre
       </button>
     </div>
   );

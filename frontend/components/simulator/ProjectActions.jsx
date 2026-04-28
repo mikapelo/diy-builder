@@ -28,7 +28,8 @@ const PRO_FORM_PREVIEW = [
   'Vos contraintes',
 ];
 
-export default function ProjectActions({ projectType, onOpenSaveModal }) {
+export default function ProjectActions({ projectType, onOpenSaveModal, onExportPDF, pdfStatus }) {
+  const generating = pdfStatus === 'generating';
   return (
     <div className="result-block pa-pivot-block">
       <div className="result-block-header">
@@ -69,6 +70,22 @@ export default function ProjectActions({ projectType, onOpenSaveModal }) {
             <span className="material-symbols-outlined" style={{ fontSize: 17 }}>mail</span>
             Recevoir le dossier
           </button>
+
+          {onExportPDF && (
+            <button
+              type="button"
+              className="download-pdf"
+              onClick={onExportPDF}
+              disabled={generating}
+              style={{ marginTop: 10, ...(generating ? { opacity: 0.75, cursor: 'wait' } : null) }}
+              aria-busy={generating}
+            >
+              <span className="download-pdf-icon" aria-hidden="true">
+                {generating ? '⏳' : '✓'}
+              </span>
+              {generating ? 'Génération en cours…' : 'Télécharger la liste PDF'}
+            </button>
+          )}
         </div>
 
         {/* ── Carte B : Pro ── */}

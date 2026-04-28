@@ -73,17 +73,17 @@ export default function GuideTerrassePage() {
         <h1 className="content-h1">Construire une terrasse bois soi-même : le guide terrain</h1>
 
         <p className="content-lead">
-          Une terrasse bois bien construite, c'est deux jours de travail, les bons matériaux et
+          Une terrasse bois bien construite, c&apos;est deux jours de travail, les bons matériaux et
           une ossature posée proprement. On voit trop de projets partir de travers dès le départ :
-          bois trop humide à la pose, lambourdes sous-dimensionnées, pas de pente d'évacuation.
+          bois trop humide à la pose, lambourdes sous-dimensionnées, pas de pente d&apos;évacuation.
           Ce guide ne vous noie pas dans la théorie — il vous donne les chiffres qui comptent,
           les erreurs à éviter et les étapes dans le bon ordre.
         </p>
 
         <h2 className="content-h2">Quelle essence choisir selon votre budget et votre usage ?</h2>
         <p className="content-body">
-          Tout part de là. L'essence que vous choisissez va dicter le prix, le comportement du
-          bois dans le temps et l'entretien que vous acceptez de faire. Voici les trois familles
+          Tout part de là. L&apos;essence que vous choisissez va dicter le prix, le comportement du
+          bois dans le temps et l&apos;entretien que vous acceptez de faire. Voici les trois familles
           qui couvrent 95 % des terrasses posées en France.
         </p>
 
@@ -92,47 +92,47 @@ export default function GuideTerrassePage() {
           Le pin sylvestre traité en autoclave classe 4 est le bois le plus posé en France, et
           pour de bonnes raisons. Le procédé force des sels de cuivre dans les fibres sous
           pression : résultat, une résistance aux champignons et aux insectes xylophages garantie
-          15 à 20 ans sans traitement régulier. À 25–40 €/m² pour les lames, c'est la seule
+          15 à 20 ans sans traitement régulier. À 25–40 €/m² pour les lames, c&apos;est la seule
           option vraiment viable au-dessus de 20 m².
         </p>
         <p className="content-body">
-          Le piège classique ici : acheter du bois vert fraîchement sorti d'autoclave et le poser
-          immédiatement. Le taux d'humidité dépasse souvent 30 % à la livraison. En séchant sur
+          Le piège classique ici : acheter du bois vert fraîchement sorti d&apos;autoclave et le poser
+          immédiatement. Le taux d&apos;humidité dépasse souvent 30 % à la livraison. En séchant sur
           place, les lames gauchissent et les vis arrachent. Laissez le bois se stabiliser à
-          l'abri 3 à 4 semaines avant la pose — cette étape n'est jamais indiquée sur l'étiquette
+          l&apos;abri 3 à 4 semaines avant la pose — cette étape n&apos;est jamais indiquée sur l&apos;étiquette
           en GSB, et elle change tout.
         </p>
 
         <h3 className="content-h3">Douglas — naturellement durable, sans compromis sur le rendu</h3>
         <p className="content-body">
           Le douglas est un résineux français dont le cœur (duramen) atteint la classe de
-          durabilité 3-4 sans aucun traitement chimique. Il part d'un miel orangé à la coupe et
+          durabilité 3-4 sans aucun traitement chimique. Il part d&apos;un miel orangé à la coupe et
           grisaille progressivement en quelques saisons pour un rendu ardoise que beaucoup
-          recherchent. Comptez 35–55 €/m². Un entretien à l'huile tous les 2-3 ans ralentit
+          recherchent. Comptez 35–55 €/m². Un entretien à l&apos;huile tous les 2-3 ans ralentit
           ce vieillissement si vous voulez conserver la teinte.
         </p>
         <p className="content-body">
-          Ce qu'on oublie souvent : le douglas accepte très bien la lasure et l'huile, mais il
-          faut poncer avant application — sa surface lisse en sortie de scierie limite l'adhérence
+          Ce qu&apos;on oublie souvent : le douglas accepte très bien la lasure et l&apos;huile, mais il
+          faut poncer avant application — sa surface lisse en sortie de scierie limite l&apos;adhérence
           des produits de finition.
         </p>
 
         <h3 className="content-h3">Bois exotiques (ipé, teck) — quand la durabilité prime sur le budget</h3>
         <p className="content-body">
-          L'ipé et le teck sont en classe 1 : 30 à 50 ans sans entretien, grâce à leur teneur
+          L&apos;ipé et le teck sont en classe 1 : 30 à 50 ans sans entretien, grâce à leur teneur
           naturelle en huiles et silices. Leur densité les rend quasi insensibles aux chocs,
-          aux rayures et aux UV. Le prix (80–150 €/m²) et l'obligation d'une certification FSC
-          réduisent leur usage à des projets où la durabilité long terme justifie l'investissement.
+          aux rayures et aux UV. Le prix (80–150 €/m²) et l&apos;obligation d&apos;une certification FSC
+          réduisent leur usage à des projets où la durabilité long terme justifie l&apos;investissement.
         </p>
         <p className="content-body">
           Contrainte technique à ne pas négliger : leur dureté exige des forets carbure et un
-          pré-perçage systématique. Visser sans pré-percer, c'est la fissure garantie, même
+          pré-perçage systématique. Visser sans pré-percer, c&apos;est la fissure garantie, même
           avec des vis inox costaud.
         </p>
 
         <h2 className="content-h2">Calculer les quantités sans se tromper</h2>
         <p className="content-body">
-          Sur les chantiers qu'on voit en GSB, la moitié des acheteurs sous-commandent les lames
+          Sur les chantiers qu&apos;on voit en GSB, la moitié des acheteurs sous-commandent les lames
           et sur-commandent les vis. Voici la méthode juste pour une terrasse 4 × 3 m = 12 m² :
         </p>
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
@@ -144,16 +144,16 @@ export default function GuideTerrassePage() {
           <li style={{ marginBottom: '10px' }}>
             <strong>Lambourdes :</strong> entraxe 40 cm sur 4 m de largeur → (4 / 0,40) + 1 = 11
             lambourdes, chacune courant sur 3 m. La lambourde de rive compte comme les autres :
-            ne l'oubliez pas.
+            ne l&apos;oubliez pas.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Plots réglables :</strong> tous les 1,5 m en longueur et en largeur — pour
             12 m², prévoyez 15 à 20 plots selon la configuration du terrain et la présence ou
-            non d'une lambourde centrale de raidissage.
+            non d&apos;une lambourde centrale de raidissage.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Vis inox :</strong> 6 vis par lame par lambourde. Pour des lames de 2,4 m
-            posées sur 11 lambourdes, c'est environ 500 vis 5 × 60 mm inox A2 minimum.
+            posées sur 11 lambourdes, c&apos;est environ 500 vis 5 × 60 mm inox A2 minimum.
             Prenez A4 si la terrasse est en bord de mer.
           </li>
         </ul>
@@ -181,41 +181,41 @@ export default function GuideTerrassePage() {
 
         <h2 className="content-h2">Les 5 étapes de construction dans le bon ordre</h2>
 
-        <h3 className="content-h3">1. Préparer le sol — l'étape qu'on bâcle toujours</h3>
+        <h3 className="content-h3">1. Préparer le sol — l&apos;étape qu&apos;on bâcle toujours</h3>
         <p className="content-body">
           Désherbez la zone avec un produit total à base de glyphosate ou un brûleur thermique.
           Attendez 2 semaines, retirez les végétaux morts. Posez un géotextile 90 g/m² minimum,
           recouvert de 5 à 10 cm de gravillon concassé pour le drainage. Nivelez à la règle de
-          maçon en ménageant une pente de 1 cm/m vers l'extérieur — juste ce qu'il faut pour
+          maçon en ménageant une pente de 1 cm/m vers l&apos;extérieur — juste ce qu&apos;il faut pour
           évacuer sans créer un toboggan.
         </p>
         <p className="content-body">
-          L'erreur classique : ne pas mettre de géotextile pour "économiser 20 €". Deux ans plus
+          L&apos;erreur classique : ne pas mettre de géotextile pour &quot;économiser 20 €&quot;. Deux ans plus
           tard, la végétation traverse le gravillon, soulève les plots et vous passez un week-end
           à démonter la moitié de la terrasse.
         </p>
 
-        <h3 className="content-h3">2. Poser les plots — la tolérance est de ±3 mm sur l'ensemble</h3>
+        <h3 className="content-h3">2. Poser les plots — la tolérance est de ±3 mm sur l&apos;ensemble</h3>
         <p className="content-body">
           Plots réglables en acier galvanisé ou plots béton coulés, espacement 1,5 m maximum dans
           les deux directions. Utilisez un niveau laser rotatif — le cordeau fonctionne, mais il
-          fléchit sur les grandes longueurs. La tolérance admissible est de ±3 mm sur l'ensemble
+          fléchit sur les grandes longueurs. La tolérance admissible est de ±3 mm sur l&apos;ensemble
           de la surface. Sur terrain meuble, coulez une semelle béton 20 × 20 × 10 cm sous chaque
-          plot pour répartir les charges et éviter l'enfoncement hivernal.
+          plot pour répartir les charges et éviter l&apos;enfoncement hivernal.
         </p>
 
         <h3 className="content-h3">3. Installer les lambourdes — la section, pas un détail</h3>
         <p className="content-body">
           Section minimale 40 × 60 mm, mais préférez 45 × 70 mm dès que la terrasse dépasse 15 m²
-          ou que l'entraxe des plots atteint 1,5 m. Vissez sur les plots avec des vis inox
+          ou que l&apos;entraxe des plots atteint 1,5 m. Vissez sur les plots avec des vis inox
           6 × 60 mm, deux par extrémité. Vérifiez la planéité à la règle de 2 m avant chaque
-          nouvelle pose — rattraper 5 mm de dévers en milieu de chantier, c'est possible ;
-          rattraper 15 mm en fin de pose, c'est souvent tout refaire.
+          nouvelle pose — rattraper 5 mm de dévers en milieu de chantier, c&apos;est possible ;
+          rattraper 15 mm en fin de pose, c&apos;est souvent tout refaire.
         </p>
 
-        <h3 className="content-h3">4. Poser les lames — l'espacement de 5 mm n'est pas décoratif</h3>
+        <h3 className="content-h3">4. Poser les lames — l&apos;espacement de 5 mm n&apos;est pas décoratif</h3>
         <p className="content-body">
-          Commencez par la lame de rive la plus droite et maintenez 5 mm d'écartement entre les
+          Commencez par la lame de rive la plus droite et maintenez 5 mm d&apos;écartement entre les
           lames avec des cales plastique ou des clous de 5 mm comme écarteurs temporaires.
           Pour le vissage apparent, pré-percez systématiquement — sans pré-perçage, le bois
           éclate en bout de lame, surtout sur pin traité sec. Les systèmes à clips cachés
@@ -226,11 +226,11 @@ export default function GuideTerrassePage() {
         <h3 className="content-h3">5. Ponçage et protection — ne pas brûler cette étape</h3>
         <p className="content-body">
           Poncez à la ponceuse orbitale, grain 80 puis 120, pour éliminer les échardes et
-          unifier la surface. Appliquez l'huile de finition ou la lasure bois extérieur dans
+          unifier la surface. Appliquez l&apos;huile de finition ou la lasure bois extérieur dans
           le sens du fil, première couche, séchage 24 h, puis seconde couche. Le rythme
-          d'entretien ensuite : tous les 1–2 ans pour le pin, tous les 2–3 ans pour le
-          douglas. Une terrasse jamais traitée ne "tient" pas moins longtemps — elle grisaille
-          et se fissure, mais ne s'effondre pas. En revanche, une terrasse traitée régulièrement
+          d&apos;entretien ensuite : tous les 1–2 ans pour le pin, tous les 2–3 ans pour le
+          douglas. Une terrasse jamais traitée ne &quot;tient&quot; pas moins longtemps — elle grisaille
+          et se fissure, mais ne s&apos;effondre pas. En revanche, une terrasse traitée régulièrement
           reste propre et structurellement saine deux fois plus longtemps.
         </p>
 
@@ -271,14 +271,14 @@ export default function GuideTerrassePage() {
         </table>
 
         <p className="content-body">
-          Si vous faites appel à un artisan pour la pose, ajoutez 40 à 60 €/m² de main-d'œuvre.
+          Si vous faites appel à un artisan pour la pose, ajoutez 40 à 60 €/m² de main-d&apos;œuvre.
           Les prix varient selon les enseignes et les périodes — Leroy Merlin et Brico Dépôt
           pratiquent régulièrement des remises de 20–30 % sur les lames en fin de saison
           (septembre–octobre).
         </p>
 
         <div className="content-cta-box">
-          <p className="content-cta-box-label">Comparateur d'enseignes</p>
+          <p className="content-cta-box-label">Comparateur d&apos;enseignes</p>
           <p className="content-cta-box-title">Obtenez un devis précis</p>
           <p className="content-cta-box-desc">
             Comparez les prix Leroy Merlin, Brico Dépôt et Castorama en temps réel.
@@ -299,25 +299,25 @@ export default function GuideTerrassePage() {
           Non. Une terrasse de plain-pied — hauteur inférieure à 60 cm du sol fini — ne nécessite
           aucun permis, quelle que soit sa surface. Au-dessus de 20 m² en zone urbaine, une
           déclaration préalable de travaux est requise : formulaire Cerfa 13703, à déposer en
-          mairie, délai d'instruction un mois. Consultez le PLU de votre commune avant de
+          mairie, délai d&apos;instruction un mois. Consultez le PLU de votre commune avant de
           commencer : certains secteurs sauvegardés imposent des contraintes sur les matériaux
           ou les teintes, même pour une simple déclaration.
         </p>
 
         <h3 className="content-h3">Combien de temps dure une terrasse bois bien construite ?</h3>
         <p className="content-body">
-          Comptez 15–25 ans selon l'essence et la régularité de l'entretien. Un pin traité
+          Comptez 15–25 ans selon l&apos;essence et la régularité de l&apos;entretien. Un pin traité
           autoclave huilé tous les 2 ans tient facilement 20 ans. Un douglas entretenu dépasse
           les 25 ans. Les bois exotiques certifiés FSC atteignent 40–50 ans sans entretien.
-          L'exposition compte autant que l'essence : une terrasse couverte ou orientée nord
-          vieillit deux fois moins vite qu'une terrasse plein sud exposée aux UV toute la journée.
+          L&apos;exposition compte autant que l&apos;essence : une terrasse couverte ou orientée nord
+          vieillit deux fois moins vite qu&apos;une terrasse plein sud exposée aux UV toute la journée.
         </p>
 
         <h3 className="content-h3">Peut-on poser une terrasse bois directement sur la terre ?</h3>
         <p className="content-body">
           Non, jamais — même avec un bois traité classe 4. Le contact direct avec un sol humide
           accélère la dégradation fongique en créant une zone de stagnation permanente que
-          l'imprégnation ne suffit pas à contrer. La pose sur plots est obligatoire, avec
+          l&apos;imprégnation ne suffit pas à contrer. La pose sur plots est obligatoire, avec
           5 cm minimum sous les lambourdes pour assurer la ventilation. Ce dégagement seul
           prolonge la durée de vie de la structure de 5 à 10 ans.
         </p>

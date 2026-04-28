@@ -149,7 +149,7 @@ function ToolsPanel({ tools }) {
       <p className="project-tools-subtitle">
         Les outils marqués{' '}
         <span className="tool-rentable-inline">Louable</span>{' '}
-        sont disponibles à la location en GSB — inutile d'acheter pour un projet unique.
+        sont disponibles à la location en GSB — inutile d&apos;acheter pour un projet unique.
       </p>
 
       {/* Chips sélecteurs */}

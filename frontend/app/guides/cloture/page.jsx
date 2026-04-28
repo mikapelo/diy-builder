@@ -85,31 +85,31 @@ export default function GuideClotureBois() {
         <h1 className="content-h1">Construire une clôture bois</h1>
 
         <p className="content-lead">
-          Poser une clôture bois est un chantier d'une journée pour un périmètre de 10 à 15 m — à condition
-          d'avoir bien préparé les fouilles et laissé prendre le béton la veille. Les problèmes qui reviennent
-          le plus souvent&nbsp;: poteaux mal d'aplomb, rails non horizontaux, lames posées sans jeu de
+          Poser une clôture bois est un chantier d&apos;une journée pour un périmètre de 10 à 15 m — à condition
+          d&apos;avoir bien préparé les fouilles et laissé prendre le béton la veille. Les problèmes qui reviennent
+          le plus souvent&nbsp;: poteaux mal d&apos;aplomb, rails non horizontaux, lames posées sans jeu de
           dilatation. Ce guide couvre les points de vigilance concrets, les dimensions à respecter et le
           budget selon votre configuration.
         </p>
 
-        <h2 className="content-h2">Les trois familles d'éléments</h2>
+        <h2 className="content-h2">Les trois familles d&apos;éléments</h2>
         <p className="content-body">
-          Une clôture bois, c'est trois couches superposées. Mal dimensionner l'une d'elles compromet
-          l'ensemble — même si les deux autres sont correctes.
+          Une clôture bois, c&apos;est trois couches superposées. Mal dimensionner l&apos;une d&apos;elles compromet
+          l&apos;ensemble — même si les deux autres sont correctes.
         </p>
 
         <h3 className="content-h3">Poteaux porteurs</h3>
         <p className="content-body">
           Les poteaux reprennent tous les efforts&nbsp;: vent latéral, poids des lames, poussée éventuelle
-          d'enfants ou d'animaux. Pour une clôture de 1,20 m de hauteur, du&nbsp;<strong>70×70 mm</strong>
+          d&apos;enfants ou d&apos;animaux. Pour une clôture de 1,20 m de hauteur, du&nbsp;<strong>70×70 mm</strong>
           suffit. Au-delà de 1,20 m ou pour des travées supérieures à 1,80 m, passez à
           du&nbsp;<strong>90×90 mm</strong> — les rails fléchissent sinon sous le poids des lames.
-          L'entraxe entre poteaux doit rester entre&nbsp;<strong>1,5 et 2 m</strong>.
+          L&apos;entraxe entre poteaux doit rester entre&nbsp;<strong>1,5 et 2 m</strong>.
         </p>
         <p className="content-body">
           Point non négociable&nbsp;: tout poteau en contact avec le sol doit être en bois traité
           <strong> autoclave classe 4</strong>. Ne jamais enterrer du pin classe 2 ou non traité — la
-          pourriture s'installe en deux à trois hivers en sol humide.
+          pourriture s&apos;installe en deux à trois hivers en sol humide.
         </p>
 
         <h3 className="content-h3">Rails horizontaux</h3>
@@ -133,17 +133,17 @@ export default function GuideClotureBois() {
         <h3 className="content-h3">Quincaillerie — ne pas rogner là-dessus</h3>
         <ul className="content-body">
           <li><strong>Équerres galvanisées</strong>&nbsp;: fixation des rails sur les poteaux sans affaiblir les sections.</li>
-          <li><strong>Vis inox A2</strong>&nbsp;: les vis acier zingué ordinaires laissent des coulures de rouille brune sur les lames au bout de quelques mois. En extérieur, l'inox est obligatoire.</li>
-          <li><strong>Chapeaux de poteau</strong>&nbsp;: pièce en bois ou en métal posée en tête pour protéger la coupe transversale — la plus vulnérable à l'infiltration d'eau.</li>
+          <li><strong>Vis inox A2</strong>&nbsp;: les vis acier zingué ordinaires laissent des coulures de rouille brune sur les lames au bout de quelques mois. En extérieur, l&apos;inox est obligatoire.</li>
+          <li><strong>Chapeaux de poteau</strong>&nbsp;: pièce en bois ou en métal posée en tête pour protéger la coupe transversale — la plus vulnérable à l&apos;infiltration d&apos;eau.</li>
         </ul>
 
         <h2 className="content-h2">Calcul des matériaux — exemple 10 m linéaires</h2>
         <p className="content-body">
           Pour une clôture de&nbsp;<strong>10 m linéaires, hauteur 1,50 m</strong>&nbsp;, avec poteaux
-          à 1,67 m d'entraxe&nbsp;:
+          à 1,67 m d&apos;entraxe&nbsp;:
         </p>
         <ul className="content-body">
-          <li><strong>7 poteaux</strong> 90×90×200 cm traités classe 4 (6 travées + 1 poteau d'extrémité)</li>
+          <li><strong>7 poteaux</strong> 90×90×200 cm traités classe 4 (6 travées + 1 poteau d&apos;extrémité)</li>
           <li><strong>21 m de rails</strong> en 38×90 mm (3 rangées × 10 m, avec chutes de recalage)</li>
           <li><strong>environ 70 lames</strong> de 97 cm de longueur utile (lame 10 cm + jeu 8 mm)</li>
           <li>14 équerres galvanisées + vis inox A2 (3 vis par lame et par rail = environ 630 vis)</li>
@@ -165,33 +165,33 @@ export default function GuideClotureBois() {
 
         <h2 className="content-h2">Ancrage des poteaux — deux méthodes</h2>
         <p className="content-body">
-          C'est l'étape qui conditionne la durée de vie de toute la clôture. Un poteau mal ancré penche
-          au bout d'un hiver de vent et de gel — les lames se désolidarisent et les rails se fendent.
+          C&apos;est l&apos;étape qui conditionne la durée de vie de toute la clôture. Un poteau mal ancré penche
+          au bout d&apos;un hiver de vent et de gel — les lames se désolidarisent et les rails se fendent.
         </p>
 
-        <h3 className="content-h3">Béton d'ancrage direct</h3>
+        <h3 className="content-h3">Béton d&apos;ancrage direct</h3>
         <p className="content-body">
           Creusez une fouille de 30×30 cm à&nbsp;<strong>60 cm de profondeur</strong> — hors-gel dans
-          la plupart des régions françaises. Placez le poteau au centre, vérifiez l'aplomb sur deux faces
+          la plupart des régions françaises. Placez le poteau au centre, vérifiez l&apos;aplomb sur deux faces
           perpendiculaires avec un niveau à bulle, puis coulez le béton dosé à 350 kg/m³. Formez une légère
-          couronne bombée autour du poteau pour éviter la stagnation d'eau. Attendez&nbsp;<strong>48 heures</strong>
+          couronne bombée autour du poteau pour éviter la stagnation d&apos;eau. Attendez&nbsp;<strong>48 heures</strong>
           avant de fixer les rails.
         </p>
 
-        <h3 className="content-h3">Sabots d'ancrage sur platine béton</h3>
+        <h3 className="content-h3">Sabots d&apos;ancrage sur platine béton</h3>
         <p className="content-body">
-          Coulez d'abord une platine béton, puis fixez-y un sabot métallique par chevilles d'expansion
+          Coulez d&apos;abord une platine béton, puis fixez-y un sabot métallique par chevilles d&apos;expansion
           ou scellement chimique. Le poteau est boulonné dans le sabot sans contact direct avec le sol —
-          zéro risque de pourriture à la base, installation réversible. C'est la méthode idéale pour un
-          sol déjà bétonnisé ou un dallage existant qu'on ne veut pas casser.
+          zéro risque de pourriture à la base, installation réversible. C&apos;est la méthode idéale pour un
+          sol déjà bétonnisé ou un dallage existant qu&apos;on ne veut pas casser.
         </p>
 
-        <h3 className="content-h3">Classe de traitement : ce n'est pas optionnel</h3>
+        <h3 className="content-h3">Classe de traitement : ce n&apos;est pas optionnel</h3>
         <p className="content-body">
-          Quel que soit le mode d'ancrage choisi, tout poteau en contact permanent avec le sol humide
+          Quel que soit le mode d&apos;ancrage choisi, tout poteau en contact permanent avec le sol humide
           exige du bois traité&nbsp;<strong>autoclave classe 4</strong>. Cette classe garantit une résistance
           aux champignons et aux insectes xylophages pendant 10 à 15 ans dans des conditions normales.
-          La classe 3b n'est pas suffisante pour un usage enterré.
+          La classe 3b n&apos;est pas suffisante pour un usage enterré.
         </p>
 
         <h2 className="content-h2">Les 5 étapes de pose</h2>
@@ -199,25 +199,25 @@ export default function GuideClotureBois() {
         <h3 className="content-h3">1. Piquetage et implantation</h3>
         <p className="content-body">
           Tendez un cordeau entre les deux extrémités de la clôture. Marquez au sol la position de chaque
-          poteau à intervalle régulier. Vérifiez que chaque marque est bien dans l'alignement du cordeau —
+          poteau à intervalle régulier. Vérifiez que chaque marque est bien dans l&apos;alignement du cordeau —
           une déviation de 3 cm se voit immédiatement une fois les lames posées. Commencez toujours par
-          les poteaux d'angle ou d'extrémité avant les intermédiaires.
+          les poteaux d&apos;angle ou d&apos;extrémité avant les intermédiaires.
         </p>
 
         <h3 className="content-h3">2. Ancrage des poteaux</h3>
         <p className="content-body">
-          Posez les poteaux d'extrémité en premier, puis tendez à nouveau le cordeau entre eux pour
-          aligner les poteaux intermédiaires. Après coulée du béton, vérifiez l'aplomb une dernière fois
+          Posez les poteaux d&apos;extrémité en premier, puis tendez à nouveau le cordeau entre eux pour
+          aligner les poteaux intermédiaires. Après coulée du béton, vérifiez l&apos;aplomb une dernière fois
           et maintenez chaque poteau avec des écharpes provisoires le temps de la prise.
-          Les écharpes, c'est 5 minutes par poteau qui évitent de reprendre le travail à la perceuse.
+          Les écharpes, c&apos;est 5 minutes par poteau qui évitent de reprendre le travail à la perceuse.
         </p>
 
         <h3 className="content-h3">3. Fixation des rails</h3>
         <p className="content-body">
           Commencez par le rail du bas&nbsp;: posez-le entre 5 et 10 cm au-dessus du sol pour couper
-          le contact avec l'humidité du sol. Fixez-le avec des équerres galvanisées sur chaque poteau.
+          le contact avec l&apos;humidité du sol. Fixez-le avec des équerres galvanisées sur chaque poteau.
           Posez ensuite le rail du haut (environ 5 cm sous le sommet des lames prévu), puis les rails
-          intermédiaires. Vérifiez l'horizontalité au niveau à bulle — un rail incliné se remarque
+          intermédiaires. Vérifiez l&apos;horizontalité au niveau à bulle — un rail incliné se remarque
           immédiatement sur les lames posées.
         </p>
 
@@ -225,25 +225,25 @@ export default function GuideClotureBois() {
         <p className="content-body">
           Vissez les lames verticalement sur les rails avec 2 vis par lame et par rail (6 vis par lame
           pour une clôture 3 rails). Laissez un&nbsp;<strong>jeu de 5 à 8 mm</strong> entre les lames&nbsp;:
-          sans ce jeu, les lames bombent en été et se fendent en hiver avec les cycles d'humidité.
+          sans ce jeu, les lames bombent en été et se fendent en hiver avec les cycles d&apos;humidité.
           Fabriquez un gabarit en chute de bois à la bonne épaisseur — ça va dix fois plus vite que
           mesurer. Dernière vérification&nbsp;: les lames ne doivent pas toucher le sol, gardez
-          au moins 2 cm de garde pour éviter le contact avec l'humidité.
+          au moins 2 cm de garde pour éviter le contact avec l&apos;humidité.
         </p>
 
         <h3 className="content-h3">5. Traitement et finitions</h3>
         <p className="content-body">
           Appliquez une&nbsp;<strong>lasure microporeuse</strong> ou une
           <strong> huile de protection extérieure</strong> dès la fin de la pose, avant les premières
-          pluies. Insistez sur les coupes en tête de lame — le bois de bout absorbe l'eau dix fois plus
+          pluies. Insistez sur les coupes en tête de lame — le bois de bout absorbe l&apos;eau dix fois plus
           vite que le bois de fil. Posez les chapeaux de poteau sur toutes les têtes de poteaux.
-          Renouvelez le traitement tous les&nbsp;<strong>3 à 4 ans</strong> selon l'exposition.
+          Renouvelez le traitement tous les&nbsp;<strong>3 à 4 ans</strong> selon l&apos;exposition.
         </p>
 
         <h2 className="content-h2">Budget matériaux</h2>
         <p className="content-body">
           Les fourchettes ci-dessous incluent le bois, la quincaillerie et le béton des fouilles — pas
-          l'outillage. L'écart entre fourchette basse et haute dépend essentiellement de l'essence choisie.
+          l&apos;outillage. L&apos;écart entre fourchette basse et haute dépend essentiellement de l&apos;essence choisie.
         </p>
 
         <table className="content-table">
@@ -280,9 +280,9 @@ export default function GuideClotureBois() {
           sur vos quantités exactes.
         </p>
 
-        <h2 className="content-h2">Réglementation — ce qu'il faut vérifier avant de commander</h2>
+        <h2 className="content-h2">Réglementation — ce qu&apos;il faut vérifier avant de commander</h2>
         <p className="content-body">
-          Les règles varient selon les communes. Avant d'acheter les matériaux, vérifiez ces quatre points.
+          Les règles varient selon les communes. Avant d&apos;acheter les matériaux, vérifiez ces quatre points.
         </p>
         <ul className="content-body">
           <li>
@@ -292,13 +292,13 @@ export default function GuideClotureBois() {
           </li>
           <li>
             <strong>Mitoyenneté</strong>&nbsp;: si la clôture est implantée exactement en limite séparative
-            et sert les deux propriétés, l'accord écrit du voisin est fortement recommandé. En cas de
+            et sert les deux propriétés, l&apos;accord écrit du voisin est fortement recommandé. En cas de
             litige, une clôture mitoyenne est à frais partagés — et les deux voisins ont voix au chapitre
-            sur l'entretien.
+            sur l&apos;entretien.
           </li>
           <li>
-            <strong>Zone ABF ou secteur sauvegardé</strong>&nbsp;: à proximité d'un monument historique,
-            l'Architecte des Bâtiments de France peut imposer matériaux, couleurs et hauteurs. La
+            <strong>Zone ABF ou secteur sauvegardé</strong>&nbsp;: à proximité d&apos;un monument historique,
+            l&apos;Architecte des Bâtiments de France peut imposer matériaux, couleurs et hauteurs. La
             consultation est obligatoire avant tout projet.
           </li>
           <li>

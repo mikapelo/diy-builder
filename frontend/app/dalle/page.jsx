@@ -389,7 +389,7 @@ function DalleCalculateur() {
           </div>
 
           <p className="dalle-result-note">
-            Hors main-d'œuvre, livraison et outillage. Prix indicatifs 2024.
+            Hors main-d&apos;œuvre, livraison et outillage. Prix indicatifs 2024.
           </p>
         </div>
       </div>
@@ -455,7 +455,7 @@ export default function DalleTutorielPage() {
         <div className="dalle-cta-artisan">
           <div className="dalle-cta-text">
             <strong>Projet trop important à faire seul ?</strong>
-            <span>Obtenez un devis d'un artisan qualifié avec votre calcul de matériaux.</span>
+            <span>Obtenez un devis d&apos;un artisan qualifié avec votre calcul de matériaux.</span>
           </div>
           <Link href="/" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
             Trouver un artisan
@@ -478,7 +478,7 @@ export default function DalleTutorielPage() {
         .dalle-hero-title {
           font-size: clamp(24px, 4vw, 36px); font-weight: 700;
           color: var(--text-primary, #1a1c1b); line-height: 1.2;
-          margin: 0 0 12px; font-family: 'Fraunces', serif;
+          margin: 0 0 12px; font-family: 'DM Serif Display', Georgia, serif;
         }
         .dalle-hero-desc {
           font-size: 16px; color: #5a5248; line-height: 1.65;
@@ -546,7 +546,7 @@ export default function DalleTutorielPage() {
         }
         .dalle-calc-title {
           font-size: 22px; font-weight: 700; color: #1a1c1b;
-          margin: 0 0 4px; font-family: 'Fraunces', serif;
+          margin: 0 0 4px; font-family: 'DM Serif Display', Georgia, serif;
         }
         .dalle-calc-sub {
           font-size: 13px; color: #8a7e6f; margin: 0 0 28px;
@@ -604,7 +604,7 @@ export default function DalleTutorielPage() {
         }
         .dalle-result-surface {
           font-size: 32px; font-weight: 800; color: #1B3022;
-          font-family: 'Fraunces', serif;
+          font-family: 'DM Serif Display', Georgia, serif;
         }
         .dalle-result-ep {
           font-size: 14px; color: #8a7e6f; font-family: 'Inter', sans-serif;
@@ -632,7 +632,7 @@ export default function DalleTutorielPage() {
           font-size: 15px; font-weight: 700; color: #fff;
           font-family: 'Inter', sans-serif; margin-top: 4px;
         }
-        .dalle-result-total strong { font-size: 20px; font-family: 'Fraunces', serif; }
+        .dalle-result-total strong { font-size: 20px; font-family: 'DM Serif Display', Georgia, serif; }
         .dalle-result-note {
           font-size: 11px; color: #a09880; margin-top: 10px;
           font-family: 'Inter', sans-serif;

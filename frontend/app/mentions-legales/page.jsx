@@ -17,7 +17,7 @@ export default function MentionsLegales() {
 
         <h1 className="content-h1">Mentions légales</h1>
         <p className="content-lead">
-          Conformément à l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.
+          Conformément à l&apos;article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l&apos;économie numérique.
         </p>
 
         <div className="content-legal-section">
@@ -44,7 +44,7 @@ export default function MentionsLegales() {
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Propriété intellectuelle</h2>
           <p className="content-legal-p">
-            L'ensemble des contenus présents sur ce site (textes, simulateurs, visualisations 3D, code, graphismes)
+            L&apos;ensemble des contenus présents sur ce site (textes, simulateurs, visualisations 3D, code, graphismes)
             est la propriété exclusive de DIY Builder, sauf mention contraire.
           </p>
           <p className="content-legal-p">
@@ -62,18 +62,18 @@ export default function MentionsLegales() {
           <p className="content-legal-p">
             DIY Builder décline toute responsabilité quant aux décisions de construction prises sur la base
             de ces simulations. Pour tout projet structurel, il est fortement recommandé de consulter
-            un professionnel qualifié (architecte, bureau d'études, artisan certifié).
+            un professionnel qualifié (architecte, bureau d&apos;études, artisan certifié).
           </p>
           <p className="content-legal-p">
             DIY Builder ne saurait être tenu responsable des dommages directs ou indirects résultant
-            de l'utilisation ou de l'impossibilité d'utiliser le service.
+            de l&apos;utilisation ou de l&apos;impossibilité d&apos;utiliser le service.
           </p>
         </div>
 
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Liens hypertextes</h2>
           <p className="content-legal-p">
-            Le site peut contenir des liens vers des sites tiers. DIY Builder n'exerce aucun contrôle
+            Le site peut contenir des liens vers des sites tiers. DIY Builder n&apos;exerce aucun contrôle
             sur ces sites et décline toute responsabilité quant à leur contenu.
           </p>
         </div>

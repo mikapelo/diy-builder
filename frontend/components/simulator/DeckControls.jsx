@@ -471,7 +471,7 @@ export default function DeckControls({
           <div className="ctrl-input-group mt-4">
             <label className="ctrl-label">Épaisseur dalle béton (cm)</label>
             <div className="ctrl-input-row">
-              <button className="ctrl-btn" onClick={() => setSlabThickness(Math.max(8, slabThickness - 1))}>−</button>
+              <button className="ctrl-btn" aria-label="Diminuer épaisseur dalle" onClick={() => setSlabThickness(Math.max(8, slabThickness - 1))}>−</button>
               <input
                 type="number"
                 className="ctrl-val"
@@ -483,7 +483,7 @@ export default function DeckControls({
                 }}
               />
               <span className="ctrl-unit">cm</span>
-              <button className="ctrl-btn" onClick={() => setSlabThickness(Math.min(25, slabThickness + 1))}>+</button>
+              <button className="ctrl-btn" aria-label="Augmenter épaisseur dalle" onClick={() => setSlabThickness(Math.min(25, slabThickness + 1))}>+</button>
             </div>
           </div>
 

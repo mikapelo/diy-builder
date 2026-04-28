@@ -25,7 +25,7 @@ export default function Cookies() {
           <h2 className="content-legal-h2">{"Qu'est-ce qu'un cookie ?"}</h2>
           <p className="content-legal-p">
             Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone)
-            lors de la visite d'un site web. Il permet au site de mémoriser des informations sur votre visite.
+            lors de la visite d&apos;un site web. Il permet au site de mémoriser des informations sur votre visite.
           </p>
         </div>
 
@@ -94,12 +94,12 @@ export default function Cookies() {
           <h2 className="content-legal-h2">Hébergeur et cookies tiers</h2>
           <p className="content-legal-p">
             Le site est hébergé par Vercel Inc. (États-Unis). Vercel peut déposer des cookies
-            techniques liés à l'infrastructure de déploiement. Ces cookies ne sont pas utilisés
+            techniques liés à l&apos;infrastructure de déploiement. Ces cookies ne sont pas utilisés
             à des fins publicitaires. Consultez la{' '}
             <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
               politique de confidentialité de Vercel
             </a>{' '}
-            pour plus d'informations.
+            pour plus d&apos;informations.
           </p>
         </div>
 

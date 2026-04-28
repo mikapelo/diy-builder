@@ -91,15 +91,15 @@ export default function GuidePergolaBois() {
         <h1 className="content-h1">Construire une pergola bois</h1>
 
         <p className="content-lead">
-          La pergola est l'un des rares ouvrages de jardin qui ne nécessite pas de démarche administrative dans
-          la majorité des cas — du moment qu'elle reste ouverte sur les côtés et sous les 20 m² d'emprise.
+          La pergola est l&apos;un des rares ouvrages de jardin qui ne nécessite pas de démarche administrative dans
+          la majorité des cas — du moment qu&apos;elle reste ouverte sur les côtés et sous les 20 m² d&apos;emprise.
           Ce guide couvre les points qui posent problème en pratique&nbsp;: choix des sections, ancrage des
           poteaux, assemblage des longerons et finitions. Budget réaliste en fin de page.
         </p>
 
         <h2 className="content-h2">Choisir les bonnes sections de bois</h2>
         <p className="content-body">
-          L'erreur classique du débutant, c'est de sous-dimensionner. Une section trop faible donne une flèche
+          L&apos;erreur classique du débutant, c&apos;est de sous-dimensionner. Une section trop faible donne une flèche
           visible sur les longerons, et un vent fort peut tout déstabiliser. Voici les sections qui tiennent
           à long terme.
         </p>
@@ -115,7 +115,7 @@ export default function GuidePergolaBois() {
         <h3 className="content-h3">Longerons (poutres maîtresses)</h3>
         <p className="content-body">
           Les longerons supportent tous les chevrons et transmettent les charges aux poteaux. Pour des portées
-          courantes jusqu'à 4 m, du&nbsp;<strong>63×150 mm</strong> convient sans problème. Pour des portées
+          courantes jusqu&apos;à 4 m, du&nbsp;<strong>63×150 mm</strong> convient sans problème. Pour des portées
           plus longues ou une pergola destinée à recevoir un store, des jardinières ou un toit végétalisé,
           montez à du&nbsp;<strong>75×175 mm</strong>.
         </p>
@@ -124,14 +124,14 @@ export default function GuidePergolaBois() {
         <p className="content-body">
           Les chevrons forment le quadrillage horizontal visible depuis le dessous. Entraxe standard&nbsp;:
           <strong> 40 à 60 cm</strong>. Sections usuelles&nbsp;:&nbsp;<strong>45×120 mm</strong> pour les petits
-          formats, <strong>63×150 mm</strong> pour les grandes portées. Plus l'entraxe est serré, plus l'ombre
-          portée est dense — c'est aussi un choix esthétique.
+          formats, <strong>63×150 mm</strong> pour les grandes portées. Plus l&apos;entraxe est serré, plus l&apos;ombre
+          portée est dense — c&apos;est aussi un choix esthétique.
         </p>
 
         <h3 className="content-h3">Essences recommandées</h3>
         <ul className="content-body">
           <li><strong>Douglas</strong>&nbsp;: durabilité naturelle de classe 3, tient sans traitement si les coupes sont protégées. Prend une belle patine grise après quelques saisons.</li>
-          <li><strong>Pin traité autoclave classe 3</strong>&nbsp;: économique, disponible partout, efficace — c'est le choix le plus répandu pour un premier chantier.</li>
+          <li><strong>Pin traité autoclave classe 3</strong>&nbsp;: économique, disponible partout, efficace — c&apos;est le choix le plus répandu pour un premier chantier.</li>
           <li><strong>Mélèze</strong>&nbsp;: résistance naturelle élevée, grain serré, aspect premium. Compte environ 30 % de plus au linéaire que le douglas.</li>
         </ul>
 
@@ -139,13 +139,13 @@ export default function GuidePergolaBois() {
         <p className="content-body">
           Exemple concret pour une structure standard&nbsp;: <strong>4 poteaux</strong> 100×100×300 cm,
           <strong> 2 longerons</strong> 63×150×400 cm, <strong>6 chevrons</strong> 45×120×300 cm.
-          Pour la quincaillerie&nbsp;: 8 sabots d'ancrage galvanisés, 8 équerres de charpente pour les
+          Pour la quincaillerie&nbsp;: 8 sabots d&apos;ancrage galvanisés, 8 équerres de charpente pour les
           assemblages longerons/chevrons, vis inox A2.
         </p>
         <p className="content-body">
           Attention aux vis&nbsp;: les vis acier zingué ordinaires tachent durablement le bois de traînées de
-          rouille brune après quelques pluies. En extérieur, l'inox A2 est non négociable.
-          Ces quantités varient selon l'entraxe des chevrons et vos dimensions exactes — le simulateur les
+          rouille brune après quelques pluies. En extérieur, l&apos;inox A2 est non négociable.
+          Ces quantités varient selon l&apos;entraxe des chevrons et vos dimensions exactes — le simulateur les
           calcule automatiquement.
         </p>
 
@@ -161,15 +161,15 @@ export default function GuidePergolaBois() {
 
         <h2 className="content-h2">Ancrage des poteaux — le point critique</h2>
         <p className="content-body">
-          Un poteau mal ancré bascule sous les premières rafales, même pour un ouvrage léger. C'est là que
+          Un poteau mal ancré bascule sous les premières rafales, même pour un ouvrage léger. C&apos;est là que
           les pergolas bricolées trop vite montrent leurs limites. Deux solutions fiables existent.
         </p>
 
         <h3 className="content-h3">Sabots sur plots béton — la méthode propre</h3>
         <p className="content-body">
-          Coulez d'abord un plot béton de 30×30 cm à la profondeur hors-gel, puis noyez un sabot galvanisé
+          Coulez d&apos;abord un plot béton de 30×30 cm à la profondeur hors-gel, puis noyez un sabot galvanisé
           dans le béton encore frais. Le poteau se fixe ensuite dans le sabot sans jamais toucher le sol —
-          ce qui élimine tout risque de pourriture à la base. Autre avantage&nbsp;: l'installation est
+          ce qui élimine tout risque de pourriture à la base. Autre avantage&nbsp;: l&apos;installation est
           réversible si vous déplacez la pergola un jour.
         </p>
 
@@ -177,7 +177,7 @@ export default function GuidePergolaBois() {
         <p className="content-body">
           Le bas du poteau est coulé directement dans un massif béton. Méthode robuste, mais elle impose
           un bois traité&nbsp;<strong>autoclave classe 4</strong>&nbsp;(contact sol humide permanent). Comptez
-          une longueur d'encastrement d'au moins un sixième de la hauteur totale du poteau. Un poteau de
+          une longueur d&apos;encastrement d&apos;au moins un sixième de la hauteur totale du poteau. Un poteau de
           3 m doit donc être enterré sur 50 cm minimum.
         </p>
 
@@ -196,8 +196,8 @@ export default function GuidePergolaBois() {
 
         <h3 className="content-h3">1. Implantation</h3>
         <p className="content-body">
-          Matérialisez les 4 coins avec des piquets reliés par un cordeau. Vérifiez l'orthogonalité avec
-          la règle 3-4-5&nbsp;: si un côté mesure 3 m et l'autre 4 m, la diagonale doit faire exactement 5 m.
+          Matérialisez les 4 coins avec des piquets reliés par un cordeau. Vérifiez l&apos;orthogonalité avec
+          la règle 3-4-5&nbsp;: si un côté mesure 3 m et l&apos;autre 4 m, la diagonale doit faire exactement 5 m.
           Comparez ensuite les deux diagonales du rectangle — elles doivent être égales au millimètre.
           Une implantation fausse de 2 cm se corrige à cette étape&nbsp;; pas une fois les poteaux coulés.
         </p>
@@ -205,21 +205,21 @@ export default function GuidePergolaBois() {
         <h3 className="content-h3">2. Fondations et plots</h3>
         <p className="content-body">
           Creusez les fouilles aux 4 coins — et en intermédiaire si la pergola dépasse 4 m. Dosez le béton
-          à 350 kg de ciment par m³ ou utilisez des sacs prêts à l'emploi. Noyez les sabots dans le béton
+          à 350 kg de ciment par m³ ou utilisez des sacs prêts à l&apos;emploi. Noyez les sabots dans le béton
           encore frais en vérifiant leur alignement au cordeau. Attendez&nbsp;<strong>48 heures</strong> — pas
           12, pas 24 — avant de continuer.
         </p>
 
         <h3 className="content-h3">3. Pose des poteaux</h3>
         <p className="content-body">
-          Glissez les poteaux dans les sabots et vissez-les. Vérifiez l'aplomb sur deux faces perpendiculaires
-          avec un niveau à bulle. Maintenez provisoirement avec des écharpes en bois clouées au sol jusqu'à
-          ce que les longerons soient boulonnés et que l'ensemble soit rigidifié.
+          Glissez les poteaux dans les sabots et vissez-les. Vérifiez l&apos;aplomb sur deux faces perpendiculaires
+          avec un niveau à bulle. Maintenez provisoirement avec des écharpes en bois clouées au sol jusqu&apos;à
+          ce que les longerons soient boulonnés et que l&apos;ensemble soit rigidifié.
         </p>
 
         <h3 className="content-h3">4. Longerons</h3>
         <p className="content-body">
-          Hissez les longerons en tête de poteaux — prévoyez de l'aide, une pièce de 63×150×4 m pèse
+          Hissez les longerons en tête de poteaux — prévoyez de l&apos;aide, une pièce de 63×150×4 m pèse
           environ 15 kg. Assemblez avec des boulons M12 traversants ou des vis de charpente de 150 mm minimum.
           Vérifiez le niveau et le fil avant de serrer définitivement. Les longerons doivent dépasser les
           poteaux extérieurs de 20 à 30 cm pour un porte-à-faux équilibré.
@@ -229,15 +229,15 @@ export default function GuidePergolaBois() {
         <p className="content-body">
           Posez les chevrons perpendiculairement aux longerons avec un entraxe régulier. Fixez-les avec
           des équerres de charpente galvanisées ou par vissage biais (deux vis en croix de chaque côté).
-          Fabriquez un gabarit d'espacement — une simple chute de bois à la bonne longueur — pour maintenir
-          l'entraxe constant sans mesurer à chaque pose.
+          Fabriquez un gabarit d&apos;espacement — une simple chute de bois à la bonne longueur — pour maintenir
+          l&apos;entraxe constant sans mesurer à chaque pose.
         </p>
 
         <h3 className="content-h3">6. Finitions</h3>
         <p className="content-body">
           Poncez toutes les arêtes vives et les coupes de bois exposées à la pluie. Appliquez une
           <strong> huile de protection</strong> ou une <strong>lasure incolore microporeuse</strong> dès la
-          fin du montage — avant les premières pluies. Les coupes transversales absorbent l'eau
+          fin du montage — avant les premières pluies. Les coupes transversales absorbent l&apos;eau
           dix fois plus vite que le bois de fil&nbsp;: elles méritent deux couches. Renouvelez le traitement
           tous les 2 à 3 ans.
         </p>
@@ -245,7 +245,7 @@ export default function GuidePergolaBois() {
         <h2 className="content-h2">Budget matériaux</h2>
         <p className="content-body">
           Les fourchettes ci-dessous couvrent les pièces de bois et la quincaillerie (hors béton des
-          fondations et outillage). L'écart bas/haut dépend principalement de l'essence choisie et de l'enseigne.
+          fondations et outillage). L&apos;écart bas/haut dépend principalement de l&apos;essence choisie et de l&apos;enseigne.
         </p>
 
         <table className="content-table">
@@ -283,20 +283,20 @@ export default function GuidePergolaBois() {
 
         <h2 className="content-h2">Réglementation</h2>
         <p className="content-body">
-          La pergola est l'ouvrage de jardin le plus permissif administrativement — mais il y a des limites
+          La pergola est l&apos;ouvrage de jardin le plus permissif administrativement — mais il y a des limites
           à ne pas ignorer.
         </p>
         <ul className="content-body">
           <li>
             <strong>Pergola ouverte sur les côtés</strong>&nbsp;: aucune démarche requise en dessous de 20 m²
-            d'emprise au sol dans la grande majorité des communes.
+            d&apos;emprise au sol dans la grande majorité des communes.
           </li>
           <li>
             <strong>Pergola couverte (polycarbonate, bâche, tuiles)</strong>&nbsp;: elle crée une surface de
             plancher et déclenche une déclaration préalable de travaux dès 5 m² créés.
           </li>
           <li>
-            <strong>Zone ABF ou secteur sauvegardé</strong>&nbsp;: la consultation de l'Architecte des
+            <strong>Zone ABF ou secteur sauvegardé</strong>&nbsp;: la consultation de l&apos;Architecte des
             Bâtiments de France est obligatoire avant tout projet, quelle que soit la surface.
           </li>
           <li>

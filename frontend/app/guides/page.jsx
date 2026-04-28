@@ -36,7 +36,7 @@ export default function GuidesPage() {
             <div className="content-guide-card-icon">🏠</div>
             <h2 className="content-guide-card-title">Cabanon ossature bois</h2>
             <p className="content-guide-card-desc">
-              Conception de l'ossature (montants 60 cm DTU), bardage, toiture mono-pente. Du tracé au faîtage.
+              Conception de l&apos;ossature (montants 60 cm DTU), bardage, toiture mono-pente. Du tracé au faîtage.
             </p>
             <a href="/guides/cabanon" className="btn-secondary">Lire le guide →</a>
           </div>

@@ -88,6 +88,27 @@ const withPWA = require('next-pwa')({
   ],
 });
 
+// ── Content-Security-Policy (Report-Only)
+// Activé en Report-Only pour collecter les violations sans casser la prod.
+// On passera en mode bloquant après observation des reports.
+// - 'unsafe-inline'/'unsafe-eval' nécessaires pour l'hydration Next.js et HMR
+// - 'unsafe-inline' style-src nécessaire pour Tailwind/Next inline styles
+// - Plausible: script + connect (analytics)
+// - Google Fonts: style + font
+// - Phosphor Icons (unpkg): style
+const CSP_REPORT_ONLY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com",
+  "font-src 'self' https://fonts.gstatic.com data:",
+  "img-src 'self' data: blob:",
+  "connect-src 'self' https://plausible.io",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
 const nextConfig = {
   transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 
@@ -101,6 +122,9 @@ const nextConfig = {
           { key: 'Referrer-Policy',            value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy',         value: 'camera=(), microphone=(), geolocation=()' },
           { key: 'X-DNS-Prefetch-Control',     value: 'on' },
+          { key: 'Strict-Transport-Security',  value: 'max-age=63072000; includeSubDomains; preload' },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+          { key: 'Content-Security-Policy-Report-Only', value: CSP_REPORT_ONLY },
         ],
       },
       // Headers SW — permet l'installation PWA

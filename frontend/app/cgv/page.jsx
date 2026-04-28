@@ -17,14 +17,14 @@ export default function CGV() {
 
         <h1 className="content-h1">{"Conditions générales d'utilisation"}</h1>
         <p className="content-lead">
-          Dernière mise à jour : avril 2026. Ces CGU régissent l'accès et l'utilisation du simulateur DIY Builder.
+          Dernière mise à jour : avril 2026. Ces CGU régissent l&apos;accès et l&apos;utilisation du simulateur DIY Builder.
         </p>
 
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Article 1 — Objet</h2>
           <p className="content-legal-p">
-            Les présentes conditions générales d'utilisation (CGU) ont pour objet de définir les modalités
-            et conditions d'utilisation du simulateur de construction en ligne DIY Builder, accessible à l'adresse
+            Les présentes conditions générales d&apos;utilisation (CGU) ont pour objet de définir les modalités
+            et conditions d&apos;utilisation du simulateur de construction en ligne DIY Builder, accessible à l&apos;adresse
             du site, ainsi que les droits et obligations des utilisateurs.
           </p>
         </div>
@@ -33,11 +33,11 @@ export default function CGV() {
           <h2 className="content-legal-h2">Article 2 — Accès au service</h2>
           <p className="content-legal-p">
             Le simulateur DIY Builder est accessible librement et gratuitement à tout utilisateur disposant
-            d'un accès à Internet. Aucune inscription préalable n'est requise pour utiliser les fonctionnalités
+            d&apos;un accès à Internet. Aucune inscription préalable n&apos;est requise pour utiliser les fonctionnalités
             de simulation.
           </p>
           <p className="content-legal-p">
-            DIY Builder se réserve le droit de modifier, suspendre ou interrompre l'accès au service à tout
+            DIY Builder se réserve le droit de modifier, suspendre ou interrompre l&apos;accès au service à tout
             moment, sans préavis et sans engager sa responsabilité.
           </p>
         </div>
@@ -53,25 +53,25 @@ export default function CGV() {
           </p>
           <ul>
             <li className="content-legal-p">un devis contractuel engageant un fournisseur ou artisan</li>
-            <li className="content-legal-p">un document technique certifié (DTU, bureau d'études)</li>
-            <li className="content-legal-p">une garantie de conformité aux règles d'urbanisme locales</li>
+            <li className="content-legal-p">un document technique certifié (DTU, bureau d&apos;études)</li>
+            <li className="content-legal-p">une garantie de conformité aux règles d&apos;urbanisme locales</li>
           </ul>
         </div>
 
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Article 4 — Limitation de responsabilité</h2>
           <p className="content-legal-p">
-            DIY Builder ne saurait être tenu responsable des décisions de construction, d'achat ou de travaux
-            prises par l'utilisateur sur la base des simulations effectuées sur le site.
+            DIY Builder ne saurait être tenu responsable des décisions de construction, d&apos;achat ou de travaux
+            prises par l&apos;utilisateur sur la base des simulations effectuées sur le site.
           </p>
           <p className="content-legal-p">
-            L'utilisateur reconnaît que tout projet de construction ou d'aménagement doit faire l'objet
-            d'une validation par un professionnel qualifié (architecte, maître d'œuvre, bureau d'études
+            L&apos;utilisateur reconnaît que tout projet de construction ou d&apos;aménagement doit faire l&apos;objet
+            d&apos;une validation par un professionnel qualifié (architecte, maître d&apos;œuvre, bureau d&apos;études
             structure) avant tout engagement.
           </p>
           <p className="content-legal-p">
             DIY Builder décline toute responsabilité en cas de dommages directs, indirects, matériels ou
-            immatériels résultant de l'utilisation du service.
+            immatériels résultant de l&apos;utilisation du service.
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export default function CGV() {
             propriété exclusive de DIY Builder et sont protégés par le droit de la propriété intellectuelle.
           </p>
           <p className="content-legal-p">
-            L'utilisateur dispose d'un droit d'usage personnel et non commercial. Toute reproduction,
+            L&apos;utilisateur dispose d&apos;un droit d&apos;usage personnel et non commercial. Toute reproduction,
             extraction ou réutilisation des algorithmes ou contenus sans autorisation expresse est interdite.
           </p>
         </div>
@@ -102,7 +102,7 @@ export default function CGV() {
             Les présentes CGU sont soumises au droit français.
           </p>
           <p className="content-legal-p">
-            En cas de litige relatif à l'interprétation ou à l'exécution des présentes, et à défaut
+            En cas de litige relatif à l&apos;interprétation ou à l&apos;exécution des présentes, et à défaut
             de résolution amiable, le tribunal compétent sera : <strong>[À COMPLÉTER — ex : Tribunal judiciaire de Paris]</strong>.
           </p>
         </div>
@@ -112,7 +112,7 @@ export default function CGV() {
           <p className="content-legal-p">
             DIY Builder se réserve le droit de modifier les présentes CGU à tout moment.
             Les utilisateurs seront informés des modifications par la mise à jour de la date en haut de cette page.
-            La poursuite de l'utilisation du service après modification vaut acceptation des nouvelles CGU.
+            La poursuite de l&apos;utilisation du service après modification vaut acceptation des nouvelles CGU.
           </p>
         </div>
 

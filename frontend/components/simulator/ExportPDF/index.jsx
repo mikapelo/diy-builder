@@ -64,15 +64,20 @@ function computeBudgetByStore(materials, projectType, slabTotal) {
     result.sort((a, b) => a.total - b.total);
     return result;
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.warn('[ExportPDF] Detailed pricing failed, falling back to rate/m2:', err.message);
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.warn('[ExportPDF] Detailed pricing failed, falling back to rate/m2:', err.message);
+    }
     return null; // signal fallback
   }
 }
 
 /* ── Fallback rate/m2 (simplifié, source unique materialPrices) ── */
 function fallbackBudgetByStore(area, slabTotal) {
-  console.warn('[ExportPDF] Using fallback rate/m² — PDF budget may be approximate.');
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line no-console
+    console.warn('[ExportPDF] Using fallback rate/m² — PDF budget may be approximate.');
+  }
   return STORES_ALL.map(s => ({
     store: { id: s.id, name: s.name },
     lines: [],

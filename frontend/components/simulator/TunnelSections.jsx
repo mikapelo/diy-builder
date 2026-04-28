@@ -32,6 +32,8 @@ export default function TunnelSections({
   area,
   slabTotal,
   onOpenSaveModal,
+  onExportPDF,
+  pdfStatus,
 }) {
   const tunnelRef = useRef(null);
   useScrollTunnel(tunnelRef);
@@ -81,6 +83,8 @@ export default function TunnelSections({
         <ProjectActions
           projectType={projectType}
           onOpenSaveModal={onOpenSaveModal}
+          onExportPDF={onExportPDF}
+          pdfStatus={pdfStatus}
         />
       </section>
 

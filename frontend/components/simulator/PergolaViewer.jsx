@@ -47,6 +47,10 @@ export default function PergolaViewer({ structure, foundationType = 'ground' }) 
     return () => clearTimeout(t);
   }, [showHint]);
 
+  /* Camera presets — must be before early return (rules-of-hooks) */
+  const [camPreset, setCamPreset] = useState('hero');
+  const handlePreset = useCallback((key) => setCamPreset(key), []);
+
   if (!structure?.geometry) {
     return (
       <div className="deck-preview">
@@ -68,9 +72,7 @@ export default function PergolaViewer({ structure, foundationType = 'ground' }) 
   const sceneKey = `pergola-${width}-${depth}-${height}`;
   const isPlan = sceneMode === 'plan';
 
-  const [camPreset, setCamPreset] = useState('hero');
   const presets = getPresets(width, depth, height);
-  const handlePreset = useCallback((key) => setCamPreset(key), []);
   const activeMode = MODES.find(m => m.key === sceneMode);
 
   return (

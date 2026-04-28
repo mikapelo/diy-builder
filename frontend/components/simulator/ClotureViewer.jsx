@@ -47,6 +47,10 @@ export default function ClotureViewer({ structure, foundationType = 'ground' }) 
     return () => clearTimeout(t);
   }, [showHint]);
 
+  /* Camera presets — must be before early return (rules-of-hooks) */
+  const [camPreset, setCamPreset] = useState('hero');
+  const handlePreset = useCallback((key) => setCamPreset(key), []);
+
   if (!structure?.geometry) {
     return (
       <div className="deck-preview">
@@ -71,9 +75,7 @@ export default function ClotureViewer({ structure, foundationType = 'ground' }) 
   const isPlan = sceneMode === 'plan';
   const activeMode = MODES.find(m => m.key === sceneMode);
 
-  const [camPreset, setCamPreset] = useState('hero');
   const presets = getPresets(width, 1, height);
-  const handlePreset = useCallback((key) => setCamPreset(key), []);
 
   return (
     <div className="deck-preview">

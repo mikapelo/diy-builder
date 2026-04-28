@@ -208,6 +208,8 @@ function SimulatorContent({ projectType }) {
         area={area}
         slabTotal={slabTotal}
         onOpenSaveModal={handleOpenSaveModal}
+        onExportPDF={handleExportPDF}
+        pdfStatus={pdfStatus}
       />
 
       {/* ═══ MODALES ═══ */}

@@ -51,7 +51,7 @@ export default function PolitiqueConfidentialite() {
             </tbody>
           </table>
           <p className="content-legal-p">
-            Aucune donnée nominative n'est collectée lors de la simple utilisation du simulateur.
+            Aucune donnée nominative n&apos;est collectée lors de la simple utilisation du simulateur.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export default function PolitiqueConfidentialite() {
           </p>
           <p className="content-legal-p">
             Dans le cadre de la mise en relation avec un artisan partenaire, votre email et vos informations
-            de projet peuvent être transmis à l'artisan concerné, uniquement avec votre consentement préalable.
+            de projet peuvent être transmis à l&apos;artisan concerné, uniquement avec votre consentement préalable.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default function PolitiqueConfidentialite() {
           <p className="content-legal-p">
             Le site est hébergé par Vercel Inc. (États-Unis). Ce transfert est encadré par les
             clauses contractuelles types (CCT) adoptées par la Commission européenne, conformément
-            à l'article 46 du RGPD.
+            à l&apos;article 46 du RGPD.
           </p>
         </div>
 
@@ -110,7 +110,7 @@ export default function PolitiqueConfidentialite() {
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Cookies</h2>
           <p className="content-legal-p">
-            Ce site n'utilise pas de cookies publicitaires ni analytiques tiers.
+            Ce site n&apos;utilise pas de cookies publicitaires ni analytiques tiers.
             Consultez notre <a href="/cookies">politique cookies</a> pour plus de détails.
           </p>
         </div>

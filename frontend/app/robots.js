@@ -4,7 +4,7 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/'],
+        disallow: ['/api/', '/bardage'],
       },
     ],
     sitemap: 'https://diy-builder.fr/sitemap.xml',

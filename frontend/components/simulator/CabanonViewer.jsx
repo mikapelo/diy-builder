@@ -56,6 +56,10 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
     return () => clearTimeout(t);
   }, [showHint]);
 
+  /* Camera presets — must be before early return (rules-of-hooks) */
+  const [camPreset, setCamPreset] = useState('hero');
+  const handlePreset = useCallback((key) => setCamPreset(key), []);
+
   /* Fallback si geometry pas encore prête */
   if (!structure?.geometry) {
     return (
@@ -74,10 +78,7 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
   const isPlan   = sceneMode === 'plan';
   const camPos   = [width * 1.15, height * 1.4, depth * 1.65];
 
-  /* Camera presets */
-  const [camPreset, setCamPreset] = useState('hero');
   const presets = getPresets(width, depth, height);
-  const handlePreset = useCallback((key) => setCamPreset(key), []);
   /* sceneKey sur CabanonScene (pas Canvas) → pas de flash WebGL */
   const sceneKey = `cabanon-${width}-${depth}-${height}`;
 

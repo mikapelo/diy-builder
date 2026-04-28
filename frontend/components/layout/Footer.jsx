@@ -59,6 +59,7 @@ export default function Footer() {
                 <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/guides/cabanon">Guide cabanon</Link></li>
                 <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/guides/pergola">Guide pergola</Link></li>
                 <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/guides/cloture">Guide clôture</Link></li>
+                <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/dalle">Tutoriel dalle béton</Link></li>
                 <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/faq">FAQ</Link></li>
               </ul>
             </div>
