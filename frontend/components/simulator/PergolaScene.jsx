@@ -148,7 +148,7 @@ function BracesGroup({ braces, cx, cz, section, material }) {
   );
 }
 
-export default function PergolaScene({ geometry, sceneMode = 'assembled', foundationType = 'ground', detailed = false, showHuman = true }) {
+export default function PergolaScene({ geometry, sceneMode = 'assembled', foundationType = 'ground', detailed = false, showHuman = false }) {
   const exploded = sceneMode === 'exploded';
   const { dimensions, posts, beamsLong, beamsShort, rafters, braces = [] } = geometry;
   const {

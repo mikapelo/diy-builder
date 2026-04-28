@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 
@@ -58,7 +59,7 @@ export default function Header({ view, resultat, copied, onRetour, onCopierLien,
 
         {/* Logo — premium, lien accueil */}
         <button
-          onClick={() => { if (view !== 'home') onRetour(); else window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onClick={() => { if (view === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else onRetour(); }}
           className="flex items-center gap-3 group transition-opacity duration-200 hover:opacity-80 flex-shrink-0"
         >
           <img
@@ -72,8 +73,8 @@ export default function Header({ view, resultat, copied, onRetour, onCopierLien,
           </div>
         </button>
 
-        {/* Nav centre — pointe vers les vraies sections v6 (masquée sur pages modules) */}
-        {view !== 'module' && (
+        {/* Nav centre — home : sections scroll + guides/FAQ */}
+        {view === 'home' && (
           <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {[
               { label: 'Projets',           sectionId: 'v6-hero' },
@@ -88,37 +89,22 @@ export default function Header({ view, resultat, copied, onRetour, onCopierLien,
                 {label}
               </button>
             ))}
-            <button
-              onClick={() => router.push('/guides')}
-              className="v6-header-nav-link"
-            >
-              Guides
-            </button>
-            <button
-              onClick={() => router.push('/faq')}
-              className="v6-header-nav-link"
-            >
-              FAQ
-            </button>
+            <Link href="/guides" className="v6-header-nav-link">Guides</Link>
+            <Link href="/faq" className="v6-header-nav-link">FAQ</Link>
           </nav>
         )}
-        {/* Sur les pages module : nav discrète guides/FAQ à gauche du spacer */}
+        {/* Nav centre — pages contenu : guides + FAQ uniquement */}
+        {view === 'content' && (
+          <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
+            <Link href="/guides" className="v6-header-nav-link">Guides</Link>
+            <Link href="/faq" className="v6-header-nav-link">FAQ</Link>
+          </nav>
+        )}
+        {/* Nav centre — pages module : guides/FAQ discrets */}
         {view === 'module' && (
           <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
-            <button
-              onClick={() => router.push('/guides')}
-              className="v6-header-nav-link"
-              style={{ fontSize: 13, opacity: 0.75 }}
-            >
-              Guides
-            </button>
-            <button
-              onClick={() => router.push('/faq')}
-              className="v6-header-nav-link"
-              style={{ fontSize: 13, opacity: 0.75 }}
-            >
-              FAQ
-            </button>
+            <Link href="/guides" className="v6-header-nav-link" style={{ fontSize: 13, opacity: 0.75 }}>Guides</Link>
+            <Link href="/faq" className="v6-header-nav-link" style={{ fontSize: 13, opacity: 0.75 }}>FAQ</Link>
           </nav>
         )}
 

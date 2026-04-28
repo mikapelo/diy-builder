@@ -13,6 +13,7 @@
 import { useState, useMemo } from 'react';
 import { calculateDetailedCost, groupByCategory, calculateTotalCost } from '@/lib/costCalculator.js';
 import { STORES } from '@/lib/materialPrices.js';
+import { formatLength } from '@/lib/formatters.js';
 import BrandIcon from '@/components/ui/BrandIcon';
 import { useLivePrices, isPricesCacheStale } from '@/hooks/useLivePrices.js';
 
@@ -127,8 +128,8 @@ function CabanonMaterials({ materials }) {
   ];
 
   const toiture = [
-    { label: `Chevrons (${chevronLength} m)`, qty: chevrons,   unit: 'pcs', icon: 'carpenter' },
-    { label: `Entretoises toiture (${roofEntretoiseLength} m)`, qty: roofEntretoises, unit: 'pcs', icon: 'view_column' },
+    { label: `Chevrons (${formatLength(chevronLength)} m)`, qty: chevrons,   unit: 'pcs', icon: 'carpenter' },
+    { label: `Entretoises toiture (${formatLength(roofEntretoiseLength)} m)`, qty: roofEntretoises, unit: 'pcs', icon: 'view_column' },
     { label: 'Membrane sous-toiture',  qty: membrane,         unit: 'm²',  icon: 'layers' },
   ];
 
@@ -168,11 +169,11 @@ function PergolaMaterials({ materials }) {
   const bH = geometry ? Math.round(geometry.dimensions.beamH * 1000) : 150;
 
   const structure = [
-    { label: `Poteaux 100×100 (${postLength} m)`,         qty: posts,      unit: 'pcs', icon: 'fence', highlight: true },
-    { label: `Longerons ${bH}×${bW} (${beamLongLength} m)`,  qty: beamsLong,  unit: 'pcs', icon: 'straighten' },
-    { label: `Traverses ${bH}×${bW} (${beamShortLength} m)`, qty: beamsShort, unit: 'pcs', icon: 'straighten' },
-    { label: `Chevrons 80×50 (${rafterLength} m)`,        qty: rafters,    unit: 'pcs', icon: 'carpenter' },
-    { label: `Jambes de force 70×70 (${braceLength} m)`,  qty: braces,     unit: 'pcs', icon: 'architecture' },
+    { label: `Poteaux 100×100 (${formatLength(postLength)} m)`,         qty: posts,      unit: 'pcs', icon: 'fence', highlight: true },
+    { label: `Longerons ${bH}×${bW} (${formatLength(beamLongLength)} m)`,  qty: beamsLong,  unit: 'pcs', icon: 'straighten' },
+    { label: `Traverses ${bH}×${bW} (${formatLength(beamShortLength)} m)`, qty: beamsShort, unit: 'pcs', icon: 'straighten' },
+    { label: `Chevrons 80×50 (${formatLength(rafterLength)} m)`,        qty: rafters,    unit: 'pcs', icon: 'carpenter' },
+    { label: `Jambes de force 70×70 (${formatLength(braceLength)} m)`,  qty: braces,     unit: 'pcs', icon: 'architecture' },
   ];
 
   const quincaillerie = [
@@ -204,7 +205,7 @@ function PergolaMaterials({ materials }) {
         }}>
           <span className="material-symbols-outlined" style={{ fontSize: '18px', flexShrink: 0, marginTop: '1px' }}>info</span>
           <span>
-            <strong>Chevrons {rafterLength} m :</strong> une longueur disponible en 6 m ou 7 m suffit — une coupe en bout de quelques cm sera nécessaire.
+            <strong>Chevrons {formatLength(rafterLength)} m :</strong> une longueur disponible en 6 m ou 7 m suffit — une coupe en bout de quelques cm sera nécessaire.
             Ces sections existent en Douglas ou épicéa chez les grandes enseignes.
           </span>
         </div>
@@ -228,9 +229,9 @@ function ClotureMaterials({ materials }) {
 
   const isUC4 = postTreatment === 'UC4';
   const structure = [
-    { label: `Poteaux 90×90${isUC4 ? ' UC4' : ''} (${postLength} m)`, qty: posts, unit: 'pcs', icon: 'fence', highlight: true },
-    { label: `Rails 70×25 (${railLength} m)`, qty: rails, unit: 'pcs', icon: 'straighten' },
-    { label: `Lames 120×15 (${boardLength?.toFixed?.(2) ?? boardLength} m)`, qty: boards, unit: 'pcs', icon: 'view_column' },
+    { label: `Poteaux 90×90${isUC4 ? ' UC4' : ''} (${formatLength(postLength)} m)`, qty: posts, unit: 'pcs', icon: 'fence', highlight: true },
+    { label: `Rails 70×25 (${formatLength(railLength)} m)`, qty: rails, unit: 'pcs', icon: 'straighten' },
+    { label: `Lames 120×15 (${formatLength(boardLength)} m)`, qty: boards, unit: 'pcs', icon: 'view_column' },
   ];
 
   const quincaillerie = [

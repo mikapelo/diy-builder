@@ -1,10 +1,13 @@
+import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
 export const metadata = {
-  title: 'FAQ — Questions fréquentes bricolage bois | DIY Builder',
+  title: 'Construction bois : 24 questions fréquentes (FAQ 2025)',
   description: 'Réponses aux questions les plus fréquentes sur la construction de terrasse, cabanon, pergola et clôture en bois. Calculs, matériaux, coûts.',
 };
 
+// faqData contient les réponses en texte brut — utilisé pour le JSON-LD FAQPage (pas de HTML).
+// Les liens internes et citations DTU sont injectés via faqLinks ci-dessous.
 const faqData = [
   {
     category: 'Terrasse bois',
@@ -124,6 +127,85 @@ const faqData = [
   },
 ];
 
+// Liens internes et enrichissements DTU par question (clé = texte de la question).
+// Séparés de faqData pour ne pas polluer le JSON-LD (texte brut requis par schema.org).
+const faqEnrichments = {
+  'Quelle essence de bois choisir pour une terrasse extérieure ?': (
+    <>
+      {' '}Pour comparer les essences en détail (sections, durabilité, entretien), consultez{' '}
+      <Link href="/guides/terrasse">le guide terrasse complet</Link>.
+    </>
+  ),
+  'Quel entraxe pour les lambourdes d\'une terrasse bois ?': (
+    <>
+      {' '}Selon NF DTU 51.4 §6.2, l&apos;entraxe entre lambourdes ne dépasse pas 50 cm pour des lames de 21 mm.{' '}
+      <Link href="/calculateur">Le simulateur terrasse</Link> applique ces valeurs automatiquement selon vos dimensions.
+    </>
+  ),
+  'Combien coûte une terrasse bois en moyenne ?': (
+    <>
+      {' '}<Link href="/calculateur">Lancez le simulateur</Link> pour obtenir votre devis détaillé avec comparatif Leroy Merlin / Brico Dépôt / Castorama.
+    </>
+  ),
+  'Faut-il un permis de construire pour une terrasse bois ?': (
+    <>
+      {' '}<Link href="/guides/terrasse">Le guide terrasse</Link> récapitule les seuils surface/hauteur et les démarches Cerfa selon votre cas.
+    </>
+  ),
+  'Combien de plots béton faut-il pour une terrasse 4×3 m ?': (
+    <>
+      {' '}<Link href="/calculateur">Le calculateur terrasse</Link> détermine le nombre exact de plots en fonction de vos dimensions et du schéma de pose.
+    </>
+  ),
+  'Quelle section de bois pour les montants d\'un cabanon ?': (
+    <>
+      {' '}NF DTU 31.2 §9.1.1.2 fixe la section minimale à 95 mm pour les montants de mur extérieur en ossature bois.{' '}
+      <Link href="/guides/cabanon">Le guide cabanon</Link> détaille les sections selon hauteur et exposition au vent.
+    </>
+  ),
+  'Faut-il un permis de construire pour un cabanon ?': (
+    <>
+      {' '}<Link href="/guides/cabanon">Le guide complet</Link> détaille les formulaires Cerfa, les seuils RE 2020 et les cas particuliers en zone protégée.
+    </>
+  ),
+  'Quelle pente minimale pour un toit de cabanon mono-pente ?': (
+    <>
+      {' '}Voir <Link href="/guides/cabanon">le guide cabanon</Link> pour les détails de couverture (tôle, ondulé, bardeaux) et les pentes associées selon NF DTU 31.1.
+    </>
+  ),
+  'Comment calculer le nombre de montants pour un cabanon ?': (
+    <>
+      {' '}<Link href="/cabanon">Le simulateur cabanon</Link> calcule le détail exact avec les linteaux, les king studs et les cripple studs — BOM exportable en PDF.
+    </>
+  ),
+  'Quelle section de poteau pour une pergola ?': (
+    <>
+      {' '}Voir <Link href="/guides/pergola">le guide pergola</Link> pour le tableau portée → section selon les charges prévues (toit végétal, store motorisé).
+    </>
+  ),
+  'Comment ancrer les poteaux d\'une pergola sans les laisser pourrir ?': (
+    <>
+      {' '}<Link href="/guides/pergola">Le guide pergola</Link> illustre les deux méthodes d&apos;ancrage (sabot vs scellement) avec les profondeurs hors-gel par région.
+    </>
+  ),
+  'Faut-il un permis pour construire une pergola dans son jardin ?': (
+    <>
+      {' '}Retrouvez les seuils surface / couverture / zone dans <Link href="/guides/pergola">le guide pergola</Link>.
+    </>
+  ),
+  'Quelle hauteur pour une clôture de jardin en limite de propriété ?': (
+    <>
+      {' '}Le PLU varie selon les communes — <Link href="/guides/cloture">le guide clôture</Link> résume les règles par type de zone et les démarches préalables.
+    </>
+  ),
+  'Combien coûte une clôture bois de 20 mètres linéaires ?': (
+    <>
+      {' '}Selon l&apos;essence choisie, NF EN 335 distingue 5 classes d&apos;emploi : en contact avec le sol (poteaux enterrés), la classe 4 est obligatoire.{' '}
+      <Link href="/cloture">Le simulateur clôture</Link> chiffre votre projet avec comparatif Leroy Merlin / Brico Dépôt / Castorama.
+    </>
+  ),
+};
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -141,7 +223,7 @@ export default function FAQPage() {
     <ContentLayout>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
 
       <div className="content-container">
@@ -151,10 +233,14 @@ export default function FAQPage() {
           <span className="content-breadcrumb-current">FAQ</span>
         </nav>
 
-        <h1 className="content-h1">Questions fréquentes</h1>
+        <h1 className="content-h1">Construction bois en autoconstruction : 24 questions fréquentes</h1>
         <p className="content-lead">
           Les vraies questions qui reviennent avant de se lancer — sections de bois, ancrage, réglementation,
           budget. Réponses directes avec des chiffres concrets.
+        </p>
+
+        <p className="content-disclaimer">
+          Les indications ci-dessous reposent sur les DTU en vigueur (NF DTU 31.1, 31.2, 51.4) et le Code de l&apos;urbanisme français. Les seuils réglementaires varient selon le PLU local : vérifiez auprès de votre mairie avant tout chantier.
         </p>
 
         {faqData.map(({ category, questions }) => (
@@ -163,7 +249,10 @@ export default function FAQPage() {
             {questions.map(({ q, a }) => (
               <details key={q} className="content-details">
                 <summary className="content-summary">{q}</summary>
-                <div className="content-answer">{a}</div>
+                <div className="content-answer">
+                  {a}
+                  {faqEnrichments[q] ?? null}
+                </div>
               </details>
             ))}
           </div>

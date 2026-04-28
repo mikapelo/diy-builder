@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
 export const metadata = {
@@ -82,6 +83,8 @@ export default function GuideCabanonPage() {
         </p>
 
         <h2 className="content-h2">L&apos;ossature bois : ce qu&apos;il faut vraiment comprendre</h2>
+        {/* TODO Pelo: insérer ici un schéma d'ossature platform frame (king/jack/cripple studs).
+            Signal E-E-A-T fort manquant. Format suggéré : SVG inline ou Image PNG. */}
         <p className="content-body">
           Le platform frame, c&apos;est simple dans le principe : des montants verticaux coincés entre
           une lisse basse et une lisse haute, le tout raidi par des panneaux de contreventement.
@@ -339,6 +342,16 @@ export default function GuideCabanonPage() {
           plus un pare-vapeur côté chaud. C&apos;est une décision à prendre avant de commander les
           montants — pas après, quand vous réalisez que 45 × 90 mm ne loge pas 100 mm d&apos;isolant.
         </p>
+
+        <aside className="content-related">
+          <h3>Voir aussi</h3>
+          <ul>
+            <li><Link href="/guides/terrasse">Guide terrasse</Link> — plots et lambourdes (sol cabanon)</li>
+            <li><Link href="/guides/pergola">Guide pergola</Link> — assemblage poteaux/longerons</li>
+            <li><Link href="/faq">FAQ</Link> — 24 questions techniques (sections, classes, RE 2020)</li>
+            <li><Link href="/cabanon">Calculateur cabanon</Link> — devis matériaux + plan</li>
+          </ul>
+        </aside>
 
         <div className="content-cta-box">
           <p className="content-cta-box-label">Simulateur gratuit</p>

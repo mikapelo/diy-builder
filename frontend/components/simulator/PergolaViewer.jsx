@@ -24,22 +24,22 @@ const MODES = [
   { key: 'plan',      label: 'Plan' },
 ];
 
-/* ExportBridge — publie camera/gl/scene/controls + setSceneMode au contexte
-   d'export, pour que ExportPDF puisse capturer des vues standardisées. */
-function ExportBridge({ setSceneMode }) {
+/* ExportBridge — publie camera/gl/scene/controls + setSceneMode + setShowHuman au contexte
+   d'export, pour que ExportPDF puisse capturer des vues standardisées sans la silhouette. */
+function ExportBridge({ setSceneMode, showHuman, setShowHuman }) {
   const { camera, gl, scene, controls } = useThree();
   const setBridge = useSetExportBridge();
   useEffect(() => {
-    setBridge({ camera, gl, scene, controls, setSceneMode });
+    setBridge({ camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman });
     return () => setBridge(null);
-  }, [camera, gl, scene, controls, setSceneMode, setBridge]);
+  }, [camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman, setBridge]);
   return null;
 }
 
 export default function PergolaViewer({ structure, foundationType = 'ground' }) {
   const [sceneMode, setSceneMode] = useState('assembled');
   const [showHint, setShowHint]   = useState(true);
-  const [showHuman, setShowHuman] = useState(true);
+  const [showHuman, setShowHuman] = useState(false);
 
   useEffect(() => {
     if (!showHint) return;
@@ -158,7 +158,7 @@ export default function PergolaViewer({ structure, foundationType = 'ground' }) 
               aria-label="Visualisation 3D interactive de la pergola"
               role="img"
             >
-              <ExportBridge setSceneMode={setSceneMode} />
+              <ExportBridge setSceneMode={setSceneMode} showHuman={showHuman} setShowHuman={setShowHuman} />
               <color attach="background" args={['#f5f1eb']} />
               <fog attach="fog" args={['#efebe4', Math.max(20, diag), Math.max(70, diag * 4)]} />
               <PergolaScene key={sceneKey} geometry={geometry} sceneMode={sceneMode} foundationType={foundationType} detailed={sceneMode === 'detailed'} showHuman={showHuman} />

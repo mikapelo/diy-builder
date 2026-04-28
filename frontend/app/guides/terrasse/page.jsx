@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
 export const metadata = {
@@ -206,8 +207,9 @@ export default function GuideTerrassePage() {
 
         <h3 className="content-h3">3. Installer les lambourdes — la section, pas un détail</h3>
         <p className="content-body">
-          Section minimale 40 × 60 mm, mais préférez 45 × 70 mm dès que la terrasse dépasse 15 m²
-          ou que l&apos;entraxe des plots atteint 1,5 m. Vissez sur les plots avec des vis inox
+          Section minimale 40 × 60 mm selon NF DTU 51.4, mais préférez 45 × 70 mm dès que la terrasse dépasse 15 m²
+          ou que l&apos;entraxe des plots atteint 1,5 m. La norme précise également que l&apos;entraxe entre lambourdes
+          ne doit pas dépasser 50 cm pour des lames de 21 mm (NF DTU 51.4 §6.2). Vissez sur les plots avec des vis inox
           6 × 60 mm, deux par extrémité. Vérifiez la planéité à la règle de 2 m avant chaque
           nouvelle pose — rattraper 5 mm de dévers en milieu de chantier, c&apos;est possible ;
           rattraper 15 mm en fin de pose, c&apos;est souvent tout refaire.
@@ -321,6 +323,16 @@ export default function GuideTerrassePage() {
           5 cm minimum sous les lambourdes pour assurer la ventilation. Ce dégagement seul
           prolonge la durée de vie de la structure de 5 à 10 ans.
         </p>
+
+        <aside className="content-related">
+          <h3>Voir aussi</h3>
+          <ul>
+            <li><Link href="/guides/cabanon">Guide cabanon</Link> — ossature et toiture mono-pente</li>
+            <li><Link href="/guides/pergola">Guide pergola</Link> — poteaux et chevrons</li>
+            <li><Link href="/faq">FAQ</Link> — 24 questions techniques (entraxes, prix, réglementation)</li>
+            <li><Link href="/calculateur">Calculateur terrasse</Link> — devis matériaux + plan</li>
+          </ul>
+        </aside>
 
         <div className="content-cta-box">
           <p className="content-cta-box-label">Simulateur gratuit</p>

@@ -15,15 +15,15 @@ const VIEW_MODES = [
   { key: 'plan',      label: 'Plan' },
 ];
 
-/* ExportBridge — publie camera/gl/scene/controls + setSceneMode au contexte
-   d'export, pour que ExportPDF puisse capturer des vues standardisées. */
-function ExportBridge({ setSceneMode }) {
+/* ExportBridge — publie camera/gl/scene/controls + setSceneMode + setShowHuman au contexte
+   d'export, pour que ExportPDF puisse capturer des vues standardisées sans la silhouette. */
+function ExportBridge({ setSceneMode, showHuman, setShowHuman }) {
   const { camera, gl, scene, controls } = useThree();
   const setBridge = useSetExportBridge();
   useEffect(() => {
-    setBridge({ camera, gl, scene, controls, setSceneMode });
+    setBridge({ camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman });
     return () => setBridge(null);
-  }, [camera, gl, scene, controls, setSceneMode, setBridge]);
+  }, [camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman, setBridge]);
   return null;
 }
 
@@ -36,7 +36,7 @@ export default function DeckViewer({
   gardeCorps,
 }) {
   const sceneKey  = `scene-${width}-${depth}`;
-  const [showHuman, setShowHuman] = useState(true);
+  const [showHuman, setShowHuman] = useState(false);
 
   /* ── Garde-corps — calcul géométrie 3D si activé ──
      Le périmètre = 4 côtés de la terrasse. `sides` conserve l'ordre
@@ -149,7 +149,7 @@ export default function DeckViewer({
               aria-label={`Visualisation 3D interactive de la terrasse — ${width}m × ${depth}m`}
               role="img"
             >
-              <ExportBridge setSceneMode={setViewMode} />
+              <ExportBridge setSceneMode={setViewMode} showHuman={showHuman} setShowHuman={setShowHuman} />
               <color attach="background" args={['#f5f1eb']} />
               <fog attach="fog" args={['#efebe4', fogNear, fogFar]} />
 

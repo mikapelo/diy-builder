@@ -13,7 +13,7 @@
  * Ne contient aucun calcul de prix - recoit budgetByStore pre-calcule.
  */
 import { cartouche, drawNoteTechnique, pageTitle, sectionTitle, drawGrid, drawLegendBox, drawScaleBar, drawBudgetUnavailable, drawCoverHeader, draw3DBlock } from '@/lib/pdf/pdfDrawing.js';
-import { PAGE } from '@/lib/pdf/pdfHelpers.js';
+import { PAGE, fmtLen } from '@/lib/pdf/pdfHelpers.js';
 import { buildClotureElevation } from '@/lib/plan/buildClotureElevation.js';
 import { renderPDFLayers } from '@/lib/plan/renderPDF.js';
 import { MAT, PLAN_BG } from '@/lib/plan/palette.js';
@@ -77,9 +77,9 @@ export function generateCloturePDF(doc, { dims, materials, projectConfig, budget
   const isUC4 = materials.postTreatment === 'UC4';
   const footEmbedCm = Math.round((materials.footEmbed ?? 0.50) * 100);
   const struct = [
-    { label: `Poteaux 90x90 mm${isUC4 ? ' UC4' : ''} (${materials.postLength} m)`, qty: `${materials.posts} pcs` },
-    { label: `Rails 70x25 mm (${materials.railLength} m)`,            qty: `${materials.rails} pcs` },
-    { label: `Lames 120x15 mm (${materials.boardLength} m)`,          qty: `${materials.boards} pcs` },
+    { label: `Poteaux 90x90 mm${isUC4 ? ' UC4' : ''} (${fmtLen(materials.postLength)})`, qty: `${materials.posts} pcs` },
+    { label: `Rails 70x25 mm (${fmtLen(materials.railLength)})`,            qty: `${materials.rails} pcs` },
+    { label: `Lames 120x15 mm (${fmtLen(materials.boardLength)})`,          qty: `${materials.boards} pcs` },
   ];
 
   struct.forEach((m, i) => {

@@ -15,6 +15,7 @@
  */
 
 import { MATERIAL_PRICES, getUnitPrice } from './materialPrices.js';
+import { formatLength } from './formatters.js';
 
 /* ── Constantes importées pour l'approximation contreventement ────────
  * On importe UNIQUEMENT des constantes de config (pas le moteur).
@@ -159,7 +160,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const chevronLen = structure.chevronLength || 1;
       push({
         materialId: 'chevron_60x80',
-        label: `Chevrons 60×80 (${structure.chevrons} × ${chevronLen} m)`,
+        label: `Chevrons 60×80 (${structure.chevrons} × ${formatLength(chevronLen)} m)`,
         quantity: +(structure.chevrons * chevronLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('chevron_60x80', storeId),
@@ -172,7 +173,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const entretoiseLen = structure.roofEntretoiseLength || 0.5;
       push({
         materialId: 'entretoise_toiture',
-        label: `Entretoises toiture (${structure.roofEntretoises} × ${entretoiseLen} m)`,
+        label: `Entretoises toiture (${structure.roofEntretoises} × ${formatLength(entretoiseLen)} m)`,
         quantity: +(structure.roofEntretoises * entretoiseLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('entretoise_toiture', storeId),
@@ -355,7 +356,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
     if (structure.posts > 0) {
       push({
         materialId: 'poteau_pergola_100',
-        label: `Poteaux 100×100 (${structure.postLength} m)`,
+        label: `Poteaux 100×100 (${formatLength(structure.postLength)} m)`,
         quantity: structure.posts,
         unit: 'pcs',
         unitPrice: resolvePrice('poteau_pergola_100', storeId),
@@ -368,7 +369,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const beamLen = structure.beamLongLength || 1;
       push({
         materialId: 'poutre_pergola_150',
-        label: `Longerons 150×50 (${structure.beamsLong} × ${beamLen} m)`,
+        label: `Longerons 150×50 (${structure.beamsLong} × ${formatLength(beamLen)} m)`,
         quantity: +(structure.beamsLong * beamLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('poutre_pergola_150', storeId),
@@ -381,7 +382,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const shortLen = structure.beamShortLength || 1;
       push({
         materialId: 'poutre_pergola_150',
-        label: `Traverses 150×50 (${structure.beamsShort} × ${shortLen} m)`,
+        label: `Traverses 150×50 (${structure.beamsShort} × ${formatLength(shortLen)} m)`,
         quantity: +(structure.beamsShort * shortLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('poutre_pergola_150', storeId),
@@ -394,7 +395,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const raftLen = structure.rafterLength || 1;
       push({
         materialId: 'traverse_pergola_80',
-        label: `Chevrons 80×50 (${structure.rafters} × ${raftLen} m)`,
+        label: `Chevrons 80×50 (${structure.rafters} × ${formatLength(raftLen)} m)`,
         quantity: +(structure.rafters * raftLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('traverse_pergola_80', storeId),
@@ -440,7 +441,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const brLen = structure.braceLength || 1;
       push({
         materialId: 'traverse_pergola_80',
-        label: `Jambes de force 70×70 (${structure.braces} × ${brLen} m)`,
+        label: `Jambes de force 70×70 (${structure.braces} × ${formatLength(brLen)} m)`,
         quantity: +(structure.braces * brLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('traverse_pergola_80', storeId),
@@ -480,7 +481,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const isUC4 = structure.postTreatment === 'UC4';
       push({
         materialId: isUC4 ? 'poteau_cloture_uc4' : 'poteau_cloture_90',
-        label: `Poteaux 90×90${isUC4 ? ' UC4' : ''} (${structure.postLength} m)`,
+        label: `Poteaux 90×90${isUC4 ? ' UC4' : ''} (${formatLength(structure.postLength)} m)`,
         quantity: structure.posts,
         unit: 'pcs',
         unitPrice: resolvePrice(isUC4 ? 'poteau_cloture_uc4' : 'poteau_cloture_90', storeId),
@@ -493,7 +494,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const rLen = structure.railLength || 1;
       push({
         materialId: 'lisse_cloture_45x90',
-        label: `Rails 70×25 (${structure.rails} × ${rLen} m)`,
+        label: `Rails 70×25 (${structure.rails} × ${formatLength(rLen)} m)`,
         quantity: +(structure.rails * rLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('lisse_cloture_45x90', storeId),
@@ -506,7 +507,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       const bLen = structure.boardLength || 1;
       push({
         materialId: 'lame_cloture',
-        label: `Lames 120×15 (${structure.boards} × ${bLen.toFixed?.(2) ?? bLen} m)`,
+        label: `Lames 120×15 (${structure.boards} × ${formatLength(bLen)} m)`,
         quantity: +(structure.boards * bLen).toFixed(2),
         unit: 'm lin.',
         unitPrice: resolvePrice('lame_cloture', storeId),
@@ -565,7 +566,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
 
     push({
       materialId: 'poteau_gc_70',
-      label: `Poteaux garde-corps (${postLength} m)`,
+      label: `Poteaux garde-corps (${formatLength(postLength)} m)`,
       quantity: postCount * postLength,
       unit: 'ml',
       unitPrice: resolvePrice('poteau_gc_70', storeId),

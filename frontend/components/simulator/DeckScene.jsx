@@ -70,7 +70,7 @@ const BOARD_VARIANTS = [
   { key: 'deck-v8-4', base: '#ac7840', grain: '#58361c', density: 25, roughness: 0.79, env: 0.15 },
 ];
 
-export default function DeckScene({ width, depth, viewMode = 'assembled', foundationType = 'ground', gardeCorpsStructure = null, showHuman = true }) {
+export default function DeckScene({ width, depth, viewMode = 'assembled', foundationType = 'ground', gardeCorpsStructure = null, showHuman = false }) {
 
   const exploded    = viewMode === 'exploded';
   const isStructure = viewMode === 'structure';

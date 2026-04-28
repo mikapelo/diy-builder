@@ -46,7 +46,7 @@ function setGroupOpacity(group, opacity) {
   });
 }
 
-export default function CabanonScene({ geometry, sceneMode = 'assembled', foundationType = 'ground', showHuman = true }) {
+export default function CabanonScene({ geometry, sceneMode = 'assembled', foundationType = 'ground', showHuman = false }) {
   const { dimensions, openings, structuralStuds, framings, lisses, chevrons, roofEntretoises, bracing, roof } = geometry;
   const { width, depth, height, slope, roofBaseY } = dimensions;
   const roofAngle = roof?.angle ?? Math.atan2(slope, width);

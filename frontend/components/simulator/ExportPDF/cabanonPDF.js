@@ -18,7 +18,7 @@ import {
   drawGrid, drawLegendBox, drawScaleBar, drawCutLine, drawBudgetUnavailable,
   drawCoverHeader, draw3DBlock,
 } from '@/lib/pdf/pdfDrawing.js';
-import { PAGE, fmtPrice } from '@/lib/pdf/pdfHelpers.js';
+import { PAGE, fmtPrice, fmtLen } from '@/lib/pdf/pdfHelpers.js';
 import { buildFacadeView }   from '@/lib/plan/buildFacadeView.js';
 import { buildSectionView }  from '@/lib/plan/buildSectionView.js';
 import { buildTopView }      from '@/lib/plan/buildTopView.js';
@@ -263,8 +263,8 @@ function drawCabanonBOM(doc, { dims, materials, projectConfig, foundationType, s
   ]);
 
   drawMatGroup('Toiture', [
-    ['Chevrons 60x80 mm',      `${materials.chevrons} pcs`,          `Long. ${materials.chevronLength} m`,  ...p('chevron_60x80')],
-    ['Entretoises toiture',    `${materials.roofEntretoises} pcs`,   `Long. moy. ${materials.roofEntretoiseLength} m`, ...p('entretoise_toiture')],
+    ['Chevrons 60x80 mm',      `${materials.chevrons} pcs`,          `Long. ${fmtLen(materials.chevronLength)}`,  ...p('chevron_60x80')],
+    ['Entretoises toiture',    `${materials.roofEntretoises} pcs`,   `Long. moy. ${fmtLen(materials.roofEntretoiseLength)}`, ...p('entretoise_toiture')],
     ['Membrane sous-toiture',  `${materials.membrane} m²`,           'Pare-pluie',                  ...p('membrane_etanche')],
   ]);
 

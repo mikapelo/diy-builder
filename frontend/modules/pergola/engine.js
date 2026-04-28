@@ -6,7 +6,8 @@
  *
  * Sources :
  *   - docs/pergola-design-rules.md
- *   - Guide COBEI §3.1 (FCBA/CODIFAB, 2022)
+ *   - NF DTU 31.1 (charpente bois) §5.10 Durabilité, §5.7 Assemblages
+ *   - NF EN 335 (classes d'emploi du bois)
  *   - BILP Pergola — Projet G
  *
  * Convention d'axes :

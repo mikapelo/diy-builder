@@ -6,7 +6,7 @@
  * et ExportPDF (consommateur) sans variable globale.
  *
  * Données transitant :
- *   { camera, gl, scene, controls, setSceneMode }
+ *   { camera, gl, scene, controls, setSceneMode, setShowHuman }
  *
  * Usage :
  *   <ExportBridgeProvider>
@@ -40,7 +40,7 @@ export function ExportBridgeProvider({ children }) {
 
 /**
  * Hook producteur — appelé depuis un composant à l'intérieur du <Canvas>.
- * Retourne setBridge(value) pour enregistrer { camera, gl, scene, controls, setSceneMode }.
+ * Retourne setBridge(value) pour enregistrer { camera, gl, scene, controls, setSceneMode, setShowHuman }.
  */
 export function useSetExportBridge() {
   const ctx = useContext(ExportBridgeCtx);
@@ -50,7 +50,7 @@ export function useSetExportBridge() {
 
 /**
  * Hook consommateur — appelé depuis ExportPDF ou tout composant qui lit le bridge.
- * Retourne getBridge() → { camera, gl, scene, controls, setSceneMode } | null.
+ * Retourne getBridge() → { camera, gl, scene, controls, setSceneMode, setShowHuman } | null.
  */
 export function useExportBridge() {
   const ctx = useContext(ExportBridgeCtx);

@@ -8,8 +8,11 @@
  *   - Double capture assembled/detailed + composite gradient
  *   - Post-traitement N&B contrasté
  *
- * Consomme le bridge d'export (camera, gl, scene, controls, setSceneMode)
+ * Consomme le bridge d'export (camera, gl, scene, controls, setSceneMode, setShowHuman)
  * via la fonction getBridge passée en paramètre.
+ *
+ * Bug 1 fix : la silhouette d'échelle (showHuman) est désactivée pendant la capture
+ * pour ne pas apparaître dans le PDF, puis restaurée à la valeur initiale.
  */
 import { Vector3 } from 'three';
 
@@ -225,7 +228,7 @@ export async function capture3DForExport(materials, getBridge) {
   const bridge = typeof getBridge === 'function' ? getBridge() : null;
   if (!bridge) return canvas.toDataURL('image/jpeg', 0.92);
 
-  const { camera, gl, scene, controls, setSceneMode } = bridge;
+  const { camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman } = bridge;
 
   const geo   = materials?.geometry;
   const w     = geo?.dimensions?.width  ?? 4;
@@ -238,6 +241,13 @@ export async function capture3DForExport(materials, getBridge) {
   const savedPos    = camera.position.clone();
   const savedTarget = controls?.target?.clone();
   const savedFov    = camera.fov;
+  const savedShowHuman = !!showHuman;
+
+  /* ── 1b. Désactiver la silhouette d'échelle pendant la capture (Bug 1) ── */
+  if (savedShowHuman && typeof setShowHuman === 'function') {
+    setShowHuman(false);
+    await nextFrame(); await nextFrame();
+  }
 
   /* ── 2. Preset caméra ── */
   applyCameraPreset(camera, controls, w, d, h);
@@ -274,8 +284,11 @@ export async function capture3DForExport(materials, getBridge) {
   /* ── 7. Post-traitement N&B contrasté ── */
   const finalDataURL = await processImageTechnical(annotatedDataURL);
 
-  /* ── 8. Restaurer mode + caméra ── */
+  /* ── 8. Restaurer mode + caméra + silhouette ── */
   if (setSceneMode) setSceneMode('assembled');
+  if (savedShowHuman && typeof setShowHuman === 'function') {
+    setShowHuman(true);
+  }
   camera.position.copy(savedPos);
   camera.fov = savedFov;
   camera.updateProjectionMatrix();
@@ -301,6 +314,19 @@ export async function captureCanvasSnapshot(getBridge) {
   if (!canvas) return null;
 
   const bridge = typeof getBridge === 'function' ? getBridge() : null;
+
+  /* ── Bug 1 fix : désactiver la silhouette d'échelle pendant la capture ── */
+  let savedShowHuman = false;
+  let setShowHuman = null;
+  if (bridge) {
+    savedShowHuman = !!bridge.showHuman;
+    setShowHuman = bridge.setShowHuman;
+    if (savedShowHuman && typeof setShowHuman === 'function') {
+      setShowHuman(false);
+      await nextFrame(); await nextFrame();
+    }
+  }
+
   if (bridge) {
     const { camera, gl, scene } = bridge;
     gl.render(scene, camera);
@@ -308,6 +334,11 @@ export async function captureCanvasSnapshot(getBridge) {
   }
 
   const rawDataURL = canvas.toDataURL('image/jpeg', 0.92);
+
+  /* ── Restaurer la silhouette si elle était activée ── */
+  if (savedShowHuman && typeof setShowHuman === 'function') {
+    setShowHuman(true);
+  }
 
   /* Appliquer le même filtre N&B contrasté que le cabanon */
   return processImageTechnical(rawDataURL);

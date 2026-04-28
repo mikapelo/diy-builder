@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
 export const metadata = {
@@ -109,7 +110,8 @@ export default function GuidePergolaBois() {
           Pour une portée inférieure à 3 m, du&nbsp;<strong>90×90 mm</strong> suffit. Entre 3 et 4 m, passez
           à du&nbsp;<strong>100×100 mm</strong>. Au-delà de 4 m ou si vous prévoyez un toit végétal chargé,
           prenez du&nbsp;<strong>120×120 mm</strong> — le surcoût est négligeable par rapport au risque de
-          flambement sous charge de vent.
+          flambement sous charge de vent. Ces sections minimales sont cohérentes avec les portées admissibles
+          définies par NF DTU 31.1 (charpente bois) et NF EN 1995-1-1 pour limiter la flèche à L/300.
         </p>
 
         <h3 className="content-h3">Longerons (poutres maîtresses)</h3>
@@ -163,6 +165,13 @@ export default function GuidePergolaBois() {
         <p className="content-body">
           Un poteau mal ancré bascule sous les premières rafales, même pour un ouvrage léger. C&apos;est là que
           les pergolas bricolées trop vite montrent leurs limites. Deux solutions fiables existent.
+        </p>
+        <p className="content-body">
+          Sur une pergola autoportante de 4×4 m, j&apos;ai vu un coup de vent à 90 km/h soulever toute la
+          structure : les poteaux n&apos;étaient pas chevillés au plot béton, juste posés dessus par gravité.
+          Une pergola fait voile au vent — la surface horizontale des chevrons agit comme une aile. Quatre
+          platines boulonnées avec des vis HA M12 dans un plot scellé correctement, c&apos;est pas un détail,
+          c&apos;est ce qui reste en place quand la tempête passe.
         </p>
 
         <h3 className="content-h3">Sabots sur plots béton — la méthode propre</h3>
@@ -305,6 +314,16 @@ export default function GuidePergolaBois() {
             de matériaux.
           </li>
         </ul>
+
+        <aside className="content-related">
+          <h3>Voir aussi</h3>
+          <ul>
+            <li><Link href="/guides/cabanon">Guide cabanon</Link> — assemblage similaire (charpente bois)</li>
+            <li><Link href="/guides/cloture">Guide clôture</Link> — ancrage poteaux similaire</li>
+            <li><Link href="/faq">FAQ</Link> — 24 questions techniques (sections, classes, prix)</li>
+            <li><Link href="/pergola">Calculateur pergola</Link> — devis matériaux + plan</li>
+          </ul>
+        </aside>
 
         <div className="content-cta-box" role="complementary" aria-label="Appel à l'action final">
           <p className="content-cta-box-label">Simulateur gratuit</p>

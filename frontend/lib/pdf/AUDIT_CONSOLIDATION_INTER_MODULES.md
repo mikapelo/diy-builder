@@ -74,7 +74,7 @@ Coherent. Pas d'ecart significatif.
 | Module   | Contenu notes                                         | Position |
 |----------|-------------------------------------------------------|----------|
 | Terrasse | DTU 51.4, jeu lames, ventilation, pente               | Page 4   |
-| Pergola  | Guide COBEI, classe emploi 3.2, reglementation        | Page 1   |
+| Pergola  | NF DTU 31.1 §5.10, classe emploi 3.2, reglementation  | Page 1   |
 | Cloture  | Profondeur scellement, jeu lames                      | Page 1   |
 | Cabanon  | Entraxe montants 60 cm, classe emploi                 | Page 5   |
 

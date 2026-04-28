@@ -75,7 +75,7 @@ function getWoodBoardMaterial() {
   return WOOD_BOARD_MAT;
 }
 
-export default function ClotureScene({ geometry, sceneMode = 'assembled', foundationType = 'ground', detailed = false, showHuman = true }) {
+export default function ClotureScene({ geometry, sceneMode = 'assembled', foundationType = 'ground', detailed = false, showHuman = false }) {
   const exploded = sceneMode === 'exploded';
   const { dimensions, posts, rails, boards } = geometry;
   const { width, height, postSection, railW, railH, boardW, boardH } = dimensions;

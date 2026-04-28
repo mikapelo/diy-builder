@@ -14,7 +14,7 @@ export default function ContentLayout({ children }) {
   return (
     <>
       <Header
-        view="home"
+        view="content"
         resultat={false}
         copied={false}
         onRetour={() => router.push('/')}

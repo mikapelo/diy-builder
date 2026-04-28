@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
 export const metadata = {
@@ -103,13 +104,16 @@ export default function GuideClotureBois() {
           Les poteaux reprennent tous les efforts&nbsp;: vent latéral, poids des lames, poussée éventuelle
           d&apos;enfants ou d&apos;animaux. Pour une clôture de 1,20 m de hauteur, du&nbsp;<strong>70×70 mm</strong>
           suffit. Au-delà de 1,20 m ou pour des travées supérieures à 1,80 m, passez à
-          du&nbsp;<strong>90×90 mm</strong> — les rails fléchissent sinon sous le poids des lames.
-          L&apos;entraxe entre poteaux doit rester entre&nbsp;<strong>1,5 et 2 m</strong>.
+          du&nbsp;<strong>90×90 mm</strong> — selon la NF DTU 31.1, les poteaux verticaux soumis à des efforts
+          latéraux ne descendent pas en dessous de cette section. Les rails fléchissent sinon sous le poids
+          des lames. L&apos;entraxe entre poteaux doit rester entre&nbsp;<strong>1,5 et 2 m</strong>.
         </p>
         <p className="content-body">
           Point non négociable&nbsp;: tout poteau en contact avec le sol doit être en bois traité
-          <strong> autoclave classe 4</strong>. Ne jamais enterrer du pin classe 2 ou non traité — la
-          pourriture s&apos;installe en deux à trois hivers en sol humide.
+          <strong> autoclave classe 4</strong>. La norme <strong>NF EN 335</strong> définit les classes
+          d&apos;emploi du bois — la classe 4 est la seule adaptée au contact permanent avec le sol humide.
+          Ne jamais enterrer du pin classe 2 ou non traité — la pourriture s&apos;installe en deux à trois
+          hivers en sol humide.
         </p>
 
         <h3 className="content-h3">Rails horizontaux</h3>
@@ -133,8 +137,9 @@ export default function GuideClotureBois() {
         <h3 className="content-h3">Quincaillerie — ne pas rogner là-dessus</h3>
         <ul className="content-body">
           <li><strong>Équerres galvanisées</strong>&nbsp;: fixation des rails sur les poteaux sans affaiblir les sections.</li>
-          <li><strong>Vis inox A2</strong>&nbsp;: les vis acier zingué ordinaires laissent des coulures de rouille brune sur les lames au bout de quelques mois. En extérieur, l&apos;inox est obligatoire.</li>
+          <li><strong>Vis inox A2</strong>&nbsp;: les vis acier zingué ordinaires laissent des coulures de rouille brune sur les lames au bout de quelques mois. En extérieur, l&apos;inox est la norme minimale. En bord de mer ou en zone côtière, montez directement en inox A4&nbsp;: j&apos;ai vu une clôture entière à refaire deux ans après sa pose parce que la quincaillerie A2 n&apos;avait pas résisté aux embruns. Le surcoût est faible, le regret de ne pas l&apos;avoir fait l&apos;est beaucoup moins.</li>
           <li><strong>Chapeaux de poteau</strong>&nbsp;: pièce en bois ou en métal posée en tête pour protéger la coupe transversale — la plus vulnérable à l&apos;infiltration d&apos;eau.</li>
+          <li><strong>Joint mousse sous platine</strong>&nbsp;: si vous utilisez des sabots sur dallage, intercalez un joint élastomère entre la platine et le béton pour couper la remontée capillaire. Ça coûte rien et ça double la durée de vie de la base du poteau.</li>
         </ul>
 
         <h2 className="content-h2">Calcul des matériaux — exemple 10 m linéaires</h2>
@@ -165,17 +170,20 @@ export default function GuideClotureBois() {
 
         <h2 className="content-h2">Ancrage des poteaux — deux méthodes</h2>
         <p className="content-body">
-          C&apos;est l&apos;étape qui conditionne la durée de vie de toute la clôture. Un poteau mal ancré penche
-          au bout d&apos;un hiver de vent et de gel — les lames se désolidarisent et les rails se fendent.
+          C&apos;est l&apos;étape qui conditionne la durée de vie de toute la clôture. Une clôture qui penche après
+          le premier hiver, c&apos;est presque toujours le scellement&nbsp;: pas assez profond, ou béton coulé
+          à plat sans couronne — l&apos;eau s&apos;infiltre, le poteau gèle-dégèle, il part progressivement.
+          Les lames se désolidarisent et les rails se fendent, et il faut tout reprendre.
         </p>
 
         <h3 className="content-h3">Béton d&apos;ancrage direct</h3>
         <p className="content-body">
-          Creusez une fouille de 30×30 cm à&nbsp;<strong>60 cm de profondeur</strong> — hors-gel dans
-          la plupart des régions françaises. Placez le poteau au centre, vérifiez l&apos;aplomb sur deux faces
-          perpendiculaires avec un niveau à bulle, puis coulez le béton dosé à 350 kg/m³. Formez une légère
-          couronne bombée autour du poteau pour éviter la stagnation d&apos;eau. Attendez&nbsp;<strong>48 heures</strong>
-          avant de fixer les rails.
+          Creusez une fouille de 30×30 cm à&nbsp;<strong>60 cm de profondeur minimum</strong> — la règle
+          couramment appliquée est au moins un tiers de la hauteur hors-sol, avec un minimum de 50 cm
+          hors-gel dans la plupart des régions françaises. Placez le poteau au centre, vérifiez l&apos;aplomb
+          sur deux faces perpendiculaires avec un niveau à bulle, puis coulez le béton dosé à 350 kg/m³.
+          Formez une légère couronne bombée autour du poteau pour éviter la stagnation d&apos;eau. Attendez
+          &nbsp;<strong>48 heures</strong> avant de fixer les rails.
         </p>
 
         <h3 className="content-h3">Sabots d&apos;ancrage sur platine béton</h3>
@@ -201,7 +209,10 @@ export default function GuideClotureBois() {
           Tendez un cordeau entre les deux extrémités de la clôture. Marquez au sol la position de chaque
           poteau à intervalle régulier. Vérifiez que chaque marque est bien dans l&apos;alignement du cordeau —
           une déviation de 3 cm se voit immédiatement une fois les lames posées. Commencez toujours par
-          les poteaux d&apos;angle ou d&apos;extrémité avant les intermédiaires.
+          les poteaux d&apos;angle ou d&apos;extrémité avant les intermédiaires. Et surtout&nbsp;: ne coupez pas
+          tous vos poteaux à la même longueur avant de les sceller. Le terrain n&apos;est jamais parfaitement
+          plat — on coupe en tête APRÈS la prise du béton, en suivant le cordeau de niveau. C&apos;est le
+          piège classique sur un premier chantier.
         </p>
 
         <h3 className="content-h3">2. Ancrage des poteaux</h3>
@@ -307,6 +318,55 @@ export default function GuideClotureBois() {
             exigent un dégagement triangulaire à hauteur limitée.
           </li>
         </ul>
+
+        <h2 className="content-h2">Les erreurs courantes (et comment les éviter)</h2>
+        <ul className="content-body">
+          <li>
+            <strong>Sceller des poteaux pré-coupés à la même longueur.</strong> Le terrain n&apos;est jamais
+            parfaitement plat. Si vous coupez tous les poteaux à la même longueur avant de les sceller,
+            vous obtenez une ligne de tête en dents de scie. La bonne méthode&nbsp;: sceller à longueur
+            généreuse, puis couper en tête après prise du béton en suivant un cordeau de niveau.
+          </li>
+          <li>
+            <strong>Lésiner sur la classe d&apos;emploi du bois.</strong> La norme NF EN 335 est explicite&nbsp;:
+            tout élément en contact permanent avec le sol humide exige la classe 4. Utiliser de la classe 3
+            pour un poteau enterré, c&apos;est économiser 8 € sur un poteau pour en dépenser 200 à refaire
+            la clôture dans cinq ans. La classe 4 n&apos;est pas un luxe.
+          </li>
+          <li>
+            <strong>Oublier les écharpes provisoires après coulée du béton.</strong> Béton frais = poteau
+            qui bouge encore pendant des heures. Sans maintien, il suffit d&apos;un coup de vent ou de s&apos;y
+            appuyer par inadvertance pour perdre l&apos;aplomb. Cinq minutes d&apos;écharpe par poteau — deux
+            tasseaux en croix plantés dans le sol — évitent de reprendre le poteau à la disqueuse.
+          </li>
+          <li>
+            <strong>Sous-estimer les règles du PLU local.</strong> La hauteur de 2 m sans déclaration est
+            une règle nationale, mais votre commune ou votre règlement de lotissement peut imposer 1,50 m.
+            Découvrir ça après avoir commandé des lames de 2 m, c&apos;est douloureux. Appelez le service
+            urbanisme avant, pas après.
+          </li>
+          <li>
+            <strong>Visser sans pré-percer en bout de lame.</strong> Le bois de bout (coupe transversale)
+            éclate facilement, surtout à sec. Une vrille fine de 2,5 mm avant chaque vis sur les extrémités
+            de lames supprime presque tous les éclats et rallonge la durée de vie de la fixation. Ça prend
+            dix secondes par lame — ne sautez pas cette étape.
+          </li>
+        </ul>
+
+        <aside className="content-related">
+          <h3>Voir aussi</h3>
+          <ul>
+            <li>
+              <Link href="/guides/pergola">Guide pergola</Link> — ancrage de poteaux porteurs dans les mêmes configurations de sol
+            </li>
+            <li>
+              <Link href="/faq">FAQ</Link> — 24 questions techniques sur la clôture, les prix et la réglementation
+            </li>
+            <li>
+              <Link href="/cloture">Calculateur clôture</Link> — devis matériaux complet avec comparatif par enseigne
+            </li>
+          </ul>
+        </aside>
 
         <div className="content-cta-box" role="complementary" aria-label="Appel à l'action final">
           <p className="content-cta-box-label">Simulateur gratuit</p>

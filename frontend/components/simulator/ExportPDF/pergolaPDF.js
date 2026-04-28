@@ -8,13 +8,15 @@
  *   Page 4 : Vue d'elevation / facade (primitives)
  *
  * Sources documentaires citees dans le PDF :
- *   - Guide COBEI (FCBA/CODIFAB, 2022) pour les bonnes pratiques durabilite
- *   - Pas de norme DTU specifique aux pergolas
+ *   - NF DTU 31.1 (charpente bois) §5.10 Durabilite, §5.7 Assemblages
+ *   - NF DTU 31.2 (ossature bois)
+ *   - NF EN 335 (classes d'emploi du bois)
+ *   - Code de l'urbanisme R.421-2 et R.421-9 (seuils declaratifs)
  *
  * Ne contient aucun calcul de prix - recoit budgetByStore pre-calcule.
  */
 import { cartouche, drawNoteTechnique, pageTitle, sectionTitle, drawGrid, drawLegendBox, drawScaleBar, drawBudgetUnavailable, drawCoverHeader, draw3DBlock } from '@/lib/pdf/pdfDrawing.js';
-import { PAGE } from '@/lib/pdf/pdfHelpers.js';
+import { PAGE, fmtLen } from '@/lib/pdf/pdfHelpers.js';
 import { buildPergolaTopView } from '@/lib/plan/buildPergolaTopView.js';
 import { buildPergolaFacadeView } from '@/lib/plan/buildPergolaFacadeView.js';
 import { renderPDFLayers } from '@/lib/plan/renderPDF.js';
@@ -43,18 +45,18 @@ export function generatePergolaPDF(doc, { dims, materials, projectConfig, budget
   let y = drawCoverHeader(doc, {
     title: projectConfig?.pdfTitle || 'Projet Pergola Bois',
     subtitle: `${width} m x ${depth} m  ·  Surface couverte : ${surface} m²`,
-    detail: `Hauteur poteaux : ${materials.postLength} m (dont pied deporte)`,
+    detail: `Hauteur poteaux : ${fmtLen(materials.postLength)} (dont pied deporte)`,
     badges: [
       { label: 'Largeur', value: `${width} m` },
       { label: 'Profondeur', value: `${depth} m` },
       { label: 'Surface', value: `${surface} m²` },
-      { label: 'Hauteur', value: `${materials.postLength} m` },
+      { label: 'Hauteur', value: fmtLen(materials.postLength) },
     ],
   });
 
   y = sectionTitle(doc, 'Vue de synthese 3D', y);
   draw3DBlock(doc, y, snapshot,
-    `${width} m x ${depth} m  ·  ${surface} m²  ·  Hauteur poteaux ${materials.postLength} m`,
+    `${width} m x ${depth} m  ·  ${surface} m²  ·  Hauteur poteaux ${fmtLen(materials.postLength)}`,
   );
 
   cartouche(doc, {
@@ -83,11 +85,11 @@ export function generatePergolaPDF(doc, { dims, materials, projectConfig, budget
   const beamHmm = geometry ? Math.round(geometry.dimensions.beamH * 1000) : 150;
 
   const struct = [
-    { label: `Poteaux 100x100 mm (${materials.postLength} m)`,                       qty: `${materials.posts} pcs` },
-    { label: `Longerons ${beamHmm}x${beamWmm} mm (${materials.beamLongLength} m)`,   qty: `${materials.beamsLong} pcs` },
-    { label: `Traverses ${beamHmm}x${beamWmm} mm (${materials.beamShortLength} m)`,  qty: `${materials.beamsShort} pcs` },
-    { label: `Chevrons 80x50 mm (${materials.rafterLength} m)`,                       qty: `${materials.rafters} pcs` },
-    { label: `Jambes de force 70x70 mm (${materials.braceLength} m)`,                 qty: `${materials.braces ?? 0} pcs` },
+    { label: `Poteaux 100x100 mm (${fmtLen(materials.postLength)})`,                       qty: `${materials.posts} pcs` },
+    { label: `Longerons ${beamHmm}x${beamWmm} mm (${fmtLen(materials.beamLongLength)})`,   qty: `${materials.beamsLong} pcs` },
+    { label: `Traverses ${beamHmm}x${beamWmm} mm (${fmtLen(materials.beamShortLength)})`,  qty: `${materials.beamsShort} pcs` },
+    { label: `Chevrons 80x50 mm (${fmtLen(materials.rafterLength)})`,                       qty: `${materials.rafters} pcs` },
+    { label: `Jambes de force 70x70 mm (${fmtLen(materials.braceLength)})`,                 qty: `${materials.braces ?? 0} pcs` },
   ];
 
   const rowH = 9;
@@ -128,18 +130,20 @@ export function generatePergolaPDF(doc, { dims, materials, projectConfig, budget
   doc.setFontSize(9);
   doc.setFont('helvetica', 'italic');
   doc.setTextColor(120, 120, 120);
-  doc.text('Note durabilite (source : Guide COBEI, FCBA/CODIFAB 2022) :', MX, y);
+  doc.text('Note durabilite (selon NF DTU 31.1 §5.10 et NF EN 335) :', MX, y);
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
-  doc.text('- Elements horizontaux : proteger en face superieure.', MX + 4, y + 8);
-  doc.text('- Classe d\'emploi : 3.2 min. Essence : meleze, douglas ou pin CL4.', MX + 4, y + 14);
-  doc.text('- Pied de poteau / sol : >= 150 mm (platine surelevee).', MX + 4, y + 20);
+  doc.text('- Elements horizontaux : proteger en face superieure (DTU 31.1 §5.10.4.1).', MX + 4, y + 8);
+  doc.text('- Classe d\'emploi 3.2 min. Essences : meleze, douglas ou pin traite CL4.', MX + 4, y + 14);
+  doc.text('- Pied de poteau / sol : >= 150 mm (platine surelevee, DTU 31.1 §5.10.4.2).', MX + 4, y + 20);
   y += 28;
 
   /* ── Notes techniques ── */
   drawNoteTechnique(doc, y, [
-    'Ref. guide COBEI (FCBA/CODIFAB). Classe d\'emploi : 3.2 min.',
-    'Seuils reglementaires : < 5 m² aucune demarche, 5-20 m² declaration prealable, > 20 m² permis de construire.',
+    'Ref. NF DTU 31.1 (charpente bois) et NF DTU 31.2 (ossature bois).',
+    'Classe d\'emploi 3.2 min selon NF EN 335.',
+    'Seuils reglementaires (Code de l\'urbanisme R.421-2 et R.421-9) :',
+    '< 5 m² aucune demarche, 5-20 m² declaration prealable, > 20 m² permis de construire.',
   ], { title: 'Notes techniques' });
 
   cartouche(doc, {

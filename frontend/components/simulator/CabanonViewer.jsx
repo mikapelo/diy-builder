@@ -25,14 +25,16 @@ import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/
  * Permet à ExportPDF de capturer le canvas avec une caméra preset.
  * Composant placé à l'intérieur du <Canvas>.
  * Reçoit `setSceneMode` en prop pour permettre la bascule temporaire.
+ * `setShowHuman` permet à la capture de désactiver la silhouette d'échelle
+ * pendant le screenshot pour ne pas la voir apparaitre dans le PDF.
  */
-function ExportBridge({ setSceneMode }) {
+function ExportBridge({ setSceneMode, showHuman, setShowHuman }) {
   const { camera, gl, scene, controls } = useThree();
   const setBridge = useSetExportBridge();
   useEffect(() => {
-    setBridge({ camera, gl, scene, controls, setSceneMode });
+    setBridge({ camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman });
     return () => setBridge(null);
-  }, [camera, gl, scene, controls, setSceneMode, setBridge]);
+  }, [camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman, setBridge]);
   return null;
 }
 
@@ -47,7 +49,7 @@ const MODES = [
 export default function CabanonViewer({ structure, foundationType = 'ground' }) {
   const [sceneMode, setSceneMode] = useState('assembled');
   const [showHint, setShowHint]   = useState(true);
-  const [showHuman, setShowHuman] = useState(true);
+  const [showHuman, setShowHuman] = useState(false);
 
   /* Auto-dismiss overlay après 4s */
   useEffect(() => {
@@ -174,7 +176,7 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
           >
             <color attach="background" args={['#f5f1eb']} />
             <fog   attach="fog"        args={['#efebe4', 35, 60]} />
-            <ExportBridge setSceneMode={setSceneMode} />
+            <ExportBridge setSceneMode={setSceneMode} showHuman={showHuman} setShowHuman={setShowHuman} />
             <CabanonScene key={sceneKey} geometry={geometry} sceneMode={sceneMode} foundationType={foundationType} showHuman={showHuman} />
             <CameraAnimatorSimple preset={camPreset} presets={presets} onDone={() => {}} />
             <OrbitControls
