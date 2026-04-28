@@ -1,0 +1,62 @@
+{
+  "name": "DIY Builder",
+  "short_name": "DIY Builder",
+  "description": "Calculateur gratuit pour vos projets bricolage bois : terrasse, cabanon, pergola, clôture. Visualisation 3D et comparatif enseignes.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#111214",
+  "lang": "fr",
+  "scope": "/",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Terrasse",
+      "short_name": "Terrasse",
+      "description": "Calculateur terrasse bois",
+      "url": "/calculateur",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Cabanon",
+      "short_name": "Cabanon",
+      "description": "Calculateur cabanon bois",
+      "url": "/cabanon",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Pergola",
+      "short_name": "Pergola",
+      "description": "Calculateur pergola bois",
+      "url": "/pergola",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

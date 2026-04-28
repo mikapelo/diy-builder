@@ -1,0 +1,59 @@
+name: Update prices cache
+
+# Tourne chaque lundi à 6h UTC
+# Peut aussi être déclenché manuellement depuis l'onglet Actions de GitHub
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  scrape-and-commit:
+    name: Scrape prices → commit cache
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install scraper dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Run price scraper
+        working-directory: backend
+        run: node scrapers/index.js
+        env:
+          NODE_ENV: production
+
+      - name: Copy cache to frontend public
+        run: |
+          if [ -f backend/prices-cache.json ]; then
+            cp backend/prices-cache.json frontend/public/prices-cache.json
+            echo "✅ prices-cache.json mis à jour"
+          else
+            echo "❌ prices-cache.json introuvable — le scraper a peut-être échoué"
+            exit 1
+          fi
+
+      - name: Commit & push if changed
+        run: |
+          git config --local user.email "bot@diy-builder.fr"
+          git config --local user.name "DIY Builder Bot"
+          git add frontend/public/prices-cache.json
+          if git diff --staged --quiet; then
+            echo "ℹ️ Aucun changement dans les prix — pas de commit"
+          else
+            git commit -m "chore: update prices cache $(date +%Y-%m-%d) [skip ci]"
+            git push
+            echo "✅ Commit poussé — Vercel va redéployer automatiquement"
+          fi

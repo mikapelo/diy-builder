@@ -1,0 +1,1 @@
+- [Analyse avant action](feedback_analyse_avant_action.md) — Toujours analyser et faire un retour avant de coder/modifier quoi que ce soit

@@ -1,0 +1,3409 @@
+/* theme-g-v2.css — Phosphor icons + [data-theme="g-v2"] overrides (Atelier Design System) */
+
+/* ── @property for bento glow animation (must be top-level) ── */
+@property --bento-glow-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --bento-glow-opacity {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   PHOSPHOR ICONS — normalisation (POC cabanon)
+   Aligne les <i class="ph-*"> sur les conteneurs
+   historiquement dimensionnés pour Material Symbols.
+══════════════════════════════════════════════════ */
+i[class*="ph-duotone"],
+i[class*="ph-bold"],
+i[class*="ph-fill"],
+i[class*="ph-regular"],
+i[class*="ph-light"],
+i[class*="ph-thin"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-style: normal;
+  vertical-align: middle;
+}
+
+/* Conteneur titre de section — ex: "Dimensions" */
+.sim-section-icon.ph-duotone,
+.sim-section-icon[class*="ph-"] {
+  font-size: 22px;
+  color: #A07A14;
+  background: #F3F2EE;
+  border-color: #E8E5DD;
+}
+
+/* Pastille 32×32 sur la grille matériaux */
+.mat-icon[class*="ph-"] {
+  font-size: 18px;
+  color: #A07A14;
+  background: #FAFAF8;
+  border-color: #E8E5DD;
+}
+
+/* Radio Sol / Chape — icône inline */
+.ctrl-radio-icon[class*="ph-"] {
+  color: #A07A14;
+}
+
+/* Bloc résumé projet — header icon 48×48 */
+.proj-summary-icon.ph-duotone,
+.proj-summary-icon[class*="ph-"] {
+  font-size: 28px;
+  color: #111214;
+}
+
+/* Result block (BOM) */
+.result-block-icon[class*="ph-"] {
+  font-size: 22px;
+  color: #A07A14;
+}
+
+/* Premium export — bloc feature 16px */
+.premium-export-feature-icon[class*="ph-"] {
+  font-size: 18px;
+  color: #A07A14;
+}
+.premium-export-icon-wrap i[class*="ph-"] {
+  font-size: 24px;
+  color: #111214;
+}
+.premium-export-icon-wrap {
+  background: #C9971E;
+  box-shadow: 0 2px 6px rgba(201,151,30,0.25);
+}
+
+/* Artisan lead — header 52×52 */
+.artisan-lead-icon-wrap {
+  background: #111214;
+  box-shadow: 0 4px 14px rgba(17,18,20,0.24);
+  border: 1px solid rgba(201,151,30,0.35);
+}
+.artisan-lead-icon-wrap i[class*="ph-"] {
+  font-size: 28px;
+  color: #C9971E;
+}
+.artisan-lead-benefit-icon[class*="ph-"] {
+  font-size: 22px;
+  color: #A07A14;
+  background: rgba(201,151,30,.10);
+}
+
+/* ============================================================
+   G v2 — POC scope [data-theme="g-v2"]
+   Cabanon uniquement. Override visuel sans toucher aux autres pages.
+   Rôles de couleur : marine = ossature, moutarde = signature, brique = CTA.
+   ============================================================ */
+
+[data-theme="g-v2"] {
+  --g-ink:      #111214;
+  --g-marine:   #1E3A52;
+  --g-marine-2: #27506F;
+  --g-mustard:  #C9971E;
+  --g-mustard-d:#B88A1C;
+  --g-brique:   #B44B2A;
+  --g-brique-d: #94381C;
+  --g-ivoire:   #F1EBDD;
+  --g-surface:  #FAF5E8;
+  --g-sable:    #EAE0C8;
+  --g-rule:     rgba(30,58,82,0.18);
+  --g-serif:    'DM Serif Display', Georgia, serif;
+  --g-mono:     'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* --- Fond ivoire + texture pointillée subtile (4%) --- */
+[data-theme="g-v2"] {
+  background:
+    radial-gradient(circle at 1px 1px, rgba(30,58,82,0.08) 1px, transparent 1.4px) 0 0/22px 22px,
+    var(--g-ivoire);
+  color: var(--g-ink);
+  padding-top: 14px;
+  padding-bottom: 24px;
+}
+
+/* --- Masquer l'icône Phosphor du summary et révéler le BrandIcon dans le scope --- */
+[data-theme="g-v2"] .proj-summary-icon {
+  display: none !important;
+}
+[data-theme="g-v2"] .brand-icon {
+  display: inline-block;
+}
+
+/* Header summary BrandIcon : caché hors g-v2, visible dans g-v2 */
+.proj-summary-brand-icon { display: none; }
+[data-theme="g-v2"] .proj-summary-brand-icon { display: inline-block; }
+
+/* ============================================================
+   HERO — ProjectSummary
+   ============================================================ */
+[data-theme="g-v2"] .proj-summary {
+  background: var(--g-surface);
+  border: 1.5px solid var(--g-marine);
+  border-radius: 14px;
+  padding: 30px 32px 26px;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 18px 38px -22px rgba(30,58,82,0.28);
+  position: relative;
+}
+[data-theme="g-v2"] .proj-summary::before {
+  content: "Réf. 24-B";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: var(--g-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--g-marine);
+  opacity: 0.72;
+  text-transform: uppercase;
+}
+[data-theme="g-v2"] .proj-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px dashed var(--g-rule);
+  margin-bottom: 22px;
+}
+
+/* Médaillon signature — moutarde + liseré marine */
+[data-theme="g-v2"] .proj-summary-icon-wrap {
+  width: 74px;
+  height: 74px;
+  min-width: 74px;
+  border-radius: 50%;
+  background: var(--g-mustard);
+  border: 2px solid var(--g-marine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g-marine);
+  box-shadow:
+    inset 0 0 0 3px var(--g-mustard),
+    inset 0 0 0 4px rgba(30,58,82,0.35),
+    0 2px 0 0 var(--g-marine);
+  flex-shrink: 0;
+}
+[data-theme="g-v2"] .proj-summary-brand-icon {
+  width: 44px;
+  height: 44px;
+}
+
+[data-theme="g-v2"] .proj-summary-meta { flex: 1; min-width: 0; }
+[data-theme="g-v2"] .proj-summary-title {
+  font-family: var(--g-serif);
+  font-size: 36px;
+  line-height: 1.06;
+  color: var(--g-ink);
+  font-weight: 400;
+  margin: 0 0 3px;
+  letter-spacing: -0.015em;
+}
+[data-theme="g-v2"] .proj-summary-desc {
+  font-family: var(--g-mono);
+  font-size: 12px;
+  color: var(--g-marine);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+}
+
+/* Badge "Estimation" — pastille brique */
+[data-theme="g-v2"] .proj-summary-badge {
+  background: var(--g-brique);
+  color: #FFF5E8;
+  font-family: var(--g-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 7px 13px;
+  border-radius: 3px;
+  border: 1.5px solid var(--g-brique-d);
+  box-shadow: 0 2px 0 0 var(--g-brique-d);
+  align-self: flex-start;
+}
+
+/* --- KPI highlights : sobres, marine, avec DM Serif sur les valeurs --- */
+[data-theme="g-v2"] .proj-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px 20px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--g-rule);
+}
+[data-theme="g-v2"] .proj-highlight {
+  background: transparent;
+  border: none;
+  padding: 4px 0 4px 12px;
+  border-left: 2.5px solid var(--g-rule);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+[data-theme="g-v2"] .proj-highlight--accent {
+  border-left-color: var(--g-mustard);
+}
+[data-theme="g-v2"] .proj-highlight-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+[data-theme="g-v2"] .proj-highlight-value {
+  font-family: var(--g-serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--g-ink);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+[data-theme="g-v2"] .proj-highlight--accent .proj-highlight-value {
+  color: var(--g-brique);
+}
+[data-theme="g-v2"] .proj-highlight-unit {
+  font-family: var(--g-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--g-marine);
+  margin-left: 4px;
+  letter-spacing: 0.02em;
+}
+[data-theme="g-v2"] .proj-highlight-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--g-marine);
+  font-weight: 600;
+  opacity: 0.75;
+  margin-top: 3px;
+}
+
+/* ============================================================
+   MATÉRIAUX — Bordereau
+   ============================================================ */
+[data-theme="g-v2"] .mat-group-card {
+  background: var(--g-surface);
+  border: 1.5px solid var(--g-marine);
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 0 0 var(--g-marine);
+  margin-bottom: 18px;
+}
+[data-theme="g-v2"] .mat-group-header {
+  background: var(--g-marine);
+  color: var(--g-mustard);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: none;
+}
+[data-theme="g-v2"] .mat-group-header .mat-group-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--g-mustard);
+  border: 1.5px solid var(--g-ivoire);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g-marine);
+  flex-shrink: 0;
+}
+[data-theme="g-v2"] .mat-group-title {
+  font-family: var(--g-serif);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--g-mustard);
+  letter-spacing: 0.005em;
+}
+[data-theme="g-v2"] .mat-group-badge {
+  background: var(--g-mustard);
+  color: var(--g-marine);
+  font-family: var(--g-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-left: auto;
+}
+[data-theme="g-v2"] .mat-group-count {
+  font-family: var(--g-mono);
+  font-size: 10px;
+  color: rgba(241,235,221,0.72);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
+/* Lignes : sobres, marine sur fond ivoire, pas de médaillon */
+[data-theme="g-v2"] .mat-row {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--g-rule);
+  padding: 12px 18px;
+  gap: 12px;
+}
+[data-theme="g-v2"] .mat-row:last-child { border-bottom: none; }
+[data-theme="g-v2"] .mat-row--highlight {
+  background: rgba(201,151,30,0.09);
+}
+[data-theme="g-v2"] .mat-row .mat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--g-ink);
+  font-weight: 500;
+}
+[data-theme="g-v2"] .mat-row .mat-qty {
+  font-family: var(--g-serif);
+  font-size: 18px;
+  color: var(--g-marine);
+  font-weight: 400;
+}
+[data-theme="g-v2"] .mat-row .mat-unit {
+  font-family: var(--g-mono);
+  font-size: 10.5px;
+  color: var(--g-marine);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+[data-theme="g-v2"] .mat-row .mat-price,
+[data-theme="g-v2"] .mat-row .mat-subtotal {
+  font-family: var(--g-mono);
+  font-size: 12px;
+  color: var(--g-marine);
+  font-weight: 500;
+}
+[data-theme="g-v2"] .mat-row .mat-subtotal {
+  color: var(--g-brique);
+  font-weight: 600;
+}
+
+/* ============================================================
+   BOUTONS — 4 niveaux avec ombres offset
+   ============================================================ */
+[data-theme="g-v2"] .btn-primary {
+  background: var(--g-brique);
+  color: #FFF5E8;
+  border: 1.5px solid var(--g-brique-d);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  box-shadow: 0 2px 0 0 var(--g-brique-d);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+[data-theme="g-v2"] .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 0 0 var(--g-brique-d);
+}
+[data-theme="g-v2"] .btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 0 var(--g-brique-d);
+}
+[data-theme="g-v2"] .btn-secondary {
+  background: var(--g-mustard);
+  color: var(--g-marine);
+  border: 1.5px solid var(--g-marine);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  box-shadow: 0 2px 0 0 var(--g-marine);
+}
+[data-theme="g-v2"] .btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 0 0 var(--g-marine);
+}
+
+/* ============================================================
+   Sections génériques — bordures marine discrètes
+   ============================================================ */
+[data-theme="g-v2"] .sim-tunnel-section {
+  margin-bottom: 22px;
+}
+[data-theme="g-v2"] .result-block {
+  background: var(--g-surface);
+  border: 1.5px solid var(--g-marine);
+  border-radius: 12px;
+  box-shadow: 0 2px 0 0 var(--g-marine);
+}
+
+/* Fin bloc G v2 */
+
+/* ============================================================
+   G v2 — PHASE DE COORDINATION VISUELLE
+   Objectif : que toute la page cabanon parle le même langage.
+   ProjectSummary reste le bloc de référence ; tous les autres
+   blocs (Matériaux, Budget, Comparateur, Actions, Lead) adoptent
+   la même grammaire de frame, de header et de couleurs.
+   Rôles couleur verrouillés :
+     marine   = ossature structurelle (borders, rules, labels tech)
+     moutarde = signature / accent (médaillons, highlights)
+     brique   = CTA fort / total / valeur accent
+     vert     = validation positive uniquement
+   ============================================================ */
+
+/* Compteur auto pour les références : A=summary, B=materials, C=budget, D=comparateur, E=actions, F=lead */
+[data-theme="g-v2"] .sim-tunnel { counter-reset: tunnel; }
+[data-theme="g-v2"] .sim-tunnel-section { counter-increment: tunnel; }
+
+/* --- Frame unifié sur tous les blocs directs du tunnel --- */
+[data-theme="g-v2"] .sim-tunnel-section > .proj-summary,
+[data-theme="g-v2"] .sim-tunnel-section > .result-block,
+[data-theme="g-v2"] .sim-tunnel-section > .artisan-lead-card,
+[data-theme="g-v2"] .sim-tunnel-section > section {
+  background: var(--g-surface);
+  border: 1.5px solid var(--g-marine);
+  border-radius: 14px;
+  padding: 28px 30px 24px;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 18px 38px -22px rgba(30,58,82,0.28);
+  position: relative;
+  margin: 0;
+}
+
+/* --- Pseudo Ref. 24-X — même emplacement, même typo, compteur auto --- */
+[data-theme="g-v2"] .sim-tunnel-section > .proj-summary::before,
+[data-theme="g-v2"] .sim-tunnel-section > .result-block::before,
+[data-theme="g-v2"] .sim-tunnel-section > .artisan-lead-card::before,
+[data-theme="g-v2"] .sim-tunnel-section > section::before {
+  content: "Réf. 24-" counter(tunnel, upper-alpha);
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: var(--g-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--g-marine);
+  opacity: 0.72;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ============================================================
+   Header générique : .result-block-header aligné sur proj-summary
+   (s'applique à Matériaux, Budget, Actions)
+   ============================================================ */
+[data-theme="g-v2"] .result-block-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 0 18px;
+  border-bottom: 1.5px dashed var(--g-rule);
+  margin-bottom: 20px;
+  background: transparent;
+}
+[data-theme="g-v2"] .result-block-icon,
+[data-theme="g-v2"] .result-block-icon[class*="ph-"],
+[data-theme="g-v2"] .result-block-icon.material-symbols-outlined {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  background: var(--g-mustard) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  box-shadow:
+    inset 0 0 0 2px var(--g-mustard),
+    inset 0 0 0 3px rgba(30,58,82,0.28),
+    0 2px 0 0 var(--g-marine);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: var(--g-marine) !important;
+  font-size: 22px !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+}
+[data-theme="g-v2"] .result-block-title {
+  font-family: var(--g-serif) !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.005em !important;
+  margin: 0 0 3px !important;
+}
+[data-theme="g-v2"] .result-block-subtitle {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12.5px !important;
+  color: var(--g-marine) !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  letter-spacing: 0.005em;
+  line-height: 1.45;
+}
+
+/* ============================================================
+   MATÉRIAUX — Rebranchement sur la logique du résumé
+   (annule l'ancienne carte .mat-group-card autonome)
+   ============================================================ */
+[data-theme="g-v2"] .sim-tunnel-section > .result-block > .mat-groups {
+  display: block;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 0 4px !important;
+  margin: 0 0 22px !important;
+  overflow: visible;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-card:last-child {
+  margin-bottom: 0 !important;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-card + .mat-group-card {
+  padding-top: 18px !important;
+  border-top: 1px dashed var(--g-rule) !important;
+}
+
+/* Header de groupe : plus de bandeau marine plein */
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-header {
+  background: transparent !important;
+  color: var(--g-ink) !important;
+  padding: 0 0 10px !important;
+  border-bottom: 1px dashed var(--g-rule);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-header .mat-icon-wrap {
+  width: 26px !important;
+  height: 26px !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--g-marine) !important;
+  box-shadow: none !important;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-header .mat-brand-icon {
+  width: 22px;
+  height: 22px;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-title {
+  font-family: var(--g-serif) !important;
+  color: var(--g-ink) !important;
+  font-size: 19px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.003em;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-badge {
+  background: transparent !important;
+  color: var(--g-marine) !important;
+  border: 1px solid var(--g-rule) !important;
+  font-family: var(--g-mono);
+  font-weight: 600;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-left: auto;
+}
+[data-theme="g-v2"] .sim-tunnel-section > .result-block .mat-group-count {
+  color: var(--g-marine) !important;
+  opacity: 0.55;
+  font-family: var(--g-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  margin-left: 10px;
+}
+
+/* Sélecteur d'enseigne + total matériaux (mode détaillé) */
+[data-theme="g-v2"] .mat-store-selector {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+[data-theme="g-v2"] .mat-store-btn {
+  background: var(--g-ivoire);
+  border: 1.5px solid var(--g-rule);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--g-marine);
+  font-weight: 500;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+[data-theme="g-v2"] .mat-store-btn:hover {
+  border-color: var(--g-marine);
+}
+[data-theme="g-v2"] .mat-store-btn--active {
+  background: var(--g-marine);
+  color: var(--g-mustard);
+  border-color: var(--g-marine);
+  box-shadow: 0 2px 0 0 var(--g-marine);
+}
+[data-theme="g-v2"] .mat-store-btn img {
+  height: 18px;
+  width: auto;
+}
+[data-theme="g-v2"] .mat-total-cost {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 18px;
+  margin: 14px 0 20px;
+  background: var(--g-ivoire);
+  border: 1.5px solid var(--g-marine);
+  border-radius: 10px;
+  box-shadow: 0 2px 0 0 var(--g-marine);
+}
+[data-theme="g-v2"] .mat-total-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--g-marine);
+}
+[data-theme="g-v2"] .mat-total-amount {
+  font-family: var(--g-serif);
+  font-size: 28px;
+  color: var(--g-brique);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   BUDGET — Neutralisation des couleurs inline (red/amber/green)
+   ============================================================ */
+[data-theme="g-v2"] .budget-tiers {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: 0;
+}
+[data-theme="g-v2"] .budget-tier {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  border-radius: 10px !important;
+  padding: 20px 22px 18px !important;
+  position: relative;
+  box-shadow: none !important;
+}
+[data-theme="g-v2"] .budget-tier--recommended {
+  background: var(--g-surface) !important;
+  border-color: var(--g-marine) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+[data-theme="g-v2"] .budget-tier-header {
+  color: var(--g-marine) !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 6px !important;
+  background: transparent !important;
+}
+[data-theme="g-v2"] .budget-tier-label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .budget-tier-price {
+  font-family: var(--g-serif) !important;
+  font-size: 30px !important;
+  color: var(--g-ink) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1 !important;
+  margin: 4px 0 8px !important;
+}
+[data-theme="g-v2"] .budget-tier--recommended .budget-tier-price {
+  color: var(--g-brique) !important;
+}
+[data-theme="g-v2"] .budget-tier-currency {
+  font-family: var(--g-mono) !important;
+  font-size: 13px !important;
+  color: var(--g-marine) !important;
+  font-weight: 500 !important;
+  margin-left: 2px;
+}
+[data-theme="g-v2"] .budget-tier-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  color: var(--g-marine) !important;
+  margin: 6px 0 10px !important;
+  line-height: 1.5 !important;
+  opacity: 0.82;
+  font-weight: 500;
+}
+[data-theme="g-v2"] .budget-tier-ref {
+  font-family: var(--g-mono) !important;
+  font-size: 9.5px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.55;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-block;
+}
+[data-theme="g-v2"] .budget-recommended-badge {
+  background: var(--g-mustard) !important;
+  color: var(--g-marine) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  font-family: var(--g-mono) !important;
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px !important;
+  border-radius: 3px !important;
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  box-shadow: 0 2px 0 0 var(--g-marine);
+}
+[data-theme="g-v2"] .budget-disclaimer {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11.5px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.68;
+  margin: 18px 0 0 !important;
+  padding: 14px 0 0 !important;
+  border-top: 1px dashed var(--g-rule);
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+/* ============================================================
+   COMPARATEUR DE PRIX — Neutralise Tailwind + inline styles
+   Logos d'enseignes conservent leur couleur brand, le reste
+   bascule dans la palette G v2.
+   ============================================================ */
+[data-theme="g-v2"] .sim-tunnel-section > section > .flex:first-child {
+  padding: 0 0 18px !important;
+  border-bottom: 1.5px dashed var(--g-rule);
+  margin-bottom: 20px;
+  gap: 14px;
+}
+[data-theme="g-v2"] .sim-tunnel-section > section .section-label {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--g-marine) !important;
+  opacity: 0.72;
+  font-weight: 600;
+  margin: 0 0 4px !important;
+}
+[data-theme="g-v2"] .sim-tunnel-section > section h2 {
+  font-family: var(--g-serif) !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.005em !important;
+  line-height: 1.12 !important;
+  margin: 0 !important;
+}
+[data-theme="g-v2"] .badge-success {
+  background: var(--g-mustard) !important;
+  color: var(--g-marine) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  font-family: var(--g-mono) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10.5px !important;
+  border-radius: 3px !important;
+  padding: 6px 12px !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+[data-theme="g-v2"] .badge-amber {
+  background: var(--g-ivoire) !important;
+  color: var(--g-marine) !important;
+  border: 1px dashed var(--g-marine) !important;
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 9px !important;
+  border-radius: 3px !important;
+}
+[data-theme="g-v2"] .price-comparator-row {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  padding: 16px 18px !important;
+  transform: none !important;
+}
+[data-theme="g-v2"] .price-comparator-row:first-child {
+  background: var(--g-surface) !important;
+  border-color: var(--g-marine) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+[data-theme="g-v2"] .price-comparator-row:hover {
+  transform: none !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+  border-color: var(--g-marine) !important;
+}
+/* Prix */
+[data-theme="g-v2"] .price-comparator-row span[style*="fontSize: 22"],
+[data-theme="g-v2"] .price-comparator-row span[style*="22px"] {
+  font-family: var(--g-serif) !important;
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.01em !important;
+  font-size: 24px !important;
+}
+[data-theme="g-v2"] .price-comparator-row:first-child span[style*="22"] {
+  color: var(--g-brique) !important;
+}
+/* Badge "Meilleur prix" → pastille brique */
+[data-theme="g-v2"] .price-comparator-row span[style*="borderRadius: 999"],
+[data-theme="g-v2"] .price-comparator-row span[style*="border-radius: 999"],
+[data-theme="g-v2"] .price-comparator-row span[style*="999px"] {
+  background: var(--g-brique) !important;
+  color: #FFF5E8 !important;
+  border-radius: 3px !important;
+  font-family: var(--g-mono) !important;
+  font-weight: 600 !important;
+  font-size: 9.5px !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px !important;
+  border: 1.5px solid var(--g-brique-d) !important;
+  box-shadow: 0 2px 0 0 var(--g-brique-d) !important;
+}
+/* Barre de prix */
+[data-theme="g-v2"] .price-bar {
+  background: rgba(30,58,82,0.12) !important;
+  border-radius: 2px !important;
+  height: 6px !important;
+}
+[data-theme="g-v2"] .price-fill {
+  background: var(--g-marine) !important;
+  border-radius: 2px !important;
+}
+[data-theme="g-v2"] .price-comparator-row:first-child .price-fill {
+  background: var(--g-mustard) !important;
+}
+/* Encart "prix simulés" jaune → même palette */
+[data-theme="g-v2"] .sim-tunnel-section > section > div[style*="FFF8E1"],
+[data-theme="g-v2"] .sim-tunnel-section > section > div[style*="FFE082"] {
+  background: var(--g-ivoire) !important;
+  border: 1px dashed var(--g-marine) !important;
+  border-radius: 8px !important;
+}
+[data-theme="g-v2"] .sim-tunnel-section > section > div[style*="FFF8E1"] p,
+[data-theme="g-v2"] .sim-tunnel-section > section > div[style*="FFE082"] p {
+  color: var(--g-marine) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* ============================================================
+   ACTIONS — action-cards / action-level
+   ============================================================ */
+[data-theme="g-v2"] .action-level {
+  margin: 0 0 18px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+[data-theme="g-v2"] .action-level:last-child {
+  margin-bottom: 0 !important;
+}
+[data-theme="g-v2"] .action-level-label {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  color: var(--g-marine) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  font-weight: 600 !important;
+  opacity: 0.82;
+  margin: 0 0 10px !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+[data-theme="g-v2"] .action-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+[data-theme="g-v2"] .action-card {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  border-radius: 10px !important;
+  padding: 16px 18px !important;
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  box-shadow: none !important;
+  color: var(--g-ink) !important;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+[data-theme="g-v2"] .action-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--g-marine) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+[data-theme="g-v2"] .action-card--primary {
+  background: var(--g-brique) !important;
+  border-color: var(--g-brique-d) !important;
+  color: #FFF5E8 !important;
+  box-shadow: 0 2px 0 0 var(--g-brique-d) !important;
+}
+[data-theme="g-v2"] .action-card--primary .action-card-icon,
+[data-theme="g-v2"] .action-card--primary .action-card-title,
+[data-theme="g-v2"] .action-card--primary .action-card-desc {
+  color: #FFF5E8 !important;
+}
+[data-theme="g-v2"] .action-card--primary:hover {
+  box-shadow: 0 3px 0 0 var(--g-brique-d) !important;
+  border-color: var(--g-brique-d) !important;
+}
+[data-theme="g-v2"] .action-card--secondary {
+  background: var(--g-mustard) !important;
+  border-color: var(--g-marine) !important;
+  color: var(--g-marine) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+[data-theme="g-v2"] .action-card--secondary .action-card-title,
+[data-theme="g-v2"] .action-card--secondary .action-card-desc {
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .action-card--outline,
+[data-theme="g-v2"] .action-card--sky {
+  background: var(--g-ivoire) !important;
+  border-color: var(--g-rule) !important;
+  color: var(--g-ink) !important;
+}
+[data-theme="g-v2"] .action-card--outline .action-card-title,
+[data-theme="g-v2"] .action-card--sky .action-card-title {
+  color: var(--g-ink) !important;
+}
+[data-theme="g-v2"] .action-card--outline .action-card-desc,
+[data-theme="g-v2"] .action-card--sky .action-card-desc {
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .action-card-icon {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 22px !important;
+}
+[data-theme="g-v2"] .action-card-title {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.005em;
+}
+[data-theme="g-v2"] .action-card-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  opacity: 0.82;
+  font-weight: 500;
+}
+[data-theme="g-v2"] .action-card-badge {
+  background: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  border-radius: 3px !important;
+  font-family: var(--g-mono) !important;
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  padding: 3px 8px !important;
+  margin-left: auto;
+}
+[data-theme="g-v2"] .action-card--primary .action-card-badge {
+  background: #FFF5E8 !important;
+  color: var(--g-brique) !important;
+}
+[data-theme="g-v2"] .action-card--secondary .action-card-badge {
+  background: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+}
+
+/* ============================================================
+   ARTISAN LEAD — Climax du tunnel
+   Même frame que les autres blocs + accent mustard d'aboutissement.
+   ============================================================ */
+/* climax card padding/shadow/ridge → voir bloc consolidé final */
+[data-theme="g-v2"] .artisan-lead-card {
+  background: var(--g-surface) !important;
+  border: 1.5px solid var(--g-marine) !important;
+}
+[data-theme="g-v2"] .artisan-lead-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 0 20px !important;
+  border-bottom: 1.5px dashed var(--g-rule) !important;
+  margin-bottom: 22px !important;
+  background: transparent !important;
+}
+/* taille icon-wrap → voir bloc consolidé final (70px) */
+[data-theme="g-v2"] .artisan-lead-icon-wrap {
+  border-radius: 50% !important;
+  background: var(--g-mustard) !important;
+  border: 2px solid var(--g-marine) !important;
+  box-shadow:
+    inset 0 0 0 3px var(--g-mustard),
+    inset 0 0 0 4px rgba(30,58,82,0.35),
+    0 2px 0 0 var(--g-marine) !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+[data-theme="g-v2"] .artisan-lead-icon-wrap i[class*="ph-"] {
+  color: var(--g-marine) !important;
+  font-size: 30px !important;
+}
+[data-theme="g-v2"] .artisan-lead-title {
+  font-family: var(--g-serif) !important;
+  /* font-size → voir bloc consolidé final (30px) */
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.008em !important;
+  line-height: 1.12 !important;
+  margin: 0 0 4px !important;
+}
+[data-theme="g-v2"] .artisan-lead-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13.5px !important;
+  color: var(--g-marine) !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+  font-weight: 500 !important;
+}
+[data-theme="g-v2"] .artisan-lead-benefits {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+  margin: 0 0 24px !important;
+  background: transparent !important;
+}
+@media (max-width: 720px) {
+  [data-theme="g-v2"] .artisan-lead-benefits {
+    grid-template-columns: 1fr !important;
+  }
+}
+[data-theme="g-v2"] .artisan-lead-benefit {
+  background: transparent !important;
+  border: none !important;
+  padding: 6px 0 6px 16px !important;
+  border-left: 2px solid var(--g-rule) !important;
+  display: flex !important;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: none !important;
+}
+[data-theme="g-v2"] .artisan-lead-benefit:nth-child(2) {
+  border-left-color: var(--g-mustard) !important;
+}
+[data-theme="g-v2"] .artisan-lead-benefit-icon,
+[data-theme="g-v2"] .artisan-lead-benefit-icon[class*="ph-"] {
+  color: var(--g-marine) !important;
+  background: transparent !important;
+  border: none !important;
+  font-size: 22px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin-top: 2px;
+}
+[data-theme="g-v2"] .artisan-lead-benefit-title {
+  font-family: var(--g-serif) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.002em;
+  display: block;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+[data-theme="g-v2"] .artisan-lead-benefit-desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.8;
+  line-height: 1.5 !important;
+  font-weight: 500;
+}
+[data-theme="g-v2"] .artisan-lead-cta-zone {
+  padding-top: 4px;
+}
+[data-theme="g-v2"] .artisan-lead-reassurance {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.68;
+  text-align: center;
+  /* margin → voir bloc consolidé final (16px) */
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Viewer + contrôles (haut de page)
+   Même grammaire visuelle pour que le tunnel entier soit cohérent.
+   ============================================================ */
+[data-theme="g-v2"] .simulator-panel {
+  background: var(--g-surface);
+  border: 1.5px solid var(--g-marine);
+  border-radius: 14px;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 18px 38px -22px rgba(30,58,82,0.22);
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  align-self: start;
+}
+
+/* ============================================================
+   G v2 — Harmonisation cadre simulateur (DeckControls)
+   Uniformise polices, couleurs et bordures du panneau de contrôle
+   pour qu'il parle la même langue que le reste du tunnel.
+   ============================================================ */
+
+/* --- Carte section (sim-section-card) → grammaire tunnel --- */
+[data-theme="g-v2"] .sim-section-card {
+  background: var(--g-surface) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 14px !important;
+  padding: 24px 26px 22px !important;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 14px 30px -22px rgba(30,58,82,0.22) !important;
+}
+
+[data-theme="g-v2"] .sim-section-card-header {
+  padding-bottom: 14px !important;
+  margin-bottom: 18px !important;
+  border-bottom: 1px dashed var(--g-rule) !important;
+  gap: 14px !important;
+}
+
+[data-theme="g-v2"] .sim-section-icon {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 10px !important;
+  background: var(--g-mustard) !important;
+  color: var(--g-ink) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 22px !important;
+}
+
+[data-theme="g-v2"] .sim-section-title-lg {
+  font-family: var(--g-serif) !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  line-height: 1.15 !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.005em !important;
+}
+
+[data-theme="g-v2"] .sim-section-subtitle {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: var(--g-marine) !important;
+  opacity: 0.78;
+  margin-top: 3px !important;
+}
+
+/* --- Labels techniques → Plex Mono marine --- */
+[data-theme="g-v2"] .ctrl-label,
+[data-theme="g-v2"] .ctrl-preset-cat {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 500 !important;
+  color: var(--g-marine) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* Neutraliser badge inline doré (DeckControls.jsx line 64) */
+[data-theme="g-v2"] .ctrl-label span[style] {
+  background: var(--g-ivoire) !important;
+  color: var(--g-marine) !important;
+  border: 1px solid var(--g-rule) !important;
+  font-family: var(--g-mono) !important;
+}
+
+/* --- Inputs numériques → DM Serif / Inter marine --- */
+[data-theme="g-v2"] .ctrl-input-row {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 10px !important;
+}
+
+[data-theme="g-v2"] .ctrl-input-row:focus-within {
+  border-color: var(--g-marine) !important;
+  box-shadow: 0 0 0 3px rgba(30,58,82,0.18) !important;
+}
+
+[data-theme="g-v2"] .ctrl-btn {
+  font-family: 'Inter', sans-serif !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--g-marine) !important;
+  font-weight: 700 !important;
+  transition: background 0.15s ease !important;
+}
+
+[data-theme="g-v2"] .ctrl-btn:hover {
+  background: rgba(30,58,82,0.08) !important;
+  color: var(--g-marine) !important;
+  border: none !important;
+}
+
+[data-theme="g-v2"] .ctrl-val {
+  font-family: var(--g-serif) !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  color: var(--g-ink) !important;
+}
+
+[data-theme="g-v2"] .ctrl-unit {
+  font-family: var(--g-mono) !important;
+  font-size: 11px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.72;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Surface badge → palette G v2 (supprime vert) --- */
+[data-theme="g-v2"] .ctrl-surface {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+
+[data-theme="g-v2"] .ctrl-surface-label {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  color: var(--g-marine) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500 !important;
+}
+
+[data-theme="g-v2"] .ctrl-surface-value {
+  font-family: var(--g-serif) !important;
+  font-weight: 400 !important;
+  font-size: 26px !important;
+  color: var(--g-brique) !important;
+  line-height: 1;
+}
+
+/* --- Radios (type de projet) → marine, plus de vert --- */
+[data-theme="g-v2"] .ctrl-radio {
+  font-family: 'Inter', sans-serif !important;
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  color: var(--g-ink) !important;
+  border-radius: 12px !important;
+}
+
+[data-theme="g-v2"] .ctrl-radio:hover {
+  background: rgba(30,58,82,0.05) !important;
+  border-color: var(--g-marine) !important;
+  color: var(--g-marine) !important;
+}
+
+[data-theme="g-v2"] .ctrl-radio--active {
+  background: var(--g-surface) !important;
+  border-color: var(--g-marine) !important;
+  color: var(--g-ink) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+
+[data-theme="g-v2"] .ctrl-radio-icon {
+  color: var(--g-marine) !important;
+}
+
+[data-theme="g-v2"] .ctrl-radio--active .ctrl-radio-icon {
+  color: var(--g-brique) !important;
+}
+
+/* --- Toggle buttons (Formats / Sur mesure) --- */
+[data-theme="g-v2"] .ctrl-toggle-group {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 12px !important;
+  padding: 3px !important;
+}
+
+[data-theme="g-v2"] .ctrl-toggle-btn {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--g-marine) !important;
+  background: transparent !important;
+  border-radius: 9px !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="g-v2"] .ctrl-toggle-btn--active {
+  background: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  box-shadow: none !important;
+}
+
+/* --- Preset buttons (dimensions rapides) --- */
+[data-theme="g-v2"] .ctrl-preset-btn {
+  font-family: 'Inter', sans-serif !important;
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  color: var(--g-ink) !important;
+  border-radius: 10px !important;
+}
+
+[data-theme="g-v2"] .ctrl-preset-btn:hover {
+  border-color: var(--g-marine) !important;
+  background: var(--g-surface) !important;
+  color: var(--g-ink) !important;
+}
+
+[data-theme="g-v2"] .ctrl-preset-btn--active {
+  border-color: var(--g-marine) !important;
+  background: var(--g-surface) !important;
+  color: var(--g-ink) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+
+/* --- Slab summary → marine (supprime bleu ciel) --- */
+[data-theme="g-v2"] .ctrl-slab-summary {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 12px !important;
+}
+
+[data-theme="g-v2"] .ctrl-slab-row {
+  border-bottom-color: var(--g-rule) !important;
+}
+
+[data-theme="g-v2"] .ctrl-slab-label {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  color: var(--g-marine) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500 !important;
+}
+
+[data-theme="g-v2"] .ctrl-slab-value {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--g-marine) !important;
+  font-size: 14px !important;
+}
+
+/* --- Seuil (bloc info) --- */
+[data-theme="g-v2"] .ctrl-seuil {
+  background: var(--g-ivoire) !important;
+  border: 1px dashed var(--g-rule) !important;
+  border-radius: 10px !important;
+}
+
+[data-theme="g-v2"] .ctrl-seuil-title {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  color: var(--g-marine) !important;
+  font-size: 12px !important;
+}
+
+[data-theme="g-v2"] .ctrl-seuil-sub {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--g-ink) !important;
+  opacity: 0.72;
+  font-size: 11px !important;
+}
+
+/* --- btn-ghost (mode toggles) → neutralise ancien gold --- */
+[data-theme="g-v2"] .btn-ghost {
+  font-family: 'Inter', sans-serif !important;
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  color: var(--g-marine) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="g-v2"] .btn-ghost:hover {
+  border-color: var(--g-marine) !important;
+  background: var(--g-surface) !important;
+  color: var(--g-ink) !important;
+}
+
+[data-theme="g-v2"] .btn-ghost[aria-pressed="true"] {
+  background: var(--g-marine) !important;
+  border-color: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  box-shadow: none !important;
+}
+
+/* ============================================================
+   G v2 — HEADER, BANDEAU, PROJECT-SWITCH, VIEWER
+   Harmonise tout le haut de page avec la grammaire tunnel.
+   ============================================================ */
+
+/* ── Header (barre fixe) ─────────────────────────── */
+[data-theme="g-v2"] .glass {
+  background: rgba(241,235,221,0.92) !important;  /* ivoire translucide */
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid var(--g-rule) !important;
+}
+
+[data-theme="g-v2"] .v6-header-logo-text {
+  font-family: var(--g-serif) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Logo dégradé → marine solide */
+[data-theme="g-v2"] .v6-header-logo-mark svg rect {
+  fill: var(--g-marine) !important;
+}
+
+[data-theme="g-v2"] .v6-header-nav-link {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: var(--g-marine) !important;
+  letter-spacing: 0.02em !important;
+  border-radius: 8px !important;
+}
+
+[data-theme="g-v2"] .v6-header-nav-link:hover {
+  color: var(--g-ink) !important;
+  background: rgba(30,58,82,0.06) !important;
+}
+
+[data-theme="g-v2"] .v6-header-cta {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  background: var(--g-brique) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 2px 0 0 rgba(180,75,42,0.4), 0 4px 12px rgba(180,75,42,0.15) !important;
+}
+
+[data-theme="g-v2"] .v6-header-cta:hover {
+  background: #9E3F22 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 0 0 rgba(180,75,42,0.5), 0 8px 20px rgba(180,75,42,0.2) !important;
+}
+
+/* Boutons retour / partager dans le header */
+[data-theme="g-v2"] header .btn-secondary {
+  font-family: 'Inter', sans-serif !important;
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  color: var(--g-marine) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* ── Bandeau (sim-page-zone) — compact premium ───── */
+[data-theme="g-v2"] .sim-page-zone {
+  background: linear-gradient(180deg, var(--g-ivoire) 0%, var(--g-surface) 100%) !important;
+  border-bottom: 1.5px solid var(--g-marine) !important;
+  padding-bottom: 2px !important;
+}
+
+[data-theme="g-v2"] .sim-page-zone::before {
+  background-image: radial-gradient(var(--g-mustard) 1px, transparent 1px) !important;
+  opacity: 0.08 !important;
+  background-size: 22px 22px !important;
+}
+
+/* ProjectSwitch : ultra-compact inside sim-page-zone */
+[data-theme="g-v2"] .sim-page-zone .project-switch {
+  padding-top: 6px !important;
+  padding-bottom: 0 !important;
+}
+
+[data-theme="g-v2"] .section-eyebrow {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 500 !important;
+  color: var(--g-marine) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+[data-theme="g-v2"] .section-h2 {
+  font-family: var(--g-serif) !important;
+  font-weight: 400 !important;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem) !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.15 !important;
+}
+
+[data-theme="g-v2"] .section-sub {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14.5px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.78;
+  line-height: 1.55 !important;
+}
+
+/* ── ProjectSwitch → marine/moutarde ─────────────── */
+/* Les styles sont en <style jsx> donc il faut du !important */
+[data-theme="g-v2"] .project-switch-tab {
+  font-family: 'Inter', sans-serif !important;
+  background: rgba(241,235,221,0.6) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  color: var(--g-marine) !important;
+  border-radius: 10px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+[data-theme="g-v2"] .project-switch-tab:hover:not(.disabled):not(.active) {
+  background: rgba(241,235,221,0.9) !important;
+  border-color: var(--g-marine) !important;
+  color: var(--g-ink) !important;
+}
+
+[data-theme="g-v2"] .project-switch-tab.active {
+  background: var(--g-marine) !important;
+  border-color: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 0 0 rgba(30,58,82,0.4), 0 4px 12px rgba(30,58,82,0.18) !important;
+}
+
+[data-theme="g-v2"] .project-switch-badge {
+  font-family: var(--g-mono) !important;
+  font-size: 9px !important;
+  background: rgba(30,58,82,0.12) !important;
+  color: var(--g-marine) !important;
+  letter-spacing: 0.06em !important;
+  border-radius: 4px !important;
+}
+
+/* ── Viewer frame (deck-preview) ─────────────────── */
+[data-theme="g-v2"] .deck-preview {
+  background: var(--g-surface) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 18px 38px -22px rgba(30,58,82,0.22) !important;
+}
+
+/* ── Deck stats (bandeau de chiffres en haut viewer) ── */
+[data-theme="g-v2"] .deck-stats {
+  border-top: 1px dashed var(--g-rule) !important;
+  background: var(--g-ivoire);
+}
+
+[data-theme="g-v2"] .deck-stat {
+  border-right: 1px dashed var(--g-rule) !important;
+}
+
+[data-theme="g-v2"] .deck-stat:last-child {
+  border-right: none !important;
+}
+
+[data-theme="g-v2"] .deck-stat-value {
+  font-family: var(--g-serif) !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.02em !important;
+}
+
+[data-theme="g-v2"] .deck-stat-label {
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  color: var(--g-marine) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* ── Viewer zone (schematic area) ───────────────── */
+[data-theme="g-v2"] .deck-schematic {
+  border-top: 1px dashed var(--g-rule) !important;
+  background: var(--g-surface) !important;
+}
+
+[data-theme="g-v2"] .deck-schema-label {
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  color: var(--g-marine) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  opacity: 0.7;
+}
+
+/* ── Mode tabs (Assemblée / Détaillée / Plan) ───── */
+[data-theme="g-v2"] .mode-tabs {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 12px !important;
+  padding: 3px 4px !important;
+}
+
+[data-theme="g-v2"] .mode-tab {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: var(--g-marine) !important;
+  background: transparent !important;
+  border-radius: 9px !important;
+  padding: 7px 14px !important;
+}
+
+[data-theme="g-v2"] .mode-tab:hover:not(.active) {
+  background: rgba(30,58,82,0.06) !important;
+  color: var(--g-ink) !important;
+}
+
+[data-theme="g-v2"] .mode-tab.active {
+  background: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  font-weight: 700 !important;
+  box-shadow: none !important;
+}
+
+/* ── Legend badges ─────────────────────────────── */
+[data-theme="g-v2"] .deck-legend {
+  gap: 10px !important;
+  margin-top: 10px !important;
+}
+
+[data-theme="g-v2"] .deck-legend-item {
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-radius: 6px !important;
+  padding: 3px 10px !important;
+  border: 1px solid rgba(30,58,82,0.15) !important;
+}
+
+/* ── Viewer hint text ─────────────────────────── */
+[data-theme="g-v2"] .deck-viewer-hint {
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.55 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* ── StructuralDisclaimer ─────────────────────── */
+[data-theme="g-v2"] .structural-disclaimer,
+[data-theme="g-v2"] [class*="disclaimer"] {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   G v2 — PASSE FINALE : RESPIRATION, HIÉRARCHIE, IMPACT
+   Raffinage global sans refonte. Espacements, masses,
+   rythme du tunnel, climax du lead.
+   ============================================================ */
+
+/* ─── 1. HAUT DE PAGE — respiration viewer + contrôles ────── */
+
+/* Grille viewer/panneau — occupe tout le viewport restant sous le header */
+[data-theme="g-v2"] .simulator-top {
+  gap: 24px !important;
+  padding: 12px 48px 16px !important;
+  /* Calculé : sticky header ~52px + sim-page-zone ~62px = ~114px au-dessus */
+  min-height: calc(100vh - 130px) !important;
+  align-content: stretch;
+}
+
+/* Viewer canvas : prend toute la hauteur disponible dans la grille */
+[data-theme="g-v2"] .deck-canvas-wrap {
+  height: auto !important;
+  min-height: 420px;
+  flex: 1;
+}
+[data-theme="g-v2"] .deck-canvas-wrap canvas {
+  min-height: 420px;
+}
+
+/* deck-preview : stretch dans la grille */
+[data-theme="g-v2"] .simulator-top .deck-preview {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+[data-theme="g-v2"] .simulator-top .deck-preview .deck-canvas-wrap {
+  flex: 1;
+}
+
+/* Stats : plus de padding, meilleure lisibilité */
+[data-theme="g-v2"] .deck-stat {
+  padding: 16px 14px !important;
+}
+
+/* Schematic area : un peu plus d'air */
+[data-theme="g-v2"] .deck-schematic {
+  padding: 14px 22px 14px !important;
+}
+
+/* Panneau contrôles : compact mais lisible */
+[data-theme="g-v2"] .sim-section-card {
+  padding: 22px 24px 20px !important;
+}
+
+/* ─── 2. BANDEAU ESTIMATION (ProjectSummary) ─────────────── */
+
+/* Badge "Estimation" — plus intégré au système, moins fonctionnel */
+[data-theme="g-v2"] .proj-summary-badge {
+  background: transparent !important;
+  color: var(--g-marine) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 4px !important;
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 5px 12px !important;
+  box-shadow: none !important;
+}
+
+/* Highlights : plus de hiérarchie */
+[data-theme="g-v2"] .proj-highlights {
+  padding-top: 18px !important;
+  margin-top: 18px !important;
+  border-top: 1px dashed var(--g-rule) !important;
+}
+
+/* ============================================================
+   G v2 — BLOC CONSOLIDÉ FINAL
+   Hiérarchie tunnel, budget, comparateur, lead, rythme, responsive.
+   Dernière passe — base figée pour les autres simulateurs.
+   ============================================================ */
+
+/* ─── TUNNEL — fond, bordure, rythme ────────────────────── */
+[data-theme="g-v2"] .sim-tunnel {
+  background: linear-gradient(
+    180deg,
+    var(--g-surface) 0%,
+    var(--g-ivoire)  40%,
+    var(--g-surface) 100%
+  ) !important;
+  border-top: 1.5px solid var(--g-marine) !important;
+  padding: 8px 0 20px !important;
+}
+
+/* Fermeture douce en bas du tunnel */
+[data-theme="g-v2"] .sim-tunnel::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 10%, var(--g-marine) 50%, transparent 90%);
+  opacity: 0.25;
+}
+
+/* Sections : espacement vertical uniforme */
+[data-theme="g-v2"] .sim-tunnel-section {
+  padding: 24px 48px 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ─── HIÉRARCHIE PROGRESSIVE DES BLOCS ──────────────────── */
+
+/* 1 · Résumé projet — posé, référence */
+[data-theme="g-v2"] .sim-tunnel-section:nth-child(1) > .proj-summary {
+  padding: 26px 28px 22px !important;
+}
+
+/* 2 · Matériaux — dense, technique */
+[data-theme="g-v2"] .sim-tunnel-section:nth-child(2) > .result-block {
+  padding: 28px 30px 24px !important;
+}
+
+/* 3 · Budget & comparatif (fusionné) — affirmé */
+[data-theme="g-v2"] .sim-tunnel-section:nth-child(3) > .result-block {
+  padding: 28px 30px 24px !important;
+}
+
+/* 4 · Passer à l'action — compact, resserré */
+[data-theme="g-v2"] .sim-tunnel-section:nth-child(4) > .result-block {
+  padding: 24px 28px 20px !important;
+}
+[data-theme="g-v2"] .sim-tunnel-section:nth-child(4) {
+  padding-top: 16px !important;
+}
+
+/* Ref pseudo : discret */
+[data-theme="g-v2"] .sim-tunnel-section > .proj-summary::before,
+[data-theme="g-v2"] .sim-tunnel-section > .result-block::before,
+[data-theme="g-v2"] .sim-tunnel-section > .artisan-lead-card::before,
+[data-theme="g-v2"] .sim-tunnel-section > section::before {
+  opacity: 0.5 !important;
+}
+
+/* ─── BUDGET — présence renforcée ───────────────────────── */
+
+[data-theme="g-v2"] .budget-tier--recommended {
+  background: var(--g-ivoire) !important;
+  border: 2px solid var(--g-marine) !important;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 12px 28px -16px rgba(30,58,82,0.2) !important;
+}
+
+[data-theme="g-v2"] .budget-tier--recommended .budget-tier-price {
+  font-size: 36px !important;
+  color: var(--g-brique) !important;
+}
+
+[data-theme="g-v2"] .budget-tier--recommended::before {
+  content: "Recommandé";
+  position: absolute;
+  top: -11px;
+  left: 18px;
+  font-family: var(--g-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--g-marine);
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+[data-theme="g-v2"] .budget-tier:not(.budget-tier--recommended) .budget-tier-price {
+  font-size: 26px !important;
+  color: var(--g-ink) !important;
+  opacity: 0.85;
+}
+
+[data-theme="g-v2"] .result-block-subtitle {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13.5px !important;
+  color: var(--g-marine) !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  margin-top: 6px !important;
+  opacity: 0.78;
+}
+
+[data-theme="g-v2"] .result-block-title {
+  font-family: var(--g-serif) !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  line-height: 1.15 !important;
+}
+
+[data-theme="g-v2"] .result-block-header .result-block-icon-wrap {
+  width: 48px !important;
+  height: 48px !important;
+}
+
+/* ─── COMPARATEUR — cartes renforcées ───────────────────── */
+
+[data-theme="g-v2"] .price-comparator-row {
+  padding: 18px 20px !important;
+  margin-bottom: 10px !important;
+  transition: border-color 0.15s ease !important;
+}
+
+[data-theme="g-v2"] .price-comparator-row:last-child {
+  margin-bottom: 0 !important;
+}
+
+[data-theme="g-v2"] .price-comparator-row:first-child {
+  border: 2px solid var(--g-marine) !important;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 10px 24px -14px rgba(30,58,82,0.18) !important;
+  padding: 20px 22px !important;
+  position: relative !important;
+}
+
+[data-theme="g-v2"] .price-comparator-row:first-child span[style*="22"] {
+  font-size: 28px !important;
+}
+
+[data-theme="g-v2"] .price-comparator-row:first-child span[style*="borderRadius: 999"],
+[data-theme="g-v2"] .price-comparator-row:first-child span[style*="border-radius: 999"],
+[data-theme="g-v2"] .price-comparator-row:first-child span[style*="999px"] {
+  font-size: 9px !important;
+  padding: 4px 10px !important;
+  box-shadow: 0 1px 0 0 var(--g-brique-d) !important;
+}
+
+[data-theme="g-v2"] .price-bar {
+  height: 7px !important;
+  border-radius: 4px !important;
+  background: rgba(30,58,82,0.08) !important;
+}
+
+[data-theme="g-v2"] .price-fill {
+  border-radius: 4px !important;
+}
+
+/* ─── LEAD FINAL — climax du tunnel ─────────────────────── */
+
+/* Espace autour du climax */
+[data-theme="g-v2"] .sim-tunnel-climax {
+  padding-top: 44px !important;
+  padding-bottom: 72px !important;
+}
+
+/* Séparateur moutarde avant le climax */
+[data-theme="g-v2"] .sim-tunnel-climax::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: var(--g-mustard);
+  margin: 0 auto 38px;
+  border-radius: 1px;
+  opacity: 0.55;
+}
+
+/* Carte lead : assise maximale */
+[data-theme="g-v2"] .sim-tunnel-climax > .artisan-lead-card {
+  padding: 44px 40px 38px !important;
+  border-width: 2px !important;
+  box-shadow:
+    0 4px 0 0 var(--g-marine),
+    0 36px 64px -22px rgba(30,58,82,0.36) !important;
+}
+
+/* Ridge moutarde en haut de la carte */
+[data-theme="g-v2"] .sim-tunnel-climax > .artisan-lead-card::after {
+  height: 3px !important;
+  left: 18px !important;
+  right: 18px !important;
+  top: 8px !important;
+  background: var(--g-mustard) !important;
+  border-radius: 2px !important;
+}
+
+/* Titre lead */
+[data-theme="g-v2"] .artisan-lead-title {
+  font-size: 30px !important;
+}
+
+/* Icône lead */
+[data-theme="g-v2"] .artisan-lead-icon-wrap {
+  width: 70px !important;
+  height: 70px !important;
+  min-width: 70px !important;
+}
+
+/* CTA lead : pleine largeur, centré, fort */
+[data-theme="g-v2"] .artisan-lead-cta-zone .btn-primary {
+  width: 100% !important;
+  max-width: 420px !important;
+  display: block !important;
+  margin: 0 auto !important;
+  font-size: 14.5px !important;
+  padding: 16px 32px !important;
+  text-align: center !important;
+  border-radius: 6px !important;
+  box-shadow:
+    0 3px 0 0 var(--g-brique-d),
+    0 8px 20px rgba(180,75,42,0.18) !important;
+}
+
+/* Réassurance sous le CTA */
+[data-theme="g-v2"] .artisan-lead-reassurance {
+  margin: 16px 0 0 !important;
+}
+
+/* ─── ESTIMATION BADGE ──────────────────────────────────── */
+
+[data-theme="g-v2"] .proj-summary-badge {
+  background: transparent !important;
+  color: var(--g-marine) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 4px !important;
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 5px 12px !important;
+  box-shadow: none !important;
+}
+
+[data-theme="g-v2"] .proj-highlights {
+  padding-top: 18px !important;
+  margin-top: 18px !important;
+  border-top: 1px dashed var(--g-rule) !important;
+}
+
+/* ─── ALERTES / BANDEAUX INFO ───────────────────────────── */
+
+[data-theme="g-v2"] .structural-disclaimer {
+  font-family: var(--g-mono) !important;
+  font-size: 10px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.5 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  margin-top: 12px !important;
+}
+
+[data-theme="g-v2"] .sim-tunnel-section [class*="info-bar"],
+[data-theme="g-v2"] .sim-tunnel-section [class*="alert"],
+[data-theme="g-v2"] .sim-tunnel-section [class*="warning"],
+[data-theme="g-v2"] .sim-tunnel-section [class*="notice"] {
+  background: var(--g-ivoire) !important;
+  border: 1px dashed var(--g-rule) !important;
+  border-radius: 8px !important;
+  color: var(--g-marine) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  padding: 12px 16px !important;
+  box-shadow: none !important;
+}
+
+[data-theme="g-v2"] .sim-tunnel-section [class*="info-bar"] strong,
+[data-theme="g-v2"] .sim-tunnel-section [class*="alert"] strong,
+[data-theme="g-v2"] .sim-tunnel-section [class*="notice"] strong {
+  color: var(--g-ink) !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="g-v2"] .sim-tunnel-section > section > div[style*="FFF8E1"],
+[data-theme="g-v2"] .sim-tunnel-section > section > div[style*="fff8e1"] {
+  background: var(--g-ivoire) !important;
+  border: 1px dashed var(--g-rule) !important;
+  border-radius: 8px !important;
+  color: var(--g-marine) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12.5px !important;
+}
+
+/* ─── MODALE — g-v2 harmonisation ──────────────── */
+[data-theme="g-v2"] .modal-overlay {
+  background: rgba(17,18,20,0.45) !important;
+}
+[data-theme="g-v2"] .modal-panel {
+  background: var(--g-surface) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 14px !important;
+  padding: 28px 26px !important;
+  box-shadow:
+    0 2px 0 0 var(--g-marine),
+    0 24px 48px -12px rgba(30,58,82,0.25) !important;
+}
+[data-theme="g-v2"] .modal-header {
+  text-align: left !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+[data-theme="g-v2"] .modal-header-icon {
+  width: 44px !important; height: 44px !important;
+  border-radius: 10px !important;
+  background: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+  font-size: 22px !important;
+}
+[data-theme="g-v2"] .modal-title {
+  font-family: var(--g-serif) !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: var(--g-ink) !important;
+  letter-spacing: -0.01em !important;
+  margin: 0 !important;
+}
+[data-theme="g-v2"] .modal-subtitle {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.7 !important;
+  margin: 2px 0 0 !important;
+}
+[data-theme="g-v2"] .modal-project-chip {
+  background: var(--g-ivoire) !important;
+  border: 1px solid var(--g-rule) !important;
+  border-radius: 8px !important;
+  font-family: var(--g-mono) !important;
+  font-size: 12px !important;
+  color: var(--g-marine) !important;
+  padding: 8px 12px !important;
+  margin-bottom: 16px !important;
+}
+[data-theme="g-v2"] .modal-input {
+  font-family: 'Inter', sans-serif !important;
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  border-radius: 8px !important;
+  color: var(--g-ink) !important;
+  font-size: 14px !important;
+}
+[data-theme="g-v2"] .modal-consent {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.75 !important;
+}
+[data-theme="g-v2"] .modal-btn--primary {
+  background: var(--g-mustard) !important;
+  border: 2px solid var(--g-marine) !important;
+  color: var(--g-marine) !important;
+  border-radius: 8px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+[data-theme="g-v2"] .modal-btn--primary:hover:not(:disabled) {
+  background: var(--g-mustard-d) !important;
+}
+[data-theme="g-v2"] .modal-btn--outline {
+  border: 1.5px solid var(--g-marine) !important;
+  color: var(--g-marine) !important;
+  border-radius: 8px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+[data-theme="g-v2"] .modal-close {
+  background: var(--g-ivoire) !important;
+  border: 1px solid var(--g-rule) !important;
+  color: var(--g-marine) !important;
+  border-radius: 6px !important;
+}
+[data-theme="g-v2"] .modal-footer-note {
+  font-family: var(--g-mono) !important;
+  font-size: 10.5px !important;
+  color: var(--g-marine) !important;
+  opacity: 0.45 !important;
+}
+[data-theme="g-v2"] .modal-success-icon .material-symbols-outlined {
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .modal-success-title {
+  font-family: var(--g-serif) !important;
+  color: var(--g-ink) !important;
+}
+[data-theme="g-v2"] .modal-success-desc {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--g-marine) !important;
+  opacity: 0.7 !important;
+}
+
+/* ── Artisan modal — BOM banner & row-two ── */
+[data-theme="g-v2"] .modal-bom-banner {
+  background: rgba(43,93,58,0.08) !important;
+  border-color: rgba(43,93,58,0.25) !important;
+  color: #2B5D3A !important;
+  font-family: var(--g-mono) !important;
+  font-size: 12px !important;
+}
+[data-theme="g-v2"] .artisan-modal-header-icon {
+  background: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  border-radius: 10px !important;
+  margin-bottom: 12px !important;
+}
+[data-theme="g-v2"] .modal-project-chip {
+  background: var(--g-ivoire) !important;
+  border-color: var(--g-rule) !important;
+  font-family: var(--g-mono) !important;
+  font-size: 12px !important;
+  color: var(--g-marine) !important;
+  border-radius: 6px !important;
+}
+[data-theme="g-v2"] .modal-select {
+  background: var(--g-ivoire) !important;
+}
+
+/* ── Store cards g-v2 — meilleur prix accentué ── */
+[data-theme="g-v2"] .store-card {
+  background: var(--g-surface) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  border-radius: 10px !important;
+}
+[data-theme="g-v2"] .store-card--best {
+  border: 2px solid var(--g-marine) !important;
+  background: var(--g-ivoire) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine), 0 8px 20px -10px rgba(30,58,82,0.18) !important;
+}
+[data-theme="g-v2"] .store-card--best .store-total {
+  color: var(--g-brique, #8B4513) !important;
+  font-family: var(--g-serif) !important;
+  font-size: 28px !important;
+}
+[data-theme="g-v2"] .store-card:not(.store-card--best) .store-total {
+  font-family: var(--g-serif) !important;
+  font-size: 22px !important;
+  color: var(--g-ink) !important;
+  opacity: 0.8;
+}
+[data-theme="g-v2"] .store-best-badge {
+  background: var(--g-marine) !important;
+  color: var(--g-mustard) !important;
+  font-family: var(--g-mono) !important;
+  font-size: 9.5px !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 3px !important;
+}
+[data-theme="g-v2"] .store-name {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--g-marine) !important;
+  font-weight: 600 !important;
+}
+[data-theme="g-v2"] .store-rate {
+  font-family: var(--g-mono) !important;
+  color: var(--g-marine) !important;
+  opacity: 0.6 !important;
+}
+[data-theme="g-v2"] .store-cta {
+  background: var(--g-surface) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  color: var(--g-marine) !important;
+  font-family: 'Inter', sans-serif !important;
+  border-radius: 6px !important;
+}
+[data-theme="g-v2"] .store-card--best .store-cta {
+  background: var(--g-mustard) !important;
+  border-color: var(--g-marine) !important;
+  color: var(--g-marine) !important;
+  font-weight: 700 !important;
+}
+
+/* ── BudgetComparator g-v2 labels ── */
+[data-theme="g-v2"] .bc-section-label {
+  font-family: var(--g-mono) !important;
+  color: var(--g-marine) !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.10em !important;
+}
+[data-theme="g-v2"] .bc-divider {
+  background: var(--g-rule) !important;
+}
+
+/* ── ProjectActions g-v2 ── */
+[data-theme="g-v2"] .pa-main-card {
+  background: var(--g-ivoire) !important;
+  border: 1.5px solid var(--g-marine) !important;
+  border-radius: 12px !important;
+}
+[data-theme="g-v2"] .pa-main-icon {
+  background: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .pa-main-icon .material-symbols-outlined {
+  color: var(--g-mustard) !important;
+}
+[data-theme="g-v2"] .pa-main-title {
+  font-family: var(--g-serif) !important;
+  font-weight: 400 !important;
+  font-size: 17px !important;
+  color: var(--g-ink) !important;
+}
+[data-theme="g-v2"] .pa-main-desc {
+  color: var(--g-marine) !important;
+  opacity: 0.7 !important;
+}
+[data-theme="g-v2"] .pa-include-icon {
+  color: var(--g-mustard-d) !important;
+}
+[data-theme="g-v2"] .pa-include-label {
+  font-family: var(--g-mono) !important;
+  font-size: 11px !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .pa-main-cta {
+  background: var(--g-mustard) !important;
+  border: 2px solid var(--g-marine) !important;
+  color: var(--g-marine) !important;
+  border-radius: 8px !important;
+  font-family: 'Inter', sans-serif !important;
+  box-shadow: 0 2px 0 0 var(--g-marine) !important;
+}
+[data-theme="g-v2"] .pa-main-cta:hover {
+  background: var(--g-mustard-d) !important;
+}
+[data-theme="g-v2"] .pa-secondary-btn {
+  background: var(--g-surface) !important;
+  border: 1.5px solid var(--g-rule) !important;
+  color: var(--g-marine) !important;
+  font-family: var(--g-mono) !important;
+  font-size: 11.5px !important;
+  border-radius: 8px !important;
+}
+[data-theme="g-v2"] .pa-secondary-btn:hover {
+  border-color: var(--g-marine) !important;
+  color: var(--g-ink) !important;
+}
+
+/* ─── FIN DE PAGE — souveraineté du tunnel ──────────────── */
+
+[data-theme="g-v2"] ~ footer,
+[data-theme="g-v2"] + footer {
+  margin-top: 0 !important;
+}
+
+[data-theme="g-v2"] ~ footer {
+  border-top: 2px solid var(--g-marine) !important;
+  padding-top: 48px !important;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  [data-theme="g-v2"] .simulator-top {
+    padding: 20px 20px 16px !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-section {
+    padding: 18px 20px 0 !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(3) > .result-block,
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(4) > .result-block {
+    padding: 24px 22px 20px !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-climax {
+    padding-top: 32px !important;
+    padding-bottom: 52px !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-climax > .artisan-lead-card {
+    padding: 32px 24px 28px !important;
+  }
+  [data-theme="g-v2"] .artisan-lead-title {
+    font-size: 24px !important;
+  }
+  [data-theme="g-v2"] .artisan-lead-cta-zone .btn-primary {
+    max-width: 100% !important;
+    font-size: 13.5px !important;
+    padding: 14px 24px !important;
+  }
+  [data-theme="g-v2"] .budget-tier--recommended .budget-tier-price {
+    font-size: 30px !important;
+  }
+  [data-theme="g-v2"] .price-comparator-row:first-child span[style*="22"] {
+    font-size: 24px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  [data-theme="g-v2"] .sim-tunnel-section {
+    padding: 14px 16px 0 !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(n) > .proj-summary,
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(n) > .result-block,
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(n) > section {
+    padding: 22px 18px 18px !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-climax {
+    padding-top: 28px !important;
+    padding-bottom: 44px !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-climax > .artisan-lead-card {
+    padding: 28px 20px 24px !important;
+  }
+  [data-theme="g-v2"] .artisan-lead-title {
+    font-size: 22px !important;
+  }
+  [data-theme="g-v2"] .artisan-lead-icon-wrap {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+  }
+  [data-theme="g-v2"] .budget-tier--recommended .budget-tier-price {
+    font-size: 28px !important;
+  }
+  [data-theme="g-v2"] .budget-tier:not(.budget-tier--recommended) .budget-tier-price {
+    font-size: 22px !important;
+  }
+  [data-theme="g-v2"] .price-comparator-row {
+    padding: 14px 16px !important;
+  }
+  [data-theme="g-v2"] .price-comparator-row:first-child {
+    padding: 16px 18px !important;
+  }
+  [data-theme="g-v2"] .price-comparator-row:first-child span[style*="22"] {
+    font-size: 22px !important;
+  }
+  [data-theme="g-v2"] .section-h2 {
+    font-size: 1.6rem !important;
+  }
+  [data-theme="g-v2"] .deck-stat-value {
+    font-size: 18px !important;
+  }
+  [data-theme="g-v2"] .result-block-title {
+    font-size: 22px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  [data-theme="g-v2"] .sim-tunnel-section {
+    padding: 12px 12px 0 !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(n) > .proj-summary,
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(n) > .result-block,
+  [data-theme="g-v2"] .sim-tunnel-section:nth-child(n) > section {
+    padding: 18px 14px 16px !important;
+    border-radius: 10px !important;
+  }
+  [data-theme="g-v2"] .sim-tunnel-climax > .artisan-lead-card {
+    padding: 24px 16px 20px !important;
+    border-radius: 10px !important;
+  }
+  [data-theme="g-v2"] .artisan-lead-benefits {
+    gap: 14px !important;
+  }
+}
+
+/* ============================================================
+   G v2 — LANDING PAGE OVERRIDES
+   Applique la palette G v2 (marine/mustard/brique/ivoire) et la
+   typographie (DM Serif Display / IBM Plex Mono / Inter) sur les
+   classes v6-* du hero, bento et stats.
+   Layout, animations et parallax restent intacts.
+   ============================================================ */
+
+/* ── Variables v6 → G v2 remap ──────────────────────────── */
+[data-theme="g-v2"] {
+  --v6-primary: var(--g-mustard) !important;
+  --v6-primary-light: #E0C36A !important;
+  --v6-primary-dark: var(--g-brique) !important;
+  --v6-text: var(--g-ink) !important;
+  --v6-text-2: #3D5468 !important;
+  --v6-text-3: var(--g-marine) !important;
+  --v6-text-4: #7A90A4 !important;
+  --v6-surface: var(--g-ivoire) !important;
+  --v6-surface-deep: #E8DFC8 !important;
+  --v6-border: var(--g-rule) !important;
+  --v6-blue: var(--g-marine) !important;
+  --v6-blue-light: #5A8BB0 !important;
+}
+
+/* ── HERO — fond ivoire + typo G v2 ─────────────────────── */
+[data-theme="g-v2"] .v6-hero-inner {
+  background: linear-gradient(180deg, #FAF5E8 0%, var(--g-ivoire) 100%) !important;
+}
+[data-theme="g-v2"] .v6-hero-mass {
+  background:
+    radial-gradient(ellipse 32% 42% at 66% 48%, rgba(30,58,82,.04) 0%, transparent 60%),
+    radial-gradient(ellipse 28% 38% at 67% 46%, rgba(201,151,30,.08) 0%, transparent 48%),
+    radial-gradient(ellipse 25% 30% at 22% 55%, rgba(201,151,30,.008) 0%, transparent 40%) !important;
+}
+[data-theme="g-v2"] .v6-hero-grid {
+  background-image:
+    linear-gradient(rgba(30,58,82,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,58,82,.08) 1px, transparent 1px) !important;
+}
+[data-theme="g-v2"] .v6-giant-text {
+  color: rgba(30,58,82,.04) !important;
+}
+[data-theme="g-v2"] .v6-guideline.h {
+  background: linear-gradient(90deg, transparent 4%, rgba(30,58,82,.05) 20%, rgba(30,58,82,.14) 48%, rgba(30,58,82,.22) 66%, rgba(30,58,82,.14) 82%, transparent 97%) !important;
+}
+[data-theme="g-v2"] .v6-guideline.v {
+  background: linear-gradient(180deg, transparent 6%, rgba(30,58,82,.08) 24%, rgba(30,58,82,.22) 46%, rgba(30,58,82,.14) 62%, transparent 88%) !important;
+}
+[data-theme="g-v2"] .v6-light-cone {
+  background: radial-gradient(circle at center,
+    rgba(201,151,30,.12) 0%, rgba(201,151,30,.07) 20%,
+    rgba(201,151,30,.03) 42%, transparent 65%) !important;
+}
+[data-theme="g-v2"] .v6-cold-halo {
+  background: radial-gradient(circle at center, rgba(30,58,82,.06) 0%, rgba(30,58,82,.03) 30%, rgba(30,58,82,.01) 55%, transparent 72%) !important;
+}
+
+/* ── HERO TYPOGRAPHY ─────────────────────────────────────── */
+[data-theme="g-v2"] .v6-eyebrow {
+  font-family: 'IBM Plex Mono', monospace !important;
+  color: var(--g-marine) !important;
+  letter-spacing: .14em !important;
+}
+[data-theme="g-v2"] .v6-eyebrow-idx {
+  color: var(--g-brique) !important;
+}
+[data-theme="g-v2"] .v6-eyebrow-sep {
+  background: var(--g-brique) !important;
+}
+[data-theme="g-v2"] .v6-hero-title {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-title-l1 {
+  font-weight: 400 !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-title-l2 .accent {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-style: italic !important;
+  color: var(--g-brique) !important;
+}
+[data-theme="g-v2"] .v6-title-l2 .accent::after {
+  background: linear-gradient(90deg, var(--g-brique), transparent) !important;
+  opacity: .35 !important;
+}
+[data-theme="g-v2"] .v6-title-l3 {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-weight: 400 !important;
+  color: rgba(30,58,82,.6) !important;
+}
+[data-theme="g-v2"] .v6-hero-sub-lead {
+  font-family: 'Inter', sans-serif !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-hero-sub-lead::after {
+  background: var(--g-mustard) !important;
+  opacity: .4 !important;
+}
+[data-theme="g-v2"] .v6-hero-sub-note {
+  font-family: 'IBM Plex Mono', monospace !important;
+  color: var(--g-marine) !important;
+  letter-spacing: .10em !important;
+}
+
+/* ── HERO BUTTONS — flow hover effect ────────────────────── */
+[data-theme="g-v2"] .v6-btn-primary {
+  position: relative !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  background: var(--g-marine) !important;
+  color: #fff !important;
+  border: 1px solid rgba(30,58,82,.3) !important;
+  border-radius: 10px !important;
+  letter-spacing: .04em !important;
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 0 0 rgba(30,58,82,.8), 0 12px 28px -12px rgba(30,58,82,.28) !important;
+  transition: all .5s ease !important;
+}
+/* Flow circle — slides in from bottom-right on hover */
+[data-theme="g-v2"] .v6-btn-primary::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  transform: translate(150%, 150%) scale(2.5) !important;
+  border-radius: 50% !important;
+  background: var(--g-mustard) !important;
+  transition: transform 1s ease !important;
+}
+[data-theme="g-v2"] .v6-btn-primary:hover {
+  color: var(--g-marine) !important;
+  border-color: var(--g-mustard) !important;
+  box-shadow: 0 2px 0 0 rgba(201,151,30,.6), 0 16px 36px -14px rgba(201,151,30,.30) !important;
+  transform: scale(1.05) !important;
+}
+[data-theme="g-v2"] .v6-btn-primary:hover::before {
+  transform: translate(0%, 0%) scale(2.5) !important;
+}
+[data-theme="g-v2"] .v6-btn-primary:active {
+  transform: scale(0.96) !important;
+}
+/* Keep text + icon above the flow circle */
+[data-theme="g-v2"] .v6-btn-primary > * {
+  position: relative;
+  z-index: 1;
+}
+[data-theme="g-v2"] .v6-btn-secondary {
+  font-family: 'IBM Plex Mono', monospace !important;
+  color: var(--g-marine) !important;
+  font-size: 12px !important;
+  letter-spacing: .06em !important;
+  text-transform: uppercase !important;
+}
+[data-theme="g-v2"] .v6-btn-secondary::after {
+  background: var(--g-mustard) !important;
+}
+[data-theme="g-v2"] .v6-btn-secondary:hover {
+  color: var(--g-ink) !important;
+}
+[data-theme="g-v2"] .v6-actions-sep {
+  background: var(--g-rule) !important;
+}
+
+/* ── HERO PROOF POINTS ───────────────────────────────────── */
+[data-theme="g-v2"] .v6-proof-val {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-proof-label {
+  font-family: 'IBM Plex Mono', monospace !important;
+  color: rgba(30,58,82,.55) !important;
+}
+[data-theme="g-v2"] .v6-proof-sep {
+  background: var(--g-rule) !important;
+}
+
+/* ── HERO STAGGERED FADE-UP — text elements cascade (21st.dev hero-9 style) ── */
+[data-theme="g-v2"] .v6-hero-text .v6-eyebrow,
+[data-theme="g-v2"] .v6-hero-text .v6-hero-title,
+[data-theme="g-v2"] .v6-hero-text .v6-hero-sub-group,
+[data-theme="g-v2"] .v6-hero-text .v6-hero-actions,
+[data-theme="g-v2"] .v6-hero-text .v6-proofs {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: hero-fade-up 0.7s ease-out forwards;
+}
+[data-theme="g-v2"] .v6-hero-text .v6-eyebrow       { animation-delay: 0.15s; }
+[data-theme="g-v2"] .v6-hero-text .v6-hero-title     { animation-delay: 0.35s; }
+[data-theme="g-v2"] .v6-hero-text .v6-hero-sub-group { animation-delay: 0.55s; }
+[data-theme="g-v2"] .v6-hero-text .v6-hero-actions   { animation-delay: 0.75s; }
+[data-theme="g-v2"] .v6-hero-text .v6-proofs          { animation-delay: 0.95s; }
+
+@keyframes hero-fade-up {
+  0%   { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HERO SHOWCASE — scale-in entrance ─────────────────── */
+[data-theme="g-v2"] .v6-showcase {
+  opacity: 0;
+  transform: scale(0.88);
+  animation: hero-showcase-enter 0.9s ease-out 0.5s forwards;
+}
+@keyframes hero-showcase-enter {
+  0%   { opacity: 0; transform: scale(0.88); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ── HERO SATELLITE FLOATS — enhanced bobbing on G v2 ──── */
+[data-theme="g-v2"] .v6-float-bom {
+  animation: hero-sat-bob-1 6s ease-in-out infinite;
+}
+[data-theme="g-v2"] .v6-float-price {
+  animation: hero-sat-bob-2 5s ease-in-out 0.5s infinite;
+}
+[data-theme="g-v2"] .v6-float-optim {
+  animation: hero-sat-bob-3 7s ease-in-out 1s infinite;
+}
+[data-theme="g-v2"] .v6-float-wood {
+  animation: hero-sat-bob-1 5.5s ease-in-out 1.5s infinite;
+}
+@keyframes hero-sat-bob-1 {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes hero-sat-bob-2 {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes hero-sat-bob-3 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-5px) rotate(1deg); }
+}
+
+/* ── HERO CARD — fond ivoire + marine shadow ────────────── */
+[data-theme="g-v2"] .v6-card {
+  background: rgba(250,245,232,.92) !important;
+  border: 1px solid var(--g-rule) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine), 0 18px 38px -22px rgba(30,58,82,.22) !important;
+}
+[data-theme="g-v2"] .v6-card-corner {
+  color: var(--g-mustard) !important;
+}
+[data-theme="g-v2"] .v6-card-tab {
+  font-family: 'IBM Plex Mono', monospace !important;
+  background: var(--g-marine) !important;
+  color: rgba(255,255,255,.85) !important;
+}
+[data-theme="g-v2"] .v6-card-tab-active {
+  background: var(--g-mustard) !important;
+  color: var(--g-ink) !important;
+}
+[data-theme="g-v2"] .v6-card-body h3 {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-card-feature-icon {
+  color: var(--g-brique) !important;
+}
+
+/* ── HERO FLOAT BOX ──────────────────────────────────────── */
+[data-theme="g-v2"] .v6-float {
+  background: var(--g-ivoire) !important;
+  border: 1px solid var(--g-rule) !important;
+  border-top: 3px solid var(--g-marine) !important;
+  box-shadow: 0 8px 24px -8px rgba(30,58,82,.12) !important;
+}
+[data-theme="g-v2"] .v6-float strong {
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-dim-label {
+  font-family: 'IBM Plex Mono', monospace !important;
+  background: var(--g-marine) !important;
+  color: #fff !important;
+}
+[data-theme="g-v2"] .v6-dim-line {
+  background: var(--g-marine) !important;
+}
+
+/* ── CORNER MARKS ────────────────────────────────────────── */
+[data-theme="g-v2"] .v6-corner-marks span {
+  color: var(--g-mustard) !important;
+}
+
+/* ═══ BENTO SECTION — marine dark + glowing shadow ═══════ */
+[data-theme="g-v2"] .v6-bento-inner {
+  background: var(--g-marine) !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px) !important;
+}
+[data-theme="g-v2"] .v6-bento-eyebrow {
+  color: rgba(241,235,221,.6) !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-weight: 700 !important;
+}
+[data-theme="g-v2"] .v6-bento-title {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-weight: 400 !important;
+  color: #fff !important;
+}
+[data-theme="g-v2"] .v6-bento-title em {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  color: var(--g-mustard) !important;
+}
+[data-theme="g-v2"] .v6-bento-sub {
+  color: rgba(241,235,221,.7) !important;
+  font-size: 16px !important;
+}
+
+/* ── Bento card — glowing shadow effect ──────────────────── */
+@keyframes bento-glow-rotate {
+  from { --bento-glow-angle: 0deg; }
+  to   { --bento-glow-angle: 360deg; }
+}
+
+[data-theme="g-v2"] .v6-bento-card {
+  position: relative !important;
+  background: rgba(12,28,42,.85) !important;
+  border: 1px solid rgba(241,235,221,.12) !important;
+  overflow: visible !important;
+  z-index: 1 !important;
+  --bento-glow-opacity: 0;
+  animation: bento-glow-pulse 4s ease-in-out infinite;
+}
+/* Glow pseudo-element behind each card */
+[data-theme="g-v2"] .v6-bento-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--bento-glow-angle),
+    var(--g-marine),
+    var(--g-mustard),
+    var(--g-brique),
+    var(--g-marine)
+  );
+  filter: blur(18px);
+  opacity: var(--bento-glow-opacity);
+  z-index: -1;
+  animation: bento-glow-rotate 6s linear infinite;
+  transition: opacity .4s ease, filter .4s ease;
+  will-change: opacity, filter;
+}
+/* Inner clip — keeps card content rounded even with overflow:visible */
+[data-theme="g-v2"] .v6-bento-card > * {
+  position: relative;
+  z-index: 1;
+}
+[data-theme="g-v2"] .v6-bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(12,28,42,.92);
+  border: 1px solid rgba(241,235,221,.12);
+  z-index: 0;
+  transition: background .3s ease, border-color .3s ease;
+}
+/* Hover — glow intensifies */
+[data-theme="g-v2"] .v6-bento-card:hover {
+  --bento-glow-opacity: 0.7;
+  animation: none;
+  transform: translateY(-3px) !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+[data-theme="g-v2"] .v6-bento-card:hover::before {
+  filter: blur(24px);
+  opacity: 0.8;
+}
+[data-theme="g-v2"] .v6-bento-card:hover::after {
+  background: rgba(12,28,42,.88);
+  border-color: rgba(201,151,30,.20);
+}
+/* Idle subtle glow pulse — merged into main .v6-bento-card block via animation shorthand */
+@keyframes bento-glow-pulse {
+  0%, 100% { --bento-glow-opacity: 0.15; }
+  50%      { --bento-glow-opacity: 0.30; }
+}
+
+/* ── Bento card text — high contrast ─────────────────────── */
+[data-theme="g-v2"] .v6-bento-num {
+  color: var(--g-mustard) !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+}
+[data-theme="g-v2"] .v6-bento-card h3 {
+  color: #fff !important;
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+}
+[data-theme="g-v2"] .v6-bento-card p {
+  color: rgba(241,235,221,.75) !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+}
+[data-theme="g-v2"] .v6-bento-visual {
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(241,235,221,.10) !important;
+}
+
+/* Bento mini elements — high-contrast bars */
+
+/* ── Tracks (empty part): visible outline on dark bg ──── */
+[data-theme="g-v2"] .v6-mini-slider-track {
+  background: rgba(241,235,221,.06) !important;
+  border: 1px solid rgba(241,235,221,.15) !important;
+  border-radius: 3px !important;
+  height: 6px !important;
+}
+[data-theme="g-v2"] .v6-mini-compare-bar {
+  background: rgba(241,235,221,.06) !important;
+  border: 1px solid rgba(241,235,221,.12) !important;
+  border-radius: 5px !important;
+  height: 10px !important;
+}
+
+/* ── Fill variants — bright + glow shadow ─────────────── */
+[data-theme="g-v2"] .v6-mini-slider-fill,
+[data-theme="g-v2"] .v6-mini-compare-fill {
+  border-radius: inherit !important;
+  transition: width .5s ease !important;
+}
+
+[data-theme="g-v2"] .v6-fill--mustard {
+  background: linear-gradient(90deg, #E0C36A, #C9971E) !important;
+  box-shadow: 0 0 8px rgba(201,151,30,.5), 0 0 2px rgba(201,151,30,.8) !important;
+}
+[data-theme="g-v2"] .v6-fill--brique {
+  background: linear-gradient(90deg, #D46843, #B44B2A) !important;
+  box-shadow: 0 0 8px rgba(180,75,42,.45), 0 0 2px rgba(212,104,67,.7) !important;
+}
+[data-theme="g-v2"] .v6-fill--ivoire {
+  background: linear-gradient(90deg, rgba(241,235,221,.6), rgba(241,235,221,.35)) !important;
+  box-shadow: 0 0 6px rgba(241,235,221,.25), 0 0 2px rgba(241,235,221,.4) !important;
+}
+
+/* ── Text ─────────────────────────────────────────────── */
+[data-theme="g-v2"] .v6-mini-slider-label {
+  color: rgba(241,235,221,.7) !important;
+}
+[data-theme="g-v2"] .v6-mini-slider-val {
+  color: #fff !important;
+}
+[data-theme="g-v2"] .v6-mini-bom-row {
+  border-bottom-color: rgba(241,235,221,.10) !important;
+}
+[data-theme="g-v2"] .v6-mini-bom-name {
+  color: rgba(241,235,221,.72) !important;
+}
+[data-theme="g-v2"] .v6-mini-bom-qty {
+  color: #fff !important;
+}
+[data-theme="g-v2"] .v6-mini-compare-store {
+  color: rgba(241,235,221,.75) !important;
+}
+[data-theme="g-v2"] .v6-mini-compare-price {
+  color: rgba(241,235,221,.7) !important;
+}
+[data-theme="g-v2"] .v6-price--best {
+  color: var(--g-mustard) !important;
+  font-weight: 800 !important;
+}
+[data-theme="g-v2"] .v6-mini-bom-badge {
+  background: rgba(201,151,30,.20) !important;
+  color: var(--g-mustard) !important;
+  font-weight: 700 !important;
+}
+
+/* ═══ STATS SECTION — ivoire ═════════════════════════════ */
+[data-theme="g-v2"] .v6-stats-inner {
+  background: linear-gradient(180deg, #FAF5E8 0%, var(--g-ivoire) 100%) !important;
+}
+[data-theme="g-v2"] .v6-stats-glow {
+  background: radial-gradient(ellipse, rgba(201,151,30,.03) 0%, rgba(30,58,82,.015) 40%, transparent 65%) !important;
+}
+[data-theme="g-v2"] .v6-stats-sep {
+  background: linear-gradient(90deg, transparent 0%, rgba(30,58,82,.10) 20%, rgba(201,151,30,.20) 45%, rgba(201,151,30,.20) 55%, rgba(30,58,82,.10) 80%, transparent 100%) !important;
+}
+[data-theme="g-v2"] .v6-stats-eyebrow {
+  font-family: 'IBM Plex Mono', monospace !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-stats-title {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-weight: 400 !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-stats-title em {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  color: var(--g-brique) !important;
+}
+[data-theme="g-v2"] .v6-stats-context {
+  color: rgba(30,58,82,.55) !important;
+}
+[data-theme="g-v2"] .v6-stat-item {
+  background: rgba(250,245,232,.65) !important;
+  border: 1px solid var(--g-rule) !important;
+}
+[data-theme="g-v2"] .v6-stat-item:hover {
+  background: rgba(250,245,232,.92) !important;
+  border-color: rgba(201,151,30,.20) !important;
+  box-shadow: 0 2px 0 0 var(--g-marine), 0 12px 28px -12px rgba(30,58,82,.12) !important;
+}
+[data-theme="g-v2"] .v6-stat-value {
+  background: linear-gradient(145deg, var(--g-marine), #3D5468) !important;
+  -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+[data-theme="g-v2"] .v6-stat-value.gold {
+  background: linear-gradient(145deg, var(--g-brique), var(--g-mustard)) !important;
+  -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+[data-theme="g-v2"] .v6-stat-lbl {
+  font-family: 'IBM Plex Mono', monospace !important;
+  color: var(--g-marine) !important;
+}
+[data-theme="g-v2"] .v6-stat-sub {
+  color: rgba(30,58,82,.5) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATS — Testimonial Masonry Style (G v2)
+   Inspiré du composant ui-layouts/testimonial de 21st.dev.
+   Grille 3 colonnes asymétrique, cartes colorées, overlay grille,
+   animation de révélation au scroll.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Grid layout — 3 colonnes flex ───────────────────────── */
+[data-theme="g-v2"] .v6-testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+}
+[data-theme="g-v2"] .v6-testi-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+/* ── Card base ───────────────────────────────────────────── */
+[data-theme="g-v2"] .v6-testi-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(30,58,82,.12);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all .3s ease;
+}
+[data-theme="g-v2"] .v6-testi-card:hover {
+  transform: translateY(-2px);
+}
+[data-theme="g-v2"] .v6-testi-body {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Height variants ─────────────────────────────────────── */
+[data-theme="g-v2"] .v6-testi-tall { flex: 7; }
+[data-theme="g-v2"] .v6-testi-short { flex: 3; min-height: 160px; }
+
+/* ── Card variant: pattern (ivoire + grid overlay) ───────── */
+[data-theme="g-v2"] .v6-testi-card--pattern {
+  background: linear-gradient(180deg, #FAF5E8 0%, var(--g-ivoire) 100%);
+  border-color: rgba(30,58,82,.10);
+}
+[data-theme="g-v2"] .v6-testi-card--pattern:hover {
+  border-color: rgba(201,151,30,.22);
+  box-shadow: 0 4px 20px rgba(30,58,82,.06), 0 8px 32px rgba(30,58,82,.03);
+}
+[data-theme="g-v2"] .v6-testi-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(30,58,82,.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30,58,82,.06) 1px, transparent 1px);
+  background-size: 50px 56px;
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Card variant: dark (marine bg) ──────────────────────── */
+[data-theme="g-v2"] .v6-testi-card--dark {
+  background: var(--g-marine);
+  color: #fff;
+  border-color: rgba(30,58,82,.3);
+  flex: 1;
+}
+[data-theme="g-v2"] .v6-testi-card--dark:hover {
+  box-shadow: 0 0 0 1px rgba(201,151,30,.15), 0 4px 16px rgba(0,0,0,.12);
+}
+[data-theme="g-v2"] .v6-testi-card--dark .v6-testi-val {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  background: none;
+}
+[data-theme="g-v2"] .v6-testi-card--dark .v6-testi-lbl {
+  color: #fff;
+  font-weight: 800;
+}
+[data-theme="g-v2"] .v6-testi-card--dark .v6-testi-sub {
+  color: rgba(241,235,221,.7);
+}
+
+/* ── Card variant: accent (brique bg) ────────────────────── */
+[data-theme="g-v2"] .v6-testi-card--accent {
+  background: var(--g-brique);
+  color: #fff;
+  border-color: rgba(180,75,42,.3);
+}
+[data-theme="g-v2"] .v6-testi-card--accent:hover {
+  box-shadow: 0 0 0 1px rgba(180,75,42,.20), 0 4px 16px rgba(180,75,42,.12);
+}
+[data-theme="g-v2"] .v6-testi-card--accent .v6-testi-val {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  background: none;
+}
+[data-theme="g-v2"] .v6-testi-card--accent .v6-testi-lbl {
+  color: #fff;
+  font-weight: 800;
+}
+[data-theme="g-v2"] .v6-testi-card--accent .v6-testi-sub {
+  color: rgba(255,255,255,.75);
+}
+
+/* ── Card variant: accent2 (mustard bg) ──────────────────── */
+[data-theme="g-v2"] .v6-testi-card--accent2 {
+  background: var(--g-mustard);
+  color: var(--g-ink);
+  border-color: rgba(201,151,30,.3);
+}
+[data-theme="g-v2"] .v6-testi-card--accent2:hover {
+  box-shadow: 0 0 0 1px rgba(201,151,30,.25), 0 4px 16px rgba(201,151,30,.12);
+}
+[data-theme="g-v2"] .v6-testi-card--accent2 .v6-testi-val {
+  color: var(--g-ink);
+  -webkit-text-fill-color: var(--g-ink);
+  background: none;
+}
+[data-theme="g-v2"] .v6-testi-card--accent2 .v6-testi-val {
+  color: #1a1000;
+  -webkit-text-fill-color: #1a1000;
+  background: none;
+}
+[data-theme="g-v2"] .v6-testi-card--accent2 .v6-testi-lbl {
+  color: #1a1000;
+  font-weight: 800;
+}
+[data-theme="g-v2"] .v6-testi-card--accent2 .v6-testi-sub {
+  color: rgba(17,18,20,.72);
+}
+
+/* ── Typography ──────────────────────────────────────────── */
+[data-theme="g-v2"] .v6-testi-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--g-marine);
+  margin-bottom: 16px;
+}
+[data-theme="g-v2"] .v6-testi-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  color: var(--g-marine);
+  margin: 0 0 12px;
+}
+[data-theme="g-v2"] .v6-testi-headline em {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-style: italic;
+  color: var(--g-brique);
+}
+[data-theme="g-v2"] .v6-testi-context {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(30,58,82,.72);
+  margin: 0;
+}
+[data-theme="g-v2"] .v6-testi-val {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(44px, 5.5vw, 60px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.03em;
+  margin-bottom: 8px;
+  background: linear-gradient(145deg, #0E2A3E, var(--g-marine));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+[data-theme="g-v2"] .v6-testi-val--hero {
+  font-size: clamp(48px, 6vw, 68px);
+  margin-bottom: 4px;
+}
+[data-theme="g-v2"] .v6-testi-lbl {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .10em;
+  color: var(--g-marine);
+  margin-bottom: 6px;
+}
+[data-theme="g-v2"] .v6-testi-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(30,58,82,.65);
+}
+[data-theme="g-v2"] .v6-testi-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--g-marine);
+  background: rgba(30,58,82,.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+/* ── Bottom rule with corner squares (testimonial reference) ── */
+[data-theme="g-v2"] .v6-testi-rule {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto 0;
+  padding: 0 10px;
+  z-index: 1;
+}
+[data-theme="g-v2"] .v6-testi-rule-inner {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: var(--g-rule);
+  border-radius: 1px;
+}
+[data-theme="g-v2"] .v6-testi-rule-inner::before,
+[data-theme="g-v2"] .v6-testi-rule-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  width: 12px;
+  height: 12px;
+  background: var(--g-ivoire);
+  border: 1px solid rgba(30,58,82,.18);
+  box-shadow: 0 1px 2px rgba(30,58,82,.06);
+}
+[data-theme="g-v2"] .v6-testi-rule-inner::before { left: -6px; }
+[data-theme="g-v2"] .v6-testi-rule-inner::after { right: -6px; }
+
+/* ── Reveal animation — one-shot IntersectionObserver ────── */
+/* Cards start hidden */
+[data-theme="g-v2"] .v6-testi-card {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(-16px);
+}
+/* Bottom rule starts hidden too */
+[data-theme="g-v2"] .v6-testi-rule {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+@keyframes v6-testi-reveal {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+/* .v6-testi-revealed is added once by a dedicated IO, never removed */
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-card {
+  animation: v6-testi-reveal .6s cubic-bezier(.22,1,.36,1) forwards;
+}
+/* Stagger per column then per card */
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-col:nth-child(1) .v6-testi-card:nth-child(1) { animation-delay: 0s; }
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-col:nth-child(1) .v6-testi-card:nth-child(2) { animation-delay: .15s; }
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-col:nth-child(2) .v6-testi-card:nth-child(1) { animation-delay: .1s; }
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-col:nth-child(2) .v6-testi-card:nth-child(2) { animation-delay: .25s; }
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-col:nth-child(3) .v6-testi-card:nth-child(1) { animation-delay: .2s; }
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-col:nth-child(3) .v6-testi-card:nth-child(2) { animation-delay: .35s; }
+
+/* Bottom rule fades in after all cards */
+[data-theme="g-v2"] .v6-testi-revealed .v6-testi-rule {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .5s ease .45s, transform .5s ease .45s;
+}
+
+/* ── Stats masonry responsive ────────────────────────────── */
+@media (max-width: 1024px) {
+  [data-theme="g-v2"] .v6-testi-grid {
+    gap: 8px;
+    padding: 0 8px;
+  }
+  [data-theme="g-v2"] .v6-testi-card {
+    padding: 24px 20px;
+    border-radius: 12px;
+  }
+  [data-theme="g-v2"] .v6-testi-val {
+    font-size: clamp(36px, 4.5vw, 48px);
+  }
+}
+@media (max-width: 768px) {
+  [data-theme="g-v2"] .v6-testi-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  [data-theme="g-v2"] .v6-testi-col:nth-child(1) {
+    grid-column: 1;
+  }
+  [data-theme="g-v2"] .v6-testi-col:nth-child(2) {
+    grid-column: 2;
+  }
+  [data-theme="g-v2"] .v6-testi-col:nth-child(3) {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  [data-theme="g-v2"] .v6-testi-col:nth-child(3) .v6-testi-card {
+    flex: 1;
+  }
+  [data-theme="g-v2"] .v6-testi-headline {
+    font-size: clamp(24px, 3vw, 32px);
+  }
+  [data-theme="g-v2"] .v6-testi-val {
+    font-size: clamp(32px, 4vw, 44px);
+  }
+}
+@media (max-width: 480px) {
+  [data-theme="g-v2"] .v6-testi-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  [data-theme="g-v2"] .v6-testi-col {
+    flex-direction: row;
+  }
+  [data-theme="g-v2"] .v6-testi-col:nth-child(3) {
+    flex-direction: row;
+    grid-column: 1;
+  }
+  [data-theme="g-v2"] .v6-testi-tall,
+  [data-theme="g-v2"] .v6-testi-short {
+    flex: 1;
+    min-height: 140px;
+  }
+  [data-theme="g-v2"] .v6-testi-card {
+    padding: 20px 16px;
+    border-radius: 10px;
+  }
+  [data-theme="g-v2"] .v6-testi-val {
+    font-size: 32px;
+  }
+  [data-theme="g-v2"] .v6-testi-val--hero {
+    font-size: 40px;
+  }
+}
+
+/* ── FOOTER — marine sovereignty ─────────────────────────── */
+[data-theme="g-v2"] footer {
+  border-top: 2px solid var(--g-marine) !important;
+}
+
+/* Fin G v2 landing overrides */
+

@@ -1,0 +1,734 @@
+{
+  "_meta": {
+    "version": "2.0.0",
+    "last_updated": "2026-03-29",
+    "maintainer": "lead",
+    "description": "Règles structurées pour le simulateur DIY Builder. Chaque règle est sourcée et catégorisée."
+  },
+  "rules": [
+    {
+      "id": "TER-001",
+      "topic": "terrasse",
+      "rule": "Entraxe lambourdes 40 à 50 cm selon épaisseur des lames et essence du platelage",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-1",
+        "Guide Terrasse FNB-FCBA V4 §3"
+      ],
+      "notes": "40 cm pour lames ≤22 mm, 50 cm pour lames ≥28 mm en bois dur. Le simulateur actuel utilise 40 cm (JOIST_SPACING=0.40).",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "TER-002",
+      "topic": "terrasse",
+      "rule": "Entraxe maximal appuis sous lambourdes : 70 cm (3 appuis) ou 60 cm (2 appuis)",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-1",
+        "Guide Terrasse FNB-FCBA V4 §4"
+      ],
+      "notes": "Le simulateur actuel utilise 60 cm. Conforme pour pose sur 2 appuis.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "TER-003",
+      "topic": "terrasse",
+      "rule": "Jeu entre lames : minimum 3 mm, maximum 12 mm en service",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-1 §5.2"
+      ],
+      "notes": "Jeu de pose typique 5 mm (BOARD_GAP=0.004 dans le simulateur = 4 mm, légèrement bas).",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "TER-004",
+      "topic": "terrasse",
+      "rule": "Surface minimale plot : 300 cm² (diamètre ≥19.5 cm)",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4",
+        "NF DTU 43.1"
+      ],
+      "notes": "Le simulateur utilise PAD_SIZE=0.20 m → surface 400 cm². Conforme.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "TER-005",
+      "topic": "terrasse",
+      "rule": "Ventilation sous platelage : surface cumulée entrées d'air ≥ 1/50e de la surface totale",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 rév. 2018"
+      ],
+      "notes": "Ancienne règle : 1/100e. Doublée depuis 2018. Non modélisée actuellement dans le simulateur. À intégrer comme alerte ou information PDF.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "TER-006",
+      "topic": "terrasse",
+      "rule": "Lame doit déborder d'au moins 20 mm de chaque côté de la lambourde d'extrémité",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-1",
+        "Guide Terrasse FNB-FCBA V4"
+      ],
+      "notes": "Conditionne la longueur totale de lame par rapport à l'emprise lambourdes.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "TER-007",
+      "topic": "terrasse",
+      "rule": "Distance entre extrémités de lames en about : 3 à 8 mm",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-1"
+      ],
+      "notes": "Joints de lames visibles dans le rendu. Le simulateur gère les boardSegs avec joints.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "TER-008",
+      "topic": "terrasse",
+      "rule": "Dimensionnement lambourdes en classe de service 3 (extérieur exposé) selon Eurocode 5",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4",
+        "NF EN 1995-1-1"
+      ],
+      "notes": "Classe de service 3 = humidité > 20% possible. Affecte les coefficients de calcul.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "TER-009",
+      "topic": "terrasse",
+      "rule": "Épaisseur minimale lambourde : 1.5 fois l'épaisseur des lames, minimum 40 mm recommandé",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-2",
+        "Guide Terrasse FNB-FCBA V4"
+      ],
+      "notes": "Lame 28 mm → lambourde ≥42 mm. Le simulateur utilise 45×70 (JOIST_W=0.045, JOIST_H=0.070). Conforme.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "TER-010",
+      "topic": "terrasse",
+      "rule": "Fixation lames : 2 vis inox A2 minimum par intersection lame/lambourde",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-1 §6",
+        "NF EN 14592"
+      ],
+      "notes": "Le simulateur calcule screws = boardRows × joistCount × 2. Conforme.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "CAB-001",
+      "topic": "cabanon",
+      "rule": "Entraxe montants ossature bois : 60 cm (40 cm en zone sismique ou charge lourde)",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 31.2",
+        "Pratique courante MOB"
+      ],
+      "notes": "STUD_SPACING=0.60 dans le simulateur. Conforme DTU 31.2.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CAB-002",
+      "topic": "cabanon",
+      "rule": "Section minimale montants MOB : 36×120 mm (standard 45×120 ou 45×145). Cabanon simplifié : 90×90 mm acceptable pour petits ouvrages non habités",
+      "category": "best_practice",
+      "confidence": "medium",
+      "source_refs": [
+        "NF DTU 31.2 (pour MOB)",
+        "Pratique professionnelle cabanons"
+      ],
+      "notes": "Le simulateur utilise SECTION=0.09 (90×90). Acceptable pour cabanons ≤20 m², non conforme DTU 31.2 strict pour habitation.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CAB-003",
+      "topic": "cabanon",
+      "rule": "Contreventement par panneau ou croix de Saint-André obligatoire sur chaque face",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 31.2 §5.3",
+        "Eurocode 5 §9.2"
+      ],
+      "notes": "Le simulateur génère 2 panneaux de contreventement (contreventement=2). Simplifié mais présent.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CAB-004",
+      "topic": "cabanon",
+      "rule": "Lisse basse sur coupure de capillarité (bande d'arase, film polyane ou bavette)",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 31.2 §4.2"
+      ],
+      "notes": "Non modélisée dans le simulateur 3D. À ajouter comme note PDF et possiblement comme élément rendu.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "BAR-001",
+      "topic": "bardage",
+      "rule": "Lame d'air ventilée ≥20 mm entre pare-pluie et bardage",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 41.2 P1-1 §5"
+      ],
+      "notes": "Essentiel pour durabilité. Le simulateur actuel superpose bardage directement sur ossature (simplifié). À considérer pour rendu mode détaillé.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "BAR-002",
+      "topic": "bardage",
+      "rule": "Entraxe tasseaux support bardage ≤65 cm",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 41.2 P1-1"
+      ],
+      "notes": "Aligné sur entraxe montants 60 cm dans le cas courant. Cohérent avec le simulateur.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "BAR-003",
+      "topic": "bardage",
+      "rule": "Profil de lame conçu pour rejeter l'eau vers l'avant, pas de rétention",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 41.2 P1-1 §1"
+      ],
+      "notes": "Impacte le rendu 3D : orientation des lames, profil (clin, faux-claire-voie, etc.).",
+      "can_drive_geometry": false,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "PER-001",
+      "topic": "pergola",
+      "rule": "Poteaux section minimale 100×100 mm. Jusqu'à 200×200 mm pour grandes portées (>5 m)",
+      "category": "best_practice",
+      "confidence": "medium",
+      "source_refs": [
+        "Guide BILP Pergola",
+        "Pratique professionnelle"
+      ],
+      "notes": "Vérification flambement EC5 recommandée. Pour le simulateur, un tableau de sections par portée suffit.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "PER-002",
+      "topic": "pergola",
+      "rule": "Entraxe poteaux : 2 à 4 m selon portée des traverses. Portée max traverse sans poteau intermédiaire ≈ 5-6 m en section courante",
+      "category": "best_practice",
+      "confidence": "medium",
+      "source_refs": [
+        "Guide BILP Pergola",
+        "Forums professionnels (bois.com, L'Air du Bois)"
+      ],
+      "notes": "Dépend fortement de la section et des charges climatiques. Le simulateur devra proposer des combinaisons validées.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "PER-003",
+      "topic": "pergola",
+      "rule": "Chevrons pergola : entraxe 50-100 cm, section minimale 70×120 pour entraxe 1 m",
+      "category": "best_practice",
+      "confidence": "medium",
+      "source_refs": [
+        "Guide BILP Pergola — outil calcul chevrons"
+      ],
+      "notes": "Sections très variables selon charge (neige, plantes, couverture). Le simulateur proposera des presets par zone.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "PER-004",
+      "topic": "pergola",
+      "rule": "Descente de charge : commencer par couverture → chevrons → pannes → poteaux → fondation",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "Eurocode 5",
+        "Guide BILP Pergola"
+      ],
+      "notes": "Méthodologie de calcul. Le moteur pergola doit suivre cette logique descendante.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "PER-005",
+      "topic": "pergola",
+      "rule": "Classe de service 3 (extérieur non abrité) pour pergola ouverte, classe 2 si couverte",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF EN 1995-1-1 §2.3.1.3",
+        "BILP Carport"
+      ],
+      "notes": "Affecte les coefficients kmod et kdef. Impacte le choix d'essence.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "CLO-001",
+      "topic": "cloture",
+      "rule": "Entraxe poteaux clôture bois : 1.80 à 2.50 m (généralement calé sur la largeur du panneau)",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Règles professionnelles CC5-R0 UNEP",
+        "Pratique courante"
+      ],
+      "notes": "Panneaux standard 1.80 m → entraxe 1.80 m. Le moteur clôture dérivera l'entraxe de la largeur panneau.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CLO-002",
+      "topic": "cloture",
+      "rule": "Scellement poteaux : profondeur 50 cm dans béton de 400 mm minimum pour hauteur utile > 1.20 m",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Règles professionnelles CC5-R0 UNEP §4"
+      ],
+      "notes": "Béton de bordure 250 kg ciment/m³. Diamètre trou ≈40 cm. Le moteur calculera le volume béton.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "CLO-003",
+      "topic": "cloture",
+      "rule": "Jeu bas panneau/sol : 3 à 4 cm pour éviter contact direct (pourrissement)",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Pratique professionnelle courante"
+      ],
+      "notes": "Visible dans le rendu 3D. Le moteur positionnera les panneaux avec ce jeu.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CLO-004",
+      "topic": "cloture",
+      "rule": "Résistance vent : conception DTU NV65 pour vitesse max 120 km/h (zones 1-2). Réduire entraxe en zone ventée",
+      "category": "normative",
+      "confidence": "medium",
+      "source_refs": [
+        "DTU NV65",
+        "Règles CC5-R0"
+      ],
+      "notes": "Le simulateur pourra proposer un paramètre zone de vent simplifié (modéré/fort/extrême).",
+      "can_drive_geometry": true,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "CAR-001",
+      "topic": "carport",
+      "rule": "Classe de service 2 (extérieur abrité) pour éléments sous couverture",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF EN 1995-1-1 §2.3.1.3",
+        "BILP Carport"
+      ],
+      "notes": "Moins contraignant que classe 3. Coefficients kmod plus favorables.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "CAR-002",
+      "topic": "carport",
+      "rule": "Poteaux carport : section minimum 120×120, portée max sans intermédiaire ≈6 m selon section panne",
+      "category": "best_practice",
+      "confidence": "medium",
+      "source_refs": [
+        "BILP Carport",
+        "Forums professionnels"
+      ],
+      "notes": "Panne 100×300 → portée ~5.5 m OK. Panne 100×350 → 6 m confortable. Le moteur proposera des presets.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CAR-003",
+      "topic": "carport",
+      "rule": "Couverture bac acier ≈7 kg/m², tuiles ≈45 kg/m². Charge neige selon zone/altitude",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF EN 1991-1-3",
+        "BILP Carport"
+      ],
+      "notes": "Le moteur devra intégrer le type de couverture dans la descente de charge.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CAR-004",
+      "topic": "carport",
+      "rule": "Contreventement indispensable : jambes de force, bracons ou triangulation dans le plan du versant",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "Eurocode 5 §9.2",
+        "BILP Carport"
+      ],
+      "notes": "Sans contreventement → risque de flambement latéral. Le rendu 3D doit les montrer.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "DUR-001",
+      "topic": "durabilite",
+      "rule": "Classe d'emploi déterminée par l'exposition la plus pénalisante de l'élément",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "FD P 20-651 §4",
+        "NF EN 335",
+        "Guide COBEI §1"
+      ],
+      "notes": "Le simulateur doit afficher la classe d'emploi requise selon le type d'ouvrage.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "DUR-002",
+      "topic": "durabilite",
+      "rule": "Terrasse bois = classe d'emploi 3.2 ou 4 selon conception",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "FD P 20-651",
+        "NF DTU 51.4",
+        "Guide COBEI"
+      ],
+      "notes": "Conception élaborée peut permettre 3.2. Conception courante = classe 4 recommandée.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "DUR-003",
+      "topic": "durabilite",
+      "rule": "Aubier toujours non durable — seul le duramen est considéré pour la durabilité naturelle",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF EN 350",
+        "FD P 20-651",
+        "CTB B+"
+      ],
+      "notes": "Alerte PDF : préciser que les sections doivent être en duramen ou traité.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "DUR-004",
+      "topic": "durabilite",
+      "rule": "Traitement autoclave (CTB-P+) requis pour classes 3.2 et 4 si essence non naturellement durable",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "FD P 20-651",
+        "CTB B+"
+      ],
+      "notes": "Pin sylvestre autoclave → classe 4 possible. Durabilité estimée ~10 ans. Info pour le PDF.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "FIX-001",
+      "topic": "fixations",
+      "rule": "Vis structures portantes bois : conformes NF EN 14592, marquage CE obligatoire",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF EN 14592",
+        "RPC 305/2011"
+      ],
+      "notes": "Le BOM doit mentionner vis conformes EN 14592.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "FIX-002",
+      "topic": "fixations",
+      "rule": "Terrasse extérieure : vis inox A2 minimum. A4 en environnement salin",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 51.4 P1-2",
+        "NF EN 14592"
+      ],
+      "notes": "Le simulateur spécifie déjà 'Vis inox A2' dans le BOM terrasse.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "FIX-003",
+      "topic": "fixations",
+      "rule": "Enfoncement minimal vis dans bois d'ossature : ≥25 mm. Pointes : ≥35 mm",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "NF DTU 31.2",
+        "NF EN 14592"
+      ],
+      "notes": "Conditionne la longueur de vis dans le BOM.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "ADM-001",
+      "topic": "administratif",
+      "rule": "Surface plancher ≤5 m² : souvent sans formalité (vérifier PLU local)",
+      "category": "simulator_assumption",
+      "confidence": "medium",
+      "source_refs": [
+        "Code de l'urbanisme art. R421-2",
+        "Pratique courante"
+      ],
+      "notes": "Simplifié. Le seuil exact dépend du PLU, de la zone, et de la hauteur. Le simulateur affiche un indicateur avec wording prudent.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "ADM-002",
+      "topic": "administratif",
+      "rule": "Surface plancher 5-20 m² : déclaration préalable de travaux probable",
+      "category": "simulator_assumption",
+      "confidence": "medium",
+      "source_refs": [
+        "Code de l'urbanisme art. R421-9"
+      ],
+      "notes": "Dépend du PLU. Le simulateur affiche 'probable' pas 'obligatoire'.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "ADM-003",
+      "topic": "administratif",
+      "rule": "Surface plancher >20 m² : permis de construire probable",
+      "category": "simulator_assumption",
+      "confidence": "medium",
+      "source_refs": [
+        "Code de l'urbanisme art. R421-1"
+      ],
+      "notes": "Wording prudent avec mention 'vérifiez votre PLU'.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "PER-NEW-01",
+      "topic": "pergola",
+      "rule": "Face supérieure longerons : protection par capotage EPDM ou bande étanche, sinon conception Piégeante → classe emploi 4 en climat modéré/humide",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.1.4 p.69"
+      ],
+      "notes": "Source COBEI directe. Sans protection, le longeron horizontal accumule eau → pourriture.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "PER-NEW-02",
+      "topic": "pergola",
+      "rule": "Face supérieure chevrons : délardement monopente ≥15° pour conception Drainante",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.1.4 p.69"
+      ],
+      "notes": "Chanfrein visible en mode détaillé. Impact geometry du profil chevron.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "PER-NEW-03",
+      "topic": "pergola",
+      "rule": "Tête de poteau : protection obligatoire (capotage métallique ou recouvrement par longeron)",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.1.4 p.73"
+      ],
+      "notes": "Le bois de bout horizontal tourné vers le ciel est la situation la plus défavorable.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "PER-NEW-04",
+      "topic": "pergola",
+      "rule": "Pied de poteau : distance minimale au sol 150 mm (même règle que clôture)",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.3.4.4 p.85",
+        "Applicable par analogie aux pergolas"
+      ],
+      "notes": "Évite le contact sol/bois. Platine surélevée ou sabot.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "PER-NEW-05",
+      "topic": "pergola",
+      "rule": "Liens de contreventement : au minimum 1 par poteau d angle, assemblage boulonné ou vissé avec espacement ≥5 mm",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.1.4 p.69-72",
+        "BILP Pergola"
+      ],
+      "notes": "Les liens résistent au vent. Section typique 100×50 mm.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CLO-NEW-01",
+      "topic": "cloture",
+      "rule": "Face supérieure lames horizontales et traverses : inclinaison ≥15° obligatoire pour conception Drainante",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.3.4.2 p.82"
+      ],
+      "notes": "Sans inclinaison → conception Piégeante → classe emploi 4 en climat modéré/humide.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CLO-NEW-02",
+      "topic": "cloture",
+      "rule": "Tête de poteau : protection obligatoire par capotage métallique",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.3.4.4 p.85"
+      ],
+      "notes": "Bois de bout horizontal vers le ciel = situation la plus défavorable.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CLO-NEW-03",
+      "topic": "cloture",
+      "rule": "Pied de poteau : distance minimale au sol 150 mm",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.3.4.4 p.85"
+      ],
+      "notes": "Applicable quel que soit le type d ancrage (sabot, goujon collé, platine).",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CLO-NEW-04",
+      "topic": "cloture",
+      "rule": "Planche à pourrir : lame basse sacrificielle facilement remplaçable pour fermer le jeu au sol",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §3.3.4.4 p.86"
+      ],
+      "notes": "Accepte la dégradation programmée. Durée de vie inférieure au reste de la clôture.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "CLO-NEW-05",
+      "topic": "cloture",
+      "rule": "Nombre traverses : 2 si hauteur ≤1.50m, 3 si hauteur >1.50m",
+      "category": "best_practice",
+      "confidence": "medium",
+      "source_refs": [
+        "Pratique professionnelle courante"
+      ],
+      "notes": "Pas de source normative directe. Règle de bon sens mécanique.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "DUR-005",
+      "topic": "durabilite",
+      "rule": "Face supérieure horizontale non protégée = conception Piégeante → classe emploi 3.2 à 4 selon climat et massivité",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "FD P 20-651 Tableaux 2-3",
+        "Guide COBEI §1.2.4"
+      ],
+      "notes": "Règle fondamentale : toute pièce horizontale exposée doit être inclinée ou protégée.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    },
+    {
+      "id": "DUR-006",
+      "topic": "durabilite",
+      "rule": "Pièce bois verticale = conception Drainante (face latérale retombée <23 cm)",
+      "category": "normative",
+      "confidence": "high",
+      "source_refs": [
+        "FD P 20-651",
+        "Guide COBEI §2.1"
+      ],
+      "notes": "Les poteaux, montants, lames verticales sont naturellement drainants.",
+      "can_drive_geometry": false,
+      "can_drive_rendering": false
+    },
+    {
+      "id": "DUR-007",
+      "topic": "durabilite",
+      "rule": "Espacement ≥5 mm entre pièces bois assemblées (rondelles EE) pour ventilation et séchage",
+      "category": "best_practice",
+      "confidence": "high",
+      "source_refs": [
+        "Guide COBEI §2.3, §3.1.4, §3.3.4"
+      ],
+      "notes": "Règle transversale COBEI : éviter le contact plan/plan entre pièces.",
+      "can_drive_geometry": true,
+      "can_drive_rendering": true
+    }
+  ]
+}

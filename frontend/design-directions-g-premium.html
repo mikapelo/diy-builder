@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>DIY Builder — G Premium Contemporain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── Couleurs ── */
+    --c-ink:        #111214;   /* texte principal */
+    --c-ink-soft:   #2A2C30;
+    --c-sepia:      #6B5A42;   /* texte secondaire */
+    --c-marine:     #1E3A52;   /* accents structurels */
+    --c-marine-06:  rgba(30,58,82,0.06);
+    --c-marine-12:  rgba(30,58,82,0.12);
+    --c-marine-25:  rgba(30,58,82,0.25);
+    --c-brique:     #C85A3E;   /* CTA primaire */
+    --c-brique-dk:  #B24E35;
+    --c-mustard:    #E8B23C;   /* accents chauds */
+    --c-mustard-25: rgba(232,178,60,0.25);
+    --c-ivoire:     #F5EFE0;   /* background global */
+    --c-surface:    #FDFBF5;   /* cards */
+    --c-sable:      #DDD5C4;   /* borders */
+
+    /* ── Radius ── */
+    --r-sm: 8px;
+    --r-md: 14px;
+    --r-lg: 20px;
+
+    /* ── Élévation ── */
+    --shadow-card: 0 1px 2px rgba(30,58,82,0.06), 0 8px 24px -12px rgba(30,58,82,0.12);
+    --shadow-hero: 0 1px 2px rgba(30,58,82,0.06), 0 16px 40px -16px rgba(30,58,82,0.16);
+    --shadow-btn:  0 1px 2px rgba(17,18,20,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Inter', sans-serif;
+    background: var(--c-ivoire);
+    color: var(--c-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  body { padding: 48px 24px 120px; }
+
+  .shell { max-width: 1080px; margin: 0 auto; }
+
+  /* ── Page head ── */
+  .page-head { margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .page-head h1 {
+    font: 500 34px/1.05 'Fraunces', serif;
+    letter-spacing: -0.025em;
+    color: var(--c-ink);
+  }
+  .page-head h1 em {
+    font-style: italic; color: var(--c-marine);
+  }
+  .page-head .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .page-head .eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c-mustard);
+  }
+  .page-head p {
+    color: var(--c-sepia); font-size: 13px; max-width: 480px; line-height: 1.6;
+    text-align: right;
+  }
+
+  /* ── Section label (petits labels sépia au-dessus de chaque zone) ── */
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    margin: 56px 0 16px;
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    color: var(--c-sepia);
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--c-sable);
+  }
+  .section-label .num {
+    color: var(--c-marine); font-weight: 600;
+  }
+
+  /* ═══════════════════════════════════════════
+     1. HERO — ProjectSummary
+     ═══════════════════════════════════════════ */
+  .hero {
+    background: var(--c-surface);
+    border: 1px solid var(--c-marine-12);
+    border-radius: var(--r-lg);
+    padding: 32px 36px;
+    box-shadow: var(--shadow-hero);
+    position: relative;
+  }
+
+  .hero-top {
+    display: flex; align-items: flex-start; gap: 24px;
+  }
+  .hero-icon {
+    width: 64px; height: 64px; flex-shrink: 0;
+    background: var(--c-marine);
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .hero-icon::after {
+    content: ''; position: absolute; inset: 0;
+    border-radius: var(--r-md);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    pointer-events: none;
+  }
+  .hero-head { flex: 1; min-width: 0; }
+  .hero-meta {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+  }
+  .ref-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 9px;
+    background: var(--c-marine-06);
+    border-radius: var(--r-sm);
+    font: 500 10.5px/1 'IBM Plex Mono', monospace;
+    color: var(--c-marine);
+    letter-spacing: 0.02em;
+  }
+  .ref-pill::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--c-mustard);
+  }
+  .hero-eyebrow {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia);
+    letter-spacing: 0.05em;
+  }
+  .hero-title {
+    font: 500 32px/1.1 'Fraunces', serif;
+    letter-spacing: -0.025em;
+    color: var(--c-ink);
+    margin-bottom: 6px;
+  }
+  .hero-title em {
+    font-style: italic; font-weight: 400;
+  }
+  .hero-sub {
+    font: 400 14px/1.5 'Inter', sans-serif;
+    color: var(--c-sepia);
+    max-width: 520px;
+  }
+  .hero-stripe {
+    width: 48px; height: 2px; background: var(--c-mustard);
+    margin: 14px 0 18px;
+  }
+
+  .hero-kpis {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--c-sable);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  .kpi { padding: 0 20px; border-left: 1px solid var(--c-sable); }
+  .kpi:first-child { padding-left: 0; border-left: none; }
+  .kpi-label {
+    font: 500 10px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia);
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font: 500 26px/1 'Fraunces', serif;
+    color: var(--c-ink);
+    letter-spacing: -0.02em;
+  }
+  .kpi-value .unit {
+    font: 400 13px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia);
+    margin-left: 4px;
+  }
+
+  /* ═══════════════════════════════════════════
+     2. ICÔNES DUOTONE
+     ═══════════════════════════════════════════ */
+  .ico-strip {
+    background: var(--c-surface);
+    border: 1px solid var(--c-marine-12);
+    border-radius: var(--r-md);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .ico-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px;
+  }
+  .ico-cell {
+    aspect-ratio: 1;
+    border: 1px solid var(--c-sable);
+    border-radius: var(--r-sm);
+    background: var(--c-ivoire);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  .ico-cell:hover {
+    border-color: var(--c-marine-25);
+    background: var(--c-surface);
+    transform: translateY(-1px);
+  }
+  .ico-cell svg { display: block; }
+  .ico-caption {
+    margin-top: 14px;
+    font: 500 10.5px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia); letter-spacing: 0.05em;
+  }
+
+  /* ═══════════════════════════════════════════
+     3. BOUTONS
+     ═══════════════════════════════════════════ */
+  .btn-strip {
+    background: var(--c-surface);
+    border: 1px solid var(--c-marine-12);
+    border-radius: var(--r-md);
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font: 600 14px/1 'Inter', sans-serif;
+    letter-spacing: -0.005em;
+    border: 1px solid transparent;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: all 0.18s ease;
+  }
+  .btn svg { flex-shrink: 0; }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-btn), 0 0 0 4px var(--c-mustard-25);
+  }
+  .btn-primary {
+    background: var(--c-brique); color: var(--c-ivoire);
+    border-color: var(--c-brique-dk);
+  }
+  .btn-primary:hover { background: var(--c-brique-dk); }
+  .btn-secondary {
+    background: var(--c-surface); color: var(--c-ink);
+    border-color: var(--c-marine-25);
+  }
+  .btn-secondary:hover {
+    background: var(--c-ivoire); border-color: var(--c-marine);
+  }
+  .btn-ghost {
+    background: transparent; color: var(--c-marine);
+    border-color: transparent;
+    box-shadow: none; padding: 12px 14px;
+  }
+  .btn-ghost:hover { background: var(--c-marine-06); }
+  .btn-ghost .underline {
+    border-bottom: 1.5px solid var(--c-mustard);
+    padding-bottom: 2px;
+  }
+
+  /* ═══════════════════════════════════════════
+     4. MATÉRIAUX
+     ═══════════════════════════════════════════ */
+  .mat-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-marine-12);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .mat-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--c-sable);
+  }
+  .mat-head-title {
+    font: 500 18px/1 'Fraunces', serif;
+    color: var(--c-ink); letter-spacing: -0.01em;
+  }
+  .mat-head-total {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia); letter-spacing: 0.04em;
+  }
+  .mat-head-total strong {
+    color: var(--c-marine); font-weight: 600;
+  }
+  .mat-row {
+    display: flex; align-items: center; gap: 18px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--c-sable);
+  }
+  .mat-row:last-child { border-bottom: none; }
+  .mat-row:hover { background: var(--c-ivoire); }
+  .mat-ico-wrap {
+    width: 38px; height: 38px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--c-marine);
+  }
+  .mat-body { flex: 1; min-width: 0; }
+  .mat-name {
+    font: 500 14.5px/1.2 'Inter', sans-serif;
+    color: var(--c-ink);
+    margin-bottom: 4px;
+  }
+  .mat-meta {
+    display: flex; align-items: center; gap: 10px;
+    font: 400 11.5px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia);
+  }
+  .mat-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--c-sable); }
+  .mat-qty {
+    font: 500 17px/1 'Fraunces', serif;
+    color: var(--c-ink);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    text-align: right;
+  }
+  .mat-qty .unit {
+    font: 400 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-sepia);
+    margin-left: 4px;
+  }
+  .mat-qty .accent {
+    display: block;
+    width: 20px; height: 2px; background: var(--c-mustard);
+    margin-top: 6px; margin-left: auto;
+  }
+
+  /* ═══════════════════════════════════════════
+     5. PALETTE
+     ═══════════════════════════════════════════ */
+  .palette-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-marine-12);
+    border-radius: var(--r-md);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .palette-row {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px;
+  }
+  .sw {
+    border-radius: var(--r-sm);
+    border: 1px solid var(--c-marine-12);
+    padding: 12px 14px 14px;
+    min-height: 92px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+  }
+  .sw .role {
+    font: 500 10px/1.3 'IBM Plex Mono', monospace;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+  }
+  .sw .hex {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Notes finales ── */
+  .notes {
+    margin-top: 56px;
+    padding: 24px 28px;
+    background: var(--c-marine-06);
+    border-left: 3px solid var(--c-mustard);
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  }
+  .notes h3 {
+    font: 500 14px/1 'Fraunces', serif;
+    color: var(--c-marine);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .notes p {
+    font: 400 12.5px/1.6 'Inter', sans-serif;
+    color: var(--c-ink-soft);
+    max-width: 760px;
+  }
+  .notes p + p { margin-top: 8px; }
+  .notes code {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    background: var(--c-marine);
+    color: var(--c-mustard);
+    padding: 2px 6px; border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="page-head">
+    <div>
+      <div class="eyebrow">g · premium contemporain</div>
+      <h1>Le Cabanon — <em>catalogue technique</em></h1>
+    </div>
+    <p>Mockup de la direction G modernisée : marine réservé à l'ossature visuelle, texte en noir, moutarde en accent, brique pour le seul CTA primaire.</p>
+  </div>
+
+  <!-- ═══════════ 1. HERO PROJECT SUMMARY ═══════════ -->
+  <div class="section-label"><span class="num">01</span> hero · projet</div>
+
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-icon">
+        <!-- Icône duotone : cabanon -->
+        <svg width="34" height="34" viewBox="0 0 36 36" fill="none" stroke="#F5EFE0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 30h26" />
+          <path d="M7 30V15l11-8 11 8v15" />
+          <path d="M14 30v-9h8v9" />
+          <path d="M7 15l11-8 11 8" stroke="#E8B23C" stroke-width="1.5"/>
+          <circle cx="18" cy="16" r="0.8" fill="#E8B23C" stroke="none"/>
+        </svg>
+      </div>
+      <div class="hero-head">
+        <div class="hero-meta">
+          <span class="hero-eyebrow">modèle · savoyard</span>
+          <span class="ref-pill">réf. 24-b</span>
+        </div>
+        <h2 class="hero-title">Le Cabanon <em>4 × 3 m</em></h2>
+        <div class="hero-stripe"></div>
+        <p class="hero-sub">
+          Ossature bois douglas, bardage claire-voie mélèze, toiture mono-pente. Calcul des matériaux conforme DTU 31.2 — pertes et recouvrements inclus.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-kpis">
+      <div class="kpi">
+        <div class="kpi-label">surface au sol</div>
+        <div class="kpi-value">12,0<span class="unit">m²</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">périmètre</div>
+        <div class="kpi-value">14,0<span class="unit">m</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">hauteur</div>
+        <div class="kpi-value">2,30<span class="unit">m</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">toiture</div>
+        <div class="kpi-value">13,2<span class="unit">m²</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 2. ICÔNES DUOTONE ═══════════ -->
+  <div class="section-label"><span class="num">02</span> famille d'icônes · duotone 1.5px</div>
+
+  <div class="ico-strip">
+    <div class="ico-grid">
+      <!-- 1. cabanon -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 30h26 M7 30V15l11-8 11 8v15 M14 30v-9h8v9"/>
+          <path d="M7 15l11-8 11 8" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <!-- 2. terrasse -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <path d="M5 14h26 M5 22h26 M8 8v22 M16 8v22 M24 8v22 M31 8v22"/>
+          <path d="M5 14h26" stroke="#E8B23C" stroke-width="2"/>
+        </svg>
+      </div>
+      <!-- 3. bastaing -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <rect x="4" y="14" width="28" height="8" rx="1"/>
+          <path d="M4 18h28" stroke="#E8B23C" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <!-- 4. bardage -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <path d="M8 6v24 M14 6v24 M20 6v24 M26 6v24"/>
+          <path d="M5 12h26 M5 24h26" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <!-- 5. fondation -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 20h26 M9 20v8h18v-8"/>
+          <path d="M5 20L18 8l13 12" stroke="#E8B23C"/>
+          <circle cx="13" cy="25" r="1" fill="#E8B23C" stroke="none"/>
+          <circle cx="23" cy="25" r="1" fill="#E8B23C" stroke="none"/>
+        </svg>
+      </div>
+      <!-- 6. chevron -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 24L18 8l14 16"/>
+          <path d="M10 24L18 14l8 10" stroke="#E8B23C"/>
+          <path d="M4 28h28"/>
+        </svg>
+      </div>
+      <!-- 7. ouverture -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="6" width="20" height="24"/>
+          <path d="M13 6v24" stroke="#E8B23C"/>
+          <circle cx="23" cy="18" r="0.8" fill="#1E3A52" stroke="none"/>
+        </svg>
+      </div>
+      <!-- 8. entraxe -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <path d="M9 8v20 M27 8v20"/>
+          <path d="M9 18h18" stroke="#E8B23C"/>
+          <path d="M7 18l2-2 M7 18l2 2 M29 18l-2-2 M29 18l-2 2" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <!-- 9. pente -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 28h26 M5 28L28 10"/>
+          <path d="M28 10v18" stroke="#E8B23C" stroke-dasharray="2 2"/>
+          <path d="M10 22a4 4 0 0 1 4-4" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <!-- 10. ossature -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <rect x="5" y="6" width="26" height="24"/>
+          <path d="M12 6v24 M19 6v24 M26 6v24" stroke="#E8B23C"/>
+          <path d="M5 18h26"/>
+        </svg>
+      </div>
+      <!-- 11. couverture -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 26L18 10l13 16"/>
+          <path d="M8 22h20 M10 18h16" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <!-- 12. visserie -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="18" cy="10" r="4"/>
+          <path d="M18 14v18 M14 10h8" stroke="#E8B23C"/>
+          <path d="M15 20h6 M15 26h6"/>
+        </svg>
+      </div>
+      <!-- 13. linteau -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <rect x="5" y="8" width="26" height="5"/>
+          <path d="M9 13v18 M27 13v18"/>
+          <path d="M5 10.5h26" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <!-- 14. lisse -->
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <rect x="4" y="22" width="28" height="5"/>
+          <rect x="4" y="10" width="28" height="5"/>
+          <path d="M10 15v7 M18 15v7 M26 15v7" stroke="#E8B23C"/>
+        </svg>
+      </div>
+    </div>
+    <div class="ico-caption">14 glyphes custom · style duotone · marine 1.5px + accents moutarde</div>
+  </div>
+
+  <!-- ═══════════ 3. BOUTONS ═══════════ -->
+  <div class="section-label"><span class="num">03</span> boutons · trois tiers</div>
+
+  <div class="btn-strip">
+    <button class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+      Lancer le calcul
+    </button>
+    <button class="btn btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16 M4 12h16"/></svg>
+      Ajouter un mur
+    </button>
+    <button class="btn btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M10 13l2 2 4-4"/></svg>
+      Exporter le PDF
+    </button>
+    <button class="btn btn-ghost">
+      <span class="underline">Voir la nomenclature</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14 M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ═══════════ 4. MATÉRIAUX ═══════════ -->
+  <div class="section-label"><span class="num">04</span> nomenclature · matériaux</div>
+
+  <div class="mat-card">
+    <div class="mat-head">
+      <div class="mat-head-title">Bordereau matériaux</div>
+      <div class="mat-head-total">7 familles · total <strong>1 284 €</strong> ht</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <rect x="4" y="14" width="28" height="8" rx="1"/>
+          <path d="M4 18h28" stroke="#E8B23C" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Bastaings douglas 63 × 175 mm</div>
+        <div class="mat-meta">
+          <span>réf. 03-175</span>
+          <span class="dot"></span>
+          <span>classe 2 · raboté</span>
+        </div>
+      </div>
+      <div class="mat-qty">
+        24<span class="unit">u.</span>
+        <span class="accent"></span>
+      </div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <path d="M8 6v24 M14 6v24 M20 6v24 M26 6v24"/>
+          <path d="M5 12h26 M5 24h26" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Bardage claire-voie mélèze</div>
+        <div class="mat-meta">
+          <span>réf. 07-cv-mel</span>
+          <span class="dot"></span>
+          <span>profil ajouré 21 × 70</span>
+        </div>
+      </div>
+      <div class="mat-qty">
+        38,0<span class="unit">m²</span>
+      </div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 26L18 10l13 16"/>
+          <path d="M8 22h20 M10 18h16" stroke="#E8B23C"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Couverture bac acier anthracite</div>
+        <div class="mat-meta">
+          <span>réf. 11-bac-075</span>
+          <span class="dot"></span>
+          <span>5 plis · 0,75 mm</span>
+        </div>
+      </div>
+      <div class="mat-qty">
+        13,2<span class="unit">m²</span>
+      </div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="18" cy="10" r="4"/>
+          <path d="M18 14v18 M14 10h8" stroke="#E8B23C"/>
+          <path d="M15 20h6 M15 26h6"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Visserie inox A2 — tête plate 4 × 60</div>
+        <div class="mat-meta">
+          <span>réf. 12-vis-060</span>
+          <span class="dot"></span>
+          <span>boîte 200</span>
+        </div>
+      </div>
+      <div class="mat-qty">
+        1<span class="unit">bte</span>
+      </div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 20h26 M9 20v8h18v-8"/>
+          <path d="M5 20L18 8l13 12" stroke="#E8B23C"/>
+          <circle cx="13" cy="25" r="1" fill="#E8B23C" stroke="none"/>
+          <circle cx="23" cy="25" r="1" fill="#E8B23C" stroke="none"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Plots réglables pour fondation</div>
+        <div class="mat-meta">
+          <span>réf. 01-plot-xl</span>
+          <span class="dot"></span>
+          <span>hauteur 120–200 mm</span>
+        </div>
+      </div>
+      <div class="mat-qty">
+        9<span class="unit">u.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 5. PALETTE ═══════════ -->
+  <div class="section-label"><span class="num">05</span> palette · rôles stricts</div>
+
+  <div class="palette-card">
+    <div class="palette-row">
+      <div class="sw" style="background:#111214;color:#F5EFE0">
+        <div class="role">texte · ink</div>
+        <div class="hex">#111214</div>
+      </div>
+      <div class="sw" style="background:#1E3A52;color:#F5EFE0">
+        <div class="role">marine · ossature</div>
+        <div class="hex">#1E3A52</div>
+      </div>
+      <div class="sw" style="background:#C85A3E;color:#F5EFE0">
+        <div class="role">brique · cta</div>
+        <div class="hex">#C85A3E</div>
+      </div>
+      <div class="sw" style="background:#E8B23C;color:#1E3A52">
+        <div class="role">moutarde · accent</div>
+        <div class="hex">#E8B23C</div>
+      </div>
+      <div class="sw" style="background:#6B5A42;color:#F5EFE0">
+        <div class="role">sépia · méta</div>
+        <div class="hex">#6B5A42</div>
+      </div>
+      <div class="sw" style="background:#FDFBF5;color:#1E3A52;border-color:#DDD5C4">
+        <div class="role">surface · card</div>
+        <div class="hex">#FDFBF5</div>
+      </div>
+      <div class="sw" style="background:#F5EFE0;color:#1E3A52;border-color:#DDD5C4">
+        <div class="role">ivoire · fond</div>
+        <div class="hex">#F5EFE0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ NOTES ═══════════ -->
+  <div class="notes">
+    <h3>Règles de style</h3>
+    <p><strong>Marine = ossature uniquement.</strong> Bordures, icon wrap du hero, filets de séparation, icônes duotone stroke, badges <code>réf.</code>, headers de tables. Jamais en aplat de texte courant.</p>
+    <p><strong>Moutarde = un seul accent par zone.</strong> Soit un underline, soit un halo de focus, soit un filet décoratif, soit une ligne interne d'une icône. Jamais deux moutards côte à côte.</p>
+    <p><strong>Brique = un seul CTA par vue.</strong> Tous les autres boutons sont secondaires ivoire/marine ou ghost. Le CTA primaire garde son impact parce qu'il est rare.</p>
+    <p><strong>Fraunces = titres, chiffres clés, totaux.</strong> Partout ailleurs : Inter. Les références et unités sont en IBM Plex Mono pour le grain « fiche produit ».</p>
+    <p><strong>Pas d'uppercase systématique, pas de halftone, pas de box-shadow dur.</strong> L'ADN rétro français vient du ton éditorial (« réf. 24-b », « modèle Savoyard », « bordereau ») et de la palette — pas de la typo théâtrale.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

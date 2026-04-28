@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <rect width="120" height="40" rx="6" fill="white"/>
+  <!-- House icon -->
+  <polygon points="12,28 12,18 20,11 28,18 28,28" fill="#00963A"/>
+  <rect x="17" y="21" width="6" height="7" fill="white"/>
+  <!-- Text -->
+  <text x="34" y="26" font-family="Arial, sans-serif" font-size="10.5" font-weight="700" fill="#00963A" letter-spacing="-0.3">Leroy Merlin</text>
+</svg>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>DIY Builder — G v2 · retour personnalité</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── Palette plus chaude, plus assumée ── */
+    --c-ink:        #111214;
+    --c-ink-soft:   #2A2C30;
+    --c-sepia:      #6B5A42;
+    --c-marine:     #1E3A52;
+    --c-marine-dk:  #152A3C;
+    --c-marine-08:  rgba(30,58,82,0.08);
+    --c-marine-15:  rgba(30,58,82,0.15);
+    --c-marine-30:  rgba(30,58,82,0.30);
+    --c-brique:     #C85A3E;
+    --c-brique-dk:  #A84929;
+    --c-mustard:    #E8B23C;
+    --c-mustard-dk: #CA9826;
+    --c-mustard-30: rgba(232,178,60,0.30);
+    --c-ivoire:     #F1EBDD;  /* retour chaleur */
+    --c-ivoire-dk:  #E8E0CD;
+    --c-surface:    #FAF5E8;  /* légèrement plus chaud */
+    --c-sable:      #D6CCB0;
+
+    /* Radius plus francs */
+    --r-sm: 6px;
+    --r-md: 12px;
+    --r-lg: 16px;
+
+    --shadow-hero: 0 2px 0 var(--c-marine), 0 2px 0 2px var(--c-mustard-30), 0 18px 40px -20px rgba(30,58,82,0.22);
+    --shadow-card: 0 2px 0 var(--c-marine), 0 12px 28px -18px rgba(30,58,82,0.18);
+    --shadow-btn:  0 2px 0 var(--c-marine-dk);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Inter', sans-serif;
+    background: var(--c-ivoire);
+    color: var(--c-ink);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(30,58,82,0.04) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+  body { padding: 48px 24px 120px; }
+
+  .shell { max-width: 1120px; margin: 0 auto; }
+
+  /* ── Page head ── */
+  .page-head {
+    margin-bottom: 48px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+    padding-bottom: 20px;
+    border-bottom: 1.5px solid var(--c-marine);
+    position: relative;
+  }
+  .page-head::after {
+    content: ''; position: absolute; left: 0; bottom: -5px;
+    width: 80px; height: 3px; background: var(--c-mustard);
+  }
+  .page-head h1 {
+    font: 400 38px/1 'DM Serif Display', serif;
+    color: var(--c-marine);
+    letter-spacing: -0.01em;
+  }
+  .page-head h1 em { font-style: italic; color: var(--c-brique); }
+  .page-head .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 600 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-brique);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .page-head .eyebrow::before {
+    content: ''; width: 8px; height: 8px;
+    background: var(--c-mustard);
+    border: 1.5px solid var(--c-marine);
+  }
+  .page-head p {
+    color: var(--c-marine); font-size: 13px; max-width: 440px; line-height: 1.6;
+    text-align: right; font-weight: 500;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    display: flex; align-items: center; gap: 14px;
+    margin: 56px 0 18px;
+    font: 600 11px/1 'IBM Plex Mono', monospace;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--c-marine);
+  }
+  .section-label .num {
+    display: inline-block; padding: 4px 8px;
+    background: var(--c-marine); color: var(--c-mustard);
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1.5px;
+    background: repeating-linear-gradient(90deg, var(--c-marine) 0 6px, transparent 6px 10px);
+  }
+
+  /* ═══════════════════════════════════════════
+     1. HERO
+     ═══════════════════════════════════════════ */
+  .hero {
+    background: var(--c-surface);
+    border: 1.5px solid var(--c-marine);
+    border-radius: var(--r-lg);
+    padding: 34px 36px;
+    box-shadow: var(--shadow-hero);
+    position: relative;
+  }
+  .hero::before {
+    content: 'cabanon_01';
+    position: absolute; top: -11px; left: 28px;
+    background: var(--c-surface); padding: 0 10px;
+    font: 700 10px/1 'IBM Plex Mono', monospace;
+    color: var(--c-marine); letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero-top { display: flex; align-items: flex-start; gap: 26px; }
+
+  .hero-icon {
+    width: 78px; height: 78px; flex-shrink: 0;
+    background: var(--c-mustard);
+    border: 2px solid var(--c-marine);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 0 var(--c-marine), inset 0 0 0 3px var(--c-surface), inset 0 0 0 4px var(--c-marine);
+    position: relative;
+  }
+
+  .hero-head { flex: 1; min-width: 0; }
+  .hero-meta {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 6px;
+  }
+  .hero-eyebrow {
+    font: 700 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-brique);
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .hero-eyebrow-sep {
+    width: 18px; height: 1.5px; background: var(--c-marine);
+  }
+  .hero-sub-meta {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-marine); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .hero-title {
+    font: 400 38px/1.05 'DM Serif Display', serif;
+    color: var(--c-ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--c-marine);
+  }
+  .hero-stripe {
+    width: 72px; height: 3px; background: var(--c-mustard);
+    margin: 12px 0 16px;
+    position: relative;
+  }
+  .hero-stripe::after {
+    content: ''; position: absolute; left: 0; top: 0;
+    width: 24px; height: 3px; background: var(--c-brique);
+  }
+  .hero-desc {
+    font: 400 14px/1.55 'Inter', sans-serif;
+    color: var(--c-ink-soft);
+    max-width: 520px;
+  }
+
+  .ref-badge {
+    flex-shrink: 0;
+    width: 78px;
+    background: var(--c-brique);
+    border: 2px solid var(--c-marine);
+    border-radius: var(--r-sm);
+    padding: 10px 6px 12px;
+    text-align: center;
+    box-shadow: 0 2px 0 var(--c-marine);
+    color: var(--c-ivoire);
+  }
+  .ref-badge .r-label {
+    font: 700 9px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(241,235,221,0.5);
+    margin-bottom: 6px;
+  }
+  .ref-badge .r-val {
+    font: 400 22px/1 'DM Serif Display', serif;
+    color: var(--c-mustard);
+  }
+  .ref-badge .r-sub {
+    font: 500 9px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.06em; margin-top: 5px;
+    color: var(--c-ivoire);
+  }
+
+  .hero-kpis {
+    margin-top: 28px;
+    padding: 18px 20px;
+    background: var(--c-ivoire);
+    border: 1.5px solid var(--c-marine);
+    border-radius: var(--r-sm);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .kpi {
+    padding: 0 16px;
+    border-right: 1px dashed var(--c-marine-30);
+  }
+  .kpi:last-child { border-right: none; }
+  .kpi-label {
+    font: 600 9.5px/1 'IBM Plex Mono', monospace;
+    color: var(--c-marine);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font: 400 28px/1 'DM Serif Display', serif;
+    color: var(--c-ink);
+    letter-spacing: -0.01em;
+  }
+  .kpi-value .unit {
+    font: 500 12px/1 'IBM Plex Mono', monospace;
+    color: var(--c-brique);
+    margin-left: 4px;
+  }
+
+  /* ═══════════════════════════════════════════
+     2. ICÔNES — retour aux cercles moutarde
+     ═══════════════════════════════════════════ */
+  .ico-strip {
+    background: var(--c-surface);
+    border: 1.5px solid var(--c-marine);
+    border-radius: var(--r-md);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .ico-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px;
+  }
+  .ico-cell {
+    aspect-ratio: 1;
+    background: var(--c-mustard);
+    border: 2px solid var(--c-marine);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  .ico-cell::before {
+    content: ''; position: absolute; inset: 2px;
+    border-radius: 50%;
+    border: 1px solid var(--c-marine-15);
+  }
+  .ico-cell:hover { transform: translateY(-2px) rotate(-1deg); }
+  .ico-cell.brique { background: var(--c-brique); }
+  .ico-cell.brique svg { stroke: var(--c-mustard); }
+  .ico-cell.brique::before { border-color: rgba(232,178,60,0.3); }
+  .ico-cell.ivoire { background: var(--c-ivoire); }
+  .ico-caption {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--c-marine-30);
+    font: 600 10.5px/1 'IBM Plex Mono', monospace;
+    color: var(--c-marine); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ═══════════════════════════════════════════
+     3. BOUTONS
+     ═══════════════════════════════════════════ */
+  .btn-strip {
+    background: var(--c-surface);
+    border: 1.5px solid var(--c-marine);
+    border-radius: var(--r-md);
+    padding: 30px;
+    box-shadow: var(--shadow-card);
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px;
+    border-radius: var(--r-sm);
+    font: 700 13.5px/1 'Inter', sans-serif;
+    letter-spacing: 0.01em;
+    border: 1.5px solid var(--c-marine);
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: all 0.15s ease;
+    position: relative;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--c-marine-dk); }
+  .btn:active { transform: translateY(1px); box-shadow: 0 0 0 var(--c-marine-dk); }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-btn), 0 0 0 4px var(--c-mustard-30);
+  }
+
+  .btn-primary {
+    background: var(--c-brique); color: var(--c-ivoire);
+  }
+  .btn-primary:hover { background: var(--c-brique-dk); }
+
+  .btn-secondary {
+    background: var(--c-mustard); color: var(--c-marine);
+  }
+  .btn-secondary:hover { background: var(--c-mustard-dk); }
+
+  .btn-tertiary {
+    background: var(--c-surface); color: var(--c-marine);
+  }
+  .btn-tertiary:hover { background: var(--c-ivoire); }
+
+  .btn-ghost {
+    background: transparent; color: var(--c-marine);
+    border-color: transparent;
+    box-shadow: none;
+    padding: 13px 14px;
+  }
+  .btn-ghost:hover { transform: none; box-shadow: none; }
+  .btn-ghost .underline {
+    border-bottom: 2px solid var(--c-mustard);
+    padding-bottom: 3px;
+  }
+
+  /* ═══════════════════════════════════════════
+     4. MATÉRIAUX
+     ═══════════════════════════════════════════ */
+  .mat-card {
+    background: var(--c-surface);
+    border: 1.5px solid var(--c-marine);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .mat-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 22px 26px 18px;
+    background: var(--c-marine);
+    color: var(--c-ivoire);
+  }
+  .mat-head-title {
+    font: 400 22px/1 'DM Serif Display', serif;
+    color: var(--c-mustard);
+  }
+  .mat-head-title em { font-style: italic; color: var(--c-ivoire); }
+  .mat-head-total {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-ivoire);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .mat-head-total strong {
+    color: var(--c-mustard); font-weight: 700; font-size: 13px;
+    margin-left: 4px;
+  }
+
+  .mat-row {
+    display: flex; align-items: center; gap: 20px;
+    padding: 18px 26px;
+    border-bottom: 1.5px dashed var(--c-marine-30);
+    transition: background 0.15s ease;
+  }
+  .mat-row:last-child { border-bottom: none; }
+  .mat-row:hover { background: var(--c-ivoire); }
+
+  .mat-ico-wrap {
+    width: 46px; height: 46px; flex-shrink: 0;
+    background: var(--c-mustard);
+    border: 2px solid var(--c-marine);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--c-marine);
+    position: relative;
+  }
+  .mat-ico-wrap::before {
+    content: ''; position: absolute; inset: 2px;
+    border-radius: 50%;
+    border: 1px solid var(--c-marine-15);
+  }
+  .mat-body { flex: 1; min-width: 0; }
+  .mat-name {
+    font: 700 15px/1.2 'Inter', sans-serif;
+    color: var(--c-ink);
+    margin-bottom: 5px;
+  }
+  .mat-meta {
+    display: flex; align-items: center; gap: 10px;
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-marine);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .mat-meta .ref {
+    color: var(--c-brique); font-weight: 700;
+  }
+  .mat-meta .dot {
+    width: 4px; height: 4px;
+    background: var(--c-mustard);
+    border: 1px solid var(--c-marine);
+  }
+  .mat-qty {
+    font: 400 24px/1 'DM Serif Display', serif;
+    color: var(--c-marine);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+  .mat-qty .unit {
+    font: 500 11px/1 'IBM Plex Mono', monospace;
+    color: var(--c-brique);
+    margin-left: 3px;
+  }
+
+  /* ═══════════════════════════════════════════
+     5. PALETTE
+     ═══════════════════════════════════════════ */
+  .palette-card {
+    background: var(--c-surface);
+    border: 1.5px solid var(--c-marine);
+    border-radius: var(--r-md);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .palette-row {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px;
+  }
+  .sw {
+    border-radius: var(--r-sm);
+    border: 1.5px solid var(--c-marine);
+    padding: 14px 14px 16px;
+    min-height: 104px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 2px 0 var(--c-marine);
+  }
+  .sw .role {
+    font: 700 9.5px/1.3 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .sw .hex {
+    font: 600 11px/1 'IBM Plex Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Notes finales ── */
+  .notes {
+    margin-top: 56px;
+    padding: 24px 28px;
+    background: var(--c-marine);
+    border: 1.5px solid var(--c-marine);
+    border-radius: var(--r-md);
+    box-shadow: 0 2px 0 var(--c-mustard);
+    color: var(--c-ivoire);
+  }
+  .notes h3 {
+    font: 400 20px/1 'DM Serif Display', serif;
+    color: var(--c-mustard);
+    margin-bottom: 14px;
+  }
+  .notes h3 em { font-style: italic; color: var(--c-ivoire); }
+  .notes p {
+    font: 400 12.5px/1.65 'Inter', sans-serif;
+    color: var(--c-ivoire);
+    max-width: 820px;
+  }
+  .notes p + p { margin-top: 10px; }
+  .notes strong { color: var(--c-mustard); font-weight: 700; }
+  .notes code {
+    font: 600 11px/1 'IBM Plex Mono', monospace;
+    background: var(--c-mustard); color: var(--c-marine);
+    padding: 2px 6px; border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="page-head">
+    <div>
+      <div class="eyebrow">g · v2 · retour personnalité</div>
+      <h1>Le Cabanon — <em>catalogue technique</em></h1>
+    </div>
+    <p>Retour à l'ADN G : palette chaude assumée, moutarde en signature visuelle, marine en ossature, brique en accent structurant. Modernisé mais pas lissé.</p>
+  </div>
+
+  <!-- ═══════════ 1. HERO ═══════════ -->
+  <div class="section-label"><span class="num">01</span> hero · projet</div>
+
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-icon">
+        <svg width="34" height="34" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 30h26"/>
+          <path d="M7 30V15l11-8 11 8v15"/>
+          <path d="M14 30v-9h8v9"/>
+        </svg>
+      </div>
+
+      <div class="hero-head">
+        <div class="hero-meta">
+          <span class="hero-eyebrow">modèle savoyard</span>
+          <span class="hero-eyebrow-sep"></span>
+          <span class="hero-sub-meta">série · cabanons</span>
+        </div>
+        <h2 class="hero-title">Le Cabanon <em>4 × 3 m</em></h2>
+        <div class="hero-stripe"></div>
+        <p class="hero-desc">
+          Ossature bois douglas, bardage claire-voie mélèze, toiture mono-pente. Calcul des matériaux conforme DTU 31.2 — pertes et recouvrements inclus.
+        </p>
+      </div>
+
+      <div class="ref-badge">
+        <div class="r-label">Réf.</div>
+        <div class="r-val">24-B</div>
+        <div class="r-sub">v1 · 04/26</div>
+      </div>
+    </div>
+
+    <div class="hero-kpis">
+      <div class="kpi">
+        <div class="kpi-label">surface</div>
+        <div class="kpi-value">12,0<span class="unit">m²</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">périmètre</div>
+        <div class="kpi-value">14,0<span class="unit">m</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">hauteur</div>
+        <div class="kpi-value">2,30<span class="unit">m</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">toiture</div>
+        <div class="kpi-value">13,2<span class="unit">m²</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 2. ICÔNES ═══════════ -->
+  <div class="section-label"><span class="num">02</span> famille d'icônes · médaillons</div>
+
+  <div class="ico-strip">
+    <div class="ico-grid">
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 30h26 M7 30V15l11-8 11 8v15 M14 30v-9h8v9"/>
+        </svg>
+      </div>
+      <div class="ico-cell brique">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#E8B23C" stroke-width="2" stroke-linecap="round">
+          <path d="M5 14h26 M5 22h26 M8 8v22 M16 8v22 M24 8v22 M31 8v22"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <rect x="4" y="14" width="28" height="8" rx="1"/>
+          <path d="M4 18h28" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <path d="M8 6v24 M14 6v24 M20 6v24 M26 6v24"/>
+          <path d="M5 12h26 M5 24h26"/>
+        </svg>
+      </div>
+      <div class="ico-cell brique">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#E8B23C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 20h26 M9 20v8h18v-8"/>
+          <path d="M5 20L18 8l13 12"/>
+          <circle cx="13" cy="25" r="1" fill="#E8B23C" stroke="none"/>
+          <circle cx="23" cy="25" r="1" fill="#E8B23C" stroke="none"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 24L18 8l14 16"/>
+          <path d="M4 28h28"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="6" width="20" height="24"/>
+          <path d="M13 6v24"/>
+          <circle cx="23" cy="18" r="1" fill="#1E3A52" stroke="none"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <path d="M9 8v20 M27 8v20 M9 18h18"/>
+          <path d="M7 18l2-2 M7 18l2 2 M29 18l-2-2 M29 18l-2 2"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 28h26 M5 28L28 10"/>
+          <path d="M10 24a4 4 0 0 1 4-4"/>
+        </svg>
+      </div>
+      <div class="ico-cell brique">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#E8B23C" stroke-width="2" stroke-linecap="round">
+          <rect x="5" y="6" width="26" height="24"/>
+          <path d="M12 6v24 M19 6v24 M26 6v24 M5 18h26"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 26L18 10l13 16"/>
+          <path d="M8 22h20 M10 18h16"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <circle cx="18" cy="10" r="4"/>
+          <path d="M18 14v18 M14 10h8 M15 20h6 M15 26h6"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <rect x="5" y="8" width="26" height="5"/>
+          <path d="M9 13v18 M27 13v18"/>
+        </svg>
+      </div>
+      <div class="ico-cell">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <rect x="4" y="22" width="28" height="5"/>
+          <rect x="4" y="10" width="28" height="5"/>
+          <path d="M10 15v7 M18 15v7 M26 15v7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="ico-caption">14 médaillons custom · cercle moutarde / brique · stroke marine 2px</div>
+  </div>
+
+  <!-- ═══════════ 3. BOUTONS ═══════════ -->
+  <div class="section-label"><span class="num">03</span> boutons · quatre tiers</div>
+
+  <div class="btn-strip">
+    <button class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+      Lancer le calcul
+    </button>
+    <button class="btn btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16 M4 12h16"/></svg>
+      Ajouter un mur
+    </button>
+    <button class="btn btn-tertiary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M10 13l2 2 4-4"/></svg>
+      Devis PDF
+    </button>
+    <button class="btn btn-ghost">
+      <span class="underline">Voir la nomenclature</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14 M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ═══════════ 4. MATÉRIAUX ═══════════ -->
+  <div class="section-label"><span class="num">04</span> bordereau · matériaux</div>
+
+  <div class="mat-card">
+    <div class="mat-head">
+      <div class="mat-head-title">Bordereau <em>7 familles</em></div>
+      <div class="mat-head-total">total ht <strong>1 284 €</strong></div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <rect x="4" y="14" width="28" height="8" rx="1"/>
+          <path d="M4 18h28" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Bastaings douglas 63 × 175 mm</div>
+        <div class="mat-meta">
+          <span class="ref">réf. 03-175</span>
+          <span class="dot"></span>
+          <span>classe 2 · raboté</span>
+        </div>
+      </div>
+      <div class="mat-qty">24<span class="unit">u.</span></div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <path d="M8 6v24 M14 6v24 M20 6v24 M26 6v24 M5 12h26 M5 24h26"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Bardage claire-voie mélèze</div>
+        <div class="mat-meta">
+          <span class="ref">réf. 07-cv-mel</span>
+          <span class="dot"></span>
+          <span>profil ajouré 21 × 70</span>
+        </div>
+      </div>
+      <div class="mat-qty">38,0<span class="unit">m²</span></div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 26L18 10l13 16"/>
+          <path d="M8 22h20 M10 18h16"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Couverture bac acier anthracite</div>
+        <div class="mat-meta">
+          <span class="ref">réf. 11-bac-075</span>
+          <span class="dot"></span>
+          <span>5 plis · 0,75 mm</span>
+        </div>
+      </div>
+      <div class="mat-qty">13,2<span class="unit">m²</span></div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round">
+          <circle cx="18" cy="10" r="4"/>
+          <path d="M18 14v18 M14 10h8 M15 20h6 M15 26h6"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Visserie inox A2 — tête plate 4 × 60</div>
+        <div class="mat-meta">
+          <span class="ref">réf. 12-vis-060</span>
+          <span class="dot"></span>
+          <span>boîte 200</span>
+        </div>
+      </div>
+      <div class="mat-qty">1<span class="unit">bte</span></div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-ico-wrap">
+        <svg width="24" height="24" viewBox="0 0 36 36" fill="none" stroke="#1E3A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 20h26 M9 20v8h18v-8 M5 20L18 8l13 12"/>
+        </svg>
+      </div>
+      <div class="mat-body">
+        <div class="mat-name">Plots réglables pour fondation</div>
+        <div class="mat-meta">
+          <span class="ref">réf. 01-plot-xl</span>
+          <span class="dot"></span>
+          <span>hauteur 120–200 mm</span>
+        </div>
+      </div>
+      <div class="mat-qty">9<span class="unit">u.</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 5. PALETTE ═══════════ -->
+  <div class="section-label"><span class="num">05</span> palette · rôles assumés</div>
+
+  <div class="palette-card">
+    <div class="palette-row">
+      <div class="sw" style="background:#111214;color:#F1EBDD">
+        <div class="role">texte · ink</div>
+        <div class="hex">#111214</div>
+      </div>
+      <div class="sw" style="background:#1E3A52;color:#E8B23C">
+        <div class="role">marine · ossature</div>
+        <div class="hex">#1E3A52</div>
+      </div>
+      <div class="sw" style="background:#C85A3E;color:#F1EBDD">
+        <div class="role">brique · cta</div>
+        <div class="hex">#C85A3E</div>
+      </div>
+      <div class="sw" style="background:#E8B23C;color:#1E3A52">
+        <div class="role">moutarde · signature</div>
+        <div class="hex">#E8B23C</div>
+      </div>
+      <div class="sw" style="background:#FAF5E8;color:#1E3A52">
+        <div class="role">surface · card</div>
+        <div class="hex">#FAF5E8</div>
+      </div>
+      <div class="sw" style="background:#F1EBDD;color:#1E3A52">
+        <div class="role">ivoire · fond</div>
+        <div class="hex">#F1EBDD</div>
+      </div>
+      <div class="sw" style="background:#6B5A42;color:#F1EBDD">
+        <div class="role">sépia · méta</div>
+        <div class="hex">#6B5A42</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ NOTES ═══════════ -->
+  <div class="notes">
+    <h3>Règles <em>G v2</em></h3>
+    <p><strong>Moutarde = signature visuelle.</strong> Les médaillons d'icônes reviennent en cercle moutarde bordure marine 2px — c'est la marque de fabrique de G et ce qui le rend reconnaissable d'un coup d'œil. Une icône sur trois peut passer en brique pour varier le rythme.</p>
+    <p><strong>Marine = ossature forte, pas discrète.</strong> Border 1.5–2px sur toutes les cards (pas 1px rgba), header de table pleine couleur marine avec texte moutarde, étiquettes en mono uppercase. L'ossature doit se voir.</p>
+    <p><strong>Brique = CTA primaire + touches rythmiques.</strong> Le CTA reste unique, mais la brique revient aussi sur les unités (<code>m²</code>, <code>u.</code>) et sur le badge <code>Réf.</code> 24-B pour réchauffer l'ensemble.</p>
+    <p><strong>Ombre offset douce.</strong> Chaque carte porte <code>0 2px 0 marine</code> + une ombre diffuse 18px — c'est la version moderne du <code>3px 3px 0</code> vintage, on garde l'effet « posé » sans l'angle sérigraphique.</p>
+    <p><strong>Fraunces est remplacé par DM Serif Display</strong> pour les titres, chiffres clés et totaux. Plus éditorial, plus affirmé, meilleur ancrage « catalogue français ». Inter pour le corps, IBM Plex Mono pour les réfs et unités.</p>
+    <p><strong>Ce qui reste banni :</strong> halftone en fond plein, box-shadow <code>3px 3px 0</code> hard, double border décoratif, arrondis ronds partout. Le G v2 est chaleureux mais pas bricolé.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

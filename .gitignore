@@ -1,0 +1,119 @@
+# ─────────────────────────────────────────────────────────────
+# DIY Builder — .gitignore racine
+# ─────────────────────────────────────────────────────────────
+
+# ── Dépendances ──
+node_modules/
+.pnp
+.pnp.*
+.yarn/install-state.gz
+
+# ── Build Next.js ──
+.next/
+out/
+build/
+dist/
+
+# ── Tests ──
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+*.tsbuildinfo
+
+# ── Variables d'environnement ──
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+.env.test.local
+# (on garde explicitement .env.example, .env.production)
+!.env.example
+!.env.local.example
+!.env.production
+
+# ── Logs ──
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ── Système ──
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ── Éditeurs / IDE ──
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+# ── Artefacts du repo (dossiers parasites locaux) ──
+backup-stable-*/
+tmp_eng_check/
+frontend\ /
+"frontend "/
+Lead\ kit/
+"Lead kit"/
+
+# ── Drafts HTML (maquettes / aperçus) ──
+landing-draft-*.html
+maquette-direction-*.html
+maquette-*.html
+apercu-*.html
+icon-*.html
+
+# ── PDFs de tests à la racine ──
+/test_*.pdf
+/*_test.pdf
+/cabanon_*.pdf
+/devis_test.pdf
+/test_validation.pdf
+
+# ── Plans & docs privés (publication non intentionnelle) ──
+/PLAN_*.md
+/MONETISATION*.md
+/ROADMAP*.md
+/PHASE0_*.md
+/ANALYSE_MARCHE_*.md
+/AUDIT_*.md
+/POSITIONNEMENT_*.md
+/SYNTHESE_*.md
+/DIY-Builder_Validation-Business-*.docx
+
+# ── PWA — fichiers générés par next-pwa au build ──
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map
+frontend/public/sw.js
+frontend/public/sw.js.map
+frontend/public/workbox-*.js
+frontend/public/workbox-*.js.map
+
+# ── Cache scraper / données scrapées ──
+prices-cache.json
+/data/scrape_*.json
+backend/data/scrape_*.json
+scraper/data/scrape_*.json
+
+# ── Dump / archives accidentelles ──
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ── OS / fichiers temporaires divers ──
+*.bak
+*.tmp
+*.orig
+.AppleDouble
+.LSOverride

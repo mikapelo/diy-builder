@@ -1,0 +1,2 @@
+cd frontend
+node scripts/qa-check.js $(git diff --cached --name-only)

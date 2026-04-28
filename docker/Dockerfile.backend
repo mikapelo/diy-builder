@@ -1,0 +1,33 @@
+# ── Dockerfile — Backend Node.js / Express ──────────────────
+# Stage 1 : build des dépendances (séparé pour cache Docker optimal)
+FROM node:20-alpine AS deps
+
+WORKDIR /app
+
+# Copier uniquement package.json pour profiter du cache des layers
+COPY package*.json ./
+RUN npm ci --only=production
+
+# ──────────────────────────────────────────────────────────────
+# Stage 2 : image de production légère
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Utilisateur non-root pour la sécurité
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Copier les dépendances installées et le code source
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# L'application écoute sur ce port
+EXPOSE 4000
+
+# Santé de l'image — vérifié par Docker Compose
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget -qO- http://localhost:4000/api/health || exit 1
+
+USER appuser
+
+CMD ["node", "server.js"]

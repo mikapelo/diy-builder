@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Misc
+.DS_Store
+*.tsbuildinfo
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# PWA — fichiers générés par next-pwa au build (ne pas versionner)
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map

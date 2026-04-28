@@ -1,0 +1,70 @@
+{
+  "_note": "Prix saisis manuellement — à mettre à jour quand le scraping automatique est indisponible.",
+  "_doc": "Format : { materialId: { storeId: prix } }. Les overrides servent de FALLBACK : le scraping automatique prend la priorité (deepMerge scraped > override). Un prix absent du scraping conserve la valeur manuelle.",
+  "_updated": "2026-04-18",
+
+  "prices": {
+    "chevron_60x80": {
+      "leroymerlin": 3.47
+    },
+    "bastaing_63x150": {
+      "leroymerlin": 5.20,
+      "manomano": 4.70
+    },
+    "entretoise_toiture": {
+      "leroymerlin": 3.47,
+      "manomano": 2.90
+    },
+    "lambourde_45x70": {
+      "leroymerlin": 14.90
+    },
+    "lame_terrasse": {
+      "leroymerlin": 13.00,
+      "manomano": 12.00
+    },
+    "lame_cloture": {
+      "leroymerlin": 3.80,
+      "manomano": 3.10
+    },
+    "poteau_pergola_100": {
+      "leroymerlin": 32.90,
+      "manomano": 28.50
+    },
+    "poutre_pergola_150": {
+      "leroymerlin": 8.50,
+      "manomano": 6.50
+    },
+    "poteau_cloture_90": {
+      "leroymerlin": 18.00,
+      "manomano": 16.50
+    },
+    "montant_90x90": {
+      "leroymerlin": 20.50,
+      "manomano": 18.00
+    },
+    "plot_beton": {
+      "leroymerlin": 8.90,
+      "manomano": 7.50
+    },
+    "bardage_pin": {
+      "leroymerlin": 25.00,
+      "manomano": 21.50
+    },
+    "volige_18mm": {
+      "leroymerlin": 12.00,
+      "manomano": 10.50
+    },
+    "vis_inox_a2": {
+      "leroymerlin": 12.50,
+      "manomano": 11.50
+    },
+    "sabot_chevron": {
+      "leroymerlin": 2.90,
+      "manomano": 2.60
+    },
+    "equerre_fixation": {
+      "leroymerlin": 1.80,
+      "manomano": 1.50
+    }
+  }
+}

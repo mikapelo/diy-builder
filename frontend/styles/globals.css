@@ -1,0 +1,17 @@
+/*
+ * globals.css — Point d'entrée CSS
+ *
+ * Split Phase B : le monolithe (6794 lignes) est scindé en 4 modules.
+ * Aucun changement visuel — juste du découpage organisationnel.
+ *
+ * Ordre important :
+ *   1. base    — @tailwind, tokens, reset, animations, boutons, composants UI
+ *   2. simulator — layout simulateur, tunnel, composants simulateur
+ *   3. landing — hero V6, showcase, bento, stats, responsive landing
+ *   4. theme-g-v2 — Phosphor icons + overrides [data-theme="g-v2"]
+ */
+
+@import './base.css';
+@import './simulator.css';
+@import './landing.css';
+@import './theme-g-v2.css';
