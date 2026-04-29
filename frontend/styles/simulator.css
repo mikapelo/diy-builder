@@ -3986,19 +3986,6 @@
   margin: 0 0 16px;
 }
 
-.tool-rentable-inline {
-  display: inline-flex;
-  align-items: center;
-  padding: 1px 7px;
-  background: #E8F3E9;
-  border: 1px solid #b3d8b5;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #2B5D3A;
-  vertical-align: middle;
-}
-
 /* ── Panel outils — chips sélecteurs ── */
 .tools-panel { animation: fadeInUp 0.18s ease; }
 
@@ -4033,17 +4020,6 @@
   background: #fff8e8;
   border-color: #C9971E;
   color: #9a7318;
-}
-
-.tool-chip-rentable {
-  display: inline-flex;
-  padding: 1px 6px;
-  background: #E8F3E9;
-  border: 1px solid #b3d8b5;
-  border-radius: 10px;
-  font-size: 10px;
-  font-weight: 600;
-  color: #2B5D3A;
 }
 
 .tool-context-desc {

@@ -158,7 +158,7 @@ export function generatePergolaPDF(doc, { dims, materials, projectConfig, budget
   doc.addPage();
 
   const y0p3budget = pageTitle(doc, 'Estimation budgetaire',
-    `Comparatif 3 enseignes - ${width} m x ${depth} m`);
+    `Comparatif 4 enseignes - ${width} m x ${depth} m`);
 
   if (budgetByStore && budgetByStore.length > 0) {
     drawBudgetPage(doc, budgetByStore, { area: surface, startY: y0p3budget + 5 });

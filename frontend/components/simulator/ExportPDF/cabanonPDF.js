@@ -1,13 +1,13 @@
 /**
  * cabanonPDF.js — Generation PDF pour le module Cabanon
  *
- * Layout :
+ * Layout (harmonise avec terrasse / pergola / cloture : plans EN DERNIER) :
  *   Page 1 : Vue de synthese 3D (capture + annotations)
- *   Page 2 : Vue de dessus (primitives)
- *   Page 3 : Vue de facade / elevation (primitives)
- *   Page 4 : Coupe transversale (primitives)
- *   Page 5 : Nomenclature materiaux (BOM) enrichie avec prix
- *   Page 6 : Comparatif budget par enseigne
+ *   Page 2 : Nomenclature materiaux (BOM) enrichie avec prix
+ *   Page 3 : Estimation budgetaire (comparatif enseignes)
+ *   Page 4 : Vue de dessus (primitives)
+ *   Page 5 : Vue de facade / elevation (primitives)
+ *   Page 6 : Coupe transversale (primitives)
  *
  * Migre depuis pdfDrawing.js (P4 cabanon).
  * Ne contient aucune logique metier — uniquement du layout jsPDF.
@@ -194,9 +194,24 @@ function drawCabanonBOM(doc, { dims, materials, projectConfig, foundationType, s
   y += 7;
 
   /* ── Helper : dessine un groupe de lignes materiaux avec prix ──
-     Palette warm parchemin cohérente avec le branding (noir chaud + or). */
+     Palette warm parchemin cohérente avec le branding (noir chaud + or).
+
+     Layout colonnes (avec prix) — total 170mm, x ∈ [20, 190] :
+       Designation : 23 → 87  (64mm)   left
+       Quantite    : 87 → 118 (31mm)   left bold — chiffres moyens
+       Detail      : 118 → 152 (34mm)  left light — texte tronqué si besoin
+       P.U.        : ends 159          right
+       Total       : ends 188          right
+     Sans prix : on étire Designation + Detail. */
   function drawMatGroup(title, rows) {
     y = sectionTitle(doc, title, y);
+
+    const X_DESIG  = 23;
+    const X_QTY    = 87;
+    const X_DETAIL = 118;
+    const X_PU     = 159;
+    const X_TOTAL  = 188;
+    const MAX_DETAIL_W = hasBudget ? 33 : 65;  // mm — coupure soft si trop long
 
     /* En-tête colonnes */
     doc.setFillColor(243, 242, 238);
@@ -204,12 +219,12 @@ function drawCabanonBOM(doc, { dims, materials, projectConfig, foundationType, s
     doc.setFontSize(7.5);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(17, 18, 20);
-    doc.text('Designation', 23, y + 4.5);
-    doc.text('Quantite', 95, y + 4.5);
-    doc.text('Detail', 118, y + 4.5);
+    doc.text('Designation', X_DESIG, y + 4.5);
+    doc.text('Quantite', X_QTY, y + 4.5);
+    doc.text('Detail', X_DETAIL, y + 4.5);
     if (hasBudget) {
-      doc.text('P.U.', 160, y + 4.5, { align: 'right' });
-      doc.text('Total', 186, y + 4.5, { align: 'right' });
+      doc.text('P.U.', X_PU, y + 4.5, { align: 'right' });
+      doc.text('Total', X_TOTAL, y + 4.5, { align: 'right' });
     }
     y += 8;
 
@@ -221,20 +236,28 @@ function drawCabanonBOM(doc, { dims, materials, projectConfig, foundationType, s
       doc.setFontSize(7.5);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(17, 18, 20);
-      doc.text(row[0], 23, y + 3.5);
+      /* Désignation : tronquée si dépasse zone allouée */
+      const desigMaxW = X_QTY - X_DESIG - 1;
+      const desigStr = doc.splitTextToSize(String(row[0] ?? ''), desigMaxW)[0] ?? row[0];
+      doc.text(desigStr, X_DESIG, y + 3.5);
       doc.setFont('helvetica', 'bold');
-      doc.text(row[1], 95, y + 3.5);
+      /* Quantite : tronquée si dépasse la cellule (évite débordement sur Detail) */
+      const qtyMaxW = X_DETAIL - X_QTY - 1;
+      const qtyStr = doc.splitTextToSize(String(row[1] ?? ''), qtyMaxW)[0] ?? row[1];
+      doc.text(qtyStr, X_QTY, y + 3.5);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(102, 98, 90);
-      doc.text(row[2], 118, y + 3.5);
+      /* Detail : tronqué soft si dépasse la cellule (évite la superposition) */
+      const detailStr = doc.splitTextToSize(String(row[2] ?? ''), MAX_DETAIL_W)[0] ?? row[2];
+      doc.text(detailStr, X_DETAIL, y + 3.5);
 
       /* Prix unitaire + sous-total si disponibles */
       if (hasBudget && row[3] != null) {
         doc.setTextColor(102, 98, 90);
-        doc.text(fmtPrice(row[3]), 160, y + 3.5, { align: 'right' });
+        doc.text(fmtPrice(row[3]), X_PU, y + 3.5, { align: 'right' });
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(17, 18, 20);
-        doc.text(fmtPrice(row[4] ?? 0), 186, y + 3.5, { align: 'right' });
+        doc.text(fmtPrice(row[4] ?? 0), X_TOTAL, y + 3.5, { align: 'right' });
       }
       y += 6.5;
     });
@@ -256,10 +279,14 @@ function drawCabanonBOM(doc, { dims, materials, projectConfig, foundationType, s
     ['Lisse basse 90x90 mm',    `${materials.lissesBasses} ml`,       'Base des murs',              ...p('lisse_90x90')],
     ['Sabliere haute 90x90 mm', `${materials.lissesHautes} ml`,       'Haut des murs',              ...p('lisse_90x90')],
     ['Double sabliere 90x90 mm',`${materials.lissesHautes2} ml`,      'Au-dessus sabliere',         ...p('lisse_90x90')],
-    ['Voile OSB 9 mm DTU 31.2', materials.osbSurface != null
-      ? `${materials.osbSurface} m² (${materials.osbPanels} pann. 122×244)`
-      : `${materials.contreventement} diag. (${Math.ceil(materials.contreventement / 2)} pann.)`,
-                                                                           'Contreventement — §9.2.2',  ...p('contreventement_osb')],
+    ['Voile OSB 9 mm DTU 31.2',
+      materials.osbSurface != null
+        ? `${materials.osbSurface} m²`
+        : `${materials.contreventement} diag.`,
+      materials.osbSurface != null
+        ? `${materials.osbPanels} pann. 122×244`
+        : `${Math.ceil(materials.contreventement / 2)} pann.`,
+      ...p('contreventement_osb')],
   ]);
 
   drawMatGroup('Toiture', [
@@ -321,7 +348,7 @@ function drawCabanonBudget(doc, { dims, budgetByStore, slab, foundationType }) {
   const slabTotal = isSlab ? (slab?.totalPrice ?? 0) : 0;
 
   const y0 = pageTitle(doc, 'Estimation budgetaire',
-    `Comparatif 3 enseignes - ${dims.width} m x ${dims.depth} m`);
+    `Comparatif 4 enseignes - ${dims.width} m x ${dims.depth} m`);
 
   if (!budgetByStore || budgetByStore.length === 0) {
     drawBudgetUnavailable(doc, y0 + 5);
@@ -346,7 +373,8 @@ function drawCabanonBudget(doc, { dims, budgetByStore, slab, foundationType }) {
 }
 
 /* ════════════════════════════════════════════════════════════
-   PDF CABANON — 6 pages : 3D -> dessus -> facade -> coupe -> BOM -> Budget
+   PDF CABANON — 6 pages : 3D -> BOM -> Budget -> dessus -> facade -> coupe
+   Ordre harmonise avec terrasse / pergola / cloture : plans EN DERNIER.
 ════════════════════════════════════════════════════════════ */
 
 /**
@@ -364,30 +392,32 @@ export async function generateCabanonPDF(doc, { dims, materials, projectConfig, 
   if (materials.geometry) {
     drawCabanonSynthese(doc, materials.geometry, snapshot);
     cartouche(doc, { pageNum: 1, totalPages: TOTAL, viewTitle: 'Vue de synthese 3D', projectTitle: cabTitle });
-
-    /* ────────── PAGE 2 — Vue de dessus ────────── */
-    doc.addPage();
-    drawCabanonPlanDessus(doc, materials.geometry);
-    cartouche(doc, { pageNum: 2, totalPages: TOTAL, viewTitle: 'Vue de dessus', projectTitle: cabTitle, scale: '~1:50' });
-
-    /* ────────── PAGE 3 — Vue de facade (elevation) ────────── */
-    doc.addPage();
-    drawCabanonPlanDetaille(doc, materials.geometry);
-    cartouche(doc, { pageNum: 3, totalPages: TOTAL, viewTitle: 'Elevation avant', projectTitle: cabTitle, scale: '~1:50' });
-
-    /* ────────── PAGE 4 — Coupe transversale ────────── */
-    doc.addPage();
-    drawCabanonCoupe(doc, materials.geometry);
-    cartouche(doc, { pageNum: 4, totalPages: TOTAL, viewTitle: 'Coupe transversale', projectTitle: cabTitle, scale: '~1:20' });
   }
 
-  /* ────────── PAGE 5 — Materiaux (BOM enrichie) ────────── */
+  /* ────────── PAGE 2 — Materiaux (BOM enrichie) ────────── */
   doc.addPage();
   drawCabanonBOM(doc, { dims, materials, projectConfig, foundationType, slab, budgetByStore });
-  cartouche(doc, { pageNum: 5, totalPages: TOTAL, viewTitle: 'Nomenclature materiaux', projectTitle: cabTitle });
+  cartouche(doc, { pageNum: 2, totalPages: TOTAL, viewTitle: 'Nomenclature materiaux', projectTitle: cabTitle });
 
-  /* ────────── PAGE 6 — Budget comparatif ────────── */
+  /* ────────── PAGE 3 — Budget comparatif ────────── */
   doc.addPage();
   drawCabanonBudget(doc, { dims, budgetByStore, slab, foundationType });
-  cartouche(doc, { pageNum: 6, totalPages: TOTAL, viewTitle: 'Estimation budgetaire', projectTitle: cabTitle });
+  cartouche(doc, { pageNum: 3, totalPages: TOTAL, viewTitle: 'Estimation budgetaire', projectTitle: cabTitle });
+
+  if (materials.geometry) {
+    /* ────────── PAGE 4 — Vue de dessus ────────── */
+    doc.addPage();
+    drawCabanonPlanDessus(doc, materials.geometry);
+    cartouche(doc, { pageNum: 4, totalPages: TOTAL, viewTitle: 'Vue de dessus', projectTitle: cabTitle, scale: '~1:50' });
+
+    /* ────────── PAGE 5 — Vue de facade (elevation) ────────── */
+    doc.addPage();
+    drawCabanonPlanDetaille(doc, materials.geometry);
+    cartouche(doc, { pageNum: 5, totalPages: TOTAL, viewTitle: 'Elevation avant', projectTitle: cabTitle, scale: '~1:50' });
+
+    /* ────────── PAGE 6 — Coupe transversale ────────── */
+    doc.addPage();
+    drawCabanonCoupe(doc, materials.geometry);
+    cartouche(doc, { pageNum: 6, totalPages: TOTAL, viewTitle: 'Coupe transversale', projectTitle: cabTitle, scale: '~1:20' });
+  }
 }

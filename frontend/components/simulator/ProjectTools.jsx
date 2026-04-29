@@ -145,13 +145,6 @@ function ToolsPanel({ tools }) {
   return (
     <div className="tools-panel">
 
-      {/* Sous-titre */}
-      <p className="project-tools-subtitle">
-        Les outils marqués{' '}
-        <span className="tool-rentable-inline">Louable</span>{' '}
-        sont disponibles à la location en GSB — inutile d&apos;acheter pour un projet unique.
-      </p>
-
       {/* Chips sélecteurs */}
       <div className="tool-selector" role="tablist">
         {tools.map((t, i) => (
@@ -163,7 +156,6 @@ function ToolsPanel({ tools }) {
             aria-selected={selected === i}
           >
             {t.name}
-            {t.rentable && <span className="tool-chip-rentable">Louable</span>}
           </button>
         ))}
       </div>

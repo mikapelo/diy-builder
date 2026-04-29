@@ -132,7 +132,7 @@ export function generateCloturePDF(doc, { dims, materials, projectConfig, budget
   doc.addPage();
 
   const y0p3 = pageTitle(doc, 'Estimation budgetaire',
-    `Comparatif 3 enseignes - ${width} ml x h${depth} m`);
+    `Comparatif 4 enseignes - ${width} ml x h${depth} m`);
 
   if (budgetByStore && budgetByStore.length > 0) {
     drawBudgetPage(doc, budgetByStore, { area, startY: y0p3 + 5 });

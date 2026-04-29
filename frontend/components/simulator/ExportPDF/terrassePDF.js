@@ -1,11 +1,13 @@
 /**
- * terrassePDF.js - Generation du PDF terrasse (4 pages)
+ * terrassePDF.js - Generation du PDF terrasse (6 pages)
  *
- * Responsabilites :
- *   - Page 1 : en-tete, materiaux, prix detailles, decoupes
- *   - Page 2 : fondation + notes techniques
- *   - Page 3 : plan technique vue de dessus
- *   - Page 4 : coupe transversale
+ * Layout harmonise avec cabanon / pergola / cloture :
+ *   Page 1 : Vue de synthese 3D (cover)
+ *   Page 2 : Nomenclature materiaux (BOM + decoupes)
+ *   Page 3 : Estimation budgetaire (comparatif enseignes)
+ *   Page 4 : Fondation + notes techniques
+ *   Page 5 : Plan technique vue de dessus
+ *   Page 6 : Coupe transversale
  *
  * Ne contient aucune logique metier - uniquement du layout jsPDF.
  * Ne contient aucun calcul de prix - recoit budgetByStore pre-calcule.
@@ -26,7 +28,7 @@ import { buildTerrasseTopView }     from '@/lib/plan/buildTerrasseTopView.js';
 import { buildTerrasseSectionView } from '@/lib/plan/buildTerrasseSectionView.js';
 import { renderPDFLayers }          from '@/lib/plan/renderPDF.js';
 import { MAT, PLAN_BG }             from '@/lib/plan/palette.js';
-import { drawStoreCards, drawBudgetTotal } from './pdfBudgetSection.js';
+import { drawStoreCards, drawBOMTable, drawBudgetTotal } from './pdfBudgetSection.js';
 
 /**
  * Genere le PDF terrasse complet (4 pages).
@@ -44,7 +46,7 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   const { width, depth, area } = dims;
   const { boards, joists, pads, screws, entretoises, bande, slab } = materials;
   const isSlab = foundationType === 'slab';
-  const TOTAL = 5;
+  const TOTAL = 6;
   const terTitle = `${projectConfig?.pdfTitle ?? 'Terrasse bois'} ${width}×${depth} m`;
 
   const poseLabel = isSlab
@@ -75,11 +77,11 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   cartouche(doc, { pageNum: 1, totalPages: TOTAL, viewTitle: 'Vue de synthese', projectTitle: terTitle });
 
   /* ══════════════════════════════════════════════
-     PAGE 2 - Matériaux + Prix + Découpes
+     PAGE 2 - Nomenclature materiaux + Plan de decoupe
   ══════════════════════════════════════════════ */
   doc.addPage();
 
-  y = pageTitle(doc, 'Materiaux et estimation',
+  y = pageTitle(doc, 'Nomenclature materiaux',
     `${width} m × ${depth} m - ${poseLabel}`);
 
   /* ── Section : Liste de matériaux ── */
@@ -104,23 +106,6 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     [65, 30, 75],
     8,
   ) + 8;
-
-  /* ── Section : Estimation des prix (via helper partage) ── */
-  y = sectionTitle(doc, 'Estimation des prix', y);
-
-  if (budgetByStore && budgetByStore.length > 0) {
-    y = drawStoreCards(doc, y, budgetByStore, { area });
-    y += 4;
-
-    /* Detail des couts (terrasse + fondation si dalle) */
-    const slabTotal = isSlab ? (slab?.totalPrice ?? 0) : 0;
-    if (budgetByStore[0]) {
-      y = drawBudgetTotal(doc, y, budgetByStore[0], { slabTotal });
-    }
-  } else {
-    drawBudgetUnavailable(doc, y);
-    y += 52;
-  }
 
   /* ── Section : Plan de découpe ── */
   const hasBoardCuts = width > BOARD_LEN;
@@ -153,10 +138,41 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     ) + 8;
   }
 
-  cartouche(doc, { pageNum: 2, totalPages: TOTAL, viewTitle: 'Materiaux et estimation', projectTitle: terTitle });
+  cartouche(doc, { pageNum: 2, totalPages: TOTAL, viewTitle: 'Nomenclature materiaux', projectTitle: terTitle });
 
   /* ══════════════════════════════════════════════
-     PAGE 2 - Fondation + Notes techniques
+     PAGE 3 - Estimation budgetaire (comparatif enseignes)
+  ══════════════════════════════════════════════ */
+  doc.addPage();
+
+  y = pageTitle(doc, 'Estimation budgetaire',
+    `Comparatif 4 enseignes - ${width} m × ${depth} m`);
+
+  if (budgetByStore && budgetByStore.length > 0) {
+    y = sectionTitle(doc, 'Comparatif budget par enseigne', y);
+    y = drawStoreCards(doc, y, budgetByStore, { area });
+    y += 4;
+
+    /* Detail BOM du meilleur prix (cohérent avec cabanon / pergola / cloture) */
+    const bestEntry = budgetByStore[0];
+    if (bestEntry?.categories && Object.keys(bestEntry.categories).length > 0 && !bestEntry.fallback) {
+      y = sectionTitle(doc, `Detail - ${bestEntry.store.name} (meilleur prix)`, y);
+      y = drawBOMTable(doc, y, bestEntry.categories, { showPrices: true });
+    }
+
+    /* Detail des couts (terrasse + fondation si dalle) */
+    const slabTotal = isSlab ? (slab?.totalPrice ?? 0) : 0;
+    if (bestEntry) {
+      y = drawBudgetTotal(doc, y, bestEntry, { slabTotal });
+    }
+  } else {
+    drawBudgetUnavailable(doc, y + 5);
+  }
+
+  cartouche(doc, { pageNum: 3, totalPages: TOTAL, viewTitle: 'Estimation budgetaire', projectTitle: terTitle });
+
+  /* ══════════════════════════════════════════════
+     PAGE 4 - Fondation + Notes techniques
   ══════════════════════════════════════════════ */
   doc.addPage();
   y = pageTitle(
@@ -289,10 +305,10 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     doc.text(note, 24, y + 7 + i * 6.5);
   });
 
-  cartouche(doc, { pageNum: 3, totalPages: TOTAL, viewTitle: 'Fondation et notes', projectTitle: terTitle });
+  cartouche(doc, { pageNum: 4, totalPages: TOTAL, viewTitle: 'Fondation et notes', projectTitle: terTitle });
 
   /* ══════════════════════════════════════════════
-     PAGE 3 - Plan technique vue de dessus (primitives)
+     PAGE 5 - Plan technique vue de dessus (primitives)
   ══════════════════════════════════════════════ */
   doc.addPage();
 
@@ -328,10 +344,10 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   const cutX3 = margin3 + drawW3 * 0.5;
   drawCutLine(doc, cutX3, boxY3 + 2, cutX3, boxY3 + boxH3 - 2, 'A');
 
-  cartouche(doc, { pageNum: 4, totalPages: TOTAL, viewTitle: 'Vue de dessus', projectTitle: terTitle, scale: '~1:50' });
+  cartouche(doc, { pageNum: 5, totalPages: TOTAL, viewTitle: 'Vue de dessus', projectTitle: terTitle, scale: '~1:50' });
 
   /* ══════════════════════════════════════════════
-     PAGE 4 - Coupe transversale (primitives)
+     PAGE 6 - Coupe transversale (primitives)
   ══════════════════════════════════════════════ */
   doc.addPage();
 
@@ -353,5 +369,5 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     'Ventilation sous structure >= 50 mm. Pente d\'evacuation 1,5 %.',
   ], { title: 'Notes techniques' });
 
-  cartouche(doc, { pageNum: 5, totalPages: TOTAL, viewTitle: 'Coupe transversale', projectTitle: terTitle, scale: '~1:4' });
+  cartouche(doc, { pageNum: 6, totalPages: TOTAL, viewTitle: 'Coupe transversale', projectTitle: terTitle, scale: '~1:4' });
 }

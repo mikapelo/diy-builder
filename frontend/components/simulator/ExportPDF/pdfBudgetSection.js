@@ -17,7 +17,7 @@
  */
 
 import { sectionTitle } from '@/lib/pdf/pdfDrawing.js';
-import { fmtPrice } from '@/lib/pdf/pdfHelpers.js';
+import { fmtPrice, fmtPriceCompact } from '@/lib/pdf/pdfHelpers.js';
 
 /* ════════════════════════════════════════════════════════════
    Palette warm parchemin — cohérente avec cartouche + pageTitle
@@ -53,9 +53,18 @@ export function drawStoreCards(doc, y, budgetByStore, opts = {}) {
   const { area = 0 } = opts;
   const bestTotal = budgetByStore[0]?.total ?? 0;
 
-  const cardW   = 52;
+  /* Layout dynamique calibré sur la zone utile A4 (170 mm de x=20 a x=190).
+     Avec 4 enseignes : (170 - 3*4) / 4 = 39.5 mm/carte.
+     Avec 3 enseignes : (170 - 2*4) / 3 = 54 mm/carte. */
+  const N = budgetByStore.length || 1;
+  const cardGap = 4;
+  const usableW = 170; // PAGE.CONTENT_W
+  const cardW   = (usableW - cardGap * (N - 1)) / N;
   const cardH   = 22;
-  const cardGap = 7;
+  /* fontSize total : 11pt pour tenir "12 345 EUR" en bold dans 39.5 mm
+     (mesure jsPDF helvetica bold ~25 mm a 11pt — large marge). */
+  const totalFontSize = N >= 4 ? 11 : 13;
+  const nameFontSize  = N >= 4 ? 8   : 8.5;
 
   budgetByStore.forEach((entry, i) => {
     const cx = 20 + i * (cardW + cardGap);
@@ -72,23 +81,23 @@ export function drawStoreCards(doc, y, budgetByStore, opts = {}) {
     doc.roundedRect(cx, y, cardW, cardH, 2, 2, 'FD');
 
     /* Nom enseigne */
-    doc.setFontSize(8.5);
+    doc.setFontSize(nameFontSize);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(...(isBest ? WARM.goldDark : WARM.black));
-    doc.text(entry.store.name, cx + 5, y + 7);
+    doc.text(entry.store.name, cx + 4, y + 7);
 
-    /* Total */
-    doc.setFontSize(15);
+    /* Total — format compact (entiers ≥1000€) pour tenir dans la cellule. */
+    doc.setFontSize(totalFontSize);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(...(isBest ? WARM.goldDark : WARM.black));
-    doc.text(fmtPrice(entry.total), cx + cardW - 4, y + 16, { align: 'right' });
+    doc.text(fmtPriceCompact(entry.total), cx + cardW - 3, y + 16, { align: 'right' });
 
     /* Badge meilleur prix */
     if (isBest) {
-      doc.setFontSize(7);
+      doc.setFontSize(N >= 4 ? 6.5 : 7);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(...WARM.goldDark);
-      doc.text('* Meilleur prix', cx + 5, y + 21);
+      doc.text('* Meilleur prix', cx + 4, y + 21);
     }
   });
 

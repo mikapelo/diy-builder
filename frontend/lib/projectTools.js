@@ -31,7 +31,6 @@ const TOOL_TIERS = {
   'scie-circulaire': {
     name: 'Scie circulaire',
     icon: 'carpenter',
-    rentable: true,
     tiers: [
       {
         key: 'budget',
@@ -74,7 +73,6 @@ const TOOL_TIERS = {
   'perceuse-visseuse': {
     name: 'Perceuse-visseuse',
     icon: 'hardware',
-    rentable: false,
     tiers: [
       {
         key: 'budget',
@@ -116,7 +114,6 @@ const TOOL_TIERS = {
   'niveau-laser': {
     name: 'Niveau laser',
     icon: 'align_horizontal_center',
-    rentable: true,
     tiers: [
       {
         key: 'budget',
@@ -158,7 +155,6 @@ const TOOL_TIERS = {
   'ponceuse-orbitale': {
     name: 'Ponceuse orbitale',
     icon: 'tune',
-    rentable: false,
     tiers: [
       {
         key: 'budget',
@@ -200,7 +196,6 @@ const TOOL_TIERS = {
   'equerre-charpentier': {
     name: 'Équerre de charpentier',
     icon: 'square_foot',
-    rentable: false,
     tiers: [
       {
         key: 'budget',
@@ -242,7 +237,6 @@ const TOOL_TIERS = {
   'tariere': {
     name: 'Tarière thermique',
     icon: 'rotate_right',
-    rentable: true,
     tiers: [
       {
         key: 'budget',
@@ -284,7 +278,6 @@ const TOOL_TIERS = {
   'perceuse-percussion': {
     name: 'Perceuse à percussion',
     icon: 'construction',
-    rentable: false,
     tiers: [
       {
         key: 'budget',
@@ -326,7 +319,6 @@ const TOOL_TIERS = {
   'niveau-bulle': {
     name: 'Niveau à bulle 80 cm',
     icon: 'straighten',
-    rentable: false,
     tiers: [
       {
         key: 'budget',
@@ -368,7 +360,6 @@ const TOOL_TIERS = {
   'cordeau-macon': {
     name: 'Cordeau de maçon',
     icon: 'gesture',
-    rentable: false,
     tiers: [
       {
         key: 'budget',

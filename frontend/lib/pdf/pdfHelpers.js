@@ -61,14 +61,41 @@ export function fmtLen(m) {
   return `${r.toFixed(2).replace('.', ',')} m`;
 }
 
+/* ── Normalisation espaces non-ASCII pour rendu PDF jsPDF ─────────────
+   Intl.NumberFormat('fr-FR') insère :
+     - U+202F (NARROW NO-BREAK SPACE) comme séparateur de milliers
+     - U+00A0 (NO-BREAK SPACE) avant le symbole monétaire €
+   Ces glyphes n'existent PAS dans l'encodage WinAnsi par défaut de
+   jsPDF (helvetica) — ils sont rendus comme un "/" parasite, d'où le
+   bug visuel "1/182,25 €" remonté en prod. On normalise tous les
+   espaces non-ASCII en espace standard U+0020 pour le rendu PDF.
+   Couvre aussi U+2009 (THIN SPACE) et U+200A (HAIR SPACE) par sécurité. */
+const NON_ASCII_SPACES = /[    ]/g;
+export function pdfSafeString(s) {
+  return String(s ?? '').replace(NON_ASCII_SPACES, ' ');
+}
+
 /* ── Formatage prix (format français : 1 234,56 €) ── */
 export function fmtPrice(v) {
-  return new Intl.NumberFormat('fr-FR', {
+  const raw = new Intl.NumberFormat('fr-FR', {
     style: 'currency',
     currency: 'EUR',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(parseFloat(v || 0));
+  return pdfSafeString(raw);
+}
+
+/* ── Formatage prix compact (sans centimes pour montants ≥ 1000) ──
+   Utile pour les cartes budget où l'espace est contraint. */
+export function fmtPriceCompact(v) {
+  const n = parseFloat(v || 0);
+  const rounded = n >= 1000 ? Math.round(n) : n;
+  const opts = n >= 1000
+    ? { style: 'currency', currency: 'EUR', minimumFractionDigits: 0, maximumFractionDigits: 0 }
+    : { style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2 };
+  const raw = new Intl.NumberFormat('fr-FR', opts).format(rounded);
+  return pdfSafeString(raw);
 }
 
 /* ── Formatage surface (toujours m² avec accent) ── */
