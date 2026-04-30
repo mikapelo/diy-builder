@@ -24,7 +24,7 @@ export default function PolitiqueConfidentialite() {
           <h2 className="content-legal-h2">Responsable du traitement</h2>
           <p className="content-legal-p"><strong>Entité :</strong> DIY Builder</p>
           <p className="content-legal-p"><strong>Adresse :</strong> Carbon Blanc, 33560, France</p>
-          <p className="content-legal-p"><strong>Contact DPO / RGPD :</strong> sans.mikael33000@gmail.com</p>
+          <p className="content-legal-p"><strong>Contact DPO / RGPD :</strong> contact@diy-builder.fr</p>
         </div>
 
         <div className="content-legal-section">
@@ -99,7 +99,7 @@ export default function PolitiqueConfidentialite() {
             ))}
           </ul>
           <p className="content-legal-p">
-            Pour exercer ces droits, contactez-nous à : <strong>sans.mikael33000@gmail.com</strong>
+            Pour exercer ces droits, contactez-nous à : <strong>contact@diy-builder.fr</strong>
           </p>
           <p className="content-legal-p">
             En cas de réponse insatisfaisante, vous pouvez introduire une réclamation auprès de la

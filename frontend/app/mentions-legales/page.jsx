@@ -26,7 +26,7 @@ export default function MentionsLegales() {
           <p className="content-legal-p"><strong>Forme juridique :</strong> EIRL (Entreprise Individuelle à Responsabilité Limitée)</p>
           <p className="content-legal-p"><strong>Adresse :</strong> Carbon Blanc, 33560, France</p>
           <p className="content-legal-p"><strong>SIRET :</strong> 849 354 006 00025</p>
-          <p className="content-legal-p"><strong>Email de contact :</strong> sans.mikael33000@gmail.com</p>
+          <p className="content-legal-p"><strong>Email de contact :</strong> contact@diy-builder.fr</p>
         </div>
 
         <div className="content-legal-section">
