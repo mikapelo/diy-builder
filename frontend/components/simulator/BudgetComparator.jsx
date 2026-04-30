@@ -30,7 +30,7 @@ const TIERS = [
 ];
 
 /* ── Store card ── */
-function StoreCard({ store, isBest, hasSlab, slabTotal }) {
+function StoreCard({ store, isBest, hasSlab, slabTotal, projectType }) {
   return (
     <div className={`store-card${isBest ? ' store-card--best' : ''}`}>
       {isBest && <span className="store-best-badge">Meilleur prix</span>}
@@ -60,7 +60,10 @@ function StoreCard({ store, isBest, hasSlab, slabTotal }) {
 
       <button
         className="store-cta"
-        onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(store.name + ' bois terrasse')}`, '_blank', 'noopener,noreferrer')}
+        onClick={() => {
+          const q = encodeURIComponent(store.searchQuery || store.name);
+          window.open(`/go?store=${store.id}&project=${projectType}&q=${q}`, '_blank', 'noopener,noreferrer');
+        }}
         aria-label={`Voir l'offre chez ${store.name}`}
       >
         <span className="material-symbols-outlined" style={{ fontSize: 16 }}>open_in_new</span>
@@ -217,6 +220,7 @@ export default function BudgetComparator({ area, slabTotal = 0, materials = null
             isBest={p.total === bestPrice}
             hasSlab={hasSlab}
             slabTotal={slabTotal}
+            projectType={projectType}
           />
         ))}
       </div>
