@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import BrandIcon from '@/components/ui/BrandIcon';
+import { trackModuleSelected } from '@/hooks/useAnalytics.js';
 
 export default function ProjectSwitch() {
   const pathname = usePathname();
@@ -40,7 +41,13 @@ export default function ProjectSwitch() {
 
           const ariaLabel = `Simulateur ${project.label}${isActive ? ' (actif)' : ''}`;
           return (
-            <Tab key={project.id} {...tabProps} aria-label={ariaLabel} aria-current={isActive ? 'page' : undefined}>
+            <Tab
+              key={project.id}
+              {...tabProps}
+              aria-label={ariaLabel}
+              aria-current={isActive ? 'page' : undefined}
+              onClick={() => { if (!isActive && !project.disabled) trackModuleSelected({ module: project.id }); }}
+            >
               <span className="project-switch-icon" aria-hidden="true">
                 <BrandIcon name={project.id} size={16} />
               </span>

@@ -11,7 +11,8 @@
  * Importe dynamiquement via DeckSimulator (ssr: false).
  * NE PAS modifier les calculs.
  */
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { trackViewModeChange, trackSimulationStart } from '@/hooks/useAnalytics.js';
 import { Canvas, useThree }   from '@react-three/fiber';
 import { OrbitControls }      from '@react-three/drei';
 import * as THREE              from 'three';
@@ -57,6 +58,21 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
     const t = setTimeout(() => setShowHint(false), 4000);
     return () => clearTimeout(t);
   }, [showHint]);
+
+  /* simulation-start — une fois par session quand la géométrie est prête */
+  const simStartFired = useRef(false);
+  useEffect(() => {
+    if (simStartFired.current || !structure?.geometry) return;
+    simStartFired.current = true;
+    const { width, depth } = structure.geometry.dimensions;
+    trackSimulationStart({ module: 'cabanon', width, depth });
+  }, [structure]);
+
+  /* Changement de mode — track côté utilisateur uniquement (pas ExportBridge) */
+  const handleModeChange = useCallback((key) => {
+    setSceneMode(key);
+    trackViewModeChange({ module: 'cabanon', mode: key });
+  }, []);
 
   /* Camera presets — must be before early return (rules-of-hooks) */
   const [camPreset, setCamPreset] = useState('hero');
@@ -133,7 +149,7 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
                   type="button"
                   role="tab"
                   className={`mode-tab${sceneMode === m.key ? ' active' : ''}`}
-                  onClick={() => setSceneMode(m.key)}
+                  onClick={() => handleModeChange(m.key)}
                   title={m.label}
                   aria-selected={sceneMode === m.key}
                 >

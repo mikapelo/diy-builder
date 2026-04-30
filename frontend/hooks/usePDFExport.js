@@ -21,6 +21,7 @@
 
 import { useState, useCallback } from 'react';
 import jsPDF from 'jspdf';
+import { trackPDFExport } from '@/hooks/useAnalytics.js';
 import { STORES } from '@/lib/materialPrices.js';
 import { calculateDetailedCost, calculateTotalCost, groupByCategory } from '@/lib/costCalculator.js';
 import { capture3DForExport, captureCanvasSnapshot } from '@/components/simulator/ExportPDF/canvasCapture.js';
@@ -94,6 +95,7 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
 
   const handleExportPDF = useCallback(async () => {
     setPdfStatus('generating');
+    trackPDFExport({ module: projectType });
     try {
       const doc = new jsPDF();
       const isSlab = foundationType === 'slab';

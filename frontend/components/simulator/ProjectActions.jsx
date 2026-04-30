@@ -8,6 +8,8 @@
  *   'artisan' — formulaire complet (nom, tél, cp, message) → ArtisanLeadModal
  */
 
+import { trackDevisClick } from '@/hooks/useAnalytics.js';
+
 const DIY_INCLUDES = [
   { icon: 'picture_as_pdf', label: 'PDF 4 pages (plans + coupes)' },
   { icon: 'inventory_2',    label: 'Liste de matériaux complète' },
@@ -121,7 +123,10 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
           <button
             type="button"
             className="pa-pivot-cta pa-pivot-cta--pro"
-            onClick={() => onOpenSaveModal('artisan')}
+            onClick={() => {
+              trackDevisClick({ module: projectType });
+              onOpenSaveModal('artisan');
+            }}
           >
             <span className="material-symbols-outlined" style={{ fontSize: 17 }}>send</span>
             Demander une mise en relation

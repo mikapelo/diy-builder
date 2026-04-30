@@ -17,10 +17,19 @@
 
 import { useEffect, useRef } from 'react';
 import useFocusTrap from '@/hooks/useFocusTrap';
+import { trackLeadSubmitted } from '@/hooks/useAnalytics.js';
 
 export default function ArtisanLeadModal({ open, onClose, projectType, dims, bom, initialEmail = '' }) {
   const panelRef = useRef(null);
   useFocusTrap(open, panelRef);
+
+  /* À appeler quand le formulaire artisan sera soumis avec succès.
+     trackLeadSubmitted est importé et prêt — brancher ici sur le onSubmit du form. */
+  // eslint-disable-next-line no-unused-vars
+  const handleLeadSubmit = () => {
+    trackLeadSubmitted({ module: projectType });
+    onClose();
+  };
 
   // Fermer sur Escape
   useEffect(() => {

@@ -17,6 +17,7 @@
 import { useMemo } from 'react';
 import { calculateDetailedCost, calculateTotalCost } from '@/lib/costCalculator.js';
 import { useLivePrices, isPricesCacheStale } from '@/hooks/useLivePrices.js';
+import { trackOutboundClick, trackAffiliateClick } from '@/hooks/useAnalytics.js';
 
 /** Formate un entier en notation française (espace fine comme séparateur milliers).
  *  Déterministe — même résultat sur serveur Node et client Chrome. */
@@ -62,7 +63,10 @@ function StoreCard({ store, isBest, hasSlab, slabTotal, projectType }) {
         className="store-cta"
         onClick={() => {
           const q = encodeURIComponent(store.searchQuery || store.name);
-          window.open(`/go?store=${store.id}&project=${projectType}&q=${q}`, '_blank', 'noopener,noreferrer');
+          const url = `/go?store=${store.id}&project=${projectType}&q=${q}`;
+          trackOutboundClick({ store: store.id, project: projectType, url });
+          trackAffiliateClick({ store: store.id, project: projectType });
+          window.open(url, '_blank', 'noopener,noreferrer');
         }}
         aria-label={`Voir l'offre chez ${store.name}`}
       >
