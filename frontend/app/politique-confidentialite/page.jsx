@@ -23,8 +23,8 @@ export default function PolitiqueConfidentialite() {
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Responsable du traitement</h2>
           <p className="content-legal-p"><strong>Entité :</strong> DIY Builder</p>
-          <p className="content-legal-p"><strong>Adresse :</strong> [À COMPLÉTER]</p>
-          <p className="content-legal-p"><strong>Contact DPO / RGPD :</strong> [À COMPLÉTER — email]</p>
+          <p className="content-legal-p"><strong>Adresse :</strong> Carbon Blanc, 33560, France</p>
+          <p className="content-legal-p"><strong>Contact DPO / RGPD :</strong> sans.mikael33000@gmail.com</p>
         </div>
 
         <div className="content-legal-section">
@@ -99,7 +99,7 @@ export default function PolitiqueConfidentialite() {
             ))}
           </ul>
           <p className="content-legal-p">
-            Pour exercer ces droits, contactez-nous à : <strong>[À COMPLÉTER — email]</strong>
+            Pour exercer ces droits, contactez-nous à : <strong>sans.mikael33000@gmail.com</strong>
           </p>
           <p className="content-legal-p">
             En cas de réponse insatisfaisante, vous pouvez introduire une réclamation auprès de la

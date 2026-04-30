@@ -103,7 +103,7 @@ export default function CGV() {
           </p>
           <p className="content-legal-p">
             En cas de litige relatif à l&apos;interprétation ou à l&apos;exécution des présentes, et à défaut
-            de résolution amiable, le tribunal compétent sera : <strong>[À COMPLÉTER — ex : Tribunal judiciaire de Paris]</strong>.
+            de résolution amiable, le tribunal compétent sera : <strong>Tribunal judiciaire de Bordeaux</strong>.
           </p>
         </div>
 

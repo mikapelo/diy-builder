@@ -23,15 +23,30 @@ export default function MentionsLegales() {
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Éditeur du site</h2>
           <p className="content-legal-p"><strong>Raison sociale :</strong> DIY Builder</p>
-          <p className="content-legal-p"><strong>Forme juridique :</strong> [À COMPLÉTER]</p>
-          <p className="content-legal-p"><strong>Adresse :</strong> [À COMPLÉTER]</p>
-          <p className="content-legal-p"><strong>SIRET :</strong> [À COMPLÉTER]</p>
-          <p className="content-legal-p"><strong>Email de contact :</strong> [À COMPLÉTER]</p>
+          <p className="content-legal-p"><strong>Forme juridique :</strong> EIRL (Entreprise Individuelle à Responsabilité Limitée)</p>
+          <p className="content-legal-p"><strong>Adresse :</strong> Carbon Blanc, 33560, France</p>
+          <p className="content-legal-p"><strong>SIRET :</strong> 849 354 006 00025</p>
+          <p className="content-legal-p"><strong>Email de contact :</strong> sans.mikael33000@gmail.com</p>
         </div>
 
         <div className="content-legal-section">
           <h2 className="content-legal-h2">Directeur de la publication</h2>
-          <p className="content-legal-p">[À COMPLÉTER] — en qualité de [gérant / fondateur / etc.]</p>
+          <p className="content-legal-p">Mikael Sans — en qualité de fondateur</p>
+        </div>
+
+        <div className="content-legal-section">
+          <h2 className="content-legal-h2">Partenariats et affiliation</h2>
+          <p className="content-legal-p">
+            Ce site participe au Programme Partenaires d&apos;Amazon EU, un programme d&apos;affiliation
+            conçu pour permettre à des sites de percevoir une rémunération grâce à la création de liens
+            vers Amazon.fr. En tant que Partenaire d&apos;Amazon, DIY Builder réalise un bénéfice sur les
+            achats remplissant les conditions requises.
+          </p>
+          <p className="content-legal-p">
+            Ce site peut également contenir des liens affiliés vers d&apos;autres enseignes partenaires
+            (Leroy Merlin, Castorama, ManoMano). Ces liens sont signalés et n&apos;influencent pas
+            l&apos;objectivité des comparaisons présentées.
+          </p>
         </div>
 
         <div className="content-legal-section">
