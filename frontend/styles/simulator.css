@@ -4538,16 +4538,34 @@
     letter-spacing: 0.04em; /* réduit vs 0.08em pour éviter l'expansion horizontale */
   }
 
-  /* Barre récap verte — labels autorisés à wrapper sur 2 lignes */
-  .ctrl-live-item-lbl {
-    white-space: normal;
-    overflow-wrap: break-word;
-    text-align: center;
-    line-height: 1.2;
-  }
+  /* Barre récap verte — layout vertical : surface en haut, items en bas */
   .ctrl-live-summary {
+    flex-direction: column;
     gap: 8px;
-    padding: 12px 12px;
+    padding: 10px 12px;
+  }
+  /* Séparateur surface → items : bottom au lieu de right */
+  .ctrl-live-summary:has(.ctrl-live-items) .ctrl-live-surface {
+    padding-right: 0;
+    border-right: none;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #C8E8CC;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  .ctrl-live-items {
+    gap: 4px;
+  }
+  /* Items — taille réduite pour tenir dans la rangée */
+  .ctrl-live-item {
+    padding: 4px 4px;
+  }
+  .ctrl-live-item-val {
+    font-size: 13px;
+  }
+  .ctrl-live-item-lbl {
+    font-size: 8px;
+    white-space: nowrap;
   }
 }
 
