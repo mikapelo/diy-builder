@@ -1,11 +1,11 @@
 'use client';
 
 /**
- * useAnalytics — Hook Plausible custom events
+ * useAnalytics — Hook Umami custom events
  *
- * Safe : window.plausible peut ne pas exister en dev/SSR/adblocker.
- * L'API custom events Plausible se déclenche via :
- *   window.plausible?.('nom-event', { props: { key: value } })
+ * Safe : window.umami peut ne pas exister en dev/SSR/adblocker.
+ * L'API custom events Umami se déclenche via :
+ *   window.umami?.track('nom-event', { key: value })
  *
  * Exports :
  *   trackEvent(name, props)       — fonction générique
@@ -27,8 +27,8 @@
  */
 export function trackEvent(name, props = {}) {
   if (typeof window === 'undefined') return;
-  if (typeof window.plausible !== 'function') return;
-  window.plausible(name, { props });
+  if (typeof window.umami?.track !== 'function') return;
+  window.umami.track(name, props);
 }
 
 /** Event 1 — outbound-click : clic "Voir l'offre" dans BudgetComparator

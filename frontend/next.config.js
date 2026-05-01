@@ -93,16 +93,16 @@ const withPWA = require('next-pwa')({
 // On passera en mode bloquant après observation des reports.
 // - 'unsafe-inline'/'unsafe-eval' nécessaires pour l'hydration Next.js et HMR
 // - 'unsafe-inline' style-src nécessaire pour Tailwind/Next inline styles
-// - Plausible: script + connect (analytics)
+// - Umami: script + connect (analytics)
 // - Google Fonts: style + font
 // - Phosphor Icons (unpkg): style
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob:",
-  "connect-src 'self' https://plausible.io",
+  "connect-src 'self' https://cloud.umami.is https://api.umami.is",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

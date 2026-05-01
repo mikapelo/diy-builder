@@ -45,7 +45,7 @@ export const viewport = {
   viewportFit: 'cover',
 };
 
-const PLAUSIBLE_DOMAIN = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
 
 export default function RootLayout({ children }) {
   return (
@@ -76,16 +76,16 @@ export default function RootLayout({ children }) {
         {children}
 
         {/*
-          Plausible Analytics — privacy-first, CNIL-exempt
+          Umami Analytics — privacy-first, CNIL-exempt
           - Aucun cookie déposé → pas de bannière de consentement requise
-          - IP anonymisée côté Plausible, aucune donnée personnelle
-          - Activé uniquement si NEXT_PUBLIC_PLAUSIBLE_DOMAIN est défini
+          - IP anonymisée, aucune donnée personnelle transmise
+          - Activé uniquement si NEXT_PUBLIC_UMAMI_WEBSITE_ID est défini
         */}
-        {PLAUSIBLE_DOMAIN && (
+        {UMAMI_WEBSITE_ID && (
           <Script
             defer
-            data-domain={PLAUSIBLE_DOMAIN}
-            src="https://plausible.io/js/script.tagged-events.js"
+            data-website-id={UMAMI_WEBSITE_ID}
+            src="https://cloud.umami.is/script.js"
             strategy="afterInteractive"
           />
         )}
