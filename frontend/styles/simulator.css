@@ -977,21 +977,24 @@
 .ctrl-live-items {
   display: flex;
   flex: 1;
-  gap: 0;
+  min-width: 0;
+  gap: 5px;
   align-items: stretch;
 }
 .ctrl-live-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   flex: 1;
-  min-width: 0; /* évite que le flex item déborde la barre verte */
+  min-width: 0;
   overflow: hidden;
-  padding: 0 8px;
-  border-left: 1px solid #C8E8CC;
+  padding: 4px 6px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid #C8E8CC;
+  border-radius: 6px;
   gap: 2px;
 }
-.ctrl-live-item:first-child { border-left: none; }
 .ctrl-live-item-val {
   font-size: 15px;
   font-weight: 800;
