@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 /* ── Presets cabanon — formats prédéfinis par catégorie ────────────── */
 // Max dimensionnel = 5×4m (20 m²) — seuil permis de construire.
@@ -68,7 +68,13 @@ function boundsFor(projectType, showHeight) {
 function InputStepper({ label, value, setValue, min = 0.5, max = 20, step = 0.5 }) {
   const [warn, setWarn] = useState(null);
   const [pulse, setPulse] = useState(false);
+  const [localValue, setLocalValue] = useState(String(value));
   const valRef = useRef(null);
+
+  // Sync local display string when prop changes from outside (preset click, range, nudge)
+  useEffect(() => {
+    setLocalValue(String(value));
+  }, [value]);
 
   function applyValue(next) {
     setValue(next);
@@ -83,9 +89,23 @@ function InputStepper({ label, value, setValue, min = 0.5, max = 20, step = 0.5 
   }
 
   function handleChange(e) {
+    // Update display only — don't propagate until blur/Enter
+    setLocalValue(e.target.value);
+  }
+
+  function handleBlur(e) {
     const v = parseFloat(e.target.value);
     if (!isNaN(v)) {
       applyValue(Math.min(max, Math.max(min, v)));
+    } else {
+      // Reset to last valid value
+      setLocalValue(String(value));
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      e.currentTarget.blur();
     }
   }
 
@@ -116,9 +136,11 @@ function InputStepper({ label, value, setValue, min = 0.5, max = 20, step = 0.5 
           <input
             type="number"
             className="ctrl-val"
-            value={value}
+            value={localValue}
             min={min} max={max} step={step}
             onChange={handleChange}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
             aria-label={`${label} en mètres`}
           />
           <span className="ctrl-unit">m</span>
