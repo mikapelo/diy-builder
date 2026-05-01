@@ -679,6 +679,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0; /* évite que la cellule grid déborde au-delà de 1fr */
 }
 .ctrl-label {
   font-size: 11px;
@@ -984,6 +985,8 @@
   flex-direction: column;
   align-items: center;
   flex: 1;
+  min-width: 0; /* évite que le flex item déborde la barre verte */
+  overflow: hidden;
   padding: 0 8px;
   border-right: 1px solid #C8E8CC;
   gap: 2px;
@@ -4520,6 +4523,28 @@
     font-size: 12px;
     padding: 8px 8px;
     white-space: nowrap;
+  }
+
+  /* Grille Dimensions (terrasse/pergola/clôture) — réduire gap + contraindre les cellules */
+  .ctrl-inputs {
+    gap: 8px;
+  }
+  .ctrl-label {
+    white-space: normal;
+    overflow-wrap: break-word;
+    letter-spacing: 0.04em; /* réduit vs 0.08em pour éviter l'expansion horizontale */
+  }
+
+  /* Barre récap verte — labels autorisés à wrapper sur 2 lignes */
+  .ctrl-live-item-lbl {
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .ctrl-live-summary {
+    gap: 8px;
+    padding: 12px 12px;
   }
 }
 

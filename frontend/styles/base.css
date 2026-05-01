@@ -136,7 +136,7 @@ html {
   color-scheme: light;
   /* Empêche Firefox/Samsung d'inflater les polices mobiles */
   -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: none;
+  -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
