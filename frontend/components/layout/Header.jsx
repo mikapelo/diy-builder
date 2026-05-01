@@ -223,7 +223,7 @@ export default function Header({ view, resultat, copied, onRetour, onCopierLien,
             </div>
           )}
           {view === 'module' && (
-            <button onClick={onRetour} className="hidden sm:inline-flex btn-secondary text-xs px-4 py-2">
+            <button onClick={onRetour} className="header-accueil-btn btn-secondary text-xs px-4 py-2">
               <span className="material-symbols-outlined" style={{ fontSize: 16 }}>home</span>
               Accueil
             </button>

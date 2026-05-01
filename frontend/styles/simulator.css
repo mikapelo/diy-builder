@@ -4452,3 +4452,13 @@
   }
 }
 
+/* ══════════════════════════════════════════════════
+   MOBILE-ONLY UTILITIES
+══════════════════════════════════════════════════ */
+@media (max-width: 639px) {
+  /* Bouton Accueil dans le header module — doublon avec le logo sur mobile */
+  .header-accueil-btn {
+    display: none !important;
+  }
+}
+
