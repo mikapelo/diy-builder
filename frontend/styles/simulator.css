@@ -988,10 +988,10 @@
   min-width: 0; /* évite que le flex item déborde la barre verte */
   overflow: hidden;
   padding: 0 8px;
-  border-right: 1px solid #C8E8CC;
+  border-left: 1px solid #C8E8CC;
   gap: 2px;
 }
-.ctrl-live-item:last-child { border-right: none; }
+.ctrl-live-item:first-child { border-left: none; }
 .ctrl-live-item-val {
   font-size: 15px;
   font-weight: 800;
