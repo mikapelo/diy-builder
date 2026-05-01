@@ -111,15 +111,15 @@ export default function Header({ view, resultat, copied, onRetour, onCopierLien,
         {/* Actions */}
         <div className="flex items-center gap-2 flex-shrink-0">
           {view === 'calculator' && (
-            <button onClick={onRetour} className="btn-secondary text-xs px-4 py-2">
+            <button onClick={onRetour} className="header-accueil-btn btn-secondary text-xs px-4 py-2">
               <span className="material-symbols-outlined" style={{ fontSize: 16 }}>arrow_back</span>
               Accueil
             </button>
           )}
           {resultat && (
-            <button onClick={onCopierLien} className="btn-secondary text-xs px-4 py-2">
+            <button onClick={onCopierLien} className="btn-secondary header-share-btn text-xs px-4 py-2">
               <span className="material-symbols-outlined" style={{ fontSize: 14 }}>link</span>
-              {copied ? 'Copié !' : 'Partager'}
+              <span className="header-share-label">{copied ? 'Copié !' : 'Partager'}</span>
             </button>
           )}
           {view !== 'module' && (

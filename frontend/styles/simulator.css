@@ -4456,9 +4456,31 @@
    MOBILE-ONLY UTILITIES
 ══════════════════════════════════════════════════ */
 @media (max-width: 639px) {
-  /* Bouton Accueil dans le header module — doublon avec le logo sur mobile */
+  /* Bouton Accueil dans le header — doublon avec le logo sur mobile */
   .header-accueil-btn {
     display: none !important;
+  }
+
+  /* Bouton Partager — icône seule sur mobile, texte masqué */
+  .header-share-label {
+    display: none;
+  }
+  .header-share-btn {
+    padding: 8px 10px !important;
+  }
+
+  /* Configurateur 3D — masquer le label sur mobile, les tabs prennent toute la place */
+  .deck-schema-label {
+    display: none;
+  }
+  .deck-schema-header {
+    justify-content: flex-end;
+  }
+
+  /* Mode tabs — taille réduite sur mobile */
+  .mode-tab {
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }
 
