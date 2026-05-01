@@ -4482,5 +4482,16 @@
     padding: 6px 10px;
     font-size: 12px;
   }
+
+  /* Sélecteur enseigne matériaux — 2 boutons par ligne sur mobile */
+  [data-theme="g-v2"] .mat-store-selector {
+    flex-wrap: wrap;
+  }
+  [data-theme="g-v2"] .mat-store-btn {
+    flex: 1 1 calc(50% - 4px);
+    justify-content: center;
+    font-size: 11px;
+    padding: 7px 8px;
+  }
 }
 
