@@ -1646,6 +1646,7 @@
   padding: 24px 28px;
   box-shadow: 0 1px 4px rgba(0,0,0,.03), 0 4px 12px rgba(0,0,0,.04);
   border: 1px solid var(--border);
+  overflow-x: hidden;
 }
 .result-block-header {
   display: flex;

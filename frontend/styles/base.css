@@ -134,6 +134,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   color-scheme: light;
+  /* Empêche Firefox/Samsung d'inflater les polices mobiles */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: none;
+  text-size-adjust: 100%;
 }
 
 body {
