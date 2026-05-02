@@ -125,8 +125,9 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
               body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
             });
           } catch (_) { /* silencieux */ }
+        } else {
+          doc.save(`cabanon-${dims.width}x${dims.depth}.pdf`);
         }
-        doc.save(`cabanon-${dims.width}x${dims.depth}.pdf`);
       } else if (projectType === 'pergola') {
         const snapshot = await captureCanvasSnapshot(getBridge);
         generatePergolaPDF(doc, {
@@ -143,8 +144,9 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
               body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
             });
           } catch (_) { /* silencieux */ }
+        } else {
+          doc.save(`pergola-${dims.width}x${dims.depth}m.pdf`);
         }
-        doc.save(`pergola-${dims.width}x${dims.depth}m.pdf`);
       } else if (projectType === 'cloture') {
         const snapshot = await captureCanvasSnapshot(getBridge);
         generateCloturePDF(doc, {
@@ -161,8 +163,9 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
               body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
             });
           } catch (_) { /* silencieux */ }
+        } else {
+          doc.save(`cloture-${dims.width}x${dims.depth}m.pdf`);
         }
-        doc.save(`cloture-${dims.width}x${dims.depth}m.pdf`);
       } else {
         const snapshot = await captureCanvasSnapshot(getBridge);
         generateTerrassePDF(doc, {
@@ -179,8 +182,9 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
               body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
             });
           } catch (_) { /* silencieux */ }
+        } else {
+          doc.save(`terrasse-${dims.width}x${dims.depth}m.pdf`);
         }
-        doc.save(`terrasse-${dims.width}x${dims.depth}m.pdf`);
       }
       setPdfStatus('done');
       setTimeout(() => setPdfStatus('idle'), 2500);

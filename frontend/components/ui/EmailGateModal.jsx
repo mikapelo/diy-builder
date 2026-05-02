@@ -10,8 +10,8 @@ import { useState } from 'react';
  *   onConfirm    fn(email) — appelé après validation
  *   onClose      fn()      — appelé si l'utilisateur ferme sans valider
  */
-export default function EmailGateModal({ projectType, dims, onConfirm, onClose }) {
-  const [email, setEmail]   = useState('');
+export default function EmailGateModal({ projectType, dims, onConfirm, onClose, defaultEmail = '' }) {
+  const [email, setEmail]   = useState(defaultEmail);
   const [error, setError]   = useState('');
   const [loading, setLoading] = useState(false);
 

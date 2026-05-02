@@ -173,15 +173,8 @@ function SimulatorContent({ projectType }) {
 
   /* ── Email gate PDF ── */
   const handleGatedExportPDF = useCallback(() => {
-    const storedEmail = typeof window !== 'undefined'
-      ? localStorage.getItem('diy_lead_email')
-      : null;
-    if (storedEmail) {
-      handleExportPDF(storedEmail);
-    } else {
-      setEmailGateOpen(true);
-    }
-  }, [handleExportPDF, projectType]);
+    setEmailGateOpen(true);
+  }, []);
   gatedExportRef.current = handleGatedExportPDF;
 
   const slabTotal = slab?.totalPrice ?? 0;
@@ -230,7 +223,7 @@ function SimulatorContent({ projectType }) {
         area={area}
         slabTotal={slabTotal}
         onOpenSaveModal={handleOpenSaveModal}
-        onExportPDF={handleGatedExportPDF}
+        onExportPDF={() => handleExportPDF()}
         pdfStatus={pdfStatus}
       />
 
@@ -255,6 +248,7 @@ function SimulatorContent({ projectType }) {
         <EmailGateModal
           projectType={projectType}
           dims={dims}
+          defaultEmail={typeof window !== 'undefined' ? (localStorage.getItem('diy_lead_email') ?? '') : ''}
           onConfirm={(email) => {
             setEmailGateOpen(false);
             handleExportPDF(email);
