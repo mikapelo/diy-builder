@@ -57,8 +57,9 @@ function StatCard({ label, value, sub }) {
 }
 
 /* ── Login screen ── */
-function LoginScreen({ onLogin, error }) {
+function LoginScreen({ onLogin, error, serverError, loading }) {
   const [pw, setPw] = useState('');
+  const hasError = error || serverError;
   return (
     <div style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -76,26 +77,33 @@ function LoginScreen({ onLogin, error }) {
           placeholder="Mot de passe"
           value={pw}
           onChange={(e) => setPw(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && onLogin(pw)}
+          onKeyDown={(e) => e.key === 'Enter' && !loading && onLogin(pw)}
           style={{
-            width: '100%', padding: '10px 14px', border: '1px solid #d1cdc6',
+            width: '100%', padding: '10px 14px',
+            border: `1px solid ${hasError ? '#ef4444' : '#d1cdc6'}`,
             borderRadius: 8, fontSize: 14, outline: 'none', boxSizing: 'border-box',
-            marginBottom: error ? 8 : 16,
+            marginBottom: hasError ? 8 : 16,
           }}
           autoFocus
+          disabled={loading}
         />
         {error && (
           <p style={{ fontSize: 12, color: '#ef4444', margin: '0 0 12px' }}>Mot de passe incorrect</p>
         )}
+        {serverError && (
+          <p style={{ fontSize: 12, color: '#ef4444', margin: '0 0 12px' }}>{serverError}</p>
+        )}
         <button
-          onClick={() => onLogin(pw)}
+          onClick={() => !loading && onLogin(pw)}
+          disabled={loading}
           style={{
-            width: '100%', padding: '10px 0', background: '#C9971E', color: '#fff',
+            width: '100%', padding: '10px 0',
+            background: loading ? '#d4a843' : '#C9971E', color: '#fff',
             border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600,
-            cursor: 'pointer',
+            cursor: loading ? 'not-allowed' : 'pointer',
           }}
         >
-          Connexion
+          {loading ? 'Connexion…' : 'Connexion'}
         </button>
       </div>
     </div>
@@ -104,18 +112,20 @@ function LoginScreen({ onLogin, error }) {
 
 /* ── Main Dashboard ── */
 export default function LeadsDashboard() {
-  const [auth, setAuth] = useState(null); // null = not tried, false = wrong, string = password
+  const [auth, setAuth] = useState(null);
   const [leads, setLeads] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [loginError, setLoginError] = useState(false);
+  const [error, setError] = useState(null);       // erreur dashboard (refresh)
+  const [loginError, setLoginError] = useState(false);      // mauvais mdp
+  const [loginServerError, setLoginServerError] = useState(null); // erreur serveur au login
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
 
-  const fetchLeads = useCallback(async (password) => {
+  const fetchLeads = useCallback(async (password, isLogin = false) => {
     setLoading(true);
-    setError(null);
+    if (isLogin) { setLoginError(false); setLoginServerError(null); }
+    else setError(null);
     try {
       const res = await fetch('/api/admin/leads', {
         headers: {
@@ -125,24 +135,29 @@ export default function LeadsDashboard() {
       if (res.status === 401) {
         setLoginError(true);
         setAuth(null);
-        setLoading(false);
         return;
       }
-      if (!res.ok) throw new Error(`Erreur ${res.status}`);
+      if (!res.ok) {
+        const msg = `Erreur serveur (${res.status}) — vérifiez les variables KV sur Vercel`;
+        if (isLogin) setLoginServerError(msg);
+        else setError(msg);
+        return;
+      }
       const data = await res.json();
       setLeads(data.leads ?? []);
       setTotal(data.total ?? 0);
       setAuth(password);
     } catch (err) {
-      setError(err.message);
+      const msg = `Impossible de joindre l'API : ${err.message}`;
+      if (isLogin) setLoginServerError(msg);
+      else setError(msg);
     } finally {
       setLoading(false);
     }
   }, []);
 
   const handleLogin = (password) => {
-    setLoginError(false);
-    fetchLeads(password);
+    fetchLeads(password, true);
   };
 
   // Stats
@@ -167,7 +182,14 @@ export default function LeadsDashboard() {
   });
 
   if (!auth) {
-    return <LoginScreen onLogin={handleLogin} error={loginError} />;
+    return (
+      <LoginScreen
+        onLogin={handleLogin}
+        error={loginError}
+        serverError={loginServerError}
+        loading={loading}
+      />
+    );
   }
 
   return (
@@ -186,7 +208,7 @@ export default function LeadsDashboard() {
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button
-            onClick={() => fetchLeads(auth)}
+            onClick={() => fetchLeads(auth, false)}
             style={{
               padding: '8px 16px', background: '#f0ede6', color: '#1a1c1b',
               border: '1px solid #d1cdc6', borderRadius: 8, fontSize: 13,
