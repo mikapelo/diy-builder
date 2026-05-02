@@ -187,14 +187,14 @@ export function generateCloturePDF(doc, { dims, materials, projectConfig, budget
   }
 
   /* ═══════════════════════════════════════════════════════════
-     PAGE 5 - Outils recommandés
+     PAGE 5 - Outils recommandes
   ═══════════════════════════════════════════════════════════ */
   doc.addPage();
 
   const yTools = pageTitle(doc, 'Outils recommandes pour votre projet',
-    'Liens Amazon — achat direct avec livraison rapide');
+    'Achetez vos outils sur Amazon avec livraison rapide');
 
-  const tools = [
+  const toolsList = [
     { label: 'Tariere electrique', search: 'tariere electrique poteau cloture' },
     { label: 'Niveau a bulle', search: 'niveau bulle chantier' },
     { label: 'Fil a plomb', search: 'fil a plomb chantier' },
@@ -206,41 +206,41 @@ export function generateCloturePDF(doc, { dims, materials, projectConfig, budget
   ];
 
   const colW = 88;
-  const rowH = 22;
+  const rowH = 24;
   const startX = 15;
-  let ty = yTools + 8;
+  const ty = yTools + 8;
 
-  tools.forEach((tool, i) => {
+  toolsList.forEach((tool, i) => {
     const col = i % 2;
     const row = Math.floor(i / 2);
     const x = startX + col * (colW + 9);
     const y = ty + row * rowH;
-    const url = `https://www.amazon.fr/s?k=${encodeURIComponent(tool.search)}&tag=diybuilder01-21`;
+    const url = 'https://www.amazon.fr/s?k=' + encodeURIComponent(tool.search) + '&tag=diybuilder01-21';
 
     doc.setFillColor(252, 250, 245);
     doc.setDrawColor(229, 226, 216);
     doc.roundedRect(x, y, colW, rowH - 3, 3, 3, 'FD');
 
-    doc.setFontSize(7);
-    doc.setTextColor(255, 153, 0);
-    doc.text('amazon', x + 3, y + 5);
-
     doc.setFontSize(9);
     doc.setTextColor(26, 28, 27);
     doc.setFont('helvetica', 'bold');
-    doc.text(tool.label, x + 3, y + 11);
+    doc.text(tool.label, x + 3, y + 9);
 
     doc.setFontSize(7.5);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(201, 151, 30);
-    doc.textWithLink('Voir sur Amazon →', x + 3, y + 16, { url });
+    doc.text('Voir sur Amazon', x + 3, y + 16);
+
+    doc.link(x, y, colW, rowH - 3, { url });
+
     doc.setTextColor(26, 28, 27);
+    doc.setFont('helvetica', 'normal');
   });
 
   doc.setFontSize(7);
   doc.setTextColor(156, 145, 136);
   doc.text(
-    'Liens affilies Amazon — DIY Builder percoit une commission sans surcout pour vous.',
+    'Liens affilies Amazon - DIY Builder percoit une commission sans surcout pour vous.',
     105, 270, { align: 'center' },
   );
 
