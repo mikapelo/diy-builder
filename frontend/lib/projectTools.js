@@ -11,7 +11,7 @@
  * Tag Amazon : 'diybuilder-21' (placeholder — remplacer après validation programme)
  */
 
-const AMAZON_TAG = 'diybuilder-21';
+const AMAZON_TAG = 'diybuilder01-21';
 
 export function buildAmazonUrl(query, asin) {
   if (asin) return `https://www.amazon.fr/dp/${asin}?tag=${AMAZON_TAG}`;
