@@ -3112,6 +3112,8 @@
 }
 .modal-input::placeholder { color: var(--text-4, #b0a898); }
 .modal-input:disabled { opacity: 0.55; cursor: not-allowed; }
+.modal-input--error { border-color: #d9534f !important; }
+.modal-error { font-size: 11.5px; color: #d9534f; margin-top: 3px; font-family: 'Inter', sans-serif; }
 .modal-select {
   appearance: none;
   -webkit-appearance: none;
