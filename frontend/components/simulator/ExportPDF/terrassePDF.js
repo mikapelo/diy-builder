@@ -46,7 +46,7 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   const { width, depth, area } = dims;
   const { boards, joists, pads, screws, entretoises, bande, slab } = materials;
   const isSlab = foundationType === 'slab';
-  const TOTAL = 6;
+  const TOTAL = 7;
   const terTitle = `${projectConfig?.pdfTitle ?? 'Terrasse bois'} ${width}×${depth} m`;
 
   const poseLabel = isSlab
@@ -370,4 +370,64 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   ], { title: 'Notes techniques' });
 
   cartouche(doc, { pageNum: 6, totalPages: TOTAL, viewTitle: 'Coupe transversale', projectTitle: terTitle, scale: '~1:4' });
+
+  /* ══════════════════════════════════════════════
+     PAGE 7 - Outils recommandés
+  ══════════════════════════════════════════════ */
+  doc.addPage();
+
+  const yTools = pageTitle(doc, 'Outils recommandes pour votre projet',
+    'Liens Amazon — achat direct avec livraison rapide');
+
+  const tools = [
+    { label: 'Visseuse a percussion', search: 'visseuse percussion bois terrasse' },
+    { label: 'Scie circulaire', search: 'scie circulaire bois terrasse' },
+    { label: 'Niveau laser', search: 'niveau laser chantier' },
+    { label: 'Equerre de charpente', search: 'equerre charpente inox' },
+    { label: 'Serre-joints', search: 'serre joint bois' },
+    { label: 'Meches a bois', search: 'meche bois percage' },
+    { label: 'Vis inox terrasse', search: 'vis inox terrasse bois' },
+    { label: 'Enduit de protection bois', search: 'lasure protection bois exterieur' },
+  ];
+
+  const colW = 88;
+  const rowH = 22;
+  const startX = 15;
+  let ty = yTools + 8;
+
+  tools.forEach((tool, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = startX + col * (colW + 9);
+    const y = ty + row * rowH;
+    const url = `https://www.amazon.fr/s?k=${encodeURIComponent(tool.search)}&tag=diybuilder01-21`;
+
+    doc.setFillColor(252, 250, 245);
+    doc.setDrawColor(229, 226, 216);
+    doc.roundedRect(x, y, colW, rowH - 3, 3, 3, 'FD');
+
+    doc.setFontSize(7);
+    doc.setTextColor(255, 153, 0);
+    doc.text('amazon', x + 3, y + 5);
+
+    doc.setFontSize(9);
+    doc.setTextColor(26, 28, 27);
+    doc.setFont('helvetica', 'bold');
+    doc.text(tool.label, x + 3, y + 11);
+
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(201, 151, 30);
+    doc.textWithLink('Voir sur Amazon →', x + 3, y + 16, { url });
+    doc.setTextColor(26, 28, 27);
+  });
+
+  doc.setFontSize(7);
+  doc.setTextColor(156, 145, 136);
+  doc.text(
+    'Liens affilies Amazon — DIY Builder percoit une commission sans surcout pour vous.',
+    105, 270, { align: 'center' },
+  );
+
+  cartouche(doc, { pageNum: TOTAL, totalPages: TOTAL, viewTitle: 'Outils recommandes', projectTitle: terTitle });
 }

@@ -26,7 +26,7 @@ import { renderPDFLayers }   from '@/lib/plan/renderPDF.js';
 import { MAT, PLAN_BG }      from '@/lib/plan/palette.js';
 import { drawStoreCards, drawBOMTable, drawBudgetTotal, drawBudgetPage } from './pdfBudgetSection.js';
 
-const TOTAL = 6;
+const TOTAL = 7;
 
 /* ════════════════════════════════════════════════════════════
    PAGE 1 — Vue de synthese (capture 3D reelle + annotations)
@@ -420,4 +420,62 @@ export async function generateCabanonPDF(doc, { dims, materials, projectConfig, 
     drawCabanonCoupe(doc, materials.geometry);
     cartouche(doc, { pageNum: 6, totalPages: TOTAL, viewTitle: 'Coupe transversale', projectTitle: cabTitle, scale: '~1:20' });
   }
+
+  /* ────────── PAGE 7 — Outils recommandés ────────── */
+  doc.addPage();
+
+  const yTools = pageTitle(doc, 'Outils recommandes pour votre projet',
+    'Liens Amazon — achat direct avec livraison rapide');
+
+  const tools = [
+    { label: 'Scie sauteuse', search: 'scie sauteuse bois ossature' },
+    { label: 'Cloueur pneumatique', search: 'cloueur pneumatique charpente' },
+    { label: 'Equerre de charpente', search: 'equerre charpente bois' },
+    { label: 'Niveau laser rotatif', search: 'niveau laser rotatif chantier' },
+    { label: 'Visseuse 18V', search: 'visseuse 18v bois' },
+    { label: 'Meches a bois longues', search: 'meche bois longue percage ossature' },
+    { label: 'Agrafes bardage', search: 'agrafe bardage bois' },
+    { label: 'Hydrofuge bois', search: 'hydrofuge bois bardage exterieur' },
+  ];
+
+  const colW = 88;
+  const rowH = 22;
+  const startX = 15;
+  let ty = yTools + 8;
+
+  tools.forEach((tool, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = startX + col * (colW + 9);
+    const y = ty + row * rowH;
+    const url = `https://www.amazon.fr/s?k=${encodeURIComponent(tool.search)}&tag=diybuilder01-21`;
+
+    doc.setFillColor(252, 250, 245);
+    doc.setDrawColor(229, 226, 216);
+    doc.roundedRect(x, y, colW, rowH - 3, 3, 3, 'FD');
+
+    doc.setFontSize(7);
+    doc.setTextColor(255, 153, 0);
+    doc.text('amazon', x + 3, y + 5);
+
+    doc.setFontSize(9);
+    doc.setTextColor(26, 28, 27);
+    doc.setFont('helvetica', 'bold');
+    doc.text(tool.label, x + 3, y + 11);
+
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(201, 151, 30);
+    doc.textWithLink('Voir sur Amazon →', x + 3, y + 16, { url });
+    doc.setTextColor(26, 28, 27);
+  });
+
+  doc.setFontSize(7);
+  doc.setTextColor(156, 145, 136);
+  doc.text(
+    'Liens affilies Amazon — DIY Builder percoit une commission sans surcout pour vous.',
+    105, 270, { align: 'center' },
+  );
+
+  cartouche(doc, { pageNum: TOTAL, totalPages: TOTAL, viewTitle: 'Outils recommandes', projectTitle: cabTitle });
 }

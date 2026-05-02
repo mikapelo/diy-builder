@@ -17,6 +17,46 @@ import { formatLength } from '@/lib/formatters.js';
 import BrandIcon from '@/components/ui/BrandIcon';
 import { useLivePrices, isPricesCacheStale } from '@/hooks/useLivePrices.js';
 
+const TOOLS_BY_PROJECT = {
+  terrasse: [
+    { label: 'Visseuse à percussion', search: 'visseuse percussion bois terrasse' },
+    { label: 'Scie circulaire', search: 'scie circulaire bois terrasse' },
+    { label: 'Niveau laser', search: 'niveau laser chantier' },
+    { label: 'Équerre de charpente', search: 'equerre charpente inox' },
+    { label: 'Serre-joints', search: 'serre joint bois' },
+    { label: 'Vis inox terrasse', search: 'vis inox terrasse bois' },
+    { label: 'Lasure bois extérieur', search: 'lasure protection bois exterieur' },
+  ],
+  pergola: [
+    { label: 'Visseuse à choc', search: 'visseuse choc boulonnage' },
+    { label: 'Niveau à bulle 120cm', search: 'niveau bulle 120cm chantier' },
+    { label: 'Tarière manuelle', search: 'tariere manuelle poteau' },
+    { label: 'Sangle de levage', search: 'sangle levage bois charpente' },
+    { label: 'Boulons M10 inox', search: 'boulon m10 inox charpente' },
+    { label: 'Lasure bois extérieur', search: 'lasure bois exterieur pergola' },
+  ],
+  cabanon: [
+    { label: 'Scie sauteuse', search: 'scie sauteuse bois ossature' },
+    { label: 'Cloueur pneumatique', search: 'cloueur pneumatique charpente' },
+    { label: 'Niveau laser rotatif', search: 'niveau laser rotatif chantier' },
+    { label: 'Visseuse 18V', search: 'visseuse 18v bois' },
+    { label: 'Agrafes bardage', search: 'agrafe bardage bois' },
+    { label: 'Hydrofuge bois', search: 'hydrofuge bois bardage exterieur' },
+  ],
+  cloture: [
+    { label: 'Tarière électrique', search: 'tariere electrique poteau cloture' },
+    { label: 'Niveau à bulle', search: 'niveau bulle chantier' },
+    { label: 'Massette', search: 'massette maillet chantier' },
+    { label: 'Pince coupante', search: 'pince coupante grillage' },
+    { label: 'Vis inox', search: 'vis inox cloture bois' },
+    { label: 'Saturateur bois', search: 'saturateur bois cloture exterieur' },
+  ],
+};
+
+function amazonUrl(search) {
+  return `https://www.amazon.fr/s?k=${encodeURIComponent(search)}&tag=diybuilder01-21`;
+}
+
 function MatRow({ label, qty, unit, highlight, unitPrice = null, subtotal = null, showPrice = false }) {
   return (
     <div className={`mat-row${highlight ? ' mat-row--highlight' : ''}`}>
@@ -252,7 +292,10 @@ function ClotureMaterials({ materials }) {
 /* ── Composant principal ──────────────────────── */
 export default function MaterialsList({ materials, projectType = 'terrasse', storeId = 'leroymerlin' }) {
   const [selectedStore, setSelectedStore] = useState(storeId);
+  const [toolsOpen, setToolsOpen] = useState(false);
   const { date: pricesDate, live: pricesLive, staleDays } = useLivePrices();
+
+  const tools = TOOLS_BY_PROJECT[projectType] ?? [];
 
   // Essayer de calculer les coûts détaillés ; fallback sur l'affichage simple
   const detailedCosts = useMemo(() => {
@@ -330,6 +373,56 @@ export default function MaterialsList({ materials, projectType = 'terrasse', sto
             />
           ))}
         </div>
+
+        {/* ── Section outils Amazon ── */}
+        {tools.length > 0 && (
+          <div style={{ marginTop: 24, borderTop: '1px solid #e5e2d8', paddingTop: 16 }}>
+            <button
+              type="button"
+              onClick={() => setToolsOpen(o => !o)}
+              style={{
+                width: '100%', display: 'flex', alignItems: 'center',
+                justifyContent: 'space-between', background: 'none',
+                border: 'none', cursor: 'pointer', padding: '0 0 8px',
+              }}
+            >
+              <span style={{ fontWeight: 700, fontSize: 13, color: '#1a1c1b', fontFamily: 'Manrope, sans-serif' }}>
+                🔧 Outils & Consommables
+              </span>
+              <span style={{ fontSize: 11, color: '#9c9188' }}>
+                {toolsOpen ? '▲ Réduire' : '▼ Voir les outils recommandés'}
+              </span>
+            </button>
+
+            {toolsOpen && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {tools.map(tool => (
+                  <a
+                    key={tool.label}
+                    href={amazonUrl(tool.search)}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      padding: '8px 12px', borderRadius: 8,
+                      background: '#faf9f6', border: '1px solid #e5e2d8',
+                      textDecoration: 'none', color: '#1a1c1b',
+                      fontSize: 13, fontFamily: 'Inter, sans-serif',
+                    }}
+                  >
+                    <span>{tool.label}</span>
+                    <span style={{ fontSize: 11, color: '#C9971E', fontWeight: 600 }}>
+                      amazon →
+                    </span>
+                  </a>
+                ))}
+                <p style={{ fontSize: 11, color: '#9c9188', margin: '4px 0 0', fontFamily: 'Inter, sans-serif' }}>
+                  Liens affiliés — sans surcoût pour vous.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     );
   }
@@ -368,6 +461,56 @@ export default function MaterialsList({ materials, projectType = 'terrasse', sto
           : <TerrasseMaterials materials={materials} />
         }
       </div>
+
+      {/* ── Section outils Amazon ── */}
+      {tools.length > 0 && (
+        <div style={{ marginTop: 24, borderTop: '1px solid #e5e2d8', paddingTop: 16 }}>
+          <button
+            type="button"
+            onClick={() => setToolsOpen(o => !o)}
+            style={{
+              width: '100%', display: 'flex', alignItems: 'center',
+              justifyContent: 'space-between', background: 'none',
+              border: 'none', cursor: 'pointer', padding: '0 0 8px',
+            }}
+          >
+            <span style={{ fontWeight: 700, fontSize: 13, color: '#1a1c1b', fontFamily: 'Manrope, sans-serif' }}>
+              🔧 Outils & Consommables
+            </span>
+            <span style={{ fontSize: 11, color: '#9c9188' }}>
+              {toolsOpen ? '▲ Réduire' : '▼ Voir les outils recommandés'}
+            </span>
+          </button>
+
+          {toolsOpen && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {tools.map(tool => (
+                <a
+                  key={tool.label}
+                  href={amazonUrl(tool.search)}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    padding: '8px 12px', borderRadius: 8,
+                    background: '#faf9f6', border: '1px solid #e5e2d8',
+                    textDecoration: 'none', color: '#1a1c1b',
+                    fontSize: 13, fontFamily: 'Inter, sans-serif',
+                  }}
+                >
+                  <span>{tool.label}</span>
+                  <span style={{ fontSize: 11, color: '#C9971E', fontWeight: 600 }}>
+                    amazon →
+                  </span>
+                </a>
+              ))}
+              <p style={{ fontSize: 11, color: '#9c9188', margin: '4px 0 0', fontFamily: 'Inter, sans-serif' }}>
+                Liens affiliés — sans surcoût pour vous.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
