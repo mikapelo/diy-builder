@@ -16,7 +16,7 @@
 
 import { useMemo } from 'react';
 import { calculateDetailedCost, calculateTotalCost } from '@/lib/costCalculator.js';
-import { useLivePrices, isPricesCacheStale } from '@/hooks/useLivePrices.js';
+import { STORES } from '@/lib/materialPrices.js';
 import { trackOutboundClick, trackAffiliateClick } from '@/hooks/useAnalytics.js';
 
 /** Formate un entier en notation française (espace fine comme séparateur milliers).
@@ -80,17 +80,13 @@ function StoreCard({ store, isBest, hasSlab, slabTotal, projectType }) {
 export default function BudgetComparator({ area, slabTotal = 0, materials = null, projectType = 'terrasse' }) {
   const hasSlab = slabTotal > 0;
 
-  /* ── Prix live ou statiques (fallback transparent) ── */
-  const { prices: livePrices, stores: materialStores, date: pricesDate, live: pricesLive, staleDays, sources: priceSources } = useLivePrices();
-  const pricesStale = isPricesCacheStale(staleDays);
-
   /* ── Calcul détaillé ou fallback ── */
   const detailedPrices = useMemo(() => {
     if (!materials || !projectType) return null;
     try {
       const pricesByStore = {};
-      materialStores.forEach(store => {
-        const costs = calculateDetailedCost(materials, store.id, projectType, livePrices);
+      STORES.forEach(store => {
+        const costs = calculateDetailedCost(materials, store.id, projectType);
         pricesByStore[store.id] = calculateTotalCost(costs);
       });
       return pricesByStore;
@@ -98,28 +94,28 @@ export default function BudgetComparator({ area, slabTotal = 0, materials = null
       console.debug('Detailed calculation failed, using simple mode:', e);
       return null;
     }
-  }, [materials, projectType, livePrices, materialStores]);
+  }, [materials, projectType]);
 
   let sorted, prices, storePrices, displayMode = 'detailed';
 
   if (detailedPrices) {
-    sorted = [...materialStores].map(store => ({
+    sorted = [...STORES].map(store => ({
       ...store,
       total: Math.round(detailedPrices[store.id] + slabTotal),
     })).sort((a, b) => a.total - b.total);
     prices = sorted.map(s => s.total);
 
-    storePrices = materialStores.map(s => ({
+    storePrices = STORES.map(s => ({
       ...s,
       projectTotal: Math.round(detailedPrices[s.id]),
       total: Math.round(detailedPrices[s.id] + slabTotal),
     }));
   } else {
     displayMode = 'simple';
-    sorted = [...materialStores].sort((a, b) => (a.rate || 35) - (b.rate || 35));
+    sorted = [...STORES].sort((a, b) => (a.rate || 35) - (b.rate || 35));
     prices = sorted.map(s => Math.round(area * (s.rate || 35) + slabTotal));
 
-    storePrices = materialStores.map(s => ({
+    storePrices = STORES.map(s => ({
       ...s,
       deckTotal: Math.round(area * (s.rate || 35)),
       total: Math.round(area * (s.rate || 35) + slabTotal),
@@ -148,38 +144,6 @@ export default function BudgetComparator({ area, slabTotal = 0, materials = null
             {hasSlab ? ` · dalle béton : ${slabTotal.toFixed(0)} €` : ''}
           </p>
         </div>
-        {/* Badge prix live */}
-        {pricesLive && !pricesStale && (
-          <span
-            title={priceSources?.length
-              ? `Sources : ${priceSources.join(' · ')}`
-              : `Prix mis à jour le ${pricesDate}`}
-            style={{
-              fontSize: 11, fontWeight: 600, padding: '2px 8px',
-              borderRadius: 20, background: '#e6f4ea', color: '#2e7d32',
-              whiteSpace: 'nowrap', alignSelf: 'flex-start', marginTop: 2,
-            }}
-          >
-            ● Prix du {pricesDate}
-            {priceSources?.length > 0 && (
-              <span style={{ opacity: 0.7, fontWeight: 400 }}>
-                {' '}· {priceSources.length} enseignes
-              </span>
-            )}
-          </span>
-        )}
-        {pricesStale && (
-          <span
-            title={`Dernière mise à jour il y a ${staleDays} jours`}
-            style={{
-              fontSize: 11, fontWeight: 600, padding: '2px 8px',
-              borderRadius: 20, background: '#fff8e1', color: '#f57f17',
-              whiteSpace: 'nowrap', alignSelf: 'flex-start', marginTop: 2,
-            }}
-          >
-            ⚠ Prix du {pricesDate}
-          </span>
-        )}
       </div>
 
       {/* ══ PARTIE HAUTE : 3 niveaux budget ══ */}

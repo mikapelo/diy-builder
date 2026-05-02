@@ -15,7 +15,6 @@ import { calculateDetailedCost, groupByCategory, calculateTotalCost } from '@/li
 import { STORES } from '@/lib/materialPrices.js';
 import { formatLength } from '@/lib/formatters.js';
 import BrandIcon from '@/components/ui/BrandIcon';
-import { useLivePrices, isPricesCacheStale } from '@/hooks/useLivePrices.js';
 
 const TOOLS_BY_PROJECT = {
   terrasse: [
@@ -293,7 +292,6 @@ function ClotureMaterials({ materials }) {
 export default function MaterialsList({ materials, projectType = 'terrasse', storeId = 'leroymerlin' }) {
   const [selectedStore, setSelectedStore] = useState(storeId);
   const [toolsOpen, setToolsOpen] = useState(false);
-  const { date: pricesDate, live: pricesLive, staleDays } = useLivePrices();
 
   const tools = TOOLS_BY_PROJECT[projectType] ?? [];
 
@@ -330,15 +328,6 @@ export default function MaterialsList({ materials, projectType = 'terrasse', sto
               Détail par enseigne — Cliquez pour changer de fournisseur
             </p>
           </div>
-          {pricesLive && !isPricesCacheStale(staleDays) && (
-            <span style={{
-              fontSize: 10, color: '#2e7d32', background: '#e6f4ea',
-              borderRadius: 12, padding: '1px 7px', fontWeight: 600,
-              whiteSpace: 'nowrap', marginLeft: 'auto', alignSelf: 'center',
-            }}>
-              ● {pricesDate}
-            </span>
-          )}
         </div>
 
         {/* Sélecteur enseigne */}
@@ -441,15 +430,6 @@ export default function MaterialsList({ materials, projectType = 'terrasse', sto
             {groupCount} familles de matériaux pour votre projet
           </p>
         </div>
-        {pricesLive && !isPricesCacheStale(staleDays) && (
-          <span style={{
-            fontSize: 10, color: '#2e7d32', background: '#e6f4ea',
-            borderRadius: 12, padding: '1px 7px', fontWeight: 600,
-            whiteSpace: 'nowrap', marginLeft: 'auto', alignSelf: 'center',
-          }}>
-            ● {pricesDate}
-          </span>
-        )}
       </div>
 
       <div className="mat-groups">
