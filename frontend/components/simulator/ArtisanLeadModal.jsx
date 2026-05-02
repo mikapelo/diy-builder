@@ -127,7 +127,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
               <h3 className="modal-title">Trouver un artisan</h3>
               <p className="modal-subtitle">
-                Recevez des devis d'artisans qualifiés dans votre zone.
+                Recevez des devis d&apos;artisans qualifiés dans votre zone.
               </p>
             </div>
 
@@ -143,7 +143,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
             <div className="modal-bom-banner">
               <span className="material-symbols-outlined" style={{ fontSize: 16, flexShrink: 0 }}>inventory_2</span>
               <span>
-                L'artisan recevra la <strong>liste de matériaux calculée</strong> et le budget estimé.
+                L&apos;artisan recevra la <strong>liste de matériaux calculée</strong> et le budget estimé.
                 Moins de temps perdu, devis plus précis.
               </span>
             </div>
@@ -285,7 +285,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
 
               <p style={{ fontSize: 11, color: 'var(--text-4, #9c9188)', textAlign: 'center', margin: '8px 0 0', lineHeight: 1.5 }}>
-                Vos coordonnées sont transmises uniquement à l'artisan sélectionné. Aucun démarchage commercial.
+                Vos coordonnées sont transmises uniquement à l&apos;artisan sélectionné. Aucun démarchage commercial.
               </p>
             </form>
           </>
