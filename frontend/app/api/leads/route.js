@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { kv } from '@vercel/kv';
 
 const RESEND_API = 'https://api.resend.com/emails';
 
@@ -80,6 +81,23 @@ export async function POST(req) {
         </p>
       `,
     });
+
+    /* ── 3. Stockage lead dans Vercel KV ── */
+    try {
+      const ts = Date.now();
+      const lead = {
+        email,
+        projectType,
+        dims: dims ?? null,
+        createdAt: new Date(ts).toISOString(),
+      };
+      await kv.set(`lead:${ts}`, JSON.stringify(lead));
+      // Index chronologique pour lister facilement
+      await kv.zadd('leads:index', { score: ts, member: `lead:${ts}` });
+    } catch (kvErr) {
+      // KV non disponible en dev local — on ne bloque pas l'envoi email
+      console.warn('[/api/leads] KV unavailable:', kvErr.message);
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
