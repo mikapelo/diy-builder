@@ -89,6 +89,19 @@ import { generateCabanonPDF }  from '@/components/simulator/ExportPDF/cabanonPDF
 import { capture3DForExport, captureCanvasSnapshot }  from '@/components/simulator/ExportPDF/canvasCapture.js';
 import { generateTerrassePDF } from '@/components/simulator/ExportPDF/terrassePDF.js';
 
+/* ── Setup global : bypasse le modal email dans tous les tests ── */
+// Par défaut, localStorage retourne un email enregistré → le modal ne s'affiche pas.
+// Les tests de la modal elle-même pourront surcharger ce mock localement.
+beforeEach(() => {
+  vi.spyOn(Storage.prototype, 'getItem').mockReturnValue('test@example.com');
+  vi.stubGlobal('fetch', vi.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve({}) })));
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+
 /* ── Fixtures ─────────────────────────────────────────────────── */
 
 const DIMS_TERRASSE = { width: 5, depth: 3, area: 15 };

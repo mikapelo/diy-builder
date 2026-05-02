@@ -1,6 +1,8 @@
 'use client';
 /**
  * ExportPDF/index.jsx — Point d'entree de l'export PDF
+ * Email-gating : 1ère visite → modal → localStorage → téléchargement.
+ * Visites suivantes : téléchargement direct (email en localStorage).
  *
  * Responsabilites :
  *   - Composant React (bouton + state)
@@ -19,8 +21,9 @@
  * REGLE : costCalculator est importe ICI et nulle part ailleurs cote PDF.
  * Les fichiers xxxPDF.js recoivent des donnees pre-calculees.
  */
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import jsPDF from 'jspdf';
+import EmailGateModal from '@/components/ui/EmailGateModal';
 
 import { STORES as STORES_ALL }                                from '@/lib/materialPrices.js';
 import { calculateDetailedCost, calculateTotalCost, groupByCategory } from '@/lib/costCalculator.js';
@@ -97,9 +100,39 @@ export default function ExportPDF({ dims, materials, foundationType, projectType
 
   const getBridge = useExportBridge();
   const [status, setStatus] = useState('idle');
+  const [showModal, setShowModal] = useState(false);
 
   const isSlab = foundationType === 'slab';
   const slabTotal = isSlab ? (slab?.totalPrice ?? 0) : 0;
+
+  /* ── Notification silencieuse lead (email déjà connu) ── */
+  const notifyLead = useCallback((email) => {
+    fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, projectType, dims }),
+    }).catch(() => {});
+  }, [projectType, dims]);
+
+  /* ── Clic bouton : vérifie localStorage avant génération ── */
+  function handleClick() {
+    const savedEmail = typeof window !== 'undefined'
+      ? localStorage.getItem('diy_lead_email')
+      : null;
+
+    if (savedEmail) {
+      notifyLead(savedEmail);
+      generatePDF();
+    } else {
+      setShowModal(true);
+    }
+  }
+
+  /* ── Callback modal : email validé → génération ── */
+  function handleModalConfirm(email) {
+    setShowModal(false);
+    generatePDF();
+  }
 
   async function generatePDF() {
     setStatus('generating');
@@ -167,14 +200,24 @@ export default function ExportPDF({ dims, materials, foundationType, projectType
   const generating = status === 'generating';
 
   return (
-    <button
-      className="download-pdf"
-      onClick={generatePDF}
-      disabled={generating}
-      style={generating ? { opacity: 0.75, cursor: 'wait' } : undefined}
-    >
-      <span className="download-pdf-icon">{generating ? '\u23F3' : '\u2713'}</span>
-      {generating ? 'Generation en cours...' : 'Telecharger la liste PDF'}
-    </button>
+    <>
+      {showModal && (
+        <EmailGateModal
+          projectType={projectType}
+          dims={dims}
+          onConfirm={handleModalConfirm}
+          onClose={() => setShowModal(false)}
+        />
+      )}
+      <button
+        className="download-pdf"
+        onClick={handleClick}
+        disabled={generating}
+        style={generating ? { opacity: 0.75, cursor: 'wait' } : undefined}
+      >
+        <span className="download-pdf-icon">{generating ? '\u23F3' : '\u2713'}</span>
+        {generating ? 'Generation en cours...' : 'Telecharger la liste PDF'}
+      </button>
+    </>
   );
 }
