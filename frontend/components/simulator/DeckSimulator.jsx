@@ -19,6 +19,7 @@ import DeckControls      from './DeckControls';
 import TunnelSections    from './TunnelSections';
 import SaveProjectModal  from './SaveProjectModal';
 import ArtisanLeadModal  from './ArtisanLeadModal';
+import EmailGateModal    from '@/components/ui/EmailGateModal';
 import { BOARD_WIDTH, BOARD_GAP, BOARD_LEN } from '@/lib/deckConstants.js';
 import { useProjectEngine } from '@/core/useProjectEngine.js';
 import { calcFoundation } from '@/lib/foundation/foundationCalculator';
@@ -75,13 +76,21 @@ function SimulatorContent({ projectType }) {
   const [saveModalTrigger, setSaveModalTrigger] = useState('save');
   const [artisanModalOpen, setArtisanModalOpen] = useState(false);
   const [artisanInitialEmail, setArtisanInitialEmail] = useState('');
+  const [emailGateOpen, setEmailGateOpen] = useState(false);
+
+  /* Ref stable vers handleGatedExportPDF — évite la dépendance circulaire
+     handleOpenSaveModal → handleGatedExportPDF (défini après dans le flux hooks) */
+  const gatedExportRef = useRef(null);
 
   /* 'artisan' → formulaire complet (nom, tél, cp, message)
+     'dossier' → email-gate PDF
      autres triggers → email seul via SaveProjectModal */
   const handleOpenSaveModal = useCallback((trigger) => {
     if (trigger === 'artisan') {
       setArtisanInitialEmail('');
       setArtisanModalOpen(true);
+    } else if (trigger === 'dossier') {
+      gatedExportRef.current?.();
     } else {
       setSaveModalTrigger(trigger);
       setSaveModalOpen(true);
@@ -162,6 +171,24 @@ function SimulatorContent({ projectType }) {
     projectType, dims, materials, config, foundationType, slab, getBridge,
   });
 
+  /* ── Email gate PDF ── */
+  const handleGatedExportPDF = useCallback(() => {
+    const storedEmail = typeof window !== 'undefined'
+      ? localStorage.getItem('diy_lead_email')
+      : null;
+    if (storedEmail) {
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: storedEmail, projectType, action: 'pdf_download' }),
+      }).catch(() => {});
+      handleExportPDF();
+    } else {
+      setEmailGateOpen(true);
+    }
+  }, [handleExportPDF, projectType]);
+  gatedExportRef.current = handleGatedExportPDF;
+
   const slabTotal = slab?.totalPrice ?? 0;
 
   return (
@@ -208,7 +235,7 @@ function SimulatorContent({ projectType }) {
         area={area}
         slabTotal={slabTotal}
         onOpenSaveModal={handleOpenSaveModal}
-        onExportPDF={handleExportPDF}
+        onExportPDF={handleGatedExportPDF}
         pdfStatus={pdfStatus}
       />
 
@@ -229,6 +256,17 @@ function SimulatorContent({ projectType }) {
         bom={materials}
         initialEmail={artisanInitialEmail}
       />
+      {emailGateOpen && (
+        <EmailGateModal
+          projectType={projectType}
+          dims={dims}
+          onConfirm={(email) => {
+            setEmailGateOpen(false);
+            handleExportPDF();
+          }}
+          onClose={() => setEmailGateOpen(false)}
+        />
+      )}
     </div>
   );
 }
