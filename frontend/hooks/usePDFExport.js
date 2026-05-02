@@ -168,10 +168,14 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
         }
       } else {
         const snapshot = await captureCanvasSnapshot(getBridge);
+        // eslint-disable-next-line no-console
+        console.log('[PDF-DEBUG] calling generateTerrassePDF');
         generateTerrassePDF(doc, {
           dims, materials, foundationType, projectConfig: config, snapshot,
           budgetByStore, bestPrice,
         });
+        // eslint-disable-next-line no-console
+        console.log('[PDF-DEBUG] generateTerrassePDF done — pages:', doc.internal.pages.length - 1);
         if (email) {
           try {
             const pdfBase64 = doc.output('datauristring').split(',')[1];

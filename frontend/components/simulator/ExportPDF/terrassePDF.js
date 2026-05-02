@@ -374,60 +374,80 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   /* ══════════════════════════════════════════════
      PAGE 7 - Outils recommandes
   ══════════════════════════════════════════════ */
+  // eslint-disable-next-line no-console
+  console.log('[terrassePDF] reaching page 7, current pages:', doc.internal.pages.length - 1);
   doc.addPage();
+  // eslint-disable-next-line no-console
+  console.log('[terrassePDF] after addPage, pages:', doc.internal.pages.length - 1);
 
   const yTools = pageTitle(doc, 'Outils recommandes pour votre projet',
     'Achetez vos outils sur Amazon avec livraison rapide');
 
-  const toolsList = [
-    { label: 'Visseuse a percussion', search: 'visseuse percussion bois terrasse' },
-    { label: 'Scie circulaire', search: 'scie circulaire bois terrasse' },
-    { label: 'Niveau laser', search: 'niveau laser chantier' },
-    { label: 'Equerre de charpente', search: 'equerre charpente inox' },
-    { label: 'Serre-joints', search: 'serre joint bois' },
-    { label: 'Vis inox terrasse', search: 'vis inox terrasse bois' },
-    { label: 'Lasure bois exterieur', search: 'lasure protection bois exterieur' },
-    { label: 'Meches a bois', search: 'meche bois percage' },
-  ];
+  try {
+    const toolsList = [
+      { label: 'Visseuse a percussion', search: 'visseuse percussion bois terrasse' },
+      { label: 'Scie circulaire', search: 'scie circulaire bois terrasse' },
+      { label: 'Niveau laser', search: 'niveau laser chantier' },
+      { label: 'Equerre de charpente', search: 'equerre charpente inox' },
+      { label: 'Serre-joints', search: 'serre joint bois' },
+      { label: 'Vis inox terrasse', search: 'vis inox terrasse bois' },
+      { label: 'Lasure bois exterieur', search: 'lasure protection bois exterieur' },
+      { label: 'Meches a bois', search: 'meche bois percage' },
+    ];
 
-  const colW = 88;
-  const rowH = 24;
-  const startX = 15;
-  const ty = yTools + 8;
+    const colW = 88;
+    const rowH = 24;
+    const startX = 15;
+    const ty = yTools + 8;
 
-  toolsList.forEach((tool, i) => {
-    const col = i % 2;
-    const row = Math.floor(i / 2);
-    const x = startX + col * (colW + 9);
-    const y = ty + row * rowH;
-    const url = 'https://www.amazon.fr/s?k=' + encodeURIComponent(tool.search) + '&tag=diybuilder01-21';
+    toolsList.forEach((tool, i) => {
+      const col = i % 2;
+      const row = Math.floor(i / 2);
+      const x = startX + col * (colW + 9);
+      const y = ty + row * rowH;
+      const url = 'https://www.amazon.fr/s?k=' + encodeURIComponent(tool.search) + '&tag=diybuilder01-21';
 
-    doc.setFillColor(252, 250, 245);
-    doc.setDrawColor(229, 226, 216);
-    doc.roundedRect(x, y, colW, rowH - 3, 3, 3, 'FD');
+      doc.setFillColor(252, 250, 245);
+      doc.setDrawColor(229, 226, 216);
+      doc.roundedRect(x, y, colW, rowH - 3, 3, 3, 'FD');
 
-    doc.setFontSize(9);
+      doc.setFontSize(9);
+      doc.setTextColor(26, 28, 27);
+      doc.setFont('helvetica', 'bold');
+      doc.text(tool.label, x + 3, y + 9);
+
+      doc.setFontSize(7.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(201, 151, 30);
+      doc.text('Voir sur Amazon', x + 3, y + 16);
+
+      doc.link(x, y, colW, rowH - 3, { url });
+
+      doc.setTextColor(26, 28, 27);
+      doc.setFont('helvetica', 'normal');
+    });
+
+    doc.setFontSize(7);
+    doc.setTextColor(156, 145, 136);
+    doc.text(
+      'Liens affilies Amazon - DIY Builder percoit une commission sans surcout pour vous.',
+      105, 270, { align: 'center' },
+    );
+
+    cartouche(doc, { pageNum: TOTAL, totalPages: TOTAL, viewTitle: 'Outils recommandes', projectTitle: terTitle });
+    // eslint-disable-next-line no-console
+    console.log('[terrassePDF] page 7 rendered OK');
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('[terrassePDF] ERROR rendering page 7:', err);
+    /* Fallback minimal — assure qu'une page 7 apparait meme en cas d'erreur */
+    doc.setFontSize(12);
     doc.setTextColor(26, 28, 27);
     doc.setFont('helvetica', 'bold');
-    doc.text(tool.label, x + 3, y + 9);
-
-    doc.setFontSize(7.5);
+    doc.text('Outils recommandes', 20, 50);
+    doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(201, 151, 30);
-    doc.text('Voir sur Amazon', x + 3, y + 16);
-
-    doc.link(x, y, colW, rowH - 3, { url });
-
-    doc.setTextColor(26, 28, 27);
-    doc.setFont('helvetica', 'normal');
-  });
-
-  doc.setFontSize(7);
-  doc.setTextColor(156, 145, 136);
-  doc.text(
-    'Liens affilies Amazon - DIY Builder percoit une commission sans surcout pour vous.',
-    105, 270, { align: 'center' },
-  );
-
-  cartouche(doc, { pageNum: TOTAL, totalPages: TOTAL, viewTitle: 'Outils recommandes', projectTitle: terTitle });
+    doc.text('Visseuse, scie circulaire, niveau laser — recherchez sur amazon.fr', 20, 65);
+    cartouche(doc, { pageNum: TOTAL, totalPages: TOTAL, viewTitle: 'Outils recommandes', projectTitle: terTitle });
+  }
 }
