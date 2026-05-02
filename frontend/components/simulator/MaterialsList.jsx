@@ -349,6 +349,7 @@ export default function MaterialsList({ materials, projectType = 'terrasse', sto
               className={`mat-store-btn${selectedStore === store.id ? ' mat-store-btn--active' : ''}`}
               onClick={() => setSelectedStore(store.id)}
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`/brands/${store.logo}.svg`} alt={store.name} />
               <span>{store.name}</span>
             </button>

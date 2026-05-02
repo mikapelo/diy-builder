@@ -205,21 +205,21 @@ export function generateCloturePDF(doc, { dims, materials, projectConfig, budget
     { label: 'Saturateur bois', search: 'saturateur bois cloture exterieur' },
   ];
 
-  const colW = 88;
-  const rowH = 24;
-  const startX = 15;
-  const ty = yTools + 8;
+  const toolColW = 88;
+  const toolRowH = 24;
+  const toolStartX = 15;
+  const toolTy = yTools + 8;
 
   toolsList.forEach((tool, i) => {
     const col = i % 2;
     const row = Math.floor(i / 2);
-    const x = startX + col * (colW + 9);
-    const y = ty + row * rowH;
+    const x = toolStartX + col * (toolColW + 9);
+    const y = toolTy + row * toolRowH;
     const url = 'https://www.amazon.fr/s?k=' + encodeURIComponent(tool.search) + '&tag=diybuilder01-21';
 
     doc.setFillColor(252, 250, 245);
     doc.setDrawColor(229, 226, 216);
-    doc.roundedRect(x, y, colW, rowH - 3, 3, 3, 'FD');
+    doc.roundedRect(x, y, toolColW, toolRowH - 3, 3, 3, 'FD');
 
     doc.setFontSize(9);
     doc.setTextColor(26, 28, 27);
@@ -231,7 +231,7 @@ export function generateCloturePDF(doc, { dims, materials, projectConfig, budget
     doc.setTextColor(201, 151, 30);
     doc.text('Voir sur Amazon', x + 3, y + 16);
 
-    doc.link(x, y, colW, rowH - 3, { url });
+    doc.link(x, y, toolColW, toolRowH - 3, { url });
 
     doc.setTextColor(26, 28, 27);
     doc.setFont('helvetica', 'normal');
