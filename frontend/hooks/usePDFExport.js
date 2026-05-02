@@ -93,7 +93,7 @@ function fallbackBudgetByStore(area, slabTotal) {
 export function usePDFExport({ projectType, dims, materials, config, foundationType, slab, getBridge }) {
   const [pdfStatus, setPdfStatus] = useState('idle');
 
-  const handleExportPDF = useCallback(async () => {
+  const handleExportPDF = useCallback(async (email = null) => {
     setPdfStatus('generating');
     trackPDFExport({ module: projectType });
     try {
@@ -115,6 +115,17 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           dims, materials, projectConfig: config, foundationType, slab, snapshot,
           budgetByStore, bestPrice,
         });
+        if (email) {
+          try {
+            const pdfBase64 = doc.output('datauristring').split(',')[1];
+            const filename = `cabanon-${dims.width}x${dims.depth}.pdf`;
+            await fetch('/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
+            });
+          } catch (_) { /* silencieux */ }
+        }
         doc.save(`cabanon-${dims.width}x${dims.depth}.pdf`);
       } else if (projectType === 'pergola') {
         const snapshot = await captureCanvasSnapshot(getBridge);
@@ -122,6 +133,17 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           dims, materials, projectConfig: config, snapshot,
           budgetByStore, bestPrice,
         });
+        if (email) {
+          try {
+            const pdfBase64 = doc.output('datauristring').split(',')[1];
+            const filename = `pergola-${dims.width}x${dims.depth}m.pdf`;
+            await fetch('/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
+            });
+          } catch (_) { /* silencieux */ }
+        }
         doc.save(`pergola-${dims.width}x${dims.depth}m.pdf`);
       } else if (projectType === 'cloture') {
         const snapshot = await captureCanvasSnapshot(getBridge);
@@ -129,6 +151,17 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           dims, materials, projectConfig: config, snapshot,
           budgetByStore, bestPrice,
         });
+        if (email) {
+          try {
+            const pdfBase64 = doc.output('datauristring').split(',')[1];
+            const filename = `cloture-${dims.width}x${dims.depth}m.pdf`;
+            await fetch('/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
+            });
+          } catch (_) { /* silencieux */ }
+        }
         doc.save(`cloture-${dims.width}x${dims.depth}m.pdf`);
       } else {
         const snapshot = await captureCanvasSnapshot(getBridge);
@@ -136,6 +169,17 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           dims, materials, foundationType, projectConfig: config, snapshot,
           budgetByStore, bestPrice,
         });
+        if (email) {
+          try {
+            const pdfBase64 = doc.output('datauristring').split(',')[1];
+            const filename = `terrasse-${dims.width}x${dims.depth}m.pdf`;
+            await fetch('/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, projectType, dims, pdfBase64, filename }),
+            });
+          } catch (_) { /* silencieux */ }
+        }
         doc.save(`terrasse-${dims.width}x${dims.depth}m.pdf`);
       }
       setPdfStatus('done');

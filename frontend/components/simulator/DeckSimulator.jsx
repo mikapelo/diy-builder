@@ -177,12 +177,7 @@ function SimulatorContent({ projectType }) {
       ? localStorage.getItem('diy_lead_email')
       : null;
     if (storedEmail) {
-      fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: storedEmail, projectType, action: 'pdf_download' }),
-      }).catch(() => {});
-      handleExportPDF();
+      handleExportPDF(storedEmail);
     } else {
       setEmailGateOpen(true);
     }
@@ -262,7 +257,7 @@ function SimulatorContent({ projectType }) {
           dims={dims}
           onConfirm={(email) => {
             setEmailGateOpen(false);
-            handleExportPDF();
+            handleExportPDF(email);
           }}
           onClose={() => setEmailGateOpen(false)}
         />

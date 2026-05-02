@@ -9,19 +9,21 @@ const PROJECT_LABELS = {
   cloture: 'Clôture',
 };
 
-async function sendEmail({ to, subject, html }) {
+async function sendEmail({ to, subject, html, attachments }) {
+  const body = {
+    from: 'DIY Builder <contact@diy-builder.fr>',
+    to,
+    subject,
+    html,
+  };
+  if (attachments) body.attachments = attachments;
   const res = await fetch(RESEND_API, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      from: 'DIY Builder <contact@diy-builder.fr>',
-      to,
-      subject,
-      html,
-    }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) {
     const err = await res.text();
@@ -32,7 +34,7 @@ async function sendEmail({ to, subject, html }) {
 
 export async function POST(req) {
   try {
-    const { email, projectType, dims } = await req.json();
+    const { email, projectType, dims, pdfBase64, filename } = await req.json();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: 'Email invalide' }, { status: 400 });
@@ -46,6 +48,7 @@ export async function POST(req) {
     await sendEmail({
       to: email,
       subject: `Votre devis ${label} — DIY Builder`,
+      attachments: pdfBase64 ? [{ filename: filename ?? `devis-${projectType}.pdf`, content: pdfBase64 }] : undefined,
       html: `
         <div style="font-family: Inter, sans-serif; max-width: 560px; margin: 0 auto; padding: 32px 24px; background: #fafaf8; border-radius: 12px;">
           <h1 style="font-size: 22px; color: #1a1c1b; margin: 0 0 12px;">Votre devis ${label} 📋</h1>
