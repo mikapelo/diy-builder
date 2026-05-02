@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { getRedis } from '@/lib/redis';
 
 const RESEND_API = 'https://api.resend.com/emails';
 
@@ -82,8 +82,9 @@ export async function POST(req) {
       `,
     });
 
-    /* ── 3. Stockage lead dans Vercel KV ── */
+    /* ── 3. Stockage lead dans Redis ── */
     try {
+      const redis = getRedis();
       const ts = Date.now();
       const lead = {
         email,
@@ -91,12 +92,12 @@ export async function POST(req) {
         dims: dims ?? null,
         createdAt: new Date(ts).toISOString(),
       };
-      await kv.set(`lead:${ts}`, JSON.stringify(lead));
-      // Index chronologique pour lister facilement
-      await kv.zadd('leads:index', { score: ts, member: `lead:${ts}` });
-    } catch (kvErr) {
-      // KV non disponible en dev local — on ne bloque pas l'envoi email
-      console.warn('[/api/leads] KV unavailable:', kvErr.message);
+      await redis.set(`lead:${ts}`, JSON.stringify(lead));
+      // Index trié par timestamp pour récupération chronologique
+      await redis.zadd('leads:index', ts, `lead:${ts}`);
+    } catch (redisErr) {
+      // Redis non disponible en dev local — on ne bloque pas l'envoi email
+      console.warn('[/api/leads] Redis unavailable:', redisErr.message);
     }
 
     return NextResponse.json({ ok: true });

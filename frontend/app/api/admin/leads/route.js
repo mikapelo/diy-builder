@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { getRedis } from '@/lib/redis';
 
 function checkAuth(req) {
   const auth = req.headers.get('authorization') ?? '';
@@ -17,40 +17,25 @@ export async function GET(req) {
     });
   }
 
-  // Diagnostic : variables KV disponibles
-  const kvUrl     = process.env.KV_REST_API_URL;
-  const kvToken   = process.env.KV_REST_API_TOKEN;
-  const redisUrl  = process.env.REDIS_URL;
-  const kvUrlAlt  = process.env.KV_URL;
-
-  if (!kvUrl || !kvToken) {
-    const missing = {
-      KV_REST_API_URL:   !!kvUrl,
-      KV_REST_API_TOKEN: !!kvToken,
-      KV_URL:            !!kvUrlAlt,
-      REDIS_URL:         !!redisUrl,
-      ADMIN_PASSWORD:    !!process.env.ADMIN_PASSWORD,
-    };
-    console.error('[/api/admin/leads] Variables KV manquantes', missing);
-    return NextResponse.json(
-      { error: 'KV non configuré', missing },
-      { status: 500 }
-    );
-  }
-
   try {
-    // Récupère les clés dans l'ordre chronologique décroissant (les plus récents en premier)
-    const keys = await kv.zrange('leads:index', 0, -1, { rev: true });
+    const redis = getRedis();
+
+    // Récupère les clés triées par score décroissant (les plus récents en premier)
+    const keys = await redis.zrange('leads:index', 0, -1, 'REV');
 
     if (!keys || keys.length === 0) {
       return NextResponse.json({ leads: [], total: 0 });
     }
 
-    const raw = await Promise.all(keys.map((key) => kv.get(key)));
-    const leads = raw
-      .map((v) => {
+    const pipeline = redis.pipeline();
+    keys.forEach((key) => pipeline.get(key));
+    const results = await pipeline.exec();
+
+    const leads = results
+      .map(([err, val]) => {
+        if (err || !val) return null;
         try {
-          return typeof v === 'string' ? JSON.parse(v) : v;
+          return typeof val === 'string' ? JSON.parse(val) : val;
         } catch {
           return null;
         }
