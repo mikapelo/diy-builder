@@ -73,21 +73,6 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
             Recevoir le dossier
           </button>
 
-          {onExportPDF && (
-            <button
-              type="button"
-              className="download-pdf"
-              onClick={onExportPDF}
-              disabled={generating}
-              style={{ marginTop: 10, ...(generating ? { opacity: 0.75, cursor: 'wait' } : null) }}
-              aria-busy={generating}
-            >
-              <span className="download-pdf-icon" aria-hidden="true">
-                {generating ? '⏳' : '✓'}
-              </span>
-              {generating ? 'Génération en cours…' : 'Télécharger la liste PDF'}
-            </button>
-          )}
         </div>
 
         {/* ── Carte B : Pro ── */}
