@@ -11,6 +11,7 @@
  *   4. theme-g-v2 — Phosphor icons + overrides [data-theme="g-v2"]
  */
 
+@import './phosphor.css';
 @import './base.css';
 @import './simulator.css';
 @import './landing.css';

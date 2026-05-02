@@ -18,6 +18,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@phosphor-icons/web": "^2.1.1",
     "@react-three/drei": "^9.120.4",
     "@react-three/fiber": "^8.17.5",
     "jspdf": "^4.2.0",

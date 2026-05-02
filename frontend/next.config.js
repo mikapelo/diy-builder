@@ -95,11 +95,11 @@ const withPWA = require('next-pwa')({
 // - 'unsafe-inline' style-src nécessaire pour Tailwind/Next inline styles
 // - Umami: script + connect (analytics)
 // - Google Fonts: style + font
-// - Phosphor Icons (unpkg): style
+// - Phosphor Icons servis localement (plus de unpkg.com)
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob:",
   "connect-src 'self' https://cloud.umami.is https://api.umami.is",
