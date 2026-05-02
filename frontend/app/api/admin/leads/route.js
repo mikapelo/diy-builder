@@ -17,6 +17,27 @@ export async function GET(req) {
     });
   }
 
+  // Diagnostic : variables KV disponibles
+  const kvUrl     = process.env.KV_REST_API_URL;
+  const kvToken   = process.env.KV_REST_API_TOKEN;
+  const redisUrl  = process.env.REDIS_URL;
+  const kvUrlAlt  = process.env.KV_URL;
+
+  if (!kvUrl || !kvToken) {
+    const missing = {
+      KV_REST_API_URL:   !!kvUrl,
+      KV_REST_API_TOKEN: !!kvToken,
+      KV_URL:            !!kvUrlAlt,
+      REDIS_URL:         !!redisUrl,
+      ADMIN_PASSWORD:    !!process.env.ADMIN_PASSWORD,
+    };
+    console.error('[/api/admin/leads] Variables KV manquantes', missing);
+    return NextResponse.json(
+      { error: 'KV non configuré', missing },
+      { status: 500 }
+    );
+  }
+
   try {
     // Récupère les clés dans l'ordre chronologique décroissant (les plus récents en premier)
     const keys = await kv.zrange('leads:index', 0, -1, { rev: true });
@@ -39,6 +60,6 @@ export async function GET(req) {
     return NextResponse.json({ leads, total: leads.length });
   } catch (err) {
     console.error('[/api/admin/leads]', err.message);
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }

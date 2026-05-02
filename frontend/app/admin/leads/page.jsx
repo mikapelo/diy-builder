@@ -138,7 +138,19 @@ export default function LeadsDashboard() {
         return;
       }
       if (!res.ok) {
-        const msg = `Erreur serveur (${res.status}) — vérifiez les variables KV sur Vercel`;
+        let detail = '';
+        try {
+          const body = await res.json();
+          if (body.missing) {
+            const vars = Object.entries(body.missing)
+              .map(([k, v]) => `${k}: ${v ? '✅' : '❌'}`)
+              .join(' | ');
+            detail = ` — Variables: ${vars}`;
+          } else if (body.error) {
+            detail = ` — ${body.error}`;
+          }
+        } catch {}
+        const msg = `Erreur serveur (${res.status})${detail}`;
         if (isLogin) setLoginServerError(msg);
         else setError(msg);
         return;
