@@ -77,7 +77,7 @@ export default function CookieConsent() {
         lineHeight: '1.5',
         color: 'rgba(255,255,255,0.65)',
       }}>
-        Nous utilisons des cookies Meta pour mesurer l'audience et améliorer nos publicités.{' '}
+        Nous utilisons des cookies Meta pour mesurer l&apos;audience et améliorer nos publicités.{' '}
         <a
           href="/confidentialite"
           style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'underline' }}
