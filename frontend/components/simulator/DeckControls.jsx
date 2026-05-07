@@ -326,25 +326,26 @@ export default function DeckControls({
         </div>
       )}
 
-      {/* ── Steppers — sur mesure (tous modules sauf cabanon en mode presets) ── */}
-      {(!hasPresets || dimMode === 'custom') && (
-        <div className="ctrl-inputs">
-          <InputStepper
-            label={projectType === 'cloture' ? 'Longueur' : 'Largeur'}
-            value={width}
-            setValue={setWidth}
-            min={bounds.wMin}
-            max={bounds.wMax}
-          />
-          <InputStepper
-            label={projectType === 'cloture' ? 'Hauteur' : 'Profondeur'}
-            value={depth}
-            setValue={setDepth}
-            min={bounds.dMin}
-            max={bounds.dMax}
-          />
-        </div>
-      )}
+      {/* ── Steppers Largeur/Profondeur — toujours visibles ──
+         Pour cabanon : en mode 'presets' un clic sur un format met à jour
+         les valeurs ; les steppers permettent l'ajustement fin. En mode
+         'custom' ils restent les seuls contrôles. */}
+      <div className="ctrl-inputs">
+        <InputStepper
+          label={projectType === 'cloture' ? 'Longueur' : 'Largeur'}
+          value={width}
+          setValue={setWidth}
+          min={bounds.wMin}
+          max={bounds.wMax}
+        />
+        <InputStepper
+          label={projectType === 'cloture' ? 'Hauteur' : 'Profondeur'}
+          value={depth}
+          setValue={setDepth}
+          min={bounds.dMin}
+          max={bounds.dMax}
+        />
+      </div>
 
       {/* ── Hauteur — cabanon / pergola, toujours visible ── */}
       {showHeight && (
