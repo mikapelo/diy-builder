@@ -13,6 +13,7 @@
  */
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { trackViewModeChange, trackSimulationStart } from '@/hooks/useAnalytics.js';
+import useIsMobile             from '@/hooks/useIsMobile';
 import { Canvas, useThree }   from '@react-three/fiber';
 import { OrbitControls }      from '@react-three/drei';
 import * as THREE              from 'three';
@@ -78,6 +79,13 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
   const [camPreset, setCamPreset] = useState('hero');
   const handlePreset = useCallback((key) => setCamPreset(key), []);
 
+  /* Viewport mobile : recule la caméra + élargit le FOV pour compenser
+     l'aspect ratio plus serré du Canvas sur petit écran (sinon le modèle
+     paraît trop zoomé). */
+  const isMobile = useIsMobile(640);
+  const camMul   = isMobile ? 1.55 : 1;
+  const camFov   = isMobile ? 46 : 34;
+
   /* Fallback si geometry pas encore prête */
   if (!structure?.geometry) {
     return (
@@ -94,7 +102,7 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
   const windowOpening = geometry.openings?.find(o => o.type === 'window');
 
   const isPlan   = sceneMode === 'plan';
-  const camPos   = [width * 1.15, height * 1.4, depth * 1.65];
+  const camPos   = [width * 1.15 * camMul, height * 1.4 * camMul, depth * 1.65 * camMul];
 
   const presets = getPresets(width, depth, height);
   /* sceneKey sur CabanonScene (pas Canvas) → pas de flash WebGL */
@@ -179,7 +187,7 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
           onPointerDown={() => showHint && setShowHint(false)}
         >
           <Canvas
-            camera={{ position: camPos, fov: 34 }}
+            camera={{ position: camPos, fov: camFov }}
             gl={{
               antialias: true,
               preserveDrawingBuffer: true,

@@ -14,6 +14,7 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import ClotureScene from './ClotureScene';
 import ClotureSketch from './ClotureSketch';
+import useIsMobile from '@/hooks/useIsMobile';
 import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/CameraPresets';
 import { useSetExportBridge } from './shared/ExportContext';
 
@@ -51,6 +52,11 @@ export default function ClotureViewer({ structure, foundationType = 'ground' }) 
   const [camPreset, setCamPreset] = useState('hero');
   const handlePreset = useCallback((key) => setCamPreset(key), []);
 
+  /* Viewport mobile : recule la caméra + élargit le FOV (modèle moins zoomé) */
+  const isMobile = useIsMobile(640);
+  const camMul   = isMobile ? 1.55 : 1;
+  const camFov   = isMobile ? 50 : 38;
+
   if (!structure?.geometry) {
     return (
       <div className="deck-preview">
@@ -70,7 +76,7 @@ export default function ClotureViewer({ structure, foundationType = 'ground' }) 
   // Avec FOV 38° et aspect ~1.5, la couverture horizontale ≈ distance × 1.04
   // Il faut donc distance ≈ width / 1.04 en Z pour voir tout l'objet
   const camZ = Math.max(width * 1.05, 3.5);
-  const camPos = [camZ * 0.25, Math.max(height * 1.5, 1.8), camZ];
+  const camPos = [camZ * 0.25 * camMul, Math.max(height * 1.5, 1.8) * camMul, camZ * camMul];
   const sceneKey = `cloture-${width}-${height}`;
   const isPlan = sceneMode === 'plan';
   const activeMode = MODES.find(m => m.key === sceneMode);
@@ -144,7 +150,7 @@ export default function ClotureViewer({ structure, foundationType = 'ground' }) 
           <Canvas
             camera={{
               position: camPos,
-              fov: 38,
+              fov: camFov,
               near: 0.1,
               far: 1000,
             }}

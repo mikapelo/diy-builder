@@ -1,0 +1,133 @@
+<!doctype html>
+<!--
+  Reel Template — DIY Builder Design System
+  Voir REEL_DESIGN_SYSTEM.md pour la documentation des patterns.
+  Remplacer : %COMPOSITION_ID%, %DURATION_SECONDS%
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1080px; height: 1920px;
+        overflow: hidden;
+        background: #0a0b0c;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      /* ─── BG : screenshot net au centre + vignette aux bords ─── */
+      #bg-img {
+        position: absolute; inset: -3%;
+        width: 106%; height: 106%;
+        object-fit: cover;
+        object-position: center 35%;
+        filter: brightness(0.92) saturate(1.0);
+        will-change: transform;
+      }
+      #bg-overlay {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse 95% 65% at 50% 40%,
+            transparent 0%,
+            transparent 28%,
+            rgba(0,0,0,0.35) 60%,
+            rgba(0,0,0,0.78) 90%,
+            #0a0b0c 100%),
+          linear-gradient(180deg,
+            transparent 0%,
+            transparent 72%,
+            rgba(0,0,0,0.45) 88%,
+            #0a0b0c 100%);
+      }
+
+      /* ─── SCÈNES ─── */
+      .scene {
+        position: absolute; inset: 0;
+        opacity: 0;
+        z-index: 10;
+        will-change: transform, opacity;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* ─── Pattern de text-shadow triple-layer (à appliquer aux zones critiques) ─── */
+      .ts-strong {
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 3px 8px rgba(0,0,0,0.85),
+          0 6px 18px rgba(0,0,0,0.65);
+      }
+      .ts-medium {
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 2px 6px rgba(0,0,0,0.80),
+          0 4px 12px rgba(0,0,0,0.55);
+      }
+
+      /* ─── Caisson densifié (pour badges/labels sur zones très claires) ─── */
+      .caisson-dark {
+        background: rgba(10,10,12,0.62);
+        border: 1.5px solid rgba(201,151,30,0.85);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="%COMPOSITION_ID%"
+         data-start="0"
+         data-duration="%DURATION_SECONDS%"
+         data-width="1080"
+         data-height="1920">
+
+      <img id="bg-img" src="./bg.png" alt="" />
+      <div id="bg-overlay"></div>
+
+      <!-- Ajouter ici les .scene -->
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const D = parseFloat(document.getElementById('root').dataset.duration);
+
+      // ── Ken Burns sinusoïdal "respiration" ──
+      tl.set("#bg-img", { scale: 1.02, x: 0, y: 0 }, 0);
+      tl.to("#bg-img",
+        { scale: 1.06, x: -8, y: -5, duration: D/2, ease: "sine.inOut" }, 0);
+      tl.to("#bg-img",
+        { scale: 1.02, x: 0, y: 0, duration: D/2, ease: "sine.inOut" }, D/2);
+
+      // ── Helpers transitions slide vertical douces ──
+      function sceneIn(selector, t, duration = 0.45) {
+        tl.fromTo(selector,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration, ease: "power3.out" }, t);
+      }
+      function sceneOut(selector, t, duration = 0.40) {
+        tl.to(selector, { opacity: 0, y: -40, duration, ease: "power2.in" }, t);
+      }
+
+      // ── Helper counter animé (wow moment) ──
+      function counter(elementId, from, to, t, dur = 0.85) {
+        const obj = { v: from };
+        tl.to(obj, {
+          v: to, duration: dur, ease: "power2.out",
+          onUpdate: () => {
+            document.getElementById(elementId).textContent =
+              Math.round(obj.v).toLocaleString('fr-FR');
+          }
+        }, t);
+      }
+
+      // Ajouter ici les animations de scènes
+
+      window.__timelines["%COMPOSITION_ID%"] = tl;
+    </script>
+  </body>
+</html>

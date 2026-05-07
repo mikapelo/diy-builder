@@ -1,0 +1,45 @@
+Objet : Un chantier terrasse bois à [VILLE] vous attend — DIY Builder
+
+Bonjour [PRÉNOM],
+
+Je développe DIY Builder (diy-builder.fr), un simulateur utilisé par des particuliers
+qui planifient leurs projets bois : terrasses, pergolas, cabanons, clôtures.
+
+Avant de vous contacter, voici concrètement ce que reçoit un artisan partenaire
+quand un particulier soumet une demande depuis le site :
+
+─────────────────────────────────────────────
+  EXEMPLE DE LEAD — Terrasse bois
+─────────────────────────────────────────────
+  Projet      : Terrasse bois
+  Dimensions  : 4,00 m × 5,50 m — 22 m²
+  Budget estimé : 3 200 € – 4 100 € matériaux
+
+  Matériaux calculés :
+  · Lames de terrasse 145×21 mm (IPE) — 53 unités
+  · Lambourdes 45×70 mm — 26 ml
+  · Plots réglables béton — 20 pièces
+  · Vis inox 5×60 mm — 450 unités
+  · Poutre de rive 63×38 mm — 19 ml
+
+  Contact :
+  · Marie D. — 78130 Les Mureaux
+  · 06 12 34 56 78
+  · Travaux souhaités en mai, dalle béton existante
+─────────────────────────────────────────────
+
+L'artisan reçoit ces informations dès la soumission.
+Pas besoin de se déplacer pour mesurer — le devis peut être préparé en avance.
+
+Je cherche quelques artisans partenaires en [RÉGION] pour tester le système.
+Les premiers leads sont gratuits, sans engagement.
+
+Intéressé ? Répondez à cet email ou appelez-moi au [VOTRE NUMÉRO].
+
+Cordialement,
+[VOTRE NOM]
+DIY Builder — diy-builder.fr
+
+---
+Vous recevez cet email car vous êtes professionnel du bâtiment bois en [RÉGION].
+Pour ne plus recevoir de messages : répondez "désinscription" à cet email.

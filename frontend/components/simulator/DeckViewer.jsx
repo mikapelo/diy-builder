@@ -5,6 +5,7 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE        from 'three';
 import DeckScene         from './DeckScene';
 import TechnicalPlan     from './TechnicalPlan';
+import useIsMobile       from '@/hooks/useIsMobile';
 import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/CameraPresets';
 import { useSetExportBridge } from './shared/ExportContext';
 import { generateGardeCorps } from '@/modules/garde-corps/engine.js';
@@ -61,9 +62,14 @@ export default function DeckViewer({
      Vue 3/4 rasante qui met en valeur la surface des lames.
      Angle bas (Y faible) → effet hero/produit, pas technique.
      Léger décentrage X pour rompre la symétrie. */
+  /* Viewport mobile : recule la caméra + élargit le FOV (modèle moins zoomé) */
+  const isMobile = useIsMobile(640);
+  const camMul   = isMobile ? 1.55 : 1;
+  const camFov   = isMobile ? 50 : 38;
+
   const diag    = Math.sqrt(width * width + depth * depth);
   const camDist = Math.max(diag * 0.75, 3.5);
-  const camPos  = [camDist * 0.85, camDist * 0.45, camDist * 0.75];
+  const camPos  = [camDist * 0.85 * camMul, camDist * 0.45 * camMul, camDist * 0.75 * camMul];
 
   /* ── A2 : Fog dynamique — ne coupe jamais la structure ── */
   const fogNear = Math.max(camDist * 1.2, 8);
@@ -143,7 +149,7 @@ export default function DeckViewer({
           {/* Canvas 3D : toujours monté pour ExportPDF, masqué en mode plan */}
           <div style={{ position: 'absolute', inset: 0, visibility: isPlan ? 'hidden' : 'visible' }}>
             <Canvas
-              camera={{ position: camPos, fov: 38 }}
+              camera={{ position: camPos, fov: camFov }}
               gl={{ antialias: true, preserveDrawingBuffer: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.0 }}
               dpr={[1, 2]}
               aria-label={`Visualisation 3D interactive de la terrasse — ${width}m × ${depth}m`}

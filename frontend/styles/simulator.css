@@ -4483,14 +4483,43 @@
   .deck-schema-label {
     display: none;
   }
+  /* Header viewer : laisser wrap pour que mode-tabs + presets + scale s'empilent au lieu d'être coupés */
   .deck-schema-header {
-    justify-content: flex-end;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 6px;
+    row-gap: 6px;
   }
+  /* Le wrapper inline (mode-tabs + camera presets + Échelle) — wrap aussi */
+  .deck-schema-header > div {
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 6px !important;
+  }
+  /* Le bloc d'onglets reste compact, scroll horizontal en cas de débordement (4+ onglets : pergola/clôture) */
+  .mode-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mode-tabs::-webkit-scrollbar { display: none; }
 
   /* Mode tabs — taille réduite sur mobile */
   .mode-tab {
     padding: 6px 10px;
     font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* La zone viewer ne doit pas couper le contenu du header (sinon les onglets droits disparaissent) */
+  .deck-schematic {
+    overflow: visible;
+  }
+  /* Mais le canvas lui-même garde son clip pour l'effet 3D */
+  .deck-canvas-wrap {
+    overflow: hidden;
   }
 
   /* Sélecteur enseigne matériaux — 2 boutons par ligne sur mobile */
@@ -4530,14 +4559,29 @@
     white-space: nowrap;
   }
 
-  /* Grille Dimensions (terrasse/pergola/clôture) — réduire gap + contraindre les cellules */
+  /* Grille Dimensions (terrasse/pergola/clôture) — 1 colonne sur mobile pour
+     que [- input + ] tienne en largeur (sinon le bouton "+" est coupé) */
   .ctrl-inputs {
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .ctrl-label {
     white-space: normal;
     overflow-wrap: break-word;
     letter-spacing: 0.04em; /* réduit vs 0.08em pour éviter l'expansion horizontale */
+  }
+  /* Steppers — boutons un peu plus compacts mais toujours visibles en entier */
+  .ctrl-input-row {
+    overflow: visible; /* évite tout clip latent du "+" */
+  }
+  .ctrl-btn {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  .ctrl-val {
+    min-width: 0;
+    width: 100%;
   }
 
   /* Barre récap verte — layout vertical : surface en haut, items en bas */

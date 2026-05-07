@@ -14,6 +14,7 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE        from 'three';
 import PergolaScene      from './PergolaScene';
 import PergolaSketch     from './PergolaSketch';
+import useIsMobile       from '@/hooks/useIsMobile';
 import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/CameraPresets';
 import { useSetExportBridge } from './shared/ExportContext';
 
@@ -51,6 +52,11 @@ export default function PergolaViewer({ structure, foundationType = 'ground' }) 
   const [camPreset, setCamPreset] = useState('hero');
   const handlePreset = useCallback((key) => setCamPreset(key), []);
 
+  /* Viewport mobile : recule la caméra + élargit le FOV (modèle moins zoomé) */
+  const isMobile = useIsMobile(640);
+  const camMul   = isMobile ? 1.55 : 1;
+  const camFov   = isMobile ? 50 : 38;
+
   if (!structure?.geometry) {
     return (
       <div className="deck-preview">
@@ -68,7 +74,7 @@ export default function PergolaViewer({ structure, foundationType = 'ground' }) 
   // Caméra en vue isométrique 3/4, distance adaptée à la diagonale
   const diag = Math.sqrt(width * width + depth * depth);
   const camDist = Math.max(diag * 0.9, 4);
-  const camPos = [camDist * 0.7, height * 1.8, camDist * 0.7];
+  const camPos = [camDist * 0.7 * camMul, height * 1.8 * camMul, camDist * 0.7 * camMul];
   const sceneKey = `pergola-${width}-${depth}-${height}`;
   const isPlan = sceneMode === 'plan';
 
@@ -143,7 +149,7 @@ export default function PergolaViewer({ structure, foundationType = 'ground' }) 
             <Canvas
               camera={{
                 position: camPos,
-                fov: 38,
+                fov: camFov,
                 near: 0.1,
                 far: 1000,
               }}

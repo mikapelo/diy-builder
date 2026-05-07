@@ -1,0 +1,9 @@
+{
+  "name": "cross-outils-reco",
+  "private": true,
+  "scripts": {
+    "dev": "npx hyperframes@0.5.2 preview",
+    "check": "npx hyperframes@0.5.2 lint",
+    "render": "npx hyperframes@0.5.2 render"
+  }
+}

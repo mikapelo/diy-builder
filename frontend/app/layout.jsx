@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import Script from 'next/script';
+import CookieConsent from '@/components/ui/CookieConsent';
 
 export const metadata = {
   title: 'DIY Builder — Calculateur de projets bricolage bois',
@@ -46,6 +47,7 @@ export const viewport = {
 };
 
 const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 export default function RootLayout({ children }) {
   return (
@@ -86,6 +88,14 @@ export default function RootLayout({ children }) {
             strategy="afterInteractive"
           />
         )}
+
+        {/*
+          Meta Pixel — retargeting & audiences publicitaires
+          - Chargé uniquement après consentement explicite (RGPD)
+          - Bannière de consentement gérée par CookieConsent.jsx
+          - Activé uniquement si NEXT_PUBLIC_META_PIXEL_ID est défini
+        */}
+        {META_PIXEL_ID && <CookieConsent />}
       </body>
     </html>
   );

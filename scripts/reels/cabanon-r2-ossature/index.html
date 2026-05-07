@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1080px; height: 1920px;
+        overflow: hidden;
+        background: #0a0b0c;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+      }
+      .bg-layer {
+        position: absolute; inset: -3%;
+        width: 106%; height: 106%;
+        object-fit: cover;
+        object-position: center 35%;
+        filter: brightness(0.92) saturate(1.0);
+        will-change: transform, opacity;
+        opacity: 0;
+      }
+      #bg-overlay {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse 95% 65% at 50% 40%,
+            transparent 0%, transparent 28%,
+            rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.78) 90%, #0a0b0c 100%),
+          linear-gradient(180deg,
+            transparent 0%, transparent 72%,
+            rgba(0,0,0,0.45) 88%, #0a0b0c 100%);
+      }
+      .scene {
+        position: absolute; inset: 0;
+        opacity: 0;
+        z-index: 10;
+        will-change: transform, opacity;
+        display: flex; flex-direction: column; justify-content: center;
+      }
+
+      /* S1 */
+      #s1 { align-items: center; padding: 0 60px; text-align: center; }
+      #badge {
+        display: inline-flex; align-items: center; gap: 12px;
+        background: rgba(10,10,12,0.62);
+        border: 1.5px solid rgba(201,151,30,0.85);
+        color: #E8C56A;
+        font-size: 26px; font-weight: 700;
+        letter-spacing: 4px; text-transform: uppercase;
+        padding: 11px 32px; border-radius: 60px;
+        margin-bottom: 44px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.95);
+      }
+      #big-num {
+        font-size: 280px; font-weight: 900;
+        color: #C9971E;
+        line-height: 0.86; letter-spacing: -10px;
+        text-shadow:
+          0 0 100px rgba(201,151,30,0.55),
+          0 0 40px rgba(201,151,30,0.30);
+      }
+      #hook-sub {
+        font-size: 56px; font-weight: 800; color: #fff;
+        margin-top: 28px; letter-spacing: -1px;
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 3px 8px rgba(0,0,0,0.85),
+          0 6px 18px rgba(0,0,0,0.65);
+      }
+      #hook-desc {
+        font-size: 38px; font-weight: 600;
+        color: rgba(255,255,255,0.85);
+        margin-top: 12px;
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 2px 6px rgba(0,0,0,0.85),
+          0 4px 14px rgba(0,0,0,0.65);
+      }
+
+      /* S2 */
+      #s2 { padding: 0 72px; text-align: left; }
+      .wbw-line {
+        display: block; line-height: 1.06;
+        margin-bottom: 10px; overflow: hidden;
+      }
+      .wbw-line.small-line { margin-top: 36px; }
+      .w-wrap { display: inline-block; overflow: hidden; vertical-align: bottom; }
+      .w {
+        display: inline-block;
+        font-size: 100px; font-weight: 900;
+        color: #fff; letter-spacing: -2.5px;
+      }
+      .w.gold { color: #C9971E; }
+      .w.small {
+        font-size: 54px; font-weight: 700;
+        color: rgba(255,255,255,0.92);
+        letter-spacing: -0.5px;
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 3px 8px rgba(0,0,0,0.85),
+          0 5px 16px rgba(0,0,0,0.65);
+      }
+      #s2-sep {
+        display: block; width: 0; height: 5px;
+        background: linear-gradient(90deg, #C9971E, #E8C56A);
+        border-radius: 4px;
+        margin: 36px 0 30px;
+      }
+
+      /* S3 — 4 barres pondérées */
+      #s3 { padding: 0 70px; }
+      #s3-label {
+        font-size: 30px; font-weight: 700;
+        color: rgba(255,255,255,0.85);
+        letter-spacing: 4px; text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 50px;
+        background: rgba(0,0,0,0.55);
+        padding: 14px 22px; border-radius: 12px;
+        align-self: center;
+      }
+      .pbar { margin-bottom: 28px; opacity: 0; transform: translateY(30px); }
+      .pbar-head {
+        display: flex; justify-content: space-between;
+        align-items: baseline; margin-bottom: 8px;
+      }
+      .pbar-name {
+        font-size: 36px; font-weight: 900; color: #fff;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+      }
+      .pbar-pct {
+        font-size: 42px; font-weight: 900;
+        color: #C9971E; letter-spacing: -1px;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+      }
+      .pbar-amount {
+        font-size: 26px; font-weight: 700;
+        color: rgba(255,255,255,0.65);
+        margin-left: 12px;
+      }
+      .pbar-track {
+        height: 36px;
+        background: rgba(255,255,255,0.07);
+        border-radius: 10px; overflow: hidden;
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+      }
+      .pbar-fill {
+        height: 100%; border-radius: 10px;
+        width: 0%;
+      }
+      #pbar-1 .pbar-fill {
+        background: linear-gradient(90deg, #A07A14, #E8C56A);
+        box-shadow: 0 0 24px rgba(201,151,30,0.55);
+      }
+      #pbar-2 .pbar-fill {
+        background: linear-gradient(90deg, #6b4a14, #C9971E);
+        box-shadow: 0 0 18px rgba(201,151,30,0.40);
+      }
+      #pbar-3 .pbar-fill {
+        background: linear-gradient(90deg, #4a3815, #A07A14);
+        box-shadow: 0 0 14px rgba(160,122,20,0.30);
+      }
+      #pbar-4 .pbar-fill {
+        background: linear-gradient(90deg, #2e2410, #6b4a14);
+        box-shadow: 0 0 12px rgba(107,74,20,0.25);
+      }
+
+      /* S4 CTA */
+      #s4 { align-items: center; padding: 0 60px; text-align: center; }
+      #cta-eyebrow {
+        font-size: 38px; font-weight: 700; color: #fff;
+        margin-bottom: 32px;
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 2px 6px rgba(0,0,0,0.85),
+          0 4px 14px rgba(0,0,0,0.65);
+      }
+      #cta-pill {
+        display: inline-block;
+        background: linear-gradient(135deg, #E8C56A, #C9971E);
+        color: #0a0b0c;
+        font-size: 60px; font-weight: 900;
+        padding: 32px 92px;
+        border-radius: 100px;
+        letter-spacing: -1px;
+        box-shadow:
+          0 14px 70px rgba(201,151,30,0.60),
+          inset 0 2px 0 rgba(255,255,255,0.25);
+      }
+      #cta-sub {
+        font-size: 32px; font-weight: 600;
+        color: rgba(255,255,255,0.82);
+        margin-top: 28px;
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 2px 6px rgba(0,0,0,0.80),
+          0 4px 12px rgba(0,0,0,0.55);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="cabanon-r2-ossature"
+         data-start="0"
+         data-duration="22"
+         data-width="1080"
+         data-height="1920">
+
+      <img class="bg-layer" id="bg-3d"        src="./bg-3d.png"        alt="" />
+      <img class="bg-layer" id="bg-budget"    src="./bg-budget.png"    alt="" />
+      <img class="bg-layer" id="bg-materiaux" src="./bg-materiaux.png" alt="" />
+      <div id="bg-overlay"></div>
+
+      <div id="s1" class="scene">
+        <div id="badge">📊 Postes de dépense</div>
+        <div id="big-num">62%</div>
+        <div id="hook-sub">ça part dans l'ossature</div>
+        <div id="hook-desc">connais ton budget poste par poste</div>
+      </div>
+
+      <div id="s2" class="scene">
+        <span class="wbw-line">
+          <span class="w-wrap"><span class="w" id="w1">Ton</span></span>&nbsp;
+          <span class="w-wrap"><span class="w" id="w2">cabanon.</span></span>
+        </span>
+        <span class="wbw-line">
+          <span class="w-wrap"><span class="w" id="w3">Quatre</span></span>&nbsp;
+          <span class="w-wrap"><span class="w" id="w4">postes.</span></span>
+        </span>
+        <span id="s2-sep"></span>
+        <span class="wbw-line small-line">
+          <span class="w-wrap"><span class="w small" id="w5">Connais leur</span></span>&nbsp;
+          <span class="w-wrap"><span class="w small gold" id="w6">poids exact.</span></span>
+        </span>
+      </div>
+
+      <div id="s3" class="scene">
+        <div id="s3-label">Ton cabanon · 4 440€ détaillés</div>
+
+        <div class="pbar" id="pbar-1">
+          <div class="pbar-head">
+            <span class="pbar-name">Ossature <span class="pbar-amount">2 764 €</span></span>
+            <span class="pbar-pct">62%</span>
+          </div>
+          <div class="pbar-track"><div class="pbar-fill"></div></div>
+        </div>
+
+        <div class="pbar" id="pbar-2">
+          <div class="pbar-head">
+            <span class="pbar-name">Revêtement <span class="pbar-amount">1 045 €</span></span>
+            <span class="pbar-pct">24%</span>
+          </div>
+          <div class="pbar-track"><div class="pbar-fill"></div></div>
+        </div>
+
+        <div class="pbar" id="pbar-3">
+          <div class="pbar-head">
+            <span class="pbar-name">Toiture <span class="pbar-amount">357 €</span></span>
+            <span class="pbar-pct">8%</span>
+          </div>
+          <div class="pbar-track"><div class="pbar-fill"></div></div>
+        </div>
+
+        <div class="pbar" id="pbar-4">
+          <div class="pbar-head">
+            <span class="pbar-name">Quincaillerie <span class="pbar-amount">275 €</span></span>
+            <span class="pbar-pct">6%</span>
+          </div>
+          <div class="pbar-track"><div class="pbar-fill"></div></div>
+        </div>
+      </div>
+
+      <div id="s4" class="scene">
+        <div id="cta-eyebrow">Visualise tes postes de dépense en 30s</div>
+        <div id="cta-pill">→ diy-builder.fr</div>
+        <div id="cta-sub">Terrasse · Cabanon · Pergola · Clôture</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ── 3 BACKGROUNDS ──
+      tl.set("#bg-3d", { opacity: 1, scale: 1.02 }, 0);
+      tl.to("#bg-3d", { scale: 1.06, duration: 9, ease: "sine.inOut" }, 0);
+      tl.to("#bg-3d", { opacity: 0, scale: 1.09, duration: 0.7, ease: "power2.inOut" }, 8.85);
+
+      tl.set("#bg-budget", { opacity: 0, scale: 0.96 }, 0);
+      tl.to("#bg-budget", { opacity: 1, scale: 1.0, duration: 0.7, ease: "power2.inOut" }, 8.85);
+      tl.to("#bg-budget", { scale: 1.05, duration: 6.5, ease: "sine.inOut" }, 9.55);
+      tl.to("#bg-budget", { opacity: 0, scale: 1.08, duration: 0.7, ease: "power2.inOut" }, 15.65);
+
+      tl.set("#bg-materiaux", { opacity: 0, scale: 0.96 }, 0);
+      tl.to("#bg-materiaux", { opacity: 1, scale: 1.0, duration: 0.7, ease: "power2.inOut" }, 15.65);
+      tl.to("#bg-materiaux", { scale: 1.05, duration: 6, ease: "sine.inOut" }, 16.35);
+
+      function sceneOut(s, t, d=0.45) {
+        tl.to(s, { opacity: 0, y: -40, duration: d, ease: "power2.in" }, t);
+      }
+
+      // S1 — HOOK 0–4.5s
+      tl.set("#s1", { opacity: 1 }, 0);
+      tl.from("#badge", { y: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 0.15);
+      tl.from("#big-num",
+        { scale: 2.0, opacity: 0, duration: 0.6, ease: "back.out(2.0)" }, 0.40);
+      tl.from("#hook-sub", { y: 28, opacity: 0, duration: 0.45, ease: "power3.out" }, 1.10);
+      tl.from("#hook-desc", { y: 20, opacity: 0, duration: 0.40, ease: "power2.out" }, 1.40);
+      sceneOut("#s1", 4.50);
+
+      // S2 — SETUP 5.0–8.7s
+      tl.set("#s2", { opacity: 1 }, 5.0);
+      tl.from("#w1", { y: "110%", duration: 0.40, ease: "power3.out" }, 5.0);
+      tl.from("#w2", { y: "110%", duration: 0.40, ease: "power3.out" }, 5.30);
+      tl.from("#w3", { y: "110%", duration: 0.40, ease: "power3.out" }, 5.75);
+      tl.from("#w4", { y: "110%", duration: 0.40, ease: "power3.out" }, 6.05);
+      tl.to("#s2-sep", { width: 130, duration: 0.45, ease: "power3.out" }, 6.55);
+      tl.from("#w5", { y: "110%", opacity: 0, duration: 0.40, ease: "power2.out" }, 6.85);
+      tl.from("#w6", { y: "110%", opacity: 0, duration: 0.40, ease: "power2.out" }, 7.15);
+      sceneOut("#s2", 8.65);
+
+      // S3 — 4 BARRES 9.2–15.6s
+      tl.set("#s3", { opacity: 1 }, 9.20);
+      tl.from("#s3-label", { y: 30, opacity: 0, duration: 0.45, ease: "power3.out" }, 9.20);
+
+      // Reveal séquentiel des 4 postes
+      tl.to("#pbar-1", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 9.85);
+      tl.to("#pbar-1 .pbar-fill", { width: "62%", duration: 0.85, ease: "power2.out" }, 10.10);
+
+      tl.to("#pbar-2", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 11.10);
+      tl.to("#pbar-2 .pbar-fill", { width: "24%", duration: 0.70, ease: "power2.out" }, 11.30);
+
+      tl.to("#pbar-3", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 12.20);
+      tl.to("#pbar-3 .pbar-fill", { width: "8%", duration: 0.55, ease: "power2.out" }, 12.40);
+
+      tl.to("#pbar-4", { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 13.20);
+      tl.to("#pbar-4 .pbar-fill", { width: "6%", duration: 0.50, ease: "power2.out" }, 13.40);
+
+      // Pulse final sur la grosse barre Ossature pour rappeler
+      tl.to("#pbar-1 .pbar-fill", {
+        boxShadow: "0 0 50px rgba(201,151,30,0.95)",
+        duration: 0.4, yoyo: true, repeat: 1
+      }, 14.40);
+
+      sceneOut("#s3", 15.55);
+
+      // S4 — CTA 16–22s
+      tl.set("#s4", { opacity: 1 }, 16.0);
+      tl.from("#cta-eyebrow", { y: 30, opacity: 0, duration: 0.50, ease: "power3.out" }, 16.10);
+      tl.from("#cta-pill",
+        { scale: 0.78, opacity: 0, duration: 0.65, ease: "back.out(1.8)" }, 16.65);
+      tl.from("#cta-sub", { y: 20, opacity: 0, duration: 0.45, ease: "power2.out" }, 17.20);
+      tl.to("#cta-pill",
+        { scale: 1.05, duration: 0.30, ease: "power1.inOut", yoyo: true, repeat: 1 }, 18.50);
+      tl.to("#cta-pill",
+        { scale: 1.06, duration: 0.30, ease: "power1.inOut", yoyo: true, repeat: 1 }, 20.50);
+
+      window.__timelines["cabanon-r2-ossature"] = tl;
+    </script>
+  </body>
+</html>

@@ -23,13 +23,13 @@
  */
 
 /** Date de la dernière mise à jour des prix — changer à chaque révision */
-export const PRICES_DATE = '2026-04-24';
+export const PRICES_DATE = '2026-05-04';
 
 export const MATERIAL_PRICES = [
   // ── Ossature bois générique ─────────────────────────────────────
   // Bois ossature 45×95 mm — standard marché français (sapin épicéa traité cl.2)
   // Estimation : pièce 3m ≈ 10,50€ LM → 3,50€/ml ; Casto ~3,20€, BD ~2,95€
-  { id: 'montant_45x90',       label: 'Montant ossature 45×95 mm',             section: '45×95',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 3.50,  castorama: 4.50,  bricodepot: 2.95,  manomano: 6.08  } },
+  { id: 'montant_45x90',       label: 'Montant ossature 45×95 mm',             section: '45×95',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 3.50,  castorama: 3.05,  bricodepot: 2.95,  manomano: 11.06  } },
   { id: 'lisse_45x90',         label: 'Lisse basse/haute 45×95 mm',            section: '45×95',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 3.50,  castorama: 4.50,  bricodepot: 2.95,  manomano: 4.97  } },
 
   // Cabanon : sections 9,5×9,5 cm (= 90×90 mm raboté → 95×95 mm brut après traitement)
@@ -47,7 +47,7 @@ export const MATERIAL_PRICES = [
 
   // Bastaing — corrigé avril 2025
   // Casto 175×63 4m=19,50€→4,88€/ml ; Sud Bois 63×150 TTC≈4,93€/ml
-  { id: 'bastaing_63x150',     label: 'Bastaing 63×150 mm',                    section: '63×150',   unit: 'm lin.', scraped: true,  prices: { leroymerlin: 5.20,  castorama: 5.00,  bricodepot: 4.50,  manomano: 4.49  } },
+  { id: 'bastaing_63x150',     label: 'Bastaing 63×150 mm',                    section: '63×150',   unit: 'm lin.', scraped: true,  prices: { leroymerlin: 5.20,  castorama: 6.17,  bricodepot: 4.50,  manomano: 4.49  } },
 
   // Entretoise toiture — chute de chevron, même coût matière
   { id: 'entretoise_toiture',  label: 'Entretoise toiture (chute chevron)',     section: '60×80',    unit: 'm lin.', scraped: true,  prices: { leroymerlin: 3.50,  castorama: 3.10,  bricodepot: 2.90,  manomano: 2.80  } },
@@ -55,16 +55,16 @@ export const MATERIAL_PRICES = [
   // ── Revêtement & Finition ───────────────────────────────────────
   // Bardage pin autoclave cl.4 — LM référence "PRIX AU M2 | Bardage Bois Pin Autoclave Classe 4"
   // Fourchette marché : 18-28€/m² ; LM ≈ 22€/m² (profil 21×120mm) — estimation 2026
-  { id: 'bardage_pin',         label: 'Bardage pin traité cl.4 (21×120 mm)',   category: 'Revêtement',  unit: 'm²',    scraped: true, prices: { leroymerlin: 22.00, castorama: 24.9, bricodepot: 18.50, manomano: 24.42 } },
+  { id: 'bardage_pin',         label: 'Bardage pin traité cl.4 (21×120 mm)',   category: 'Revêtement',  unit: 'm²',    scraped: true, prices: { leroymerlin: 22.00, castorama: 24.9, bricodepot: 18.50, manomano: 34.94 } },
 
   // Volige sapin 14mm — couverture cabanon
   // LM a volige 14×150mm 3m en stock ; marché : 9-12€/m²
-  { id: 'volige_18mm',         label: 'Volige sapin 14 mm (standard)',          section: '14mm',         unit: 'm²',    scraped: true, prices: { leroymerlin: 10.50, castorama: 9.80,  bricodepot: 9.00,  manomano: 17.96  } },
+  { id: 'volige_18mm',         label: 'Volige sapin 14 mm (standard)',          section: '14mm',         unit: 'm²',    scraped: true, prices: { leroymerlin: 10.50, castorama: 9.80,  bricodepot: 9.00,  manomano: 20.79  } },
 
   // Membrane sous-toiture respirante — pare-pluie ossature bois
   // Castorama marketplace 75m² 130g = 93,70€ = 1,25€/m² (entrée gamme)
   // Marché pare-pluie DTU 31.2 (Tyvek/Ampack 150g) : 4-6€/m² en GSB
-  { id: 'membrane_etanche',    label: "Membrane pare-pluie sous-toiture",      category: 'Couverture',  unit: 'm²',    scraped: true, prices: { leroymerlin: 4.50,  castorama: 4.20,  bricodepot: 3.80,  manomano: 15.86  } },
+  { id: 'membrane_etanche',    label: "Membrane pare-pluie sous-toiture",      category: 'Couverture',  unit: 'm²',    scraped: true, prices: { leroymerlin: 4.50,  castorama: 4.20,  bricodepot: 3.80,  manomano: 33.52  } },
 
   // OSB 9mm — Castorama scraping direct : 29,90€/panneau 122×244 = 10,03€/m²
   // LM légèrement supérieur (~+10%)
@@ -81,11 +81,11 @@ export const MATERIAL_PRICES = [
 
   // Vis inox A2 4×40 lot 200 — Castorama direct : 19,90€
   // LM : vis inox A2 4×40 boîte 200 ≈ 21,50€ (index Google)
-  { id: 'vis_inox_a2',         label: 'Vis inox A2 4×40 mm (lot 200)',          category: 'Quincaillerie', unit: 'lot',  scraped: true,  prices: { leroymerlin: 21.50, castorama: 20.9, bricodepot: 17.50, manomano: 10.05 } },
+  { id: 'vis_inox_a2',         label: 'Vis inox A2 4×40 mm (lot 200)',          category: 'Quincaillerie', unit: 'lot',  scraped: true,  prices: { leroymerlin: 21.50, castorama: 20.9, bricodepot: 17.50, manomano: 9.79 } },
 
   // Équerre d'assemblage charpente — LM direct : 0,99€/pcs (équerre 40×40×40mm galva Alberts)
   // Lot 25 = 0,80€/pcs — prix unitaire retenu
-  { id: 'equerre_fixation',    label: 'Équerre de fixation 40×40 mm (galva)',  category: 'Quincaillerie', unit: 'pcs',  scraped: true,  prices: { leroymerlin: 0.99,  castorama: 1.79,  bricodepot: 0.85,  manomano: 1.67  } },
+  { id: 'equerre_fixation',    label: 'Équerre de fixation 40×40 mm (galva)',  category: 'Quincaillerie', unit: 'pcs',  scraped: true,  prices: { leroymerlin: 0.99,  castorama: 1.79,  bricodepot: 0.85,  manomano: 1.8  } },
 
   // Sabot chevron — sabot forme U pour chevron 60×80, acier galva
   // Marché : LM ~2,88-3,50€ (Alberts/Simpson), Bricoman 6,23€ (50×75 ailes ext.)
@@ -108,7 +108,7 @@ export const MATERIAL_PRICES = [
 
   // Bande bitume lambourde — rouleau 20m × 80mm
   // LM a Bande Bitumineuse Novlek 80mm×20m (URL confirmé) ; ~24€/rouleau → 1,20€/ml
-  { id: 'bande_bitume',        label: 'Bande bitume lambourde (rouleau 20 m)', category: 'Terrasse', unit: 'm lin.', scraped: true, prices: { leroymerlin: 1.20,  castorama: 1.00,  bricodepot: 0.95,  manomano: 0.90  } },
+  { id: 'bande_bitume',        label: 'Bande bitume lambourde (rouleau 20 m)', category: 'Terrasse', unit: 'm lin.', scraped: true, prices: { leroymerlin: 1.20,  castorama: 2.38,  bricodepot: 0.95,  manomano: 0.90  } },
 
   // ── Pergola ────────────────────────────────────────────────────
   // Poteau 100×100 — corrigé avril 2025
@@ -119,23 +119,23 @@ export const MATERIAL_PRICES = [
   // Poutres pergola — estimation marché 2026
   // Longerons 150×50mm : ~7,50€/ml LM ; traverses 80×50mm : ~4,20€/ml
   { id: 'poutre_pergola_150',  label: 'Poutre pergola 150×50 mm',              section: '150×50',   unit: 'm lin.', scraped: true, prices: { leroymerlin: 7.50,  castorama: 0.01,  bricodepot: 6.20,  manomano: 6.98  } },
-  { id: 'traverse_pergola_80', label: 'Traverse pergola 80×50 mm',             section: '80×50',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.20,  castorama: 3.90,  bricodepot: 3.60,  manomano: 5.71  } },
+  { id: 'traverse_pergola_80', label: 'Traverse pergola 80×50 mm',             section: '80×50',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.20,  castorama: 3.90,  bricodepot: 3.60,  manomano: 6.72  } },
 
   // Pied de poteau platine — Castorama direct : platine poteau 100/150mm = 25,90€
   // LM équivalent ≈ 27,90€
-  { id: 'pied_poteau_pergola', label: 'Pied de poteau (platine + vis)',         category: 'Quincaillerie', unit: 'pcs', scraped: true,  prices: { leroymerlin: 27.90, castorama: 25.90, bricodepot: 22.50, manomano: 31.63 } },
+  { id: 'pied_poteau_pergola', label: 'Pied de poteau (platine + vis)',         category: 'Quincaillerie', unit: 'pcs', scraped: true,  prices: { leroymerlin: 27.90, castorama: 25.90, bricodepot: 22.50, manomano: 34.95 } },
 
   // Boulon M10 galva — assemblage traverse/longeron
   { id: 'boulon_m10_traverse', label: 'Boulon M10 galva (assemblage traverse)', category: 'Quincaillerie', unit: 'pcs', scraped: false, prices: { leroymerlin: 1.20,  castorama: 1.10,  bricodepot: 0.95,  manomano: 0.90  } },
 
   // ── Clôture ────────────────────────────────────────────────────
   // Poteau clôture 90×90 — estimation marché 2026 (légère hausse vs 2025)
-  { id: 'poteau_cloture_90',       label: 'Poteau clôture 90×90 mm (2,4 m)',       section: '90×90',    unit: 'pcs', refLen: 2.4, scraped: true, prices: { leroymerlin: 19.50, castorama: 9.99, bricodepot: 16.50, manomano: 15.3 } },
+  { id: 'poteau_cloture_90',       label: 'Poteau clôture 90×90 mm (2,4 m)',       section: '90×90',    unit: 'pcs', refLen: 2.4, scraped: true, prices: { leroymerlin: 19.50, castorama: 9.99, bricodepot: 16.50, manomano: 16.97 } },
   // Poteau UC4 traité autoclave — DTU 31.1 §5.10.4.2 : obligatoire en contact sol.
   // Bois traité classe d'emploi 4 ≈ +35 % vs pin standard (rétention CCA ou azolé).
   { id: 'poteau_cloture_uc4',      label: 'Poteau clôture 90×90 mm UC4 (2,4 m)',   section: '90×90',    unit: 'pcs', refLen: 2.4, scraped: true, prices: { leroymerlin: 26.50, castorama: 7.89, bricodepot: 22.50, manomano: 16.48 } },
 
-  { id: 'lisse_cloture_45x90',     label: 'Lisse clôture 45×90/95 mm',             section: '45×90',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 3.40,  castorama: 2.6,  bricodepot: 2.95,  manomano: 9.12  } },
+  { id: 'lisse_cloture_45x90',     label: 'Lisse clôture 45×90/95 mm',             section: '45×90',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 3.40,  castorama: 2.6,  bricodepot: 2.95,  manomano: 9.63  } },
 
   // Lame clôture — corrigé avril 2025
   // Casto "Lemhi" 120cm×9cm×21mm = 4,19€/pcs → 3,49€/ml (scraping direct)
@@ -151,7 +151,7 @@ export const MATERIAL_PRICES = [
 
   // Béton de scellement sac 25 kg — poteaux clôture (ancrage sol, FOOT_EMBED=0.50m)
   // LM : sac 25 kg béton de scellement ~6,99€ (index Google) ; Casto idem ~6,50€
-  { id: 'beton_scellement_25kg', label: 'Béton de scellement sac 25 kg',      category: 'Maçonnerie', unit: 'sac', scraped: true, prices: { leroymerlin: 6.99, castorama: 8.79, bricodepot: 5.90, manomano: 36.44 } },
+  { id: 'beton_scellement_25kg', label: 'Béton de scellement sac 25 kg',      category: 'Maçonnerie', unit: 'sac', scraped: true, prices: { leroymerlin: 6.99, castorama: 8.79, bricodepot: 5.90, manomano: 43.34 } },
 
   // Treillis soudé ST25C — LM direct : panneau ST25CS 3×2,4 m = 49,90€/pcs (index Google confirmé)
   // Format standard dalle : 3m×2,4m = 7,2m² ; maille 15×15cm fil Ø7mm
