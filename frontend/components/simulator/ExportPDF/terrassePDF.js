@@ -374,11 +374,7 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   /* ══════════════════════════════════════════════
      PAGE 7 - Outils recommandes
   ══════════════════════════════════════════════ */
-  // eslint-disable-next-line no-console
-  console.log('[terrassePDF] reaching page 7, current pages:', doc.internal.pages.length - 1);
   doc.addPage();
-  // eslint-disable-next-line no-console
-  console.log('[terrassePDF] after addPage, pages:', doc.internal.pages.length - 1);
 
   const yTools = pageTitle(doc, 'Outils recommandes pour votre projet',
     'Achetez vos outils sur Amazon avec livraison rapide');
@@ -435,8 +431,6 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     );
 
     cartouche(doc, { pageNum: TOTAL, totalPages: TOTAL, viewTitle: 'Outils recommandes', projectTitle: terTitle });
-    // eslint-disable-next-line no-console
-    console.log('[terrassePDF] page 7 rendered OK');
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('[terrassePDF] ERROR rendering page 7:', err);

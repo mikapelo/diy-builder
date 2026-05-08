@@ -659,19 +659,24 @@
 .v6-slide-label { font-size: 11px; font-weight: 700; text-transform: uppercase;
   letter-spacing: .1em; color: var(--v6-text-3); text-align: center; }
 
-/* Progress bars */
+/* Progress bars
+   Anim sur transform (compositing) au lieu de width (reflow) — audit perf */
 .v6-progress { display: flex; gap: 4px; padding: 0 20px; }
 .v6-progress-bar { flex: 1; height: 2px; background: rgba(0,0,0,.06); border-radius: 1px; overflow: hidden; }
-.v6-progress-fill { height: 100%; width: 0%; background: var(--v6-primary); border-radius: 1px; }
-/* Animation au lieu de transition — fonctionne même quand React recrée le DOM via key */
+.v6-progress-fill {
+  height: 100%; width: 100%;
+  background: var(--v6-primary); border-radius: 1px;
+  transform: scaleX(0); transform-origin: left;
+  will-change: transform;
+}
 .v6-progress-bar.active .v6-progress-fill {
   animation: v6-progress-sweep 5s linear forwards;
 }
 @keyframes v6-progress-sweep {
-  from { width: 0%; }
-  to   { width: 100%; }
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
-.v6-progress-bar.done .v6-progress-fill { width: 100%; }
+.v6-progress-bar.done .v6-progress-fill { transform: scaleX(1); }
 
 /* Card stats with sliding values */
 .v6-card-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--v6-border); }

@@ -296,3 +296,60 @@ describe('WOOD_WASTE_FACTOR — comportement transversal', () => {
     });
   });
 });
+
+/* ══════════════════════════════════════════════════════════════ */
+/*  calculateDetailedCost — pergola (gap couverture audit)        */
+/* ══════════════════════════════════════════════════════════════ */
+describe('calculateDetailedCost — pergola', () => {
+  // Structure pergola minimale réaliste 4×3 m
+  const pergolaStructure = {
+    posts: 4,
+    postLength: 2.5,
+    beamsLong: 2,
+    beamLongLength: 4.4,
+    beamsShort: 2,
+    beamShortLength: 2.85,
+    rafters: 7,
+    rafterLength: 3.4,
+    visChevrons: 28,
+    visPoteaux: 16,
+    ancragePoteaux: 4,
+    braces: 4,
+    braceLength: 0.6,
+    visBraces: 16,
+    boulonsTraverses: 16,
+  };
+
+  const lines = calculateDetailedCost(pergolaStructure, 'leroymerlin', 'pergola');
+
+  it('génère des lignes pergola (poteaux, poutres, chevrons, quincaillerie)', () => {
+    const ids = lines.map(l => l.materialId);
+    expect(ids).toContain('poteau_pergola_100');
+    expect(ids).toContain('poutre_pergola_150');
+    expect(ids).toContain('traverse_pergola_80');
+    expect(ids).toContain('pied_poteau_pergola');
+  });
+
+  it('applique WOOD_WASTE_FACTOR sur le bois pergola', () => {
+    const poteauLine = lines.find(l => l.materialId === 'poteau_pergola_100');
+    expect(poteauLine).toBeDefined();
+    // Le quantity stocké après waste : count brute (4) × WOOD_WASTE_FACTOR
+    expect(poteauLine.quantity).toBeCloseTo(4 * WOOD_WASTE_FACTOR, 2);
+  });
+
+  it('toutes les lignes ont un unitPrice numérique non négatif', () => {
+    expect(lines.length).toBeGreaterThan(0);
+    lines.forEach(l => {
+      expect(typeof l.unitPrice).toBe('number');
+      expect(l.unitPrice).toBeGreaterThanOrEqual(0);
+    });
+  });
+
+  it('fonctionne identiquement pour tous les stores', () => {
+    const stores = ['leroymerlin', 'castorama', 'bricodepot', 'manomano'];
+    stores.forEach(store => {
+      const r = calculateDetailedCost(pergolaStructure, store, 'pergola');
+      expect(r.length).toBe(lines.length);
+    });
+  });
+});

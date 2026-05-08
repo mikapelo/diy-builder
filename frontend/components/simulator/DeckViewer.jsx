@@ -1,13 +1,13 @@
 'use client';
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE        from 'three';
 import DeckScene         from './DeckScene';
 import TechnicalPlan     from './TechnicalPlan';
 import useIsMobile       from '@/hooks/useIsMobile';
 import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/CameraPresets';
-import { useSetExportBridge } from './shared/ExportContext';
+import ExportBridge      from './shared/ExportBridge';
 import { generateGardeCorps } from '@/modules/garde-corps/engine.js';
 
 const VIEW_MODES = [
@@ -15,18 +15,6 @@ const VIEW_MODES = [
   { key: 'detailed',  label: 'Détaillée' },
   { key: 'plan',      label: 'Plan' },
 ];
-
-/* ExportBridge — publie camera/gl/scene/controls + setSceneMode + setShowHuman au contexte
-   d'export, pour que ExportPDF puisse capturer des vues standardisées sans la silhouette. */
-function ExportBridge({ setSceneMode, showHuman, setShowHuman }) {
-  const { camera, gl, scene, controls } = useThree();
-  const setBridge = useSetExportBridge();
-  useEffect(() => {
-    setBridge({ camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman });
-    return () => setBridge(null);
-  }, [camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman, setBridge]);
-  return null;
-}
 
 /* viewMode et setViewMode sont remontés dans DeckSimulator.
    canvasWrapRef (prop ordinaire, pas forwardRef) permet à

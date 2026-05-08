@@ -88,25 +88,27 @@ const withPWA = require('next-pwa')({
   ],
 });
 
-// ── Content-Security-Policy (Report-Only)
-// Activé en Report-Only pour collecter les violations sans casser la prod.
-// On passera en mode bloquant après observation des reports.
-// - 'unsafe-inline'/'unsafe-eval' nécessaires pour l'hydration Next.js et HMR
-// - 'unsafe-inline' style-src nécessaire pour Tailwind/Next inline styles
-// - Umami: script + connect (analytics)
-// - Google Fonts: style + font
-// - Phosphor Icons servis localement (plus de unpkg.com)
-const CSP_REPORT_ONLY = [
+// ── Content-Security-Policy
+// Mode Report-Only conservé : la migration enforce nécessite l'introduction de
+// nonces via middleware (audit M3 — différé). Les directives ci-dessous sont
+// néanmoins exhaustives et incluent les origines tierces utilisées en runtime :
+// - drei `<Environment>` : HDR depuis market-assets.fra1.cdn.digitaloceanspaces.com
+// - Google Fonts (style + font)
+// - Umami analytics, Meta Pixel (si NEXT_PUBLIC_META_PIXEL_ID actif)
+const DREI_HDR_CDN = 'https://market-assets.fra1.cdn.digitaloceanspaces.com';
+const CSP_DIRECTIVES = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' data: blob:",
-  "connect-src 'self' https://cloud.umami.is https://api.umami.is",
+  `img-src 'self' data: blob: ${DREI_HDR_CDN} https://www.facebook.com https://*.fbcdn.net`,
+  `connect-src 'self' ${DREI_HDR_CDN} https://cloud.umami.is https://api.umami.is https://*.facebook.com`,
   "frame-ancestors 'none'",
+  "frame-src 'self' https://www.facebook.com",
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
+  "upgrade-insecure-requests",
 ].join('; ');
 
 const nextConfig = {
@@ -123,8 +125,9 @@ const nextConfig = {
           { key: 'Permissions-Policy',         value: 'camera=(), microphone=(), geolocation=()' },
           { key: 'X-DNS-Prefetch-Control',     value: 'on' },
           { key: 'Strict-Transport-Security',  value: 'max-age=63072000; includeSubDomains; preload' },
-          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
-          { key: 'Content-Security-Policy-Report-Only', value: CSP_REPORT_ONLY },
+          { key: 'Cross-Origin-Opener-Policy',          value: 'same-origin' },
+          { key: 'Cross-Origin-Resource-Policy',        value: 'same-site' },
+          { key: 'Content-Security-Policy-Report-Only', value: CSP_DIRECTIVES },
         ],
       },
       // Headers SW — permet l'installation PWA

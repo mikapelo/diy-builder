@@ -78,6 +78,61 @@ function safeLine({ materialId, label, quantity, unit, unitPrice, category }) {
 }
 
 /**
+ * pushFoundationLines — Helper pour les lignes fondations (commune à tous les modules).
+ * Extrait depuis calculateDetailedCost (audit Sprint 7) — comportement identique.
+ *
+ * @param {function} push — callback (fields) => void avec guard safeLine
+ * @param {object} structure — peut contenir `structure.slab` avec quantitatifs béton
+ * @param {string} storeId — identifiant enseigne
+ * @param {function} resolvePrice — (materialId, storeId) => number|null
+ */
+function pushFoundationLines(push, structure, storeId, resolvePrice) {
+  if (!structure?.slab) return;
+  const slab = structure.slab;
+
+  if (slab.betonVolume > 0) {
+    push({
+      materialId: 'beton_c20_25',
+      label: 'Béton C20/25 (livré)',
+      quantity: slab.betonVolume,
+      unit: 'm³',
+      unitPrice: resolvePrice('beton_c20_25', storeId),
+      category: 'Fondations',
+    });
+  }
+  if (slab.treillisPanels > 0) {
+    push({
+      materialId: 'treillis_st25c',
+      label: 'Treillis soudé ST25C',
+      quantity: slab.treillisPanels,
+      unit: 'pcs',
+      unitPrice: resolvePrice('treillis_st25c', storeId),
+      category: 'Fondations',
+    });
+  }
+  if (slab.polyaneArea > 0) {
+    push({
+      materialId: 'polyane_200',
+      label: 'Film polyane 200 µ',
+      quantity: slab.polyaneArea,
+      unit: 'm²',
+      unitPrice: resolvePrice('polyane_200', storeId),
+      category: 'Fondations',
+    });
+  }
+  if (slab.gravierVolume > 0) {
+    push({
+      materialId: 'gravier_0_31_5',
+      label: 'Gravier 0/31.5 (couche de forme)',
+      quantity: slab.gravierVolume,
+      unit: 'm³',
+      unitPrice: resolvePrice('gravier_0_31_5', storeId),
+      category: 'Fondations',
+    });
+  }
+}
+
+/**
  * calculateDetailedCost(structure, storeId, projectType)
  *
  * @param {object} structure — données retournées par engine (cabanon, pergola, cloture)
@@ -674,53 +729,8 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
     });
   }
 
-  // ── Fondations (commune à tous les types) ──
-  if (structure.slab) {
-    const slab = structure.slab;
-    if (slab.betonVolume > 0) {
-      push({
-        materialId: 'beton_c20_25',
-        label: 'Béton C20/25 (livré)',
-        quantity: slab.betonVolume,
-        unit: 'm³',
-        unitPrice: resolvePrice('beton_c20_25', storeId),
-        category: 'Fondations',
-      });
-    }
-
-    if (slab.treillisPanels > 0) {
-      push({
-        materialId: 'treillis_st25c',
-        label: 'Treillis soudé ST25C',
-        quantity: slab.treillisPanels,
-        unit: 'pcs',
-        unitPrice: resolvePrice('treillis_st25c', storeId),
-        category: 'Fondations',
-      });
-    }
-
-    if (slab.polyaneArea > 0) {
-      push({
-        materialId: 'polyane_200',
-        label: 'Film polyane 200 µ',
-        quantity: slab.polyaneArea,
-        unit: 'm²',
-        unitPrice: resolvePrice('polyane_200', storeId),
-        category: 'Fondations',
-      });
-    }
-
-    if (slab.gravierVolume > 0) {
-      push({
-        materialId: 'gravier_0_31_5',
-        label: 'Gravier 0/31.5 (couche de forme)',
-        quantity: slab.gravierVolume,
-        unit: 'm³',
-        unitPrice: resolvePrice('gravier_0_31_5', storeId),
-        category: 'Fondations',
-      });
-    }
-  }
+  // ── Fondations (commune à tous les types) — extrait en helper Sprint 7 ──
+  pushFoundationLines(push, structure, storeId, resolvePrice);
 
   // Compute subtotals — Apply waste factor to wood materials, then compute cost
   return lines.map(line => {

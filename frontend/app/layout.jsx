@@ -1,6 +1,34 @@
 import '../styles/globals.css';
 import Script from 'next/script';
+import { Manrope, Inter, DM_Serif_Display, IBM_Plex_Mono } from 'next/font/google';
 import CookieConsent from '@/components/ui/CookieConsent';
+
+// next/font/google — self-hosted, zéro CLS, pas de render-blocking (audit perf)
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-manrope',
+});
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+const dmSerif = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-dm-serif',
+});
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-plex-mono',
+});
 
 export const metadata = {
   title: 'DIY Builder — Calculateur de projets bricolage bois',
@@ -52,14 +80,15 @@ const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr" style={{ colorScheme: 'light' }}>
+    <html
+      lang="fr"
+      style={{ colorScheme: 'light' }}
+      className={`${manrope.variable} ${inter.variable} ${dmSerif.variable} ${plexMono.variable}`}
+    >
       <head>
+        {/* Material Symbols : conservé via Google Fonts (next/font ne gère pas les variable-axis icon fonts) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
@@ -73,7 +102,11 @@ export default function RootLayout({ children }) {
       </head>
 
       <body>
-        {children}
+        {/* Skip link WCAG SC 2.4.1 (audit a11y) — cible le wrapper #main-content */}
+        <a href="#main-content" className="skip-link">Aller au contenu principal</a>
+        <div id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
+          {children}
+        </div>
 
         {/*
           Umami Analytics — privacy-first, CNIL-exempt

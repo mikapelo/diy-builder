@@ -15,11 +15,7 @@ import Link       from 'next/link';
 import JsonLd     from '@/components/ui/JsonLd';
 import CopyButton from './CopyButton';
 
-import { generateCabanon }  from '@/modules/cabanon/engine';
-import { generatePergola }  from '@/modules/pergola/engine';
-import { generateCloture }  from '@/modules/cloture/engine';
-import { generateDeck }     from '@/lib/deckEngine';
-import { BOARD_WIDTH, BOARD_GAP, BOARD_LEN } from '@/lib/deckConstants';
+import { callEngine } from '@/lib/listeBOM';
 import { calculateDetailedCost, calculateTotalCost } from '@/lib/costCalculator';
 import { STORES }           from '@/lib/materialPrices';
 import { HOW_TO_SCHEMAS, PROJECT_LABELS, PROJECT_DEFAULTS } from '@/lib/seoSchemas';
@@ -46,29 +42,6 @@ const fmtQty = (n, unit) => {
   if (unit === 'm lin.' || unit === 'm²' || unit === 'm³') return `${Number(n).toFixed(1)} ${unit}`;
   return `${Math.ceil(n)} ${unit}`;
 };
-
-function callEngine(project, w, d) {
-  switch (project) {
-    case 'terrasse': {
-      const raw = generateDeck(w, d);
-      const joistCount = raw.joistCount ?? 0;
-      const pads = raw.totalPads ?? 0;
-      const dblJoistCount = new Set(raw.doubleJoistSegs?.map(s => +s.xPos.toFixed(6)) ?? []).size;
-      const allJoistCount = joistCount + dblJoistCount;
-      const boardRows = Math.floor(d / (BOARD_WIDTH + BOARD_GAP)) + 1;
-      const boards = Math.ceil(boardRows * w * 1.05 / BOARD_LEN);
-      const screws = boardRows * allJoistCount * 2;
-      const cbPositions = d > 3 ? Math.floor(d / 1.8) : 0;
-      const entretoises = cbPositions * Math.max(joistCount - 1, 0);
-      const bande = Math.ceil(allJoistCount * d * 1.05);
-      return { boards, joists: allJoistCount, pads, screws, entretoises, bande };
-    }
-    case 'cabanon': return generateCabanon(w, d, {});
-    case 'pergola': return generatePergola(w, d, {});
-    case 'cloture': return generateCloture(w, d, {});
-    default:        return null;
-  }
-}
 
 const STORE_NAMES = { leroymerlin: 'Leroy Merlin', castorama: 'Castorama', bricodepot: 'Brico Dépôt', manomano: 'ManoMano' };
 
@@ -144,7 +117,7 @@ export default function ListePage({ searchParams }) {
 
           {/* ── Récap prix par enseigne ── */}
           <section style={{ background: '#fff', borderRadius: 12, padding: '20px 24px', marginBottom: 24, boxShadow: '0 1px 4px #0001' }}>
-            <h2 style={{ fontSize: 13, fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 14px' }}>
+            <h2 style={{ fontSize: 13, fontWeight: 700, color: '#555', textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 14px' }}>
               Estimation totale par enseigne
             </h2>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -176,7 +149,7 @@ export default function ListePage({ searchParams }) {
           {/* ── BOM détaillé ── */}
           <section style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 4px #0001', overflow: 'hidden' }}>
             <div style={{ padding: '16px 24px', borderBottom: '1px solid #f0f0f0' }}>
-              <h2 style={{ fontSize: 13, fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>
+              <h2 style={{ fontSize: 13, fontWeight: 700, color: '#555', textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>
                 Liste de matériaux détaillée
               </h2>
             </div>
@@ -185,14 +158,18 @@ export default function ListePage({ searchParams }) {
               <p style={{ padding: 24, color: '#999' }}>Aucun résultat. Vérifiez les dimensions dans l&apos;URL.</p>
             ) : (
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+                {/* Caption sr-only WCAG SC 1.3.1 (audit a11y) */}
+                <caption style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: 0 }}>
+                  Liste de matériaux pour {projectLabel.label} {w}×{d} m avec quantités et prix par enseigne
+                </caption>
                 <thead>
                   <tr style={{ background: '#fafaf8' }}>
-                    <th style={{ padding: '10px 24px', textAlign: 'left', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>Matériau</th>
-                    <th style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>Qté</th>
-                    <th style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>LM</th>
-                    <th style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0', whiteSpace: 'nowrap' }}>Casto</th>
-                    <th style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0', whiteSpace: 'nowrap' }}>B. Dépôt</th>
-                    <th style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>Acheter</th>
+                    <th scope="col" style={{ padding: '10px 24px', textAlign: 'left', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>Matériau</th>
+                    <th scope="col" style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>Qté</th>
+                    <th scope="col" style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>LM</th>
+                    <th scope="col" style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0', whiteSpace: 'nowrap' }}>Casto</th>
+                    <th scope="col" style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0', whiteSpace: 'nowrap' }}>B. Dépôt</th>
+                    <th scope="col" style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 600, color: '#555', fontSize: 12, borderBottom: '1px solid #f0f0f0' }}>Acheter</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -237,6 +214,7 @@ export default function ListePage({ searchParams }) {
                                 target="_blank"
                                 rel="sponsored noopener noreferrer"
                                 title={`Chercher chez ${STORE_NAMES[store.id]}`}
+                                aria-label={`Chercher ${line.label} chez ${STORE_NAMES[store.id]} (nouvel onglet)`}
                                 style={{
                                   fontSize: 11, fontWeight: 700, padding: '3px 8px',
                                   borderRadius: 6, border: '1px solid #e0e0e0',

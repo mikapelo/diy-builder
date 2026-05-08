@@ -26,8 +26,9 @@ const PROJECT_QUERIES = {
   cloture:  'lame clôture bois pin traité',
 };
 
-/** Construit l'URL enseigne avec UTM à partir du store ID, du terme et du projet */
-function buildStoreUrl(storeId, q, project) {
+/** Construit l'URL enseigne avec UTM à partir du store ID, du terme et du projet
+ *  Exporté pour tests unitaires (audit Sprint 3). */
+export function buildStoreUrl(storeId, q, project) {
   const utmSuffix = `utm_source=diy-builder&utm_medium=referral&utm_campaign=${encodeURIComponent(project)}`;
 
   switch (storeId) {
@@ -61,8 +62,6 @@ export async function GET(request) {
 
   // Si pas de `q` fourni par le client, utilise le terme par défaut du module
   const q = rawQ || encodeURIComponent(PROJECT_QUERIES[project] ?? 'matériaux bois construction');
-
-  console.log(`[/api/go] store=${store} project=${project} q=${q}`);
 
   const destination = buildStoreUrl(store, q, project);
 

@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef, useId } from 'react';
+import useFocusTrap from '@/hooks/useFocusTrap';
 
 /**
  * EmailGateModal — Capture email avant téléchargement PDF
@@ -14,6 +15,21 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
   const [email, setEmail]   = useState(defaultEmail);
   const [error, setError]   = useState('');
   const [loading, setLoading] = useState(false);
+
+  const panelRef = useRef(null);
+  const titleId = useId();
+  const descId = useId();
+  const errId = useId();
+
+  // Focus trap WCAG SC 2.4.3 (audit a11y)
+  useFocusTrap(true, panelRef);
+
+  // Escape pour fermer (audit a11y)
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose?.(); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   const PROJECT_LABELS = {
     terrasse: 'Terrasse', cabanon: 'Cabanon',
@@ -49,15 +65,22 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
   }
 
   return (
-    <div style={{
-      position: 'fixed', inset: 0,
-      background: 'rgba(26,28,27,0.45)',
-      backdropFilter: 'blur(6px)',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      zIndex: 1000, padding: '24px',
-      animation: 'modalFadeIn .2s ease-out',
-    }}>
-      <div style={{
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      aria-describedby={descId}
+      style={{
+        position: 'fixed', inset: 0,
+        background: 'rgba(26,28,27,0.45)',
+        backdropFilter: 'blur(6px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        zIndex: 1000, padding: '24px',
+        animation: 'modalFadeIn .2s ease-out',
+      }}
+      onClick={(e) => { if (e.target === e.currentTarget) onClose?.(); }}
+    >
+      <div ref={panelRef} style={{
         position: 'relative',
         background: 'white',
         borderRadius: '20px',
@@ -68,6 +91,7 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
       }}>
         {/* Close */}
         <button
+          type="button"
           onClick={onClose}
           aria-label="Fermer"
           style={{
@@ -80,7 +104,7 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
         >×</button>
 
         {/* Icon */}
-        <div style={{
+        <div aria-hidden="true" style={{
           width: '52px', height: '52px', borderRadius: '14px',
           background: '#FFF8E1', border: '1px solid rgba(201,151,30,.15)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -88,14 +112,14 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
         }}>📋</div>
 
         {/* Header */}
-        <h2 style={{
+        <h2 id={titleId} style={{
           textAlign: 'center', fontSize: '19px', fontWeight: 800,
           color: '#111214', fontFamily: 'Manrope, sans-serif',
           letterSpacing: '-0.03em', margin: '0 0 8px',
         }}>
           Recevoir votre devis {label}
         </h2>
-        <p style={{
+        <p id={descId} style={{
           textAlign: 'center', fontSize: '13px', color: '#66625a',
           fontFamily: 'Inter, sans-serif', lineHeight: 1.5,
           margin: '0 0 24px',
@@ -111,11 +135,15 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
             value={email}
             onChange={e => setEmail(e.target.value)}
             placeholder="votre@email.fr"
+            aria-label="Adresse email"
+            aria-required="true"
+            aria-invalid={error ? 'true' : 'false'}
+            aria-describedby={error ? errId : undefined}
             autoFocus
             required
             style={{
               width: '100%', padding: '12px 14px',
-              border: error ? '1.5px solid #e53e3e' : '1.5px solid #e5e2d8',
+              border: error ? '1.5px solid #b91c1c' : '1.5px solid #e5e2d8',
               borderRadius: '10px', fontSize: '15px',
               fontFamily: 'Inter, sans-serif', color: '#111214',
               outline: 'none', boxSizing: 'border-box',
@@ -123,7 +151,7 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
             }}
           />
           {error && (
-            <p style={{ fontSize: '12px', color: '#e53e3e', margin: 0, fontFamily: 'Inter, sans-serif' }}>
+            <p id={errId} role="alert" style={{ fontSize: '12px', color: '#b91c1c', margin: 0, fontFamily: 'Inter, sans-serif' }}>
               {error}
             </p>
           )}
@@ -147,7 +175,7 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
         </form>
 
         <p style={{
-          textAlign: 'center', fontSize: '11px', color: '#9c9188',
+          textAlign: 'center', fontSize: '11px', color: '#6b5f4f',
           fontFamily: 'Inter, sans-serif', margin: '12px 0 0', lineHeight: 1.4,
         }}>
           Pas de spam. Vous recevrez aussi une copie par email.

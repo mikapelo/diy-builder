@@ -9,14 +9,14 @@
  *   - Légende
  */
 import { useState, useEffect, useCallback } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE        from 'three';
 import PergolaScene      from './PergolaScene';
 import PergolaSketch     from './PergolaSketch';
 import useIsMobile       from '@/hooks/useIsMobile';
 import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/CameraPresets';
-import { useSetExportBridge } from './shared/ExportContext';
+import ExportBridge      from './shared/ExportBridge';
 
 const MODES = [
   { key: 'assembled', label: 'Assemblée' },
@@ -24,18 +24,6 @@ const MODES = [
   { key: 'exploded',  label: 'Éclatée' },
   { key: 'plan',      label: 'Plan' },
 ];
-
-/* ExportBridge — publie camera/gl/scene/controls + setSceneMode + setShowHuman au contexte
-   d'export, pour que ExportPDF puisse capturer des vues standardisées sans la silhouette. */
-function ExportBridge({ setSceneMode, showHuman, setShowHuman }) {
-  const { camera, gl, scene, controls } = useThree();
-  const setBridge = useSetExportBridge();
-  useEffect(() => {
-    setBridge({ camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman });
-    return () => setBridge(null);
-  }, [camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman, setBridge]);
-  return null;
-}
 
 export default function PergolaViewer({ structure, foundationType = 'ground' }) {
   const [sceneMode, setSceneMode] = useState('assembled');

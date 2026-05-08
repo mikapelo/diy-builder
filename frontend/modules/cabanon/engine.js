@@ -15,6 +15,8 @@ import {
   STUD_SPACING, ROOF_COEF, DEFAULT_HEIGHT, SECTION, CORNER_ZONE,
   LINTEL_H, SILL_H, BASTAING_W, BASTAING_H, SLOPE_RATIO,
   ROOF_ENTRETOISE_SPACING, OSB_PANEL_AREA,
+  DEFAULT_DOOR_W, DEFAULT_DOOR_H, DEFAULT_WINDOW_W, DEFAULT_WINDOW_H,
+  DEFAULT_WINDOW_V, DOOR_X_RATIO, WINDOW_X_RATIO,
 } from '@/lib/cabanonConstants.js';
 
 /* ── Utilitaires ──────────────────────────────────────────────────────── */
@@ -465,8 +467,8 @@ export function generateCabanon(width, depth, options = {}) {
 
   /* ── Ouvertures — défauts façade avant ou override depuis options ── */
   const defaultOpenings = [
-    { wall: 0, u: r3(width * 0.15), v: 0,   width: 0.9, height: 2.0, type: 'door'   },
-    { wall: 0, u: r3(width * 0.62), v: 1.0, width: 0.6, height: 0.6, type: 'window' },
+    { wall: 0, u: r3(width * DOOR_X_RATIO),   v: 0,                  width: DEFAULT_DOOR_W,   height: DEFAULT_DOOR_H,   type: 'door'   },
+    { wall: 0, u: r3(width * WINDOW_X_RATIO), v: DEFAULT_WINDOW_V,   width: DEFAULT_WINDOW_W, height: DEFAULT_WINDOW_H, type: 'window' },
   ];
   const rawOpenings = options.openings ?? defaultOpenings;
 
@@ -617,11 +619,11 @@ export function generateCabanon(width, depth, options = {}) {
   const chevrons      = geoChevrons.length;
   const chevronLength = +geoRoof.len.toFixed(3);  // longueur rampant mono-pente (m)
 
-  // Bardage : surface murs moins ouvertures, avec facteur pertes (chutes de découpe)
-  // ROOF_COEF = 1.10 appliqué ici aussi (cohérent : bardage a ~10% de chutes aux angles/coupes)
-  // Correction [audit] : l'ancienne formule n'appliquait aucun facteur → sous-estimation de 10%
+  // Bardage : surface murs moins ouvertures (quantité brute, m²)
+  // Le facteur de perte (1.10) est appliqué par costCalculator via WOOD_WASTE_FACTOR
+  // sur bardage_pin (présent dans WOOD_MATERIAL_IDS). Engine = quantité brute.
   const openingArea = openingsArr.reduce((s, o) => s + o.width * o.height, 0);
-  const bardage     = +Math.max(0, (wallArea - openingArea) * ROOF_COEF).toFixed(2);
+  const bardage     = +Math.max(0, wallArea - openingArea).toFixed(2);
 
   // Voile de contreventement OSB 3 — DTU 31.2 §9.2.2 — voile travaillant
   // Surface nette = surface murs − ouvertures (dormants non comptabilisés).

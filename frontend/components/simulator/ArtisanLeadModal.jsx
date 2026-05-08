@@ -177,7 +177,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                   <span className="modal-label-req">*</span>
                 </label>
                 <div className="modal-input-wrap">
-                  <span className="modal-input-icon material-symbols-outlined">call</span>
+                  <span className="modal-input-icon material-symbols-outlined" aria-hidden="true">call</span>
                   <input
                     id="alm-phone"
                     className={`modal-input${errors.phone ? ' modal-input--error' : ''}`}
@@ -188,9 +188,13 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                     disabled={isLoading}
                     autoComplete="tel"
                     inputMode="tel"
+                    required
+                    aria-required="true"
+                    aria-invalid={errors.phone ? 'true' : 'false'}
+                    aria-describedby={errors.phone ? 'alm-phone-err' : undefined}
                   />
                 </div>
-                {errors.phone && <span className="modal-error">{errors.phone}</span>}
+                {errors.phone && <span id="alm-phone-err" role="alert" className="modal-error">{errors.phone}</span>}
               </div>
 
               {/* Code postal */}
@@ -200,7 +204,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                   <span className="modal-label-req">*</span>
                 </label>
                 <div className="modal-input-wrap">
-                  <span className="modal-input-icon material-symbols-outlined">location_on</span>
+                  <span className="modal-input-icon material-symbols-outlined" aria-hidden="true">location_on</span>
                   <input
                     id="alm-zip"
                     className={`modal-input${errors.zipCode ? ' modal-input--error' : ''}`}
@@ -212,9 +216,13 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                     autoComplete="postal-code"
                     inputMode="numeric"
                     maxLength={5}
+                    required
+                    aria-required="true"
+                    aria-invalid={errors.zipCode ? 'true' : 'false'}
+                    aria-describedby={errors.zipCode ? 'alm-zip-err' : undefined}
                   />
                 </div>
-                {errors.zipCode && <span className="modal-error">{errors.zipCode}</span>}
+                {errors.zipCode && <span id="alm-zip-err" role="alert" className="modal-error">{errors.zipCode}</span>}
               </div>
 
               {/* Email */}
@@ -224,7 +232,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                   <span className="modal-label-hint">(pour recevoir une confirmation)</span>
                 </label>
                 <div className="modal-input-wrap">
-                  <span className="modal-input-icon material-symbols-outlined">mail</span>
+                  <span className="modal-input-icon material-symbols-outlined" aria-hidden="true">mail</span>
                   <input
                     id="alm-email"
                     className={`modal-input${errors.email ? ' modal-input--error' : ''}`}
@@ -235,9 +243,11 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                     disabled={isLoading}
                     autoComplete="email"
                     inputMode="email"
+                    aria-invalid={errors.email ? 'true' : 'false'}
+                    aria-describedby={errors.email ? 'alm-email-err' : undefined}
                   />
                 </div>
-                {errors.email && <span className="modal-error">{errors.email}</span>}
+                {errors.email && <span id="alm-email-err" role="alert" className="modal-error">{errors.email}</span>}
               </div>
 
               {/* Message */}
@@ -259,7 +269,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
 
               {status === 'error' && (
-                <p style={{ fontSize: 13, color: '#d9534f', margin: '4px 0 0' }}>
+                <p role="alert" aria-live="assertive" style={{ fontSize: 13, color: '#b91c1c', margin: '4px 0 0' }}>
                   Une erreur est survenue. Réessayez ou contactez-nous directement.
                 </p>
               )}
