@@ -62,8 +62,7 @@ function StoreCard({ store, isBest, hasSlab, slabTotal, projectType }) {
       <button
         className="store-cta"
         onClick={() => {
-          const q = encodeURIComponent(store.searchQuery || store.name);
-          const url = `/go?store=${store.id}&project=${projectType}&q=${q}`;
+          const url = `/api/go?store=${store.id}&project=${projectType}`;
           trackOutboundClick({ store: store.id, project: projectType, url });
           trackAffiliateClick({ store: store.id, project: projectType });
           window.open(url, '_blank', 'noopener,noreferrer');
@@ -77,7 +76,7 @@ function StoreCard({ store, isBest, hasSlab, slabTotal, projectType }) {
   );
 }
 
-export default function BudgetComparator({ area, slabTotal = 0, materials = null, projectType = 'terrasse' }) {
+export default function BudgetComparator({ area, slabTotal = 0, materials = null, projectType = 'terrasse', dims = null }) {
   const hasSlab = slabTotal > 0;
 
   /* ── Calcul détaillé ou fallback ── */
@@ -192,6 +191,26 @@ export default function BudgetComparator({ area, slabTotal = 0, materials = null
           />
         ))}
       </div>
+
+      {/* ── Lien vers la page liste partageable ── */}
+      {dims && (
+        <a
+          href={`/liste?project=${projectType}&w=${dims.width ?? dims.w ?? 4}&d=${dims.depth ?? dims.d ?? 3}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bc-liste-link"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            margin: '12px 0 0', padding: '10px 16px',
+            background: '#f8f5ee', borderRadius: 8, border: '1px solid #e8dfc8',
+            fontSize: 13, fontWeight: 600, color: '#A07A14', textDecoration: 'none',
+          }}
+        >
+          <span className="material-symbols-outlined" style={{ fontSize: 16 }}>list_alt</span>
+          Voir la liste complète des matériaux — page partageable
+          <span className="material-symbols-outlined" style={{ fontSize: 14, marginLeft: 'auto' }}>open_in_new</span>
+        </a>
+      )}
 
       {/* ── Disclaimer ── */}
       <p className="budget-disclaimer">

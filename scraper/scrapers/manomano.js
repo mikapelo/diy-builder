@@ -36,11 +36,14 @@ const TARGETS = [
     unit: 'm lin.',
     refLen: 4.0,
   },
+  // ⚠️ ID corrigé : lambourde_60x70 (anciennement lambourde_45x70 — mismatch avec materialPrices.js)
   {
-    id: 'lambourde_45x70',
+    id: 'lambourde_60x70',
     url: 'https://www.manomano.fr/p/lambourde-terrasse-45x70-pin-traite-autoclave-marron-cl4-rabote-3m-5123025',
     unit: 'pcs',
     refLen: 3.0,
+    minPrice: 8.00,
+    maxPrice: 25.00,
   },
 
   // ── Terrasse ──────────────────────────────────────────────────────────────

@@ -41,11 +41,18 @@ const TARGETS = [
     unit: 'pcs',
     refLen: 3.0,
   },
+  // ⚠️ ID corrigé : lambourde_60x70 (anciennement lambourde_45x70 — mismatch avec materialPrices.js)
+  // LM : lambourde 40×75mm 3m cl.4 = 11,90€/pcs (scraping direct 2026-05-07)
+  // Page liste utilisée — URL produit directe non disponible (slug instable au scraping précédent)
   {
-    id: 'lambourde_45x70',
-    url: 'https://www.leroymerlin.fr/produits/lambourde-pin-45x70x2400mm-ou-2m40-traite-classe-4-vert-90800571.html',
+    id: 'lambourde_60x70',
+    url: 'https://www.leroymerlin.fr/produits/terrasse-jardin/terrasse-et-sol-exterieur/lame-de-terrasse-bois-et-composite/lambourde/',
     unit: 'pcs',
-    refLen: 2.4,
+    refLen: 3.0,
+    isListPage: true,
+    labelMatch: /lambourde.*cl(?:asse)?.*4|cl(?:asse)?.*4.*lambourde|lambourde.*40.{0,6}75|lambourde.*45.{0,6}70/i,
+    minPrice: 8.00,
+    maxPrice: 25.00,
   },
   {
     id: 'poutre_pergola_150',
@@ -190,8 +197,11 @@ export async function scrapeLeroyMerlin() {
       let raw;
 
       if (target.isListPage && target.labelMatch) {
-        raw = await page.evaluate(({ labelRe, sels }) => {
+        const minP = target.minPrice ?? 0;
+        const maxP = target.maxPrice ?? 5000;
+        raw = await page.evaluate(({ labelRe, sels, minP, maxP }) => {
           const re = new RegExp(labelRe, 'i');
+          const inRange = v => !isNaN(v) && v >= minP && v <= maxP;
           for (const c of document.querySelectorAll('[class*="product"], [class*="card"], article, li')) {
             if (!re.test(c.textContent)) continue;
             for (const sel of sels) {
@@ -199,20 +209,18 @@ export async function scrapeLeroyMerlin() {
               if (!el) continue;
               const txt = el.getAttribute('content') || el.textContent || '';
               const v = parseFloat(txt.replace(/\s/g, '').replace(',', '.').replace(/[^\d.]/g, ''));
-              if (!isNaN(v) && v > 0 && v < 5000) return v;
+              if (inRange(v)) return v;
             }
-            // Fallback max prix dans le container
-            const allPrices = [];
+            // Fallback : premier prix dans la plage dans le texte brut
             const re2 = /(\d{1,3}[.,]\d{2})\s*€/g;
             let m;
             while ((m = re2.exec(c.textContent)) !== null) {
               const v = parseFloat(m[1].replace(',', '.'));
-              if (!isNaN(v) && v > 1 && v < 5000) allPrices.push(v);
+              if (inRange(v)) return v;
             }
-            if (allPrices.length > 0) return Math.max(...allPrices);
           }
           return null;
-        }, { labelRe: target.labelMatch.source, sels: LM_PRICE_SELECTORS });
+        }, { labelRe: target.labelMatch.source, sels: LM_PRICE_SELECTORS, minP, maxP });
       } else {
         raw = await extractPriceLM(page);
       }

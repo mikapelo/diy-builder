@@ -4,6 +4,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Construction bois : 24 questions fréquentes (FAQ 2025)',
   description: 'Réponses aux questions les plus fréquentes sur la construction de terrasse, cabanon, pergola et clôture en bois. Calculs, matériaux, coûts.',
+  alternates: { canonical: 'https://diy-builder.fr/faq' },
 };
 
 // faqData contient les réponses en texte brut — utilisé pour le JSON-LD FAQPage (pas de HTML).

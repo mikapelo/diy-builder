@@ -4,6 +4,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Comment construire une clôture bois : guide complet 2025 | DIY Builder',
   description: 'Guide complet pour poser une clôture bois : poteaux, rails, lames. Calcul des matériaux, entraxes, hauteurs réglementaires et budget estimé.',
+  alternates: { canonical: 'https://diy-builder.fr/guides/cloture' },
 };
 
 const jsonLd = {

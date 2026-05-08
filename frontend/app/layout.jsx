@@ -27,6 +27,7 @@ export const metadata = {
     description: 'Terrasse, cabanon, pergola, clôture : calculez vos matériaux en 30 secondes.',
     images: ['/og-image.svg'],
   },
+  alternates: { canonical: 'https://diy-builder.fr' },
   robots: {
     index: true,
     follow: true,

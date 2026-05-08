@@ -3,6 +3,14 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.diy-builder.fr" }],
+      "destination": "https://diy-builder.fr/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/api/prices", "destination": "/api/prices" }
   ]
