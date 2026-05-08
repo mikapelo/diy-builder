@@ -19,6 +19,7 @@ import { generateCabanon }  from '@/modules/cabanon/engine';
 import { generatePergola }  from '@/modules/pergola/engine';
 import { generateCloture }  from '@/modules/cloture/engine';
 import { generateDeck }     from '@/lib/deckEngine';
+import { BOARD_WIDTH, BOARD_GAP, BOARD_LEN } from '@/lib/deckConstants';
 import { calculateDetailedCost, calculateTotalCost } from '@/lib/costCalculator';
 import { STORES }           from '@/lib/materialPrices';
 import { HOW_TO_SCHEMAS, PROJECT_LABELS, PROJECT_DEFAULTS } from '@/lib/seoSchemas';
@@ -48,10 +49,24 @@ const fmtQty = (n, unit) => {
 
 function callEngine(project, w, d) {
   switch (project) {
+    case 'terrasse': {
+      const raw = generateDeck(w, d);
+      const joistCount = raw.joistCount ?? 0;
+      const pads = raw.totalPads ?? 0;
+      const dblJoistCount = new Set(raw.doubleJoistSegs?.map(s => +s.xPos.toFixed(6)) ?? []).size;
+      const allJoistCount = joistCount + dblJoistCount;
+      const boardRows = Math.floor(d / (BOARD_WIDTH + BOARD_GAP)) + 1;
+      const boards = Math.ceil(boardRows * w * 1.05 / BOARD_LEN);
+      const screws = boardRows * allJoistCount * 2;
+      const cbPositions = d > 3 ? Math.floor(d / 1.8) : 0;
+      const entretoises = cbPositions * Math.max(joistCount - 1, 0);
+      const bande = Math.ceil(allJoistCount * d * 1.05);
+      return { boards, joists: allJoistCount, pads, screws, entretoises, bande };
+    }
     case 'cabanon': return generateCabanon(w, d, {});
     case 'pergola': return generatePergola(w, d, {});
     case 'cloture': return generateCloture(w, d, {});
-    default:        return generateDeck(w, d);
+    default:        return null;
   }
 }
 
@@ -70,7 +85,7 @@ export default function ListePage({ searchParams }) {
   /* BOM complet par enseigne */
   let structure;
   try { structure = callEngine(project, w, d); }
-  catch { structure = null; }
+  catch (err) { console.error('[/liste] callEngine error:', err); structure = null; }
 
   /* Lignes BOM (référence : LM pour labels + quantités) */
   const bomLines = structure ? calculateDetailedCost(structure, 'leroymerlin', project) : [];
