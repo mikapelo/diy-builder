@@ -4,24 +4,23 @@
  * Modes :
  *   node index.js            → lance le cron (toutes les semaines)
  *   node index.js --once     → une seule exécution immédiate
- *   node index.js --dry-run  → teste la connectivité sans écrire de fichier
- *   node index.js --no-push  → écrit materialPrices.js mais ne pushe pas
+ *   node index.js --dry-run  → teste la connectivité sans écrire le cache
  *
- * Pipeline (Option A — scraper → commit → Vercel auto-deploy) :
+ * Sorties :
+ *   ../frontend/public/prices-cache.json  ← lu par l'API Next.js
+ *
+ * Pipeline :
  *   1. Fetch HTML/headless sur chaque enseigne (en parallèle partiel)
  *   2. Merge sur la base statique materialPrices.js
- *   3. Réécriture de materialPrices.js avec les prix mis à jour
- *   4. git commit + git push → Vercel détecte et rebuilde automatiquement
- *
- * Pas de cache JSON intermédiaire — materialPrices.js EST la source de vérité.
+ *   3. Écriture du cache JSON avec date + métadonnées
  */
 
-import cron              from 'node-cron';
-import { chromium }      from 'playwright';
+import cron        from 'node-cron';
+import { chromium } from 'playwright';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { execSync }      from 'child_process';
+import { createRequire } from 'module';
 
 import { mergePrices }       from './normalizer.js';
 import { scrapeCastorama }   from './scrapers/castorama.js';
@@ -34,20 +33,22 @@ import { scrapeChausson }    from './scrapers/chausson.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Chemin vers la source de vérité des prix
+// Chemin vers le cache (lu par le frontend Next.js)
+const CACHE_PATH = join(__dirname, '../frontend/public/prices-cache.json');
+
+// Chemin vers la base statique (fallback)
 const STATIC_PATH = join(__dirname, '../frontend/lib/materialPrices.js');
 
-// Chemin vers l'override manuel (prix saisis à la main, ex: LM bloqué Datadome)
+// Chemin vers l'override manuel (prix saisis à la main, ex: LM bloqué)
 const OVERRIDE_PATH = join(__dirname, 'prices-override.json');
 
-// Racine du repo git (pour le commit)
-const REPO_ROOT = join(__dirname, '..');
-
 /**
- * Charge les MATERIAL_PRICES statiques depuis materialPrices.js.
- * Parsing léger par regex — évite les dépendances sur le resolver Next.js.
+ * Charge les MATERIAL_PRICES statiques via dynamic import
+ * (le fichier est un ES module Next.js avec alias @/).
  */
 async function loadStaticPrices() {
+  // On lit le fichier et extrait le tableau avec une regex légère
+  // pour éviter les dépendances sur le resolver Next.js
   const src = readFileSync(STATIC_PATH, 'utf8');
   const match = src.match(/export\s+const\s+MATERIAL_PRICES\s*=\s*(\[[\s\S]+?\]);/);
   if (!match) throw new Error('MATERIAL_PRICES introuvable dans materialPrices.js');
@@ -55,107 +56,24 @@ async function loadStaticPrices() {
 }
 
 /**
- * Réécrit materialPrices.js avec les prix fusionnés.
- *
- * Stratégie : mise à jour ligne par ligne — on préserve tous les commentaires
- * et la structure du fichier. Seuls les blocs `prices: { ... }` et le flag
- * `scraped:` sont remplacés sur les lignes concernées.
- *
- * Pré-requis : chaque entrée MATERIAL_PRICES tient sur une seule ligne
- * (format actuel du fichier).
- *
- * @param {Array} mergedPrices — résultat de mergePrices()
- * @param {string} date — date ISO courte (YYYY-MM-DD)
+ * Écrit le cache JSON (crée aussi le dossier public/ si absent).
  */
-function writeMaterialPrices(mergedPrices, date) {
-  let src = readFileSync(STATIC_PATH, 'utf8');
-
-  // 1. Mettre à jour PRICES_DATE
-  src = src.replace(
-    /export\s+const\s+PRICES_DATE\s*=\s*'[\d-]+'/,
-    `export const PRICES_DATE = '${date}'`
-  );
-
-  // 2. Pour chaque matériau mis à jour, remplacer prices: {...} et scraped:
-  for (const mat of mergedPrices) {
-    // Construire la chaîne prices: { store: val, ... }
-    const pricesStr = Object.entries(mat.prices)
-      .map(([store, val]) => `${store}: ${val}`)
-      .join(', ');
-    const newPricesBlock = `prices: { ${pricesStr} }`;
-
-    // Regex : trouve la ligne contenant id: 'materialId' et remplace
-    // le bloc prices: { ... } existant (inline, sur la même ligne)
-    const idPattern = new RegExp(
-      `(\\{[^}]*?id:\\s*'${escapeRegex(mat.id)}'[^\\n]*?)prices:\\s*\\{[^}]*\\}`,
-      'g'
-    );
-
-    // Remplace aussi scraped: true/false si la ligne en contient un
-    src = src.replace(idPattern, (_, prefix) => {
-      // Mettre à jour scraped: dans le prefix si présent
-      const updatedPrefix = prefix.replace(
-        /scraped:\s*(true|false)/,
-        `scraped: ${mat.scraped ? 'true' : 'false'}`
-      );
-      return `${updatedPrefix}${newPricesBlock}`;
-    });
-  }
-
-  writeFileSync(STATIC_PATH, src, 'utf8');
-
-  const updatedCount = mergedPrices.filter(p => p.scraped).length;
-  console.log(`[scraper] ✅ materialPrices.js mis à jour (${updatedCount}/${mergedPrices.length} prix live)`);
-}
-
-/**
- * Commit et push materialPrices.js vers le dépôt git distant.
- * Vercel détecte le push sur main et rebuilde automatiquement.
- *
- * @param {string} date — date courte pour le message de commit
- * @param {string[]} sources — liste des enseignes mises à jour
- */
-function gitCommitAndPush(date, sources) {
-  const sourcesLabel = sources.length > 0 ? sources.join(', ') : 'overrides manuels';
-
-  try {
-    // Vérifier s'il y a des changements à commiter
-    const status = execSync('git diff --name-only frontend/lib/materialPrices.js', {
-      cwd: REPO_ROOT,
-      encoding: 'utf8',
-    }).trim();
-
-    if (!status) {
-      console.log('[git] Aucun changement dans materialPrices.js — commit ignoré.');
-      return;
-    }
-
-    execSync('git add frontend/lib/materialPrices.js', { cwd: REPO_ROOT, stdio: 'pipe' });
-
-    const msg = `chore(prices): mise à jour automatique scraper ${date}\n\nSources : ${sourcesLabel}\n[skip ci]`;
-    execSync(`git commit -m ${JSON.stringify(msg)}`, { cwd: REPO_ROOT, stdio: 'pipe' });
-
-    execSync('git push', { cwd: REPO_ROOT, stdio: 'inherit' });
-
-    console.log('[git] ✅ Commit + push → Vercel rebuild déclenché');
-  } catch (err) {
-    console.error('[git] ❌ Échec commit/push :', err.message.split('\n')[0]);
-    console.error('[git]    Les prix ont été écrits dans materialPrices.js mais non pushés.');
-    console.error('[git]    Pushez manuellement : git push');
-  }
-}
-
-/** Échappe les caractères spéciaux regex dans un ID matériau */
-function escapeRegex(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function writeCache(prices, meta = {}) {
+  const payload = {
+    date:    new Date().toISOString().split('T')[0],
+    updated: new Date().toISOString(),
+    sources: meta.sources ?? [],
+    prices,
+  };
+  writeFileSync(CACHE_PATH, JSON.stringify(payload, null, 2));
+  console.log(`[scraper] ✅ Cache écrit → ${CACHE_PATH}`);
+  console.log(`[scraper]    ${prices.filter(p => p.scraped).length}/${prices.length} matériaux avec prix live`);
 }
 
 /**
  * Exécution principale : lance tous les scrapers et fusionne les résultats.
- * @param {boolean} dryRun   — si true, n'écrit rien (log seulement)
- * @param {boolean} noPush   — si true, écrit materialPrices.js mais ne pushe pas
  */
-async function run(dryRun = false, noPush = false) {
+async function run(dryRun = false) {
   console.log('\n[scraper] ─────────────────────────────────────────');
   console.log('[scraper] Démarrage mise à jour prix matériaux');
   console.log('[scraper] Date :', new Date().toLocaleString('fr-FR'));
@@ -172,15 +90,15 @@ async function run(dryRun = false, noPush = false) {
     console.error('[castorama] Échec global :', err.message);
     return {};
   });
-  const castoCount = Object.keys(castoResult).length;
-  if (castoCount > 0) {
+  const castaCount = Object.keys(castoResult).length;
+  if (castaCount > 0) {
     Object.assign(allScraped, castoResult);
-    successList.push(`Castorama (${castoCount} prix)`);
+    successList.push(`Castorama (${castaCount} prix)`);
   } else {
     failList.push('Castorama');
   }
 
-  // ── 2. Sites Playwright (un seul browser partagé pour BD) ────
+  // ── 2. Sites Playwright (un seul browser partagé) ────────────
   let browser = null;
   try {
     browser = await chromium.launch({
@@ -251,10 +169,10 @@ async function run(dryRun = false, noPush = false) {
       const overridePrices = overrideData.prices ?? {};
       const overrideCount = Object.values(overridePrices)
         .reduce((n, stores) => n + Object.keys(stores).length, 0);
-      // Les prix scrappés ont priorité sur les overrides pour la même enseigne.
-      // Les matériaux absents du scraping conservent leur valeur manuelle.
+      // deepMerge(overridePrices, allScraped) : les prix scrappés écrasent les overrides
+      // pour la même enseigne. Les matériaux absents du scraping conservent leur valeur manuelle.
       Object.assign(allScraped, deepMerge(overridePrices, allScraped));
-      console.log(`[scraper] 📝 Override manuel : ${overrideCount} prix chargés`);
+      console.log(`[scraper] 📝 Override manuel : ${overrideCount} prix chargés (${OVERRIDE_PATH})`);
     } catch (err) {
       console.warn('[scraper] Override ignoré :', err.message);
     }
@@ -269,7 +187,7 @@ async function run(dryRun = false, noPush = false) {
   console.log('[scraper] ⚠️  Échecs  :', failList.join(', ')   || 'aucun');
 
   if (dryRun) {
-    console.log('[scraper] Mode dry-run — aucun fichier écrit.');
+    console.log('[scraper] Mode dry-run — cache non écrit.');
     console.log('[scraper] Aperçu des prix scrappés :');
     Object.entries(allScraped).forEach(([id, stores]) => {
       console.log(`   ${id}:`, JSON.stringify(stores));
@@ -277,15 +195,8 @@ async function run(dryRun = false, noPush = false) {
     return;
   }
 
-  // ── 6. Réécriture materialPrices.js + commit + push ──────────
-  const today = new Date().toISOString().split('T')[0];
-  writeMaterialPrices(mergedPrices, today);
-
-  if (!noPush) {
-    gitCommitAndPush(today, successList);
-  } else {
-    console.log('[scraper] Mode --no-push — commit ignoré. Pushez manuellement si besoin.');
-  }
+  // ── 6. Écriture cache ─────────────────────────────────────────
+  writeCache(mergedPrices, { sources: successList });
 }
 
 /** Deep merge pour les objets { materialId: { storeId: price } } */
@@ -302,16 +213,13 @@ const args = process.argv.slice(2);
 
 const onError = err => { console.error('[scraper] Erreur fatale :', err.message); process.exit(1); };
 
-const dryRun = args.includes('--dry-run');
-const noPush = args.includes('--no-push');
-
-if (dryRun) {
-  run(true, false).catch(onError);
+if (args.includes('--dry-run')) {
+  run(true).catch(onError);
 } else if (args.includes('--once')) {
-  run(false, noPush).catch(onError);
+  run(false).catch(onError);
 } else {
   // Mode daemon : exécution immédiate + cron hebdomadaire (lundi 6h)
   console.log('[scraper] Démarrage en mode daemon (cron lundi 6h)');
-  run(false, noPush).catch(onError);
-  cron.schedule('0 6 * * 1', () => run(false, noPush).catch(onError));
+  run(false).catch(onError);
+  cron.schedule('0 6 * * 1', () => run(false).catch(onError));
 }

@@ -54,9 +54,8 @@ const TARGETS = [
     unit: 'm lin.',
     refLen: 3.0,   // BD ne propose que la longueur 3m pour cette section
   },
-  // ⚠️ ID corrigé : lambourde_60x70 (anciennement lambourde_45x70 — mismatch avec materialPrices.js)
   {
-    id: 'lambourde_60x70',
+    id: 'lambourde_45x70',
     // Prod97285 = lambourde bois classe 4, 3000×70×45 mm — dimensions correctes.
     // Prix affiché "À partir de 7,90 €" sans sélection de dépôt — prix teaser non représentatif.
     // → minPrice/maxPrice pour rejeter les prix "À partir de" (< 9 € pour 3 m) et les aberrations.

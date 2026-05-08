@@ -3,7 +3,6 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Gestion des cookies — DIY Builder',
   description: 'Politique de gestion des cookies du simulateur DIY Builder. Aucun cookie publicitaire ni analytique tiers.',
-  alternates: { canonical: 'https://diy-builder.fr/cookies' },
 };
 
 export default function Cookies() {

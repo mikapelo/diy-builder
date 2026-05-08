@@ -62,7 +62,6 @@ export default function TunnelSections({
           slabTotal={slabTotal}
           materials={materials}
           projectType={projectType}
-          dims={dims}
         />
       </section>
 

@@ -4,7 +4,6 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Comment construire une pergola bois : guide complet 2025 | DIY Builder',
   description: 'Guide pas à pas pour construire votre pergola bois : poteaux, longerons, chevrons. Calcul des sections, ancrage, budget estimé. Simulateur gratuit inclus.',
-  alternates: { canonical: 'https://diy-builder.fr/guides/pergola' },
 };
 
 const jsonLd = {

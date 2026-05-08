@@ -5,7 +5,6 @@ export const metadata = {
   title: 'Comment construire un cabanon ossature bois : guide DTU 2025 | DIY Builder',
   description:
     'Guide complet pour construire un cabanon bois : ossature, montants, toiture mono-pente. Calculs DTU, liste de matériaux et estimatif de budget inclus.',
-  alternates: { canonical: 'https://diy-builder.fr/guides/cabanon' },
 };
 
 const howToJsonLd = {

@@ -15,13 +15,6 @@ export default function sitemap() {
     { url: `${baseUrl}/guides/cabanon`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/pergola`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/cloture`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
-    // Pages BOM partageables — indexées avec les dimensions types
-    { url: `${baseUrl}/liste?project=terrasse&w=4&d=3`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/liste?project=terrasse&w=6&d=4`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/liste?project=cabanon&w=3&d=4`,  lastModified, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/liste?project=cabanon&w=4&d=5`,  lastModified, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/liste?project=pergola&w=4&d=3`,  lastModified, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/liste?project=cloture&w=15&d=1.5`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     // FAQ
     { url: `${baseUrl}/faq`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     // Pages légales

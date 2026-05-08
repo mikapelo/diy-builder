@@ -4,7 +4,6 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Guides DIY bois 2025 : terrasse, cabanon, pergola, clôture',
   description: 'Construire soi-même en bois — 4 guides pratiques (DTU, prix, étapes, outils, durée).',
-  alternates: { canonical: 'https://diy-builder.fr/guides' },
 };
 
 const itemListJsonLd = {
@@ -16,25 +15,25 @@ const itemListJsonLd = {
     {
       '@type': 'ListItem',
       position: 1,
-      url: 'https://diy-builder.fr/guides/terrasse',
+      url: 'https://www.diy-builder.fr/guides/terrasse',
       name: 'Guide terrasse bois',
     },
     {
       '@type': 'ListItem',
       position: 2,
-      url: 'https://diy-builder.fr/guides/cabanon',
+      url: 'https://www.diy-builder.fr/guides/cabanon',
       name: 'Guide cabanon ossature bois',
     },
     {
       '@type': 'ListItem',
       position: 3,
-      url: 'https://diy-builder.fr/guides/pergola',
+      url: 'https://www.diy-builder.fr/guides/pergola',
       name: 'Guide pergola bois',
     },
     {
       '@type': 'ListItem',
       position: 4,
-      url: 'https://diy-builder.fr/guides/cloture',
+      url: 'https://www.diy-builder.fr/guides/cloture',
       name: 'Guide clôture bois',
     },
   ],

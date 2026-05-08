@@ -43,16 +43,19 @@ const PRODUCT_TARGETS = [
     refLen: 4.0,
   },
   // Lambourde pin 70×45mm L3m cl.4 — URL directe produit (3m = 1 pièce)
-  // ⚠️ ID corrigé : lambourde_60x70 (anciennement lambourde_45x70 — mismatch avec materialPrices.js)
   {
-    id: 'lambourde_60x70',
+    id: 'lambourde_45x70',
     url: 'https://www.castorama.fr/lambourde-en-pin-70-x-45-mm-l-300-cm-classe-4-green-outside/3760055271523_CAFR.prd',
     unit: 'pcs',
     refLen: 3.0,
   },
-  // poutre_pergola_150 : Castorama ne stocke pas de 150×50mm en rayon.
-  // ⚠️ Cible retirée pour éviter de scraper un mauvais produit (URL solivette peut 404 ou rediriger).
-  // → Le prix statique estimé (5,50€/ml) dans materialPrices.js est conservé (scraped: false).
+  // Solivette 150×50mm L3m (poutre pergola) — URL directe produit
+  {
+    id: 'poutre_pergola_150',
+    url: 'https://www.castorama.fr/solivette-traitee-150-x-50-mm-l-3-m-classe-2/3663602863434_CAFR.prd',
+    unit: 'm lin.',
+    refLen: 3.0,
+  },
   // Volige 105×14mm L3m — 1 pièce = 0,105m × 3m = 0,315 m²
   {
     id: 'volige_18mm',
@@ -99,39 +102,13 @@ const PRODUCT_TARGETS = [
 
   // ── Pergola ───────────────────────────────────────────────────────────────
 
-  // poteau_pergola_100 : Castorama ne vend pas de 100×100mm L3m en rayon.
-  // ⚠️ Cible retirée — l'ancienne URL (Zutam 9×9 H240cm) scrappait un mauvais produit
-  // et écrasait le prix avec une valeur aberrante (~4,89€ au lieu de ~34€).
-  // → Le prix statique estimé (33,90€) dans materialPrices.js est conservé.
-  // Ajouter ici une URL marketplace vérifiée si Casto référence un 100×100 3m à l'avenir.
-
-  // ── Maçonnerie / Fondations ──────────────────────────────────────────────
-
-  // Béton rapide Casto 25kg — 11,90€ (scraping direct 2026-05-07)
-  // ⚠️ Ne pas confondre avec ciment Lafarge 25kg (EAN différent, ~8,79€)
+  // Poteau Zutam 9×9cm H240cm — ⚠️ 90×90mm (Casto ne vend pas de 100×100mm)
+  // Prix indicatif seulement : section ≠ poteau_pergola_100 (100×100mm)
   {
-    id: 'beton_scellement_25kg',
-    url: 'https://www.castorama.fr/search?term=b%C3%A9ton+rapide+25+kg',
-    isListPage: true,
-    labelMatch: /b[eé]ton\s*rapide.*25|25.*kg.*b[eé]ton\s*rapide/i,
-    unit: 'sac',
-    refLen: null,
-    minPrice: 8.00,   // < 8€ = sac ciment ou autre produit hors-catégorie
-    maxPrice: 18.00,  // > 18€ = palette ou lot
-  },
-
-  // Polyane / film PE 200µ — prix au m² (attention : Casto vend des rouleaux entiers)
-  // Ondufilm 4m×5m (20m²) = 19,90€ → 1,00€/m² (scraping direct 2026-05-07)
-  // refArea = surface du rouleau standard (m²) pour convertir prix-rouleau → prix/m²
-  {
-    id: 'polyane_200',
-    url: 'https://www.castorama.fr/search?term=film+polyethylene+200+microns',
-    isListPage: true,
-    labelMatch: /film.*poly|polyane|ondufilm|200\s*microns?|PE\s*200/i,
-    unit: 'm²',
-    refArea: 20.0,    // surface rouleau standard 4m×5m = 20m²
-    minPrice: 10.00,  // < 10€ = trop petit rouleau ou mauvais produit
-    maxPrice: 60.00,  // > 60€ = gros rouleau 100m² ou pack
+    id: 'poteau_pergola_100',
+    url: 'https://www.castorama.fr/poteau-bois-zutam-marron-9-x-9-x-h-240-cm/3663602943181_CAFR.prd',
+    unit: 'pcs',
+    refLen: 2.4,
   },
 
   // ── Quincaillerie ─────────────────────────────────────────────────────────
@@ -201,15 +178,10 @@ function extractFromHtmlText(html) {
  * Extrait un prix depuis une page liste de produits.
  * Cherche le container dont le texte matche `labelMatch`,
  * puis tente d'extraire le prix par JSON-LD ou regex interne.
- * @param {string} html
- * @param {RegExp} labelMatch
- * @param {number} [minPrice=0]   — prix minimum accepté (évite les faux-positifs hors-catégorie)
- * @param {number} [maxPrice=5000] — prix maximum accepté
  */
-function extractFromListPage(html, labelMatch, minPrice = 0, maxPrice = 5000) {
+function extractFromListPage(html, labelMatch) {
   const $ = cheerio.load(html);
   let found = null;
-  const inRange = v => v !== null && v > 0 && v >= minPrice && v <= maxPrice;
 
   // Stratégie A : JSON-LD multi-produits (ItemList ou ProductList)
   $('script[type="application/ld+json"]').each((_, el) => {
@@ -222,7 +194,7 @@ function extractFromListPage(html, labelMatch, minPrice = 0, maxPrice = 5000) {
         if (!labelMatch.test(prod.name ?? '')) continue;
         const offers = Array.isArray(prod.offers) ? prod.offers[0] : prod.offers;
         const price = parsePrice(offers?.price);
-        if (inRange(price)) { found = price; return; }
+        if (price && price > 0) { found = price; return; }
       }
     } catch (_) {}
   });
@@ -234,12 +206,11 @@ function extractFromListPage(html, labelMatch, minPrice = 0, maxPrice = 5000) {
     if (found) return;
     const text = $(el).text();
     if (!labelMatch.test(text)) return;
-    // Cherche le premier pattern prix dans la plage [minPrice, maxPrice]
-    const re = /(\d{1,3}[.,]\d{2})\s*€/g;
-    let m;
-    while ((m = re.exec(text)) !== null) {
-      const val = parsePrice(m[1]);
-      if (inRange(val)) { found = val; return; }
+    // Cherche un pattern prix dans ce container
+    const priceMatch = text.match(/(\d{1,3}[.,]\d{2})\s*€/);
+    if (priceMatch) {
+      const val = parsePrice(priceMatch[1]);
+      if (val && val > 0) found = val;
     }
   });
 
@@ -256,8 +227,7 @@ async function scrapeTarget(target) {
   }
 
   if (target.isListPage && target.labelMatch) {
-    // Passe les bornes pour éviter de capturer des prix hors-catégorie (kits, ciment ≠ béton, etc.)
-    return extractFromListPage(html, target.labelMatch, target.minPrice ?? 0, target.maxPrice ?? 5000);
+    return extractFromListPage(html, target.labelMatch);
   }
 
   return extractFromJsonLd(html) ?? extractFromHtmlText(html);
@@ -281,17 +251,10 @@ export async function scrapeCastorama() {
         }
       }
 
-      // Vérification des bornes (guards contre faux-positifs : mauvais produit, lot, etc.)
-      const inRange = raw !== null && raw > 0
-        && (target.minPrice === undefined || raw >= target.minPrice)
-        && (target.maxPrice === undefined || raw <= target.maxPrice);
-
-      if (inRange) {
+      if (raw !== null && raw > 0) {
         const price = normalizePricePerUnit(raw, target.unit, target.refLen, target.refArea);
         results[target.id] = { [STORE_ID]: price };
         console.log(`  [castorama] ${target.id} = ${price} €`);
-      } else if (raw !== null && raw > 0) {
-        console.warn(`  [castorama] ${target.id} — prix hors bornes (${raw} €, attendu [${target.minPrice ?? 0}–${target.maxPrice ?? '∞'}])`);
       } else {
         console.warn(`  [castorama] ${target.id} — prix non trouvé (${target.url})`);
       }

@@ -3,7 +3,6 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Mentions légales — DIY Builder',
   description: 'Mentions légales du simulateur de construction DIY Builder : éditeur, hébergeur, propriété intellectuelle.',
-  alternates: { canonical: 'https://diy-builder.fr/mentions-legales' },
 };
 
 export default function MentionsLegales() {
