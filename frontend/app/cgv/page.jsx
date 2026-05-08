@@ -3,6 +3,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: "Conditions générales d'utilisation — DIY Builder",
   description: "Conditions générales d'utilisation du simulateur de construction DIY Builder.",
+  alternates: { canonical: 'https://diy-builder.fr/cgv' },
 };
 
 export default function CGV() {

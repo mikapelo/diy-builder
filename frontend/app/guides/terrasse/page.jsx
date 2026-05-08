@@ -5,6 +5,7 @@ export const metadata = {
   title: 'Comment construire une terrasse bois : guide complet 2025 | DIY Builder',
   description:
     'Guide pas à pas pour construire votre terrasse bois : choix des matériaux, calcul des lambourdes, pose des lames. Estimez votre budget en 30 secondes.',
+  alternates: { canonical: 'https://diy-builder.fr/guides/terrasse' },
 };
 
 const howToJsonLd = {

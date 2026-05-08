@@ -7,7 +7,8 @@ import ProjectSwitch from '@/components/ui/ProjectSwitch';
 import ModuleHeader  from '@/components/ui/ModuleHeader';
 import StructuralDisclaimer from '@/components/ui/StructuralDisclaimer';
 import DeckSimulator from '@/components/simulator/DeckSimulator';
-import JsonLd     from '@/components/ui/JsonLd';
+import JsonLd            from '@/components/ui/JsonLd';
+import { HOW_TO_SCHEMAS } from '@/lib/seoSchemas';
 
 export default function PergolaPage() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function PergolaPage() {
 
   return (
     <div className="min-h-screen" data-theme="g-v2" style={{ background: 'var(--surface)' }}>
+      <JsonLd data={HOW_TO_SCHEMAS.pergola} />
       <JsonLd data={JSON.parse('{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Simulateur pergola bois gratuit", "description": "Simulez votre pergola bois en 3D et calculez automatiquement les matériaux nécessaires. Comparez les prix Castorama, Brico Dépôt et ManoMano.", "url": "https://diy-builder.fr/pergola", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "keywords": "simulateur pergola bois, calculateur pergola, matériaux pergola bois", "inLanguage": "fr-FR", "author": {"@type": "Organization", "name": "DIY Builder", "url": "https://diy-builder.fr"}}')} />
       <Header
         view="module"

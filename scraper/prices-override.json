@@ -1,7 +1,8 @@
 {
   "_note": "Prix saisis manuellement — à mettre à jour quand le scraping automatique est indisponible.",
   "_doc": "Format : { materialId: { storeId: prix } }. Les overrides servent de FALLBACK : le scraping automatique prend la priorité (deepMerge scraped > override). Un prix absent du scraping conserve la valeur manuelle.",
-  "_updated": "2026-04-18",
+  "_updated": "2026-05-07",
+  "_note_maj": "Mis à jour suite au scraping direct Chrome mai 2026 — prix erronés supprimés ou corrigés.",
 
   "prices": {
     "chevron_60x80": {
@@ -15,8 +16,8 @@
       "leroymerlin": 3.47,
       "manomano": 2.90
     },
-    "lambourde_45x70": {
-      "leroymerlin": 14.90
+    "lambourde_60x70": {
+      "leroymerlin": 11.90
     },
     "lame_terrasse": {
       "leroymerlin": 13.00,
@@ -27,20 +28,39 @@
       "manomano": 3.10
     },
     "poteau_pergola_100": {
-      "leroymerlin": 32.90,
+      "leroymerlin": 35.90,
+      "castorama": 33.90,
       "manomano": 28.50
     },
     "poutre_pergola_150": {
-      "leroymerlin": 8.50,
-      "manomano": 6.50
+      "leroymerlin": 5.63,
+      "castorama": 5.50,
+      "manomano": 6.98
     },
     "poteau_cloture_90": {
-      "leroymerlin": 18.00,
-      "manomano": 16.50
+      "leroymerlin": 19.50,
+      "castorama": 17.50,
+      "manomano": 16.97
+    },
+    "poteau_cloture_uc4": {
+      "leroymerlin": 26.50,
+      "castorama": 21.90,
+      "bricodepot": 22.50
     },
     "montant_90x90": {
-      "leroymerlin": 20.50,
-      "manomano": 18.00
+      "leroymerlin": 35.90,
+      "castorama": 22.00,
+      "manomano": 25.73
+    },
+    "beton_scellement_25kg": {
+      "leroymerlin": 6.99,
+      "castorama": 11.90,
+      "bricodepot": 12.90
+    },
+    "polyane_200": {
+      "leroymerlin": 0.40,
+      "castorama": 1.00,
+      "bricodepot": 0.32
     },
     "plot_beton": {
       "leroymerlin": 8.90,
@@ -55,8 +75,8 @@
       "manomano": 10.50
     },
     "vis_inox_a2": {
-      "leroymerlin": 12.50,
-      "manomano": 11.50
+      "leroymerlin": 21.50,
+      "manomano": 9.79
     },
     "sabot_chevron": {
       "leroymerlin": 2.90,
