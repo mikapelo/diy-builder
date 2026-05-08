@@ -129,7 +129,7 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           doc.save(`cabanon-${dims.width}x${dims.depth}.pdf`);
         }
       } else if (projectType === 'pergola') {
-        const snapshot = await captureCanvasSnapshot(getBridge);
+        const snapshot = await captureCanvasSnapshot(getBridge, dims, 'pergola');
         generatePergolaPDF(doc, {
           dims, materials, projectConfig: config, snapshot,
           budgetByStore, bestPrice,
@@ -148,7 +148,7 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           doc.save(`pergola-${dims.width}x${dims.depth}m.pdf`);
         }
       } else if (projectType === 'cloture') {
-        const snapshot = await captureCanvasSnapshot(getBridge);
+        const snapshot = await captureCanvasSnapshot(getBridge, dims, 'cloture');
         generateCloturePDF(doc, {
           dims, materials, projectConfig: config, snapshot,
           budgetByStore, bestPrice,
@@ -167,7 +167,7 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           doc.save(`cloture-${dims.width}x${dims.depth}m.pdf`);
         }
       } else {
-        const snapshot = await captureCanvasSnapshot(getBridge);
+        const snapshot = await captureCanvasSnapshot(getBridge, dims, 'terrasse');
         generateTerrassePDF(doc, {
           dims, materials, foundationType, projectConfig: config, snapshot,
           budgetByStore, bestPrice,

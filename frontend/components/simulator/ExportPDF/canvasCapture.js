@@ -166,17 +166,57 @@ function processImageTechnical(srcDataURL) {
 }
 
 /**
- * Applique le preset caméra export 3/4 face.
+ * Applique un preset caméra export propre — indépendant de la position courante.
+ *
+ * Règles :
+ * - dist basée sur la plus grande dimension + marge fixe (jamais trop proche)
+ * - FOV fixe à 38° (ni fish-eye ni zoom excessif)
+ * - Angle 3/4 haut-droit pour tous les modules
+ * - Terrasse (h≈0) : angle plus plongeant pour voir la surface
+ * - Pergola/clôture : cible centrée à mi-hauteur
+ *
+ * @param {THREE.PerspectiveCamera} camera
+ * @param {OrbitControls|null}      controls
+ * @param {number} w   largeur (m)
+ * @param {number} d   profondeur (m)
+ * @param {number} h   hauteur (m) — 0 pour terrasse
+ * @param {string} [projectType='cabanon']
  */
-function applyCameraPreset(camera, controls, w, d, h) {
-  const dist = Math.max(w, d) * 2.2;
-  camera.position.set(dist * 0.85, h * 1.8, dist * 0.75);
-  camera.fov = 32;
+function applyCameraPreset(camera, controls, w, d, h, projectType = 'cabanon') {
+  /* Distance de base : englobe la diagonale de la structure + marge fixe 1.5 m */
+  const diag = Math.sqrt(w * w + d * d);
+  const effectiveH = Math.max(h, 0.5);            // évite dist=0 sur terrasse plate
+  const dist = diag * 1.6 + effectiveH * 0.8 + 1.5;
+
+  let camX, camY, camZ, tgtY;
+
+  if (projectType === 'terrasse') {
+    /* Vue plongeante 45° — on voit bien la surface et les plots */
+    camX  =  dist * 0.80;
+    camY  =  Math.max(w, d) * 0.9 + 1.0;
+    camZ  =  dist * 0.80;
+    tgtY  =  0.15;
+  } else if (projectType === 'cloture') {
+    /* Vue légèrement plongeante — clôture longue et basse */
+    camX  =  dist * 0.75;
+    camY  =  h * 1.4 + 0.5;
+    camZ  =  dist * 0.75;
+    tgtY  =  h * 0.45;
+  } else {
+    /* Cabanon, pergola — angle 3/4 classique */
+    camX  =  dist * 0.85;
+    camY  =  h * 1.5 + 0.8;
+    camZ  =  dist * 0.75;
+    tgtY  =  h * 0.40;
+  }
+
+  camera.position.set(camX, camY, camZ);
+  camera.fov = 38;
   camera.updateProjectionMatrix();
-  const tgt = { x: 0, y: h * 0.38, z: 0 };
-  camera.lookAt(tgt.x, tgt.y, tgt.z);
+
+  camera.lookAt(0, tgtY, 0);
   if (controls) {
-    controls.target.set(tgt.x, tgt.y, tgt.z);
+    controls.target.set(0, tgtY, 0);
     controls.update();
   }
 }
@@ -304,18 +344,23 @@ export async function capture3DForExport(materials, getBridge) {
 
 /**
  * Capture générique du canvas Three.js pour tout module (terrasse, pergola, clôture).
- * Pas de changement de mode ni de composite — simple capture JPEG de l'état courant.
  *
- * @param {function} [getBridge]  Optionnel — si présent, force un render avant capture
+ * Applique systématiquement un preset caméra propre avant la capture,
+ * indépendamment de la position courante de l'utilisateur dans le simulateur.
+ * Sauvegarde et restaure la caméra après capture.
+ *
+ * @param {function} [getBridge]   Optionnel — bridge d'export (camera, gl, scene, controls…)
+ * @param {object}   [dims]        { width, depth } — dimensions du projet pour positionner la caméra
+ * @param {string}   [projectType] 'terrasse' | 'pergola' | 'cloture'
  * @returns {Promise<string|null>}  Data URL JPEG, ou null si pas de canvas
  */
-export async function captureCanvasSnapshot(getBridge) {
+export async function captureCanvasSnapshot(getBridge, dims, projectType = 'terrasse') {
   const canvas = document.querySelector('canvas');
   if (!canvas) return null;
 
   const bridge = typeof getBridge === 'function' ? getBridge() : null;
 
-  /* ── Bug 1 fix : désactiver la silhouette d'échelle pendant la capture ── */
+  /* ── Désactiver la silhouette d'échelle pendant la capture ── */
   let savedShowHuman = false;
   let setShowHuman = null;
   if (bridge) {
@@ -327,15 +372,45 @@ export async function captureCanvasSnapshot(getBridge) {
     }
   }
 
+  let savedPos = null, savedTarget = null, savedFov = null;
+
   if (bridge) {
-    const { camera, gl, scene } = bridge;
+    const { camera, controls, gl, scene } = bridge;
+
+    /* ── Sauvegarder la caméra courante ── */
+    savedPos    = camera.position.clone();
+    savedFov    = camera.fov;
+    savedTarget = controls?.target?.clone?.() ?? null;
+
+    /* ── Appliquer le preset export ── */
+    const w = dims?.width  ?? 4;
+    const d = dims?.depth  ?? 3;
+    const h = projectType === 'terrasse' ? 0
+            : projectType === 'pergola'  ? (dims?.height ?? 2.5)
+            : projectType === 'cloture'  ? (dims?.depth  ?? 1.5)  // depth = hauteur clôture
+            : 0;
+
+    applyCameraPreset(camera, controls, w, d, h, projectType);
+
+    /* Laisser OrbitControls propager le changement */
+    await nextFrame(); await nextFrame(); await nextFrame();
+
     gl.render(scene, camera);
     await nextFrame();
   }
 
   const rawDataURL = canvas.toDataURL('image/jpeg', 0.92);
 
-  /* ── Restaurer la silhouette si elle était activée ── */
+  /* ── Restaurer caméra + silhouette ── */
+  if (bridge) {
+    const { camera, controls, gl, scene } = bridge;
+    if (savedPos)    camera.position.copy(savedPos);
+    if (savedFov != null) { camera.fov = savedFov; camera.updateProjectionMatrix(); }
+    if (controls && savedTarget) { controls.target.copy(savedTarget); controls.update(); }
+    await nextFrame();
+    gl.render(scene, camera);
+  }
+
   if (savedShowHuman && typeof setShowHuman === 'function') {
     setShowHuman(true);
   }
