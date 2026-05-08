@@ -247,12 +247,35 @@ h1, h2, h3, h4 {
 ══════════════════════════════════════════════════ */
 @layer components {
 
-  /* Primary Button — Gold gradient, refined shadow */
+  /* Skip link WCAG SC 2.4.1 (audit a11y) — visible uniquement au focus clavier */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 8px;
+    z-index: 10000;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #1A1200;
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus {
+    top: 8px;
+    outline: 2px solid #C9971E;
+    outline-offset: 2px;
+  }
+
+  /* Primary Button — Gold gradient, refined shadow
+     Texte foncé (#1A1200) sur or pour ratio WCAG AA ~7.5:1 (audit a11y) */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-7 py-3
            text-sm font-bold rounded-full select-none transition-all duration-200;
     background: linear-gradient(135deg, #C9971E, #A07A14);
-    color: #FFFFFF;
+    color: #1A1200;
     box-shadow: 0 2px 6px rgba(0,0,0,.07), 0 6px 16px rgba(201,151,30,.20);
     font-family: 'Inter', sans-serif;
   }

@@ -65,3 +65,19 @@ export const OSB_PANEL_H    = 2.44;
 
 /** Surface utile d'un panneau OSB standard (m²) — 1.22 × 2.44 */
 export const OSB_PANEL_AREA = +(1.22 * 2.44).toFixed(4); // 2.9768 m²
+
+// ── Ouvertures par défaut (m) ──────────────────────────────────────
+/** Largeur porte par défaut */
+export const DEFAULT_DOOR_W   = 0.90;
+/** Hauteur porte par défaut */
+export const DEFAULT_DOOR_H   = 2.00;
+/** Largeur fenêtre par défaut */
+export const DEFAULT_WINDOW_W = 0.60;
+/** Hauteur fenêtre par défaut */
+export const DEFAULT_WINDOW_H = 0.60;
+/** Hauteur d'allège (sous fenêtre) par défaut */
+export const DEFAULT_WINDOW_V = 1.00;
+/** Position relative porte (× width) — décalée d'un coin */
+export const DOOR_X_RATIO     = 0.15;
+/** Position relative fenêtre (× width) — séparée de la porte */
+export const WINDOW_X_RATIO   = 0.62;

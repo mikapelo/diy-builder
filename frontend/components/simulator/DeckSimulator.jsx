@@ -20,7 +20,11 @@ import TunnelSections    from './TunnelSections';
 import SaveProjectModal  from './SaveProjectModal';
 import ArtisanLeadModal  from './ArtisanLeadModal';
 import EmailGateModal    from '@/components/ui/EmailGateModal';
-import { BOARD_WIDTH, BOARD_GAP, BOARD_LEN } from '@/lib/deckConstants.js';
+import { BOARD_WIDTH, BOARD_GAP, ENTR_SPACING } from '@/lib/deckConstants.js';
+
+// Longueur commerciale lame terrasse (m) — LM/Casto vendent 3,6m, BD 4,2m.
+// Distinct de BOARD_LEN (3,0m) qui régit les cuts géométriques de deckGeometry.
+const LAME_COMMERCIAL_LEN = 3.6;
 import { useProjectEngine } from '@/core/useProjectEngine.js';
 import { calcFoundation } from '@/lib/foundation/foundationCalculator';
 import { useDeckSimulatorState } from '@/core/useDeckSimulatorState.js';
@@ -146,11 +150,12 @@ function SimulatorContent({ projectType }) {
 
   // Rangées de lames : nombre de passes sur la largeur depth
   const boardRows   = Math.floor(depth / (BOARD_WIDTH + BOARD_GAP)) + 1;
-  // Lames commerciales (BOARD_LEN = 3 m) : rangées × largeur × 5% chutes, arrondi au-dessus
-  // Remplace l'ancienne formule area×2.7 qui produisait des "lames de 1m" imaginaires (+16% d'erreur)
-  const boards = isTerasse(projectType) ? Math.ceil(boardRows * width * 1.05 / BOARD_LEN) : 0;
+  // Lames commerciales (LAME_COMMERCIAL_LEN = 3,6 m, longueur GSB) : rangées × largeur × 5% chutes
+  // BOARD_LEN (3,0m) régit les coupes 3D ; pour le BOM on compte des unités achetables (3,6m)
+  const boards = isTerasse(projectType) ? Math.ceil(boardRows * width * 1.05 / LAME_COMMERCIAL_LEN) : 0;
   const screws      = isTerasse(projectType) ? boardRows * allJoistCount * 2 : 0;
-  const cbPositions = depth > 3 ? Math.floor(depth / 1.8) : 0;
+  // Entretoises : portée = width (lambourdes), entraxe ENTR_SPACING — aligné deckGeometry.buildEntretoises
+  const cbPositions = Math.floor(width / ENTR_SPACING);
   const entretoises = isTerasse(projectType) ? cbPositions * Math.max(joistCount - 1, 0) : 0;
   const bandeMl     = isTerasse(projectType) ? Math.ceil(allJoistCount * depth * 1.05) : 0;
 

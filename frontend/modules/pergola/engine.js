@@ -33,6 +33,7 @@ import {
   BRACE_SECTION,
   BRACE_DROP,
   BRACE_RUN,
+  BRACE_MIN_RUN,
   VIS_PER_BRACE,
   VIS_PER_RAFTER_BEAM,
   VIS_PER_POST_BEAM,
@@ -254,7 +255,7 @@ export function generatePergola(width, depth, options = {}) {
       const xRun = dx > 0
         ? Math.min(BRACE_RUN, beamXmax - p.x)
         : Math.min(BRACE_RUN, p.x - beamXmin);
-      if (xRun >= 0.10) {
+      if (xRun >= BRACE_MIN_RUN) {
         braces.push({
           x1: p.x,  y1: r3(beamY - BRACE_DROP),  z1: p.z,
           x2: r3(p.x + dx * xRun),  y2: beamY,  z2: p.z,
@@ -275,14 +276,14 @@ export function generatePergola(width, depth, options = {}) {
       const leftRun  = Math.min(BRACE_RUN, p.x - beamXmin);
       const rightRun = Math.min(BRACE_RUN, beamXmax - p.x);
 
-      if (leftRun >= 0.10) {
+      if (leftRun >= BRACE_MIN_RUN) {
         braces.push({
           x1: p.x,  y1: r3(beamY - BRACE_DROP),  z1: p.z,
           x2: r3(p.x - leftRun),  y2: beamY,  z2: p.z,
           plane: 'X',
         });
       }
-      if (rightRun >= 0.10) {
+      if (rightRun >= BRACE_MIN_RUN) {
         braces.push({
           x1: p.x,  y1: r3(beamY - BRACE_DROP),  z1: p.z,
           x2: r3(p.x + rightRun),  y2: beamY,  z2: p.z,

@@ -15,13 +15,12 @@
  * Convention : X=longueur clôture, Y=hauteur, Z=0 (clôture plate)
  * Centre de scène : cx = width / 2, cy = height / 2
  */
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getWoodMaterial, getGroundMaterial, getConcreteMaterial } from './shared/materials.js';
 import { CC } from './shared/colorCode.js';
 import SceneSetup from './shared/SceneSetup.jsx';
-import { EDGE_SILHOUETTE_MAT, EDGE_STRUCT_MAT } from './shared/edges.js';
 import { HumanReference } from './HumanReference.jsx';
 
 const EXPLODE_BOARDS = 0.5;   // Z offset lames en mode éclaté
@@ -75,6 +74,72 @@ function getWoodBoardMaterial() {
   return WOOD_BOARD_MAT;
 }
 
+/* ── InstancedMesh helpers (audit perf Sprint 3+) ─────────────────── */
+const _tmpObj = new THREE.Object3D();
+
+function InstancedPosts({ posts, cx, geometry, material }) {
+  const ref = useRef();
+  useEffect(() => {
+    if (!ref.current) return;
+    posts.forEach((p, i) => {
+      _tmpObj.position.set(p.x - cx, p.height / 2, 0);
+      _tmpObj.scale.set(1, p.height, 1);
+      _tmpObj.rotation.set(0, 0, 0);
+      _tmpObj.updateMatrix();
+      ref.current.setMatrixAt(i, _tmpObj.matrix);
+    });
+    ref.current.count = posts.length;
+    ref.current.instanceMatrix.needsUpdate = true;
+  }, [posts, cx]);
+  return (
+    <instancedMesh ref={ref} args={[geometry, material, posts.length]} castShadow receiveShadow />
+  );
+}
+
+function InstancedRails({ rails, cx, railH, exploded, geometry, material }) {
+  const ref = useRef();
+  useEffect(() => {
+    if (!ref.current) return;
+    rails.forEach((r, i) => {
+      const isTop = r.type === 'top';
+      const animOffset = exploded ? (isTop ? EXPLODE_RAILS_TOP : EXPLODE_RAILS_BOTTOM) : 0;
+      _tmpObj.position.set((r.x1 + r.x2) / 2 - cx, r.y + railH / 2 + animOffset, 0);
+      _tmpObj.scale.set(r.x2 - r.x1, 1, 1);
+      _tmpObj.rotation.set(0, 0, 0);
+      _tmpObj.updateMatrix();
+      ref.current.setMatrixAt(i, _tmpObj.matrix);
+    });
+    ref.current.count = rails.length;
+    ref.current.instanceMatrix.needsUpdate = true;
+  }, [rails, cx, railH, exploded]);
+  return (
+    <instancedMesh ref={ref} args={[geometry, material, rails.length]} castShadow receiveShadow />
+  );
+}
+
+function InstancedBoards({ boards, cx, boardW, boardH, postSection, geometry, material }) {
+  const ref = useRef();
+  useEffect(() => {
+    if (!ref.current) return;
+    boards.forEach((b, i) => {
+      _tmpObj.position.set(
+        b.x + boardW / 2 - cx,
+        b.y + b.height / 2,
+        postSection / 2 + boardH / 2,
+      );
+      _tmpObj.scale.set(1, b.height, 1);
+      _tmpObj.rotation.set(0, 0, 0);
+      _tmpObj.updateMatrix();
+      ref.current.setMatrixAt(i, _tmpObj.matrix);
+    });
+    ref.current.count = boards.length;
+    ref.current.instanceMatrix.needsUpdate = true;
+  }, [boards, cx, boardW, boardH, postSection]);
+  return (
+    <instancedMesh ref={ref} args={[geometry, material, boards.length]} castShadow receiveShadow />
+  );
+}
+
 export default function ClotureScene({ geometry, sceneMode = 'assembled', foundationType = 'ground', detailed = false, showHuman = false }) {
   const exploded = sceneMode === 'exploded';
   const { dimensions, posts, rails, boards } = geometry;
@@ -84,9 +149,8 @@ export default function ClotureScene({ geometry, sceneMode = 'assembled', founda
   const cx = width / 2;
   const cy = height / 2;
 
-  // Refs pour animation
+  // Ref pour animation
   const boardGrp = useRef();
-  const railGrp = useRef();
 
   useFrame((_, dt) => {
     const t = Math.min(1, 5 * dt);
@@ -94,21 +158,12 @@ export default function ClotureScene({ geometry, sceneMode = 'assembled', founda
       const target = exploded ? EXPLODE_BOARDS : 0;
       boardGrp.current.position.z = THREE.MathUtils.lerp(boardGrp.current.position.z, target, t);
     }
-    if (railGrp.current) {
-      // Pour les rails, il faut gérer top et bottom séparément
-      // On va utiliser un offset global pour l'animation des rails
-      // Et gérer le décalage par rail dans le rendu
-    }
   });
 
   // Géométries unitaires mémoïsées
   const postGeo = useMemo(() => new THREE.BoxGeometry(postSection, 1, postSection), [postSection]);
   const railGeo = useMemo(() => new THREE.BoxGeometry(1, railH, railW), [railH, railW]);
   const boardGeo = useMemo(() => new THREE.BoxGeometry(boardW, 1, boardH), [boardW, boardH]);
-
-  // Géométries d'arêtes mémoïsées
-  const postEdgeGeo = useMemo(() => new THREE.EdgesGeometry(postGeo, 15), [postGeo]);
-  const railEdgeGeo = useMemo(() => new THREE.EdgesGeometry(railGeo, 15), [railGeo]);
 
   // Matériaux : bois texturé en assemblé, couleurs primaires en détaillé
   const woodPostMat  = detailed ? CC.posts.mat  : getWoodPostMaterial();
@@ -123,49 +178,35 @@ export default function ClotureScene({ geometry, sceneMode = 'assembled', founda
       {/* ── Éclairage et environnement SketchUp-like unifié ── */}
       <SceneSetup width={width} depth={0.5} />
 
-      {/* ── Poteaux (bois clair, base solide) ── */}
-      {posts.map((p, i) => (
-        <group key={`post-${i}`} position={[p.x - cx, p.height / 2, 0]} scale={[1, p.height, 1]}>
-          <mesh geometry={postGeo} material={woodPostMat} castShadow receiveShadow />
-          <lineSegments geometry={postEdgeGeo} material={EDGE_SILHOUETTE_MAT} />
-        </group>
-      ))}
+      {/* ── Poteaux (InstancedMesh — audit perf Sprint 3+) ── */}
+      <InstancedPosts
+        posts={posts}
+        cx={cx}
+        geometry={postGeo}
+        material={woodPostMat}
+      />
 
-      {/* ── Rails (bois moyen, animés) ── */}
-      <group ref={railGrp}>
-        {rails.map((r, i) => {
-          const isTop = r.type === 'top';
-          const animOffset = exploded ? (isTop ? EXPLODE_RAILS_TOP : EXPLODE_RAILS_BOTTOM) : 0;
-          return (
-            <group
-              key={`rail-${i}`}
-              position={[(r.x1 + r.x2) / 2 - cx, r.y + railH / 2 + animOffset, 0]}
-              scale={[r.x2 - r.x1, 1, 1]}
-            >
-              <mesh geometry={railGeo} material={woodRailMat} castShadow receiveShadow />
-              <lineSegments geometry={railEdgeGeo} material={EDGE_STRUCT_MAT} />
-            </group>
-          );
-        })}
-      </group>
+      {/* ── Rails (InstancedMesh, animOffset par type top/bottom) ── */}
+      <InstancedRails
+        rails={rails}
+        cx={cx}
+        railH={railH}
+        exploded={exploded}
+        geometry={railGeo}
+        material={woodRailMat}
+      />
 
-      {/* ── Lames (bois sombre, animées, devant en Z) ── */}
+      {/* ── Lames (InstancedMesh, animées via group ref pour explode) ── */}
       <group ref={boardGrp}>
-        {boards.map((b, i) => (
-          <mesh
-            key={`board-${i}`}
-            geometry={boardGeo}
-            material={woodBoardMat}
-            position={[
-              b.x + boardW / 2 - cx,
-              b.y + b.height / 2,
-              postSection / 2 + boardH / 2,
-            ]}
-            scale={[1, b.height, 1]}
-            castShadow
-            receiveShadow
-          />
-        ))}
+        <InstancedBoards
+          boards={boards}
+          cx={cx}
+          boardW={boardW}
+          boardH={boardH}
+          postSection={postSection}
+          geometry={boardGeo}
+          material={woodBoardMat}
+        />
       </group>
 
       {/* ── Silhouette humaine 1.75 m — repère d'échelle ──

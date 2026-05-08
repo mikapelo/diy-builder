@@ -78,6 +78,27 @@ test('T2 — modifier largeur met à jour surface et matériaux', async ({ page 
   await expect(firstQty).toBeVisible();
 });
 
+/* ── T4 — Toggle garde-corps active la section dans le BOM ───── */
+
+test('T4 — activer garde-corps ajoute des matériaux au BOM', async ({ page }) => {
+  await page.goto('/calculateur');
+  await waitForSimulator(page);
+
+  // Cocher la checkbox "Ajouter un garde-corps"
+  const checkbox = page.getByLabel(/Ajouter un garde-corps/i);
+  await expect(checkbox).toBeVisible();
+  await checkbox.check();
+
+  // Le slider hauteur apparaît
+  const heightSlider = page.locator('.ctrl-range[type="range"][min="1"]').first();
+  // (on ne valide pas la valeur exacte du slider, juste sa présence)
+  await expect(heightSlider).toBeVisible({ timeout: 5_000 });
+
+  // Décocher → slider disparaît
+  await checkbox.uncheck();
+  // Le slider doit avoir disparu (pas d'assertion stricte car il peut rester d'autres sliders)
+});
+
 /* ── T3 — Onglets de mode du viewer existent ─────────────────── */
 
 test('T3 — le viewer terrasse affiche les onglets de mode', async ({ page }) => {

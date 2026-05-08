@@ -2964,6 +2964,11 @@
   background: var(--surface-container-high, #e9e8e6);
   color: var(--text);
 }
+/* Indicateur focus visible WCAG SC 2.4.7 (audit a11y) */
+.modal-close:focus-visible {
+  outline: 2px solid var(--primary, #C9971E);
+  outline-offset: 2px;
+}
 
 .modal-header {
   text-align: center;
@@ -3112,8 +3117,9 @@
 }
 .modal-input::placeholder { color: var(--text-4, #b0a898); }
 .modal-input:disabled { opacity: 0.55; cursor: not-allowed; }
-.modal-input--error { border-color: #d9534f !important; }
-.modal-error { font-size: 11.5px; color: #d9534f; margin-top: 3px; font-family: 'Inter', sans-serif; }
+.modal-input--error { border-color: #b91c1c !important; }
+/* Couleur erreur : #b91c1c (~5.9:1 sur blanc) — WCAG AA conforme (audit a11y) */
+.modal-error { font-size: 11.5px; color: #b91c1c; margin-top: 3px; font-family: 'Inter', sans-serif; }
 .modal-select {
   appearance: none;
   -webkit-appearance: none;
@@ -3176,7 +3182,8 @@
 }
 .modal-btn--primary {
   background: var(--primary, #C9971E);
-  color: white;
+  /* Texte foncé sur or → ratio WCAG AA ~7.5:1 (audit a11y) */
+  color: #1A1200;
   box-shadow: 0 3px 12px rgba(201,151,30,0.28);
   margin-top: 4px;
 }
@@ -3196,6 +3203,11 @@
 }
 .modal-btn--outline:hover {
   background: var(--surface, #faf9f7);
+}
+/* Indicateur focus visible WCAG SC 2.4.7 (audit a11y) */
+.modal-btn:focus-visible {
+  outline: 2px solid var(--primary, #C9971E);
+  outline-offset: 2px;
 }
 
 /* ── Footer note ── */

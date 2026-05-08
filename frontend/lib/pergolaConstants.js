@@ -57,6 +57,7 @@ export const BEAM_SECTIONS = [
 export const BRACE_SECTION    = 0.075;  // Section carrée 75×75 mm (standard commerce bois raboté)
 export const BRACE_DROP       = 0.60;   // Descente verticale depuis le longeron (m)
 export const BRACE_RUN        = 0.50;   // Course horizontale le long du longeron (m)
+export const BRACE_MIN_RUN    = 0.10;   // Seuil minimum pour générer une jambe (évite micro-segments)
 export const VIS_PER_BRACE    = 4;      // Vis/boulons par jambe de force (2 par extrémité)
 
 // ── Débord longerons ────────────────────────────────────────────

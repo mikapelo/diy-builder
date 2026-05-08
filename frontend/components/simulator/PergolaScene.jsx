@@ -21,13 +21,13 @@
  * Convention : X=largeur, Z=profondeur, Y=hauteur
  * Le centre de la scène est à (width/2, 0, depth/2).
  */
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getWoodMaterial, getConcreteMaterial } from './shared/materials.js';
 import { CC } from './shared/colorCode.js';
 import SceneSetup from './shared/SceneSetup.jsx';
-import { EDGE_SILHOUETTE_MAT, EDGE_STRUCT_MAT } from './shared/edges.js';
+import { EDGE_STRUCT_MAT } from './shared/edges.js';
 import { HumanReference } from './HumanReference.jsx';
 
 const EXPLODE_RAFTERS = 0.6;  // Y offset en mode éclaté
@@ -107,6 +107,27 @@ function getWoodBraceMaterial() {
  *   - plane='X' : rotation Z pour incliner dans le plan XY
  *   - plane='Z' : rotation X pour incliner dans le plan ZY
  */
+/* PergolaInstancedPosts — InstancedMesh pour les poteaux (audit perf Sprint 3+) */
+const _pTmp = new THREE.Object3D();
+function PergolaInstancedPosts({ posts, cx, cz, geometry, material }) {
+  const ref = useRef();
+  useEffect(() => {
+    if (!ref.current) return;
+    posts.forEach((p, i) => {
+      _pTmp.position.set(p.x - cx, p.height / 2, p.z - cz);
+      _pTmp.scale.set(1, p.height, 1);
+      _pTmp.rotation.set(0, 0, 0);
+      _pTmp.updateMatrix();
+      ref.current.setMatrixAt(i, _pTmp.matrix);
+    });
+    ref.current.count = posts.length;
+    ref.current.instanceMatrix.needsUpdate = true;
+  }, [posts, cx, cz]);
+  return (
+    <instancedMesh ref={ref} args={[geometry, material, posts.length]} castShadow receiveShadow />
+  );
+}
+
 function BracesGroup({ braces, cx, cz, section, material }) {
   if (!braces || braces.length === 0) return null;
   return (
@@ -183,8 +204,7 @@ export default function PergolaScene({ geometry, sceneMode = 'assembled', founda
   const beamSGeo  = useMemo(() => new THREE.BoxGeometry(beamW, beamH, 1), [beamH, beamW]);
   const rafterGeo = useMemo(() => new THREE.BoxGeometry(rafterW, rafterH, 1), [rafterW, rafterH]);
 
-  // Géométries d'arêtes mémoïsées
-  const postEdgeGeo   = useMemo(() => new THREE.EdgesGeometry(postGeo,   15), [postGeo]);
+  // Géométries d'arêtes mémoïsées (postEdgeGeo retiré : poteaux instanciés sans outline)
   const beamLEdgeGeo  = useMemo(() => new THREE.EdgesGeometry(beamLGeo,  15), [beamLGeo]);
   const beamSEdgeGeo  = useMemo(() => new THREE.EdgesGeometry(beamSGeo,  15), [beamSGeo]);
   const rafterEdgeGeo = useMemo(() => new THREE.EdgesGeometry(rafterGeo, 15), [rafterGeo]);
@@ -211,13 +231,14 @@ export default function PergolaScene({ geometry, sceneMode = 'assembled', founda
       {/* ── Construction — surélevée sur chape si nécessaire ── */}
       <group position={[0, foundationType === 'slab' ? 0.12 : 0, 0]}>
 
-        {/* ── Poteaux (bois clair, base solide) ── */}
-        {posts.map((p, i) => (
-          <group key={`post-${i}`} position={[p.x - cx, p.height / 2, p.z - cz]} scale={[1, p.height, 1]}>
-            <mesh geometry={postGeo} material={woodPostMat} castShadow receiveShadow />
-            <lineSegments geometry={postEdgeGeo} material={EDGE_SILHOUETTE_MAT} />
-          </group>
-        ))}
+        {/* ── Poteaux (InstancedMesh — audit perf Sprint 3+) ── */}
+        <PergolaInstancedPosts
+          posts={posts}
+          cx={cx}
+          cz={cz}
+          geometry={postGeo}
+          material={woodPostMat}
+        />
 
         {/* ── Jambes de force (contreventement diagonal, bois moyen-sombre) ── */}
         <BracesGroup

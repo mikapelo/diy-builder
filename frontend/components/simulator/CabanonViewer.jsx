@@ -14,31 +14,13 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { trackViewModeChange, trackSimulationStart } from '@/hooks/useAnalytics.js';
 import useIsMobile             from '@/hooks/useIsMobile';
-import { Canvas, useThree }   from '@react-three/fiber';
-import { OrbitControls }      from '@react-three/drei';
+import { Canvas }              from '@react-three/fiber';
+import { OrbitControls }       from '@react-three/drei';
 import * as THREE              from 'three';
-import CabanonScene           from './CabanonScene';
-import CabanonSketch          from './CabanonSketch';
-import { useSetExportBridge } from './shared/ExportContext';
+import CabanonScene            from './CabanonScene';
+import CabanonSketch           from './CabanonSketch';
+import ExportBridge            from './shared/ExportBridge';
 import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/CameraPresets';
-
-/**
- * ExportBridge — enregistre le store Three.js dans ExportContext
- * Permet à ExportPDF de capturer le canvas avec une caméra preset.
- * Composant placé à l'intérieur du <Canvas>.
- * Reçoit `setSceneMode` en prop pour permettre la bascule temporaire.
- * `setShowHuman` permet à la capture de désactiver la silhouette d'échelle
- * pendant le screenshot pour ne pas la voir apparaitre dans le PDF.
- */
-function ExportBridge({ setSceneMode, showHuman, setShowHuman }) {
-  const { camera, gl, scene, controls } = useThree();
-  const setBridge = useSetExportBridge();
-  useEffect(() => {
-    setBridge({ camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman });
-    return () => setBridge(null);
-  }, [camera, gl, scene, controls, setSceneMode, showHuman, setShowHuman, setBridge]);
-  return null;
-}
 
 const MODES = [
   { key: 'assembled', label: 'Assemblée' },

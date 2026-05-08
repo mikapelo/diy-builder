@@ -370,6 +370,8 @@ export default function MaterialsList({ materials, projectType = 'terrasse', sto
             <button
               type="button"
               onClick={() => setToolsOpen(o => !o)}
+              aria-expanded={toolsOpen}
+              aria-controls="ml-tools-panel"
               style={{
                 width: '100%', display: 'flex', alignItems: 'center',
                 justifyContent: 'space-between', background: 'none',
@@ -379,13 +381,13 @@ export default function MaterialsList({ materials, projectType = 'terrasse', sto
               <span style={{ fontWeight: 700, fontSize: 13, color: '#1a1c1b', fontFamily: 'Manrope, sans-serif' }}>
                 🔧 Outils & Consommables
               </span>
-              <span style={{ fontSize: 11, color: '#9c9188' }}>
+              <span style={{ fontSize: 11, color: '#6b5f4f' }}>
                 {toolsOpen ? '▲ Réduire' : '▼ Voir les outils recommandés'}
               </span>
             </button>
 
             {toolsOpen && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div id="ml-tools-panel" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {tools.map(tool => (
                   <a
                     key={tool.label}
