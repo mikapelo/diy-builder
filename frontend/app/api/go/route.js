@@ -31,18 +31,22 @@ function buildStoreUrl(storeId, q, project) {
   const utmSuffix = `utm_source=diy-builder&utm_medium=referral&utm_campaign=${encodeURIComponent(project)}`;
 
   switch (storeId) {
+    // LM : formulaire action="/search", param "q"
     case 'leroymerlin':
-      return `https://www.leroymerlin.fr/recherche/${q}?${utmSuffix}`;
+      return `https://www.leroymerlin.fr/search?q=${q}&${utmSuffix}`;
 
+    // Castorama : formulaire action="/search", param "term"
     case 'castorama':
-      return `https://www.castorama.fr/recherche/${q}?${utmSuffix}`;
+      return `https://www.castorama.fr/search?term=${q}&${utmSuffix}`;
 
+    // Brico Dépôt : domaine bricodepot.fr (sans tiret), search JS-driven → page accueil
     case 'bricodepot':
     case 'brico-depot':
-      return `https://www.brico-depot.fr/recherche/resultats?q=${q}&${utmSuffix}`;
+      return `https://www.bricodepot.fr/?${utmSuffix}`;
 
+    // ManoMano : param "q" (endpoint /search?q=)
     case 'manomano':
-      return `https://www.manomano.fr/search/${q}?${utmSuffix}`;
+      return `https://www.manomano.fr/search?q=${q}&${utmSuffix}`;
 
     default:
       return `https://www.google.com/search?q=${q}+bois+bricolage`;
