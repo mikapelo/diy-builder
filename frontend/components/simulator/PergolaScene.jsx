@@ -124,7 +124,8 @@ function PergolaInstancedPosts({ posts, cx, cz, geometry, material }) {
     ref.current.instanceMatrix.needsUpdate = true;
   }, [posts, cx, cz]);
   return (
-    <instancedMesh ref={ref} args={[geometry, material, posts.length]} castShadow receiveShadow />
+    /* material passé comme prop (réactif) et non dans args (constructeur non remis à jour) */
+    <instancedMesh ref={ref} args={[geometry, undefined, posts.length]} material={material} castShadow receiveShadow />
   );
 }
 

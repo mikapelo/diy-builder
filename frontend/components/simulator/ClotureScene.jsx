@@ -92,7 +92,7 @@ function InstancedPosts({ posts, cx, geometry, material }) {
     ref.current.instanceMatrix.needsUpdate = true;
   }, [posts, cx]);
   return (
-    <instancedMesh ref={ref} args={[geometry, material, posts.length]} castShadow receiveShadow />
+    <instancedMesh ref={ref} args={[geometry, undefined, posts.length]} material={material} castShadow receiveShadow />
   );
 }
 
@@ -113,7 +113,7 @@ function InstancedRails({ rails, cx, railH, exploded, geometry, material }) {
     ref.current.instanceMatrix.needsUpdate = true;
   }, [rails, cx, railH, exploded]);
   return (
-    <instancedMesh ref={ref} args={[geometry, material, rails.length]} castShadow receiveShadow />
+    <instancedMesh ref={ref} args={[geometry, undefined, rails.length]} material={material} castShadow receiveShadow />
   );
 }
 
@@ -136,7 +136,7 @@ function InstancedBoards({ boards, cx, boardW, boardH, postSection, geometry, ma
     ref.current.instanceMatrix.needsUpdate = true;
   }, [boards, cx, boardW, boardH, postSection]);
   return (
-    <instancedMesh ref={ref} args={[geometry, material, boards.length]} castShadow receiveShadow />
+    <instancedMesh ref={ref} args={[geometry, undefined, boards.length]} material={material} castShadow receiveShadow />
   );
 }
 
