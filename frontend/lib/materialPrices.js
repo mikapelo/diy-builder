@@ -106,7 +106,7 @@ export const MATERIAL_PRICES = [
   // LM : lame pin vert KUHMO2 145×27mm 3,6m = 12,50€/pcs (scraping direct Chrome 2026-05-07-v2 ; précédent 13,00€)
   // Casto : "Lemhi" 360cm×14,4cm×2,7cm = 13,23€/pcs (scraping direct 2026-05-07)
   // BD : pin cl.4 4,2m = 10,90€/pcs (prod96931 → 5063022828286, scraping direct 2026-05-07-v2 ; ⚠ longueur changée 3,6m→4,2m)
-  { id: 'lame_terrasse',       label: 'Lame terrasse pin 145×27 mm (3,6 m)',   category: 'Terrasse', unit: 'pcs', refLen: 3.6, scraped: true,  prices: { leroymerlin: 12.5, castorama: 13.23, bricodepot: 10.9, manomano: 12 } },
+  { id: 'lame_terrasse',       label: 'Lame terrasse pin 145×27 mm (3,6 m)',   category: 'Terrasse', unit: 'pcs', refLen: 3.6, scraped: true,  prices: { leroymerlin: 13, castorama: 13.23, bricodepot: 10.9, manomano: 12 } },
 
   // Lambourde 60×70 — section portée à 60mm (DTU 51.4 §5.5.3.6.1)
   // LM : lambourde 40×75mm 3m cl.4 = 11,90€/pcs (scraping direct 2026-05-07, inchangé)
@@ -130,7 +130,7 @@ export const MATERIAL_PRICES = [
   // Poutres pergola — mis à jour mai 2026
   // LM : Bastaing sapin 50×150mm 4m = 19,90€ → 4,98€/ml (scraping direct Chrome 2026-05-07-v2 ; précédent 3m=16,90€→5,63€/ml)
   // Casto : ne stocke pas de 150×50mm ; estimation marché ≈ 5,50€/ml (scraped: false)
-  { id: 'poutre_pergola_150',  label: 'Poutre pergola 150×50 mm',              section: '150×50',   unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.98, castorama: 5.5, bricodepot: 6.2, manomano: 6.98 } },
+  { id: 'poutre_pergola_150',  label: 'Poutre pergola 150×50 mm',              section: '150×50',   unit: 'm lin.', scraped: true, prices: { leroymerlin: 5.63, castorama: 5.5, bricodepot: 6.2, manomano: 6.98 } },
   { id: 'traverse_pergola_80', label: 'Traverse pergola 80×50 mm',             section: '80×50',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.2, castorama: 3.9, bricodepot: 3.6, manomano: 6.72 } },
 
   // Pied de poteau platine — Castorama direct : platine poteau 100/150mm = 25,90€
@@ -145,7 +145,7 @@ export const MATERIAL_PRICES = [
   // LM : 19,90€ "Poteau bois carré naturel Classe 4, l.9 x P.9 x H.240cm" (Chrome 2026-05-07-v2 ; précédent 19,50€)
   // Casto : Blooma pin traité vert 9×9cm H240cm = 17,50€ (scraping direct 2026-05-07)
   // BD : 18,90€ "Poteau bois vert H.2,40m section 9×9cm" pin traité cl.4 (Chrome 2026-05-07-v2 ; précédent 16,50€)
-  { id: 'poteau_cloture_90',       label: 'Poteau clôture 90×90 mm (2,4 m)',       section: '90×90',    unit: 'pcs', refLen: 2.4, scraped: true, prices: { leroymerlin: 19.9, castorama: 17.5, bricodepot: 18.9, manomano: 16.97 } },
+  { id: 'poteau_cloture_90',       label: 'Poteau clôture 90×90 mm (2,4 m)',       section: '90×90',    unit: 'pcs', refLen: 2.4, scraped: true, prices: { leroymerlin: 19.5, castorama: 17.5, bricodepot: 18.9, manomano: 16.97 } },
   // Poteau UC4 traité autoclave — DTU 31.1 §5.10.4.2 : obligatoire en contact sol.
   // Bois traité classe d'emploi 4 ≈ +35 % vs pin standard (rétention CCA ou azolé).
   // Casto : poteau UC4 90×90 2,4m ≈ 21,90€ estimation (ne vend pas en direct, marketplace)
