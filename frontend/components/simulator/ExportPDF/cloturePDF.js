@@ -17,6 +17,7 @@ import { PAGE, fmtLen } from '@/lib/pdf/pdfHelpers.js';
 import { buildClotureElevation } from '@/lib/plan/buildClotureElevation.js';
 import { renderPDFLayers } from '@/lib/plan/renderPDF.js';
 import { MAT, PLAN_BG } from '@/lib/plan/palette.js';
+import { drawKitSection } from './pdfKitSection.js';
 import { drawBudgetPage } from './pdfBudgetSection.js';
 
 const TOTAL_PAGES = 5;
@@ -187,62 +188,14 @@ export function generateCloturePDF(doc, { dims, materials, projectConfig, budget
   }
 
   /* ═══════════════════════════════════════════════════════════
-     PAGE 5 - Outils recommandes
+     PAGE 5 - Kit complet (outils + EPI + fournitures)
   ═══════════════════════════════════════════════════════════ */
   doc.addPage();
 
-  const yTools = pageTitle(doc, 'Outils recommandes pour votre projet',
-    'Achetez vos outils sur Amazon avec livraison rapide');
+  const yTools = pageTitle(doc, 'Kit complet recommande - Cloture bois',
+    'Outils polyvalents, EPI et fournitures - selection editoriale DIY Builder');
 
-  const toolsList = [
-    { label: 'Tariere electrique', search: 'tariere electrique poteau cloture' },
-    { label: 'Niveau a bulle', search: 'niveau bulle chantier' },
-    { label: 'Fil a plomb', search: 'fil a plomb chantier' },
-    { label: 'Massette', search: 'massette maillet chantier' },
-    { label: 'Pince coupante', search: 'pince coupante grillage' },
-    { label: 'Visseuse', search: 'visseuse bois cloture' },
-    { label: 'Vis inox', search: 'vis inox cloture bois' },
-    { label: 'Saturateur bois', search: 'saturateur bois cloture exterieur' },
-  ];
+  drawKitSection(doc, 'cloture', 'Cloture bois', yTools);
 
-  const toolColW = 88;
-  const toolRowH = 24;
-  const toolStartX = 15;
-  const toolTy = yTools + 8;
-
-  toolsList.forEach((tool, i) => {
-    const col = i % 2;
-    const row = Math.floor(i / 2);
-    const x = toolStartX + col * (toolColW + 9);
-    const y = toolTy + row * toolRowH;
-    const url = 'https://www.amazon.fr/s?k=' + encodeURIComponent(tool.search) + '&tag=diybuilder01-21';
-
-    doc.setFillColor(252, 250, 245);
-    doc.setDrawColor(229, 226, 216);
-    doc.roundedRect(x, y, toolColW, toolRowH - 3, 3, 3, 'FD');
-
-    doc.setFontSize(9);
-    doc.setTextColor(26, 28, 27);
-    doc.setFont('helvetica', 'bold');
-    doc.text(tool.label, x + 3, y + 9);
-
-    doc.setFontSize(7.5);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(201, 151, 30);
-    doc.text('Voir sur Amazon', x + 3, y + 16);
-
-    doc.link(x, y, toolColW, toolRowH - 3, { url });
-
-    doc.setTextColor(26, 28, 27);
-    doc.setFont('helvetica', 'normal');
-  });
-
-  doc.setFontSize(7);
-  doc.setTextColor(156, 145, 136);
-  doc.text(
-    'Liens affilies Amazon - DIY Builder percoit une commission sans surcout pour vous.',
-    105, 270, { align: 'center' },
-  );
-
-  cartouche(doc, { pageNum: TOTAL_PAGES, totalPages: TOTAL_PAGES, viewTitle: 'Outils recommandes', projectTitle: cloTitle });
+  cartouche(doc, { pageNum: TOTAL_PAGES, totalPages: TOTAL_PAGES, viewTitle: 'Kit complet', projectTitle: cloTitle });
 }

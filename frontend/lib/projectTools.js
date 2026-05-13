@@ -5,17 +5,42 @@
  *   - Outils      : amazonAsin (ASIN direct, prioritaire) ou amazonQuery (fallback recherche modèle exact)
  *   - Consommables: amazonQuery uniquement (produits trop variables pour ASINs stables)
  *
- * Commission Amazon Associates : générée sur tout achat dans les 24h après le clic.
- * ASIN direct → meilleur taux de conversion. Query → plus maintenable.
+ * Image produit : dérivée de l'ASIN via le CDN public Amazon, pattern stable :
+ *   https://m.media-amazon.com/images/P/{ASIN}.jpg
+ * Si l'image n'existe pas (certaines marques Amazon n'utilisent que /images/I/), le composant
+ * tombe sur l'icône Material Symbols.
  *
- * Tag Amazon : 'diybuilder-21' (placeholder — remplacer après validation programme)
+ * Commission Amazon Associates : générée sur tout achat dans les 24h après le clic.
+ *
+ * Tag Amazon : 'diybuilder01-21'
  */
 
 const AMAZON_TAG = 'diybuilder01-21';
 
-export function buildAmazonUrl(query, asin) {
-  if (asin) return `https://www.amazon.fr/dp/${asin}?tag=${AMAZON_TAG}`;
-  return `https://www.amazon.fr/s?k=${encodeURIComponent(query)}&tag=${AMAZON_TAG}`;
+/**
+ * Construit l'URL Amazon avec tag affilié et sub-tag de tracking optionnel.
+ * Le sub-tag passé via `ascsubtag` permet de segmenter les conversions dans
+ * Associates Central sans créer 100 tracking IDs séparés.
+ *
+ * Convention sub-tag : `[module]-[zone]-[tier?]`
+ *   - module : terrasse | cabanon | pergola | cloture
+ *   - zone   : kit | tier | cons (consommable)
+ *   - tier   : budget | polyvalent | pro  (optionnel, uniquement pour zone=tier)
+ *
+ * Exemples :
+ *   - 'terrasse-kit'              → clic depuis le bloc Kit terrasse
+ *   - 'cabanon-tier-polyvalent'   → clic carte polyvalent de l'onglet Outils
+ *   - 'pergola-cons'              → clic depuis l'accordion Consommables pergola
+ */
+export function buildAmazonUrl(query, asin, subtag) {
+  const subParam = subtag ? `&ascsubtag=${encodeURIComponent(subtag)}` : '';
+  if (asin) return `https://www.amazon.fr/dp/${asin}?tag=${AMAZON_TAG}${subParam}`;
+  return `https://www.amazon.fr/s?k=${encodeURIComponent(query)}&tag=${AMAZON_TAG}${subParam}`;
+}
+
+export function buildAmazonImageUrl(asin) {
+  if (!asin) return null;
+  return `https://m.media-amazon.com/images/P/${asin}.jpg`;
 }
 
 export function buildLMUrl(query) {
@@ -38,11 +63,11 @@ const TOOL_TIERS = {
         brand: 'Ryobi',
         model: 'RCS1600-G',
         price: 45,
-        specs: ['1600 W', 'Ø165 mm', 'Lame 24 dents incluse'],
-        // ASIN FR à valider sur Amazon Associates
-        amazonAsin: null,
-        amazonQuery: 'Ryobi RCS1600-G scie circulaire bois',
+        specs: ['1600 W', 'Ø190 mm', 'Lame 24 dents incluse'],
+        amazonAsin: 'B07GBJ15VB',
+        amazonQuery: 'Ryobi RCS1600 scie circulaire bois',
         lmQuery: 'scie circulaire ryobi',
+        prime: true,
       },
       {
         key: 'polyvalent',
@@ -51,10 +76,12 @@ const TOOL_TIERS = {
         brand: 'Bosch',
         model: 'PKS 55 A',
         price: 85,
-        specs: ['1350 W', 'Ø190 mm', 'Guide parallèle inclus', 'Poids 3,4 kg'],
-        amazonAsin: null,
+        specs: ['1200 W', 'Ø160 mm', 'Coupe 55 mm bois', 'Guide parallèle'],
+        amazonAsin: 'B002EX2Y6E',
         amazonQuery: 'Bosch PKS 55 A scie circulaire',
         lmQuery: 'scie circulaire bosch pks 55',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
@@ -62,10 +89,11 @@ const TOOL_TIERS = {
         brand: 'Makita',
         model: 'HS7601J',
         price: 165,
-        specs: ['1200 W', 'Ø190 mm', 'Coffret + lame carbure', 'Guide laser'],
-        amazonAsin: null,
+        specs: ['1200 W', 'Ø190 mm', 'Coffret Makpac', '5 200 tr/min'],
+        amazonAsin: 'B012CKR97M',
         amazonQuery: 'Makita HS7601J scie circulaire coffret',
         lmQuery: 'scie circulaire makita hs7601',
+        prime: true,
       },
     ],
   },
@@ -80,10 +108,11 @@ const TOOL_TIERS = {
         brand: 'Black+Decker',
         model: 'BDCDD12K',
         price: 38,
-        specs: ['12 V', '20 Nm', '2 batteries incluses'],
-        amazonAsin: null,
+        specs: ['10,8 V Li-Ion', '26 Nm', 'Bois 25 mm / acier 10 mm', '10 positions couple'],
+        amazonAsin: 'B016XLYJXS',
         amazonQuery: 'Black Decker BDCDD12K perceuse visseuse',
         lmQuery: 'perceuse visseuse black decker 12v',
+        prime: true,
       },
       {
         key: 'polyvalent',
@@ -92,21 +121,24 @@ const TOOL_TIERS = {
         brand: 'Bosch',
         model: 'PSR 18 LI-2',
         price: 90,
-        specs: ['18 V', '40 Nm', '2 batteries 2 Ah', '25 couples'],
-        amazonAsin: null,
+        specs: ['18 V', '38 Nm', '2 batteries + accessoires', 'Bois 35 mm / acier 10 mm'],
+        amazonAsin: 'B007Z187D4',
         amazonQuery: 'Bosch PSR 18 LI-2 perceuse visseuse',
         lmQuery: 'perceuse visseuse bosch psr 18',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
         label: 'Professionnel',
         brand: 'Makita',
-        model: 'DDF487RTJ',
+        model: 'DDF487',
         price: 185,
-        specs: ['18 V', '54 Nm', '2 batteries 5 Ah', 'Coffret robuste'],
-        amazonAsin: null,
-        amazonQuery: 'Makita DDF487RTJ perceuse visseuse coffret',
+        specs: ['18 V LXT brushless', '40 Nm', 'XPT antipoussière', '20 couples + perçage'],
+        amazonAsin: 'B099NSD35X',
+        amazonQuery: 'Makita DDF487 perceuse visseuse 18V',
         lmQuery: 'perceuse visseuse makita ddf487',
+        prime: true,
       },
     ],
   },
@@ -118,13 +150,14 @@ const TOOL_TIERS = {
       {
         key: 'budget',
         label: 'Entrée de gamme',
-        brand: 'Huepar',
-        model: 'BOX-1G',
-        price: 32,
-        specs: ['1 ligne verte', 'Portée 30 m', '±0,3 mm/m', 'Trépied inclus'],
-        amazonAsin: null,
-        amazonQuery: 'Huepar BOX-1G niveau laser ligne verte',
-        lmQuery: 'niveau laser huepar',
+        brand: 'Bosch',
+        model: 'Quigo Green',
+        price: 60,
+        specs: ['Croix laser verte', 'Auto-nivellement ±4°', 'Pince MM 2 universelle', 'Indoor 6 m'],
+        amazonAsin: 'B07NXB6SYD',
+        amazonQuery: 'Bosch Quigo Green niveau laser croix verte',
+        lmQuery: 'niveau laser bosch quigo green',
+        prime: true,
       },
       {
         key: 'polyvalent',
@@ -133,10 +166,12 @@ const TOOL_TIERS = {
         brand: 'Bosch',
         model: 'GLL 2-15 G',
         price: 80,
-        specs: ['2 lignes vertes', 'Portée 15 m', '±0,3 mm/m', 'Fixation magnétique'],
-        amazonAsin: null,
-        amazonQuery: 'Bosch GLL 2-15 G niveau laser 2 lignes',
+        specs: ['2 lignes vertes', 'Portée 15 m', '±0,3 mm/m', 'IP64 + coffret'],
+        amazonAsin: 'B0883SMTXL',
+        amazonQuery: 'Bosch GLL 2-15 G niveau laser ligne verte',
         lmQuery: 'niveau laser bosch gll 2-15',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
@@ -144,10 +179,11 @@ const TOOL_TIERS = {
         brand: 'Bosch',
         model: 'GLL 3-80 CG',
         price: 250,
-        specs: ['3 lignes vertes', 'Portée 80 m', '±0,2 mm/m', 'Mode extérieur'],
-        amazonAsin: null,
+        specs: ['3 lignes vertes 360°', 'Portée 30 m (80 m cellule)', '±0,2 mm/m', 'App + L-BOXX'],
+        amazonAsin: 'B07525S65F',
         amazonQuery: 'Bosch GLL 3-80 CG niveau laser 3 lignes',
         lmQuery: 'niveau laser bosch gll 3-80',
+        prime: true,
       },
     ],
   },
@@ -162,10 +198,11 @@ const TOOL_TIERS = {
         brand: 'Black+Decker',
         model: 'KA198',
         price: 28,
-        specs: ['55 W', 'Plateau 114×114 mm', 'Sac collecteur'],
-        amazonAsin: null,
-        amazonQuery: 'Black Decker KA198 ponceuse orbitale',
+        specs: ['260 W', 'Ø125 mm', '13 000 tr/min', 'Aspiration intégrée'],
+        amazonAsin: 'B002A05VQQ',
+        amazonQuery: 'Black Decker KA198 ponceuse orbitale 125mm',
         lmQuery: 'ponceuse orbitale black decker',
+        prime: true,
       },
       {
         key: 'polyvalent',
@@ -174,10 +211,12 @@ const TOOL_TIERS = {
         brand: 'Bosch',
         model: 'PSS 250 AE',
         price: 55,
-        specs: ['250 W', 'Plateau 112×102 mm', 'Aspiration intégrée', 'Vitesse variable'],
-        amazonAsin: null,
-        amazonQuery: 'Bosch PSS 250 AE ponceuse orbitale',
+        specs: ['250 W', 'Plateau 92×182 mm', '14 000-24 000 tr/min', 'Microfilter Bosch'],
+        amazonAsin: 'B000ARDYXS',
+        amazonQuery: 'Bosch PSS 250 AE ponceuse vibrante',
         lmQuery: 'ponceuse orbitale bosch pss 250',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
@@ -185,10 +224,11 @@ const TOOL_TIERS = {
         brand: 'Bosch',
         model: 'GEX 125-1 AE',
         price: 100,
-        specs: ['250 W', 'Ø125 mm', 'Vibration réduite', 'Compatible aspirateur'],
-        amazonAsin: null,
+        specs: ['250 W', 'Ø125 mm', 'Excentrique pro', 'Compatible aspirateur'],
+        amazonAsin: 'B00SPB9TXK',
         amazonQuery: 'Bosch GEX 125-1 AE ponceuse excentrique',
         lmQuery: 'ponceuse excentrique bosch gex 125',
+        prime: true,
       },
     ],
   },
@@ -201,35 +241,39 @@ const TOOL_TIERS = {
         key: 'budget',
         label: 'Entrée de gamme',
         brand: 'Stanley',
-        model: 'FatMax 300 mm',
+        model: '1-45-686',
         price: 18,
-        specs: ['Acier inox', 'Graduations mm/pouce', 'Angles 90° et 45°'],
-        amazonAsin: null,
-        amazonQuery: 'Stanley FatMax équerre charpentier 300mm',
+        specs: ['Acier inox 300 mm', 'Graduations mm/pouce', 'Photogravure double face', 'Angles 90° / 45°'],
+        amazonAsin: 'B0001IW9E6',
+        amazonQuery: 'Stanley 1-45-686 équerre charpentier 300mm',
         lmQuery: 'équerre charpentier stanley 300mm',
+        prime: true,
       },
       {
         key: 'polyvalent',
         label: 'Polyvalent',
         recommended: true,
         brand: 'Irwin',
-        model: 'T0936',
+        model: '300 mm',
         price: 32,
-        specs: ['Aluminium épais', '300 mm', 'Butée aimantée', 'Résistant aux chocs'],
-        amazonAsin: null,
-        amazonQuery: 'Irwin T0936 équerre charpentier aluminium',
+        specs: ['Lame 300 mm acier', 'Manche aluminium', 'Précision graduée', 'Pro de référence'],
+        amazonAsin: 'B00360YS9A',
+        amazonQuery: 'Irwin équerre charpentier 300mm aluminium',
         lmQuery: 'équerre charpentier irwin',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
         label: 'Professionnel',
-        brand: 'Tajima',
-        model: 'SGP-30M',
+        brand: 'Shinwa',
+        model: '300×150 mm',
         price: 58,
-        specs: ['Acier inox épais', '300 mm', 'Graduation laser', 'Made in Japan'],
-        amazonAsin: null,
-        amazonQuery: 'Tajima SGP-30M équerre charpentier inox',
-        lmQuery: 'équerre charpentier tajima',
+        specs: ['Acier inox épais 2 mm', '300×150 mm', 'Made in Japan', 'Photogravure laser'],
+        amazonAsin: 'B002JQVG9W',
+        amazonQuery: 'Shinwa équerre charpentier inox 300x150 japon',
+        lmQuery: 'équerre charpentier inox japon',
+        prime: true,
       },
     ],
   },
@@ -241,36 +285,40 @@ const TOOL_TIERS = {
       {
         key: 'budget',
         label: 'Entrée de gamme',
-        brand: 'Scheppach',
-        model: 'EB800',
-        price: 90,
-        specs: ['800 W', 'Ø150 mm max', '1 personne', 'Vrille 800 mm'],
-        amazonAsin: null,
-        amazonQuery: 'Scheppach EB800 tarière thermique sol',
-        lmQuery: 'tarière thermique scheppach eb800',
+        brand: 'Leman',
+        model: 'LOTAR052',
+        price: 140,
+        specs: ['52 cm³ thermique', 'Ø100 mm max', '1 personne', '3 mèches incluses'],
+        amazonAsin: 'B00VIAEPW0',
+        amazonQuery: 'Leman LOTAR052 tarière thermique 52cc',
+        lmQuery: 'tarière thermique 52cc',
+        prime: true,
       },
       {
         key: 'polyvalent',
         label: 'Polyvalent',
         recommended: true,
         brand: 'Greencut',
-        model: 'TM1201',
-        price: 175,
-        specs: ['52 cm³', 'Ø200 mm max', '2 personnes', 'Vrille 900 mm'],
-        amazonAsin: null,
-        amazonQuery: 'Greencut TM1201 tarière thermique 2 personnes',
-        lmQuery: 'tarière thermique greencut',
+        model: 'GD750X-3S',
+        price: 230,
+        specs: ['75 cm³ / 5,2 CV', 'Ø100/150/200 mm', '2 temps', '3 mèches acier'],
+        amazonAsin: 'B08H8WX8B3',
+        amazonQuery: 'Greencut GD750X-3S tarière thermique 75cc',
+        lmQuery: 'tarière thermique greencut 75cc',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
         label: 'Professionnel',
-        brand: 'Stihl',
-        model: 'BT 45',
-        price: 420,
-        specs: ['1,4 kW', 'Ø250 mm max', 'Couple élevé', 'SAV réseau'],
-        amazonAsin: null,
-        amazonQuery: 'Stihl BT 45 tarière thermique pro',
-        lmQuery: 'tarière stihl bt 45',
+        brand: 'Greencut',
+        model: 'GD750X',
+        price: 320,
+        specs: ['75 cm³ / 5,2 CV', '3 mèches 100/200/300 mm', 'Rallonges 60 cm × 3', 'Profondeur 2,8 m'],
+        amazonAsin: 'B073QWDNNH',
+        amazonQuery: 'Greencut GD750X tarière thermique pro rallonges',
+        lmQuery: 'tarière thermique greencut pro',
+        prime: true,
       },
     ],
   },
@@ -283,12 +331,13 @@ const TOOL_TIERS = {
         key: 'budget',
         label: 'Entrée de gamme',
         brand: 'Black+Decker',
-        model: 'BDCHD18K',
-        price: 52,
-        specs: ['18 V', '65 Nm', 'Mode marteau', '1 batterie'],
-        amazonAsin: null,
-        amazonQuery: 'Black Decker BDCHD18K perceuse percussion 18v',
+        model: 'BDCHD18',
+        price: 75,
+        specs: ['18 V Li-Ion 1,5 Ah', '17,5-40 Nm', '21 000 cps/min', '2 vitesses + coffret'],
+        amazonAsin: 'B01D9WA47O',
+        amazonQuery: 'Black Decker BDCHD18 perceuse percussion 18V',
         lmQuery: 'perceuse percussion black decker 18v',
+        prime: true,
       },
       {
         key: 'polyvalent',
@@ -296,22 +345,25 @@ const TOOL_TIERS = {
         recommended: true,
         brand: 'Bosch',
         model: 'PSB 18 LI-2',
-        price: 95,
-        specs: ['18 V', '63 Nm', '2 batteries 2 Ah', '3 modes'],
-        amazonAsin: null,
-        amazonQuery: 'Bosch PSB 18 LI-2 perceuse percussion sans fil',
+        price: 165,
+        specs: ['18 V Syneon', '54 Nm', '2 batteries 2,5 Ah', '3 modes + coffret'],
+        amazonAsin: 'B010D09RH8',
+        amazonQuery: 'Bosch PSB 18 LI-2 perceuse percussion 2 batteries',
         lmQuery: 'perceuse percussion bosch psb 18',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
         label: 'Professionnel',
         brand: 'Makita',
-        model: 'DHP486RTJ',
-        price: 185,
-        specs: ['18 V', '91 Nm', '2 batteries 5 Ah', 'Coffret robuste'],
-        amazonAsin: null,
-        amazonQuery: 'Makita DHP486RTJ perceuse percussion coffret',
+        model: 'DHP486',
+        price: 175,
+        specs: ['18 V LXT brushless', '130 Nm', 'XPT eau/poussière', '31 500 cps/min'],
+        amazonAsin: 'B099NSX8MN',
+        amazonQuery: 'Makita DHP486Z perceuse percussion brushless',
         lmQuery: 'perceuse percussion makita dhp486',
+        prime: true,
       },
     ],
   },
@@ -324,35 +376,39 @@ const TOOL_TIERS = {
         key: 'budget',
         label: 'Entrée de gamme',
         brand: 'Stanley',
-        model: 'Classic 80 cm',
-        price: 18,
-        specs: ['Aluminium', '3 ampoules', '±0,5 mm/m'],
-        amazonAsin: null,
-        amazonQuery: 'Stanley niveau à bulle 80cm aluminium',
+        model: '1-42-315 MLH',
+        price: 28,
+        specs: ['Profil trapézoïdal alu', '80 cm', '±1 mm/m', 'Made in France'],
+        amazonAsin: 'B008DI1OPQ',
+        amazonQuery: 'Stanley 1-42-315 niveau trapézoïdal 80cm',
         lmQuery: 'niveau à bulle 80cm stanley',
+        prime: true,
       },
       {
         key: 'polyvalent',
         label: 'Polyvalent',
         recommended: true,
         brand: 'Stabila',
-        model: 'Type 80P',
-        price: 48,
-        specs: ['Aluminium épais', '80 cm', '±0,3 mm/m', 'Bords de mesure plans'],
-        amazonAsin: null,
-        amazonQuery: 'Stabila 80P niveau bulle 80cm pro',
+        model: 'Type 80 AS',
+        price: 55,
+        specs: ['Profil alu renforcé', '80 cm', '±0,5 mm/m', 'Antidérapant intégré'],
+        amazonAsin: 'B07H1RQQ9Y',
+        amazonQuery: 'Stabila Type 80 AS niveau bulle 80cm',
         lmQuery: 'niveau à bulle stabila 80cm',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
         label: 'Professionnel',
         brand: 'Stabila',
-        model: 'TECH 80 MAG',
-        price: 75,
-        specs: ['Magnétique', '80 cm', '±0,2 mm/m', 'Antichoc IP67'],
-        amazonAsin: null,
-        amazonQuery: 'Stabila TECH 80 MAG niveau magnétique',
-        lmQuery: 'niveau magnétique stabila tech 80',
+        model: 'Type 80 ASM',
+        price: 85,
+        specs: ['Magnétique terres rares', '80 cm', '±0,5 mm/m', 'Made in Germany'],
+        amazonAsin: 'B07H1RR1P5',
+        amazonQuery: 'Stabila Type 80 ASM niveau magnétique 80cm',
+        lmQuery: 'niveau magnétique stabila 80cm',
+        prime: true,
       },
     ],
   },
@@ -365,35 +421,39 @@ const TOOL_TIERS = {
         key: 'budget',
         label: 'Entrée de gamme',
         brand: 'Stanley',
-        model: '0-47-985',
-        price: 9,
-        specs: ['15 m de fil', 'Chalk box métal', 'Recharge bleue incluse'],
-        amazonAsin: null,
-        amazonQuery: 'Stanley 0-47-985 cordeau traceur maçon',
+        model: '0-47-100',
+        price: 12,
+        specs: ['30 m de fil', 'Chalk box métal', 'Robuste', 'Marque référence'],
+        amazonAsin: 'B0001IW702',
+        amazonQuery: 'Stanley 0-47-100 cordeau traceur 30m',
         lmQuery: 'cordeau traceur stanley',
+        prime: true,
       },
       {
         key: 'polyvalent',
         label: 'Polyvalent',
         recommended: true,
         brand: 'Tajima',
-        model: 'PLM-13BL',
-        price: 24,
-        specs: ['30 m de fil', 'Rembobinage automatique', 'Poudre bleue 90 g incluse'],
-        amazonAsin: null,
-        amazonQuery: 'Tajima PLM-13BL cordeau traceur maçon',
+        model: 'CR301JF',
+        price: 28,
+        specs: ['30 m fil acier japonais', 'Rembobinage 4× vitesse', 'Compact équilibré', 'Pro de charpente'],
+        amazonAsin: 'B00FXR1QKS',
+        amazonQuery: 'Tajima CR301JF cordeau traceur poudre 30m',
         lmQuery: 'cordeau traceur tajima',
+        prime: true,
+        bestSeller: true,
       },
       {
         key: 'pro',
         label: 'Professionnel',
         brand: 'Tajima',
-        model: 'CLK-55MG',
+        model: 'CR401SD',
         price: 48,
-        specs: ['55 m de fil kevlar', 'Corps magnésium', 'Rembobinage rapide'],
-        amazonAsin: null,
-        amazonQuery: 'Tajima CLK-55MG cordeau traceur kevlar pro',
-        lmQuery: 'cordeau traceur tajima clk',
+        specs: ['30 m × 1 mm nylon tressé', 'Rembobinage 5× vitesse', 'Boîtier alu pro', 'Trait fin maçon'],
+        amazonAsin: 'B079VC77MZ',
+        amazonQuery: 'Tajima CR401SD cordeau traceur pro alu',
+        lmQuery: 'cordeau traceur tajima pro',
+        prime: true,
       },
     ],
   },
@@ -440,6 +500,95 @@ export function getProjectTools(projectType) {
 }
 
 /* ══════════════════════════════════════════════════
+   KIT COMPLET — composition par projet (tier polyvalent)
+   Sélection des 8-9 essentiels : 4 outils + 3 EPI + 2 consommables
+══════════════════════════════════════════════════ */
+
+const PROJECT_KITS = {
+  terrasse: {
+    tools:    ['scie-circulaire', 'perceuse-visseuse', 'niveau-laser', 'ponceuse-orbitale'],
+    epi:      ['combinaison-terrasse', 'gants-terrasse', 'lunettes-terrasse'],
+    supplies: ['vis-terrasse', 'huile-terrasse'],
+  },
+  cabanon: {
+    tools:    ['scie-circulaire', 'perceuse-visseuse', 'niveau-laser', 'equerre-charpentier'],
+    epi:      ['combinaison-cabanon', 'gants-cabanon', 'casque-cabanon'],
+    supplies: ['vis-ossature', 'lasure-bardage'],
+  },
+  pergola: {
+    tools:    ['tariere', 'perceuse-percussion', 'niveau-bulle', 'scie-circulaire'],
+    epi:      ['combinaison-pergola', 'gants-pergola', 'lunettes-pergola'],
+    supplies: ['vis-pergola', 'lasure-pergola'],
+  },
+  cloture: {
+    tools:    ['tariere', 'perceuse-visseuse', 'cordeau-macon', 'niveau-bulle'],
+    epi:      ['combinaison-cloture', 'gants-cloture', 'lunettes-cloture'],
+    supplies: ['vis-lames-cloture', 'saturateur-cloture'],
+  },
+};
+
+/* Aplatit `PROJECT_CONSUMABLES[projectType]` en map id→item pour lookup rapide */
+function flattenConsumables(projectType) {
+  const groups = PROJECT_CONSUMABLES[projectType] ?? [];
+  const map = {};
+  for (const g of groups) {
+    for (const item of g.items) map[item.id] = { ...item, _category: g.category };
+  }
+  return map;
+}
+
+export function getProjectKit(projectType) {
+  const conf = PROJECT_KITS[projectType];
+  if (!conf) return null;
+  const consumablesMap = flattenConsumables(projectType);
+
+  const tools = conf.tools.map((id) => {
+    const def = TOOL_TIERS[id];
+    if (!def) return null;
+    const tier = def.tiers.find((t) => t.key === 'polyvalent');
+    if (!tier) return null;
+    return {
+      kind: 'tool',
+      id,
+      name: def.name,
+      icon: def.icon,
+      brand: tier.brand,
+      model: tier.model,
+      price: tier.price,
+      amazonAsin: tier.amazonAsin,
+      amazonQuery: tier.amazonQuery,
+      prime: tier.prime,
+    };
+  }).filter(Boolean);
+
+  const epi = conf.epi.map((id) => {
+    const item = consumablesMap[id];
+    if (!item) return null;
+    return {
+      kind: 'epi',
+      id,
+      name: item.name,
+      amazonQuery: item.amazonQuery,
+    };
+  }).filter(Boolean);
+
+  const supplies = conf.supplies.map((id) => {
+    const item = consumablesMap[id];
+    if (!item) return null;
+    return {
+      kind: 'supply',
+      id,
+      name: item.name,
+      amazonQuery: item.amazonQuery,
+    };
+  }).filter(Boolean);
+
+  const toolsTotal = tools.reduce((sum, t) => sum + (t.price ?? 0), 0);
+
+  return { tools, epi, supplies, toolsTotal, itemCount: tools.length + epi.length + supplies.length };
+}
+
+/* ══════════════════════════════════════════════════
    CONSOMMABLES PAR MODULE (liens recherche uniquement)
 ══════════════════════════════════════════════════ */
 
@@ -465,10 +614,12 @@ export const PROJECT_CONSUMABLES = {
         },
         {
           id: 'lunettes-terrasse',
-          name: 'Lunettes de protection',
-          desc: 'Copeaux de scie circulaire et projections lors du vissage — norme EN 166, lunettes anti-buée recommandées.',
-          amazonQuery: 'lunettes protection bricolage EN166 anti-projection copeaux',
+          name: 'Lunettes 3M Solus EN166',
+          desc: 'Copeaux de scie circulaire et projections lors du vissage — norme EN 166, anti-buée Scotchgard.',
+          amazonAsin: 'B076BDDH37',
+          amazonQuery: '3M Solus S1101SGAF lunettes protection EN166',
           lmQuery: 'lunettes protection bricolage',
+          priceHint: '~10 €',
         },
         {
           id: 'genouilleres-terrasse',
@@ -485,10 +636,12 @@ export const PROJECT_CONSUMABLES = {
       items: [
         {
           id: 'huile-terrasse',
-          name: 'Huile bois terrasse',
-          desc: 'Pénètre dans les fibres — idéale pin, douglas, châtaignier. 1 L couvre ~8 m² (2 couches).',
-          amazonQuery: 'huile bois terrasse extérieur',
+          name: 'Huile saturateur Owatrol Textrol',
+          desc: 'Pénètre dans les fibres — idéale pin, douglas, châtaignier. 1 L couvre ~8-12 m² (2 couches). Made in France.',
+          amazonAsin: 'B004HQ9G8K',
+          amazonQuery: 'Owatrol Textrol saturateur bois extérieur incolore 1L',
           lmQuery: 'huile terrasse bois',
+          priceHint: '~35 €',
         },
         {
           id: 'lasure-terrasse',
@@ -514,15 +667,19 @@ export const PROJECT_CONSUMABLES = {
           id: 'vis-terrasse',
           name: 'Vis terrasse inox A4 Ø5×60',
           desc: 'Tête fraisée Torx — inox A4 obligatoire en extérieur pour éviter les taches de rouille sur le bois.',
-          amazonQuery: 'vis terrasse inox a4 torx 5x60 boîte',
+          amazonAsin: 'B0716C7RB3',
+          amazonQuery: 'Spax vis terrasse inox A4 5x60 torx',
           lmQuery: 'vis terrasse inox torx',
+          priceHint: '~25 €',
         },
         {
           id: 'embouts-terrasse',
           name: 'Kit embouts Torx magnétiques',
           desc: 'Les embouts de série s\'arrondissent sur inox — un kit Torx magnétique dédié (TX20/TX25) tient la journée.',
-          amazonQuery: 'kit embouts torx magnétique inox tx20 tx25',
+          amazonAsin: 'B074G4G575',
+          amazonQuery: 'Wera Bit-Box 20 TX25 embouts torx',
           lmQuery: 'embouts torx vissage inox',
+          priceHint: '~15 €',
         },
       ],
     },
@@ -562,10 +719,12 @@ export const PROJECT_CONSUMABLES = {
         },
         {
           id: 'lunettes-cabanon',
-          name: 'Lunettes de protection',
-          desc: 'Sciage, vissage et découpe de voliges — norme EN 166, indispensable lors des coupes de toit en hauteur.',
-          amazonQuery: 'lunettes protection bricolage EN166 anti-projection copeaux',
+          name: 'Lunettes 3M Solus EN166',
+          desc: 'Sciage, vissage et découpe de voliges — norme EN 166, anti-buée Scotchgard.',
+          amazonAsin: 'B076BDDH37',
+          amazonQuery: '3M Solus S1101SGAF lunettes protection EN166',
           lmQuery: 'lunettes protection bricolage',
+          priceHint: '~10 €',
         },
         {
           id: 'casque-cabanon',
@@ -582,10 +741,12 @@ export const PROJECT_CONSUMABLES = {
       items: [
         {
           id: 'lasure-bardage',
-          name: 'Lasure bardage façade',
-          desc: 'Formulation façade résistante UV et pluie battante. 1 L pour ~6–8 m² de bardage (2 couches).',
-          amazonQuery: 'lasure bardage bois façade extérieur UV',
+          name: 'Lasure Bondex Protection Extrême',
+          desc: 'Façade très exposée — 12 ans de tenue UV/humidité. 1 L pour ~6-8 m² de bardage (2 couches).',
+          amazonAsin: 'B091KXVDD7',
+          amazonQuery: 'Bondex Protection Extreme lasure bois extérieur incolore',
           lmQuery: 'lasure bardage façade bois',
+          priceHint: '~28 €',
         },
         {
           id: 'traitement-cabanon',
@@ -602,24 +763,30 @@ export const PROJECT_CONSUMABLES = {
       items: [
         {
           id: 'vis-ossature',
-          name: 'Vis ossature bois 6×120',
-          desc: 'Assemblage montants et lisses — tête hexagonale, acier zingué. 100 pcs pour un cabanon 3×4 m.',
-          amazonQuery: 'vis charpente ossature bois 6x120 zingué tête hexagonale',
-          lmQuery: 'vis charpente ossature bois 6x120',
+          name: 'Vis SPAX charpente 6×100 (lot 100)',
+          desc: 'Assemblage montants et lisses — tête disque Wirox A3J Torx T30. 100 pcs pour un cabanon 3×4 m.',
+          amazonAsin: 'B072P165FK',
+          amazonQuery: 'Spax vis charpente bois 6x100 Wirox T-Star Plus 100 pcs',
+          lmQuery: 'vis charpente ossature bois 6x100',
+          priceHint: '~32 €',
         },
         {
           id: 'vis-bardage',
           name: 'Vis bardage inox 4×40',
-          desc: 'Fixation des lames de bardage — tête plate fraisée inox pour éviter les coulures de rouille.',
-          amazonQuery: 'vis bardage bois inox 4x40 torx fraisée',
+          desc: 'Fixation des lames de bardage — tête plate fraisée inox A2 pour éviter les coulures de rouille.',
+          amazonAsin: 'B0716C7RB3',
+          amazonQuery: 'Spax vis bardage inox A2 4x40 torx fraisée',
           lmQuery: 'vis bardage inox 4x40',
+          priceHint: '~22 €',
         },
         {
           id: 'embouts-cabanon',
-          name: 'Kit embouts variés',
-          desc: 'Torx + PH2 + carré — un plateau 32 embouts magnétiques couvre tous les types de vis du chantier.',
-          amazonQuery: 'kit embouts visseuse magnétique plateau 32 pcs torx ph2',
+          name: 'Kit embouts Wera Bit-Box',
+          desc: 'TX 25 plateau 20 embouts — qualité allemande, magnétiques, tient toute la longueur d\'un chantier.',
+          amazonAsin: 'B074G4G575',
+          amazonQuery: 'Wera Bit-Box 20 TX25 embouts torx',
           lmQuery: 'kit embouts visseuse plateau',
+          priceHint: '~15 €',
         },
       ],
     },
@@ -659,10 +826,12 @@ export const PROJECT_CONSUMABLES = {
         },
         {
           id: 'lunettes-pergola',
-          name: 'Lunettes de protection',
-          desc: 'Copeaux lors du sciage en hauteur et éclats de béton au scellement — norme EN 166 anti-projection.',
-          amazonQuery: 'lunettes protection bricolage EN166 anti-projection copeaux',
+          name: 'Lunettes 3M Solus EN166',
+          desc: 'Copeaux lors du sciage en hauteur et éclats de béton au scellement — anti-buée Scotchgard.',
+          amazonAsin: 'B076BDDH37',
+          amazonQuery: '3M Solus S1101SGAF lunettes protection EN166',
           lmQuery: 'lunettes protection bricolage',
+          priceHint: '~10 €',
         },
         {
           id: 'bouchons-pergola',
@@ -679,17 +848,21 @@ export const PROJECT_CONSUMABLES = {
       items: [
         {
           id: 'lasure-pergola',
-          name: 'Lasure bois extérieur',
-          desc: 'Protection UV pour poteaux et longerons très exposés — renouvellement tous les 2–3 ans.',
-          amazonQuery: 'lasure bois extérieur protection UV pergola poteaux',
+          name: 'Lasure Bondex Protection Extrême',
+          desc: 'Protection UV pour poteaux et longerons très exposés — 12 ans de tenue, séchage rapide.',
+          amazonAsin: 'B091KXVDD7',
+          amazonQuery: 'Bondex Protection Extreme lasure bois extérieur incolore',
           lmQuery: 'lasure bois extérieur UV',
+          priceHint: '~28 €',
         },
         {
           id: 'saturateur-pergola',
-          name: 'Saturateur huileux',
-          desc: 'Pour bois denses (robinier, acacia) — pénètre sans former de film, idéal entretien pluriannuel.',
-          amazonQuery: 'saturateur huileux bois dense extérieur pergola',
+          name: 'Owatrol D1 saturateur bois durs',
+          desc: 'Pour bois denses (robinier, acacia, ipé) — pénètre sans former de film, idéal entretien pluriannuel.',
+          amazonAsin: 'B007B27WE2',
+          amazonQuery: 'Owatrol D1 saturateur bois durs exotique 1L',
           lmQuery: 'saturateur bois extérieur huileux',
+          priceHint: '~38 €',
         },
         {
           id: 'traitement-pergola',
@@ -706,10 +879,12 @@ export const PROJECT_CONSUMABLES = {
       items: [
         {
           id: 'vis-pergola',
-          name: 'Vis charpente 6×160',
-          desc: 'Assemblage longerons sur poteaux — tête hexagonale galvanisée, traitement anticorrosion classe 4.',
-          amazonQuery: 'vis charpente bois 6x160 galvanisé classe 4 extérieur',
+          name: 'Vis SPAX charpente 6×160 (lot 100)',
+          desc: 'Assemblage longerons sur poteaux — Wirox A3J Torx, classe 4 corrosion, ETA-12/0114.',
+          amazonAsin: 'B071YN7LMR',
+          amazonQuery: 'Spax vis charpente bois 6x160 Wirox 100 pcs',
           lmQuery: 'vis charpente 6x160 galvanisé',
+          priceHint: '~52 €',
         },
         {
           id: 'boulons-pergola',
@@ -756,10 +931,12 @@ export const PROJECT_CONSUMABLES = {
         },
         {
           id: 'lunettes-cloture',
-          name: 'Lunettes de protection',
-          desc: 'Projection de copeaux lors de la découpe et bris de béton au scellement — norme EN 166 obligatoire.',
-          amazonQuery: 'lunettes protection bricolage EN166 anti-projection copeaux',
+          name: 'Lunettes 3M Solus EN166',
+          desc: 'Projection de copeaux lors de la découpe et bris de béton au scellement — anti-buée Scotchgard.',
+          amazonAsin: 'B076BDDH37',
+          amazonQuery: '3M Solus S1101SGAF lunettes protection EN166',
           lmQuery: 'lunettes protection bricolage',
+          priceHint: '~10 €',
         },
         {
           id: 'bouchons-cloture',
@@ -776,10 +953,12 @@ export const PROJECT_CONSUMABLES = {
       items: [
         {
           id: 'saturateur-cloture',
-          name: 'Saturateur clôture',
-          desc: 'Formulation spéciale bois très exposé — protège contre humidité, UV et champignons. 2 couches à la pose.',
-          amazonQuery: 'saturateur bois clôture extérieur protection UV humidité',
+          name: 'Owatrol Textrol saturateur incolore',
+          desc: 'Bois très exposé — protège contre humidité, UV et champignons. 2 couches à la pose, 1 L = 8-12 m².',
+          amazonAsin: 'B004HQ9G8K',
+          amazonQuery: 'Owatrol Textrol saturateur bois extérieur incolore 1L',
           lmQuery: 'saturateur clôture bois extérieur',
+          priceHint: '~35 €',
         },
         {
           id: 'lasure-cloture',
@@ -796,17 +975,21 @@ export const PROJECT_CONSUMABLES = {
       items: [
         {
           id: 'vis-lames-cloture',
-          name: 'Vis lames clôture inox 4×40',
-          desc: '2 vis par lame et par rail — inox ou zingué selon budget. Tête fraisée Torx, boîte de 200 pcs.',
-          amazonQuery: 'vis clôture bois inox 4x40 torx fraisée boite 200',
+          name: 'Vis SPAX clôture inox A2 5×60',
+          desc: '2 vis par lame et par rail — inox A2 tête fraisée Torx pour éviter coulures de rouille.',
+          amazonAsin: 'B0716C7RB3',
+          amazonQuery: 'Spax vis clôture inox A2 5x60 torx',
           lmQuery: 'vis clôture inox 4x40',
+          priceHint: '~25 €',
         },
         {
           id: 'embouts-cloture',
-          name: 'Kit embouts Torx TX20/TX25',
-          desc: 'Un kit de 10 embouts Torx suffit — les vis de clôture en inox arrondissent vite les embouts bas de gamme.',
-          amazonQuery: 'kit embouts torx tx20 tx25 magnétique inox 10pcs',
+          name: 'Kit embouts Wera Bit-Box',
+          desc: 'TX 25 plateau 20 embouts — qualité allemande, les vis inox de clôture ne les arrondissent pas.',
+          amazonAsin: 'B074G4G575',
+          amazonQuery: 'Wera Bit-Box 20 TX25 embouts torx',
           lmQuery: 'embouts torx tx20 tx25 vissage',
+          priceHint: '~15 €',
         },
       ],
     },

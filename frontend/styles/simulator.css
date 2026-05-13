@@ -3946,6 +3946,248 @@
   padding: 28px 28px 20px;
 }
 
+/* ══════════════════════════════════════════════════
+   Kit complet — résumé visuel en tête de section
+══════════════════════════════════════════════════ */
+.project-kit {
+  background: linear-gradient(180deg, #FFFCF2 0%, #FDF8E8 100%);
+  border: 1.5px solid #E5D7A8;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 14px 0 22px;
+  box-shadow: 0 2px 10px rgba(201, 151, 30, 0.08);
+}
+
+.project-kit-header {
+  margin-bottom: 14px;
+}
+
+.project-kit-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9A7318;
+  margin-bottom: 6px;
+}
+
+.project-kit-subtitle {
+  font-size: 13px;
+  color: #5a5248;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Grille 3×3 sur desktop (9 items = layout carré propre) */
+.project-kit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .project-kit-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .project-kit-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .project-kit-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Mini-carte d'un item du kit ── */
+.kit-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ece5d0;
+  border-radius: 10px;
+  padding: 12px 10px 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  min-height: 178px;
+}
+
+.kit-card:hover {
+  transform: translateY(-2px);
+  border-color: #C9971E;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(201, 151, 30, 0.12);
+}
+
+/* Tag de type — coin haut gauche */
+.kit-card-tag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.kit-card-tag--tool   { background: #FBF0D0; color: #7A5C00; }
+.kit-card-tag--epi    { background: #DCEAF5; color: #2A5480; }
+.kit-card-tag--supply { background: #D8EEDC; color: #1D5E32; }
+
+/* Visuel (image ou icône) */
+.kit-card-visual {
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  padding: 4px;
+}
+
+.kit-card-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.kit-card:hover .kit-card-img {
+  transform: scale(1.06);
+}
+
+.kit-card-fallback-icon {
+  font-size: 48px;
+  color: #7A5C00;
+  opacity: 0.7;
+  font-variation-settings: 'FILL' 1, 'wght' 400;
+}
+
+.kit-card-icon-pill {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Texte */
+.kit-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-height: 0;
+}
+
+.kit-card-brand {
+  font-size: 10px;
+  font-weight: 600;
+  color: #7a6f65;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kit-card-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111214;
+  line-height: 1.25;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.kit-card-price {
+  font-size: 14px;
+  font-weight: 800;
+  color: #9A7318;
+  margin-top: 2px;
+}
+
+.kit-card-price--variable {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a6f65;
+}
+
+/* Footer : total + CTA groupé */
+.project-kit-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(154, 115, 24, 0.25);
+}
+
+.project-kit-total {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
+}
+
+.project-kit-total-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a6f65;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.project-kit-total-amount {
+  font-size: 22px;
+  font-weight: 800;
+  color: #9A7318;
+}
+
+.project-kit-total-hint {
+  font-size: 10.5px;
+  color: #9c9188;
+  font-style: italic;
+}
+
+/* Séparateur entre Kit et reste */
+.project-tools-divider {
+  display: flex;
+  align-items: center;
+  margin: 22px 0 18px;
+  gap: 12px;
+}
+
+.project-tools-divider::before,
+.project-tools-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e2d8;
+}
+
+.project-tools-divider span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9c9188;
+}
+
+@media (max-width: 600px) {
+  .project-kit { padding: 16px 14px; }
+  .project-kit-grid { gap: 8px; }
+  .kit-card { min-height: 158px; padding: 10px 8px 8px; }
+  .kit-card-visual { height: 70px; }
+  .project-kit-footer { flex-direction: column; align-items: stretch; gap: 10px; }
+}
+
 .project-tools-header { margin-bottom: 16px; }
 
 .project-tools-title-row {
@@ -4072,60 +4314,224 @@
   position: relative;
   background: var(--tier-bg);
   border: 1.5px solid var(--tier-border);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 18px 16px 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: box-shadow 0.18s ease, transform 0.18s ease;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
 }
 
 .tier-card:hover {
-  box-shadow: 0 6px 22px rgba(0,0,0,.1), 0 2px 8px rgba(0,0,0,.06);
-  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px) scale(1.02);
 }
 
 /* Carte polyvalent mise en avant */
 .tier-card--polyvalent {
   border-width: 2px;
-  box-shadow: 0 4px 16px rgba(160,122,20,.14);
+  box-shadow: 0 6px 20px rgba(160, 122, 20, 0.16);
 }
 
 .tier-card--polyvalent:hover {
-  box-shadow: 0 8px 28px rgba(160,122,20,.22), 0 2px 8px rgba(0,0,0,.08);
+  box-shadow: 0 14px 34px rgba(160, 122, 20, 0.24), 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px) scale(1.02);
 }
 
+/* Badge "Recommandé" — pill flottante avec point coloré + backdrop-blur */
 .tier-badge {
   position: absolute;
-  top: -10px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--tier-color);
-  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--tier-color);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: .04em;
+  letter-spacing: .05em;
   text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 20px;
+  padding: 4px 11px 4px 9px;
+  border-radius: 999px;
   white-space: nowrap;
+  z-index: 3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+.tier-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tier-color);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
 }
 
 /* ── Visuel illustratif en tête de carte ── */
 .tier-card-visual {
   border-radius: 10px 10px 0 0;
-  height: 76px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: -18px -16px 8px;
+  margin: -18px -16px 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Variante "image produit Amazon" : fond clair neutre pour les photos détourées */
+.tier-card-visual--image {
+  background: #fdfcf9;
+  padding: 12px;
+  border-bottom: 1px solid var(--tier-border, #e5e2d8);
+}
+
+.tier-card-product-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.tier-card:hover .tier-card-product-img {
+  transform: scale(1.04);
+}
+
+/* Variante "fallback icône" : gradient coloré comme avant */
+.tier-card-visual--icon {
+  /* background appliqué inline via --tier-bg gradient */
 }
 
 .tier-card-visual-icon {
-  font-size: 42px;
+  font-size: 56px;
   font-variation-settings: 'FILL' 1, 'wght' 400;
   opacity: 0.88;
   user-select: none;
+}
+
+/* ── Badge "Top vente Amazon" (coin haut droit) ── */
+.tier-bestseller {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: linear-gradient(135deg, #FF8C00, #E66B00);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 8px 3px 6px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(230, 107, 0, 0.35);
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+/* ── Note Amazon : étoiles + count ou badge générique ── */
+.amazon-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #5a5248;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.amazon-rating--compact {
+  font-size: 10px;
+  gap: 3px;
+}
+
+.amazon-rating--generic {
+  color: #9A7318;
+}
+
+.amazon-stars-generic {
+  font-size: 13px;
+  color: #FFA41C;
+  line-height: 1;
+}
+
+.amazon-stars {
+  position: relative;
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1px;
+  line-height: 1;
+  color: transparent;
+}
+
+.amazon-stars-bg,
+.amazon-stars-fg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.amazon-stars-bg {
+  color: #E5E2D8;
+  position: relative;
+}
+
+.amazon-stars-fg {
+  color: #FFA41C;
+}
+
+.amazon-rating--compact .amazon-stars {
+  font-size: 10px;
+}
+
+.amazon-rating-value {
+  font-weight: 700;
+  color: #1a1c1b;
+}
+
+.amazon-rating-count {
+  color: #9c9188;
+  font-weight: 500;
+}
+
+.amazon-rating-text {
+  font-weight: 600;
+}
+
+/* ── Pictogramme Amazon Prime ── */
+.tier-prime {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #00A8E1;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 2px 7px 2px 5px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Ligne Prix + Prime alignés ── */
+.tier-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .tier-card-header {
@@ -4204,7 +4610,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 9px 14px;
   background: var(--tier-color);
   color: #fff;
   border-radius: 8px;
@@ -4212,10 +4618,22 @@
   font-weight: 700;
   text-decoration: none;
   margin-top: auto;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.tier-cta:hover { opacity: 0.85; }
+.tier-cta:hover {
+  opacity: 0.92;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tier-cta svg {
+  transition: transform 0.22s ease;
+}
+
+.tier-cta:hover svg {
+  transform: translateX(3px);
+}
 
 /* ── CTAs store consommables ── */
 .consumable-item-stores {
@@ -4393,12 +4811,46 @@
   flex-shrink: 0;
 }
 
+/* Vignette image produit Amazon (quand ASIN dispo) — remplace l'icône pill */
+.consumable-item-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #fdfcf9;
+  border: 1px solid #ece5d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.consumable-item-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.consumable-item-name-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
 .consumable-item-name {
   font-size: 13px;
   font-weight: 700;
   color: #111214;
   line-height: 1.3;
-  flex: 1;
+}
+
+.consumable-item-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9A7318;
 }
 
 .consumable-item-desc {
