@@ -13,6 +13,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -419,6 +420,17 @@ export default function DalleTutorielPage() {
 
         {/* ── En-tête ── */}
         <div className="dalle-hero">
+          <div className="dalle-hero-image">
+            <Image
+              src="/images/guides/cards/dalle.png"
+              alt="Dalle béton extérieure finie avec treillis soudé ST25 visible sur la tranche, prête à recevoir un cabanon ou une pergola"
+              width={1672}
+              height={941}
+              priority
+              sizes="(max-width: 768px) 100vw, 860px"
+              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12 }}
+            />
+          </div>
           <span className="dalle-hero-badge">Guide technique · NF DTU 13.3</span>
           <h1 className="dalle-hero-title">Couler une dalle béton extérieure</h1>
           <p className="dalle-hero-desc">
@@ -486,6 +498,7 @@ export default function DalleTutorielPage() {
       <style jsx>{`
         /* ── Hero ── */
         .dalle-hero { margin-bottom: 48px; }
+        .dalle-hero-image { margin-bottom: 28px; }
         .dalle-hero-badge {
           display: inline-block; padding: 4px 12px; border-radius: 20px;
           background: #f0ebe0; color: #8a7a5a; font-size: 12px; font-weight: 600;

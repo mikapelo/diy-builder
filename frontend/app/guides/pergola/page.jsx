@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire une pergola bois';
 const OG_SUBTITLE = 'DTU 31.1 + sections + ancrage';
@@ -124,6 +125,17 @@ export default function GuidePergolaBois() {
           poteaux, assemblage des longerons et finitions. Budget réaliste en fin de page.
         </p>
 
+        <Figure
+          src="/images/guides/pergola/hero-assemble.png"
+          alt="Vue 3D d'une pergola bois avec poteaux 100×100 mm, longerons, chevrons espacés et jambes de force"
+          width={1448}
+          height={842}
+          priority
+          caption="Pergola bois 4 × 3 m, poteaux 100×100, longerons 63×150, chevrons à entraxe 50 cm avec jambes de force. Vue assemblée."
+          source="Simulateur DIY Builder — rendu Three.js"
+          schemaCaption="Vue 3D assemblée d'une pergola bois 4×3 m générée par le simulateur DIY Builder selon DTU 31.1."
+        />
+
         <h2 className="content-h2">Choisir les bonnes sections de bois</h2>
         <p className="content-snippet">
           Poteaux&nbsp;: 90×90&nbsp;mm jusqu&apos;à 3&nbsp;m de portée, 100×100&nbsp;mm de 3 à 4&nbsp;m,
@@ -170,6 +182,17 @@ export default function GuidePergolaBois() {
         </ul>
 
         <h2 className="content-h2">Combien de matériaux pour une pergola 4×3 m&nbsp;?</h2>
+
+        <Figure
+          src="/images/guides/pergola/plan-svg.png"
+          alt="Plan technique coté d'une pergola bois 4×3 m avec dimensions des poteaux, entraxe chevrons et hauteur"
+          width={1380}
+          height={1048}
+          caption="Plan technique coté : poteaux 100×100 mm aux quatre coins, longerons portés sur les chants longs, chevrons traversiers à entraxe 50 cm (DTU 31.1)."
+          source="Simulateur DIY Builder — plan technique"
+          schemaCaption="Plan technique coté d'une pergola bois 4×3 m avec annotations DTU 31.1 et Eurocode 5 (entraxes, sections, ancrage)."
+        />
+
         <p className="content-snippet">
           Structure 4×3&nbsp;m standard&nbsp;: 4 poteaux 100×100×300&nbsp;cm, 2 longerons
           63×150×400&nbsp;cm, 6 chevrons 45×120×300&nbsp;cm, 8 sabots galvanisés, 8 équerres de

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire une terrasse bois';
 const OG_SUBTITLE = 'DTU 51.4 + lambourdes + budget';
@@ -107,6 +108,17 @@ export default function GuideTerrassePage() {
           les erreurs à éviter et les étapes dans le bon ordre.
         </p>
 
+        <Figure
+          src="/images/guides/terrasse/hero-assemble.png"
+          alt="Vue 3D d'une terrasse bois en pin classe 4 sur plots béton réglables, lames horizontales avec jeu de dilatation"
+          width={1448}
+          height={842}
+          priority
+          caption="Terrasse bois 4 × 3 m, lames pin classe 4, plots béton visibles en périphérie. Vue assemblée."
+          source="Simulateur DIY Builder — rendu Three.js"
+          schemaCaption="Vue 3D assemblée d'une terrasse bois 4×3 m sur plots béton générée par le simulateur DIY Builder."
+        />
+
         <h2 className="content-h2">Quelle essence choisir selon votre budget et votre usage ?</h2>
         <p className="content-snippet">
           Le pin traité autoclave classe 4 (25–40&nbsp;€/m²) tient 15–20 ans et couvre 95&nbsp;%
@@ -164,6 +176,17 @@ export default function GuideTerrassePage() {
         </p>
 
         <h2 className="content-h2">Calculer les quantités sans se tromper</h2>
+
+        <Figure
+          src="/images/guides/terrasse/plan-svg.png"
+          alt="Plan technique coté d'une terrasse bois avec dimensions, entraxe lambourdes 40 cm et pente d'évacuation"
+          width={1380}
+          height={1048}
+          caption="Plan technique coté : entraxe lambourdes 40 cm (DTU 51.4), répartition des plots béton, dimensions hors-tout."
+          source="Simulateur DIY Builder — plan technique"
+          schemaCaption="Plan technique coté d'une terrasse bois sur plots béton avec annotations DTU 51.4 (entraxes, sections)."
+        />
+
         <p className="content-snippet">
           Pour 12&nbsp;m² de terrasse&nbsp;: comptez surface&nbsp;×&nbsp;1,10 pour les lames (10&nbsp;%
           de chute), 11 lambourdes à entraxe 40&nbsp;cm sur 4&nbsp;m, 15–20 plots réglables et environ

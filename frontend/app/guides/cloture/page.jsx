@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire une clôture bois';
 const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
@@ -119,6 +120,17 @@ export default function GuideClotureBois() {
           budget selon votre configuration.
         </p>
 
+        <Figure
+          src="/images/guides/cloture/hero-assemble.png"
+          alt="Vue 3D d'une clôture bois claire-voie verticale avec poteaux 90×90 mm classe 4 et lames espacées"
+          width={1448}
+          height={842}
+          priority
+          caption="Clôture bois claire-voie verticale, hauteur 1,50 m, poteaux 90×90 mm classe 4 à entraxe 1,67 m. Vue assemblée."
+          source="Simulateur DIY Builder — rendu Three.js"
+          schemaCaption="Vue 3D assemblée d'une clôture bois claire-voie générée par le simulateur DIY Builder selon DTU 31.1 et NF EN 335."
+        />
+
         <h2 className="content-h2">Les trois familles d&apos;éléments</h2>
         <p className="content-snippet">
           Poteaux 70×70&nbsp;mm jusqu&apos;à 1,20&nbsp;m, 90×90&nbsp;mm au-delà (NF DTU 31.1) en
@@ -175,6 +187,17 @@ export default function GuideClotureBois() {
         </ul>
 
         <h2 className="content-h2">Calcul des matériaux — exemple 10 m linéaires</h2>
+
+        <Figure
+          src="/images/guides/cloture/plan-svg.png"
+          alt="Plan technique coté d'une clôture bois 10 m linéaires avec entraxe poteaux 1,67 m et hauteur 1,50 m"
+          width={1380}
+          height={1048}
+          caption="Plan technique coté : 7 poteaux à entraxe 1,67 m, 3 rangées de rails 38×90 mm, lames verticales avec jeu de dilatation 8 mm."
+          source="Simulateur DIY Builder — plan technique"
+          schemaCaption="Plan technique coté d'une clôture bois 10 ml avec annotations DTU 31.1 et classe d'emploi 4 (poteaux enterrés)."
+        />
+
         <p className="content-snippet">
           Pour 10&nbsp;ml, hauteur 1,50&nbsp;m, poteaux à 1,67&nbsp;m d&apos;entraxe&nbsp;: 7 poteaux
           90×90×200&nbsp;cm classe 4, 21&nbsp;m de rails 38×90 (3 rangées), environ 70 lames de
