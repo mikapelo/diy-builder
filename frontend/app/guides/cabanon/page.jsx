@@ -4,17 +4,17 @@ import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire un cabanon ossature bois';
 const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
-const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cabanon`;
+const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cabanon`;
 
 export const metadata = {
   title: 'Comment construire un cabanon ossature bois : guide DTU 2025 | DIY Builder',
   description:
     'Guide complet pour construire un cabanon bois : ossature, montants, toiture mono-pente. Calculs DTU, liste de matériaux et estimatif de budget inclus.',
-  alternates: { canonical: 'https://diy-builder.fr/guides/cabanon' },
+  alternates: { canonical: 'https://www.diy-builder.fr/guides/cabanon' },
   openGraph: {
     title: 'Construire un cabanon ossature bois — Guide DTU 31.2 | DIY Builder',
     description: 'Guide complet pour construire un cabanon bois : ossature, montants, toiture mono-pente. Calculs DTU, liste de matériaux et estimatif de budget inclus.',
-    url: 'https://diy-builder.fr/guides/cabanon',
+    url: 'https://www.diy-builder.fr/guides/cabanon',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide cabanon ossature bois DTU 31.2 — DIY Builder' }],
   },

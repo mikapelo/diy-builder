@@ -4,16 +4,16 @@ import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire une clôture bois';
 const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
-const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cloture`;
+const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cloture`;
 
 export const metadata = {
   title: 'Comment construire une clôture bois : guide complet 2025 | DIY Builder',
   description: 'Guide complet pour poser une clôture bois : poteaux, rails, lames. Calcul des matériaux, entraxes, hauteurs réglementaires et budget estimé.',
-  alternates: { canonical: 'https://diy-builder.fr/guides/cloture' },
+  alternates: { canonical: 'https://www.diy-builder.fr/guides/cloture' },
   openGraph: {
     title: 'Construire une clôture bois — Guide complet | DIY Builder',
     description: 'Guide complet pour poser une clôture bois : poteaux, rails, lames. Calcul des matériaux, entraxes, hauteurs réglementaires et budget estimé.',
-    url: 'https://diy-builder.fr/guides/cloture',
+    url: 'https://www.diy-builder.fr/guides/cloture',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide clôture bois — DIY Builder' }],
   },

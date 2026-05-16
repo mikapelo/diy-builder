@@ -3,7 +3,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Politique de confidentialité — DIY Builder',
   description: 'Politique de confidentialité et traitement des données personnelles de DIY Builder, conforme au RGPD.',
-  alternates: { canonical: 'https://diy-builder.fr/politique-confidentialite' },
+  alternates: { canonical: 'https://www.diy-builder.fr/politique-confidentialite' },
 };
 
 export default function PolitiqueConfidentialite() {

@@ -24,7 +24,7 @@ export default function CloturePage() {
   return (
     <div className="min-h-screen" data-theme="g-v2" style={{ background: 'var(--surface)' }}>
       <JsonLd data={HOW_TO_SCHEMAS.cloture} />
-      <JsonLd data={JSON.parse('{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Simulateur clôture bois gratuit", "description": "Calculez les matériaux pour votre clôture bois : poteaux, rails, lames. Visualisation 3D et comparatif des prix en magasin.", "url": "https://diy-builder.fr/cloture", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "keywords": "simulateur clôture bois, calculateur clôture, matériaux clôture bois", "inLanguage": "fr-FR", "author": {"@type": "Organization", "name": "DIY Builder", "url": "https://diy-builder.fr"}}')} />
+      <JsonLd data={JSON.parse('{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Simulateur clôture bois gratuit", "description": "Calculez les matériaux pour votre clôture bois : poteaux, rails, lames. Visualisation 3D et comparatif des prix en magasin.", "url": "https://www.diy-builder.fr/cloture", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "keywords": "simulateur clôture bois, calculateur clôture, matériaux clôture bois", "inLanguage": "fr-FR", "author": {"@type": "Organization", "name": "DIY Builder", "url": "https://www.diy-builder.fr"}}')} />
       <Header
         view="module"
         resultat={true}

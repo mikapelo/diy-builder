@@ -3,16 +3,16 @@ import ContentLayout from '@/components/layout/ContentLayout';
 
 const OG_TITLE = 'Construction bois : 24 questions fréquentes';
 const OG_SUBTITLE = 'FAQ technique 2026';
-const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
+const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
 
 export const metadata = {
   title: 'Construction bois : 24 questions fréquentes (FAQ 2025)',
   description: 'Réponses aux questions les plus fréquentes sur la construction de terrasse, cabanon, pergola et clôture en bois. Calculs, matériaux, coûts.',
-  alternates: { canonical: 'https://diy-builder.fr/faq' },
+  alternates: { canonical: 'https://www.diy-builder.fr/faq' },
   openGraph: {
     title: 'Construction bois : 24 questions fréquentes | DIY Builder',
     description: 'Réponses aux questions les plus fréquentes sur la construction de terrasse, cabanon, pergola et clôture en bois. Calculs, matériaux, coûts.',
-    url: 'https://diy-builder.fr/faq',
+    url: 'https://www.diy-builder.fr/faq',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'FAQ construction bois — DIY Builder' }],
   },

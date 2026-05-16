@@ -24,7 +24,7 @@ export default function CabanonPage() {
   return (
     <div className="min-h-screen" data-theme="g-v2" style={{ background: 'var(--surface)' }}>
       <JsonLd data={HOW_TO_SCHEMAS.cabanon} />
-      <JsonLd data={JSON.parse('{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Simulateur cabanon ossature bois gratuit", "description": "Calculez gratuitement les matériaux pour votre cabanon en ossature bois. Plans 3D, BOM complet et estimation du budget.", "url": "https://diy-builder.fr/cabanon", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "keywords": "cabanon ossature bois, calculateur cabanon bois, matériaux cabanon", "inLanguage": "fr-FR", "author": {"@type": "Organization", "name": "DIY Builder", "url": "https://diy-builder.fr"}}')} />
+      <JsonLd data={JSON.parse('{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Simulateur cabanon ossature bois gratuit", "description": "Calculez gratuitement les matériaux pour votre cabanon en ossature bois. Plans 3D, BOM complet et estimation du budget.", "url": "https://www.diy-builder.fr/cabanon", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "keywords": "cabanon ossature bois, calculateur cabanon bois, matériaux cabanon", "inLanguage": "fr-FR", "author": {"@type": "Organization", "name": "DIY Builder", "url": "https://www.diy-builder.fr"}}')} />
       <Header
         view="module"
         resultat={true}

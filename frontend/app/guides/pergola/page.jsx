@@ -4,16 +4,16 @@ import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire une pergola bois';
 const OG_SUBTITLE = 'DTU 31.1 + sections + ancrage';
-const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=pergola`;
+const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=pergola`;
 
 export const metadata = {
   title: 'Comment construire une pergola bois : guide complet 2025 | DIY Builder',
   description: 'Guide pas à pas pour construire votre pergola bois : poteaux, longerons, chevrons. Calcul des sections, ancrage, budget estimé. Simulateur gratuit inclus.',
-  alternates: { canonical: 'https://diy-builder.fr/guides/pergola' },
+  alternates: { canonical: 'https://www.diy-builder.fr/guides/pergola' },
   openGraph: {
     title: 'Construire une pergola bois — Guide DTU 31.1 | DIY Builder',
     description: 'Guide pas à pas pour construire votre pergola bois : poteaux, longerons, chevrons. Calcul des sections, ancrage, budget estimé.',
-    url: 'https://diy-builder.fr/guides/pergola',
+    url: 'https://www.diy-builder.fr/guides/pergola',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide pergola bois DTU 31.1 — DIY Builder' }],
   },

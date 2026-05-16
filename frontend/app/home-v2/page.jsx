@@ -18,7 +18,7 @@ export const metadata = {
   title: 'Calculateur DIY bois gratuit : terrasse, cabanon, pergola, clôture | DIY Builder',
   description:
     'Simulateur gratuit de matériaux bois : terrasse, cabanon ossature, pergola, clôture. Calcul DTU, plan 3D, devis PDF, comparatif Castorama / Brico Dépôt / Leroy Merlin / ManoMano.',
-  alternates: { canonical: 'https://diy-builder.fr/home-v2' },
+  alternates: { canonical: 'https://www.diy-builder.fr/home-v2' },
   robots: { index: false, follow: false },
 };
 

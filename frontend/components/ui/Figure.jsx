@@ -50,7 +50,7 @@ export default function Figure({
   const imageObjectJsonLd = schemaCaption ? {
     '@context': 'https://schema.org',
     '@type': 'ImageObject',
-    contentUrl: `https://diy-builder.fr${src}`,
+    contentUrl: `https://www.diy-builder.fr${src}`,
     description: schemaCaption,
     width,
     height,

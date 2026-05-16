@@ -4,16 +4,16 @@ import ContentLayout from '@/components/layout/ContentLayout';
 
 const OG_TITLE = '5 guides DIY bois & béton';
 const OG_SUBTITLE = 'Terrasse, cabanon, pergola, clôture, dalle';
-const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
+const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
 
 export const metadata = {
   title: 'Guides DIY bois 2026 : terrasse, cabanon, pergola, clôture, dalle béton',
   description: 'Construire soi-même en bois et béton — 5 guides pratiques (DTU 31.1, 31.2, 51.4, 13.3) avec prix, étapes, outils et durée par projet.',
-  alternates: { canonical: 'https://diy-builder.fr/guides' },
+  alternates: { canonical: 'https://www.diy-builder.fr/guides' },
   openGraph: {
     title: '5 guides DIY pour construire en bois et béton | DIY Builder',
     description: 'Terrasse, cabanon, pergola, clôture, dalle béton — guides pas à pas conformes DTU avec budget, outils et durée par projet.',
-    url: 'https://diy-builder.fr/guides',
+    url: 'https://www.diy-builder.fr/guides',
     type: 'website',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: '5 guides DIY DIY Builder' }],
   },
@@ -33,37 +33,37 @@ const itemListJsonLd = {
     {
       '@type': 'ListItem',
       position: 1,
-      url: 'https://diy-builder.fr/guides/terrasse',
+      url: 'https://www.diy-builder.fr/guides/terrasse',
       name: 'Guide terrasse bois',
-      image: 'https://diy-builder.fr/images/guides/cards/terrasse.png',
+      image: 'https://www.diy-builder.fr/images/guides/cards/terrasse.png',
     },
     {
       '@type': 'ListItem',
       position: 2,
-      url: 'https://diy-builder.fr/guides/cabanon',
+      url: 'https://www.diy-builder.fr/guides/cabanon',
       name: 'Guide cabanon ossature bois',
-      image: 'https://diy-builder.fr/images/guides/cards/cabanon.png',
+      image: 'https://www.diy-builder.fr/images/guides/cards/cabanon.png',
     },
     {
       '@type': 'ListItem',
       position: 3,
-      url: 'https://diy-builder.fr/guides/pergola',
+      url: 'https://www.diy-builder.fr/guides/pergola',
       name: 'Guide pergola bois',
-      image: 'https://diy-builder.fr/images/guides/cards/pergola.png',
+      image: 'https://www.diy-builder.fr/images/guides/cards/pergola.png',
     },
     {
       '@type': 'ListItem',
       position: 4,
-      url: 'https://diy-builder.fr/guides/cloture',
+      url: 'https://www.diy-builder.fr/guides/cloture',
       name: 'Guide clôture bois',
-      image: 'https://diy-builder.fr/images/guides/cards/cloture.png',
+      image: 'https://www.diy-builder.fr/images/guides/cards/cloture.png',
     },
     {
       '@type': 'ListItem',
       position: 5,
-      url: 'https://diy-builder.fr/dalle',
+      url: 'https://www.diy-builder.fr/dalle',
       name: 'Tutoriel dalle béton extérieure (NF DTU 13.3)',
-      image: 'https://diy-builder.fr/images/guides/cards/dalle.png',
+      image: 'https://www.diy-builder.fr/images/guides/cards/dalle.png',
     },
   ],
 };

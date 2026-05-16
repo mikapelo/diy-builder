@@ -5,12 +5,12 @@ export const metadata = {
   title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
   description:
     'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates est le seul programme actif. Liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano sans rémunération. Mécanisme de tracking, durée des cookies, règles éditoriales. Conformité Loi 2023-451 et Code conso L121-1.',
-  alternates: { canonical: 'https://diy-builder.fr/charte-affiliation' },
+  alternates: { canonical: 'https://www.diy-builder.fr/charte-affiliation' },
   openGraph: {
     title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
     description:
       'Programmes actifs, cookies de tracking, règles éditoriales — tout ce qui concerne l\'affiliation sur DIY Builder, dit clairement.',
-    url: 'https://diy-builder.fr/charte-affiliation',
+    url: 'https://www.diy-builder.fr/charte-affiliation',
     type: 'website',
   },
 };
@@ -19,12 +19,12 @@ const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://diy-builder.fr' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.diy-builder.fr' },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Charte d\'affiliation',
-      item: 'https://diy-builder.fr/charte-affiliation',
+      item: 'https://www.diy-builder.fr/charte-affiliation',
     },
   ],
 };
@@ -33,14 +33,14 @@ const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
-  url: 'https://diy-builder.fr/charte-affiliation',
+  url: 'https://www.diy-builder.fr/charte-affiliation',
   description:
     'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates seul programme actif, mécanisme de tracking, règles éditoriales.',
   dateModified: '2026-05-16',
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
-    url: 'https://diy-builder.fr',
+    url: 'https://www.diy-builder.fr',
   },
 };
 

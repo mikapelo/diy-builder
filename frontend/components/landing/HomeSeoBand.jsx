@@ -24,32 +24,32 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': 'https://diy-builder.fr/#website',
-      url: 'https://diy-builder.fr',
+      '@id': 'https://www.diy-builder.fr/#website',
+      url: 'https://www.diy-builder.fr',
       name: 'DIY Builder',
       description:
         '4 simulateurs gratuits de matériaux bois : terrasse, cabanon, pergola, clôture. Calculs DTU, plan 3D, devis PDF.',
-      publisher: { '@id': 'https://diy-builder.fr/#org' },
+      publisher: { '@id': 'https://www.diy-builder.fr/#org' },
     },
     {
       '@type': 'Organization',
-      '@id': 'https://diy-builder.fr/#org',
+      '@id': 'https://www.diy-builder.fr/#org',
       name: 'DIY Builder',
-      url: 'https://diy-builder.fr',
+      url: 'https://www.diy-builder.fr',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://diy-builder.fr/logo-diy-builder.png',
+        url: 'https://www.diy-builder.fr/logo-diy-builder.png',
       },
     },
     {
       '@type': 'ItemList',
-      '@id': 'https://diy-builder.fr/#simulateurs',
+      '@id': 'https://www.diy-builder.fr/#simulateurs',
       name: 'Simulateurs DIY Builder',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Calculateur terrasse bois', url: 'https://diy-builder.fr/calculateur' },
-        { '@type': 'ListItem', position: 2, name: 'Simulateur cabanon ossature bois', url: 'https://diy-builder.fr/cabanon' },
-        { '@type': 'ListItem', position: 3, name: 'Simulateur pergola bois', url: 'https://diy-builder.fr/pergola' },
-        { '@type': 'ListItem', position: 4, name: 'Simulateur clôture bois', url: 'https://diy-builder.fr/cloture' },
+        { '@type': 'ListItem', position: 1, name: 'Calculateur terrasse bois', url: 'https://www.diy-builder.fr/calculateur' },
+        { '@type': 'ListItem', position: 2, name: 'Simulateur cabanon ossature bois', url: 'https://www.diy-builder.fr/cabanon' },
+        { '@type': 'ListItem', position: 3, name: 'Simulateur pergola bois', url: 'https://www.diy-builder.fr/pergola' },
+        { '@type': 'ListItem', position: 4, name: 'Simulateur clôture bois', url: 'https://www.diy-builder.fr/cloture' },
       ],
     },
   ],

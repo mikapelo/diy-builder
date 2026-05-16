@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://diy-builder.fr';
+  const baseUrl = 'https://www.diy-builder.fr';
   const lastModified = new Date();
 
   return [

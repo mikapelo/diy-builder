@@ -115,7 +115,7 @@ export async function POST(req) {
             </p>
             <hr style="border: none; border-top: 1px solid #e5e2d8; margin: 0 0 16px;" />
             <p style="color: #9c9188; font-size: 12px; margin: 0;">
-              <a href="https://diy-builder.fr" style="color: #C9971E;">diy-builder.fr</a>
+              <a href="https://www.diy-builder.fr" style="color: #C9971E;">diy-builder.fr</a>
             </p>
           </div>
         `,

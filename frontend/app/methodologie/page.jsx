@@ -5,12 +5,12 @@ export const metadata = {
   title: 'Méthodologie DIY Builder : comment nos calculs et prix sont validés',
   description:
     'Comment DIY Builder calcule les quantités de matériaux (DTU 31.2, DTU 51.4, Eurocode 5), met à jour les prix Castorama/Leroy Merlin/Brico Dépôt/ManoMano, et assume sa signature collective anonyme.',
-  alternates: { canonical: 'https://diy-builder.fr/methodologie' },
+  alternates: { canonical: 'https://www.diy-builder.fr/methodologie' },
   openGraph: {
     title: 'Méthodologie DIY Builder : comment nos calculs et prix sont validés',
     description:
       'Détail complet de notre méthode : normes DTU de référence, constantes structurelles, fréquence de mise à jour des prix et politique de révision éditoriale.',
-    url: 'https://diy-builder.fr/methodologie',
+    url: 'https://www.diy-builder.fr/methodologie',
     type: 'website',
   },
 };
@@ -19,8 +19,8 @@ const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://diy-builder.fr' },
-    { '@type': 'ListItem', position: 2, name: 'Méthodologie', item: 'https://diy-builder.fr/methodologie' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.diy-builder.fr' },
+    { '@type': 'ListItem', position: 2, name: 'Méthodologie', item: 'https://www.diy-builder.fr/methodologie' },
   ],
 };
 
@@ -28,14 +28,14 @@ const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Méthodologie DIY Builder : comment nos calculs et prix sont validés',
-  url: 'https://diy-builder.fr/methodologie',
+  url: 'https://www.diy-builder.fr/methodologie',
   description:
     'Comment DIY Builder calcule les quantités de matériaux, met à jour les prix et assume sa signature collective.',
   dateModified: '2026-05-16',
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
-    url: 'https://diy-builder.fr',
+    url: 'https://www.diy-builder.fr',
   },
 };
 

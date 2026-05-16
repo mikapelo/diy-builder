@@ -33,7 +33,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata = {
   title: 'DIY Builder — Calculateur de projets bricolage bois',
   description: 'Calculez gratuitement les matériaux et le coût de votre terrasse bois, cabanon, pergola ou clôture. Visualisation 3D et comparatif enseignes inclus.',
-  metadataBase: new URL('https://diy-builder.fr'),
+  metadataBase: new URL('https://www.diy-builder.fr'),
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -43,7 +43,7 @@ export const metadata = {
   openGraph: {
     title: 'DIY Builder — Calculateur bricolage bois gratuit',
     description: 'Terrasse, cabanon, pergola, clôture : calculez vos matériaux en 30 secondes et comparez les prix Castorama, Brico Dépôt, ManoMano.',
-    url: 'https://diy-builder.fr',
+    url: 'https://www.diy-builder.fr',
     siteName: 'DIY Builder',
     locale: 'fr_FR',
     type: 'website',
@@ -55,7 +55,7 @@ export const metadata = {
     description: 'Terrasse, cabanon, pergola, clôture : calculez vos matériaux en 30 secondes.',
     images: ['/og-image.svg'],
   },
-  alternates: { canonical: 'https://diy-builder.fr' },
+  alternates: { canonical: 'https://www.diy-builder.fr' },
   robots: {
     index: true,
     follow: true,

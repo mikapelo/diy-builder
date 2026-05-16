@@ -7,6 +7,6 @@ export default function robots() {
         disallow: ['/api/', '/bardage'],
       },
     ],
-    sitemap: 'https://diy-builder.fr/sitemap.xml',
+    sitemap: 'https://www.diy-builder.fr/sitemap.xml',
   };
 }

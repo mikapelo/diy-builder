@@ -96,7 +96,7 @@ export async function POST(req) {
           </p>
           <p style="color: #66625a; font-size: 15px; line-height: 1.6; margin: 0 0 24px;">
             Retrouvez tous nos simulateurs sur
-            <a href="https://diy-builder.fr" style="color: #C9971E; font-weight: 600;">diy-builder.fr</a>
+            <a href="https://www.diy-builder.fr" style="color: #C9971E; font-weight: 600;">diy-builder.fr</a>
           </p>
           <hr style="border: none; border-top: 1px solid #e5e2d8; margin: 0 0 16px;" />
           <p style="color: #9c9188; font-size: 12px; margin: 0;">

@@ -4,17 +4,17 @@ import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire une terrasse bois';
 const OG_SUBTITLE = 'DTU 51.4 + lambourdes + budget';
-const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
+const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
 
 export const metadata = {
   title: 'Comment construire une terrasse bois : guide complet 2025 | DIY Builder',
   description:
     'Guide pas à pas pour construire votre terrasse bois : choix des matériaux, calcul des lambourdes, pose des lames. Estimez votre budget en 30 secondes.',
-  alternates: { canonical: 'https://diy-builder.fr/guides/terrasse' },
+  alternates: { canonical: 'https://www.diy-builder.fr/guides/terrasse' },
   openGraph: {
     title: 'Construire une terrasse bois — Guide DTU 51.4 | DIY Builder',
     description: 'Guide pas à pas pour construire votre terrasse bois : choix des matériaux, calcul des lambourdes, pose des lames. Estimez votre budget en 30 secondes.',
-    url: 'https://diy-builder.fr/guides/terrasse',
+    url: 'https://www.diy-builder.fr/guides/terrasse',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide terrasse bois DTU 51.4 — DIY Builder' }],
   },

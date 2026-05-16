@@ -5,12 +5,12 @@ export const metadata = {
   title: 'Sources DTU et normes citées sur DIY Builder',
   description:
     'Référence complète des normes NF DTU 31.1, 31.2, 51.4, 13.3, NF EN 335, NF EN 1995-1-1, textes légaux urbanisme et RGPD utilisés sur DIY Builder.',
-  alternates: { canonical: 'https://diy-builder.fr/sources' },
+  alternates: { canonical: 'https://www.diy-builder.fr/sources' },
   openGraph: {
     title: 'Sources DTU et normes citées sur DIY Builder',
     description:
       'Normes techniques bois, textes légaux urbanisme, sources prix enseignes et outils open-source utilisés dans les simulateurs DIY Builder.',
-    url: 'https://diy-builder.fr/sources',
+    url: 'https://www.diy-builder.fr/sources',
     type: 'website',
   },
 };
@@ -19,8 +19,8 @@ const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://diy-builder.fr' },
-    { '@type': 'ListItem', position: 2, name: 'Sources', item: 'https://diy-builder.fr/sources' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.diy-builder.fr' },
+    { '@type': 'ListItem', position: 2, name: 'Sources', item: 'https://www.diy-builder.fr/sources' },
   ],
 };
 
@@ -28,14 +28,14 @@ const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Sources DTU et normes citées sur DIY Builder',
-  url: 'https://diy-builder.fr/sources',
+  url: 'https://www.diy-builder.fr/sources',
   description:
     'Référence complète des normes techniques, textes légaux et sources de prix utilisés sur DIY Builder.',
   dateModified: '2026-05-16',
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
-    url: 'https://diy-builder.fr',
+    url: 'https://www.diy-builder.fr',
   },
 };
 

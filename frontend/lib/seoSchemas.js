@@ -17,7 +17,7 @@ export const HOW_TO_SCHEMAS = {
     name: 'Comment construire une terrasse bois',
     description:
       'Guide complet pour calculer et construire une terrasse bois : choix des matériaux, calcul des lambourdes et des plots, pose des lames.',
-    url: 'https://diy-builder.fr/calculateur',
+    url: 'https://www.diy-builder.fr/calculateur',
     inLanguage: 'fr-FR',
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '600', maxValue: '3500' },
     totalTime: 'PT16H',
@@ -58,7 +58,7 @@ export const HOW_TO_SCHEMAS = {
     name: 'Comment construire un cabanon en ossature bois',
     description:
       'Guide de construction d\'un cabanon en bois : calcul des montants, lisses, chevrons, bardage et toiture mono-pente selon les règles DTU.',
-    url: 'https://diy-builder.fr/cabanon',
+    url: 'https://www.diy-builder.fr/cabanon',
     inLanguage: 'fr-FR',
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '1200', maxValue: '5000' },
     totalTime: 'PT40H',
@@ -106,7 +106,7 @@ export const HOW_TO_SCHEMAS = {
     name: 'Comment construire une pergola en bois',
     description:
       'Guide de construction d\'une pergola bois autoportée : calcul des poteaux, longerons, traverses et chevrons selon les entraxes DTU.',
-    url: 'https://diy-builder.fr/pergola',
+    url: 'https://www.diy-builder.fr/pergola',
     inLanguage: 'fr-FR',
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '500', maxValue: '2500' },
     totalTime: 'PT12H',
@@ -147,7 +147,7 @@ export const HOW_TO_SCHEMAS = {
     name: 'Comment poser une clôture en bois',
     description:
       'Guide de pose d\'une clôture bois : calcul des poteaux, rails et lames, entraxes réglementaires et ancrage des poteaux en terre.',
-    url: 'https://diy-builder.fr/cloture',
+    url: 'https://www.diy-builder.fr/cloture',
     inLanguage: 'fr-FR',
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '300', maxValue: '2000' },
     totalTime: 'PT8H',

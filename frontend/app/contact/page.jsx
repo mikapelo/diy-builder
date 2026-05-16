@@ -5,12 +5,12 @@ export const metadata = {
   title: 'Contact DIY Builder : nous écrire, signaler une erreur',
   description:
     'Contactez l\'équipe DIY Builder par email pour une correction factuelle, une suggestion de sujet, un retour simulateur ou une demande presse. Réponse sous 7 jours ouvrés.',
-  alternates: { canonical: 'https://diy-builder.fr/contact' },
+  alternates: { canonical: 'https://www.diy-builder.fr/contact' },
   openGraph: {
     title: 'Contact DIY Builder : nous écrire, signaler une erreur',
     description:
       'Email, délai de réponse et guide de routage pour contacter l\'équipe DIY Builder efficacement.',
-    url: 'https://diy-builder.fr/contact',
+    url: 'https://www.diy-builder.fr/contact',
     type: 'website',
   },
 };
@@ -19,8 +19,8 @@ const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://diy-builder.fr' },
-    { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://diy-builder.fr/contact' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.diy-builder.fr' },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://www.diy-builder.fr/contact' },
   ],
 };
 
@@ -28,13 +28,13 @@ const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contact DIY Builder',
-  url: 'https://diy-builder.fr/contact',
+  url: 'https://www.diy-builder.fr/contact',
   description: 'Page de contact de DIY Builder.',
   dateModified: '2026-05-16',
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
-    url: 'https://diy-builder.fr',
+    url: 'https://www.diy-builder.fr',
     email: 'contact@diy-builder.fr',
   },
 };

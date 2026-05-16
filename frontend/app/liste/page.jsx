@@ -31,7 +31,7 @@ export async function generateMetadata({ searchParams }) {
   return {
     title: `Liste de matériaux — ${label} ${w}×${d} m | DIY Builder`,
     description: `Liste complète des matériaux pour construire un(e) ${label} de ${w}×${d} m. Quantités calculées, prix comparés Leroy Merlin, Castorama, Brico Dépôt.`,
-    alternates: { canonical: `https://diy-builder.fr/liste?project=${project}&w=${w}&d=${d}` },
+    alternates: { canonical: `https://www.diy-builder.fr/liste?project=${project}&w=${w}&d=${d}` },
     robots: { index: true, follow: true },
   };
 }
@@ -75,7 +75,7 @@ export default function ListePage({ searchParams }) {
     '@type': 'ItemList',
     name: `Matériaux — ${projectLabel.label} ${w}×${d} m`,
     description: `Liste de matériaux pour construire un(e) ${projectLabel.label} de ${w} m × ${d} m.`,
-    url: `https://diy-builder.fr/liste?project=${project}&w=${w}&d=${d}`,
+    url: `https://www.diy-builder.fr/liste?project=${project}&w=${w}&d=${d}`,
     numberOfItems: bomLines.length,
     itemListElement: bomLines.map((line, i) => ({
       '@type': 'ListItem',

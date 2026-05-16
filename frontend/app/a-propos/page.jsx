@@ -5,12 +5,12 @@ export const metadata = {
   title: 'À propos de DIY Builder : qui sommes-nous, comment on bosse',
   description:
     'DIY Builder : quatre simulateurs de construction bois gratuits (terrasse, cabanon, pergola, clôture), calculs DTU, comparatif de prix par enseigne. Pourquoi ce site existe et comment il est financé.',
-  alternates: { canonical: 'https://diy-builder.fr/a-propos' },
+  alternates: { canonical: 'https://www.diy-builder.fr/a-propos' },
   openGraph: {
     title: 'À propos de DIY Builder : qui sommes-nous, comment on bosse',
     description:
       'Origine, mission et modèle économique de DIY Builder — quatre simulateurs bois gratuits financés par l\'affiliation transparente.',
-    url: 'https://diy-builder.fr/a-propos',
+    url: 'https://www.diy-builder.fr/a-propos',
     type: 'website',
   },
 };
@@ -19,8 +19,8 @@ const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://diy-builder.fr' },
-    { '@type': 'ListItem', position: 2, name: 'À propos', item: 'https://diy-builder.fr/a-propos' },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.diy-builder.fr' },
+    { '@type': 'ListItem', position: 2, name: 'À propos', item: 'https://www.diy-builder.fr/a-propos' },
   ],
 };
 
@@ -28,14 +28,14 @@ const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'À propos de DIY Builder : qui sommes-nous, comment on bosse',
-  url: 'https://diy-builder.fr/a-propos',
+  url: 'https://www.diy-builder.fr/a-propos',
   description:
     'Origine, mission et modèle économique de DIY Builder.',
   dateModified: '2026-05-16',
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
-    url: 'https://diy-builder.fr',
+    url: 'https://www.diy-builder.fr',
   },
 };
 
