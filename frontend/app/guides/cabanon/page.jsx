@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Figure from '@/components/ui/Figure';
 
 const OG_TITLE = 'Construire un cabanon ossature bois';
 const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
@@ -107,6 +108,17 @@ export default function GuideCabanonPage() {
           chantier : dimensionnement des montants, règles autour des ouvertures, pentes à respecter,
           et les erreurs classiques qu&apos;on voit trop souvent sur les forums DIY.
         </p>
+
+        <Figure
+          src="/images/guides/cabanon/hero-assemble.png"
+          alt="Vue 3D d'un cabanon ossature bois mono-pente avec bardage clin et porte façade"
+          width={1448}
+          height={842}
+          priority
+          caption="Cabanon ossature bois 5,5 × 3,5 m, hauteur 2,30 m, toiture mono-pente, bardage clin horizontal. Vue assemblée."
+          source="Simulateur DIY Builder — rendu Three.js"
+          schemaCaption="Vue 3D assemblée d'un cabanon ossature bois mono-pente 5,5×3,5 m généré par le simulateur DIY Builder."
+        />
 
         <h2 className="content-h2">L&apos;ossature bois : ce qu&apos;il faut vraiment comprendre</h2>
         <p className="content-snippet">
@@ -270,6 +282,17 @@ export default function GuideCabanonPage() {
         </ul>
 
         <h2 className="content-h2">Calcul des matériaux</h2>
+
+        <Figure
+          src="/images/guides/cabanon/plan-svg.png"
+          alt="Plan technique coté d'un cabanon ossature bois 5,5 × 3,5 m hauteur 2,30 m avec pente 27%"
+          width={1380}
+          height={1048}
+          caption="Plan technique coté généré automatiquement : dimensions hors-tout, pente 27%, entraxe 55 cm, porte 90 cm + fenêtre 60×60 cm avec allège 1 m."
+          source="Simulateur DIY Builder — plan technique"
+          schemaCaption="Plan technique 3D coté d'un cabanon ossature bois 5,5×3,5×2,30 m avec annotations DTU 31.2 (entraxe, pente, ouvertures)."
+        />
+
         <p className="content-snippet">
           Pour un cabanon 3×2&nbsp;m, hauteur 2,30&nbsp;m&nbsp;: 12–14 montants 45×90&nbsp;mm,
           lisses basses en classe 4 obligatoire (pas classe 3), 5–6 chevrons 45×145&nbsp;mm avec

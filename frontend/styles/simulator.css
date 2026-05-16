@@ -3386,6 +3386,10 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .content-figure svg { max-width: 100%; height: auto; }
+.content-figure img { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+.content-figure--fullbleed { max-width: 920px; margin-left: -120px; margin-right: -120px; }
+@media (max-width: 1100px) { .content-figure--fullbleed { margin-left: 0; margin-right: 0; } }
+.content-figure--narrow { max-width: 480px; margin-left: auto; margin-right: auto; }
 .content-figure-caption {
   font-family: 'Manrope', system-ui, sans-serif;
   font-size: 13px;
@@ -3396,6 +3400,7 @@
   border-top: 1px dashed #e5e2d8;
   font-style: italic;
 }
+.content-figure-source { font-style: normal; color: #8c7b66; font-size: 12px; }
 
 .content-disclaimer {
   font-family: 'Manrope', system-ui, sans-serif;
