@@ -92,9 +92,10 @@ export default function Footer() {
 
         {/* Affiliation disclaimer */}
         <p className="text-white/40 text-xs leading-relaxed mb-6 max-w-3xl">
-          DIY Builder est gratuit, financé par l&apos;affiliation : nous touchons une
-          commission sur certains liens d&apos;achat vers Leroy Merlin, Castorama, Brico
-          Dépôt et ManoMano, sans surcoût pour vous.{' '}
+          DIY Builder est gratuit. Seul programme d&apos;affiliation actif&nbsp;:
+          Amazon Partenaires (liens vers la quincaillerie et l&apos;outillage). Les liens
+          vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano ne génèrent aucune
+          commission&nbsp;: ils servent au comparatif de prix.{' '}
           <Link href="/charte-affiliation" className="underline hover:text-white/70">
             Charte complète
           </Link>.

@@ -4,7 +4,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
   description:
-    'Transparence complète sur l\'affiliation DIY Builder : programmes actifs (Amazon, Awin, ManoMano), mécanisme de tracking, durée des cookies, règles éditoriales et engagement non-négociable. Conformité Loi 2023-451 et Code conso L121-1.',
+    'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates est le seul programme actif. Liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano sans rémunération. Mécanisme de tracking, durée des cookies, règles éditoriales. Conformité Loi 2023-451 et Code conso L121-1.',
   alternates: { canonical: 'https://diy-builder.fr/charte-affiliation' },
   openGraph: {
     title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
@@ -35,7 +35,7 @@ const webPageJsonLd = {
   name: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
   url: 'https://diy-builder.fr/charte-affiliation',
   description:
-    'Transparence complète sur l\'affiliation DIY Builder : programmes actifs, mécanisme de tracking, règles éditoriales.',
+    'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates seul programme actif, mécanisme de tracking, règles éditoriales.',
   dateModified: '2026-05-16',
   publisher: {
     '@type': 'Organization',
@@ -126,12 +126,13 @@ export default function CharteAffiliationPage() {
 
         <h2 className="content-h2">Programmes d&apos;affiliation actifs</h2>
         <p className="content-body">
-          Les programmes actifs au moment de la mise à jour de cette page sont les suivants.
-          La liste est tenue à jour — si un programme est suspendu ou ajouté, cette section
-          est modifiée.
+          Un seul programme d&apos;affiliation est actif à ce jour&nbsp;: Amazon Partenaires.
+          Les liens vers les autres enseignes (Leroy Merlin, Castorama, Brico Dépôt,
+          ManoMano) ne génèrent aucune rémunération. Cette section est mise à jour
+          si la situation évolue.
         </p>
 
-        <h3 className="content-h3">Amazon Partenaires</h3>
+        <h3 className="content-h3">Amazon Partenaires (seul programme actif)</h3>
         <p className="content-body">
           DIY Builder participe au Programme Partenaires d&apos;Amazon EU, conçu pour permettre
           à des sites de percevoir une rémunération grâce à la création de liens vers Amazon.fr.
@@ -153,31 +154,19 @@ export default function CharteAffiliationPage() {
           </li>
         </ul>
 
-        <h3 className="content-h3">Leroy Merlin, Castorama, Brico Dépôt</h3>
+        <h3 className="content-h3">Leroy Merlin, Castorama, Brico Dépôt, ManoMano (sans rémunération)</h3>
         <p className="content-body">
-          Les liens vers ces trois enseignes passent actuellement par notre redirecteur UTM
-          sans identifiant affilié actif — les paramètres d&apos;affiliation Awin/Affilae sont
-          en cours de validation pour ces comptes. Les liens sont donc actuellement des
-          liens de référencement pur (suivi UTM uniquement) sans rémunération sur les
-          achats générés.
+          Les liens vers ces quatre enseignes passent par notre redirecteur UTM à des
+          fins de mesure d&apos;audience uniquement. <strong>Aucun identifiant affilié
+          n&apos;est actif</strong> sur ces flux&nbsp;: les comparatifs de prix sont fournis
+          sans contrepartie commerciale liée au clic ou à l&apos;achat.
         </p>
         <p className="content-body">
-          Dès que les comptes affiliés Awin seront validés, cette section sera mise à
-          jour avec les identifiants de programme et les durées de cookie correspondantes.
-          En attendant, les comparatifs de prix restent complets et non conditionnés à
-          l&apos;existence d&apos;un programme.
-        </p>
-
-        <h3 className="content-h3">ManoMano</h3>
-        <p className="content-body">
-          Les liens vers ManoMano passent par notre redirecteur UTM. Un programme
-          d&apos;affiliation ManoMano (direct ou via plateforme) est en cours d&apos;étude.
-          Aucune rémunération active sur les achats ManoMano à date.
-        </p>
-        <p className="content-body">
-          ManoMano est inclus dans les comparatifs indépendamment de ce statut, parce
-          que c&apos;est un acteur pertinent sur les prix des matériaux bois — notamment sur
-          les références moins courantes en GSB physique.
+          Ces enseignes sont incluses dans les comparatifs parce qu&apos;elles couvrent
+          l&apos;essentiel de l&apos;offre matériaux bois en France métropolitaine — pas parce
+          qu&apos;elles rémunèrent. Si cette situation change (programme direct négocié,
+          intégration d&apos;une nouvelle plateforme), cette section est mise à jour avec
+          les conditions exactes et la date d&apos;effet.
         </p>
 
         <h2 className="content-h2">Notre engagement non-négociable</h2>

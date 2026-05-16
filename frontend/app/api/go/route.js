@@ -7,9 +7,9 @@
  *   q       : terme de recherche optionnel (encodé par le client)
  *             Si absent, utilise PROJECT_QUERIES[project] comme terme par défaut.
  *
- * TODO: brancher les liens affiliés Awin/Affilae ici une fois les comptes validés.
- *       Remplacer les URLs directes ci-dessous par les URLs de tracking affilié
- *       (ex: https://www.awin1.com/cread.php?awinmid=XXXX&awinaffid=YYYY&p=URL_ENCODÉE)
+ * Note: aucun programme d'affiliation actif sur ces 4 enseignes (Awin/Affilae
+ *       refusés, pas de programme direct négocié à date). Le redirecteur sert
+ *       uniquement au suivi UTM pour mesurer le trafic comparatif → enseignes.
  */
 
 import { NextResponse } from 'next/server';

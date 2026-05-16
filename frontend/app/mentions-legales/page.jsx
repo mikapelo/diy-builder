@@ -44,9 +44,10 @@ export default function MentionsLegales() {
             achats remplissant les conditions requises.
           </p>
           <p className="content-legal-p">
-            Ce site peut également contenir des liens affiliés vers d&apos;autres enseignes partenaires
-            (Leroy Merlin, Castorama, ManoMano). Ces liens sont signalés et n&apos;influencent pas
-            l&apos;objectivité des comparaisons présentées.
+            Les liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano ne sont
+            pas affiliés à date — ils servent uniquement au comparatif de prix et au
+            suivi d&apos;audience via redirecteur UTM. Aucune commission n&apos;est
+            perçue sur les achats effectués chez ces enseignes.
           </p>
         </div>
 

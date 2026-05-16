@@ -146,12 +146,13 @@ export default function ListePage({ searchParams }) {
             </div>
           </section>
 
-          {/* ── Disclaimer affiliation (Code conso L121-1 + Loi 2023-451) ── */}
+          {/* ── Disclaimer comparatif (Code conso L121-1 + Loi 2023-451) ── */}
           <p className="content-disclaimer" style={{ marginTop: 16, marginBottom: 16 }}>
-            <strong>Liens d&apos;affiliation.</strong> Les boutons «&nbsp;Acheter&nbsp;» pointent vers
-            Leroy Merlin, Castorama, Brico Dépôt et ManoMano via notre redirecteur tracké.
-            Si vous achetez après avoir cliqué, DIY Builder peut percevoir une commission
-            sans surcoût pour vous. Prix relevés automatiquement, pas modifiés selon le partenaire.{' '}
+            <strong>Comparatif sans affiliation.</strong> Les boutons «&nbsp;Acheter&nbsp;»
+            pointent vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano via notre
+            redirecteur tracké à des fins de mesure d&apos;audience uniquement.
+            Aucune commission n&apos;est perçue sur ces achats. Les prix sont relevés
+            automatiquement, indépendamment de toute relation commerciale.{' '}
             <Link href="/charte-affiliation">Charte complète</Link>.
           </p>
 
