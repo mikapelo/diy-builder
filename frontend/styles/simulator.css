@@ -3617,8 +3617,27 @@
   border: 1px solid #e5e2d8;
   border-top: 3px solid var(--v6-primary, #C9971E);
   border-radius: 14px;
-  padding: 24px 24px 28px;
+  padding: 0 24px 28px;
   transition: box-shadow .2s, transform .2s;
+  overflow: hidden;
+  display: block;
+}
+.content-guide-card-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: 0 -24px 18px;
+  background: #f4eede;
+  overflow: hidden;
+}
+.content-guide-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .35s ease;
+}
+.content-guide-card:hover .content-guide-card-image img {
+  transform: scale(1.03);
 }
 .content-guide-card:hover {
   box-shadow: 0 4px 20px rgba(0,0,0,.08);

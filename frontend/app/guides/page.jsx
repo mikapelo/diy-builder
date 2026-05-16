@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 
 const OG_TITLE = '5 guides DIY bois & béton';
@@ -34,30 +35,35 @@ const itemListJsonLd = {
       position: 1,
       url: 'https://diy-builder.fr/guides/terrasse',
       name: 'Guide terrasse bois',
+      image: 'https://diy-builder.fr/images/guides/cards/terrasse.png',
     },
     {
       '@type': 'ListItem',
       position: 2,
       url: 'https://diy-builder.fr/guides/cabanon',
       name: 'Guide cabanon ossature bois',
+      image: 'https://diy-builder.fr/images/guides/cards/cabanon.png',
     },
     {
       '@type': 'ListItem',
       position: 3,
       url: 'https://diy-builder.fr/guides/pergola',
       name: 'Guide pergola bois',
+      image: 'https://diy-builder.fr/images/guides/cards/pergola.png',
     },
     {
       '@type': 'ListItem',
       position: 4,
       url: 'https://diy-builder.fr/guides/cloture',
       name: 'Guide clôture bois',
+      image: 'https://diy-builder.fr/images/guides/cards/cloture.png',
     },
     {
       '@type': 'ListItem',
       position: 5,
       url: 'https://diy-builder.fr/dalle',
       name: 'Tutoriel dalle béton extérieure (NF DTU 13.3)',
+      image: 'https://diy-builder.fr/images/guides/cards/dalle.png',
     },
   ],
 };
@@ -121,7 +127,15 @@ export default function GuidesPage() {
           <div className="content-guides-grid">
 
             <Link href="/guides/terrasse" className="content-guide-card">
-              <div className="content-guide-card-accent"></div>
+              <div className="content-guide-card-image">
+                <Image
+                  src="/images/guides/cards/terrasse.png"
+                  alt="Terrasse bois en pin classe 4 sur plots béton dans un jardin"
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 360px"
+                />
+              </div>
               <h3 className="content-guide-card-title">Terrasse bois</h3>
               <div className="content-guide-card-meta">
                 <span className="badge-level">Débutant</span>
@@ -137,7 +151,15 @@ export default function GuidesPage() {
             </Link>
 
             <Link href="/guides/cabanon" className="content-guide-card">
-              <div className="content-guide-card-accent"></div>
+              <div className="content-guide-card-image">
+                <Image
+                  src="/images/guides/cards/cabanon.png"
+                  alt="Cabanon ossature bois avec bardage clin et toit mono-pente en fond de jardin"
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 360px"
+                />
+              </div>
               <h3 className="content-guide-card-title">Cabanon ossature bois</h3>
               <div className="content-guide-card-meta">
                 <span className="badge-level">Avancé</span>
@@ -153,7 +175,15 @@ export default function GuidesPage() {
             </Link>
 
             <Link href="/guides/pergola" className="content-guide-card">
-              <div className="content-guide-card-accent"></div>
+              <div className="content-guide-card-image">
+                <Image
+                  src="/images/guides/cards/pergola.png"
+                  alt="Pergola bois avec poteaux 90×90 mm et chevrons espacés sur terrasse"
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 360px"
+                />
+              </div>
               <h3 className="content-guide-card-title">Pergola bois</h3>
               <div className="content-guide-card-meta">
                 <span className="badge-level">Intermédiaire</span>
@@ -169,7 +199,15 @@ export default function GuidesPage() {
             </Link>
 
             <Link href="/guides/cloture" className="content-guide-card">
-              <div className="content-guide-card-accent"></div>
+              <div className="content-guide-card-image">
+                <Image
+                  src="/images/guides/cards/cloture.png"
+                  alt="Clôture bois claire-voie verticale en pin classe 4 en bord de jardin"
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 360px"
+                />
+              </div>
               <h3 className="content-guide-card-title">Clôture bois</h3>
               <div className="content-guide-card-meta">
                 <span className="badge-level">Débutant</span>
@@ -185,7 +223,15 @@ export default function GuidesPage() {
             </Link>
 
             <Link href="/dalle" className="content-guide-card">
-              <div className="content-guide-card-accent"></div>
+              <div className="content-guide-card-image">
+                <Image
+                  src="/images/guides/cards/dalle.png"
+                  alt="Dalle béton extérieure fraîchement coulée avec treillis soudé ST25 visible sur la tranche"
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 360px"
+                />
+              </div>
               <h3 className="content-guide-card-title">Dalle béton extérieure</h3>
               <div className="content-guide-card-meta">
                 <span className="badge-level">Prérequis</span>
