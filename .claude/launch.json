@@ -10,6 +10,14 @@
       "autoPort": true
     },
     {
+      "name": "frontend-live",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "frontend",
+      "port": 55300,
+      "autoPort": true
+    },
+    {
       "name": "backend",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],

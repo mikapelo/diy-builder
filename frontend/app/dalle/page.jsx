@@ -32,6 +32,7 @@ const STEPS = [
   {
     id: 1,
     title: 'Terrassement & délimitation',
+    snippet: 'Décaissez sur 20 cm minimum (10 cm de forme drainante + 10 cm de dalle). Compactez le fond à 95 % Proctor (DTU 13.3 §7.1) à la dame ou à la plaque vibrante. Ménagez une pente de 1 cm/m vers l\'extérieur pour l\'évacuation des eaux.',
     desc: 'Piquetez le périmètre, puis décaissez sur 20 cm minimum (10 cm forme + 10 cm dalle). Compactez le fond à la dame ou à la plaque vibrante. Vérifiez la planéité avec un niveau laser.',
     note: 'DTU 13.3 §7.1 — Sol support compacté à 95 % Proctor.',
     svg: (
@@ -66,6 +67,7 @@ const STEPS = [
   {
     id: 2,
     title: 'Forme drainante',
+    snippet: '10 cm de gravier concassé 0/31.5 ou de tout-venant propre, obligatoirement compacté (DTU 13.3 §7.3). Cette couche répartit les charges sur le sol support et coupe la remontée capillaire. Sans elle, le béton travaille en flexion sur sol meuble et fissure à court terme.',
     desc: 'Répandez 10 cm de gravier concassé 0/31.5 ou de tout-venant propre sur toute la surface. Réglez à la règle et compactez. Cette couche répartit les charges et draine les eaux de remontée capillaire.',
     note: 'DTU 13.3 §7.3 — Épaisseur minimale 10 cm, granulats lavés.',
     svg: (
@@ -97,6 +99,7 @@ const STEPS = [
   {
     id: 3,
     title: 'Coffrage périphérique',
+    snippet: "Planches de coffrage 25–27 mm maintenues par des piquets tous les 80 cm. Elles définissent l\'épaisseur finale et servent de guide au tirage de la règle. Huilez les faces intérieures pour un décoffrage propre après 28 jours — sans huile, le béton colle et arrache les lèvres de la dalle.",
     desc: 'Installez des planches de coffrage bois (épaisseur 25-27 mm) maintenues par des piquets enfoncés tous les 80 cm. Les planches définissent l\'épaisseur finale de la dalle. Vérifiez le niveau et l\'équerrage.',
     note: 'Huiler les coffrages pour faciliter le décoffrage après 28 jours.',
     svg: (
@@ -129,6 +132,7 @@ const STEPS = [
   {
     id: 4,
     title: 'Treillis soudé ST25',
+    snippet: 'Treillis ST25 (maille 150×150 mm, ø 5 mm) posé sur cales 4 cm — enrobage mini 3 cm (DTU 13.3 §5.4), recommandé dès 10 m². Recouvrement entre panneaux : 20 cm minimum (2 mailles). Poser le treillis à même la forme annule son efficacité structurelle.',
     desc: 'Posez les panneaux de treillis soudé ST25 (maille 150×150 mm, ø 5 mm) sur des cales plastique de 4 cm. Le recouvrement entre panneaux doit être d\'au moins 20 cm (2 mailles). Ne posez pas le treillis à même la forme.',
     note: 'DTU 13.3 §5.4 — Enrobage mini 3 cm. Treillis recommandé dès 10 m².',
     svg: (
@@ -166,6 +170,7 @@ const STEPS = [
   {
     id: 5,
     title: 'Coulage & réglage',
+    snippet: 'Béton C25/30 minimum, coulé par zones et tiré à la règle en va-et-vient. Vibrez au fur et à mesure puis talochage fin. Par temps chaud (>25 °C) : coulez tôt le matin, humidifiez la forme avant et protégez la surface avec une bâche pendant 48 h pour éviter le retrait prématuré.',
     desc: 'Coulez le béton C25/30 minimum par zones. Tirez à la règle de maçon en va-et-vient pour aplanir. Vibrez légèrement au fur et à mesure (bêche ou vibreur). Terminez par un talochage fin pour serrer la surface.',
     note: 'Par temps chaud (>25°C), coulez tôt le matin et humidifiez la forme avant.',
     svg: (
@@ -198,6 +203,7 @@ const STEPS = [
   {
     id: 6,
     title: 'Cure & joints de fractionnement',
+    snippet: 'Cure 48 h minimum sous bâche (ou produit de cure) pour éviter le desséchement rapide. Joints de fractionnement sciés à 1/3 de l\'épaisseur après 7 jours — DTU 13.3 §6 limite à 25 m² entre joints pour une dalle piétonne, 40 m² pour un usage véhicule.',
     desc: 'Protégez la dalle 48h minimum (bâche plastique ou produit de cure) contre le dessèchement trop rapide. Après 7 jours, sciez les joints de fractionnement à 1/3 de l\'épaisseur de la dalle pour maîtriser la fissuration.',
     note: 'DTU 13.3 §6 — Surface max entre joints : 25 m² (piéton) / 40 m² (véhicule).',
     svg: (
@@ -421,9 +427,9 @@ export default function DalleTutorielPage() {
             treillis soudé, coulage et joints de fractionnement.
           </p>
           <div className="dalle-hero-chips">
-            <span className="dalle-chip">⏱ 2 jours de chantier</span>
-            <span className="dalle-chip">🏗 Niveau intermédiaire</span>
-            <span className="dalle-chip">📐 Épaisseur 10–20 cm</span>
+            <span className="dalle-chip"><strong>Durée</strong> · 2 jours de chantier</span>
+            <span className="dalle-chip"><strong>Niveau</strong> · intermédiaire</span>
+            <span className="dalle-chip"><strong>Épaisseur</strong> · 10–20 cm</span>
           </div>
         </div>
 
@@ -440,8 +446,9 @@ export default function DalleTutorielPage() {
                   {step.svg}
                 </div>
                 <div className="dalle-step-text">
+                  {step.snippet && <p className="content-snippet">{step.snippet}</p>}
                   <p className="dalle-step-desc">{step.desc}</p>
-                  <p className="dalle-step-note">📌 {step.note}</p>
+                  <p className="dalle-step-note">{step.note}</p>
                 </div>
               </div>
             </div>
@@ -450,6 +457,16 @@ export default function DalleTutorielPage() {
 
         {/* ── Calculateur ── */}
         <DalleCalculateur />
+
+        {/* ── Byline ── */}
+        <footer className="content-byline">
+          <p>
+            <strong>L&apos;équipe DIY Builder</strong> — Article révisé le 16 mai 2026.
+            {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
+            {' '}<Link href="/sources">Sources DTU citées</Link> ·
+            {' '}<Link href="/contact">Signaler une erreur</Link>
+          </p>
+        </footer>
 
         {/* ── CTA artisan ── */}
         <div className="dalle-cta-artisan">
@@ -473,7 +490,7 @@ export default function DalleTutorielPage() {
           display: inline-block; padding: 4px 12px; border-radius: 20px;
           background: #f0ebe0; color: #8a7a5a; font-size: 12px; font-weight: 600;
           letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 12px;
-          font-family: 'Inter', sans-serif;
+          font-family: 'IBM Plex Mono', monospace;
         }
         .dalle-hero-title {
           font-size: clamp(24px, 4vw, 36px); font-weight: 700;
@@ -483,13 +500,13 @@ export default function DalleTutorielPage() {
         .dalle-hero-desc {
           font-size: 16px; color: #5a5248; line-height: 1.65;
           margin: 0 0 20px; max-width: 680px;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Manrope', system-ui, sans-serif;
         }
         .dalle-hero-chips { display: flex; gap: 10px; flex-wrap: wrap; }
         .dalle-chip {
           padding: 6px 14px; background: rgba(255,255,255,0.7);
           border: 1.5px solid #d8d0c4; border-radius: 20px;
-          font-size: 13px; color: #6a5f50; font-family: 'Inter', sans-serif;
+          font-size: 13px; color: #6a5f50; font-family: 'Manrope', system-ui, sans-serif;
         }
 
         /* ── Étapes ── */
@@ -508,11 +525,11 @@ export default function DalleTutorielPage() {
           background: #1B3022; color: #fff;
           display: flex; align-items: center; justify-content: center;
           font-size: 14px; font-weight: 700; flex-shrink: 0;
-          font-family: 'Inter', sans-serif;
+          font-family: 'IBM Plex Mono', monospace;
         }
         .dalle-step-title {
           font-size: 18px; font-weight: 600; color: #1a1c1b;
-          margin: 0; font-family: 'Inter', sans-serif;
+          margin: 0; font-family: 'Manrope', system-ui, sans-serif;
         }
         .dalle-step-body {
           display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
@@ -528,13 +545,13 @@ export default function DalleTutorielPage() {
         .dalle-step-svg svg { width: 100%; height: auto; display: block; }
         .dalle-step-desc {
           font-size: 14px; color: #4a4540; line-height: 1.7;
-          margin: 0 0 12px; font-family: 'Inter', sans-serif;
+          margin: 0 0 12px; font-family: 'Manrope', system-ui, sans-serif;
         }
         .dalle-step-note {
           font-size: 12px; color: #8a7e6f; line-height: 1.5;
           margin: 0; padding: 10px 12px;
           background: #faf7f0; border-left: 3px solid #c9971e;
-          border-radius: 0 6px 6px 0; font-family: 'Inter', sans-serif;
+          border-radius: 0 6px 6px 0; font-family: 'Manrope', system-ui, sans-serif;
         }
 
         /* ── Calculateur ── */
@@ -550,7 +567,7 @@ export default function DalleTutorielPage() {
         }
         .dalle-calc-sub {
           font-size: 13px; color: #8a7e6f; margin: 0 0 28px;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Manrope', system-ui, sans-serif;
         }
         .dalle-calc-grid {
           display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
@@ -563,12 +580,12 @@ export default function DalleTutorielPage() {
         .dalle-input-group { display: flex; flex-direction: column; gap: 6px; }
         .dalle-label {
           font-size: 12px; font-weight: 600; color: #6a5f50; text-transform: uppercase;
-          letter-spacing: 0.5px; font-family: 'Inter', sans-serif;
+          letter-spacing: 0.5px; font-family: 'IBM Plex Mono', monospace;
         }
         .dalle-input {
           padding: 10px 14px; border: 1.5px solid #d8d0c4; border-radius: 8px;
           font-size: 15px; font-weight: 600; color: #1a1c1b;
-          background: #faf7f2; font-family: 'Inter', sans-serif;
+          background: #faf7f2; font-family: 'Manrope', system-ui, sans-serif;
           transition: border-color 0.15s;
         }
         .dalle-input:focus { outline: none; border-color: #1B3022; }
@@ -579,19 +596,19 @@ export default function DalleTutorielPage() {
           cursor: pointer; transition: all 0.15s; background: #faf7f2;
         }
         .dalle-radio.active { border-color: #1B3022; background: #f0f7f2; }
-        .dalle-radio-label { font-size: 13px; color: #3a3530; font-family: 'Inter', sans-serif; font-weight: 500; }
-        .dalle-radio-ep { font-size: 12px; color: #8a7e6f; font-family: 'Inter', sans-serif; }
+        .dalle-radio-label { font-size: 13px; color: #3a3530; font-family: 'Manrope', system-ui, sans-serif; font-weight: 500; }
+        .dalle-radio-ep { font-size: 12px; color: #8a7e6f; font-family: 'Manrope', system-ui, sans-serif; }
         .dalle-radio.active .dalle-radio-label { color: #1B3022; font-weight: 600; }
         .dalle-toggle {
           display: flex; align-items: center; gap: 10px; cursor: pointer;
-          font-size: 13px; color: #3a3530; font-family: 'Inter', sans-serif;
+          font-size: 13px; color: #3a3530; font-family: 'Manrope', system-ui, sans-serif;
         }
         .dalle-toggle input { accent-color: #1B3022; width: 16px; height: 16px; }
         .dalle-badge-dtu {
           padding: 2px 8px; background: #e8f5e8; color: #2a6a3a;
           border-radius: 4px; font-size: 10px; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.3px;
-          font-family: 'Inter', sans-serif; margin-left: 4px;
+          font-family: 'IBM Plex Mono', monospace; margin-left: 4px;
         }
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
@@ -607,7 +624,7 @@ export default function DalleTutorielPage() {
           font-family: 'DM Serif Display', Georgia, serif;
         }
         .dalle-result-ep {
-          font-size: 14px; color: #8a7e6f; font-family: 'Inter', sans-serif;
+          font-size: 14px; color: #8a7e6f; font-family: 'Manrope', system-ui, sans-serif;
         }
         .dalle-result-rows { display: flex; flex-direction: column; gap: 12px; }
         .dalle-result-section {
@@ -616,11 +633,11 @@ export default function DalleTutorielPage() {
         }
         .dalle-result-section-title {
           font-size: 11px; font-weight: 700; color: #8a7e6f; text-transform: uppercase;
-          letter-spacing: 0.5px; margin-bottom: 8px; font-family: 'Inter', sans-serif;
+          letter-spacing: 0.5px; margin-bottom: 8px; font-family: 'IBM Plex Mono', monospace;
         }
         .dalle-result-row {
           display: flex; justify-content: space-between; align-items: center;
-          font-size: 13px; color: #3a3530; font-family: 'Inter', sans-serif;
+          font-size: 13px; color: #3a3530; font-family: 'Manrope', system-ui, sans-serif;
           padding: 3px 0;
         }
         .dalle-result-row strong { color: #1a1c1b; font-weight: 600; }
@@ -630,12 +647,12 @@ export default function DalleTutorielPage() {
           display: flex; justify-content: space-between; align-items: center;
           padding: 14px 16px; background: #1B3022; border-radius: 10px;
           font-size: 15px; font-weight: 700; color: #fff;
-          font-family: 'Inter', sans-serif; margin-top: 4px;
+          font-family: 'Manrope', system-ui, sans-serif; margin-top: 4px;
         }
         .dalle-result-total strong { font-size: 20px; font-family: 'DM Serif Display', Georgia, serif; }
         .dalle-result-note {
           font-size: 11px; color: #a09880; margin-top: 10px;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Manrope', system-ui, sans-serif;
         }
 
         /* ── CTA artisan ── */
@@ -649,8 +666,8 @@ export default function DalleTutorielPage() {
           .dalle-cta-artisan { flex-direction: column; align-items: flex-start; }
         }
         .dalle-cta-text { display: flex; flex-direction: column; gap: 4px; }
-        .dalle-cta-text strong { font-size: 15px; color: #1a1c1b; font-family: 'Inter', sans-serif; }
-        .dalle-cta-text span { font-size: 13px; color: #6a5f50; font-family: 'Inter', sans-serif; }
+        .dalle-cta-text strong { font-size: 15px; color: #1a1c1b; font-family: 'Manrope', system-ui, sans-serif; }
+        .dalle-cta-text span { font-size: 13px; color: #6a5f50; font-family: 'Manrope', system-ui, sans-serif; }
       `}</style>
     </div>
   );

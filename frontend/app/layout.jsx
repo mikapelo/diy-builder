@@ -95,10 +95,10 @@ export default function RootLayout({ children }) {
         />
         {/* Phosphor Icons — servis localement via styles/phosphor.css */}
 
-        {/* Favicons */}
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        {/* Favicons : Next.js App Router sert automatiquement :
+              app/icon.png       → <link rel="icon" type="image/png">
+              app/apple-icon.png → <link rel="apple-touch-icon">
+            Cette priorité écrase tout `public/favicon.ico` générique. Aucun link manuel ici. */}
       </head>
 
       <body>

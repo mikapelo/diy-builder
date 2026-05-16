@@ -1,10 +1,25 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
+const OG_TITLE = 'Construction bois : 24 questions fréquentes';
+const OG_SUBTITLE = 'FAQ technique 2026';
+const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
+
 export const metadata = {
   title: 'Construction bois : 24 questions fréquentes (FAQ 2025)',
   description: 'Réponses aux questions les plus fréquentes sur la construction de terrasse, cabanon, pergola et clôture en bois. Calculs, matériaux, coûts.',
   alternates: { canonical: 'https://diy-builder.fr/faq' },
+  openGraph: {
+    title: 'Construction bois : 24 questions fréquentes | DIY Builder',
+    description: 'Réponses aux questions les plus fréquentes sur la construction de terrasse, cabanon, pergola et clôture en bois. Calculs, matériaux, coûts.',
+    url: 'https://diy-builder.fr/faq',
+    type: 'article',
+    images: [{ url: OG_URL, width: 1200, height: 630, alt: 'FAQ construction bois — DIY Builder' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [OG_URL],
+  },
 };
 
 // faqData contient les réponses en texte brut — utilisé pour le JSON-LD FAQPage (pas de HTML).
@@ -235,6 +250,17 @@ export default function FAQPage() {
         </nav>
 
         <h1 className="content-h1">Construction bois en autoconstruction : 24 questions fréquentes</h1>
+
+        <p className="content-meta">
+          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span>·</span>
+          <span>L&apos;équipe DIY Builder</span>
+          <span>·</span>
+          <span><Link href="/methodologie">Méthodologie</Link></span>
+          <span>·</span>
+          <span><Link href="/sources">Sources DTU</Link></span>
+        </p>
+
         <p className="content-lead">
           Les vraies questions qui reviennent avant de se lancer — sections de bois, ancrage, réglementation,
           budget. Réponses directes avec des chiffres concrets.
@@ -258,6 +284,15 @@ export default function FAQPage() {
             ))}
           </div>
         ))}
+
+        <footer className="content-byline">
+          <p>
+            <strong>L&apos;équipe DIY Builder</strong> — Article révisé le 16 mai 2026.
+            {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
+            {' '}<Link href="/sources">Sources DTU citées</Link> ·
+            {' '}<Link href="/contact">Signaler une erreur</Link>
+          </p>
+        </footer>
 
         <hr className="content-divider" />
         <div className="content-cta-box">

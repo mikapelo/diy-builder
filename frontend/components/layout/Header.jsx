@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 
@@ -9,6 +10,7 @@ const HEADER_PROJECTS = [
   { id: 'cabanon',  label: 'Cabanon bois',   href: '/cabanon'     },
   { id: 'pergola',  label: 'Pergola bois',   href: '/pergola'     },
   { id: 'cloture',  label: 'Clôture bois',   href: '/cloture'     },
+  { id: 'dalle',    label: 'Dalle béton',    href: '/dalle', kind: 'tutorial' },
 ];
 
 export default function Header({ view, resultat, copied, onRetour, onCopierLien, onCalculer }) {
@@ -62,11 +64,14 @@ export default function Header({ view, resultat, copied, onRetour, onCopierLien,
           onClick={() => { if (view === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else onRetour(); }}
           className="flex items-center gap-3 group transition-opacity duration-200 hover:opacity-80 flex-shrink-0"
         >
-          <img
+          <Image
             src="/logo-diy-builder.png"
             alt="DIY Builder"
             className="v6-header-logo-img"
-            style={{ objectFit: 'contain', height: '62px', width: '62px' }}
+            width={62}
+            height={62}
+            priority
+            style={{ objectFit: 'contain' }}
           />
           <div className="leading-none">
             <span className="v6-header-logo-text">DIY Builder</span>

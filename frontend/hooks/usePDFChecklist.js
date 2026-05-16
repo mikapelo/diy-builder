@@ -13,7 +13,6 @@
  */
 
 import { useState, useCallback } from 'react';
-import jsPDF from 'jspdf';
 import { CHECKLISTS } from '@/lib/projectTime';
 
 const BRAND_DARK   = '#111214';
@@ -187,6 +186,7 @@ export function usePDFChecklist() {
     setChecklistStatus('generating');
 
     try {
+      const { default: jsPDF } = await import('jspdf');
       const doc = new jsPDF({ unit: 'mm', format: 'a4' });
       const pageWidth  = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();

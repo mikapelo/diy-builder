@@ -1,10 +1,25 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
+const OG_TITLE = 'Construire une pergola bois';
+const OG_SUBTITLE = 'DTU 31.1 + sections + ancrage';
+const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=pergola`;
+
 export const metadata = {
   title: 'Comment construire une pergola bois : guide complet 2025 | DIY Builder',
   description: 'Guide pas à pas pour construire votre pergola bois : poteaux, longerons, chevrons. Calcul des sections, ancrage, budget estimé. Simulateur gratuit inclus.',
   alternates: { canonical: 'https://diy-builder.fr/guides/pergola' },
+  openGraph: {
+    title: 'Construire une pergola bois — Guide DTU 31.1 | DIY Builder',
+    description: 'Guide pas à pas pour construire votre pergola bois : poteaux, longerons, chevrons. Calcul des sections, ancrage, budget estimé.',
+    url: 'https://diy-builder.fr/guides/pergola',
+    type: 'article',
+    images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide pergola bois DTU 31.1 — DIY Builder' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [OG_URL],
+  },
 };
 
 const jsonLd = {
@@ -92,6 +107,16 @@ export default function GuidePergolaBois() {
 
         <h1 className="content-h1">Construire une pergola bois</h1>
 
+        <p className="content-meta">
+          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span>·</span>
+          <span>L&apos;équipe DIY Builder</span>
+          <span>·</span>
+          <span><Link href="/methodologie">Méthodologie</Link></span>
+          <span>·</span>
+          <span><Link href="/sources">Sources DTU</Link></span>
+        </p>
+
         <p className="content-lead">
           La pergola est l&apos;un des rares ouvrages de jardin qui ne nécessite pas de démarche administrative dans
           la majorité des cas — du moment qu&apos;elle reste ouverte sur les côtés et sous les 20 m² d&apos;emprise.
@@ -100,6 +125,12 @@ export default function GuidePergolaBois() {
         </p>
 
         <h2 className="content-h2">Choisir les bonnes sections de bois</h2>
+        <p className="content-snippet">
+          Poteaux&nbsp;: 90×90&nbsp;mm jusqu&apos;à 3&nbsp;m de portée, 100×100&nbsp;mm de 3 à 4&nbsp;m,
+          120×120&nbsp;mm au-delà ou sous charge végétale (NF EN 1995-1-1, flèche limitée à L/300).
+          Longerons&nbsp;: 63×150&nbsp;mm jusqu&apos;à 4&nbsp;m. Chevrons&nbsp;: 45×120&nbsp;mm,
+          entraxe 40–60&nbsp;cm. Douglas ou pin traité classe 3 pour une première pergola.
+        </p>
         <p className="content-body">
           L&apos;erreur classique du débutant, c&apos;est de sous-dimensionner. Une section trop faible donne une flèche
           visible sur les longerons, et un vent fort peut tout déstabiliser. Voici les sections qui tiennent
@@ -139,6 +170,12 @@ export default function GuidePergolaBois() {
         </ul>
 
         <h2 className="content-h2">Combien de matériaux pour une pergola 4×3 m&nbsp;?</h2>
+        <p className="content-snippet">
+          Structure 4×3&nbsp;m standard&nbsp;: 4 poteaux 100×100×300&nbsp;cm, 2 longerons
+          63×150×400&nbsp;cm, 6 chevrons 45×120×300&nbsp;cm, 8 sabots galvanisés, 8 équerres de
+          charpente et vis inox A2. Les vis acier zingué tachent le bois de coulures de rouille
+          dès les premières pluies — inox obligatoire en extérieur.
+        </p>
         <p className="content-body">
           Exemple concret pour une structure standard&nbsp;: <strong>4 poteaux</strong> 100×100×300 cm,
           <strong> 2 longerons</strong> 63×150×400 cm, <strong>6 chevrons</strong> 45×120×300 cm.
@@ -163,6 +200,12 @@ export default function GuidePergolaBois() {
         </div>
 
         <h2 className="content-h2">Ancrage des poteaux — le point critique</h2>
+        <p className="content-snippet">
+          Plots béton 30×30&nbsp;cm coulés à 60–80&nbsp;cm de profondeur hors-gel (40–50&nbsp;cm
+          dans le Midi), sabots galvanisés noyés dans le béton frais. Attente obligatoire&nbsp;:
+          48&nbsp;heures avant de poser les longerons. Un poteau de 3&nbsp;m scellé directement
+          dans le béton doit être enterré 50&nbsp;cm minimum — soit 1/6 de sa hauteur totale.
+        </p>
         <p className="content-body">
           Un poteau mal ancré bascule sous les premières rafales, même pour un ouvrage léger. C&apos;est là que
           les pergolas bricolées trop vite montrent leurs limites. Deux solutions fiables existent.
@@ -203,6 +246,13 @@ export default function GuidePergolaBois() {
         </p>
 
         <h2 className="content-h2">Les 6 étapes de montage</h2>
+        <p className="content-snippet">
+          Implantation au cordeau, vérification à la règle 3-4-5, puis plots béton
+          (48&nbsp;h de séchage). Poteaux dans les sabots, aplomb vérifié sur 2 faces.
+          Longerons boulonnés M12 avec porte-à-faux de 20–30&nbsp;cm. Chevrons
+          à entraxe régulier. Finition huile microporeuse avant les premières pluies,
+          renouvelée tous les 2–3 ans.
+        </p>
 
         <h3 className="content-h3">1. Implantation</h3>
         <p className="content-body">
@@ -253,6 +303,12 @@ export default function GuidePergolaBois() {
         </p>
 
         <h2 className="content-h2">Budget matériaux</h2>
+        <p className="content-snippet">
+          Bois et quincaillerie, hors béton et outillage&nbsp;: 250–400&nbsp;€ pour une 2×2&nbsp;m,
+          450–700&nbsp;€ pour une 3×3&nbsp;m, 700–1&nbsp;200&nbsp;€ pour une 4×4&nbsp;m. Le douglas
+          coûte environ 25&nbsp;% de plus que le pin traité en GSB. Le mélèze dépasse souvent la
+          fourchette haute mais ne demande aucun traitement.
+        </p>
         <p className="content-body">
           Les fourchettes ci-dessous couvrent les pièces de bois et la quincaillerie (hors béton des
           fondations et outillage). L&apos;écart bas/haut dépend principalement de l&apos;essence choisie et de l&apos;enseigne.
@@ -292,6 +348,12 @@ export default function GuidePergolaBois() {
         </p>
 
         <h2 className="content-h2">Réglementation</h2>
+        <p className="content-snippet">
+          Pergola ouverte sur les côtés sous 20&nbsp;m²&nbsp;: aucune démarche dans la majorité
+          des communes. Dès qu&apos;une couverture (polycarbonate, bâche, tuiles) est ajoutée, une
+          déclaration préalable est obligatoire à partir de 5&nbsp;m² créés. En zone ABF, la
+          consultation de l&apos;Architecte des Bâtiments de France est obligatoire sans seuil de surface.
+        </p>
         <p className="content-body">
           La pergola est l&apos;ouvrage de jardin le plus permissif administrativement — mais il y a des limites
           à ne pas ignorer.
@@ -325,6 +387,15 @@ export default function GuidePergolaBois() {
             <li><Link href="/pergola">Calculateur pergola</Link> — devis matériaux + plan</li>
           </ul>
         </aside>
+
+        <footer className="content-byline">
+          <p>
+            <strong>L&apos;équipe DIY Builder</strong> — Article révisé le 16 mai 2026.
+            {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
+            {' '}<Link href="/sources">Sources DTU citées</Link> ·
+            {' '}<Link href="/contact">Signaler une erreur</Link>
+          </p>
+        </footer>
 
         <div className="content-cta-box" role="complementary" aria-label="Appel à l'action final">
           <p className="content-cta-box-label">Simulateur gratuit</p>

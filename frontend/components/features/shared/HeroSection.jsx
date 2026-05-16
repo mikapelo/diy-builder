@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 // V6 CSS styles are in globals.css (lines 2940+)
 
 /* ═══════════════════════════════════════════════════════════
@@ -425,7 +426,7 @@ function ParallaxLayer({ parallax, factor = 1, children, className, style }) {
 /* ═══════════════════════════════════════════════════════════
    MAIN COMPONENT
 ═══════════════════════════════════════════════════════════ */
-export default function HeroSection({ onCalculer }) {
+export default function HeroSection({ onCalculer, splitContent = null }) {
   const router = useRouter();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
@@ -438,15 +439,8 @@ export default function HeroSection({ onCalculer }) {
   // P3 — parallax position
   const parallax = useParallax(heroRef);
 
-  // ── Scroll-snap activation on html ──
-  useEffect(() => {
-    document.documentElement.style.scrollSnapType = 'y proximity';
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollSnapType = '';
-      document.documentElement.style.scrollBehavior = '';
-    };
-  }, []);
+  // Scroll-snap auto désactivé — gênait la lecture des sections SEO insérées
+  // après le hero. Le scroll libre est rétabli.
 
   // ── Panel intersection observer (DOM-based) + P5 corner marks ──
   useEffect(() => {
@@ -905,12 +899,14 @@ export default function HeroSection({ onCalculer }) {
                       {PROJECTS.map((proj, idx) => (
                         <div key={idx} className={`v6-slide ${idx === currentIdx ? 'v6-slide-active' : 'v6-slide-blur'}`}>
                           <div className="v6-slide-visual v6-slide-visual--img">
-                            <img
+                            <Image
                               src={proj.image}
                               alt={proj.title}
                               className="v6-slide-img"
                               draggable={false}
-                              loading={idx === 0 ? 'eager' : 'lazy'}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 580px"
+                              priority={idx === 0}
                             />
                           </div>
                           {/* Label moved to card header */}
@@ -953,6 +949,9 @@ export default function HeroSection({ onCalculer }) {
           <span className="v6-corner v6-corner-br" />
         </div>
       </section>
+
+      {/* Slot SEO inséré juste après le hero, avant les bento/stats/social. */}
+      {splitContent}
 
       {/* ══════════════════════════════════════
            BENTO

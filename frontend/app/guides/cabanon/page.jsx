@@ -1,11 +1,26 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
+const OG_TITLE = 'Construire un cabanon ossature bois';
+const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
+const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cabanon`;
+
 export const metadata = {
   title: 'Comment construire un cabanon ossature bois : guide DTU 2025 | DIY Builder',
   description:
     'Guide complet pour construire un cabanon bois : ossature, montants, toiture mono-pente. Calculs DTU, liste de matériaux et estimatif de budget inclus.',
   alternates: { canonical: 'https://diy-builder.fr/guides/cabanon' },
+  openGraph: {
+    title: 'Construire un cabanon ossature bois — Guide DTU 31.2 | DIY Builder',
+    description: 'Guide complet pour construire un cabanon bois : ossature, montants, toiture mono-pente. Calculs DTU, liste de matériaux et estimatif de budget inclus.',
+    url: 'https://diy-builder.fr/guides/cabanon',
+    type: 'article',
+    images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide cabanon ossature bois DTU 31.2 — DIY Builder' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [OG_URL],
+  },
 };
 
 const howToJsonLd = {
@@ -74,6 +89,16 @@ export default function GuideCabanonPage() {
 
         <h1 className="content-h1">Comment construire un cabanon ossature bois</h1>
 
+        <p className="content-meta">
+          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span>·</span>
+          <span>L&apos;équipe DIY Builder</span>
+          <span>·</span>
+          <span><Link href="/methodologie">Méthodologie</Link></span>
+          <span>·</span>
+          <span><Link href="/sources">Sources DTU</Link></span>
+        </p>
+
         <p className="content-lead">
           Un cabanon de jardin en ossature bois, ça se monte en un week-end si la préparation est
           sérieuse — ou ça traîne six mois si elle ne l&apos;est pas. Entre 6 et 20 m², la structure
@@ -84,8 +109,129 @@ export default function GuideCabanonPage() {
         </p>
 
         <h2 className="content-h2">L&apos;ossature bois : ce qu&apos;il faut vraiment comprendre</h2>
-        {/* TODO Pelo: insérer ici un schéma d'ossature platform frame (king/jack/cripple studs).
-            Signal E-E-A-T fort manquant. Format suggéré : SVG inline ou Image PNG. */}
+        <p className="content-snippet">
+          Le DTU 31.2 impose des montants 45×90&nbsp;mm à entraxe 60&nbsp;cm entre lisse basse
+          et lisse haute. Chaque angle reçoit 2 montants en L. Sans contreventement OSB 12&nbsp;mm
+          ou écharpes métalliques, l&apos;ossature ne reprend pas les efforts horizontaux du vent
+          et devient instable dès les premières rafales.
+        </p>
+
+        <figure className="content-figure" role="group" aria-labelledby="ossature-fig-caption">
+          <svg
+            viewBox="0 0 640 360"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Schéma d'une ossature bois platform frame avec lisse basse, lisse haute, montants courants à entraxe 60 cm, king studs et jack studs autour de la porte et de la fenêtre, cripple studs au-dessus du linteau et sous l'appui de fenêtre"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          >
+            {/* Fond clair pour contraste */}
+            <rect x="0" y="0" width="640" height="360" fill="#faf7f0" />
+
+            {/* ── Repères dimensionnels (sol et plafond) ── */}
+            <line x1="40" y1="320" x2="600" y2="320" stroke="#c4b89a" strokeWidth="1" strokeDasharray="3 3" />
+
+            {/* ── Lisse basse (sole plate) ── */}
+            <rect x="40" y="310" width="560" height="10" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="1" />
+            <text x="46" y="318" fontSize="9" fontFamily="Inter,sans-serif" fill="#fff">Lisse basse · classe 4</text>
+
+            {/* ── Lisse haute simple ── */}
+            <rect x="40" y="50" width="560" height="8" fill="#a07852" stroke="#5e3e25" strokeWidth="1" />
+            {/* ── Sablière (lisse haute doublée) ── */}
+            <rect x="40" y="42" width="560" height="8" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="1" />
+            <text x="46" y="38" fontSize="9" fontFamily="Inter,sans-serif" fill="#5e3e25">Sablière (lisse haute doublée)</text>
+
+            {/* ── Coin gauche : 2 montants en L ── */}
+            <rect x="40" y="58" width="14" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+            <rect x="54" y="58" width="14" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+
+            {/* ── Coin droit : 2 montants en L ── */}
+            <rect x="572" y="58" width="14" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+            <rect x="586" y="58" width="14" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+
+            {/* ── Bloc PORTE (gauche) : king + jack + linteau ── */}
+            {/* King stud gauche (pleine hauteur) */}
+            <rect x="120" y="58" width="10" height="252" fill="#6a4a2e" stroke="#3a2618" strokeWidth="1" />
+            {/* Jack stud gauche (arrêté sous linteau) */}
+            <rect x="130" y="160" width="10" height="150" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="1" />
+            {/* Linteau porte */}
+            <rect x="130" y="148" width="90" height="14" fill="#5e3e25" stroke="#3a2618" strokeWidth="1" />
+            {/* Jack stud droit */}
+            <rect x="210" y="160" width="10" height="150" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="1" />
+            {/* King stud droit */}
+            <rect x="220" y="58" width="10" height="252" fill="#6a4a2e" stroke="#3a2618" strokeWidth="1" />
+            {/* Cripple studs au-dessus du linteau porte */}
+            <rect x="148" y="58" width="6" height="90" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            <rect x="178" y="58" width="6" height="90" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            <rect x="208" y="58" width="6" height="90" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            {/* Annotation porte */}
+            <text x="175" y="240" fontSize="10" fontFamily="Inter,sans-serif" fill="#5e3e25" textAnchor="middle" fontStyle="italic">Porte 90 cm</text>
+
+            {/* ── Montants courants entre coin gauche et porte ── */}
+            <rect x="92" y="58" width="10" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+
+            {/* ── Bloc FENÊTRE (droite) : king + jack + linteau + appui + cripples ── */}
+            {/* King stud gauche fenêtre */}
+            <rect x="390" y="58" width="10" height="252" fill="#6a4a2e" stroke="#3a2618" strokeWidth="1" />
+            {/* Jack stud gauche fenêtre */}
+            <rect x="400" y="170" width="10" height="60" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="1" />
+            {/* Linteau fenêtre */}
+            <rect x="400" y="158" width="100" height="12" fill="#5e3e25" stroke="#3a2618" strokeWidth="1" />
+            {/* Appui de fenêtre (seuil) */}
+            <rect x="400" y="230" width="100" height="8" fill="#5e3e25" stroke="#3a2618" strokeWidth="1" />
+            {/* Jack stud droit fenêtre */}
+            <rect x="490" y="170" width="10" height="60" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="1" />
+            {/* King stud droit fenêtre */}
+            <rect x="500" y="58" width="10" height="252" fill="#6a4a2e" stroke="#3a2618" strokeWidth="1" />
+            {/* Cripple studs au-dessus du linteau fenêtre */}
+            <rect x="418" y="58" width="6" height="100" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            <rect x="448" y="58" width="6" height="100" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            <rect x="478" y="58" width="6" height="100" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            {/* Cripple studs sous appui */}
+            <rect x="418" y="238" width="6" height="72" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            <rect x="448" y="238" width="6" height="72" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            <rect x="478" y="238" width="6" height="72" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+            {/* Annotation fenêtre */}
+            <text x="450" y="206" fontSize="10" fontFamily="Inter,sans-serif" fill="#5e3e25" textAnchor="middle" fontStyle="italic">Fenêtre 100 cm</text>
+
+            {/* ── Montants courants entre porte et fenêtre ── */}
+            <rect x="280" y="58" width="10" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+            <rect x="340" y="58" width="10" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+
+            {/* ── Montant courant entre fenêtre et coin droit ── */}
+            <rect x="546" y="58" width="10" height="252" fill="#c89a6b" stroke="#5e3e25" strokeWidth="1" />
+
+            {/* ── Cote entraxe 60 cm (entre 2 montants courants) ── */}
+            <line x1="285" y1="334" x2="345" y2="334" stroke="#c9971e" strokeWidth="1.5" />
+            <line x1="285" y1="330" x2="285" y2="338" stroke="#c9971e" strokeWidth="1.5" />
+            <line x1="345" y1="330" x2="345" y2="338" stroke="#c9971e" strokeWidth="1.5" />
+            <text x="315" y="350" fontSize="11" fontFamily="Inter,sans-serif" fill="#c9971e" textAnchor="middle" fontWeight="600">60 cm (entraxe DTU)</text>
+
+            {/* ── Légende latérale droite ── */}
+            <g transform="translate(610, 70)">
+              <rect x="0" y="0" width="12" height="10" fill="#c89a6b" stroke="#5e3e25" strokeWidth="0.5" />
+              <text x="-4" y="9" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Stud</text>
+
+              <rect x="0" y="18" width="12" height="10" fill="#6a4a2e" stroke="#3a2618" strokeWidth="0.5" />
+              <text x="-4" y="27" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">King</text>
+
+              <rect x="0" y="36" width="12" height="10" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="0.5" />
+              <text x="-4" y="45" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Jack</text>
+
+              <rect x="0" y="54" width="12" height="10" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
+              <text x="-4" y="63" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Cripple</text>
+
+              <rect x="0" y="72" width="12" height="10" fill="#5e3e25" stroke="#3a2618" strokeWidth="0.5" />
+              <text x="-4" y="81" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Linteau</text>
+            </g>
+          </svg>
+          <figcaption id="ossature-fig-caption" className="content-figure-caption">
+            Vue de face d&apos;un mur d&apos;ossature platform frame (DTU 31.2). Coins doublés en L,
+            montants courants à entraxe 60&nbsp;cm, king studs pleine hauteur de chaque côté
+            d&apos;une ouverture, jack studs (trimmer) supportant le linteau, cripple studs courts
+            au-dessus du linteau et sous l&apos;appui de fenêtre.
+          </figcaption>
+        </figure>
+
         <p className="content-body">
           Le platform frame, c&apos;est simple dans le principe : des montants verticaux coincés entre
           une lisse basse et une lisse haute, le tout raidi par des panneaux de contreventement.
@@ -124,6 +270,12 @@ export default function GuideCabanonPage() {
         </ul>
 
         <h2 className="content-h2">Calcul des matériaux</h2>
+        <p className="content-snippet">
+          Pour un cabanon 3×2&nbsp;m, hauteur 2,30&nbsp;m&nbsp;: 12–14 montants 45×90&nbsp;mm,
+          lisses basses en classe 4 obligatoire (pas classe 3), 5–6 chevrons 45×145&nbsp;mm avec
+          débord d&apos;égout de 40–60&nbsp;cm, et 27&nbsp;m² de bardage (périmètre × hauteur
+          +&nbsp;10&nbsp;% de chutes). Prévoyez toujours 10&nbsp;% de marge sur bardage et voliges.
+        </p>
         <p className="content-body">
           Pour un cabanon 3 × 2 m, hauteur 2,30 m, toiture mono-pente — voici ce qu&apos;il faut
           commander. Attention : ces quantités sont brutes. Prévoyez toujours 10 % de chutes
@@ -181,6 +333,12 @@ export default function GuideCabanonPage() {
         </div>
 
         <h2 className="content-h2">Les étapes de construction</h2>
+        <p className="content-snippet">
+          Dalle béton 10&nbsp;cm sur gravier drainant (obligatoire dès 9&nbsp;m²) ou plots coulés
+          30×30×40&nbsp;cm à chaque angle. Lisse basse classe 4 sur joint mousse PE pour couper
+          la remontée capillaire. Ossature assemblée à plat puis levée. Toiture à 20–30&nbsp;%
+          de pente minimum — 15&nbsp;% légal mais insuffisant en pratique.
+        </p>
 
         <h3 className="content-h3">1. Fondations</h3>
         <p className="content-body">
@@ -243,6 +401,12 @@ export default function GuideCabanonPage() {
         </p>
 
         <h2 className="content-h2">Budget à prévoir</h2>
+        <p className="content-snippet">
+          Matériaux seuls (ossature, couverture, bardage, quincaillerie), hors fondations et
+          menuiseries&nbsp;: 600–900&nbsp;€ pour 4&nbsp;m², 1&nbsp;200–1&nbsp;800&nbsp;€ pour 9&nbsp;m²,
+          2&nbsp;000–3&nbsp;000&nbsp;€ pour 15&nbsp;m². Ajoutez 100–400&nbsp;€ pour les fondations et
+          60–90&nbsp;€/h si vous faites appel à un charpentier.
+        </p>
         <p className="content-body">
           Ces estimations couvrent les matériaux bruts — bois d&apos;ossature, couverture, bardage,
           quincaillerie — hors fondations et menuiseries (porte, fenêtre).
@@ -282,6 +446,12 @@ export default function GuideCabanonPage() {
         </p>
 
         <h2 className="content-h2">Réglementation</h2>
+        <p className="content-snippet">
+          Moins de 5&nbsp;m²&nbsp;: aucune démarche. De 5 à 20&nbsp;m²&nbsp;: déclaration préalable
+          (Cerfa 13703, délai 1 mois en mairie). Plus de 20&nbsp;m²&nbsp;: permis de construire
+          obligatoire (délai 2 mois). Ces seuils valent en zones PLU — vérifiez aussi les secteurs
+          ABF et Natura 2000 avant de commander.
+        </p>
         <p className="content-body">
           En France, les démarches dépendent directement de la surface de plancher :
         </p>
@@ -310,6 +480,12 @@ export default function GuideCabanonPage() {
         </p>
 
         <h2 className="content-h2">Questions fréquentes</h2>
+        <p className="content-snippet">
+          Pente de toit&nbsp;: 20–30&nbsp;% recommandé (15&nbsp;% légal minimum). Pour un cabanon
+          de 3&nbsp;m de profondeur à 20&nbsp;%, le dénivelé est de 60&nbsp;cm. Poteaux enterrés
+          directement dans la terre&nbsp;: interdit par le DTU 31.2 même en classe 4. Isolation&nbsp;:
+          optionnelle légalement, mais 80&nbsp;mm de laine entre montants change tout pour un atelier.
+        </p>
 
         <h3 className="content-h3">Quelle pente de toit pour un cabanon ?</h3>
         <p className="content-body">
@@ -353,6 +529,15 @@ export default function GuideCabanonPage() {
             <li><Link href="/cabanon">Calculateur cabanon</Link> — devis matériaux + plan</li>
           </ul>
         </aside>
+
+        <footer className="content-byline">
+          <p>
+            <strong>L&apos;équipe DIY Builder</strong> — Article révisé le 16 mai 2026.
+            {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
+            {' '}<Link href="/sources">Sources DTU citées</Link> ·
+            {' '}<Link href="/contact">Signaler une erreur</Link>
+          </p>
+        </footer>
 
         <div className="content-cta-box">
           <p className="content-cta-box-label">Simulateur gratuit</p>

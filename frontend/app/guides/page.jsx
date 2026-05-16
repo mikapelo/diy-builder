@@ -1,17 +1,33 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
+const OG_TITLE = '5 guides DIY bois & béton';
+const OG_SUBTITLE = 'Terrasse, cabanon, pergola, clôture, dalle';
+const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
+
 export const metadata = {
-  title: 'Guides DIY bois 2025 : terrasse, cabanon, pergola, clôture',
-  description: 'Construire soi-même en bois — 4 guides pratiques (DTU, prix, étapes, outils, durée).',
+  title: 'Guides DIY bois 2026 : terrasse, cabanon, pergola, clôture, dalle béton',
+  description: 'Construire soi-même en bois et béton — 5 guides pratiques (DTU 31.1, 31.2, 51.4, 13.3) avec prix, étapes, outils et durée par projet.',
   alternates: { canonical: 'https://diy-builder.fr/guides' },
+  openGraph: {
+    title: '5 guides DIY pour construire en bois et béton | DIY Builder',
+    description: 'Terrasse, cabanon, pergola, clôture, dalle béton — guides pas à pas conformes DTU avec budget, outils et durée par projet.',
+    url: 'https://diy-builder.fr/guides',
+    type: 'website',
+    images: [{ url: OG_URL, width: 1200, height: 630, alt: '5 guides DIY DIY Builder' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [OG_URL],
+  },
 };
 
 const itemListJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'Guides DIY construction bois',
-  description: 'Quatre guides pratiques pour construire en bois soi-même : terrasse, cabanon, pergola, clôture.',
+  name: 'Guides DIY construction bois et béton',
+  description: 'Cinq guides pratiques pour construire en bois et béton soi-même : terrasse, cabanon, pergola, clôture et dalle béton extérieure.',
+  numberOfItems: 5,
   itemListElement: [
     {
       '@type': 'ListItem',
@@ -37,6 +53,12 @@ const itemListJsonLd = {
       url: 'https://diy-builder.fr/guides/cloture',
       name: 'Guide clôture bois',
     },
+    {
+      '@type': 'ListItem',
+      position: 5,
+      url: 'https://diy-builder.fr/dalle',
+      name: 'Tutoriel dalle béton extérieure (NF DTU 13.3)',
+    },
   ],
 };
 
@@ -54,19 +76,26 @@ export default function GuidesPage() {
           <span className="content-breadcrumb-current">Guides</span>
         </nav>
 
-        <h1 className="content-h1">4 guides DIY pour construire en bois</h1>
+        <h1 className="content-h1">5 guides DIY pour construire en bois et béton</h1>
+
+        <p className="content-meta">
+          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span>·</span>
+          <span>L&apos;équipe DIY Builder</span>
+          <span>·</span>
+          <span><Link href="/methodologie">Méthodologie</Link></span>
+        </p>
 
         <p className="content-lead">
-          Ces quatre guides ont été rédigés pour des bricoleurs qui construisent eux-mêmes — pas pour des
-          professionnels du bâtiment. Chaque projet est traité du début à la fin : choix des matériaux,
-          calculs dimensionnels issus des DTU en vigueur, liste des outils, étapes dans l&apos;ordre.
-          Les prix indiqués correspondent à des achats en grande surface de bricolage française, mis à
-          jour régulièrement. Vous trouverez aussi les erreurs courantes à éviter — celles qui font
-          reprendre un chantier à zéro. Si vous n&apos;avez jamais posé une lambourde ou monté une
-          ossature bois, partez du guide terrasse : c&apos;est le plus court, le plus direct, et il pose
-          les bases que les trois autres projets reprennent. Une fois la terrasse maîtrisée, la pergola
-          et la clôture deviennent logiques. Le cabanon, lui, s&apos;attaque en connaissance de cause —
-          c&apos;est le projet le plus exigeant des quatre.
+          Ces cinq guides ont été rédigés pour des bricoleurs qui construisent eux-mêmes — pas pour des
+          professionnels du bâtiment. Quatre projets bois (terrasse, cabanon ossature, pergola, clôture)
+          et un tutoriel béton (dalle de fondation) traités du début à la fin : choix des matériaux,
+          calculs dimensionnels issus des DTU en vigueur (31.1, 31.2, 51.4, 13.3), liste des outils,
+          étapes dans l&apos;ordre. Les prix indiqués correspondent à des achats en grande surface de
+          bricolage française, mis à jour régulièrement. Vous trouverez aussi les erreurs courantes à
+          éviter — celles qui font reprendre un chantier à zéro. Si vous n&apos;avez jamais posé une
+          lambourde ou monté une ossature bois, partez du guide terrasse : c&apos;est le plus court, le
+          plus direct, et il pose les bases que les autres projets reprennent.
         </p>
 
         <section>
@@ -80,12 +109,15 @@ export default function GuidesPage() {
             après : chantier court, résultat immédiat, idéal pour prendre confiance sur les fondations
             en béton. Le cabanon, lui, demande de comprendre l&apos;ossature bois (montants, lisses,
             contreventement), la toiture et les ouvertures — comptez un à deux weekends complets, et
-            lisez le guide en entier avant de commander les matériaux.
+            lisez le guide en entier avant de commander les matériaux. Et avant tout cabanon ou grosse
+            pergola, consultez le tutoriel <Link href="/dalle" className="content-link">dalle béton</Link>{' '}
+            : la fondation conditionne toute la stabilité de l&apos;ouvrage, et une dalle ratée se paie
+            cher quand l&apos;ossature est déjà montée.
           </p>
         </section>
 
         <section>
-          <h2 className="content-h2">Les 4 projets bois</h2>
+          <h2 className="content-h2">Les guides DIY</h2>
           <div className="content-guides-grid">
 
             <Link href="/guides/terrasse" className="content-guide-card">
@@ -113,7 +145,7 @@ export default function GuidesPage() {
                 <span className="badge-cost">2&nbsp;500 – 5&nbsp;000&nbsp;€</span>
               </div>
               <p className="content-guide-card-desc">
-                Montants 60&nbsp;cm d&apos;entraxe (DTU 31.1), lisses hautes et basses, bardage, toiture
+                Montants 60&nbsp;cm d&apos;entraxe (DTU 31.2), lisses hautes et basses, bardage, toiture
                 mono-pente. Le guide couvre aussi les ouvertures (porte, fenêtre) et le contreventement.
                 Prévoir le week-end d&apos;ossature séparé du week-end de bardage.
               </p>
@@ -152,6 +184,22 @@ export default function GuidesPage() {
               <span className="btn-secondary">Lire le guide →</span>
             </Link>
 
+            <Link href="/dalle" className="content-guide-card">
+              <div className="content-guide-card-accent"></div>
+              <h3 className="content-guide-card-title">Dalle béton extérieure</h3>
+              <div className="content-guide-card-meta">
+                <span className="badge-level">Prérequis</span>
+                <span className="badge-time">2 jours</span>
+                <span className="badge-cost">150 – 600&nbsp;€</span>
+              </div>
+              <p className="content-guide-card-desc">
+                Tutoriel illustré pour couler une dalle béton conforme NF DTU 13.3 — terrassement, forme
+                drainante, treillis soudé ST25, coulage et joints. La fondation indispensable sous un
+                cabanon ou une grosse pergola. Calculateur de matériaux inclus (béton, treillis).
+              </p>
+              <span className="btn-secondary">Lire le tutoriel →</span>
+            </Link>
+
           </div>
         </section>
 
@@ -176,8 +224,9 @@ export default function GuidesPage() {
             <Link href="/calculateur" className="content-link">Terrasse</Link>,{' '}
             <Link href="/cabanon" className="content-link">cabanon</Link>,{' '}
             <Link href="/pergola" className="content-link">pergola</Link>,{' '}
-            <Link href="/cloture" className="content-link">clôture</Link>{' '}
-            — quatre outils gratuits, sans inscription.
+            <Link href="/cloture" className="content-link">clôture</Link>, et{' '}
+            <Link href="/dalle" className="content-link">dalle béton</Link>{' '}
+            — cinq outils gratuits, sans inscription.
           </p>
         </section>
 

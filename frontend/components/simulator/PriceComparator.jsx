@@ -22,6 +22,7 @@ function StoreCard({ store, isBest, hasSlab, slabTotal }) {
       {isBest && <span className="store-best-badge">Meilleur prix</span>}
 
       <div className="store-card-top">
+        {/* eslint-disable-next-line @next/next/no-img-element -- SVG 28px, next/image n'optimise pas les SVG */}
         <img
           src={`/brands/${store.logo}.svg`}
           alt={`Logo ${store.name}`}

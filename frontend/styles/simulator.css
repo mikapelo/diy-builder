@@ -3359,6 +3359,44 @@
   font-weight: 400;
 }
 
+/* Métadonnée d'article (date de mise à jour, signature collective) */
+.content-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: #8a7e6f;
+  letter-spacing: .02em;
+  margin: 4px 0 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  align-items: baseline;
+  line-height: 1.5;
+}
+.content-meta strong { color: #5e3e25; font-weight: 600; }
+.content-meta a { color: #c9971e; text-decoration: underline; text-underline-offset: 2px; }
+.content-meta a:hover { color: #8b6c45; }
+
+/* Schémas techniques (SVG inline, photos didactiques) */
+.content-figure {
+  margin: 24px 0 32px;
+  padding: 20px 18px 14px;
+  background: #fff;
+  border: 1.5px solid #e8e0d4;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.content-figure svg { max-width: 100%; height: auto; }
+.content-figure-caption {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 13px;
+  color: #6b5f4f;
+  line-height: 1.6;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #e5e2d8;
+  font-style: italic;
+}
+
 .content-disclaimer {
   font-family: 'Manrope', system-ui, sans-serif;
   font-size: 13px;
@@ -3401,6 +3439,20 @@
   color: #3a3530;
   line-height: 1.78;
   margin-bottom: 14px;
+}
+
+/* Bloc-réponse GEO — answer box extractible featured snippet */
+.content-snippet {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #1a1c1b;
+  background: #faf7f0;
+  border-left: 3px solid #C9971E;
+  padding: 14px 18px;
+  margin: 12px 0 20px;
+  border-radius: 0 8px 8px 0;
 }
 
 /* CTA encadré */
@@ -3660,6 +3712,21 @@
 .content-related a:hover {
   text-decoration: underline;
 }
+
+/* Byline collective — signal E-E-A-T bas de page */
+.content-byline {
+  margin: 48px 0 24px;
+  padding: 20px 0 0;
+  border-top: 1px solid #e5e2d8;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 13px;
+  color: #6b5f4f;
+  line-height: 1.65;
+}
+.content-byline p { margin: 0; }
+.content-byline strong { color: #111214; font-weight: 700; }
+.content-byline a { color: #C9971E; text-decoration: underline; text-underline-offset: 2px; }
+.content-byline a:hover { color: #8b6c45; }
 
 /* Section légale */
 .content-legal-section { margin-bottom: 32px; }

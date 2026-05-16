@@ -1,11 +1,26 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
+const OG_TITLE = 'Construire une terrasse bois';
+const OG_SUBTITLE = 'DTU 51.4 + lambourdes + budget';
+const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
+
 export const metadata = {
   title: 'Comment construire une terrasse bois : guide complet 2025 | DIY Builder',
   description:
     'Guide pas à pas pour construire votre terrasse bois : choix des matériaux, calcul des lambourdes, pose des lames. Estimez votre budget en 30 secondes.',
   alternates: { canonical: 'https://diy-builder.fr/guides/terrasse' },
+  openGraph: {
+    title: 'Construire une terrasse bois — Guide DTU 51.4 | DIY Builder',
+    description: 'Guide pas à pas pour construire votre terrasse bois : choix des matériaux, calcul des lambourdes, pose des lames. Estimez votre budget en 30 secondes.',
+    url: 'https://diy-builder.fr/guides/terrasse',
+    type: 'article',
+    images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide terrasse bois DTU 51.4 — DIY Builder' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [OG_URL],
+  },
 };
 
 const howToJsonLd = {
@@ -74,6 +89,16 @@ export default function GuideTerrassePage() {
 
         <h1 className="content-h1">Construire une terrasse bois soi-même : le guide terrain</h1>
 
+        <p className="content-meta">
+          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span>·</span>
+          <span>L&apos;équipe DIY Builder</span>
+          <span>·</span>
+          <span><Link href="/methodologie">Méthodologie</Link></span>
+          <span>·</span>
+          <span><Link href="/sources">Sources DTU</Link></span>
+        </p>
+
         <p className="content-lead">
           Une terrasse bois bien construite, c&apos;est deux jours de travail, les bons matériaux et
           une ossature posée proprement. On voit trop de projets partir de travers dès le départ :
@@ -83,6 +108,12 @@ export default function GuideTerrassePage() {
         </p>
 
         <h2 className="content-h2">Quelle essence choisir selon votre budget et votre usage ?</h2>
+        <p className="content-snippet">
+          Le pin traité autoclave classe 4 (25–40&nbsp;€/m²) tient 15–20 ans et couvre 95&nbsp;%
+          des terrasses françaises. Le douglas naturellement durable (35–55&nbsp;€/m²) grisaille
+          après 2–3 saisons sans entretien. Les bois exotiques comme l&apos;ipé (80–150&nbsp;€/m²)
+          atteignent 30–50 ans sans traitement&nbsp;— certifiés FSC obligatoire.
+        </p>
         <p className="content-body">
           Tout part de là. L&apos;essence que vous choisissez va dicter le prix, le comportement du
           bois dans le temps et l&apos;entretien que vous acceptez de faire. Voici les trois familles
@@ -133,6 +164,12 @@ export default function GuideTerrassePage() {
         </p>
 
         <h2 className="content-h2">Calculer les quantités sans se tromper</h2>
+        <p className="content-snippet">
+          Pour 12&nbsp;m² de terrasse&nbsp;: comptez surface&nbsp;×&nbsp;1,10 pour les lames (10&nbsp;%
+          de chute), 11 lambourdes à entraxe 40&nbsp;cm sur 4&nbsp;m, 15–20 plots réglables et environ
+          500 vis inox A2 5×60&nbsp;mm. La surcommande initiale coûte toujours moins cher qu&apos;un
+          réassort en cours de chantier.
+        </p>
         <p className="content-body">
           Sur les chantiers qu&apos;on voit en GSB, la moitié des acheteurs sous-commandent les lames
           et sur-commandent les vis. Voici la méthode juste pour une terrasse 4 × 3 m = 12 m² :
@@ -182,6 +219,12 @@ export default function GuideTerrassePage() {
         </div>
 
         <h2 className="content-h2">Les 5 étapes de construction dans le bon ordre</h2>
+        <p className="content-snippet">
+          Sol nivelé à 1&nbsp;cm/m de pente, plots réglables tous les 1,5&nbsp;m, lambourdes
+          40×60&nbsp;mm minimum (NF DTU 51.4 §6.2), lames perpendiculaires avec 5&nbsp;mm de
+          jeu de dilatation, finition huile ou lasure. La tolérance d&apos;alignement des plots
+          est de ±3&nbsp;mm sur toute la surface.
+        </p>
 
         <h3 className="content-h3">1. Préparer le sol — l&apos;étape qu&apos;on bâcle toujours</h3>
         <p className="content-body">
@@ -238,6 +281,12 @@ export default function GuideTerrassePage() {
         </p>
 
         <h2 className="content-h2">Budget matériaux : ce que vous allez vraiment dépenser</h2>
+        <p className="content-snippet">
+          Pour 12&nbsp;m² de terrasse&nbsp;: comptez ~360&nbsp;€ en pin traité (30&nbsp;€/m²),
+          ~540&nbsp;€ en douglas (45&nbsp;€/m²) ou ~1&nbsp;200&nbsp;€ en ipé (100&nbsp;€/m²).
+          Matériaux seuls, hors livraison et outillage. Avec pose par artisan, ajoutez 40–60&nbsp;€/m²
+          de main-d&apos;œuvre.
+        </p>
         <p className="content-body">
           Les prix ci-dessous concernent les matériaux uniquement, hors outillage et livraison.
         </p>
@@ -296,6 +345,12 @@ export default function GuideTerrassePage() {
         </div>
 
         <h2 className="content-h2">Questions fréquentes</h2>
+        <p className="content-snippet">
+          Terrasse de plain-pied sous 60&nbsp;cm&nbsp;: aucun permis requis. Au-delà de 20&nbsp;m²
+          en zone urbaine, déclaration préalable (Cerfa 13703, délai 1 mois). Une terrasse bien
+          entretenue dure 15–25 ans selon l&apos;essence&nbsp;; le contact direct avec la terre est
+          interdit même pour un bois classe 4.
+        </p>
 
         <h3 className="content-h3">Faut-il un permis de construire pour une terrasse de plain-pied ?</h3>
         <p className="content-body">
@@ -334,6 +389,15 @@ export default function GuideTerrassePage() {
             <li><Link href="/calculateur">Calculateur terrasse</Link> — devis matériaux + plan</li>
           </ul>
         </aside>
+
+        <footer className="content-byline">
+          <p>
+            <strong>L&apos;équipe DIY Builder</strong> — Article révisé le 16 mai 2026.
+            {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
+            {' '}<Link href="/sources">Sources DTU citées</Link> ·
+            {' '}<Link href="/contact">Signaler une erreur</Link>
+          </p>
+        </footer>
 
         <div className="content-cta-box">
           <p className="content-cta-box-label">Simulateur gratuit</p>

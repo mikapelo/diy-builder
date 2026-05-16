@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 /*
  * Page d'erreur globale — Next.js App Router.
@@ -36,7 +37,7 @@ export default function Error({ error, reset }) {
           }}
           aria-label="Retour à l'accueil DIY Builder"
         >
-          <img
+          <Image
             src="/logo-diy-builder.png"
             alt=""
             width={40}

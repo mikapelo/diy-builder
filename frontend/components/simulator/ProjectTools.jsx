@@ -114,6 +114,7 @@ function TierVisual({ asin, toolIcon, fallbackBg, fallbackColor, brand, model })
   if (showImage) {
     return (
       <div className="tier-card-visual tier-card-visual--image">
+        {/* eslint-disable-next-line @next/next/no-img-element -- Amazon CDN externe, onLoad/naturalWidth fallback */}
         <img
           src={imageUrl}
           alt={`${brand} ${model}`}
@@ -321,6 +322,7 @@ function ConsumableItem({ item, subtag }) {
       <div className="consumable-item-header">
         {showImage ? (
           <div className="consumable-item-image">
+            {/* eslint-disable-next-line @next/next/no-img-element -- Amazon CDN externe, onLoad/naturalWidth fallback */}
             <img
               src={imageUrl}
               alt={item.name}
@@ -451,6 +453,7 @@ function KitCard({ item, subtag }) {
       {/* Visuel : image produit (outils) ou icône colorée (EPI/consommable) */}
       <div className="kit-card-visual">
         {showImage ? (
+          /* eslint-disable-next-line @next/next/no-img-element -- Amazon CDN externe, onLoad/naturalWidth fallback */
           <img
             src={imageUrl}
             alt={`${item.brand} ${item.model}`}

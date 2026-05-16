@@ -146,6 +146,15 @@ export default function ListePage({ searchParams }) {
             </div>
           </section>
 
+          {/* ── Disclaimer affiliation (Code conso L121-1 + Loi 2023-451) ── */}
+          <p className="content-disclaimer" style={{ marginTop: 16, marginBottom: 16 }}>
+            <strong>Liens d&apos;affiliation.</strong> Les boutons «&nbsp;Acheter&nbsp;» pointent vers
+            Leroy Merlin, Castorama, Brico Dépôt et ManoMano via notre redirecteur tracké.
+            Si vous achetez après avoir cliqué, DIY Builder peut percevoir une commission
+            sans surcoût pour vous. Prix relevés automatiquement, pas modifiés selon le partenaire.{' '}
+            <Link href="/charte-affiliation">Charte complète</Link>.
+          </p>
+
           {/* ── BOM détaillé ── */}
           <section style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 4px #0001', overflow: 'hidden' }}>
             <div style={{ padding: '16px 24px', borderBottom: '1px solid #f0f0f0' }}>

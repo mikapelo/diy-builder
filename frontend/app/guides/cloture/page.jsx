@@ -1,10 +1,25 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
+const OG_TITLE = 'Construire une clôture bois';
+const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
+const OG_URL = `https://diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cloture`;
+
 export const metadata = {
   title: 'Comment construire une clôture bois : guide complet 2025 | DIY Builder',
   description: 'Guide complet pour poser une clôture bois : poteaux, rails, lames. Calcul des matériaux, entraxes, hauteurs réglementaires et budget estimé.',
   alternates: { canonical: 'https://diy-builder.fr/guides/cloture' },
+  openGraph: {
+    title: 'Construire une clôture bois — Guide complet | DIY Builder',
+    description: 'Guide complet pour poser une clôture bois : poteaux, rails, lames. Calcul des matériaux, entraxes, hauteurs réglementaires et budget estimé.',
+    url: 'https://diy-builder.fr/guides/cloture',
+    type: 'article',
+    images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Guide clôture bois — DIY Builder' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [OG_URL],
+  },
 };
 
 const jsonLd = {
@@ -86,6 +101,16 @@ export default function GuideClotureBois() {
 
         <h1 className="content-h1">Construire une clôture bois</h1>
 
+        <p className="content-meta">
+          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span>·</span>
+          <span>L&apos;équipe DIY Builder</span>
+          <span>·</span>
+          <span><Link href="/methodologie">Méthodologie</Link></span>
+          <span>·</span>
+          <span><Link href="/sources">Sources DTU</Link></span>
+        </p>
+
         <p className="content-lead">
           Poser une clôture bois est un chantier d&apos;une journée pour un périmètre de 10 à 15 m — à condition
           d&apos;avoir bien préparé les fouilles et laissé prendre le béton la veille. Les problèmes qui reviennent
@@ -95,6 +120,12 @@ export default function GuideClotureBois() {
         </p>
 
         <h2 className="content-h2">Les trois familles d&apos;éléments</h2>
+        <p className="content-snippet">
+          Poteaux 70×70&nbsp;mm jusqu&apos;à 1,20&nbsp;m, 90×90&nbsp;mm au-delà (NF DTU 31.1) en
+          traité classe 4 obligatoire (NF EN 335) au contact du sol. Rails 38×90&nbsp;mm&nbsp;:
+          2 rangées sous 1,20&nbsp;m, 3 rangées pour 1,50–2&nbsp;m. Lames 10–14&nbsp;cm de large,
+          18–21&nbsp;mm d&apos;épaisseur, jeu de 5–8&nbsp;mm entre chaque pour la dilatation.
+        </p>
         <p className="content-body">
           Une clôture bois, c&apos;est trois couches superposées. Mal dimensionner l&apos;une d&apos;elles compromet
           l&apos;ensemble — même si les deux autres sont correctes.
@@ -144,6 +175,12 @@ export default function GuideClotureBois() {
         </ul>
 
         <h2 className="content-h2">Calcul des matériaux — exemple 10 m linéaires</h2>
+        <p className="content-snippet">
+          Pour 10&nbsp;ml, hauteur 1,50&nbsp;m, poteaux à 1,67&nbsp;m d&apos;entraxe&nbsp;: 7 poteaux
+          90×90×200&nbsp;cm classe 4, 21&nbsp;m de rails 38×90 (3 rangées), environ 70 lames de
+          97&nbsp;cm, 14 équerres galvanisées et ~630 vis inox A2 (3 vis par lame par rail).
+          Lames de 12&nbsp;cm avec jeu 8&nbsp;mm&nbsp;: 56 lames seulement.
+        </p>
         <p className="content-body">
           Pour une clôture de&nbsp;<strong>10 m linéaires, hauteur 1,50 m</strong>&nbsp;, avec poteaux
           à 1,67 m d&apos;entraxe&nbsp;:
@@ -170,6 +207,12 @@ export default function GuideClotureBois() {
         </div>
 
         <h2 className="content-h2">Ancrage des poteaux — deux méthodes</h2>
+        <p className="content-snippet">
+          Béton d&apos;ancrage direct&nbsp;: fouilles 30×30&nbsp;cm à 60&nbsp;cm minimum de profondeur,
+          béton dosé à 350&nbsp;kg/m³, couronne bombée autour du poteau, attente 48&nbsp;h.
+          Ou sabots sur platine&nbsp;: poteau hors sol zéro contact, installation réversible.
+          Dans les deux cas, classe 4 obligatoire — la classe 3b n&apos;est pas suffisante pour un usage enterré.
+        </p>
         <p className="content-body">
           C&apos;est l&apos;étape qui conditionne la durée de vie de toute la clôture. Une clôture qui penche après
           le premier hiver, c&apos;est presque toujours le scellement&nbsp;: pas assez profond, ou béton coulé
@@ -204,6 +247,12 @@ export default function GuideClotureBois() {
         </p>
 
         <h2 className="content-h2">Les 5 étapes de pose</h2>
+        <p className="content-snippet">
+          Poteaux d&apos;extrémité en premier, cordeau entre eux pour les intermédiaires. Ne pas
+          couper tous les poteaux à la même longueur avant scellement — couper en tête après prise
+          du béton selon un cordeau de niveau. Rail bas entre 5 et 10&nbsp;cm du sol. Jeu de
+          5–8&nbsp;mm entre les lames. Lasure dès la fin, avant les premières pluies.
+        </p>
 
         <h3 className="content-h3">1. Piquetage et implantation</h3>
         <p className="content-body">
@@ -253,6 +302,12 @@ export default function GuideClotureBois() {
         </p>
 
         <h2 className="content-h2">Budget matériaux</h2>
+        <p className="content-snippet">
+          Bois, quincaillerie et béton des fouilles, hors outillage&nbsp;: 180–280&nbsp;€ pour
+          10&nbsp;ml à 1,20&nbsp;m de hauteur, 240–360&nbsp;€ pour 10&nbsp;ml à 1,50&nbsp;m,
+          450–700&nbsp;€ pour 20&nbsp;ml à 1,50&nbsp;m. Fourchette basse = pin traité classe 3
+          en GSB&nbsp;; fourchette haute = douglas ou mélèze en distributeur spécialisé.
+        </p>
         <p className="content-body">
           Les fourchettes ci-dessous incluent le bois, la quincaillerie et le béton des fouilles — pas
           l&apos;outillage. L&apos;écart entre fourchette basse et haute dépend essentiellement de l&apos;essence choisie.
@@ -293,6 +348,12 @@ export default function GuideClotureBois() {
         </p>
 
         <h2 className="content-h2">Réglementation — ce qu&apos;il faut vérifier avant de commander</h2>
+        <p className="content-snippet">
+          Dans la plupart des communes, une clôture en limite de propriété peut atteindre 2&nbsp;m
+          sans déclaration préalable — mais certains PLU ou lotissements imposent 1,50&nbsp;m.
+          En zone ABF, consultation obligatoire sans seuil. En limite mitoyenne, l&apos;accord écrit du
+          voisin est fortement recommandé (frais partagés, voix au chapitre sur l&apos;entretien).
+        </p>
         <p className="content-body">
           Les règles varient selon les communes. Avant d&apos;acheter les matériaux, vérifiez ces quatre points.
         </p>
@@ -321,6 +382,12 @@ export default function GuideClotureBois() {
         </ul>
 
         <h2 className="content-h2">Les erreurs courantes (et comment les éviter)</h2>
+        <p className="content-snippet">
+          Ne pas couper les poteaux à hauteur fixe avant scellement (terrain non plat — couper après
+          prise). Ne pas utiliser la classe 4 pour les poteaux enterrés (NF EN 335 — la classe 3 dure
+          2–3 hivers). Ne pas pré-percer les bouts de lame (éclats garantis sur bois sec). Ne pas
+          vérifier le PLU avant de commander (2&nbsp;m sans déclaration n&apos;est pas universel).
+        </p>
         <ul className="content-body">
           <li>
             <strong>Sceller des poteaux pré-coupés à la même longueur.</strong> Le terrain n&apos;est jamais
@@ -368,6 +435,15 @@ export default function GuideClotureBois() {
             </li>
           </ul>
         </aside>
+
+        <footer className="content-byline">
+          <p>
+            <strong>L&apos;équipe DIY Builder</strong> — Article révisé le 16 mai 2026.
+            {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
+            {' '}<Link href="/sources">Sources DTU citées</Link> ·
+            {' '}<Link href="/contact">Signaler une erreur</Link>
+          </p>
+        </footer>
 
         <div className="content-cta-box" role="complementary" aria-label="Appel à l'action final">
           <p className="content-cta-box-label">Simulateur gratuit</p>

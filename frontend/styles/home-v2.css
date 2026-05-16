@@ -1,0 +1,454 @@
+/* home-v2.css — Bandeau SEO HomeSeoBand
+   Harmonisé avec le design system g-v2 / V6.
+   Polices : DM Serif Display (H1+H2, cohérent V6 hero sous g-v2 + .content-*),
+             Manrope 700 (H3 cards, cohérent .content-h3),
+             Manrope 400 (body, lead),
+             IBM Plex Mono (eyebrow numérotée).
+   Palette : tokens de base.css + --v6-primary, --g-ink.
+   Classes : préfixe hv2-* (pas de collision).
+   ──────────────────────────────────────────── */
+
+/* ── Conteneur principal ── */
+.hv2-seo-band {
+  background: #FAFAF8;
+  border-top: 1px solid #e8e0d5;
+  border-bottom: 1px solid #e8e0d5;
+  padding: 80px 24px 96px;
+}
+
+@media (max-width: 640px) {
+  .hv2-seo-band {
+    padding: 52px 20px 64px;
+  }
+}
+
+.hv2-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ── Eyebrow — micro-typo magazine (IBM Plex Mono) ── */
+.hv2-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #918B82;
+  margin-bottom: 20px;
+}
+
+.hv2-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1.5px;
+  background: #C9971E;
+  opacity: .55;
+  flex-shrink: 0;
+}
+
+/* ── H1 — serif DM Serif Display (cohérent .v6-hero-title sous [data-theme=g-v2]) ── */
+.hv2-h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.875rem, 3.8vw, 2.625rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -.012em;
+  color: var(--g-marine, #1E3A52);
+  margin: 0 0 20px;
+  max-width: 760px;
+}
+
+/* ── Lead paragraphe ── */
+.hv2-lead {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+  font-weight: 400;
+  line-height: 1.72;
+  color: #6b5f4f;
+  max-width: 720px;
+  margin: 0 0 64px;
+}
+
+/* ── Séparateur section ── */
+.hv2-divider {
+  border: none;
+  border-top: 1px solid #e5e2d8;
+  margin: 0 0 64px;
+}
+
+/* ── Section header commun — eyebrow + serif H2 ──
+   Reprend l'esthétique .content-h2 avec filet gauche mustard */
+.hv2-section-header {
+  margin-bottom: 28px;
+}
+
+.hv2-section-eyebrow {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #C9971E;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.hv2-section-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+  font-weight: 400;
+  color: var(--g-ink, #111214);
+  margin: 0;
+  line-height: 1.22;
+  letter-spacing: -.010em;
+  border-left: 3px solid #C9971E;
+  padding-left: 14px;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION — 4 cards projets
+   Esthétique : .content-guide-card (accent top mustard, hover élévation)
+───────────────────────────────────────────── */
+.hv2-projects-section {
+  margin-bottom: 72px;
+}
+
+.hv2-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 680px) {
+  .hv2-projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hv2-project-card {
+  background: #fff;
+  border: 1px solid #e5e2d8;
+  border-top: 3px solid #C9971E;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.hv2-project-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  transform: translateY(-2px);
+}
+
+.hv2-card-img {
+  width: 100%;
+  height: 172px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid #f0ece4;
+}
+
+.hv2-card-body {
+  padding: 22px 22px 26px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hv2-card-title {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--g-ink, #111214);
+  margin: 0 0 10px;
+  line-height: 1.20;
+  letter-spacing: -.012em;
+}
+
+.hv2-card-desc {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.68;
+  color: #6b5f4f;
+  margin: 0 0 22px;
+  flex: 1;
+}
+
+.hv2-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Boutons — alignés sur .content-cta-box .btn-primary ── */
+.hv2-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #C9971E;
+  color: #fff;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: .01em;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background .15s ease, transform .15s ease;
+  white-space: nowrap;
+}
+
+.hv2-btn-primary:hover {
+  background: #a07a14;
+  transform: translateY(-1px);
+}
+
+.hv2-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #4e4637;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1c5b2;
+  text-decoration: none;
+  transition: border-color .15s ease, color .15s ease;
+  white-space: nowrap;
+}
+
+.hv2-btn-secondary:hover {
+  border-color: #8a7e6f;
+  color: #111214;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION — Pourquoi DIY Builder (E-E-A-T)
+───────────────────────────────────────────── */
+.hv2-eatblock {
+  background: #fff;
+  border: 1px solid #e5e2d8;
+  border-radius: 14px;
+  padding: 36px 36px 32px;
+  margin-bottom: 72px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+
+@media (max-width: 640px) {
+  .hv2-eatblock {
+    padding: 26px 22px 24px;
+  }
+}
+
+.hv2-eatblock .hv2-section-header {
+  margin-bottom: 24px;
+}
+
+.hv2-reasons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 28px;
+}
+
+@media (max-width: 600px) {
+  .hv2-reasons {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.hv2-reason {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* Icône — carré mustard discret, plus éditorial que SVG générique */
+.hv2-reason-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #FFF8E1;
+  border: 1px solid rgba(201,151,30,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.hv2-reason-icon svg {
+  width: 14px;
+  height: 14px;
+  color: #C9971E;
+}
+
+.hv2-reason-body {}
+
+.hv2-reason-heading {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111214;
+  margin: 0 0 4px;
+  line-height: 1.35;
+}
+
+.hv2-reason-text {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.60;
+  color: #6b5f4f;
+  margin: 0;
+}
+
+.hv2-reason-text a {
+  color: #7A5C00;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+.hv2-reason-text a:hover {
+  color: #C9971E;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION — Guides (maillage interne)
+   Esthétique : .content-guide-card compact
+───────────────────────────────────────────── */
+.hv2-guides-section {
+  margin-bottom: 72px;
+  background: #F9F6F0;
+  border: 1px solid #e5e2d8;
+  border-radius: 14px;
+  padding: 32px 32px 28px;
+}
+
+@media (max-width: 640px) {
+  .hv2-guides-section {
+    padding: 24px 20px 22px;
+  }
+}
+
+.hv2-guides-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 680px) {
+  .hv2-guides-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .hv2-guides-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hv2-guide-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid #e5e2d8;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.hv2-guide-card:hover {
+  border-color: #C9971E;
+  box-shadow: 0 2px 10px rgba(201,151,30,.10);
+  transform: translateY(-1px);
+}
+
+.hv2-guide-name {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111214;
+  line-height: 1.3;
+}
+
+.hv2-guide-teaser {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: #6b5f4f;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION — FAQ extraite
+   Esthétique : .content-details / .content-summary
+───────────────────────────────────────────── */
+.hv2-faq-section {
+  margin-bottom: 8px;
+}
+
+.hv2-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid #e5e2d8;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: #fff;
+}
+
+.hv2-faq-item {
+  border-bottom: 1px solid #f0ece4;
+  background: #fff;
+}
+
+.hv2-faq-item:last-child {
+  border-bottom: none;
+}
+
+.hv2-faq-q {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111214;
+  padding: 18px 22px 6px;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.hv2-faq-a {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.72;
+  color: #3a3530;
+  padding: 0 22px 18px;
+  margin: 0;
+  border-top: 1px solid #f0ece4;
+}
+
+.hv2-faq-more {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #7A5C00;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color .15s;
+}
+
+.hv2-faq-more:hover {
+  color: #C9971E;
+}

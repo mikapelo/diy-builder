@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -13,7 +14,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex-shrink-0">
             <div className="flex items-center gap-2.5 mb-4">
-              <img
+              <Image
                 src="/logo-diy-builder.png"
                 alt="DIY Builder"
                 width={62}
@@ -64,6 +65,18 @@ export default function Footer() {
               </ul>
             </div>
 
+            {/* Transparence */}
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wide mb-4 text-white">Transparence</h4>
+              <ul className="space-y-2.5">
+                <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/methodologie">Méthodologie</Link></li>
+                <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/sources">Sources DTU</Link></li>
+                <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/a-propos">À propos</Link></li>
+                <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/charte-affiliation">Charte affiliation</Link></li>
+                <li><Link className="text-white/60 hover:text-white text-sm transition-colors duration-200" href="/contact">Contact</Link></li>
+              </ul>
+            </div>
+
             {/* Informations légales */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-wide mb-4 text-white">Informations légales</h4>
@@ -76,6 +89,16 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Affiliation disclaimer */}
+        <p className="text-white/40 text-xs leading-relaxed mb-6 max-w-3xl">
+          DIY Builder est gratuit, financé par l&apos;affiliation : nous touchons une
+          commission sur certains liens d&apos;achat vers Leroy Merlin, Castorama, Brico
+          Dépôt et ManoMano, sans surcoût pour vous.{' '}
+          <Link href="/charte-affiliation" className="underline hover:text-white/70">
+            Charte complète
+          </Link>.
+        </p>
 
         {/* Bottom row: Legal + Status */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">

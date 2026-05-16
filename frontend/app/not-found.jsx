@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 /*
  * Note : Next.js App Router ignore `export const metadata` sur not-found.jsx.
@@ -40,7 +41,7 @@ export default function NotFound() {
           }}
           aria-label="Retour à l'accueil DIY Builder"
         >
-          <img
+          <Image
             src="/logo-diy-builder.png"
             alt=""
             width={40}
