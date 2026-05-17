@@ -178,7 +178,7 @@ export default function DeckViewer({
           {/* Plan technique : overlay scrollable */}
           {isPlan && (
             <div className="tp-overlay">
-              <TechnicalPlan width={width} depth={depth} />
+              <TechnicalPlan width={width} depth={depth} gardeCorps={gardeCorps} />
             </div>
           )}
 

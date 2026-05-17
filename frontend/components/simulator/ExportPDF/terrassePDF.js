@@ -333,16 +333,21 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
 
   const deckData = generateDeck(width, depth);
   const { layers: topLayers } = buildTerrasseTopView(deckData, { width, depth },
-    { ox: margin3, oy: topY3, drawW: drawW3, drawH: drawH3 });
+    { ox: margin3, oy: topY3, drawW: drawW3, drawH: drawH3 },
+    { gardeCorps });
   renderPDFLayers(doc, topLayers);
 
-  drawLegendBox(doc, boxX3 + boxW3 - 50, boxY3 + boxH3 - 52, [
+  const legendItems = [
     { label: 'Plots',         color: MAT.beton.stroke,    fill: MAT.beton.fill },
     { label: 'Lambourdes',    color: MAT.chevron.stroke,  fill: MAT.chevron.fill },
     { label: 'Dbl. lambourdes', color: [60, 40, 15],      fill: [100, 75, 40] },
     { label: 'Entretoises',   color: MAT.lisse.stroke,    fill: MAT.lisse.fill },
     { label: 'Lames (fond)',  color: [210, 200, 185] },
-  ]);
+    ...(gardeCorps?.enabled
+      ? [{ label: `Garde-corps h=${(gardeCorps.height ?? 1.0).toFixed(2)} m`, color: [28, 90, 138], fill: [28, 90, 138] }]
+      : []),
+  ];
+  drawLegendBox(doc, boxX3 + boxW3 - 50, boxY3 + boxH3 - (52 + (gardeCorps?.enabled ? 8 : 0)), legendItems);
 
   /* Barre d'échelle — 1 m réel */
   const sbLen3 = drawW3 / Math.max(width, depth);
