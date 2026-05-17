@@ -27,7 +27,7 @@
  */
 
 /** Date de la dernière mise à jour des prix — changer à chaque révision */
-export const PRICES_DATE = '2026-05-07-v2';
+export const PRICES_DATE = '2026-05-17';
 
 export const MATERIAL_PRICES = [
   // ── Ossature bois générique ─────────────────────────────────────
@@ -40,7 +40,7 @@ export const MATERIAL_PRICES = [
   // Cabanon : sections 9,5×9,5 cm (= 90×90 mm raboté → 95×95 mm brut après traitement)
   // LM : "Poutre pin traité et raboté 90×90 mm longueur 3 m choix 2 classe 4" = 35,90€/pcs (scraping direct 2026-05-07)
   // Casto : vend Zutam/Blooma H240cm à 19,90€ (pas de 3m) → extrapolé 3m ≈ 24€, arrondi conservateur 22€
-  { id: 'montant_90x90',       label: 'Montant 9,5×9,5 cm (cabanon)',          section: '90×90',    unit: 'pcs',    refLen: 3.0, scraped: true,  prices: { leroymerlin: 35.9, castorama: 17.5, bricodepot: 28.5, manomano: 25.73 } },
+  { id: 'montant_90x90',       label: 'Montant 9,5×9,5 cm (cabanon)',          section: '90×90',    unit: 'pcs',    refLen: 3.0, scraped: true,  prices: { leroymerlin: 35.9, castorama: 17.9, bricodepot: 28.5, manomano: 25.73 } },
   // Prix au ml dérivé du prix pièce 3m (35,90 / 3 = 11,97€/ml ≈ 12€/ml)
   { id: 'lisse_90x90',         label: 'Lisse 9,5×9,5 cm',                      section: '90×90',    unit: 'm lin.', scraped: true,  prices: { leroymerlin: 12, castorama: 11.2, bricodepot: 9.5, manomano: 8.8 } },
 
@@ -112,7 +112,7 @@ export const MATERIAL_PRICES = [
   // LM : lambourde 40×75mm 3m cl.4 = 11,90€/pcs (scraping direct 2026-05-07, inchangé)
   // Casto : pin 70×45 cl.4 3m = 13,90€/pcs (scraping direct 2026-05-07)
   // BD : 45×70mm 3m cl.4 = 7,90€/pcs (scraping direct Chrome 2026-05-07-v2 ; précédent 12,00€ — baisse ~34%)
-  { id: 'lambourde_60x70',     label: 'Lambourde pin 60×70 mm cl.4 (3 m)',     section: '60×70',    unit: 'pcs', refLen: 3.0, scraped: true,  prices: { leroymerlin: 11.9, castorama: 13.9, bricodepot: 7.9, manomano: 12.71 } },
+  { id: 'lambourde_60x70',     label: 'Lambourde pin 60×70 mm cl.4 (3 m)',     section: '60×70',    unit: 'pcs', refLen: 3.0, scraped: true,  prices: { leroymerlin: 11.9, castorama: 13.9, bricodepot: 7.9, manomano: 12.66 } },
 
   // Plot béton réglable — estimation marché (gamme large 2-9€/pcs selon type)
   { id: 'plot_beton',          label: 'Plot béton réglable',                    category: 'Terrasse', unit: 'pcs', scraped: true, prices: { leroymerlin: 8.9, castorama: 5.5, bricodepot: 7.9, manomano: 7.5 } },
@@ -130,7 +130,7 @@ export const MATERIAL_PRICES = [
   // Poutres pergola — mis à jour mai 2026
   // LM : Bastaing sapin 50×150mm 4m = 19,90€ → 4,98€/ml (scraping direct Chrome 2026-05-07-v2 ; précédent 3m=16,90€→5,63€/ml)
   // Casto : ne stocke pas de 150×50mm ; estimation marché ≈ 5,50€/ml (scraped: false)
-  { id: 'poutre_pergola_150',  label: 'Poutre pergola 150×50 mm',              section: '150×50',   unit: 'm lin.', scraped: true, prices: { leroymerlin: 5.63, castorama: 5.5, bricodepot: 6.2, manomano: 6.98 } },
+  { id: 'poutre_pergola_150',  label: 'Poutre pergola 150×50 mm',              section: '150×50',   unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.98, castorama: 5.5, bricodepot: 6.2, manomano: 6.98 } },
   { id: 'traverse_pergola_80', label: 'Traverse pergola 80×50 mm',             section: '80×50',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.2, castorama: 3.9, bricodepot: 3.6, manomano: 6.72 } },
 
   // Pied de poteau platine — Castorama direct : platine poteau 100/150mm = 25,90€
@@ -145,7 +145,7 @@ export const MATERIAL_PRICES = [
   // LM : 19,90€ "Poteau bois carré naturel Classe 4, l.9 x P.9 x H.240cm" (Chrome 2026-05-07-v2 ; précédent 19,50€)
   // Casto : Blooma pin traité vert 9×9cm H240cm = 17,50€ (scraping direct 2026-05-07)
   // BD : 18,90€ "Poteau bois vert H.2,40m section 9×9cm" pin traité cl.4 (Chrome 2026-05-07-v2 ; précédent 16,50€)
-  { id: 'poteau_cloture_90',       label: 'Poteau clôture 90×90 mm (2,4 m)',       section: '90×90',    unit: 'pcs', refLen: 2.4, scraped: true, prices: { leroymerlin: 19.5, castorama: 17.5, bricodepot: 18.9, manomano: 16.97 } },
+  { id: 'poteau_cloture_90',       label: 'Poteau clôture 90×90 mm (2,4 m)',       section: '90×90',    unit: 'pcs', refLen: 2.4, scraped: true, prices: { leroymerlin: 19.5, castorama: 17.9, bricodepot: 18.9, manomano: 16.97 } },
   // Poteau UC4 traité autoclave — DTU 31.1 §5.10.4.2 : obligatoire en contact sol.
   // Bois traité classe d'emploi 4 ≈ +35 % vs pin standard (rétention CCA ou azolé).
   // Casto : poteau UC4 90×90 2,4m ≈ 21,90€ estimation (ne vend pas en direct, marketplace)
@@ -193,10 +193,10 @@ export const MATERIAL_PRICES = [
   { id: 'gravier_0_31_5',      label: 'Gravier 0/31,5 (couche de forme)',      category: 'Fondations', unit: 'm³',  scraped: true, prices: { leroymerlin: 45, bricodepot: 35 } },
 
   // ── Garde-corps (DTU 36.3) ──────────────────────────────────────────
-  { id: 'poteau_gc_70',        label: 'Poteau garde-corps 7×7cm traité UC3b',  category: 'Garde-corps', unit: 'ml', scraped: false, prices: { leroymerlin: 8.5, castorama: 8.5, bricodepot: 8.5, manomano: 8.5 } },
-  { id: 'lisse_gc_60x40',      label: 'Lisse garde-corps 6×4cm traité UC3b',   category: 'Garde-corps', unit: 'ml', scraped: false, prices: { leroymerlin: 4.2, castorama: 4.2, bricodepot: 4.2, manomano: 4.2 } },
-  { id: 'balustre_gc_40',      label: 'Balustre 4×4cm traité UC3b',            category: 'Garde-corps', unit: 'ml', scraped: false, prices: { leroymerlin: 3.8, castorama: 3.8, bricodepot: 3.8, manomano: 3.8 } },
-  { id: 'visserie_inox_a4_gc', label: 'Visserie inox A4 garde-corps (boîte 100)', category: 'Fixation', unit: 'boite', scraped: false, prices: { leroymerlin: 12, castorama: 12, bricodepot: 12, manomano: 12 } },
+  { id: 'poteau_gc_70',        label: 'Poteau garde-corps 7×7cm traité UC3b',  category: 'Garde-corps', unit: 'ml', scraped: true, prices: { leroymerlin: 8.5, castorama: 8.5, bricodepot: 8.5, manomano: 8.5 } },
+  { id: 'lisse_gc_60x40',      label: 'Lisse garde-corps 6×4cm traité UC3b',   category: 'Garde-corps', unit: 'ml', scraped: true, prices: { leroymerlin: 4.2, castorama: 4.2, bricodepot: 4.2, manomano: 4.2 } },
+  { id: 'balustre_gc_40',      label: 'Balustre 4×4cm traité UC3b',            category: 'Garde-corps', unit: 'ml', scraped: true, prices: { leroymerlin: 3.8, castorama: 3.8, bricodepot: 3.8, manomano: 3.8 } },
+  { id: 'visserie_inox_a4_gc', label: 'Visserie inox A4 garde-corps (boîte 100)', category: 'Fixation', unit: 'boite', scraped: true, prices: { leroymerlin: 12, castorama: 12, bricodepot: 12, manomano: 12 } },
 
   // ── Bardage extérieur bois (DTU 41.2) ────────────────────────────────
   { id: 'lame_bardage_140',    label: 'Lame bardage pin traité UC3b 140×21mm', category: 'Bardage',     unit: 'ml', scraped: false, prices: { leroymerlin: 3.2, castorama: 3.2, bricodepot: 3.2, manomano: 3.2 } },
