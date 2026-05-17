@@ -29,6 +29,7 @@ import { useProjectEngine } from '@/core/useProjectEngine.js';
 import { calcFoundation } from '@/lib/foundation/foundationCalculator';
 import { useDeckSimulatorState } from '@/core/useDeckSimulatorState.js';
 import { STUD_SPACING, CORNER_ZONE, SECTION } from '@/lib/cabanonConstants.js';
+import { generateGardeCorps } from '@/modules/garde-corps/engine.js';
 import { ExportBridgeProvider, useExportBridge } from './shared/ExportContext';
 import { usePDFExport } from '@/hooks/usePDFExport';
 import { useSimulatorUrl } from '@/hooks/useSimulatorUrl';
@@ -165,9 +166,36 @@ function SimulatorContent({ projectType }) {
     [width, depth, slabThickness, foundationType],
   );
 
+  /* ── Garde-corps BOM (terrasse uniquement) ──
+     Source unique des quantitatifs garde-corps : on appelle l'engine ici
+     pour que les valeurs (postCount / railLength / balustreCount) soient
+     reprises à la fois par MaterialsList, costCalculator et le PDF.
+     Périmètre = somme des longueurs des côtés sélectionnés
+     (avant/arrière = width, gauche/droite = depth). */
+  const gardeCorpsBOM = useMemo(() => {
+    if (!isTerasse(projectType) || !gardeCorps?.enabled) return null;
+    const selectedSides = gardeCorps.sides ?? [];
+    const sideLengths = selectedSides.map(s => (s === 'avant' || s === 'arrière') ? width : depth);
+    const perimeter = sideLengths.reduce((a, b) => a + b, 0);
+    if (perimeter <= 0) return null;
+    const gc = generateGardeCorps(perimeter, gardeCorps.height ?? 1.0);
+    return {
+      enabled: true,
+      postCount: gc.postCount,
+      postLength: gc.postLength,
+      railCount: gc.railCount,
+      railLength: gc.railLength,
+      balustreCount: gc.balustreCount,
+      balustreLength: gc.balustreLength,
+      perimeter: gc.perimeter,
+      height: gc.height,
+      sides: selectedSides,
+    };
+  }, [projectType, gardeCorps?.enabled, gardeCorps?.sides, gardeCorps?.height, width, depth]);
+
   const dims = { width, depth, area };
   const materials = isTerasse(projectType)
-    ? { boards, joists: allJoistCount, pads, screws, entretoises, bande: bandeMl, slab }
+    ? { boards, joists: allJoistCount, pads, screws, entretoises, bande: bandeMl, slab, gardeCorps: gardeCorpsBOM }
     : { ...structure, slab };
 
   /* ── PDF ── */

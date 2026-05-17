@@ -401,6 +401,48 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
         category: 'Structure',
       });
     }
+
+    /* ── Garde-corps (option terrasse) ──
+       Quantités produites par generateGardeCorps (modules/garde-corps/engine.js),
+       transitant via materials.gardeCorps dans DeckSimulator. Le branchement
+       `projectType === 'garde-corps'` (plus bas) reste pour les usages directs
+       du module garde-corps en standalone. */
+    if (structure.gardeCorps?.enabled) {
+      const gc = structure.gardeCorps;
+
+      if (gc.postCount > 0 && gc.postLength > 0) {
+        push({
+          materialId: 'poteau_gc_70',
+          label: `Garde-corps — Poteaux 7×7 (${gc.postCount} × ${formatLength(gc.postLength)} m)`,
+          quantity: +(gc.postCount * gc.postLength).toFixed(2),
+          unit: 'm lin.',
+          unitPrice: resolvePrice('poteau_gc_70', storeId),
+          category: 'Garde-corps',
+        });
+      }
+
+      if (gc.railLength > 0) {
+        push({
+          materialId: 'lisse_gc_60x40',
+          label: 'Garde-corps — Lisses haute + basse 6×4',
+          quantity: gc.railLength,
+          unit: 'm lin.',
+          unitPrice: resolvePrice('lisse_gc_60x40', storeId),
+          category: 'Garde-corps',
+        });
+      }
+
+      if (gc.balustreCount > 0 && gc.balustreLength > 0) {
+        push({
+          materialId: 'balustre_gc_40',
+          label: `Garde-corps — Balustres 4×4 (${gc.balustreCount} × ${formatLength(gc.balustreLength)} m)`,
+          quantity: +(gc.balustreCount * gc.balustreLength).toFixed(2),
+          unit: 'm lin.',
+          unitPrice: resolvePrice('balustre_gc_40', storeId),
+          category: 'Garde-corps',
+        });
+      }
+    }
   } else if (projectType === 'pergola') {
     // ── Pergola : poteaux, longerons, traverses, chevrons, vis, ancrages
 

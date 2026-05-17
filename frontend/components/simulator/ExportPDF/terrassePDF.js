@@ -45,7 +45,7 @@ import { drawKitSection } from './pdfKitSection.js';
  */
 export function generateTerrassePDF(doc, { dims, materials, foundationType, projectConfig, budgetByStore, bestPrice, snapshot }) {
   const { width, depth, area } = dims;
-  const { boards, joists, pads, screws, entretoises, bande, slab } = materials;
+  const { boards, joists, pads, screws, entretoises, bande, slab, gardeCorps } = materials;
   const isSlab = foundationType === 'slab';
   const TOTAL = 7;
   const terTitle = `${projectConfig?.pdfTitle ?? 'Terrasse bois'} ${width}×${depth} m`;
@@ -96,6 +96,13 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     ['Bande bitume',           `${bande} ml`,     'Interposition lambourde / plot'],
     ...(entretoises > 0
       ? [['Entretoises 45×70 mm', `${entretoises} pcs`, 'Entre lambourdes']]
+      : []),
+    ...(gardeCorps?.enabled
+      ? [
+          ['Garde-corps - Poteaux 7x7', `${gardeCorps.postCount} pcs`,  `Longueur ${fmtLen(gardeCorps.postLength)} - DTU 36.3 P3`],
+          ['Garde-corps - Lisses 6x4',  `${fmtLen(gardeCorps.railLength)} ml`, 'Lisse haute + basse (2 x perimetre)'],
+          ['Garde-corps - Balustres 4x4', `${gardeCorps.balustreCount} pcs`, `Longueur ${fmtLen(gardeCorps.balustreLength)} - espacement <= 11 cm`],
+        ]
       : []),
   ];
 
