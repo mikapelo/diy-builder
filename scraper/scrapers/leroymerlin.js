@@ -82,6 +82,40 @@ const TARGETS = [
     isListPage: true,
     labelMatch: /pin.*120|120.*pin|lame.*cloture.*120/i,
   },
+
+  // ── Garde-corps (DTU 36.3) — TODO 2026-05-17 ────────────────────────────────
+  // Ajout du câblage garde-corps au module terrasse. Les IDs ci-dessous sont
+  // déclarés dans materialPrices.js mais URLs produit LM non vérifiées.
+  // Fallback : prices-override.json fournit les prix manuels en attendant.
+  // Quand des URLs réelles seront disponibles, mettre todo: false et compléter url.
+  {
+    id: 'poteau_gc_70',
+    todo: true,
+    url: null, // TODO: trouver URL LM poteau garde-corps 7×7cm traité UC3b
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'lisse_gc_60x40',
+    todo: true,
+    url: null, // TODO: trouver URL LM lisse garde-corps 6×4cm traité UC3b
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'balustre_gc_40',
+    todo: true,
+    url: null, // TODO: trouver URL LM balustre 4×4cm traité UC3b
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'visserie_inox_a4_gc',
+    todo: true,
+    url: null, // TODO: trouver URL LM visserie inox A4 garde-corps (boîte 100)
+    unit: 'lot',
+    refLen: null,
+  },
 ];
 
 const LM_PRICE_SELECTORS = [
@@ -158,6 +192,10 @@ export async function scrapeLeroyMerlin() {
   }
 
   for (const target of TARGETS) {
+    if (target.todo || !target.url) {
+      console.log(`  [leroymerlin] ${target.id} — TODO (URL à définir, scraping ignoré)`);
+      continue;
+    }
     const context = await browser.newContext({
       viewport: { width: 1280, height: 800 },
       userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',

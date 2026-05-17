@@ -150,6 +150,38 @@ const PRODUCT_TARGETS = [
     unit: 'pcs',
     refLen: null,
   },
+
+  // ── Garde-corps (DTU 36.3) — TODO 2026-05-17 ────────────────────────────────
+  // Câblage garde-corps ajouté au module terrasse. URLs produit Casto à trouver.
+  // En attendant, prices-override.json fournit les prix manuels (fallback).
+  {
+    id: 'poteau_gc_70',
+    todo: true,
+    url: null, // TODO: trouver URL Casto poteau garde-corps 7×7cm traité UC3b
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'lisse_gc_60x40',
+    todo: true,
+    url: null, // TODO: trouver URL Casto lisse garde-corps 6×4cm traité UC3b
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'balustre_gc_40',
+    todo: true,
+    url: null, // TODO: trouver URL Casto balustre 4×4cm traité UC3b
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'visserie_inox_a4_gc',
+    todo: true,
+    url: null, // TODO: trouver URL Casto visserie inox A4 garde-corps (boîte 100)
+    unit: 'lot',
+    refLen: null,
+  },
 ];
 
 async function fetchHtml(url) {
@@ -268,6 +300,10 @@ export async function scrapeCastorama() {
   const delay = ms => new Promise(r => setTimeout(r, ms));
 
   for (const target of PRODUCT_TARGETS) {
+    if (target.todo || !target.url) {
+      console.log(`  [castorama] ${target.id} — TODO (URL à définir, scraping ignoré)`);
+      continue;
+    }
     try {
       await delay(700);
       let raw = await scrapeTarget(target);

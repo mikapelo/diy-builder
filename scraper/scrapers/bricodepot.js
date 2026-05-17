@@ -79,6 +79,38 @@ const TARGETS = [
     unit: 'm lin.',
     refLen: 1.2,
   },
+
+  // ── Garde-corps (DTU 36.3) — TODO 2026-05-17 ────────────────────────────────
+  // Câblage garde-corps ajouté au module terrasse. URLs produit BD à trouver.
+  // En attendant, prices-override.json fournit les prix manuels (fallback).
+  {
+    id: 'poteau_gc_70',
+    todo: true,
+    url: null, // TODO: trouver URL BD poteau garde-corps 7×7cm traité UC3b (prod#####)
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'lisse_gc_60x40',
+    todo: true,
+    url: null, // TODO: trouver URL BD lisse garde-corps 6×4cm traité UC3b (prod#####)
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'balustre_gc_40',
+    todo: true,
+    url: null, // TODO: trouver URL BD balustre 4×4cm traité UC3b (prod#####)
+    unit: 'm lin.',
+    refLen: 1.0,
+  },
+  {
+    id: 'visserie_inox_a4_gc',
+    todo: true,
+    url: null, // TODO: trouver URL BD visserie inox A4 garde-corps (boîte 100, prod#####)
+    unit: 'lot',
+    refLen: null,
+  },
 ];
 
 const PRICE_SELECTORS = [
@@ -165,6 +197,10 @@ export async function scrapeBricodepot(browser) {
   const results = {};
 
   for (const target of TARGETS) {
+    if (target.todo || !target.url) {
+      console.log(`  [bricodepot] ${target.id} — TODO (URL à définir, scraping ignoré)`);
+      continue;
+    }
     const page = await browser.newPage();
     try {
       await page.setExtraHTTPHeaders({ 'Accept-Language': 'fr-FR,fr;q=0.9' });

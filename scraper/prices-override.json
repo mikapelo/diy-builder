@@ -85,6 +85,32 @@
     "equerre_fixation": {
       "leroymerlin": 1.80,
       "manomano": 1.50
+    },
+
+    "_garde_corps_note": "Câblage garde-corps (DTU 36.3) ajouté au module terrasse 2026-05-17. Prix placeholders ci-dessous = estimations marché à confirmer par scraping direct ou saisie manuelle. URL produit à trouver pour activer le scraping automatique dans scrapers/{leroymerlin,castorama,bricodepot,manomano}.js.",
+    "poteau_gc_70": {
+      "leroymerlin": 8.50,
+      "castorama": 8.50,
+      "bricodepot": 8.50,
+      "manomano": 8.50
+    },
+    "lisse_gc_60x40": {
+      "leroymerlin": 4.20,
+      "castorama": 4.20,
+      "bricodepot": 4.20,
+      "manomano": 4.20
+    },
+    "balustre_gc_40": {
+      "leroymerlin": 3.80,
+      "castorama": 3.80,
+      "bricodepot": 3.80,
+      "manomano": 3.80
+    },
+    "visserie_inox_a4_gc": {
+      "leroymerlin": 12.00,
+      "castorama": 12.00,
+      "bricodepot": 12.00,
+      "manomano": 12.00
     }
   }
 }
