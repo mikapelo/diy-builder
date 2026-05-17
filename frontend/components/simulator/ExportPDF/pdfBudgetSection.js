@@ -38,7 +38,7 @@ const WARM = {
 };
 
 /* ════════════════════════════════════════════════════════════
-   drawStoreCards — 3 cartes comparatif enseignes
+   drawStoreCards — N cartes comparatif enseignes (4 par défaut)
 ════════════════════════════════════════════════════════════ */
 
 /**

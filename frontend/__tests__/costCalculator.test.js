@@ -278,13 +278,15 @@ describe('groupByCategory', () => {
 /*  Waste factor — vérification transversale                      */
 /* ══════════════════════════════════════════════════════════════ */
 describe('WOOD_WASTE_FACTOR — comportement transversal', () => {
-  it('les 3 enseignes produisent le même nombre de lignes pour une même structure', () => {
+  it('les 4 enseignes produisent le même nombre de lignes pour une même structure', () => {
     const struct = { posts: 4, rails: 6, boards: 39, boardLength: 1.3, railLength: 1.91, visLames: 156, visRails: 24, ancrages: 4 };
     const lm = calculateDetailedCost(struct, 'leroymerlin', 'cloture');
     const casto = calculateDetailedCost(struct, 'castorama', 'cloture');
     const brico = calculateDetailedCost(struct, 'bricodepot', 'cloture');
+    const mano = calculateDetailedCost(struct, 'manomano', 'cloture');
     expect(lm.length).toBe(casto.length);
     expect(lm.length).toBe(brico.length);
+    expect(lm.length).toBe(mano.length);
   });
 
   it('les quantités sont identiques quelle que soit l\'enseigne', () => {

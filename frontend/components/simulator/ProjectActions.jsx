@@ -13,7 +13,7 @@ import { trackDevisClick } from '@/hooks/useAnalytics.js';
 const DIY_INCLUDES = [
   { icon: 'picture_as_pdf', label: 'PDF 4 pages (plans + coupes)' },
   { icon: 'inventory_2',    label: 'Liste de matériaux complète' },
-  { icon: 'payments',       label: 'Comparatif prix 3 enseignes' },
+  { icon: 'payments',       label: 'Comparatif prix 4 enseignes' },
 ];
 
 const PRO_INCLUDES = [

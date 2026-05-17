@@ -747,7 +747,7 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
               {/* Subtitle — two-tier editorial hierarchy */}
               <div className="v6-hero-sub-group">
                 <p className="v6-hero-sub-lead">
-                  Dimensions, découpes optimisées, prix comparés chez trois enseignes.
+                  Dimensions, découpes optimisées, prix comparés chez quatre enseignes.
                 </p>
                 <p className="v6-hero-sub-note">
                   Résultat en 30 secondes — dossier PDF + mise en relation artisan inclus.

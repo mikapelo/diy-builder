@@ -8,7 +8,7 @@
  * Structure :
  *   1. Header section
  *   2. Partie haute : 3 niveaux budget (éco / recommandé / premium)
- *   3. Partie basse : 3 enseignes (cartes comparatives)
+ *   3. Partie basse : 4 enseignes (cartes comparatives — itère sur STORES)
  *   4. Disclaimer
  *
  * Fusionne l'ancien BudgetOverview + PriceComparator en un seul bloc.

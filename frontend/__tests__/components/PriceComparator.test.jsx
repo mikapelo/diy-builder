@@ -3,7 +3,7 @@
  * PriceComparator.test.jsx
  *
  * Teste le composant de comparaison de prix :
- *   - rendu des 3 enseignes
+ *   - rendu des enseignes (itère sur STORES — 4 actuellement)
  *   - calcul prix total (area × rate)
  *   - highlight du meilleur prix
  *   - sous-titre selon présence ou absence de chape béton
@@ -36,7 +36,7 @@ describe('PriceComparator — rendu sans chape', () => {
     expect(screen.getByText(/estimation.*pour votre projet/i)).toBeInTheDocument();
   });
 
-  it('affiche les 3 noms de magasins', () => {
+  it('affiche tous les noms de magasins déclarés dans STORES', () => {
     render(<PriceComparator area={AREA} />);
     STORES.forEach(s => {
       expect(screen.getByText(s.name)).toBeInTheDocument();
