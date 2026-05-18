@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE        from 'three';
@@ -8,7 +8,6 @@ import TechnicalPlan     from './TechnicalPlan';
 import useIsMobile       from '@/hooks/useIsMobile';
 import { CameraAnimatorSimple, CameraPresetButtons, getPresets } from './shared/CameraPresets';
 import ExportBridge      from './shared/ExportBridge';
-import { generateGardeCorps } from '@/modules/garde-corps/engine.js';
 
 const VIEW_MODES = [
   { key: 'assembled', label: 'Assemblée' },
@@ -22,27 +21,9 @@ const VIEW_MODES = [
 export default function DeckViewer({
   width, depth, area, boards, joists, pads,
   viewMode, setViewMode, canvasWrapRef, foundationType = 'ground',
-  gardeCorps,
 }) {
   const sceneKey  = `scene-${width}-${depth}`;
   const [showHuman, setShowHuman] = useState(false);
-
-  /* ── Garde-corps — calcul géométrie 3D si activé ──
-     Le périmètre = 4 côtés de la terrasse. `sides` conserve l'ordre
-     [avant, droite, arrière, gauche] pour que DeckScene puisse les placer. */
-  const gardeCorpsStructure = useMemo(() => {
-    if (!gardeCorps?.enabled) return null;
-    const selectedSides = gardeCorps.sides ?? ['avant', 'gauche'];
-    const sideMap = { avant: width, arrière: width, gauche: depth, droite: depth };
-    const sideLengths = ['avant', 'arrière', 'gauche', 'droite'].map(s =>
-      selectedSides.includes(s) ? sideMap[s] : 0,
-    );
-    const perimeter = sideLengths.reduce((a, b) => a + b, 0);
-    const structure = generateGardeCorps(perimeter, gardeCorps.height ?? 1.0, {
-      sides: [width, depth, width, depth],
-    });
-    return { ...structure, sides: selectedSides };
-  }, [gardeCorps?.enabled, gardeCorps?.height, gardeCorps?.sides, width, depth]);
   const isPlan    = viewMode === 'plan';
   const activeMode = VIEW_MODES.find(m => m.key === viewMode);
 
@@ -153,7 +134,6 @@ export default function DeckViewer({
                 depth={depth}
                 viewMode={scene3DMode}
                 foundationType={foundationType}
-                gardeCorpsStructure={gardeCorpsStructure}
                 showHuman={showHuman}
               />
               <CameraAnimatorSimple preset={camPreset} presets={presets} onDone={() => {}} />
@@ -178,7 +158,7 @@ export default function DeckViewer({
           {/* Plan technique : overlay scrollable */}
           {isPlan && (
             <div className="tp-overlay">
-              <TechnicalPlan width={width} depth={depth} gardeCorps={gardeCorps} />
+              <TechnicalPlan width={width} depth={depth} />
             </div>
           )}
 

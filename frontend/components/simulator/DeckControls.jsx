@@ -241,9 +241,6 @@ export default function DeckControls({
   projectType = 'terrasse',
   /* résumé live matériaux — calculé dans DeckSimulator */
   liveStats = null,
-  /* garde-corps — terrasse uniquement */
-  gardeCorps,
-  onGardeCorpsChange,
 }) {
   // Les presets cabanon ne s'appliquent qu'au cabanon. Pour pergola/terrasse/cloture,
   // on force le mode "custom" (steppers + range) pour éviter d'afficher les dimensions
@@ -401,61 +398,6 @@ export default function DeckControls({
               </label>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* ── Garde-corps — terrasse seulement ── */}
-      {projectType === 'terrasse' && (
-        <div className="ctrl-input-group" style={{ marginTop: 16, borderTop: '1px solid var(--border)', paddingTop: 16 }}>
-          <label className="flex items-center gap-2 cursor-pointer" style={{ marginBottom: 12 }}>
-            <input
-              type="checkbox"
-              checked={gardeCorps?.enabled ?? false}
-              onChange={(e) => onGardeCorpsChange?.({ enabled: e.target.checked })}
-              className="w-4 h-4 accent-[var(--primary)]"
-            />
-            <span className="ctrl-label" style={{ marginBottom: 0 }}>Ajouter un garde-corps</span>
-          </label>
-          {gardeCorps?.enabled && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, paddingLeft: 8 }}>
-              <div>
-                <div className="ctrl-slab-row">
-                  <span className="ctrl-slab-label">Hauteur</span>
-                  <span className="ctrl-slab-label">{(gardeCorps.height ?? 1.0).toFixed(2)} m</span>
-                </div>
-                <input
-                  type="range"
-                  min={1.0} max={1.2} step={0.05}
-                  value={gardeCorps.height ?? 1.0}
-                  onChange={(e) => onGardeCorpsChange?.({ height: parseFloat(e.target.value) })}
-                  className="ctrl-range w-full"
-                />
-              </div>
-              <div>
-                <p className="ctrl-label" style={{ marginBottom: 6 }}>Côtés avec garde-corps</p>
-                <div className="grid grid-cols-2 gap-1">
-                  {['avant', 'arrière', 'gauche', 'droite'].map(side => (
-                    <label key={side} className="flex items-center gap-1.5 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={(gardeCorps.sides ?? ['avant', 'gauche']).includes(side)}
-                        onChange={(e) => {
-                          const current = gardeCorps.sides ?? ['avant', 'gauche'];
-                          const next = e.target.checked
-                            ? [...current, side]
-                            : current.filter(s => s !== side);
-                          onGardeCorpsChange?.({ sides: next });
-                        }}
-                        className="w-3.5 h-3.5 accent-[var(--primary)]"
-                      />
-                      <span className="ctrl-slab-label capitalize" style={{ marginBottom: 0 }}>{side}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <p className="ctrl-seuil-sub" style={{ color: 'var(--text-4)', marginTop: 2 }}>DTU 36.3 — entraxe poteaux max 1.20m, balustres ≤ 11cm</p>
-            </div>
-          )}
         </div>
       )}
 

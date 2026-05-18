@@ -27,12 +27,6 @@ import {
   SLOPE_RAD,
   PAD_ENTRAXE, MAX_PAD_ROWS,
 } from '@/lib/deckConstants.js';
-import {
-  POST_SECTION as GC_POST_SECTION,
-  RAIL_SECTION_W as GC_RAIL_W,
-  RAIL_SECTION_H as GC_RAIL_H,
-  BALUSTER_SECTION as GC_BALUSTER_SECTION,
-} from '@/lib/gardeCorpsConstants.js';
 
 import { generateDeck } from '@/lib/deckEngine.js';
 import { staggerEntretoises } from '@/lib/deckStagger.js';
@@ -70,7 +64,7 @@ const BOARD_VARIANTS = [
   { key: 'deck-v8-4', base: '#ac7840', grain: '#58361c', density: 25, roughness: 0.79, env: 0.15 },
 ];
 
-export default function DeckScene({ width, depth, viewMode = 'assembled', foundationType = 'ground', gardeCorpsStructure = null, showHuman = false }) {
+export default function DeckScene({ width, depth, viewMode = 'assembled', foundationType = 'ground', showHuman = false }) {
 
   const exploded    = viewMode === 'exploded';
   const isStructure = viewMode === 'structure';
@@ -600,13 +594,6 @@ export default function DeckScene({ width, depth, viewMode = 'assembled', founda
           ))}
         </group>
 
-        {/* ── Garde-corps — visible si activé, posé sur la surface lames ── */}
-        <GardeCorpsGroup
-          structure={gardeCorpsStructure}
-          width={width}
-          depth={depth}
-        />
-
       </group>{/* /slope */}
       </group>{/* /slab-lift */}
 
@@ -667,199 +654,5 @@ function DimensionLines({ width, depth }) {
       <lineSegments geometry={geoW} material={lineMat} />
       <lineSegments geometry={geoD} material={lineMat} />
     </>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Garde-corps — poteaux + lisses haute/basse + balustres
-   ─────────────────────────────────────────────────────────────
-   Le moteur `generateGardeCorps` retourne des quantitatifs et une
-   geometry linéaire (sides concaténés en X). Ici on re-place les
-   pièces en 3D sur les 4 bords de la terrasse (rectangle centré
-   sur l'origine), Y = 0 correspondant à la surface des lames.
-
-   Les pièces sont posées au-dessus de Y_BOARD + BOARD_THICK/2
-   (top des lames). NF DTU 36.3 P3 §C.2 :
-   - POST_SECTION 70×70 mm
-   - RAIL 60×40 mm (haute + basse)
-   - BALUSTER 40×40 mm (espacement libre ≤ 110 mm)
-───────────────────────────────────────────────────────────── */
-function GardeCorpsGroup({ structure, width, depth }) {
-  const enabled = !!structure;
-  const height = structure?.height ?? 1.0;
-  const balustreLen = structure?.balustreLength ?? (height - 2 * GC_RAIL_H);
-  const balustreSpacing = structure?.balustreSpacing ?? 0.11;
-  const selectedSides = structure?.sides ?? ['avant', 'gauche'];
-
-  const showAvant   = selectedSides.includes('avant');
-  const showArriere = selectedSides.includes('arrière');
-  const showGauche  = selectedSides.includes('gauche');
-  const showDroite  = selectedSides.includes('droite');
-
-  /* Hauteur de base du garde-corps = top des lames (Y local du groupe slope) */
-  const yBase = Y_BOARD + BOARD_THICK / 2;
-
-  /* Matériaux bois — ton chaud cohérent avec la palette terrasse */
-  const postMat = useMemo(() => new THREE.MeshStandardMaterial({
-    color: '#8B6914', roughness: 0.85, metalness: 0, envMapIntensity: 0.4,
-  }), []);
-  const railMat = useMemo(() => new THREE.MeshStandardMaterial({
-    color: '#A0785A', roughness: 0.80, metalness: 0, envMapIntensity: 0.4,
-  }), []);
-  const balusterMat = useMemo(() => new THREE.MeshStandardMaterial({
-    color: '#9A6E3C', roughness: 0.82, metalness: 0, envMapIntensity: 0.4,
-  }), []);
-
-  /* Géométries unitaires */
-  const postGeo = useMemo(
-    () => new THREE.BoxGeometry(GC_POST_SECTION, height, GC_POST_SECTION),
-    [height],
-  );
-  const balusterGeo = useMemo(
-    () => new THREE.BoxGeometry(GC_BALUSTER_SECTION, balustreLen, GC_BALUSTER_SECTION),
-    [balustreLen],
-  );
-
-  /* Calcul des pièces par côté — 4 bords d'un rectangle centré sur l'origine.
-     Chaque côté : axis = 'x' (avant/arrière) ou 'z' (gauche/droite),
-                   length = longueur du côté,
-                   u = position transverse fixe (z pour avant/arrière, x pour gauche/droite).
-     show : booléen lié au sélecteur de côtés (visible={} sur le groupe). */
-  const sides = useMemo(() => ([
-    { key: 'front',  axis: 'x', length: width,  u: -depth / 2, show: showAvant   },
-    { key: 'back',   axis: 'x', length: width,  u:  depth / 2, show: showArriere },
-    { key: 'left',   axis: 'z', length: depth,  u: -width / 2, show: showGauche  },
-    { key: 'right',  axis: 'z', length: depth,  u:  width / 2, show: showDroite  },
-  ]), [width, depth, showAvant, showArriere, showGauche, showDroite]);
-
-  /* Pour chaque côté : positions poteaux + balustres + extents lisses */
-  const sideData = useMemo(() => {
-    const MAX_POST_SPACING = 1.20;
-    return sides.map(s => {
-      const intervals = Math.max(1, Math.ceil(s.length / MAX_POST_SPACING));
-      const spacing = s.length / intervals;
-      const start = -s.length / 2;
-      const postCoords = [];
-      for (let i = 0; i <= intervals; i++) postCoords.push(+(start + i * spacing).toFixed(4));
-
-      /* Balustres entre chaque paire de poteaux — espacement ≤ balustreSpacing */
-      const balusters = [];
-      for (let i = 0; i < postCoords.length - 1; i++) {
-        const bayStart = postCoords[i] + GC_POST_SECTION / 2;
-        const bayEnd   = postCoords[i + 1] - GC_POST_SECTION / 2;
-        const usable   = Math.max(0, bayEnd - bayStart);
-        if (usable <= 0) continue;
-        const nInt = Math.max(2, Math.ceil(usable / balustreSpacing));
-        const step = usable / nInt;
-        for (let j = 1; j < nInt; j++) balusters.push(+(bayStart + j * step).toFixed(4));
-      }
-
-      return { ...s, postCoords, balusters };
-    });
-  }, [sides, balustreSpacing]);
-
-  return (
-    <group visible={enabled}>
-      {sideData.map(s => (
-        <GardeCorpsSide
-          key={s.key}
-          side={s}
-          visible={s.show}
-          height={height}
-          yBase={yBase}
-          balustreLen={balustreLen}
-          postGeo={postGeo}
-          balusterGeo={balusterGeo}
-          postMat={postMat}
-          railMat={railMat}
-          balusterMat={balusterMat}
-        />
-      ))}
-    </group>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   GardeCorpsSide — rendu d'un seul côté du garde-corps.
-   Utilise visible={bool} (règle R3F) pour masquer sans démonter.
-───────────────────────────────────────────────────────────── */
-function GardeCorpsSide({ side, visible, height, yBase, balustreLen, postGeo, balusterGeo, postMat, railMat, balusterMat }) {
-  const postsMesh     = useRef();
-  const balustersMesh = useRef();
-
-  const totalPosts     = side.postCoords.length;
-  const totalBalusters = side.balusters.length;
-
-  /* Matrices : poteaux */
-  useEffect(() => {
-    const mesh = postsMesh.current;
-    if (!mesh || totalPosts === 0) return;
-    const dummy = new THREE.Object3D();
-    side.postCoords.forEach((coord, i) => {
-      if (side.axis === 'x') {
-        dummy.position.set(coord, yBase + height / 2, side.u);
-      } else {
-        dummy.position.set(side.u, yBase + height / 2, coord);
-      }
-      dummy.rotation.set(0, 0, 0);
-      dummy.scale.set(1, 1, 1);
-      dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
-    });
-    mesh.instanceMatrix.needsUpdate = true;
-  }, [side, yBase, height, totalPosts]);
-
-  /* Matrices : balustres */
-  useEffect(() => {
-    const mesh = balustersMesh.current;
-    if (!mesh || totalBalusters === 0) return;
-    const dummy = new THREE.Object3D();
-    const yCenter = yBase + GC_RAIL_H + balustreLen / 2;
-    side.balusters.forEach((coord, i) => {
-      if (side.axis === 'x') {
-        dummy.position.set(coord, yCenter, side.u);
-      } else {
-        dummy.position.set(side.u, yCenter, coord);
-      }
-      dummy.rotation.set(0, 0, 0);
-      dummy.scale.set(1, 1, 1);
-      dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
-    });
-    mesh.instanceMatrix.needsUpdate = true;
-  }, [side, yBase, balustreLen, totalBalusters]);
-
-  const yLow  = yBase + GC_RAIL_H / 2;
-  const yHigh = yBase + height - GC_RAIL_H / 2;
-  const isX   = side.axis === 'x';
-  const railSize    = isX ? [side.length, GC_RAIL_H, GC_RAIL_W] : [GC_RAIL_W, GC_RAIL_H, side.length];
-  const railPosLow  = isX ? [0, yLow,  side.u] : [side.u, yLow,  0];
-  const railPosHigh = isX ? [0, yHigh, side.u] : [side.u, yHigh, 0];
-
-  return (
-    <group visible={visible}>
-      <instancedMesh
-        key={`gc-posts-${side.key}-${totalPosts}`}
-        ref={postsMesh}
-        args={[postGeo, postMat, Math.max(totalPosts, 1)]}
-        frustumCulled={false}
-      />
-      {totalBalusters > 0 && (
-        <instancedMesh
-          key={`gc-bal-${side.key}-${totalBalusters}`}
-          ref={balustersMesh}
-          args={[balusterGeo, balusterMat, Math.max(totalBalusters, 1)]}
-          frustumCulled={false}
-        />
-      )}
-      <mesh position={railPosLow}>
-        <boxGeometry args={railSize} />
-        <primitive object={railMat} attach="material" />
-      </mesh>
-      <mesh position={railPosHigh}>
-        <boxGeometry args={railSize} />
-        <primitive object={railMat} attach="material" />
-      </mesh>
-    </group>
   );
 }

@@ -15,7 +15,7 @@ import { generateDeck } from '@/lib/deckEngine.js';
    Géométrie calculée par les mêmes fonctions que DeckScene.
    NE PAS modifier la logique de calcul existante.
 ═══════════════════════════════════════════════════════════ */
-export default function TechnicalPlan({ width, depth, gardeCorps = null }) {
+export default function TechnicalPlan({ width, depth }) {
 
   /* ── Moteur DTU 51.4 ── */
   const {
@@ -45,20 +45,8 @@ export default function TechnicalPlan({ width, depth, gardeCorps = null }) {
   );
 
   /* ── Légende interactive ── */
-  const [vis, setVis] = useState({ boards: true, joists: true, pads: true, entr: true, cuts: true, gc: true });
+  const [vis, setVis] = useState({ boards: true, joists: true, pads: true, entr: true, cuts: true });
   const toggle = k => setVis(v => ({ ...v, [k]: !v[k] }));
-
-  /* ── Garde-corps (option) ─────────────────────────────────────────
-     Convention de mapping côté → bord du plan (vue de dessus) :
-       avant   → bord bas    (y = depth)
-       arrière → bord haut   (y = 0)
-       gauche  → bord gauche (x = 0)
-       droite  → bord droit  (x = width)
-     Le trait est dessiné LÉGÈREMENT à l'intérieur du contour (offset
-     d'~3 px viewBox) pour rester visible et évoquer la pose réelle. */
-  const gcEnabled = !!gardeCorps?.enabled;
-  const gcSides   = gardeCorps?.sides ?? [];
-  const gcHeight  = gardeCorps?.height ?? 1.0;
 
   const staggeredEntretoises = useMemo(
     () => staggerEntretoises(entretoiseSegs, JOIST_W),
@@ -71,9 +59,6 @@ export default function TechnicalPlan({ width, depth, gardeCorps = null }) {
     { k: 'pads',   label: 'Plots',       col: '#2b2b2b', solid: true  },
     { k: 'entr',   label: 'Entretoises', col: '#7A4A1E', solid: true  },
     { k: 'cuts',   label: 'Jonctions',   col: '#7a4f2a', solid: false },
-    ...(gcEnabled
-      ? [{ k: 'gc', label: `Garde-corps h=${gcHeight.toFixed(2)} m`, col: '#1c5a8a', solid: true }]
-      : []),
   ];
 
   /* ── Système de coordonnées SVG ── */
@@ -298,32 +283,6 @@ export default function TechnicalPlan({ width, depth, gardeCorps = null }) {
                 strokeWidth="0.8"
               />
             ))}
-
-            {/* === GARDE-CORPS (option) — trait épais sur les bords sélectionnés ===
-                 Vue de dessus : la balustrade est représentée en projection.
-                 Trait offset vers l'intérieur pour suivre la pose réelle. */}
-            {vis.gc && gcEnabled && (() => {
-              const GC_COL  = '#1c5a8a';
-              const GC_INSET = 2.5;             // offset vers l'intérieur (unités viewBox)
-              const x0 = ML, x1 = ML + PW;
-              const y0 = MT, y1 = MT + PH;
-              const segs = [];
-              if (gcSides.includes('avant'))   segs.push({ k:'av', x1:x0, y1:y1 - GC_INSET, x2:x1, y2:y1 - GC_INSET });
-              if (gcSides.includes('arrière')) segs.push({ k:'ar', x1:x0, y1:y0 + GC_INSET, x2:x1, y2:y0 + GC_INSET });
-              if (gcSides.includes('gauche'))  segs.push({ k:'ga', x1:x0 + GC_INSET, y1:y0, x2:x0 + GC_INSET, y2:y1 });
-              if (gcSides.includes('droite'))  segs.push({ k:'dr', x1:x1 - GC_INSET, y1:y0, x2:x1 - GC_INSET, y2:y1 });
-              return segs.map(s => (
-                <g key={`gc-${s.k}`}>
-                  {/* Halo blanc pour lisibilité */}
-                  <line x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2}
-                    stroke="#ffffff" strokeWidth="4.2" strokeLinecap="round" opacity="0.65" />
-                  {/* Trait principal pointillé long */}
-                  <line x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2}
-                    stroke={GC_COL} strokeWidth="2.4" strokeLinecap="round"
-                    strokeDasharray="9,4" />
-                </g>
-              ));
-            })()}
 
             {/* === PLOTS — cercles noirs (z-index max) === */}
             {vis.pads && padPositions.map((p, i) => (

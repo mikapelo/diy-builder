@@ -31,12 +31,10 @@ const PAD_R_M   = 0.100;   // rayon plot (m) — diamètre 200mm
  * @param {object} deckData  Résultat de generateDeck(width, depth)
  * @param {object} dims      { width, depth } en mètres
  * @param {object} viewport  { ox, oy, drawW, drawH }
- * @param {object} [options] { gardeCorps?: { enabled, height, sides } }
  * @returns {{ layers, proj, meta }}
  */
-export function buildTerrasseTopView(deckData, dims, viewport, options = {}) {
+export function buildTerrasseTopView(deckData, dims, viewport) {
   const { width, depth } = dims;
-  const { gardeCorps = null } = options;
   const {
     boardSegs, joistSegs, cutXPositions, doubleJoistSegs,
     entretoiseSegs, padPositions, joistJoints,
@@ -163,44 +161,6 @@ export function buildTerrasseTopView(deckData, dims, viewport, options = {}) {
     rect('outline', px(0), py(0), width * sc, depth * sc,
       { stroke: MAT.contour.stroke, lineWidth: 0.6 }),
   ]);
-
-  /* ── 9bis. Garde-corps (option) ───────────────────────────────────
-     Mapping côtés (vue de dessus, origine coin haut-gauche après proj) :
-       avant   → bord bas    (y = depth)
-       arrière → bord haut   (y = 0)
-       gauche  → bord gauche (x = 0)
-       droite  → bord droit  (x = width)
-     Trait pointillé bleu offset vers l'intérieur (~0.04 m) pour rester
-     visible au-dessus du contour. Aucun rendu si enabled=false. */
-  if (gardeCorps?.enabled) {
-    const sides = gardeCorps.sides ?? [];
-    const gcHeight = gardeCorps.height ?? 1.0;
-    const GC_STROKE = [28, 90, 138];
-    const GC_INSET_M = 0.04;                       // offset intérieur (m)
-    const segs = [];
-    if (sides.includes('avant'))   segs.push([0, depth - GC_INSET_M, width, depth - GC_INSET_M]);
-    if (sides.includes('arrière')) segs.push([0, GC_INSET_M, width, GC_INSET_M]);
-    if (sides.includes('gauche'))  segs.push([GC_INSET_M, 0, GC_INSET_M, depth]);
-    if (sides.includes('droite'))  segs.push([width - GC_INSET_M, 0, width - GC_INSET_M, depth]);
-    for (const [x1, y1, x2, y2] of segs) {
-      addPrimitives(layers, [
-        line('framings', px(x1), py(y1), px(x2), py(y2),
-          { stroke: GC_STROKE, lineWidth: 0.9, dash: [2.2, 1.2] }),
-      ]);
-    }
-    if (segs.length > 0) {
-      // Label discret près du premier segment dessiné
-      const [x1, y1, x2, y2] = segs[0];
-      const isHoriz = Math.abs(y2 - y1) < 1e-6;
-      const lx = isHoriz ? (x1 + x2) / 2 : x1;
-      const ly = isHoriz ? y1 : (y1 + y2) / 2;
-      addPrimitives(layers, [
-        text('labels', px(lx), py(ly) - 2,
-          `Garde-corps h=${gcHeight.toFixed(2)} m`,
-          { fontSize: 5, color: GC_STROKE, align: 'center', fontStyle: 'italic' }),
-      ]);
-    }
-  }
 
   /* ── 10. Cotations ── */
   // Largeur

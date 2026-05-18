@@ -61,7 +61,6 @@ const ClotureViewer = dynamic(delayedImport(() => import('./ClotureViewer')), {
  * @param {function} props.setViewMode
  * @param {object}  props.canvasWrapRef
  * @param {number}  props.width, props.depth, props.area, props.boards, props.joists, props.pads
- * @param {object}  props.gardeCorps — { enabled, height } — terrasse uniquement
  */
 export default function ViewerRouter({
   projectType,
@@ -69,7 +68,6 @@ export default function ViewerRouter({
   foundationType,
   width, depth, area, boards, joists, pads,
   viewMode, setViewMode, canvasWrapRef,
-  gardeCorps,
 }) {
   return (
     <ErrorBoundary>
@@ -85,7 +83,6 @@ export default function ViewerRouter({
           setViewMode={setViewMode}
           canvasWrapRef={canvasWrapRef}
           foundationType={foundationType}
-          gardeCorps={gardeCorps}
         />
       ) : projectType === 'pergola' ? (
         <PergolaViewer structure={structure} foundationType={foundationType} />

@@ -45,7 +45,7 @@ import { drawKitSection } from './pdfKitSection.js';
  */
 export function generateTerrassePDF(doc, { dims, materials, foundationType, projectConfig, budgetByStore, bestPrice, snapshot }) {
   const { width, depth, area } = dims;
-  const { boards, joists, pads, screws, entretoises, bande, slab, gardeCorps } = materials;
+  const { boards, joists, pads, screws, entretoises, bande, slab } = materials;
   const isSlab = foundationType === 'slab';
   const TOTAL = 7;
   const terTitle = `${projectConfig?.pdfTitle ?? 'Terrasse bois'} ${width}×${depth} m`;
@@ -96,13 +96,6 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     ['Bande bitume',           `${bande} ml`,     'Interposition lambourde / plot'],
     ...(entretoises > 0
       ? [['Entretoises 45×70 mm', `${entretoises} pcs`, 'Entre lambourdes']]
-      : []),
-    ...(gardeCorps?.enabled
-      ? [
-          ['Garde-corps - Poteaux 7x7', `${gardeCorps.postCount} pcs`,  `Longueur ${fmtLen(gardeCorps.postLength)} - DTU 36.3 P3`],
-          ['Garde-corps - Lisses 6x4',  `${fmtLen(gardeCorps.railLength)} ml`, 'Lisse haute + basse (2 x perimetre)'],
-          ['Garde-corps - Balustres 4x4', `${gardeCorps.balustreCount} pcs`, `Longueur ${fmtLen(gardeCorps.balustreLength)} - espacement <= 11 cm`],
-        ]
       : []),
   ];
 
@@ -333,8 +326,7 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
 
   const deckData = generateDeck(width, depth);
   const { layers: topLayers } = buildTerrasseTopView(deckData, { width, depth },
-    { ox: margin3, oy: topY3, drawW: drawW3, drawH: drawH3 },
-    { gardeCorps });
+    { ox: margin3, oy: topY3, drawW: drawW3, drawH: drawH3 });
   renderPDFLayers(doc, topLayers);
 
   const legendItems = [
@@ -343,11 +335,8 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
     { label: 'Dbl. lambourdes', color: [60, 40, 15],      fill: [100, 75, 40] },
     { label: 'Entretoises',   color: MAT.lisse.stroke,    fill: MAT.lisse.fill },
     { label: 'Lames (fond)',  color: [210, 200, 185] },
-    ...(gardeCorps?.enabled
-      ? [{ label: `Garde-corps h=${(gardeCorps.height ?? 1.0).toFixed(2)} m`, color: [28, 90, 138], fill: [28, 90, 138] }]
-      : []),
   ];
-  drawLegendBox(doc, boxX3 + boxW3 - 50, boxY3 + boxH3 - (52 + (gardeCorps?.enabled ? 8 : 0)), legendItems);
+  drawLegendBox(doc, boxX3 + boxW3 - 50, boxY3 + boxH3 - 52, legendItems);
 
   /* Barre d'échelle — 1 m réel */
   const sbLen3 = drawW3 / Math.max(width, depth);
