@@ -4,6 +4,7 @@ export const metadata = {
   title: 'Mentions légales — DIY Builder',
   description: 'Mentions légales du simulateur de construction DIY Builder : éditeur, hébergeur, propriété intellectuelle.',
   alternates: { canonical: 'https://www.diy-builder.fr/mentions-legales' },
+  robots: { index: false, follow: true },
 };
 
 export default function MentionsLegales() {

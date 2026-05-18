@@ -4,6 +4,7 @@ export const metadata = {
   title: 'Politique de confidentialité — DIY Builder',
   description: 'Politique de confidentialité et traitement des données personnelles de DIY Builder, conforme au RGPD.',
   alternates: { canonical: 'https://www.diy-builder.fr/politique-confidentialite' },
+  robots: { index: false, follow: true },
 };
 
 export default function PolitiqueConfidentialite() {

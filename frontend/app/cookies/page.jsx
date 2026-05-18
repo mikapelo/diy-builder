@@ -4,6 +4,7 @@ export const metadata = {
   title: 'Gestion des cookies — DIY Builder',
   description: 'Politique de gestion des cookies du simulateur DIY Builder. Aucun cookie publicitaire ni analytique tiers.',
   alternates: { canonical: 'https://www.diy-builder.fr/cookies' },
+  robots: { index: false, follow: true },
 };
 
 export default function Cookies() {

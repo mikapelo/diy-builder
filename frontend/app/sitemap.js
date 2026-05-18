@@ -28,10 +28,8 @@ export default function sitemap() {
     { url: `${baseUrl}/a-propos`, lastModified, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${baseUrl}/charte-affiliation`, lastModified, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${baseUrl}/contact`, lastModified, changeFrequency: 'yearly', priority: 0.3 },
-    // Pages légales
-    { url: `${baseUrl}/mentions-legales`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${baseUrl}/politique-confidentialite`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${baseUrl}/cgv`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${baseUrl}/cookies`, lastModified, changeFrequency: 'yearly', priority: 0.1 },
+    // Pages légales : retirées du sitemap car en noindex (cohérence du signal).
+    // Restent accessibles via footer (follow=true) pour la conformité.
+    // /mentions-legales, /politique-confidentialite, /cgv, /cookies — en noindex.
   ];
 }

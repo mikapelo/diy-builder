@@ -4,6 +4,7 @@ export const metadata = {
   title: "Conditions générales d'utilisation — DIY Builder",
   description: "Conditions générales d'utilisation du simulateur de construction DIY Builder.",
   alternates: { canonical: 'https://www.diy-builder.fr/cgv' },
+  robots: { index: false, follow: true },
 };
 
 export default function CGV() {
