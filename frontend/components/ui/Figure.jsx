@@ -22,9 +22,19 @@
  *   - "narrow" : centrée, 480px max
  *
  * ImageObject JSON-LD : émis si `schemaCaption` fourni → éligible Google
- * Image Search rich result.
+ * Image Search rich result. Inclut creator, copyrightNotice, license et
+ * acquireLicensePage (champs optionnels Google Image Search 2026, signal
+ * E-E-A-T renforcé). Overridables via props pour images tierces.
  */
 import Image from 'next/image';
+
+const DEFAULT_CREATOR = {
+  '@type': 'Organization',
+  name: 'DIY Builder',
+  url: 'https://www.diy-builder.fr',
+};
+const DEFAULT_LICENSE_PAGE = 'https://www.diy-builder.fr/mentions-legales';
+const DEFAULT_ACQUIRE_PAGE = 'https://www.diy-builder.fr/contact';
 
 export default function Figure({
   src,
@@ -36,6 +46,10 @@ export default function Figure({
   variant = 'default',
   priority = false,
   schemaCaption,
+  creator,
+  copyrightNotice,
+  license,
+  acquireLicensePage,
 }) {
   if (!src || !alt) {
     throw new Error('<Figure> requires src + alt (a11y obligatoire)');
@@ -55,6 +69,10 @@ export default function Figure({
     width,
     height,
     ...(source ? { creditText: source } : {}),
+    creator: creator ?? DEFAULT_CREATOR,
+    copyrightNotice: copyrightNotice ?? `© ${new Date().getFullYear()} DIY Builder`,
+    license: license ?? DEFAULT_LICENSE_PAGE,
+    acquireLicensePage: acquireLicensePage ?? DEFAULT_ACQUIRE_PAGE,
   } : null;
 
   return (
