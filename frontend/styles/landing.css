@@ -1091,238 +1091,6 @@
   .v6-panel-section { min-height: auto; }
 }
 
-/* ════════════════════════════════════════════════════════════
-   V6 SOCIAL PROOF — stagger carousel (vaib215 / 21st.dev)
-════════════════════════════════════════════════════════════ */
-
-.v6-social-section {
-  background: #0E0F10;
-  position: relative;
-  scroll-snap-align: none;
-  border-top: 1px solid rgba(255, 254, 249, 0.06);
-}
-
-.v6-social-inner {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 88px 32px 96px;
-}
-
-/* ── Header ── */
-.v6-social-header {
-  margin-bottom: 48px;
-  max-width: 560px;
-}
-
-.v6-social-title {
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 800;
-  color: #FFFEF9;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-  margin: 12px 0 14px;
-}
-
-.v6-social-title em {
-  font-style: italic;
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
-  color: #C9971E;
-}
-
-.v6-social-sub {
-  font-size: 15px;
-  line-height: 1.65;
-  color: rgba(255, 254, 249, 0.42);
-  max-width: 460px;
-}
-
-/* ── Carousel stage ── */
-.v6-social-carousel-wrap {
-  position: relative;
-}
-
-.v6-social-carousel {
-  position: relative;
-  height: 600px;
-  overflow: hidden;
-  background: rgba(255, 254, 249, 0.02);
-}
-
-/* ── Carte — base (toutes) ── */
-.v6-social-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* width et height settés en inline (responsive via JS) */
-  background: #1C1D21;
-  border: 2px solid rgba(255, 254, 249, 0.08);
-  border-radius: 0; /* forme via clip-path */
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.5s ease-in-out, box-shadow 0.25s ease;
-}
-
-/* ── Carte centrale — mise en valeur ── */
-.v6-social-card--active {
-  background: #C9971E;
-  border-color: #C9971E;
-  cursor: default;
-}
-
-/* ── Ligne diagonale coin coupé (top-right) ── */
-.v6-social-card-cut {
-  position: absolute;
-  display: block;
-  transform-origin: top right;
-  transform: rotate(45deg);
-  background: rgba(255, 254, 249, 0.07);
-}
-
-.v6-social-card--active .v6-social-card-cut {
-  background: rgba(14, 15, 16, 0.18);
-}
-
-/* ── Avatar (rectangle, comme une photo profil) ── */
-.v6-social-avatar {
-  width: 48px;
-  height: 56px;
-  border-radius: 4px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 16px;
-  box-shadow: 3px 3px 0px rgba(14, 15, 16, 0.55);
-}
-
-.v6-social-card--active .v6-social-avatar {
-  box-shadow: 3px 3px 0px rgba(14, 15, 16, 0.28);
-}
-
-/* ── Citation ── */
-.v6-social-quote {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.6;
-  color: rgba(255, 254, 249, 0.88);
-  font-style: normal;
-  margin: 0;
-}
-
-.v6-social-card--active .v6-social-quote {
-  color: rgba(14, 15, 16, 0.9);
-}
-
-/* ── Auteur — absolu en bas de carte ── */
-.v6-social-by {
-  position: absolute;
-  bottom: 32px;
-  left: 32px;
-  right: 32px;
-  font-size: 13px;
-  font-style: italic;
-  color: rgba(255, 254, 249, 0.48);
-  margin: 0;
-  line-height: 1.4;
-}
-
-.v6-social-card--active .v6-social-by {
-  color: rgba(14, 15, 16, 0.62);
-}
-
-.v6-social-by span {
-  font-style: normal;
-}
-
-/* ── Type de projet ── */
-.v6-social-project {
-  position: absolute;
-  bottom: 14px;
-  left: 32px;
-  right: 32px;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 254, 249, 0.28);
-  margin: 0;
-}
-
-.v6-social-card--active .v6-social-project {
-  color: rgba(14, 15, 16, 0.42);
-}
-
-/* ── Boutons navigation — carrés ── */
-.v6-social-nav {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.v6-social-nav-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 0;
-  border: 2px solid rgba(255, 254, 249, 0.10);
-  background: #1C1D21;
-  color: rgba(255, 254, 249, 0.50);
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.v6-social-nav-btn:hover {
-  background: #C9971E;
-  border-color: #C9971E;
-  color: #0E0F10;
-}
-
-/* ── CTA strip ── */
-.v6-social-cta-strip {
-  margin-top: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-  text-align: center;
-}
-
-.v6-social-cta-label {
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255, 254, 249, 0.48);
-  margin: 0;
-}
-
-/* ── Responsive ── */
-@media (max-width: 640px) {
-  .v6-social-carousel {
-    height: 480px;
-  }
-
-  .v6-social-inner {
-    padding: 64px 20px 72px;
-  }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .v6-social-card {
-    transition: box-shadow 0.2s, border-color 0.2s;
-  }
-}
-
 /* ── Hero artisan tagline ── */
 .v6-hero-artisan-tag {
   display: inline-flex;
@@ -1364,54 +1132,6 @@
 }
 
 /* ══════════════════════════════════════════════════
-   SOCIAL CTA — double bouton
-══════════════════════════════════════════════════ */
-.v6-social-cta-btns {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Base .v6-btn (CTA générique dans la social section) */
-.v6-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: -.01em;
-  cursor: pointer;
-  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
-  text-decoration: none;
-  border: none;
-}
-.v6-btn--cta {
-  background: var(--v6-primary, #C9971E);
-  color: #fff;
-}
-.v6-btn--cta:hover {
-  background: var(--v6-primary-dark, #A07A14);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(201,151,30,.35);
-}
-.v6-btn--artisan-cta {
-  background: transparent;
-  color: #C9971E;
-  border: 1.5px solid #C9971E;
-}
-.v6-btn--artisan-cta:hover {
-  background: #C9971E;
-  color: #0E0F10;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(201,151,30,.28);
-}
-
-/* ══════════════════════════════════════════════════
    BENTO — 4 colonnes + carte artisan
 ══════════════════════════════════════════════════ */
 .v6-bento-grid--4col {
@@ -1429,62 +1149,13 @@
 }
 .v6-bento-num--gold { color: #C9971E; }
 
-/* Mini artisan card dans bento */
-.v6-mini-artisan-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  background: rgba(201,151,30,.08);
-  border: 1px solid rgba(201,151,30,.18);
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-.v6-mini-artisan-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #C9971E;
-  color: #0E0F10;
-  font-size: 13px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.v6-mini-artisan-name {
-  font-size: 12px;
-  font-weight: 700;
-  color: #EAEAE8;
-  line-height: 1.2;
-}
-.v6-mini-artisan-loc {
-  font-size: 11px;
-  color: rgba(241,241,239,.5);
-  margin-top: 2px;
-}
-.v6-mini-artisan-status {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--v6-green);
-  margin-bottom: 8px;
-}
-.v6-mini-artisan-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--v6-green);
-  flex-shrink: 0;
-  animation: v6-pulse-green 2s ease-in-out infinite;
-}
+/* Animation partagée — point pulsant (tagline hero + badge artisan) */
 @keyframes v6-pulse-green {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: .5; transform: scale(.8); }
 }
+
+/* Badge dossier projet dans bento */
 .v6-mini-artisan-badge {
   font-size: 10px;
   font-weight: 700;
@@ -1598,42 +1269,6 @@
   padding: 28px;
   box-shadow: 0 8px 32px rgba(0,0,0,.30);
 }
-.v6-artisan-profile-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-.v6-artisan-profile-avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #C9971E 0%, #E0B84A 100%);
-  color: #0E0F10;
-  font-size: 20px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.v6-artisan-profile-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: #F1F1EF;
-}
-.v6-artisan-profile-meta {
-  font-size: 13px;
-  color: rgba(241,241,239,.45);
-  margin-top: 2px;
-}
-.v6-artisan-profile-stars {
-  font-size: 13px;
-  color: #C9971E;
-  margin-top: 4px;
-  font-weight: 600;
-}
-.v6-artisan-profile-stars span { color: rgba(241,241,239,.6); font-weight: 400; margin-left: 4px; }
 .v6-artisan-profile-project {
   background: rgba(74,127,191,.06);
   border: 1px solid rgba(74,127,191,.12);
@@ -1714,6 +1349,5 @@
     grid-template-columns: 1fr;
   }
   .v6-artisan-inner { padding: 56px 20px; }
-  .v6-social-cta-btns { flex-direction: column; gap: 10px; }
 }
 

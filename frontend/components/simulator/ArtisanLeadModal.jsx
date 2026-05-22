@@ -1,10 +1,12 @@
 'use client';
 
 /**
- * ArtisanLeadModal.jsx — Mise en relation artisan
+ * ArtisanLeadModal.jsx — Demande de rappel pour la réalisation d'un projet
  *
- * Formulaire : nom, téléphone (requis), code postal (requis), email, message.
- * Soumission → POST /api/artisan-lead → email Resend vers l'owner.
+ * Formulaire : nom, téléphone (requis), code postal (requis), email, message,
+ * consentement explicite (requis). Soumission → POST /api/artisan-lead →
+ * email Resend vers l'owner. DIY Builder recueille la demande ; aucune donnée
+ * n'est transmise à un tiers sans accord explicite.
  *
  * Props :
  *   open         — boolean
@@ -25,7 +27,7 @@ const PROJECT_LABELS = {
   cloture:  'Clôture bois',
 };
 
-const INITIAL = { name: '', phone: '', zipCode: '', email: '', message: '' };
+const INITIAL = { name: '', phone: '', zipCode: '', email: '', message: '', consent: false };
 
 export default function ArtisanLeadModal({ open, onClose, projectType, dims, initialEmail = '' }) {
   const panelRef = useRef(null);
@@ -53,12 +55,14 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
   }, [open, onClose]);
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
+  const setConsent = (e) => setForm((f) => ({ ...f, consent: e.target.checked }));
 
   function validate() {
     const e = {};
     if (!form.phone.trim() || form.phone.trim().length < 8) e.phone = 'Numéro requis';
     if (!form.zipCode.trim() || form.zipCode.trim().length < 4) e.zipCode = 'Code postal requis';
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Email invalide';
+    if (!form.consent) e.consent = 'Votre accord est nécessaire pour traiter la demande';
     return e;
   }
 
@@ -96,7 +100,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
         className="modal-panel artisan-modal-panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Mise en relation artisan"
+        aria-label="Être recontacté pour mon projet"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Bouton fermer */}
@@ -112,7 +116,8 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
             </div>
             <h3 className="modal-title">Demande envoyée !</h3>
             <p className="modal-subtitle" style={{ marginBottom: 24 }}>
-              Nous reviendrons vers vous rapidement avec un artisan qualifié dans votre zone.
+              DIY Builder ne réalise pas les travaux et ne garantit pas d&apos;intervention.
+              Nous recueillons votre demande et revenons vers vous.
             </p>
             <button className="modal-btn modal-btn--primary" onClick={onClose} autoFocus>
               Fermer
@@ -125,9 +130,9 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               <div className="artisan-modal-header-icon">
                 <span className="material-symbols-outlined">engineering</span>
               </div>
-              <h3 className="modal-title">Trouver un artisan</h3>
+              <h3 className="modal-title">Être recontacté pour mon projet</h3>
               <p className="modal-subtitle">
-                Recevez des devis d&apos;artisans qualifiés dans votre zone.
+                Transmettez-nous votre projet calculé pour être recontacté(e).
               </p>
             </div>
 
@@ -139,12 +144,11 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
             )}
 
-            {/* Bannière BOM inclus */}
+            {/* Bannière dossier projet */}
             <div className="modal-bom-banner">
               <span className="material-symbols-outlined" style={{ fontSize: 16, flexShrink: 0 }}>inventory_2</span>
               <span>
-                L&apos;artisan recevra la <strong>liste de matériaux calculée</strong> et le budget estimé.
-                Moins de temps perdu, devis plus précis.
+                Votre <strong>dossier projet</strong> (matériaux, budget) accompagne votre demande.
               </span>
             </div>
 
@@ -268,6 +272,37 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                 />
               </div>
 
+              {/* Consentement explicite — non précoché par défaut */}
+              <div className="modal-field">
+                <label
+                  className="modal-consent"
+                  htmlFor="alm-consent"
+                  style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 12, lineHeight: 1.5, color: 'var(--text-3, #6b6259)', cursor: 'pointer' }}
+                >
+                  <input
+                    id="alm-consent"
+                    type="checkbox"
+                    checked={form.consent}
+                    onChange={setConsent}
+                    disabled={isLoading}
+                    required
+                    aria-required="true"
+                    aria-invalid={errors.consent ? 'true' : 'false'}
+                    aria-describedby={errors.consent ? 'alm-consent-err' : undefined}
+                    style={{ marginTop: 2, flexShrink: 0 }}
+                  />
+                  <span>
+                    J&apos;accepte que mes coordonnées et les informations de mon projet
+                    soient recueillies par DIY Builder afin d&apos;être recontacté(e) au sujet
+                    de sa réalisation. Elles pourront, avec mon accord, être transmises à
+                    un partenaire spécialisé.
+                  </span>
+                </label>
+                {errors.consent && (
+                  <span id="alm-consent-err" role="alert" className="modal-error">{errors.consent}</span>
+                )}
+              </div>
+
               {status === 'error' && (
                 <p role="alert" aria-live="assertive" style={{ fontSize: 13, color: '#b91c1c', margin: '4px 0 0' }}>
                   Une erreur est survenue. Réessayez ou contactez-nous directement.
@@ -295,7 +330,8 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
 
               <p style={{ fontSize: 11, color: 'var(--text-4, #9c9188)', textAlign: 'center', margin: '8px 0 0', lineHeight: 1.5 }}>
-                Vos coordonnées sont transmises uniquement à l&apos;artisan sélectionné. Aucun démarchage commercial.
+                Vos coordonnées sont recueillies par DIY Builder et ne sont transmises à aucun
+                tiers sans votre accord explicite. Aucun démarchage commercial.
               </p>
             </form>
           </>

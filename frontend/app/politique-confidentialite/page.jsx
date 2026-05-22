@@ -42,7 +42,7 @@ export default function PolitiqueConfidentialite() {
             <tbody>
               <tr>
                 <td>Adresse email</td>
-                <td>Envoi du dossier projet, mise en relation avec un artisan</td>
+                <td>Recueil de votre demande de mise en relation, traitement par DIY Builder</td>
                 <td>Consentement explicite</td>
               </tr>
               <tr>
@@ -71,8 +71,10 @@ export default function PolitiqueConfidentialite() {
             Les données ne sont pas vendues ni cédées à des tiers à des fins commerciales.
           </p>
           <p className="content-legal-p">
-            Dans le cadre de la mise en relation avec un artisan partenaire, votre email et vos informations
-            de projet peuvent être transmis à l&apos;artisan concerné, uniquement avec votre consentement préalable.
+            Lorsque vous demandez à être recontacté(e), vos coordonnées et les informations de votre projet
+            sont recueillies par DIY Builder. Elles ne sont transmises à un partenaire spécialisé qu&apos;avec
+            votre consentement explicite, et vous pouvez retirer ce consentement ou demander la suppression
+            de vos données à tout moment.
           </p>
         </div>
 

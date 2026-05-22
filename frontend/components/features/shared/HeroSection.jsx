@@ -85,170 +85,6 @@ const PROJECTS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════
-   SOCIAL PROOF — stagger carousel (logique vaib215/21st.dev)
-═══════════════════════════════════════════════════════════ */
-
-// Diagonale du coin coupé : sqrt(50² + 50²)
-const SQRT_5000 = Math.sqrt(5000);
-
-const TESTIMONIALS = [
-  {
-    quote: "J'avais mon devis matériaux précis avant même d'appeler. L'artisan a respecté le budget à 40 € près.",
-    name: 'Sophie M.',
-    city: 'Lyon',
-    project: 'Terrasse 18 m²',
-    initial: 'S',
-    color: '#2D6A4F',
-  },
-  {
-    quote: '2 minutes pour le calcul, artisan trouvé le lendemain. Chantier terminé en 3 jours, nickel.',
-    name: 'Marc D.',
-    city: 'Bordeaux',
-    project: 'Cabanon 9 m²',
-    initial: 'M',
-    color: '#8B5E3C',
-  },
-  {
-    quote: "Je voulais faire moi-même, puis j'ai vu les devis artisan. Prix quasi identique, sans le risque.",
-    name: 'Lucie T.',
-    city: 'Nantes',
-    project: 'Pergola bois',
-    initial: 'L',
-    color: '#5A5E8B',
-  },
-  {
-    quote: "Le simulateur m'a montré exactement combien de lames il fallait. Zéro gaspillage, zéro aller-retour en magasin.",
-    name: 'Thomas B.',
-    city: 'Toulouse',
-    project: 'Clôture 24 m',
-    initial: 'T',
-    color: '#7B4B8B',
-  },
-  {
-    quote: "J'ai partagé le lien du devis à l'artisan directement. Il a dit que c'était la première fois qu'un client arrivait aussi préparé.",
-    name: 'Émilie R.',
-    city: 'Strasbourg',
-    project: 'Terrasse 22 m²',
-    initial: 'É',
-    color: '#3C6B8B',
-  },
-  {
-    quote: "On a comparé trois artisans avec le même cahier des charges généré ici. Choix facile, devis transparent.",
-    name: 'Karim A.',
-    city: 'Montpellier',
-    project: 'Pergola 12 m²',
-    initial: 'K',
-    color: '#6B4B2D',
-  },
-];
-
-/* ─── SocialCarousel — logique exacte vaib215 ─── */
-function SocialCarousel() {
-  const [cardSize, setCardSize] = useState(340);
-  const [list, setList] = useState(() =>
-    TESTIMONIALS.map((t, i) => ({ ...t, tempId: i }))
-  );
-
-  useEffect(() => {
-    function updateSize() {
-      setCardSize(window.matchMedia('(min-width: 640px)').matches ? 340 : 270);
-    }
-    updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-
-  const handleMove = useCallback((steps) => {
-    if (steps === 0) return;
-    setList((prev) => {
-      const arr = [...prev];
-      if (steps > 0) {
-        for (let i = 0; i < steps; i++) {
-          const item = arr.shift();
-          if (!item) return prev;
-          arr.push({ ...item, tempId: Math.random() });
-        }
-      } else {
-        for (let i = 0; i < Math.abs(steps); i++) {
-          const item = arr.pop();
-          if (!item) return prev;
-          arr.unshift({ ...item, tempId: Math.random() });
-        }
-      }
-      return arr;
-    });
-  }, []);
-
-  const n = list.length;
-
-  return (
-    <div className="v6-social-carousel-wrap">
-      <div className="v6-social-carousel">
-        {list.map((item, index) => {
-          const position = n % 2
-            ? index - (n + 1) / 2
-            : index - n / 2;
-          const isCenter = position === 0;
-          return (
-            <div
-              key={item.tempId}
-              className={`v6-social-card${isCenter ? ' v6-social-card--active' : ''}`}
-              onClick={() => handleMove(position)}
-              style={{
-                width: cardSize,
-                height: cardSize,
-                clipPath: 'polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)',
-                transform: `
-                  translate(-50%, -50%)
-                  translateX(${(cardSize / 1.5) * position}px)
-                  translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
-                  rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
-                `,
-                boxShadow: isCenter ? '0px 8px 0px 4px rgba(0,0,0,0.5)' : 'none',
-                zIndex: isCenter ? 10 : 0,
-              }}
-            >
-              {/* Ligne diagonale du coin coupé (top-right) */}
-              <span
-                className="v6-social-card-cut"
-                style={{ right: -2, top: 48, width: SQRT_5000, height: 2 }}
-              />
-              {/* Avatar carré (comme une photo de profil) */}
-              <div className="v6-social-avatar" style={{ background: item.color }}>
-                {item.initial}
-              </div>
-              {/* Citation */}
-              <blockquote className="v6-social-quote">
-                &ldquo;{item.quote}&rdquo;
-              </blockquote>
-              {/* Auteur — positionné en bas absolu */}
-              <p className="v6-social-by">
-                — {item.name} · <span>{item.city}</span>
-              </p>
-              <p className="v6-social-project">{item.project}</p>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Boutons de navigation — carrés comme la référence */}
-      <div className="v6-social-nav">
-        <button className="v6-social-nav-btn" onClick={() => handleMove(-1)} aria-label="Témoignage précédent">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="m15 18-6-6 6-6"/>
-          </svg>
-        </button>
-        <button className="v6-social-nav-btn" onClick={() => handleMove(1)} aria-label="Témoignage suivant">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════
    P1 — COUNT-UP HOOK — smooth number animation
 ═══════════════════════════════════════════════════════════ */
 function useCountUp(targetVal, decimals = 0, duration = 700, trigger) {
@@ -663,22 +499,6 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
     else setShowProjectMenu(prev => !prev);
   }, [onCalculer]);
 
-  /* CTA de la section témoignages : scroll vers le hero, puis ouvre la roue */
-  const handleSocialCTA = useCallback(() => {
-    const heroEl = document.getElementById('v6-hero');
-    if (heroEl) {
-      const html = document.documentElement;
-      html.style.scrollSnapType = 'none';
-      heroEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => {
-        html.style.scrollSnapType = 'y mandatory';
-        setShowProjectMenu(true);
-      }, 500);
-    } else {
-      setShowProjectMenu(true);
-    }
-  }, []);
-
   return (
     <div style={{ background: '#0E0F10' }}>
       {/* [T2-11] Scroll progress bar */}
@@ -738,10 +558,10 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                 <span className="v6-title-line v6-title-l3">vos matériaux bois</span>
               </h1>
 
-              {/* Artisan tagline — sous le H1 */}
+              {/* Tagline — sous le H1 */}
               <div className="v6-hero-artisan-tag">
                 <span className="v6-hero-artisan-dot" />
-                Obtenez un devis artisan local
+                Estimez votre projet bois en quelques minutes
               </div>
 
               {/* Subtitle — two-tier editorial hierarchy */}
@@ -750,7 +570,7 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                   Dimensions, découpes optimisées, prix comparés chez quatre enseignes.
                 </p>
                 <p className="v6-hero-sub-note">
-                  Résultat en 30 secondes — dossier PDF + mise en relation artisan inclus.
+                  Résultat en 30 secondes — dossier PDF complet de votre projet.
                 </p>
               </div>
 
@@ -805,7 +625,7 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                 {[
                   { val: '4', label: 'simulateurs' },
                   { val: '<5%', label: 'de pertes' },
-                  { val: '48h', label: 'devis artisan' },
+                  { val: 'DTU', label: 'calculs aux normes' },
                 ].map((p, i) => (
                   <div className="v6-proof" key={i}>
                     <span className="v6-proof-val">{p.val}</span>
@@ -1042,32 +862,24 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                     </div>
                   ))}
                   <div style={{ textAlign: 'center', marginTop: 16 }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--g-mustard, #C9971E)' }}>↓ Économie : jusqu&apos;à 60 €</span>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--g-mustard, #C9971E)' }}>↓ Écart de prix entre enseignes (exemple)</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Card 04 — Artisan */}
+            {/* Card 04 — Confier la réalisation */}
             <div className="v6-bento-card v6-bento-card--artisan">
               <div className="v6-bento-num v6-bento-num--gold">04</div>
-              <h3>Passez le relais</h3>
-              <p>Votre cahier des charges est prêt. Un artisan local le prend en main.</p>
+              <h3>Vous préférez confier votre projet à un professionnel ?</h3>
+              <p>
+                Transmettez-nous votre projet calculé. Nous recueillons votre demande
+                et vous recontacterons pour vous orienter vers une solution de réalisation.
+              </p>
               <div className="v6-bento-visual">
                 <div style={{ width: '100%' }}>
-                  <div className="v6-mini-artisan-card">
-                    <div className="v6-mini-artisan-avatar">JD</div>
-                    <div className="v6-mini-artisan-info">
-                      <div className="v6-mini-artisan-name">Jean D. · Charpentier</div>
-                      <div className="v6-mini-artisan-loc">📍 Lyon — 4.9 ★</div>
-                    </div>
-                  </div>
-                  <div className="v6-mini-artisan-status">
-                    <span className="v6-mini-artisan-dot" />
-                    Devis reçu en 24h
-                  </div>
                   <div className="v6-mini-artisan-badge">
-                    Cahier des charges inclus
+                    Dossier projet PDF prêt à transmettre
                   </div>
                 </div>
               </div>
@@ -1091,23 +903,24 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
             <div className="v6-eyebrow">
               <span className="v6-eyebrow-idx">03</span>
               <span className="v6-eyebrow-sep" />
-              Mise en relation
+              Confier la réalisation
             </div>
             <h2 className="v6-artisan-title">
               Calculé ici.{' '}
-              <em>Réalisé par un pro.</em>
+              <em>Réalisable par un professionnel.</em>
             </h2>
             <p className="v6-artisan-sub">
-              Votre simulateur génère un cahier des charges complet — matériaux, coupes, budget. L&apos;artisan arrive préparé. Vous arrivez outillé.
+              Votre simulateur génère un dossier complet — matériaux, coupes, budget.
+              Votre projet calculé facilite la demande de réalisation.
             </p>
             <p className="v6-artisan-lead">
-              La mise en relation se fait après simulation — <em>directement depuis votre projet calculé.</em>
+              Vous préférez confier les travaux ? <em>Transmettez-nous votre projet calculé pour être recontacté(e).</em>
             </p>
             <div className="v6-artisan-args">
               {[
-                { icon: '✓', title: 'Artisans vérifiés', desc: 'Qualifiés RGE ou référencés Qualibat dans votre département' },
-                { icon: '✓', title: 'Devis sous 48h', desc: 'Le cahier des charges est transmis automatiquement' },
-                { icon: '✓', title: 'Zéro surprise', desc: 'Prix matériaux déjà calculés — l\'artisan chiffre uniquement la pose' },
+                { icon: '✓', title: 'Projet déjà chiffré', desc: 'Matériaux et budget calculés en amont de la demande' },
+                { icon: '✓', title: 'Dossier PDF complet', desc: 'Plans et coupes prêts à transmettre' },
+                { icon: '✓', title: 'Sans engagement', desc: 'Vous restez libre de votre décision à chaque étape' },
               ].map((a, i) => (
                 <div className="v6-artisan-arg" key={i}>
                   <span className="v6-artisan-check">{a.icon}</span>
@@ -1121,30 +934,22 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
           </div>
           <div className="v6-artisan-visual">
             <div className="v6-artisan-card-stack">
-              {/* Carte artisan principale */}
+              {/* Carte projet — dossier prêt à transmettre */}
               <div className="v6-artisan-profile-card">
-                <div className="v6-artisan-profile-header">
-                  <div className="v6-artisan-profile-avatar">M</div>
-                  <div>
-                    <div className="v6-artisan-profile-name">Marc Duval</div>
-                    <div className="v6-artisan-profile-meta">Charpentier · Nantes</div>
-                    <div className="v6-artisan-profile-stars">★★★★★ <span>4.9</span></div>
-                  </div>
-                </div>
                 <div className="v6-artisan-profile-project">
-                  <div className="v6-artisan-profile-label">Projet reçu</div>
+                  <div className="v6-artisan-profile-label">Projet calculé</div>
                   <div className="v6-artisan-profile-project-name">Terrasse 13.5 m² — Pin CL4</div>
                   <div className="v6-artisan-profile-bom">42 lames · 18 lambourdes · 15 plots</div>
                 </div>
                 <div className="v6-artisan-profile-devis">
-                  <span className="v6-artisan-profile-devis-label">Devis pose</span>
-                  <span className="v6-artisan-profile-devis-amount">1 200 €</span>
+                  <span className="v6-artisan-profile-devis-label">Budget matériaux estimé</span>
+                  <span className="v6-artisan-profile-devis-amount">663 €</span>
                 </div>
               </div>
-              {/* Badge "cahier des charges transmis" */}
+              {/* Badge "dossier projet prêt" */}
               <div className="v6-artisan-badge-float">
                 <span className="v6-artisan-badge-dot" />
-                Cahier des charges transmis
+                Dossier projet PDF prêt
               </div>
             </div>
           </div>
@@ -1217,8 +1022,8 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                 <div className="v6-testi-grid-overlay" />
                 <div className="v6-testi-body">
                   <div className="v6-testi-badge">DTU</div>
-                  <div className="v6-testi-val v6-testi-val--hero">100%</div>
-                  <div className="v6-testi-lbl">Conforme DTU</div>
+                  <div className="v6-testi-val v6-testi-val--hero">Normes</div>
+                  <div className="v6-testi-lbl">Calculs basés sur les normes DTU</div>
                   <div className="v6-testi-sub">Sections, entraxes et assemblages selon les normes françaises de construction bois</div>
                 </div>
               </div>
@@ -1228,47 +1033,6 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
           {/* Bottom rule with corner squares (testimonial reference) */}
           <div className="v6-testi-rule">
             <div className="v6-testi-rule-inner" />
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-           SOCIAL PROOF — stagger carousel témoignages
-      ══════════════════════════════════════ */}
-      <section className="v6-social-section" id="v6-social">
-        <div className="v6-social-inner">
-          {/* Header */}
-          <div className="v6-social-header">
-            <div className="v6-eyebrow">
-              <span className="v6-eyebrow-idx">04</span>
-              <span className="v6-eyebrow-sep" />
-              Témoignages
-            </div>
-            <h2 className="v6-social-title">
-              Ils ont lancé{' '}
-              <em>leur projet.</em>
-            </h2>
-            <p className="v6-social-sub">
-              Des milliers d&apos;utilisateurs ont obtenu leur devis en 2 minutes — puis trouvé l&apos;artisan qu&apos;il leur fallait.
-            </p>
-          </div>
-
-          {/* Stagger carousel */}
-          <SocialCarousel />
-
-          {/* CTA strip */}
-          <div className="v6-social-cta-strip">
-            <p className="v6-social-cta-label">Prêt à lancer votre projet ?</p>
-            <button
-              type="button"
-              className="v6-btn v6-btn--cta"
-              onClick={handleSocialCTA}
-            >
-              Calculer mes matériaux
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-              </svg>
-            </button>
           </div>
         </div>
       </section>

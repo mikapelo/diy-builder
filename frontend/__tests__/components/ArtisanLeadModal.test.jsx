@@ -7,8 +7,11 @@
  *   - Submit sans téléphone → erreur "Numéro requis", pas d'appel API
  *   - Submit sans code postal → erreur "Code postal requis"
  *   - Email invalide → erreur "Email invalide"
- *   - Submit complet → fetch /api/artisan-lead avec bons champs
+ *   - Submit complet (consentement coché) → fetch /api/artisan-lead avec bons champs
  *   - Erreur serveur → status error affiché
+ *
+ * Note : la soumission requiert le consentement explicite RGPD (case
+ * non précochée). Les tests de flux nominal cochent donc `alm-consent`.
  */
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -82,6 +85,21 @@ describe('ArtisanLeadModal — validation', () => {
     });
     expect(global.fetch).not.toHaveBeenCalled();
   });
+
+  it('consentement non coché (phone+zip valides) → pas d\'appel API', async () => {
+    render(
+      <ArtisanLeadModal open onClose={vi.fn()} projectType="terrasse" dims={{ width: 4, depth: 3 }} />,
+    );
+    // La case de consentement RGPD doit être non précochée par défaut.
+    expect(getInput('alm-consent').checked).toBe(false);
+    fireEvent.change(getInput('alm-phone'), { target: { value: '0612345678' } });
+    fireEvent.change(getInput('alm-zip'), { target: { value: '75001' } });
+    fireEvent.submit(document.querySelector('form'));
+    await waitFor(() => {
+      expect(screen.getByText(/accord est nécessaire/i)).toBeInTheDocument();
+    });
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
 });
 
 describe('ArtisanLeadModal — flux nominal', () => {
@@ -92,6 +110,7 @@ describe('ArtisanLeadModal — flux nominal', () => {
     fireEvent.change(document.getElementById('alm-phone'), { target: { value: '0612345678' } });
     fireEvent.change(document.getElementById('alm-zip'), { target: { value: '75001' } });
     fireEvent.change(document.getElementById('alm-email'), { target: { value: 'jean@exemple.fr' } });
+    fireEvent.click(document.getElementById('alm-consent'));
     fireEvent.submit(document.querySelector('form'));
 
     await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
@@ -113,6 +132,7 @@ describe('ArtisanLeadModal — flux nominal', () => {
     );
     fireEvent.change(document.getElementById('alm-phone'), { target: { value: '0612345678' } });
     fireEvent.change(document.getElementById('alm-zip'), { target: { value: '75001' } });
+    fireEvent.click(document.getElementById('alm-consent'));
     fireEvent.submit(document.querySelector('form'));
     await waitFor(() => {
       expect(screen.getByText(/Une erreur est survenue/i)).toBeInTheDocument();

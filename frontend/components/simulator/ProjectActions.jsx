@@ -17,9 +17,9 @@ const DIY_INCLUDES = [
 ];
 
 const PRO_INCLUDES = [
-  { icon: 'picture_as_pdf', label: 'Même dossier PDF transmis à l\'artisan' },
-  { icon: 'location_on',    label: 'Artisan qualifié de votre secteur' },
-  { icon: 'schedule',       label: 'Contact sous 24 – 48 h, devis sur mesure' },
+  { icon: 'picture_as_pdf', label: 'Votre projet calculé transmis' },
+  { icon: 'description',    label: 'Dossier PDF inclus' },
+  { icon: 'verified_user',  label: 'Sans engagement' },
 ];
 
 /* Ce que le formulaire artisan demandera */
@@ -81,8 +81,8 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
           <div className="pa-pivot-card-header">
             <span className="pa-pivot-card-icon material-symbols-outlined">handyman</span>
             <div>
-              <h3 className="pa-pivot-card-title">Je le confie à un artisan</h3>
-              <p className="pa-pivot-card-sub">Dossier + mise en relation locale</p>
+              <h3 className="pa-pivot-card-title">Confier la réalisation à un professionnel</h3>
+              <p className="pa-pivot-card-sub">On recueille votre demande</p>
             </div>
           </div>
 
@@ -114,7 +114,7 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
             }}
           >
             <span className="material-symbols-outlined" style={{ fontSize: 17 }}>send</span>
-            Demander une mise en relation
+            Être recontacté pour mon projet
           </button>
         </div>
 

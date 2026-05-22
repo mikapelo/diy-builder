@@ -480,14 +480,14 @@ export default function DalleTutorielPage() {
           </p>
         </footer>
 
-        {/* ── CTA artisan ── */}
+        {/* ── CTA réalisation ── */}
         <div className="dalle-cta-artisan">
           <div className="dalle-cta-text">
-            <strong>Projet trop important à faire seul ?</strong>
-            <span>Obtenez un devis d&apos;un artisan qualifié avec votre calcul de matériaux.</span>
+            <strong>Vous préférez confier la réalisation ?</strong>
+            <span>Transmettez-nous votre projet calculé pour être recontacté(e).</span>
           </div>
           <Link href="/" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
-            Trouver un artisan
+            Être recontacté pour mon projet
           </Link>
         </div>
 

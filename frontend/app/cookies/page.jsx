@@ -109,7 +109,7 @@ export default function Cookies() {
           <h2 className="content-legal-h2">Contact</h2>
           <p className="content-legal-p">
             Pour toute question relative à notre utilisation des cookies, contactez-nous à :{' '}
-            <strong>[À COMPLÉTER — email]</strong>
+            <strong>contact@diy-builder.fr</strong>
           </p>
         </div>
 

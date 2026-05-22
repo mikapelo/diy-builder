@@ -138,9 +138,10 @@ export default function AProposPage() {
         </p>
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Pas de mise en relation avec des artisans</strong> : les simulateurs
-            calculent des quantités pour l&apos;autoproduction. Nous ne référençons pas
-            d&apos;artisans et ne gérons pas de demandes de devis auprès de professionnels.
+            <strong>Pas de réseau d&apos;artisans</strong> : DIY Builder ne gère pas de
+            réseau d&apos;artisans et ne réalise pas les travaux. À votre demande, nous
+            pouvons recueillir votre projet pour vous orienter vers une solution de
+            réalisation.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Pas de boutique propre</strong> : les liens vers les enseignes renvoient
