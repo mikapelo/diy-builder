@@ -551,12 +551,12 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                 Simulateur de projets
               </div>
 
-              {/* H1 — weight triangle: L1 commanding, L2 serif climax, L3 resolution */}
-              <h1 className="v6-hero-title">
+              {/* Titre hero — visuel uniquement ; le H1 SEO est dans HomeSeoBand */}
+              <p className="v6-hero-title">
                 <span className="v6-title-line v6-title-l1">Calculez</span>
                 <span className="v6-title-line v6-title-l2"><span className="accent">précisément</span></span>
                 <span className="v6-title-line v6-title-l3">vos matériaux bois</span>
-              </h1>
+              </p>
 
               {/* Tagline — sous le H1 */}
               <div className="v6-hero-artisan-tag">
@@ -570,7 +570,7 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                   Dimensions, découpes optimisées, prix comparés chez quatre enseignes.
                 </p>
                 <p className="v6-hero-sub-note">
-                  Résultat en 30 secondes — dossier PDF complet de votre projet.
+                  Gratuit, sans inscription — résultat en 30 secondes, dossier PDF complet.
                 </p>
               </div>
 
@@ -786,8 +786,8 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
         <div className="v6-bento-inner">
           <div className="v6-bento-header">
             <div className="v6-bento-eyebrow">Mode d&apos;emploi</div>
-            <h2 className="v6-bento-title">Trois étapes, <em>trente secondes</em></h2>
-            <p className="v6-bento-sub">Du besoin au devis, sans prise de tête.</p>
+            <h2 className="v6-bento-title">Du besoin au devis, <em>en trente secondes</em></h2>
+            <p className="v6-bento-sub">Trois étapes pour calculer — et l&apos;option de confier le chantier.</p>
           </div>
           <div className="v6-bento-grid v6-bento-grid--4col">
             {/* Card 01 */}

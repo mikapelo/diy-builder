@@ -4,12 +4,12 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
   description:
-    'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates est le seul programme actif. Liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano sans rémunération. Mécanisme de tracking, durée des cookies, règles éditoriales. Conformité Loi 2023-451 et Code conso L121-1.',
+    'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates est le seul programme actif. Liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano sans rémunération. Mécanisme de suivi, durée des cookies, règles éditoriales. Conformité Loi 2023-451 et Code conso L121-1.',
   alternates: { canonical: 'https://www.diy-builder.fr/charte-affiliation' },
   openGraph: {
     title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
     description:
-      'Programmes actifs, cookies de tracking, règles éditoriales — tout ce qui concerne l\'affiliation sur DIY Builder, dit clairement.',
+      'Programmes actifs, cookies de suivi, règles éditoriales — tout ce qui concerne l\'affiliation sur DIY Builder, dit clairement.',
     url: 'https://www.diy-builder.fr/charte-affiliation',
     type: 'website',
   },
@@ -35,7 +35,7 @@ const webPageJsonLd = {
   name: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
   url: 'https://www.diy-builder.fr/charte-affiliation',
   description:
-    'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates seul programme actif, mécanisme de tracking, règles éditoriales.',
+    'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates seul programme actif, mécanisme de suivi, règles éditoriales.',
   dateModified: '2026-05-16',
   publisher: {
     '@type': 'Organization',
@@ -108,7 +108,7 @@ export default function CharteAffiliationPage() {
             supplémentaire.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            Un cookie de tracking est déposé par l&apos;enseigne ou la plateforme d&apos;affiliation
+            Un cookie de suivi est déposé par l&apos;enseigne ou la plateforme d&apos;affiliation
             (pas par DIY Builder) dans votre navigateur, pour une durée variable selon
             le programme (précisée ci-dessous).
           </li>
@@ -121,7 +121,7 @@ export default function CharteAffiliationPage() {
         <p className="content-body">
           Si vous achetez après expiration du cookie, ou sur un autre navigateur ou
           appareil, DIY Builder ne perçoit rien. Si vous utilisez un bloqueur de
-          publicité qui neutralise les cookies de tracking, DIY Builder ne perçoit rien.
+          publicité qui neutralise les cookies de suivi, DIY Builder ne perçoit rien.
         </p>
 
         <h2 className="content-h2">Programmes d&apos;affiliation actifs</h2>

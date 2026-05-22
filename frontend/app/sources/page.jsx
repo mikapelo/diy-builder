@@ -109,7 +109,7 @@ export default function SourcesPage() {
         <SourceItem
           name="NF DTU 31.2 P1-1 (mai 2019) — Ossature bois voile travaillant"
           url="https://www.boutique.afnor.org/fr-fr/norme/nf-dtu-312-p1-1/travaux-de-batiment-construction-de-maisons-et-batiments-a-ossature-en-bois-/fa190296/81938"
-          description="Norme de référence pour les constructions à ossature bois platform frame. Utilisée pour l'entraxe des montants (§9.2.1 : max 60 cm), la section minimale des poteaux (§9.1.1.2 : ≥ 95 mm à l'humidité de service), les linteaux (§9.2.3.1), le contreventement OSB (§9.2.2 : ≥ 9 mm). Couvre les classes de service 1 et 2 pour les bâtiments de hauteur ≤ 3 niveaux."
+          description="Norme de référence pour les constructions à ossature bois à plate-forme. Utilisée pour l'entraxe des montants (§9.2.1 : max 60 cm), la section minimale des poteaux (§9.1.1.2 : ≥ 95 mm à l'humidité de service), les linteaux (§9.2.3.1), le contreventement OSB (§9.2.2 : ≥ 9 mm). Couvre les classes de service 1 et 2 pour les bâtiments de hauteur ≤ 3 niveaux."
           usedIn="cabanonConstants.js, modules/cabanon/engine.js, guides/cabanon"
         />
 
@@ -259,7 +259,7 @@ export default function SourcesPage() {
         <SourceItem
           name="jsPDF v4"
           url="https://github.com/parallax/jsPDF"
-          description="Génération de PDF côté client (navigateur). Utilisé pour l'export du devis matériaux avec logo, tableau BOM et récapitulatif budget. Licence MIT."
+          description="Génération de PDF côté client (navigateur). Utilisé pour l'export du devis matériaux avec logo, tableau de nomenclature et récapitulatif budget. Licence MIT."
           usedIn="hooks/usePDFExport.js, components/simulator/ExportPDF/"
         />
 

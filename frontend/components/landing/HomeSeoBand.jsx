@@ -62,7 +62,7 @@ const PROJECTS = [
     title: 'Terrasse bois',
     img: '/illustrations/hero/terrassehero.png',
     alt: 'Terrasse bois avec lambourdes et plots béton',
-    desc: "Lames, lambourdes, plots béton : le calculateur applique l'entraxe DTU 51.4 (40-50 cm selon section), génère votre BOM exporté en PDF et compare les 4 enseignes principales. Pour une terrasse 4×3 m, comptez environ 360 € de matériaux en pin classe 4.",
+    desc: "Lames, lambourdes, plots béton : le calculateur applique l'entraxe DTU 51.4 (40-50 cm selon section), génère votre nomenclature exportée en PDF et compare les 4 enseignes principales. Pour une terrasse 4×3 m, comptez environ 360 € de matériaux en pin classe 4.",
     simHref: '/calculateur',
     guideHref: '/guides/terrasse',
   },
@@ -71,7 +71,7 @@ const PROJECTS = [
     title: 'Cabanon ossature bois',
     img: '/illustrations/hero/cabanonhero.png',
     alt: 'Cabanon ossature bois avec montants 45×90 mm',
-    desc: "Montants 45×90 mm à entraxe 60 cm (DTU 31.2), coins en L, king studs, jack studs, cripple studs, chevrons mono-pente : le simulateur calcule l'ossature complète et le bardage. Budget typique : 600 à 3 000 € selon la surface.",
+    desc: "Montants 45×90 mm à entraxe 60 cm (DTU 31.2), coins en L, montants d'encadrement de porte et fenêtre, linteaux, chevrons mono-pente : le simulateur calcule l'ossature complète et le bardage. Budget typique : 600 à 3 000 € selon la surface.",
     simHref: '/cabanon',
     guideHref: '/guides/cabanon',
   },
@@ -125,7 +125,7 @@ const REASONS = [
     ),
   },
   {
-    heading: 'Aucun compte, aucun cookie de tracking',
+    heading: 'Aucun compte, aucun cookie de suivi',
     text: <>Pas de création de compte, pas de Google Analytics. La mesure d&apos;audience utilise Umami sans cookie. <Link href="/politique-confidentialite">Politique de confidentialité</Link>.</>,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -183,7 +183,7 @@ export default function HomeSeoBand() {
 
           <p className="hv2-eyebrow">Simulateur de matériaux bois</p>
           <h1 className="hv2-h1">
-            Calculer ses matériaux DIY bois : 4 simulateurs gratuits
+            Calculer ses matériaux bois : 4 simulateurs gratuits
           </h1>
           <p className="hv2-lead">
             Terrasse, cabanon, pergola, clôture — DIY Builder calcule en moins de 30 secondes

@@ -16,6 +16,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import JsonLd from '@/components/ui/JsonLd';
 
 // ── Constantes DTU 13.3 (inline pour éviter l'import engine) ──────────
 const EPAISSEUR = { pietonne: 0.10, vehicule: 0.12, pl: 0.20 };
@@ -236,6 +237,18 @@ const STEPS = [
   },
 ];
 
+// ── JSON-LD HowTo (NF DTU 13.3) ────────────────────────────────────────
+const howToJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Couler une dalle béton extérieure',
+  description:
+    'Tutoriel illustré pour réaliser une dalle béton conforme NF DTU 13.3 : terrassement, forme drainante, coffrage, treillis soudé ST25, coulage et joints de fractionnement.',
+  totalTime: 'P2D',
+  estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '150', maxValue: '600' },
+  step: STEPS.map((s) => ({ '@type': 'HowToStep', position: s.id, name: s.title, text: s.desc })),
+};
+
 // ── Calculateur ────────────────────────────────────────────────────────
 function DalleCalculateur() {
   const [width, setWidth]   = useState(4);
@@ -410,6 +423,7 @@ export default function DalleTutorielPage() {
 
   return (
     <div className="min-h-screen" data-theme="g-v2" style={{ background: 'var(--surface)' }}>
+      <JsonLd data={howToJsonLd} />
       <Header
         view="module"
         resultat={false}

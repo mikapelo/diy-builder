@@ -2,20 +2,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 
-const OG_TITLE = '5 guides DIY bois & béton';
+const OG_TITLE = '5 guides bois & béton';
 const OG_SUBTITLE = 'Terrasse, cabanon, pergola, clôture, dalle';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
 
 export const metadata = {
-  title: 'Guides DIY bois 2026 : terrasse, cabanon, pergola, clôture, dalle béton',
+  title: 'Guides bois & béton : terrasse, cabanon, pergola, clôture, dalle',
   description: 'Construire soi-même en bois et béton — 5 guides pratiques (DTU 31.1, 31.2, 51.4, 13.3) avec prix, étapes, outils et durée par projet.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides' },
   openGraph: {
-    title: '5 guides DIY pour construire en bois et béton | DIY Builder',
+    title: '5 guides pour construire en bois et béton | DIY Builder',
     description: 'Terrasse, cabanon, pergola, clôture, dalle béton — guides pas à pas conformes DTU avec budget, outils et durée par projet.',
     url: 'https://www.diy-builder.fr/guides',
     type: 'website',
-    images: [{ url: OG_URL, width: 1200, height: 630, alt: '5 guides DIY DIY Builder' }],
+    images: [{ url: OG_URL, width: 1200, height: 630, alt: '5 guides DIY Builder' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -26,7 +26,7 @@ export const metadata = {
 const itemListJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'Guides DIY construction bois et béton',
+  name: 'Guides de construction bois et béton',
   description: 'Cinq guides pratiques pour construire en bois et béton soi-même : terrasse, cabanon, pergola, clôture et dalle béton extérieure.',
   numberOfItems: 5,
   itemListElement: [
@@ -82,7 +82,7 @@ export default function GuidesPage() {
           <span className="content-breadcrumb-current">Guides</span>
         </nav>
 
-        <h1 className="content-h1">5 guides DIY pour construire en bois et béton</h1>
+        <h1 className="content-h1">5 guides pour construire en bois et béton</h1>
 
         <p className="content-meta">
           <span><strong>Mis à jour le 16 mai 2026</strong></span>
@@ -123,7 +123,7 @@ export default function GuidesPage() {
         </section>
 
         <section>
-          <h2 className="content-h2">Les guides DIY</h2>
+          <h2 className="content-h2">Les guides pratiques</h2>
           <div className="content-guides-grid">
 
             <Link href="/guides/terrasse" className="content-guide-card">

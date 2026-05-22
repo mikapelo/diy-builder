@@ -6,7 +6,7 @@ const OG_SUBTITLE = 'FAQ technique 2026';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
 
 export const metadata = {
-  title: 'Construction bois : 24 questions fréquentes (FAQ 2025)',
+  title: 'Construction bois : 24 questions fréquentes (FAQ 2026)',
   description: 'Réponses aux questions les plus fréquentes sur la construction de terrasse, cabanon, pergola et clôture en bois. Calculs, matériaux, coûts.',
   alternates: { canonical: 'https://www.diy-builder.fr/faq' },
   openGraph: {
@@ -75,7 +75,7 @@ const faqData = [
       },
       {
         q: 'Comment calculer le nombre de montants pour un cabanon ?',
-        a: 'Formule de base : (périmètre total ÷ 0,60) + montants de coin (2 par coin × 4 coins = 8) + montants d\'encadrement des ouvertures (2 montants king + 2 jack studs par ouverture). Pour un cabanon de 3×2,5 m avec une porte et une fenêtre, comptez typiquement 25 à 30 montants. Le simulateur DIY Builder calcule le détail exact avec les linteaux et les cripple studs.',
+        a: 'Formule de base : (périmètre total ÷ 0,60) + montants de coin (2 par coin × 4 coins = 8) + montants d\'encadrement des ouvertures (2 montants continus + 2 montants d\'about par ouverture). Pour un cabanon de 3×2,5 m avec une porte et une fenêtre, comptez typiquement 25 à 30 montants. Le simulateur DIY Builder calcule le détail exact avec les linteaux et les montants courts.',
       },
       {
         q: 'Faut-il un pare-pluie sous le bardage d\'un cabanon ?',
@@ -191,7 +191,7 @@ const faqEnrichments = {
   ),
   'Comment calculer le nombre de montants pour un cabanon ?': (
     <>
-      {' '}<Link href="/cabanon">Le simulateur cabanon</Link> calcule le détail exact avec les linteaux, les king studs et les cripple studs — BOM exportable en PDF.
+      {' '}<Link href="/cabanon">Le simulateur cabanon</Link> calcule le détail exact avec les linteaux, les montants continus et les montants courts — nomenclature exportable en PDF.
     </>
   ),
   'Quelle section de poteau pour une pergola ?': (

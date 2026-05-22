@@ -95,14 +95,14 @@ export default function MethodologiePage() {
 
         <h2 className="content-h2">D&apos;où viennent les calculs DTU</h2>
         <p className="content-body">
-          Les engines de calcul (fichiers <code>modules/*/engine.js</code> et <code>lib/</code>)
+          Les moteurs de calcul (fichiers <code>modules/*/engine.js</code> et <code>lib/</code>)
           implémentent les règles issues de quatre normes principales. Voici les correspondances
           directes entre les constantes du code et leur source normative.
         </p>
 
         <h3 className="content-h3">Module cabanon — NF DTU 31.2 P1-1 (mai 2019)</h3>
         <p className="content-body">
-          La norme de référence pour l&apos;ossature bois à voile travaillant (platform frame).
+          La norme de référence pour l&apos;ossature bois à voile travaillant (dite à plate-forme).
           Deux constantes structurelles en découlent directement :
         </p>
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
@@ -205,8 +205,8 @@ export default function MethodologiePage() {
           les constantes <code>lib/deckConstants.js</code>.
         </p>
         <p className="content-body">
-          Le waste factor de 10 % (<code>WOOD_WASTE_FACTOR = 1,10</code>) est appliqué
-          dans <code>lib/costCalculator.js</code> uniquement — les engines retournent des
+          Le facteur de chutes de 10 % (<code>WOOD_WASTE_FACTOR = 1,10</code>) est appliqué
+          dans <code>lib/costCalculator.js</code> uniquement — les moteurs retournent des
           quantités brutes théoriques. Ce découpage garantit qu&apos;un seul endroit dans le
           code contrôle la marge de chutes.
         </p>
@@ -280,12 +280,12 @@ export default function MethodologiePage() {
         <h2 className="content-h2">Notre engagement transparence affiliation</h2>
         <p className="content-body">
           Certains liens vers les enseignes partenaires sont des liens d&apos;affiliation.
-          Lorsqu&apos;un utilisateur clique et réalise un achat dans la fenêtre de tracking,
+          Lorsqu&apos;un utilisateur clique et réalise un achat dans la fenêtre d&apos;attribution,
           DIY Builder perçoit une commission (variable selon l&apos;enseigne et la catégorie
           de produit). Le prix payé par l&apos;acheteur est identique avec ou sans lien affilié.
         </p>
         <p className="content-body">
-          Le détail complet des programmes actifs, des mécanismes de tracking et de nos
+          Le détail complet des programmes actifs, des mécanismes de suivi et de nos
           règles éditoriales en matière d&apos;affiliation est dans la{' '}
           <Link href="/charte-affiliation">charte d&apos;affiliation</Link>. Cette page-ci
           traite uniquement de la méthode de calcul et d&apos;écriture.

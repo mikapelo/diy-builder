@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams }) {
     title: `Liste de matériaux — ${label} ${w}×${d} m | DIY Builder`,
     description: `Liste complète des matériaux pour construire un(e) ${label} de ${w}×${d} m. Quantités calculées, prix comparés Leroy Merlin, Castorama, Brico Dépôt.`,
     alternates: { canonical: `https://www.diy-builder.fr/liste?project=${project}&w=${w}&d=${d}` },
-    robots: { index: true, follow: true },
+    robots: { index: false, follow: true },
   };
 }
 

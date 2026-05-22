@@ -7,7 +7,7 @@ const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cabanon`;
 
 export const metadata = {
-  title: 'Comment construire un cabanon ossature bois : guide DTU 2025 | DIY Builder',
+  title: 'Construire un cabanon ossature bois : guide DTU 31.2',
   description:
     'Guide complet pour construire un cabanon bois : ossature, montants, toiture mono-pente. Calculs DTU, liste de matériaux et estimatif de budget inclus.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/cabanon' },
@@ -54,7 +54,7 @@ const howToJsonLd = {
       '@type': 'HowToStep',
       position: 3,
       name: "Montage de l'ossature",
-      text: "Assembler les montants 45×90 mm à entraxe 60 cm entre lisse basse et lisse haute. Doubler les angles, poser les king studs et jack studs autour des ouvertures, puis contreventer chaque face avec du panneau OSB ou des écharpes métalliques.",
+      text: "Assembler les montants 45×90 mm à entraxe 60 cm entre lisse basse et lisse haute. Doubler les angles, poser les montants d'encadrement des ouvertures, puis contreventer chaque face avec du panneau OSB ou des écharpes métalliques.",
     },
     {
       '@type': 'HowToStep',
@@ -106,7 +106,7 @@ export default function GuideCabanonPage() {
           reste accessible : ossature 45×90 mm à entraxe 60 cm, toiture mono-pente, bardage ventilé.
           Ce guide suit le DTU 31.2 et couvre les points qui font vraiment la différence sur le
           chantier : dimensionnement des montants, règles autour des ouvertures, pentes à respecter,
-          et les erreurs classiques qu&apos;on voit trop souvent sur les forums DIY.
+          et les erreurs classiques qu&apos;on voit trop souvent sur les forums de bricolage.
         </p>
 
         <Figure
@@ -133,7 +133,7 @@ export default function GuideCabanonPage() {
             viewBox="0 0 640 360"
             xmlns="http://www.w3.org/2000/svg"
             role="img"
-            aria-label="Schéma d'une ossature bois platform frame avec lisse basse, lisse haute, montants courants à entraxe 60 cm, king studs et jack studs autour de la porte et de la fenêtre, cripple studs au-dessus du linteau et sous l'appui de fenêtre"
+            aria-label="Schéma d'une ossature bois à plate-forme avec lisse basse, lisse haute, montants courants à entraxe 60 cm, montants d'encadrement autour de la porte et de la fenêtre, montants courts au-dessus du linteau et sous l'appui de fenêtre"
             style={{ width: '100%', height: 'auto', display: 'block' }}
           >
             {/* Fond clair pour contraste */}
@@ -221,31 +221,31 @@ export default function GuideCabanonPage() {
             {/* ── Légende latérale droite ── */}
             <g transform="translate(610, 70)">
               <rect x="0" y="0" width="12" height="10" fill="#c89a6b" stroke="#5e3e25" strokeWidth="0.5" />
-              <text x="-4" y="9" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Stud</text>
+              <text x="-4" y="9" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Courant</text>
 
               <rect x="0" y="18" width="12" height="10" fill="#6a4a2e" stroke="#3a2618" strokeWidth="0.5" />
-              <text x="-4" y="27" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">King</text>
+              <text x="-4" y="27" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Continu</text>
 
               <rect x="0" y="36" width="12" height="10" fill="#8b5e3c" stroke="#5e3e25" strokeWidth="0.5" />
-              <text x="-4" y="45" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Jack</text>
+              <text x="-4" y="45" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">About</text>
 
               <rect x="0" y="54" width="12" height="10" fill="#c4a075" stroke="#8b6c45" strokeWidth="0.5" />
-              <text x="-4" y="63" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Cripple</text>
+              <text x="-4" y="63" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Court</text>
 
               <rect x="0" y="72" width="12" height="10" fill="#5e3e25" stroke="#3a2618" strokeWidth="0.5" />
               <text x="-4" y="81" fontSize="9" fontFamily="Inter,sans-serif" fill="#3a2618" textAnchor="end">Linteau</text>
             </g>
           </svg>
           <figcaption id="ossature-fig-caption" className="content-figure-caption">
-            Vue de face d&apos;un mur d&apos;ossature platform frame (DTU 31.2). Coins doublés en L,
-            montants courants à entraxe 60&nbsp;cm, king studs pleine hauteur de chaque côté
-            d&apos;une ouverture, jack studs (trimmer) supportant le linteau, cripple studs courts
+            Vue de face d&apos;un mur d&apos;ossature à plate-forme (DTU 31.2). Coins doublés en L,
+            montants courants à entraxe 60&nbsp;cm, montants continus pleine hauteur de chaque côté
+            d&apos;une ouverture, montants d&apos;about portant le linteau, montants courts
             au-dessus du linteau et sous l&apos;appui de fenêtre.
           </figcaption>
         </figure>
 
         <p className="content-body">
-          Le platform frame, c&apos;est simple dans le principe : des montants verticaux coincés entre
+          L&apos;ossature à plate-forme, c&apos;est simple dans le principe : des montants verticaux coincés entre
           une lisse basse et une lisse haute, le tout raidi par des panneaux de contreventement.
           Ce qui pêche le plus souvent chez les bricoleurs, c&apos;est de négliger le contreventement —
           et de découvrir que leur cabanon oscille au premier coup de vent.
@@ -274,8 +274,8 @@ export default function GuideCabanonPage() {
             Un seul montant en angle, c&apos;est une erreur qu&apos;on paie à la pose du bardage.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Ouvertures :</strong> porte ou fenêtre, même règle — deux king studs pleine
-            hauteur, deux jack studs trimmer arrêtés sous le linteau, et un linteau horizontal
+            <strong>Ouvertures :</strong> porte ou fenêtre, même règle — deux montants continus
+            pleine hauteur, deux montants d&apos;about arrêtés sous le linteau, et un linteau horizontal
             dimensionné selon la portée. Pour une porte de 90 cm, un double 45 × 145 posé de champ
             suffit largement.
           </li>
@@ -307,7 +307,7 @@ export default function GuideCabanonPage() {
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
           <li style={{ marginBottom: '10px' }}>
             <strong>Montants 45 × 90 × 2 400 mm :</strong> 12 à 14 pièces — 4 coins × 2 montants,
-            plus les intermédiaires façades et pignons. Les king/jack studs autour des ouvertures
+            plus les intermédiaires façades et pignons. Les montants d&apos;encadrement des ouvertures
             s&apos;ajoutent en sus selon votre plan.
           </li>
           <li style={{ marginBottom: '10px' }}>
@@ -343,7 +343,7 @@ export default function GuideCabanonPage() {
           <p className="content-cta-box-label">Calculateur gratuit</p>
           <p className="content-cta-box-title">Obtenez la liste exacte pour votre cabanon</p>
           <p className="content-cta-box-desc">
-            Entrez vos dimensions et le simulateur génère la BOM complète avec quantités et
+            Entrez vos dimensions et le simulateur génère la nomenclature complète avec quantités et
             comparatif de prix.
           </p>
           <a href="/cabanon" className="btn-primary">
@@ -394,7 +394,7 @@ export default function GuideCabanonPage() {
           les pignons qui viennent s&apos;emboîter. Chaque angle se serre avec des vis 6 × 120 en
           quinconce. Panneaux OSB 12 mm ensuite, cloués à 10 cm sur les rives et 20 cm en milieu
           de montant — c&apos;est le contreventement, ne bâclez pas la fixation. Autour des ouvertures :
-          king studs pleine hauteur, jack studs arrêtés sous linteau, linteau double 45 × 145 de
+          montants continus pleine hauteur, montants d&apos;about arrêtés sous linteau, linteau double 45 × 145 de
           champ pour une porte de 90 cm.
         </p>
 

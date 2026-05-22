@@ -86,7 +86,7 @@ export default function AProposPage() {
         <p className="content-body">
           Le même problème existe pour un cabanon (nombre de montants, section selon le DTU 31.2,
           chevrons de toiture), une pergola (poteaux, longerons, jambes de force) et une clôture
-          (poteaux tous les 2 m, rails, lames). Les forums DIY français donnent des réponses
+          (poteaux tous les 2 m, rails, lames). Les forums de bricolage français donnent des réponses
           variables et rarement sourcées. Les guides des GSB sont utiles mais ne calculent pas
           les quantités pour votre configuration spécifique.
         </p>
@@ -181,8 +181,8 @@ export default function AProposPage() {
         <h2 className="content-h2">Comment on est financé</h2>
         <p className="content-body">
           DIY Builder est financé à 100 % par l&apos;affiliation. Lorsqu&apos;un utilisateur clique
-          sur un lien vers une enseigne partenaire et réalise un achat dans la fenêtre de
-          tracking, le site perçoit une commission de la part du marchand. Le prix payé
+          sur un lien vers une enseigne partenaire et réalise un achat dans la fenêtre
+          d&apos;attribution, le site perçoit une commission de la part du marchand. Le prix payé
           par l&apos;acheteur est strictement identique avec ou sans lien affilié.
         </p>
         <p className="content-body">

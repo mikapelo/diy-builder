@@ -15,9 +15,9 @@ import HomeSeoBand from '@/components/landing/HomeSeoBand';
 import HeroSection from '@/components/features/shared/HeroSection';
 
 export const metadata = {
-  title: 'Calculateur DIY bois gratuit : terrasse, cabanon, pergola, clôture | DIY Builder',
+  title: 'Calculateur bois gratuit : terrasse, cabanon, pergola, clôture',
   description:
-    'Simulateur gratuit de matériaux bois : terrasse, cabanon ossature, pergola, clôture. Calcul DTU, plan 3D, devis PDF, comparatif Castorama / Brico Dépôt / Leroy Merlin / ManoMano.',
+    'Simulateur gratuit de matériaux bois — terrasse, cabanon, pergola, clôture. Calcul DTU, plan 3D, devis PDF et comparatif de prix entre 4 enseignes.',
   alternates: { canonical: 'https://www.diy-builder.fr/home-v2' },
   robots: { index: false, follow: false },
 };
