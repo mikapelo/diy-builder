@@ -931,6 +931,17 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                 </div>
               ))}
             </div>
+            <button
+              type="button"
+              className="v6-btn-primary"
+              style={{ marginTop: 28 }}
+              onClick={() => document.getElementById('v6-hero')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Calculer mon projet
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </button>
           </div>
           <div className="v6-artisan-visual">
             <div className="v6-artisan-card-stack">
