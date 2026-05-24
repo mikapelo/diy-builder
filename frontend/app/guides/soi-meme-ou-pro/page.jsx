@@ -69,7 +69,7 @@ const faqJsonLd = {
       name: 'Est-ce vraiment moins cher de faire soi-même ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Sur les matériaux seuls, oui : souvent 40 à 60 % de moins qu'un artisan tout compris. Sur le total réel, l'écart se resserre quand on intègre l'outillage à acheter, les chutes, les reprises et le temps. Pour une terrasse de 15 m² en pin classe 4, comptez 600 à 900 € de matériaux et 350 à 900 € d'outillage si vous partez de zéro, contre 1 800 à 2 200 € chez un artisan main d'œuvre comprise. À partir du deuxième projet, l'outillage est amorti et l'autoconstruction devient nettement gagnante.",
+        text: "Sur les matériaux seuls, oui : souvent 40 à 60 % de moins qu'un artisan tout compris. Sur le total réel, l'écart se resserre quand on intègre l'outillage à acheter, les chutes, les reprises et le temps. Pour une terrasse de 15 m² en pin classe 4, le simulateur DIY Builder donne 550 à 700 € de matériaux (prix scrapés Leroy Merlin / Brico Dépôt / Castorama, mai 2026), auxquels s'ajoutent 350 à 900 € d'outillage si vous partez de zéro, contre 1 500 à 2 200 € chez un artisan main d'œuvre comprise. À partir du deuxième projet, l'outillage est amorti et l'autoconstruction devient nettement gagnante.",
       },
     },
     {
@@ -188,10 +188,11 @@ export default function GuideSoiMemeOuPro() {
         </p>
         <p className="content-body">
           De 5 à 20 m², on entre dans la zone confortable de l&apos;autoconstruction ambitieuse.
-          Déclaration préalable de travaux à déposer en mairie (formulaire Cerfa 13703, délai
-          d&apos;instruction 1 mois), rien d&apos;insurmontable. C&apos;est aussi la fourchette
-          où la plupart des cabanons de jardin tombent : 9 m² pour un format standard,
-          15 m² pour un atelier confortable. Le{' '}
+          Déclaration préalable de travaux à déposer en mairie (formulaire{' '}
+          <a href="https://www.service-public.fr/particuliers/vosdroits/F662" target="_blank" rel="noopener noreferrer" className="content-link">Cerfa 13703</a>,
+          délai d&apos;instruction 1 mois), rien d&apos;insurmontable. C&apos;est aussi la
+          fourchette où la plupart des cabanons de jardin tombent : 9 m² pour un format
+          standard, 15 m² pour un atelier confortable. Le{' '}
           <Link href="/cabanon" className="content-link">simulateur cabanon</Link>{' '}
           couvre exactement cette tranche.
         </p>
@@ -324,12 +325,15 @@ export default function GuideSoiMemeOuPro() {
           se loue 50 à 80 €/jour, indispensable à partir de 6 plots à 60 cm de profondeur.
         </p>
         <p className="content-body">
-          La logique d&apos;amortissement : pour une terrasse de 15 m² à 800 € de matériaux,
-          ajouter 400 € d&apos;outillage donne un total de 1 200 €, contre 1 800 à 2 200 €
-          chez un artisan. Vous restez gagnant, mais l&apos;écart est moins spectaculaire
-          que ce qu&apos;on croit. À partir du deuxième chantier (pergola, clôture, nouvelle
-          terrasse chez un proche), l&apos;outillage est déjà payé : c&apos;est là que le gain
-          devient net.
+          La logique d&apos;amortissement, sur un exemple concret : pour une terrasse de 15 m²
+          en pin classe 4, notre{' '}
+          <Link href="/calculateur" className="content-link">simulateur</Link>{' '}
+          donne 550 à 700 € de matériaux selon l&apos;enseigne (prix scrapés Leroy Merlin,
+          Brico Dépôt, Castorama). Ajoutez 400 € d&apos;outillage si vous n&apos;avez qu&apos;une
+          perceuse, le total monte à 1 000 €, contre 1 500 à 2 200 € chez un artisan tout
+          compris. Vous restez gagnant, mais l&apos;écart est moins spectaculaire que ce qu&apos;on
+          croit. À partir du deuxième chantier (pergola, clôture, nouvelle terrasse chez un
+          proche), l&apos;outillage est déjà payé : c&apos;est là que le gain devient net.
         </p>
 
         <h2 className="content-h2">Critère 4 — La garantie décennale, ce qu&apos;elle couvre vraiment</h2>
@@ -344,8 +348,8 @@ export default function GuideSoiMemeOuPro() {
         <p className="content-body">
           C&apos;est le critère le moins compris, et probablement le plus déterminant
           pour les projets qui touchent la maison. La décennale est définie par
-          l&apos;article 1792 du Code civil. Elle engage l&apos;artisan pendant 10 ans
-          pour les défauts qui :
+          l&apos;<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006443502" target="_blank" rel="noopener noreferrer" className="content-link">article 1792 du Code civil</a>{' '}
+          (Légifrance). Elle engage l&apos;artisan pendant 10 ans pour les défauts qui :
         </p>
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
           <li style={{ marginBottom: '10px' }}>
@@ -616,10 +620,13 @@ export default function GuideSoiMemeOuPro() {
           Sur les matériaux seuls, oui : souvent 40 à 60 % de moins qu&apos;un artisan tout
           compris. Sur le total réel, l&apos;écart se resserre quand on intègre
           l&apos;outillage à acheter, les chutes, les reprises et le temps. Pour une terrasse
-          de 15 m² en pin classe 4, comptez 600 à 900 € de matériaux et 350 à 900 €
-          d&apos;outillage si vous partez de zéro, contre 1 800 à 2 200 € chez un artisan
-          main d&apos;œuvre comprise. À partir du deuxième projet, l&apos;outillage est
-          amorti et l&apos;autoconstruction devient nettement gagnante.
+          de 15 m² en pin classe 4, le{' '}
+          <Link href="/calculateur" className="content-link">simulateur DIY Builder</Link>{' '}
+          donne 550 à 700 € de matériaux (prix scrapés Leroy Merlin, Brico Dépôt et Castorama,
+          mai 2026), auxquels s&apos;ajoutent 350 à 900 € d&apos;outillage si vous partez de
+          zéro, contre 1 500 à 2 200 € chez un artisan main d&apos;œuvre comprise. À partir
+          du deuxième projet, l&apos;outillage est amorti et l&apos;autoconstruction devient
+          nettement gagnante.
         </p>
 
         <h3 className="content-h3">Quels projets sont vraiment risqués en autoconstruction ?</h3>
