@@ -352,7 +352,12 @@ export default function GuideTerrassePage() {
           Si vous faites appel à un artisan pour la pose, ajoutez 40 à 60 €/m² de main-d&apos;œuvre.
           Les prix varient selon les enseignes et les périodes — Leroy Merlin et Brico Dépôt
           pratiquent régulièrement des remises de 20–30 % sur les lames en fin de saison
-          (septembre–octobre).
+          (septembre–octobre). Pour le détail enseigne par enseigne et essence par essence,
+          consultez notre{' '}
+          <Link href="/guides/prix-terrasse-bois-m2-2026" className="content-link">
+            comparatif prix terrasse bois 2026
+          </Link>
+          {' '}— quatre essences × quatre enseignes, avec et sans pose artisan.
         </p>
 
         <div className="content-cta-box">

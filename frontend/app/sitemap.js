@@ -16,6 +16,7 @@ export default function sitemap() {
     { url: `${baseUrl}/guides/pergola`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/cloture`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/soi-meme-ou-pro`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/guides/prix-terrasse-bois-m2-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     // Note : pages /liste avec query strings retirées du sitemap.
     // XML sitemap n'accepte pas les `&` non-encodés (erreur d'analyse
     // syntaxique Search Console) et les query strings ne sont pas des

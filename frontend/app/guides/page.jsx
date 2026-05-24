@@ -271,6 +271,23 @@ export default function GuidesPage() {
         </section>
 
         <section>
+          <h2 className="content-h2">Aller plus loin&nbsp;: comparatifs et analyses</h2>
+          <p className="content-body">
+            Pour creuser un sujet précis avant de vous lancer, ces analyses complémentaires reprennent
+            une question fréquente avec des chiffres réels et des comparaisons enseigne par enseigne.
+          </p>
+          <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
+            <li style={{ marginBottom: '10px' }}>
+              <Link href="/guides/prix-terrasse-bois-m2-2026" className="content-link">
+                Prix d&apos;une terrasse bois au m² en 2026
+              </Link>
+              {' '}— comparatif essence × enseigne (pin, douglas, ipé, composite) en mai 2026,
+              avec et sans pose artisan.
+            </li>
+          </ul>
+        </section>
+
+        <section>
           <h2 className="content-h2">Des questions techniques&nbsp;?</h2>
           <p className="content-body">
             24 questions-réponses sur les entraxes, les sections de bois, les prix au m², la
