@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
+import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Construire une clôture bois';
 const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cloture`;
 
 export const metadata = {
-  title: 'Comment construire une clôture bois : guide complet 2025 | DIY Builder',
+  title: 'Construire une clôture bois : poteaux, rails, lames',
   description: 'Guide complet pour poser une clôture bois : poteaux, rails, lames. Calcul des matériaux, entraxes, hauteurs réglementaires et budget estimé.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/cloture' },
   openGraph: {
@@ -33,7 +34,8 @@ const jsonLd = {
   estimatedCost: {
     '@type': 'MonetaryAmount',
     currency: 'EUR',
-    value: '180-700',
+    minValue: '180',
+    maxValue: '700',
   },
   supply: [
     { '@type': 'HowToSupply', name: 'Poteaux bois 90×90 mm traités classe 4' },
@@ -458,6 +460,8 @@ export default function GuideClotureBois() {
             </li>
           </ul>
         </aside>
+
+        <CTALead projectHref="/cloture" projectLabel="ma clôture" />
 
         <footer className="content-byline">
           <p>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
+import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Construire un cabanon ossature bois';
 const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
@@ -552,6 +553,8 @@ export default function GuideCabanonPage() {
             <li><Link href="/cabanon">Calculateur cabanon</Link> — devis matériaux + plan</li>
           </ul>
         </aside>
+
+        <CTALead projectHref="/cabanon" projectLabel="mon cabanon" />
 
         <footer className="content-byline">
           <p>

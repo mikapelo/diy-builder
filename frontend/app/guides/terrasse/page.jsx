@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
+import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Construire une terrasse bois';
 const OG_SUBTITLE = 'DTU 51.4 + lambourdes + budget';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
 
 export const metadata = {
-  title: 'Comment construire une terrasse bois : guide complet 2025 | DIY Builder',
+  title: 'Construire une terrasse bois : guide DTU 51.4',
   description:
     'Guide pas à pas pour construire votre terrasse bois : choix des matériaux, calcul des lambourdes, pose des lames. Estimez votre budget en 30 secondes.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/terrasse' },
@@ -412,6 +413,8 @@ export default function GuideTerrassePage() {
             <li><Link href="/calculateur">Calculateur terrasse</Link> — devis matériaux + plan</li>
           </ul>
         </aside>
+
+        <CTALead projectHref="/calculateur" projectLabel="ma terrasse" />
 
         <footer className="content-byline">
           <p>

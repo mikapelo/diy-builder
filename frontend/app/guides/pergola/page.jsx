@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
+import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Construire une pergola bois';
 const OG_SUBTITLE = 'DTU 31.1 + sections + ancrage';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=pergola`;
 
 export const metadata = {
-  title: 'Comment construire une pergola bois : guide complet 2025 | DIY Builder',
+  title: 'Construire une pergola bois : guide DTU 31.1',
   description: 'Guide pas à pas pour construire votre pergola bois : poteaux, longerons, chevrons. Calcul des sections, ancrage, budget estimé. Simulateur gratuit inclus.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/pergola' },
   openGraph: {
@@ -33,7 +34,8 @@ const jsonLd = {
   estimatedCost: {
     '@type': 'MonetaryAmount',
     currency: 'EUR',
-    value: '250-1200',
+    minValue: '250',
+    maxValue: '1200',
   },
   supply: [
     { '@type': 'HowToSupply', name: 'Poteaux bois 100×100 mm' },
@@ -410,6 +412,8 @@ export default function GuidePergolaBois() {
             <li><Link href="/pergola">Calculateur pergola</Link> — devis matériaux + plan</li>
           </ul>
         </aside>
+
+        <CTALead projectHref="/pergola" projectLabel="ma pergola" />
 
         <footer className="content-byline">
           <p>

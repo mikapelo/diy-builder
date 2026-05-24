@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = '5 guides bois & béton';
 const OG_SUBTITLE = 'Terrasse, cabanon, pergola, clôture, dalle';
@@ -275,6 +276,8 @@ export default function GuidesPage() {
             — cinq outils gratuits, sans inscription.
           </p>
         </section>
+
+        <CTALead projectHref="/" projectLabel="mon projet" />
 
       </div>
     </ContentLayout>

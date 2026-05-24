@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Construction bois : 24 questions fréquentes';
 const OG_SUBTITLE = 'FAQ technique 2026';
@@ -284,6 +285,8 @@ export default function FAQPage() {
             ))}
           </div>
         ))}
+
+        <CTALead projectHref="/" projectLabel="mon projet" />
 
         <footer className="content-byline">
           <p>
