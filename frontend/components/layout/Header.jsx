@@ -84,7 +84,6 @@ export default function Header({ view, resultat, copied, onRetour, onCopierLien,
             {[
               { label: 'Projets',           sectionId: 'v6-hero' },
               { label: 'Comment ça marche', sectionId: 'v6-bento' },
-              { label: 'Technique',         sectionId: 'v6-stats' },
             ].map(({ label, sectionId }) => (
               <button
                 key={sectionId}

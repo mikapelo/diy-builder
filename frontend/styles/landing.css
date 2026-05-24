@@ -281,10 +281,72 @@
   margin: 0;
 }
 
-/* ── CTA zone — primary + separator + secondary with underline ── */
+/* ── CTA zone — 4 pills projet directes (remplace l'ancien menu-roue) ── */
+.v6-hero-pills {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 16px;
+}
+.v6-hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 14px 10px 11px;
+  background: #FFF; color: var(--v6-text);
+  border: 1.5px solid rgba(17,18,20,.10);
+  border-radius: 999px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 13.5px; font-weight: 700;
+  letter-spacing: .01em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(17,18,20,.04), 0 4px 12px rgba(17,18,20,.04);
+  transition: border-color .2s ease, background .2s ease, transform .15s ease, box-shadow .2s ease, color .2s ease;
+}
+.v6-hero-pill:hover {
+  background: var(--v6-text);
+  color: #FFF;
+  border-color: var(--v6-text);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(17,18,20,.12), 0 10px 24px rgba(17,18,20,.10);
+}
+.v6-hero-pill:hover .v6-hero-pill-idx {
+  background: var(--v6-primary);
+  color: #1C1B18;
+}
+.v6-hero-pill:hover .v6-hero-pill-arrow {
+  transform: translateX(3px);
+  color: var(--v6-primary);
+}
+.v6-hero-pill-idx {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(17,18,20,.06);
+  color: var(--v6-text-3);
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .02em;
+  font-variant-numeric: tabular-nums;
+  transition: background .2s ease, color .2s ease;
+}
+.v6-hero-pill-label {
+  font-weight: 700;
+}
+.v6-hero-pill-arrow {
+  margin-left: 2px;
+  color: var(--v6-text-3);
+  transition: transform .25s ease, color .25s ease;
+}
+@media (max-width: 640px) {
+  .v6-hero-pills { gap: 8px; }
+  .v6-hero-pill { padding: 10px 14px 10px 10px; font-size: 13px; }
+  .v6-hero-pill-idx { width: 20px; height: 20px; font-size: 9px; }
+}
+
+/* ── CTA secondaire (ancien layout horizontal — gardé pour "Comment ça marche") ── */
 .v6-hero-actions {
   display: flex; align-items: center; gap: 24px;
   flex-wrap: wrap;
+}
+.v6-hero-actions--secondary {
+  margin-top: 4px;
 }
 .v6-btn-primary {
   display: inline-flex; align-items: center; gap: 10px;

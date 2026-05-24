@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 // V6 CSS styles are in globals.css (lines 2940+)
@@ -262,8 +261,7 @@ function ParallaxLayer({ parallax, factor = 1, children, className, style }) {
 /* ═══════════════════════════════════════════════════════════
    MAIN COMPONENT
 ═══════════════════════════════════════════════════════════ */
-export default function HeroSection({ onCalculer, splitContent = null }) {
-  const router = useRouter();
+export default function HeroSection({ splitContent = null }) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
@@ -303,24 +301,6 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
     sections.forEach((s) => observer.observe(s));
 
     return () => sections.forEach((s) => observer.unobserve(s));
-  }, []);
-
-  // ── Stats testimonial reveal (one-shot, never removed) ──
-  const testiGridRef = useRef(null);
-  useEffect(() => {
-    const el = testiGridRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('v6-testi-revealed');
-          io.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
   }, []);
 
   // ═══ V10 INTERACTIVE ENHANCEMENTS ═══
@@ -398,7 +378,7 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
 
   // [T2-10] Active nav section tracking
   useEffect(() => {
-    const sectionIds = ['v6-hero', 'v6-bento', 'v6-stats'];
+    const sectionIds = ['v6-hero', 'v6-bento'];
     const navLinks = document.querySelectorAll('.v6-header-nav-link');
     const linkMap = {};
     navLinks.forEach((link) => {
@@ -406,7 +386,6 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
       sectionIds.forEach((id) => {
         if (id === 'v6-hero' && onClick.includes('Projets')) linkMap[id] = link;
         if (id === 'v6-bento' && onClick.includes('marche')) linkMap[id] = link;
-        if (id === 'v6-stats' && onClick.includes('Technique')) linkMap[id] = link;
       });
     });
     const obs = new IntersectionObserver((entries) => {
@@ -472,32 +451,12 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
     return () => clearInterval(timerRef.current);
   }, [isHovering]);
 
-  const [showProjectMenu, setShowProjectMenu] = useState(false);
-  const menuRef = useRef(null);
-
-  // Fermer le menu au clic extérieur
-  useEffect(() => {
-    if (!showProjectMenu) return;
-    function handleClick(e) {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setShowProjectMenu(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [showProjectMenu]);
-
   const PROJECT_LINKS = [
-    { id: 'terrasse', label: 'Terrasse bois',  href: '/calculateur' },
-    { id: 'cabanon',  label: 'Cabanon bois',   href: '/cabanon' },
-    { id: 'pergola',  label: 'Pergola bois',   href: '/pergola' },
-    { id: 'cloture',  label: 'Clôture bois',   href: '/cloture' },
+    { id: 'terrasse', label: 'Terrasse',  href: '/calculateur' },
+    { id: 'cabanon',  label: 'Cabanon',   href: '/cabanon' },
+    { id: 'pergola',  label: 'Pergola',   href: '/pergola' },
+    { id: 'cloture',  label: 'Clôture',   href: '/cloture' },
   ];
-
-  const handleCalculer = useCallback(() => {
-    if (onCalculer) onCalculer();
-    else setShowProjectMenu(prev => !prev);
-  }, [onCalculer]);
 
   return (
     <div style={{ background: '#0E0F10' }}>
@@ -574,37 +533,24 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                 </p>
               </div>
 
-              {/* CTA — stacked composition with subtle separator */}
-              <div className="v6-hero-actions">
-                <div ref={menuRef} style={{ position: 'relative', display: 'inline-block' }}>
-                  <button className="v6-btn-primary" onClick={handleCalculer}>
-                    Lancer un projet
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      {showProjectMenu
-                        ? <path d="M18 15l-6-6-6 6"/>
-                        : <path d="M6 9l6 6 6-6"/>}
+              {/* CTA — 4 pills projet directes + bouton secondaire "Comment ça marche" */}
+              <div className="v6-hero-pills" role="group" aria-label="Choisir un projet à simuler">
+                {PROJECT_LINKS.map((p, i) => (
+                  <Link
+                    key={p.id}
+                    href={p.href}
+                    className="v6-hero-pill"
+                    data-project={p.id}
+                  >
+                    <span className="v6-hero-pill-idx">0{i + 1}</span>
+                    <span className="v6-hero-pill-label">{p.label}</span>
+                    <svg className="v6-hero-pill-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
                     </svg>
-                  </button>
-
-                  {showProjectMenu && (
-                    <>
-                      <div className="v6-wheel-scrim" onClick={() => setShowProjectMenu(false)} />
-                      <div className="v6-project-wheel open">
-                        {PROJECT_LINKS.map((p, i) => (
-                          <button
-                            key={p.id}
-                            className="v6-wheel-item"
-                            onClick={() => { setShowProjectMenu(false); router.push(p.href); }}
-                          >
-                            <span className="v6-wheel-idx">0{i + 1}</span>
-                            {p.label}
-                          </button>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </div>
-                <span className="v6-actions-sep" />
+                  </Link>
+                ))}
+              </div>
+              <div className="v6-hero-actions v6-hero-actions--secondary">
                 <button className="v6-btn-secondary"
                   onClick={() => {
                     const el = document.getElementById('v6-bento');
@@ -963,87 +909,6 @@ export default function HeroSection({ onCalculer, splitContent = null }) {
                 Dossier projet PDF prêt
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-           STATS — testimonial masonry style
-      ══════════════════════════════════════ */}
-      <section className="v6-panel-section" id="v6-stats">
-        <div className="v6-corner-marks">
-          <span className="v6-corner v6-corner-tl" />
-          <span className="v6-corner v6-corner-tr" />
-          <span className="v6-corner v6-corner-bl" />
-          <span className="v6-corner v6-corner-br" />
-        </div>
-        <div className="v6-stats-inner">
-          <div className="v6-stats-glow" />
-          <div className="v6-stats-sep" />
-
-          {/* ── Testimonial-style masonry grid ── */}
-          <div className="v6-testi-grid" ref={testiGridRef}>
-            {/* Column 1 */}
-            <div className="v6-testi-col">
-              <div className="v6-testi-card v6-testi-card--pattern v6-testi-tall">
-                <div className="v6-testi-grid-overlay" />
-                <div className="v6-testi-body">
-                  <div className="v6-testi-eyebrow">En chiffres</div>
-                  <h2 className="v6-testi-headline">Un outil <em>précis</em> et rapide</h2>
-                  <p className="v6-testi-context">Calculs basés sur les sections et entraxes standards du bois de construction</p>
-                </div>
-              </div>
-              <div className="v6-testi-card v6-testi-card--accent v6-testi-short">
-                <div className="v6-testi-body">
-                  <div className="v6-testi-val">&lt;5%</div>
-                  <div className="v6-testi-lbl">Perte matériaux</div>
-                  <div className="v6-testi-sub">Optimisation automatique des découpes</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Column 2 */}
-            <div className="v6-testi-col">
-              <div className="v6-testi-card v6-testi-card--dark">
-                <div className="v6-testi-body">
-                  <div className="v6-testi-val">4</div>
-                  <div className="v6-testi-lbl">Simulateurs</div>
-                  <div className="v6-testi-sub">Terrasse, cabanon, pergola, clôture</div>
-                </div>
-              </div>
-              <div className="v6-testi-card v6-testi-card--dark">
-                <div className="v6-testi-body">
-                  <div className="v6-testi-val">4p.</div>
-                  <div className="v6-testi-lbl">Export PDF</div>
-                  <div className="v6-testi-sub">Plans, coupes et nomenclature</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Column 3 */}
-            <div className="v6-testi-col">
-              <div className="v6-testi-card v6-testi-card--accent2 v6-testi-short">
-                <div className="v6-testi-body">
-                  <div className="v6-testi-val">&lt;30s</div>
-                  <div className="v6-testi-lbl">Résultat</div>
-                  <div className="v6-testi-sub">Calcul complet + comparateur prix</div>
-                </div>
-              </div>
-              <div className="v6-testi-card v6-testi-card--pattern v6-testi-tall">
-                <div className="v6-testi-grid-overlay" />
-                <div className="v6-testi-body">
-                  <div className="v6-testi-badge">DTU</div>
-                  <div className="v6-testi-val v6-testi-val--hero">Normes</div>
-                  <div className="v6-testi-lbl">Calculs basés sur les normes DTU</div>
-                  <div className="v6-testi-sub">Sections, entraxes et assemblages selon les normes françaises de construction bois</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom rule with corner squares (testimonial reference) */}
-          <div className="v6-testi-rule">
-            <div className="v6-testi-rule-inner" />
           </div>
         </div>
       </section>
