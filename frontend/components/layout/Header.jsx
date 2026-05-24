@@ -10,7 +10,7 @@ const HEADER_PROJECTS = [
   { id: 'cabanon',  label: 'Cabanon bois',   href: '/cabanon'     },
   { id: 'pergola',  label: 'Pergola bois',   href: '/pergola'     },
   { id: 'cloture',  label: 'Clôture bois',   href: '/cloture'     },
-  { id: 'dalle',    label: 'Dalle béton',    href: '/dalle', kind: 'tutorial' },
+  { id: 'dalle',    label: 'Dalle béton',    href: '/guides/dalle', kind: 'tutorial' },
 ];
 
 export default function Header({ view, resultat, copied, onRetour, onCopierLien, onCalculer }) {

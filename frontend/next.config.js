@@ -118,6 +118,13 @@ const CSP_DIRECTIVES = [
 const nextConfig = {
   transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 
+  async redirects() {
+    return [
+      // Migration /dalle → /guides/dalle (cohérence cluster guides, 2026-05-24)
+      { source: '/dalle', destination: '/guides/dalle', permanent: true },
+    ];
+  },
+
   async headers() {
     return [
       {

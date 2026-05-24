@@ -142,7 +142,7 @@ const GUIDES = [
   { href: '/guides/cabanon',   name: 'Guide cabanon',   teaser: 'Ossature bois, fondations, mono-pente : de la dalle au bardage.' },
   { href: '/guides/pergola',   name: 'Guide pergola',   teaser: 'Poteaux, ancrages, portées : calculer et poser sans erreur.' },
   { href: '/guides/cloture',   name: 'Guide clôture',   teaser: 'Réglementation, poteaux, lames et entraxes selon la hauteur.' },
-  { href: '/dalle',            name: 'Dalle béton',     teaser: 'Épaisseur, armature, dosage béton pour une dalle de fondation.' },
+  { href: '/guides/dalle',     name: 'Dalle béton',     teaser: 'Épaisseur, armature, dosage béton pour une dalle de fondation.' },
 ];
 
 /* ── Extrait FAQ (4 questions issues de faq/page.jsx) ── */

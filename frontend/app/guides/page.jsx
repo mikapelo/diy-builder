@@ -62,7 +62,7 @@ const itemListJsonLd = {
     {
       '@type': 'ListItem',
       position: 5,
-      url: 'https://www.diy-builder.fr/dalle',
+      url: 'https://www.diy-builder.fr/guides/dalle',
       name: 'Tutoriel dalle béton extérieure (NF DTU 13.3)',
       image: 'https://www.diy-builder.fr/images/guides/cards/dalle.png',
     },
@@ -123,7 +123,7 @@ export default function GuidesPage() {
             en béton. Le cabanon, lui, demande de comprendre l&apos;ossature bois (montants, lisses,
             contreventement), la toiture et les ouvertures — comptez un à deux weekends complets, et
             lisez le guide en entier avant de commander les matériaux. Et avant tout cabanon ou grosse
-            pergola, consultez le tutoriel <Link href="/dalle" className="content-link">dalle béton</Link>{' '}
+            pergola, consultez le tutoriel <Link href="/guides/dalle" className="content-link">dalle béton</Link>{' '}
             : la fondation conditionne toute la stabilité de l&apos;ouvrage, et une dalle ratée se paie
             cher quand l&apos;ossature est déjà montée.
           </p>
@@ -229,7 +229,7 @@ export default function GuidesPage() {
               <span className="btn-secondary">Lire le guide →</span>
             </Link>
 
-            <Link href="/dalle" className="content-guide-card">
+            <Link href="/guides/dalle" className="content-guide-card">
               <div className="content-guide-card-image">
                 <Image
                   src="/images/guides/cards/dalle.png"
@@ -309,7 +309,7 @@ export default function GuidesPage() {
             <Link href="/cabanon" className="content-link">cabanon</Link>,{' '}
             <Link href="/pergola" className="content-link">pergola</Link>,{' '}
             <Link href="/cloture" className="content-link">clôture</Link>, et{' '}
-            <Link href="/dalle" className="content-link">dalle béton</Link>{' '}
+            <Link href="/guides/dalle" className="content-link">dalle béton</Link>{' '}
             — cinq outils gratuits, sans inscription.
           </p>
         </section>

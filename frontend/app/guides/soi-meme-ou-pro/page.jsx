@@ -499,7 +499,7 @@ export default function GuideSoiMemeOuPro() {
               <td>Maçonnerie, raccordement électrique</td>
             </tr>
             <tr>
-              <td><Link href="/dalle" className="content-link">Dalle</Link> sur plots (terrasse)</td>
+              <td><Link href="/guides/dalle" className="content-link">Dalle</Link> sur plots (terrasse)</td>
               <td>Oui</td>
               <td>Optionnel</td>
               <td>Non structurel, pas de décennale</td>
@@ -676,7 +676,7 @@ export default function GuideSoiMemeOuPro() {
             <li><Link href="/guides/cabanon">Guide cabanon</Link> : ossature bois, fondations, mono-pente</li>
             <li><Link href="/guides/pergola">Guide pergola</Link> : sections, ancrage, portées</li>
             <li><Link href="/guides/cloture">Guide clôture</Link> : réglementation, poteaux, entraxes</li>
-            <li><Link href="/dalle">Tutoriel dalle béton</Link> : épaisseur, treillis, dosage</li>
+            <li><Link href="/guides/dalle">Tutoriel dalle béton</Link> : épaisseur, treillis, dosage</li>
             <li><Link href="/faq">FAQ</Link> : 24 questions techniques</li>
           </ul>
         </aside>

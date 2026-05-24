@@ -8,7 +8,7 @@ export default function sitemap() {
     { url: `${baseUrl}/cabanon`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/pergola`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/cloture`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/dalle`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/guides/dalle`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     // Guides SEO
     { url: `${baseUrl}/guides`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/terrasse`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
