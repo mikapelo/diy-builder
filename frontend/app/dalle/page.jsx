@@ -25,9 +25,9 @@ const TOUPIE_SEUIL = 3;         // m³ → bascule vers camion toupie
 const FORME_EP = 0.10;          // épaisseur forme drainante (m)
 const TREILLIS_MAJORATION = 1.15; // 15 % de recouvrement
 const TREILLIS_PANNEAU = 3.24;  // m² par panneau ST25 standard (1.8×1.8m)
-const PRIX_SAC = 7.5;           // € / sac 35 kg (Castorama ref)
-const PRIX_TOUPIE = 130;        // € / m³ béton prêt-à-l'emploi livré
-const PRIX_TREILLIS = 18;       // € / m² treillis ST25
+const PRIX_SAC = 7.5;           // € / sac 35 kg (Castorama ref, mai 2026)
+const PRIX_TOUPIE = 170;        // € / m³ béton C25/30 prêt-à-l'emploi livré (LM 185 / BD 160, moyenne)
+const PRIX_TREILLIS = 8;        // € / m² treillis ST25 (LM ST25C = 6,93 €/m², mai 2026)
 
 // ── Étapes du tutoriel ─────────────────────────────────────────────────
 const STEPS = [
@@ -134,8 +134,8 @@ const STEPS = [
   {
     id: 4,
     title: 'Treillis soudé ST25',
-    snippet: 'Treillis ST25 (maille 150×150 mm, ø 5 mm) posé sur cales 4 cm — enrobage mini 3 cm (DTU 13.3 §5.4), recommandé dès 10 m². Recouvrement entre panneaux : 20 cm minimum (2 mailles). Poser le treillis à même la forme annule son efficacité structurelle.',
-    desc: 'Posez les panneaux de treillis soudé ST25 (maille 150×150 mm, ø 5 mm) sur des cales plastique de 4 cm. Le recouvrement entre panneaux doit être d\'au moins 20 cm (2 mailles). Ne posez pas le treillis à même la forme.',
+    snippet: 'Treillis ST25 (maille 150×150 mm, ø 6 mm) posé sur cales 4 cm — enrobage mini 3 cm (DTU 13.3 §5.4), recommandé dès 10 m². Recouvrement entre panneaux : 20 cm minimum (2 mailles). Poser le treillis à même la forme annule son efficacité structurelle.',
+    desc: 'Posez les panneaux de treillis soudé ST25 (maille 150×150 mm, ø 6 mm) sur des cales plastique de 4 cm. Le recouvrement entre panneaux doit être d\'au moins 20 cm (2 mailles). Ne posez pas le treillis à même la forme.',
     note: 'DTU 13.3 §5.4 — Enrobage mini 3 cm. Treillis recommandé dès 10 m².',
     svg: (
       <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -409,7 +409,7 @@ function DalleCalculateur() {
           </div>
 
           <p className="dalle-result-note">
-            Hors main-d&apos;œuvre, livraison et outillage. Prix indicatifs 2024.
+            Hors main-d&apos;œuvre, livraison et outillage. Prix indicatifs mai 2026.
           </p>
         </div>
       </div>

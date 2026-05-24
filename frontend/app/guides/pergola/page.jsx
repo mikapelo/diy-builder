@@ -229,7 +229,8 @@ export default function GuidePergolaBois() {
           Plots béton 30×30&nbsp;cm coulés à 60–80&nbsp;cm de profondeur hors-gel (40–50&nbsp;cm
           dans le Midi), sabots galvanisés noyés dans le béton frais. Attente obligatoire&nbsp;:
           48&nbsp;heures avant de poser les longerons. Un poteau de 3&nbsp;m scellé directement
-          dans le béton doit être enterré 50&nbsp;cm minimum — soit 1/6 de sa hauteur totale.
+          dans le béton doit être enterré sur un quart à un tiers de sa hauteur, soit
+          75&nbsp;cm à 1&nbsp;m, en respectant aussi la profondeur hors-gel locale.
         </p>
         <p className="content-body">
           Un poteau mal ancré bascule sous les premières rafales, même pour un ouvrage léger. C&apos;est là que
@@ -255,8 +256,9 @@ export default function GuidePergolaBois() {
         <p className="content-body">
           Le bas du poteau est coulé directement dans un massif béton. Méthode robuste, mais elle impose
           un bois traité&nbsp;<strong>autoclave classe 4</strong>&nbsp;(contact sol humide permanent). Comptez
-          une longueur d&apos;encastrement d&apos;au moins un sixième de la hauteur totale du poteau. Un poteau de
-          3 m doit donc être enterré sur 50 cm minimum.
+          une longueur d&apos;encastrement de l&apos;ordre d&apos;un quart à un tiers de la hauteur totale.
+          Un poteau de 3 m doit donc être enterré sur 75 cm à 1 m, tout en respectant
+          la profondeur hors-gel locale (60-80 cm Nord, 40-50 cm Midi).
         </p>
 
         <h3 className="content-h3">Profondeur hors-gel</h3>
@@ -305,7 +307,7 @@ export default function GuidePergolaBois() {
         <h3 className="content-h3">4. Longerons</h3>
         <p className="content-body">
           Hissez les longerons en tête de poteaux — prévoyez de l&apos;aide, une pièce de 63×150×4 m pèse
-          environ 15 kg. Assemblez avec des boulons M12 traversants ou des vis de charpente de 150 mm minimum.
+          20 à 25 kg selon l&apos;essence (densité pin/sapin 500-600 kg/m³). Assemblez avec des boulons M12 traversants ou des vis de charpente de 150 mm minimum.
           Vérifiez le niveau et le fil avant de serrer définitivement. Les longerons doivent dépasser les
           poteaux extérieurs de 20 à 30 cm pour un porte-à-faux équilibré.
         </p>

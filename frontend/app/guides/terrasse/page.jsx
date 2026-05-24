@@ -145,7 +145,7 @@ export default function GuideTerrassePage() {
           Le piège classique ici : acheter du bois vert fraîchement sorti d&apos;autoclave et le poser
           immédiatement. Le taux d&apos;humidité dépasse souvent 30 % à la livraison. En séchant sur
           place, les lames gauchissent et les vis arrachent. Laissez le bois se stabiliser à
-          l&apos;abri 3 à 4 semaines avant la pose — cette étape n&apos;est jamais indiquée sur l&apos;étiquette
+          l&apos;abri 1 à 2 semaines avant la pose — cette étape n&apos;est jamais indiquée sur l&apos;étiquette
           en GSB, et elle change tout.
         </p>
 
@@ -215,9 +215,9 @@ export default function GuideTerrassePage() {
             non d&apos;une lambourde centrale de raidissage.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Vis inox :</strong> 6 vis par lame par lambourde. Pour des lames de 2,4 m
-            posées sur 11 lambourdes, c&apos;est environ 500 vis 5 × 60 mm inox A2 minimum.
-            Prenez A4 si la terrasse est en bord de mer.
+            <strong>Vis inox :</strong> 2 vis par lame par lambourde (DTU 51.4 §6). Pour des
+            lames de 2,4 m sur 11 lambourdes, comptez 350 à 500 vis 5 × 60 mm inox A2 selon
+            la longueur des lames. Prenez A4 si la terrasse est en bord de mer.
           </li>
         </ul>
         <p className="content-body">
@@ -246,8 +246,8 @@ export default function GuideTerrassePage() {
         <p className="content-snippet">
           Sol nivelé à 1&nbsp;cm/m de pente, plots réglables tous les 1,5&nbsp;m, lambourdes
           40×60&nbsp;mm minimum (NF DTU 51.4 §6.2), lames perpendiculaires avec 5&nbsp;mm de
-          jeu de dilatation, finition huile ou lasure. La tolérance d&apos;alignement des plots
-          est de ±3&nbsp;mm sur toute la surface.
+          jeu de dilatation, finition huile ou lasure. La tolérance de planéité est de
+          ±5&nbsp;mm sous une règle de 2&nbsp;m (DTU 51.4).
         </p>
 
         <h3 className="content-h3">1. Préparer le sol — l&apos;étape qu&apos;on bâcle toujours</h3>
@@ -264,7 +264,7 @@ export default function GuideTerrassePage() {
           à démonter la moitié de la terrasse.
         </p>
 
-        <h3 className="content-h3">2. Poser les plots — la tolérance est de ±3 mm sur l&apos;ensemble</h3>
+        <h3 className="content-h3">2. Poser les plots — planéité ±5 mm sous une règle de 2 m</h3>
         <p className="content-body">
           Plots réglables en acier galvanisé ou plots béton coulés, espacement 1,5 m maximum dans
           les deux directions. Utilisez un niveau laser rotatif — le cordeau fonctionne, mais il

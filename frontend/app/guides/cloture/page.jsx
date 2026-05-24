@@ -135,8 +135,8 @@ export default function GuideClotureBois() {
 
         <h2 className="content-h2">Les trois familles d&apos;éléments</h2>
         <p className="content-snippet">
-          Poteaux 70×70&nbsp;mm jusqu&apos;à 1,20&nbsp;m, 90×90&nbsp;mm au-delà (NF DTU 31.1) en
-          traité classe 4 obligatoire (NF EN 335) au contact du sol. Rails 38×90&nbsp;mm&nbsp;:
+          Poteaux 70×70&nbsp;mm jusqu&apos;à 1,20&nbsp;m, 90×90&nbsp;mm au-delà (règles de l&apos;art
+          en construction bois), en traité classe 4 obligatoire (NF EN 335) au contact du sol. Rails 38×90&nbsp;mm&nbsp;:
           2 rangées sous 1,20&nbsp;m, 3 rangées pour 1,50–2&nbsp;m. Lames 10–14&nbsp;cm de large,
           18–21&nbsp;mm d&apos;épaisseur, jeu de 5–8&nbsp;mm entre chaque pour la dilatation.
         </p>
@@ -150,9 +150,9 @@ export default function GuideClotureBois() {
           Les poteaux reprennent tous les efforts&nbsp;: vent latéral, poids des lames, poussée éventuelle
           d&apos;enfants ou d&apos;animaux. Pour une clôture de 1,20 m de hauteur, du&nbsp;<strong>70×70 mm</strong>
           suffit. Au-delà de 1,20 m ou pour des travées supérieures à 1,80 m, passez à
-          du&nbsp;<strong>90×90 mm</strong> — selon la NF DTU 31.1, les poteaux verticaux soumis à des efforts
-          latéraux ne descendent pas en dessous de cette section. Les rails fléchissent sinon sous le poids
-          des lames. L&apos;entraxe entre poteaux doit rester entre&nbsp;<strong>1,5 et 2 m</strong>.
+          du&nbsp;<strong>90×90 mm</strong> — pour des poteaux soumis à des efforts latéraux (vent + poids
+          des lames), les règles de l&apos;art en construction bois écartent toute section plus fine.
+          Les rails fléchissent sinon sous le poids des lames. L&apos;entraxe entre poteaux doit rester entre&nbsp;<strong>1,5 et 2 m</strong>.
         </p>
         <p className="content-body">
           Point non négociable&nbsp;: tout poteau en contact avec le sol doit être en bois traité
@@ -202,9 +202,9 @@ export default function GuideClotureBois() {
 
         <p className="content-snippet">
           Pour 10&nbsp;ml, hauteur 1,50&nbsp;m, poteaux à 1,67&nbsp;m d&apos;entraxe&nbsp;: 7 poteaux
-          90×90×200&nbsp;cm classe 4, 21&nbsp;m de rails 38×90 (3 rangées), environ 70 lames de
-          97&nbsp;cm, 14 équerres galvanisées et ~630 vis inox A2 (3 vis par lame par rail).
-          Lames de 12&nbsp;cm avec jeu 8&nbsp;mm&nbsp;: 56 lames seulement.
+          90×90×200&nbsp;cm classe 4, 21&nbsp;m de rails 38×90 (3 rangées), environ 92 lames de
+          97&nbsp;cm (lame 10&nbsp;cm + jeu 8&nbsp;mm), 14 équerres galvanisées et ~552 vis inox
+          A2 (2 vis par lame par rail). Avec des lames de 12&nbsp;cm&nbsp;: 78 lames.
         </p>
         <p className="content-body">
           Pour une clôture de&nbsp;<strong>10 m linéaires, hauteur 1,50 m</strong>&nbsp;, avec poteaux
@@ -213,12 +213,13 @@ export default function GuideClotureBois() {
         <ul className="content-body">
           <li><strong>7 poteaux</strong> 90×90×200 cm traités classe 4 (6 travées + 1 poteau d&apos;extrémité)</li>
           <li><strong>21 m de rails</strong> en 38×90 mm (3 rangées × 10 m, avec chutes de recalage)</li>
-          <li><strong>environ 70 lames</strong> de 97 cm de longueur utile (lame 10 cm + jeu 8 mm)</li>
-          <li>14 équerres galvanisées + vis inox A2 (3 vis par lame et par rail = environ 630 vis)</li>
+          <li><strong>environ 92 lames</strong> de 97 cm de longueur utile (lame 10 cm + jeu 8 mm,
+            soit 10&nbsp;000 mm / 108 mm)</li>
+          <li>14 équerres galvanisées + vis inox A2 (2 vis par lame et par rail = environ 552 vis)</li>
         </ul>
         <p className="content-body">
           Le nombre de lames varie selon le jeu choisi et leur largeur. Avec des lames de 12 cm et un
-          jeu de 8 mm, il en faut environ 56 au lieu de 70. Le simulateur recalcule tout en temps réel.
+          jeu de 8 mm, il en faut environ 78 au lieu de 92. Le simulateur recalcule tout en temps réel.
         </p>
 
         <div className="content-cta-box" role="complementary" aria-label="Appel à l'action simulateur">

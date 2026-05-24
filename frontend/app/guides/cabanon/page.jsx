@@ -361,7 +361,7 @@ export default function GuideCabanonPage() {
           Dalle béton 10&nbsp;cm sur gravier drainant (obligatoire dès 9&nbsp;m²) ou plots coulés
           30×30×40&nbsp;cm à chaque angle. Lisse basse classe 4 sur joint mousse PE pour couper
           la remontée capillaire. Ossature assemblée à plat puis levée. Toiture à 20–30&nbsp;%
-          de pente minimum — 15&nbsp;% légal mais insuffisant en pratique.
+          de pente minimum — 15&nbsp;% est le minimum technique mais reste insuffisant en pratique.
         </p>
 
         <h3 className="content-h3">1. Fondations</h3>
@@ -401,7 +401,7 @@ export default function GuideCabanonPage() {
 
         <h3 className="content-h3">4. Toiture mono-pente</h3>
         <p className="content-body">
-          15 % de pente, c&apos;est le minimum légal — mais sur le terrain, 20 à 30 % est ce qui
+          15 % de pente, c&apos;est le minimum technique — mais sur le terrain, 20 à 30 % est ce qui
           fonctionne vraiment sans problème d&apos;évacuation des eaux en automne ou sous la neige.
           Pour 3 m de profondeur à 20 %, ça donne 60 cm de dénivelé entre le côté haut et le
           côté bas. Posez les chevrons sur la sablière haute côté faîtage et sur la lisse basse
@@ -505,7 +505,7 @@ export default function GuideCabanonPage() {
 
         <h2 className="content-h2">Questions fréquentes</h2>
         <p className="content-snippet">
-          Pente de toit&nbsp;: 20–30&nbsp;% recommandé (15&nbsp;% légal minimum). Pour un cabanon
+          Pente de toit&nbsp;: 20–30&nbsp;% recommandé (15&nbsp;% minimum technique). Pour un cabanon
           de 3&nbsp;m de profondeur à 20&nbsp;%, le dénivelé est de 60&nbsp;cm. Poteaux enterrés
           directement dans la terre&nbsp;: interdit par le DTU 31.2 même en classe 4. Isolation&nbsp;:
           optionnelle légalement, mais 80&nbsp;mm de laine entre montants change tout pour un atelier.
