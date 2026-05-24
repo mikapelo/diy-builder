@@ -509,7 +509,12 @@ export default function GuideCabanonPage() {
           diffèrent. Et certaines zones sont piégeuses : abords de monuments historiques, zones
           Natura 2000, secteurs avec plan de prévention des risques — elles peuvent imposer des
           matériaux, des couleurs de bardage ou une hauteur maximale. Appelez le service urbanisme
-          de votre mairie avant de commander le bois, pas après.
+          de votre mairie avant de commander le bois, pas après. Pour le détail complet (tableau
+          des seuils 5/20/40 m², Cerfa par tranche, calendrier d&apos;instruction, zones ABF),
+          consultez notre{' '}
+          <Link href="/guides/permis-cabanon-seuils-2026" className="content-link">
+            guide complet permis et déclaration cabanon 2026
+          </Link>.
         </p>
 
         <h2 className="content-h2">Questions fréquentes</h2>

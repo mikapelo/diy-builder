@@ -18,6 +18,7 @@ export default function sitemap() {
     { url: `${baseUrl}/guides/soi-meme-ou-pro`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/prix-terrasse-bois-m2-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/guides/comparer-devis-travaux`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/guides/permis-cabanon-seuils-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     // Note : pages /liste avec query strings retirées du sitemap.
     // XML sitemap n'accepte pas les `&` non-encodés (erreur d'analyse
     // syntaxique Search Console) et les query strings ne sont pas des

@@ -291,6 +291,13 @@ export default function GuidesPage() {
               {' '}— méthode 2026, 8 mentions obligatoires, écarts de prix normaux,
               5 vérifications gratuites sur l&apos;entreprise.
             </li>
+            <li style={{ marginBottom: '10px' }}>
+              <Link href="/guides/permis-cabanon-seuils-2026" className="content-link">
+                Permis et déclaration pour construire un cabanon en 2026
+              </Link>
+              {' '}— tableau des seuils 5/20/40 m², Cerfa par tranche, zones ABF et
+              PLU, calendrier réel d&apos;instruction.
+            </li>
           </ul>
         </section>
 
