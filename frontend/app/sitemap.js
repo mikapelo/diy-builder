@@ -15,6 +15,7 @@ export default function sitemap() {
     { url: `${baseUrl}/guides/cabanon`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/pergola`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/guides/cloture`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/guides/soi-meme-ou-pro`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     // Note : pages /liste avec query strings retirées du sitemap.
     // XML sitemap n'accepte pas les `&` non-encodés (erreur d'analyse
     // syntaxique Search Console) et les query strings ne sont pas des

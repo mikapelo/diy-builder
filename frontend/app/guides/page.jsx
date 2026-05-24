@@ -3,7 +3,7 @@ import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
-const OG_TITLE = '5 guides bois & béton';
+const OG_TITLE = '6 guides bois & béton';
 const OG_SUBTITLE = 'Terrasse, cabanon, pergola, clôture, dalle';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
 
@@ -12,7 +12,7 @@ export const metadata = {
   description: 'Construire soi-même en bois et béton — 5 guides pratiques (DTU 31.1, 31.2, 51.4, 13.3) avec prix, étapes, outils et durée par projet.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides' },
   openGraph: {
-    title: '5 guides pour construire en bois et béton | DIY Builder',
+    title: '6 guides pour construire en bois et béton | DIY Builder',
     description: 'Terrasse, cabanon, pergola, clôture, dalle béton — guides pas à pas conformes DTU avec budget, outils et durée par projet.',
     url: 'https://www.diy-builder.fr/guides',
     type: 'website',
@@ -29,7 +29,7 @@ const itemListJsonLd = {
   '@type': 'ItemList',
   name: 'Guides de construction bois et béton',
   description: 'Cinq guides pratiques pour construire en bois et béton soi-même : terrasse, cabanon, pergola, clôture et dalle béton extérieure.',
-  numberOfItems: 5,
+  numberOfItems: 6,
   itemListElement: [
     {
       '@type': 'ListItem',
@@ -66,6 +66,12 @@ const itemListJsonLd = {
       name: 'Tutoriel dalle béton extérieure (NF DTU 13.3)',
       image: 'https://www.diy-builder.fr/images/guides/cards/dalle.png',
     },
+    {
+      '@type': 'ListItem',
+      position: 6,
+      url: 'https://www.diy-builder.fr/guides/soi-meme-ou-pro',
+      name: 'Faire soi-même ou faire faire : 5 critères pour décider',
+    },
   ],
 };
 
@@ -83,7 +89,7 @@ export default function GuidesPage() {
           <span className="content-breadcrumb-current">Guides</span>
         </nav>
 
-        <h1 className="content-h1">5 guides pour construire en bois et béton</h1>
+        <h1 className="content-h1">6 guides pour construire en bois et béton</h1>
 
         <p className="content-meta">
           <span><strong>Mis à jour le 16 mai 2026</strong></span>
@@ -245,6 +251,20 @@ export default function GuidesPage() {
                 cabanon ou une grosse pergola. Calculateur de matériaux inclus (béton, treillis).
               </p>
               <span className="btn-secondary">Lire le tutoriel →</span>
+            </Link>
+
+            <Link href="/guides/soi-meme-ou-pro" className="content-guide-card">
+              <div className="content-guide-card-meta" style={{ marginTop: 0 }}>
+                <span className="badge-level">Avant de commencer</span>
+                <span className="badge-time">Lecture 12 min</span>
+              </div>
+              <h3 className="content-guide-card-title">Faire soi-même ou faire faire</h3>
+              <p className="content-guide-card-desc">
+                Cinq critères chiffrés pour trancher entre autoconstruction et appel à un artisan :
+                surface du chantier, risque structurel, outillage nécessaire, garantie décennale,
+                temps disponible. Tableau de décision projet par projet.
+              </p>
+              <span className="btn-secondary">Lire le guide →</span>
             </Link>
 
           </div>
