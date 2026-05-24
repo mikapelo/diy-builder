@@ -284,6 +284,13 @@ export default function GuidesPage() {
               {' '}— comparatif essence × enseigne (pin, douglas, ipé, composite) en mai 2026,
               avec et sans pose artisan.
             </li>
+            <li style={{ marginBottom: '10px' }}>
+              <Link href="/guides/comparer-devis-travaux" className="content-link">
+                Comparer plusieurs devis travaux
+              </Link>
+              {' '}— méthode 2026, 8 mentions obligatoires, écarts de prix normaux,
+              5 vérifications gratuites sur l&apos;entreprise.
+            </li>
           </ul>
         </section>
 

@@ -677,6 +677,7 @@ export default function GuideSoiMemeOuPro() {
             <li><Link href="/guides/pergola">Guide pergola</Link> : sections, ancrage, portées</li>
             <li><Link href="/guides/cloture">Guide clôture</Link> : réglementation, poteaux, entraxes</li>
             <li><Link href="/guides/dalle">Tutoriel dalle béton</Link> : épaisseur, treillis, dosage</li>
+            <li><Link href="/guides/comparer-devis-travaux">Comparer plusieurs devis travaux</Link> : méthode, mentions obligatoires, écarts normaux</li>
             <li><Link href="/faq">FAQ</Link> : 24 questions techniques</li>
           </ul>
         </aside>
