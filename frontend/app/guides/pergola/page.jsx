@@ -40,7 +40,7 @@ const jsonLd = {
   supply: [
     { '@type': 'HowToSupply', name: 'Poteaux bois 100×100 mm' },
     { '@type': 'HowToSupply', name: 'Longerons 63×150 mm' },
-    { '@type': 'HowToSupply', name: 'Chevrons 45×120 mm' },
+    { '@type': 'HowToSupply', name: 'Chevrons 80×50 mm (portée ≤ 3,5 m)' },
     { '@type': 'HowToSupply', name: 'Sabots d\'ancrage galvanisés' },
     { '@type': 'HowToSupply', name: 'Vis inox A2' },
     { '@type': 'HowToSupply', name: 'Béton dosé 350 kg/m³' },
@@ -142,8 +142,9 @@ export default function GuidePergolaBois() {
         <p className="content-snippet">
           Poteaux&nbsp;: 90×90&nbsp;mm jusqu&apos;à 3&nbsp;m de portée, 100×100&nbsp;mm de 3 à 4&nbsp;m,
           120×120&nbsp;mm au-delà ou sous charge végétale (NF EN 1995-1-1, flèche limitée à L/300).
-          Longerons&nbsp;: 63×150&nbsp;mm jusqu&apos;à 4&nbsp;m. Chevrons&nbsp;: 45×120&nbsp;mm,
-          entraxe 40–60&nbsp;cm. Douglas ou pin traité classe 3 pour une première pergola.
+          Longerons&nbsp;: 63×150&nbsp;mm jusqu&apos;à 4&nbsp;m. Chevrons&nbsp;: 80×50&nbsp;mm
+          jusqu&apos;à 3,5&nbsp;m de portée, 100×50&nbsp;mm au-delà (flèche L/300).
+          Entraxe chevrons 40–60&nbsp;cm. Douglas ou pin traité classe 3 pour une première pergola.
         </p>
         <p className="content-body">
           L&apos;erreur classique du débutant, c&apos;est de sous-dimensionner. Une section trop faible donne une flèche
@@ -171,9 +172,10 @@ export default function GuidePergolaBois() {
         <h3 className="content-h3">Chevrons</h3>
         <p className="content-body">
           Les chevrons forment le quadrillage horizontal visible depuis le dessous. Entraxe standard&nbsp;:
-          <strong> 40 à 60 cm</strong>. Sections usuelles&nbsp;:&nbsp;<strong>45×120 mm</strong> pour les petits
-          formats, <strong>63×150 mm</strong> pour les grandes portées. Plus l&apos;entraxe est serré, plus l&apos;ombre
-          portée est dense — c&apos;est aussi un choix esthétique.
+          <strong> 40 à 60 cm</strong>. Sections usuelles&nbsp;:&nbsp;<strong>80×50 mm</strong> jusqu&apos;à
+          3,5&nbsp;m de portée libre, <strong>100×50 mm</strong> au-delà (la section monte pour limiter la
+          flèche à L/300 selon NF EN 1995-1-1). Plus l&apos;entraxe est serré, plus l&apos;ombre portée est
+          dense — c&apos;est aussi un choix esthétique.
         </p>
 
         <h3 className="content-h3">Essences recommandées</h3>
@@ -197,13 +199,13 @@ export default function GuidePergolaBois() {
 
         <p className="content-snippet">
           Structure 4×3&nbsp;m standard&nbsp;: 4 poteaux 100×100×300&nbsp;cm, 2 longerons
-          63×150×400&nbsp;cm, 6 chevrons 45×120×300&nbsp;cm, 8 sabots galvanisés, 8 équerres de
+          63×150×400&nbsp;cm, 6 chevrons 80×50×300&nbsp;cm, 8 sabots galvanisés, 8 équerres de
           charpente et vis inox A2. Les vis acier zingué tachent le bois de coulures de rouille
           dès les premières pluies — inox obligatoire en extérieur.
         </p>
         <p className="content-body">
           Exemple concret pour une structure standard&nbsp;: <strong>4 poteaux</strong> 100×100×300 cm,
-          <strong> 2 longerons</strong> 63×150×400 cm, <strong>6 chevrons</strong> 45×120×300 cm.
+          <strong> 2 longerons</strong> 63×150×400 cm, <strong>6 chevrons</strong> 80×50×300 cm.
           Pour la quincaillerie&nbsp;: 8 sabots d&apos;ancrage galvanisés, 8 équerres de charpente pour les
           assemblages longerons/chevrons, vis inox A2.
         </p>

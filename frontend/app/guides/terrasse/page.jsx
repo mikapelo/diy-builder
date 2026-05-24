@@ -35,8 +35,8 @@ const howToJsonLd = {
   estimatedCost: {
     '@type': 'MonetaryAmount',
     currency: 'EUR',
-    minValue: '360',
-    maxValue: '1200',
+    minValue: '500',
+    maxValue: '1400',
   },
   step: [
     {
@@ -306,13 +306,15 @@ export default function GuideTerrassePage() {
 
         <h2 className="content-h2">Budget matériaux : ce que vous allez vraiment dépenser</h2>
         <p className="content-snippet">
-          Pour 12&nbsp;m² de terrasse&nbsp;: comptez ~360&nbsp;€ en pin traité (30&nbsp;€/m²),
-          ~540&nbsp;€ en douglas (45&nbsp;€/m²) ou ~1&nbsp;200&nbsp;€ en ipé (100&nbsp;€/m²).
-          Matériaux seuls, hors livraison et outillage. Avec pose par artisan, ajoutez 40–60&nbsp;€/m²
-          de main-d&apos;œuvre.
+          Pour 12&nbsp;m² de terrasse, total matériaux (lames + lambourdes + plots + visserie)&nbsp;:
+          comptez ~540&nbsp;€ en pin traité (45&nbsp;€/m²), ~720&nbsp;€ en douglas (60&nbsp;€/m²)
+          ou ~1&nbsp;400&nbsp;€ en ipé (115&nbsp;€/m²). Hors livraison et outillage.
+          Avec pose par artisan, ajoutez 40–60&nbsp;€/m² de main-d&apos;œuvre.
         </p>
         <p className="content-body">
-          Les prix ci-dessous concernent les matériaux uniquement, hors outillage et livraison.
+          Les prix ci-dessous sont le total matériaux (lames, lambourdes 60×70 cl.4, plots réglables,
+          vis inox A2, bande bitume), recalculés en mai 2026 d&apos;après les prix réels de notre
+          base (Leroy Merlin, Castorama, Brico Dépôt). Hors outillage et livraison.
         </p>
 
         <table className="content-table">
@@ -320,7 +322,7 @@ export default function GuideTerrassePage() {
             <tr>
               <th>Niveau</th>
               <th>Essence</th>
-              <th>Prix matériaux</th>
+              <th>Prix total / m²</th>
               <th>Pour 12 m²</th>
             </tr>
           </thead>
@@ -328,20 +330,20 @@ export default function GuideTerrassePage() {
             <tr>
               <td>Économique</td>
               <td>Pin traité autoclave</td>
-              <td>~30 €/m²</td>
-              <td>~360 €</td>
+              <td>~45 €/m²</td>
+              <td>~540 € (430 € en Brico Dépôt à 630 € en Leroy Merlin)</td>
             </tr>
             <tr>
               <td>Standard</td>
               <td>Douglas</td>
-              <td>~45 €/m²</td>
-              <td>~540 €</td>
+              <td>~60 €/m²</td>
+              <td>~720 €</td>
             </tr>
             <tr>
               <td>Premium</td>
               <td>Ipé / Teck</td>
-              <td>~100 €/m²</td>
-              <td>~1 200 €</td>
+              <td>~115 €/m²</td>
+              <td>~1 400 €</td>
             </tr>
           </tbody>
         </table>

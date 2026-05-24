@@ -245,7 +245,7 @@ const howToJsonLd = {
   description:
     'Tutoriel illustré pour réaliser une dalle béton conforme NF DTU 13.3 : terrassement, forme drainante, coffrage, treillis soudé ST25, coulage et joints de fractionnement.',
   totalTime: 'P2D',
-  estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '150', maxValue: '600' },
+  estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '300', maxValue: '1500' },
   step: STEPS.map((s) => ({ '@type': 'HowToStep', position: s.id, name: s.title, text: s.desc })),
 };
 

@@ -35,8 +35,8 @@ const howToJsonLd = {
   estimatedCost: {
     '@type': 'MonetaryAmount',
     currency: 'EUR',
-    minValue: '600',
-    maxValue: '3000',
+    minValue: '1400',
+    maxValue: '3400',
   },
   step: [
     {
@@ -124,9 +124,9 @@ export default function GuideCabanonPage() {
         <h2 className="content-h2">L&apos;ossature bois : ce qu&apos;il faut vraiment comprendre</h2>
         <p className="content-snippet">
           Le DTU 31.2 impose des montants 45×90&nbsp;mm à entraxe 60&nbsp;cm entre lisse basse
-          et lisse haute. Chaque angle reçoit 2 montants en L. Sans contreventement OSB 12&nbsp;mm
-          ou écharpes métalliques, l&apos;ossature ne reprend pas les efforts horizontaux du vent
-          et devient instable dès les premières rafales.
+          et lisse haute. Chaque angle reçoit 2 montants en L. Sans contreventement OSB 9&nbsp;mm
+          (minimum DTU 31.2 §9.2.2) ou écharpes métalliques, l&apos;ossature ne reprend pas les
+          efforts horizontaux du vent et devient instable dès les premières rafales.
         </p>
 
         <figure className="content-figure" role="group" aria-labelledby="ossature-fig-caption">
@@ -255,8 +255,9 @@ export default function GuideCabanonPage() {
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
           <li style={{ marginBottom: '10px' }}>
             <strong>Principe structurel :</strong> les montants reprennent les charges verticales
-            (toiture, neige), les panneaux OSB 12 mm ou les écharpes métalliques absorbent les
-            efforts horizontaux (vent). Sans contreventement, l&apos;ossature est un château de cartes.
+            (toiture, neige), les panneaux OSB 9 mm (mini DTU 31.2) ou les écharpes métalliques
+            absorbent les efforts horizontaux (vent). Sans contreventement, l&apos;ossature est
+            un château de cartes.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Section standard :</strong> 45 × 90 mm pour un abri non isolé — c&apos;est la
@@ -296,7 +297,7 @@ export default function GuideCabanonPage() {
 
         <p className="content-snippet">
           Pour un cabanon 3×2&nbsp;m, hauteur 2,30&nbsp;m&nbsp;: 12–14 montants 45×90&nbsp;mm,
-          lisses basses en classe 4 obligatoire (pas classe 3), 5–6 chevrons 45×145&nbsp;mm avec
+          lisses basses en classe 4 obligatoire (pas classe 3), 5–6 chevrons 60×80&nbsp;mm avec
           débord d&apos;égout de 40–60&nbsp;cm, et 27&nbsp;m² de bardage (périmètre × hauteur
           +&nbsp;10&nbsp;% de chutes). Prévoyez toujours 10&nbsp;% de marge sur bardage et voliges.
         </p>
@@ -321,9 +322,10 @@ export default function GuideCabanonPage() {
             toiture pour former la sablière. C&apos;est ce doublement qui répartit la charge des chevrons.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Chevrons de toit :</strong> 5 à 6 chevrons 45 × 145 mm. Longueur = profondeur
+            <strong>Chevrons de toit :</strong> 5 à 6 chevrons 60 × 80 mm. Longueur = profondeur
             du cabanon + débord d&apos;égout (40 à 60 cm recommandé pour tenir les murs au sec). Ne
-            lésinez pas sur le débord : chaque centimètre gagne en protection.
+            lésinez pas sur le débord : chaque centimètre gagne en protection. Pour un cabanon
+            au-delà de 4 m de portée, passez en bastaing 63 × 150 mm.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Bardage :</strong> périmètre × hauteur moyenne + 10 % de chutes. Pour ce
@@ -331,7 +333,10 @@ export default function GuideCabanonPage() {
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Voliges de toiture :</strong> surface de couverture (3 × 2 m + débords) en
-            planche 18 mm, joint à couvrir ou feuillure. Pas de 12 mm : trop flexible sous la neige.
+            planche 14 à 18 mm, joint à couvrir ou feuillure. En zone neige importante (Alpes,
+            Massif Central, Jura), 18 mm minimum. Alternative pour petits formats : entretoises
+            de toiture en quinconce entre chevrons, sans voligeage continu — c&apos;est la
+            solution retenue par défaut dans notre simulateur.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Quincaillerie :</strong> équerres de charpente, vis inox 4 × 60 et 6 × 120,
@@ -393,8 +398,9 @@ export default function GuideCabanonPage() {
           debout avec un marteau levé. Redressez-les ensuite et maintenez-les avec des étrésillons
           pendant la fixation. Ordre : les deux murs longs d&apos;abord (façade et pignon arrière), puis
           les pignons qui viennent s&apos;emboîter. Chaque angle se serre avec des vis 6 × 120 en
-          quinconce. Panneaux OSB 12 mm ensuite, cloués à 10 cm sur les rives et 20 cm en milieu
-          de montant — c&apos;est le contreventement, ne bâclez pas la fixation. Autour des ouvertures :
+          quinconce. Panneaux OSB 9 mm minimum (DTU 31.2 §9.2.2) ensuite, cloués à 10 cm sur les
+          rives et 20 cm en milieu de montant — c&apos;est le contreventement, ne bâclez pas la
+          fixation. Autour des ouvertures :
           montants continus pleine hauteur, montants d&apos;about arrêtés sous linteau, linteau double 45 × 145 de
           champ pour une porte de 90 cm.
         </p>
@@ -405,8 +411,9 @@ export default function GuideCabanonPage() {
           fonctionne vraiment sans problème d&apos;évacuation des eaux en automne ou sous la neige.
           Pour 3 m de profondeur à 20 %, ça donne 60 cm de dénivelé entre le côté haut et le
           côté bas. Posez les chevrons sur la sablière haute côté faîtage et sur la lisse basse
-          d&apos;égout, vérifiez que chaque chevron repose bien sur ses appuis. Voliges 18 mm
-          perpendiculaires aux chevrons, puis écran sous-toiture HPV (hautement perméable à la
+          d&apos;égout, vérifiez que chaque chevron repose bien sur ses appuis. Voliges 14 à 18 mm
+          perpendiculaires aux chevrons (ou entretoises en quinconce sur petits formats), puis
+          écran sous-toiture HPV (hautement perméable à la
           vapeur — pas un simple pare-vapeur). Couverture selon budget et style : bac acier
           (pose rapide, résistant), shingles bitumés (look chalet, plus coûteux à poser),
           tuiles légères sur liteaux (le plus lourd à transporter).
@@ -427,13 +434,15 @@ export default function GuideCabanonPage() {
         <h2 className="content-h2">Budget à prévoir</h2>
         <p className="content-snippet">
           Matériaux seuls (ossature, couverture, bardage, quincaillerie), hors fondations et
-          menuiseries&nbsp;: 600–900&nbsp;€ pour 4&nbsp;m², 1&nbsp;200–1&nbsp;800&nbsp;€ pour 9&nbsp;m²,
-          2&nbsp;000–3&nbsp;000&nbsp;€ pour 15&nbsp;m². Ajoutez 100–400&nbsp;€ pour les fondations et
-          60–90&nbsp;€/h si vous faites appel à un charpentier.
+          menuiseries&nbsp;: 1&nbsp;400–1&nbsp;800&nbsp;€ pour 4&nbsp;m², 2&nbsp;000–2&nbsp;600&nbsp;€
+          pour 9&nbsp;m², 2&nbsp;700–3&nbsp;400&nbsp;€ pour 15&nbsp;m². Ajoutez 100–400&nbsp;€ pour
+          les fondations et 60–90&nbsp;€/h si vous faites appel à un charpentier.
         </p>
         <p className="content-body">
-          Ces estimations couvrent les matériaux bruts — bois d&apos;ossature, couverture, bardage,
-          quincaillerie — hors fondations et menuiseries (porte, fenêtre).
+          Ces estimations couvrent les matériaux bruts — bois d&apos;ossature 90×90&nbsp;mm,
+          chevrons, OSB 9 mm, bardage pin classe&nbsp;4, quincaillerie — hors fondations et
+          menuiseries (porte, fenêtre). Fourchettes recalculées en mai 2026 d&apos;après nos prix
+          réels (Brico Dépôt en bas de fourchette, Leroy Merlin en haut).
         </p>
 
         <table className="content-table">
@@ -448,17 +457,17 @@ export default function GuideCabanonPage() {
             <tr>
               <td>Petit</td>
               <td>4 m² (2 × 2 m)</td>
-              <td>600 – 900 €</td>
+              <td>1 400 – 1 800 €</td>
             </tr>
             <tr>
               <td>Moyen</td>
               <td>9 m² (3 × 3 m)</td>
-              <td>1 200 – 1 800 €</td>
+              <td>2 000 – 2 600 €</td>
             </tr>
             <tr>
               <td>Grand</td>
               <td>15 m² (5 × 3 m)</td>
-              <td>2 000 – 3 000 €</td>
+              <td>2 700 – 3 400 €</td>
             </tr>
           </tbody>
         </table>
