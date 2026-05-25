@@ -2,14 +2,14 @@ import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 
 export const metadata = {
-  title: 'Sources DTU et normes citées sur DIY Builder',
+  title: 'Sources DTU, normes et textes légaux cités sur DIY Builder',
   description:
-    'Référence complète des normes NF DTU 31.1, 31.2, 51.4, 13.3, NF EN 335, NF EN 1995-1-1, textes légaux urbanisme et RGPD utilisés sur DIY Builder.',
+    'Référence complète des normes NF DTU 31.1, 31.2, 51.4, 13.3, NF EN 335, EN 350, DIN 51130, textes légaux (Code urbanisme, conso, assurances, CGI), sécurité piscines et RGPD.',
   alternates: { canonical: 'https://www.diy-builder.fr/sources' },
   openGraph: {
-    title: 'Sources DTU et normes citées sur DIY Builder',
+    title: 'Sources DTU, normes et textes légaux cités sur DIY Builder',
     description:
-      'Normes techniques bois, textes légaux urbanisme, sources prix enseignes et outils open-source utilisés dans les simulateurs DIY Builder.',
+      'Normes techniques bois, textes légaux construction et urbanisme, fiscalité travaux, sécurité piscines, sources prix enseignes et outils open-source.',
     url: 'https://www.diy-builder.fr/sources',
     type: 'website',
   },
@@ -31,7 +31,7 @@ const webPageJsonLd = {
   url: 'https://www.diy-builder.fr/sources',
   description:
     'Référence complète des normes techniques, textes légaux et sources de prix utilisés sur DIY Builder.',
-  dateModified: '2026-05-16',
+  dateModified: '2026-05-25',
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
@@ -82,7 +82,7 @@ export default function SourcesPage() {
         <h1 className="content-h1">Sources DTU et normes citées sur DIY Builder</h1>
 
         <p className="content-meta">
-          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span><strong>Mis à jour le 25 mai 2026</strong></span>
           <span>·</span>
           <span>L&apos;équipe DIY Builder</span>
           <span>·</span>
@@ -148,6 +148,27 @@ export default function SourcesPage() {
           usedIn="pergolaConstants.js, lib/cabanonConstants.js (commentaires référence)"
         />
 
+        <SourceItem
+          name="NF EN 350:2016 — Durabilité naturelle du bois et des produits dérivés"
+          url="https://www.boutique.afnor.org/fr-fr/norme/nf-en-350/durabilite-du-bois-et-des-materiaux-a-base-de-bois-methodes-dessai-et-de-cla/fa172860/55891"
+          description="Définit les 5 classes de durabilité naturelle du bois face aux champignons xylophages (classe 1 « très durable » à classe 5 « non durable »). L'ipé, le cumaru, le garapa et le padouk sont classe 1 — d'où leur résistance sans traitement en bord de piscine. Le pin sylvestre non traité est classe 4-5, ce qui justifie l'autoclave classe 4 d'emploi pour usage extérieur."
+          usedIn="guides/terrasse-piscine-bois, guides/prix-terrasse-bois-m2-2026"
+        />
+
+        <SourceItem
+          name="DIN 51130 — Classification antidérapante pour pieds nus mouillés"
+          url="https://www.din.de/en/getting-involved/standards-committees/nabau/standards/wdc-beuth:din21:341787935"
+          description="Norme allemande définissant 5 niveaux d'adhérence R9 à R13 par angle de glissement (R11 : 19-27° = minimum recommandé pour plage de piscine). Référence internationale utilisée par les assureurs habitation français pour exiger une antidérapance minimale autour des piscines privées."
+          usedIn="guides/terrasse-piscine-bois"
+        />
+
+        <SourceItem
+          name="Règlement (UE) n°995/2010 — RBUE Bois de l'Union européenne"
+          url="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32010R0995"
+          description="Règlement européen entré en application le 3 mars 2013 imposant une diligence raisonnée à tout importateur de bois dans l'UE pour exclure les origines illégales. En pratique, les enseignes françaises ne vendent que des bois exotiques certifiés FSC ou PEFC. Référence à corriger fréquemment dans les contenus en ligne qui attribuent à tort une date de 2022 ou autre."
+          usedIn="guides/prix-terrasse-bois-m2-2026, guides/terrasse-piscine-bois"
+        />
+
         <hr className="content-divider" />
 
         <h2 className="content-h2">Cadre légal et urbanisme</h2>
@@ -158,17 +179,52 @@ export default function SourcesPage() {
         </p>
 
         <SourceItem
-          name="Code de l'urbanisme — Articles R421-1 et suivants"
+          name="Code de l'urbanisme — Articles R421-1 à R421-12"
           url="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074075/LEGISCTA000006175762/"
-          description="Définit les seuils de surface plancher déclenchant une déclaration préalable de travaux (5 à 20 m²) ou un permis de construire (au-delà de 20 m²). Ces seuils valent en zones couvertes par un PLU ; les zones non urbanisées et les secteurs protégés (abords de monuments historiques, Natura 2000) appliquent des règles différentes."
-          usedIn="guides/cabanon, guides/terrasse, faq"
+          description="Définit les seuils de surface plancher déclenchant une déclaration préalable de travaux (5 à 20 m²), un permis de construire (au-delà de 20 m² hors zone U du PLU, ou 40 m² en zone U). R421-2 pose l'exemption pour < 5 m². R421-5 traite des constructions démontables (≥ 3 mois consécutifs = mêmes règles que permanent)."
+          usedIn="guides/cabanon, guides/permis-cabanon-seuils-2026, faq"
         />
 
         <SourceItem
-          name="Formulaire Cerfa n° 13703*12 — Déclaration préalable de travaux"
+          name="Code de l'urbanisme — Article R425-1 (avis ABF)"
+          url="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031211265/"
+          description="Soumet les projets en périmètre de protection (500 m autour d'un monument historique, site patrimonial remarquable, secteur sauvegardé) à l'avis conforme de l'Architecte des Bâtiments de France. Cet avis lie la mairie : un refus ABF entraîne refus du permis. Délai d'instruction supplémentaire de 6 à 8 semaines."
+          usedIn="guides/permis-cabanon-seuils-2026, guides/cabanon"
+        />
+
+        <SourceItem
+          name="Code de l'urbanisme — Article R431-2 (recours à un architecte)"
+          url="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031211363/"
+          description="Rend obligatoire le recours à un architecte pour tout projet portant la surface totale habitation au-delà de 150 m². Les honoraires varient de 8 à 12 % du coût total des travaux selon les missions confiées (étude seule, suivi de chantier complet)."
+          usedIn="guides/permis-cabanon-seuils-2026"
+        />
+
+        <SourceItem
+          name="Formulaire Cerfa n° 13703 — Déclaration préalable de travaux"
           url="https://www.service-public.fr/particuliers/vosdroits/R1995"
-          description="Formulaire officiel pour les constructions de 5 à 20 m² en zone PLU. Disponible en téléchargement sur Service-Public.fr. Le délai d'instruction standard est d'un mois. Le guide cabanon mentionne ce formulaire avec ses références exactes."
-          usedIn="guides/cabanon"
+          description="Formulaire officiel pour les constructions de 5 à 20 m² en zone PLU (et jusqu'à 40 m² en zone U). Disponible en téléchargement sur Service-Public.fr. Délai d'instruction : 1 mois (2 mois en site patrimonial remarquable). Les versions du formulaire évoluent — toujours vérifier la dernière version sur service-public.fr."
+          usedIn="guides/permis-cabanon-seuils-2026, guides/cabanon"
+        />
+
+        <SourceItem
+          name="Formulaire Cerfa n° 13406 — Permis de construire"
+          url="https://www.service-public.fr/particuliers/vosdroits/R11637"
+          description="Formulaire officiel pour les constructions au-delà de 40 m² en zone U du PLU, ou au-delà de 20 m² hors zone U. Délai d'instruction : 2 mois standard, 3 mois en zone protégée. Pièces complémentaires possibles en cours d'instruction (suspension du délai)."
+          usedIn="guides/permis-cabanon-seuils-2026"
+        />
+
+        <SourceItem
+          name="Géoportail de l'urbanisme"
+          url="https://www.geoportail-urbanisme.gouv.fr"
+          description="Service public officiel permettant de vérifier en ligne le zonage PLU d'un terrain, les servitudes d'utilité publique, les périmètres de protection (ABF, sites classés, Natura 2000, PPR). Outil gratuit recommandé avant tout dépôt de dossier d'urbanisme."
+          usedIn="guides/permis-cabanon-seuils-2026"
+        />
+
+        <SourceItem
+          name="GNAU — Guichet Numérique des Autorisations d'Urbanisme"
+          url="https://www.service-public.fr/particuliers/vosdroits/F1986"
+          description="Téléservice de dépôt en ligne des autorisations d'urbanisme (DP, PC, certificat). Adopté par un nombre croissant de communes françaises. Quand disponible, évite le dépôt papier en 2 exemplaires en mairie."
+          usedIn="guides/permis-cabanon-seuils-2026"
         />
 
         <SourceItem
@@ -176,6 +232,87 @@ export default function SourcesPage() {
           url="https://www.ecologie.gouv.fr/re2020"
           description="La RE 2020 s'applique aux bâtiments d'habitation nouveaux. Elle ne s'applique pas aux abris de jardin, garages, pergolas ou clôtures — ce point est explicitement mentionné dans la FAQ DIY Builder pour éviter la confusion fréquente sur les forums. Source : Ministère de la Transition écologique."
           usedIn="faq, guides/cabanon"
+        />
+
+        <hr className="content-divider" />
+
+        <h2 className="content-h2">Construction, devis et garanties travaux</h2>
+        <p className="content-body">
+          Le cadre légal du devis travaux particulier mêle Code de la consommation (mentions
+          obligatoires), Code des assurances (décennale Spinetta), Code civil (garanties légales)
+          et arrêtés spécifiques. Tous ces textes sont consultables gratuitement sur Légifrance.
+        </p>
+
+        <SourceItem
+          name="Code de la consommation — Article L111-1"
+          url="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032227298/"
+          description="Définit les informations précontractuelles obligatoires à fournir au consommateur (caractéristiques essentielles, prix, identité du professionnel, modalités de paiement, garanties). Base juridique des mentions obligatoires sur un devis travaux destiné à un particulier."
+          usedIn="guides/comparer-devis-travaux"
+        />
+
+        <SourceItem
+          name="Arrêté du 2 mars 1990 — Publicité des prix des prestations de services"
+          url="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000536724/"
+          description="Précise les règles d'affichage et de remise d'un devis pour les prestations homologues d'entretien, dépannage et réparation. Le devis travaux BTP doit nommer le client, détailler chaque prestation, indiquer prix unitaires et taux de TVA, et préciser la durée de validité."
+          usedIn="guides/comparer-devis-travaux"
+        />
+
+        <SourceItem
+          name="Loi Spinetta n°78-12 du 4 janvier 1978 — Code des assurances art. L241-1"
+          url="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006797571/"
+          description="Rend obligatoire l'assurance responsabilité décennale pour tout constructeur d'ouvrage (entreprises BTP, artisans, maîtres d'œuvre). L'assurance couvre les dommages qui compromettent la solidité de l'ouvrage ou le rendent impropre à sa destination pendant 10 ans à compter de la réception."
+          usedIn="guides/comparer-devis-travaux, guides/soi-meme-ou-pro"
+        />
+
+        <SourceItem
+          name="Code civil — Articles 1792 à 1792-6 (garanties légales construction)"
+          url="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006150240/"
+          description="Garantie de parfait achèvement (1 an, art. 1792-6), garantie biennale de bon fonctionnement (2 ans, art. 1792-3), garantie décennale (10 ans, art. 1792). Couvrent respectivement les défauts apparents à la réception, les éléments d'équipement dissociables, et les défauts compromettant la solidité ou la destination de l'ouvrage."
+          usedIn="guides/comparer-devis-travaux, guides/soi-meme-ou-pro"
+        />
+
+        <SourceItem
+          name="Code général des impôts — Article 278-0 bis A (TVA 5,5 %)"
+          url="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043663878/"
+          description="Taux réduit de TVA à 5,5 % applicable aux travaux d'amélioration de la performance énergétique dans les logements de plus de 2 ans (isolation thermique, équipements de chauffage performants, ENR). Liste des équipements éligibles fixée par arrêté."
+          usedIn="guides/comparer-devis-travaux"
+        />
+
+        <SourceItem
+          name="Code général des impôts — Article 279-0 bis (TVA 10 %)"
+          url="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464950/"
+          description="Taux intermédiaire de TVA à 10 % applicable aux travaux d'amélioration, de transformation, d'aménagement et d'entretien des logements de plus de 2 ans. Exclut les constructions neuves et les agrandissements de plus de 10 % de surface (qui restent au taux normal 20 %)."
+          usedIn="guides/comparer-devis-travaux"
+        />
+
+        <SourceItem
+          name="Annuaire des entreprises — data.gouv.fr"
+          url="https://annuaire-entreprises.data.gouv.fr"
+          description="Service public officiel de vérification du SIRET, du statut actif, de la date de création et du dirigeant d'une entreprise française. Accès gratuit et sans inscription. Outil de premier choix pour vérifier qu'une entreprise BTP qui présente un devis existe légalement."
+          usedIn="guides/comparer-devis-travaux"
+        />
+
+        <hr className="content-divider" />
+
+        <h2 className="content-h2">Sécurité des piscines privées</h2>
+        <p className="content-body">
+          Toute piscine enterrée ou semi-enterrée privée doit être équipée d&apos;au moins un
+          dispositif de sécurité normalisé depuis la loi Raffarin de 2003. Quatre dispositifs sont
+          reconnus, chacun couvert par une norme NF P90 distincte.
+        </p>
+
+        <SourceItem
+          name="Loi n°2003-9 du 3 janvier 2003 — Loi Raffarin sécurité piscines"
+          url="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000596892/"
+          description="Loi imposant à tous les propriétaires de piscines enterrées ou semi-enterrées privées (individuelles ou collectives) l'installation d'au moins un dispositif de sécurité normalisé. Codifiée au Code de la construction et de l'habitation (codification recodifiée par l'ordonnance 2020-71). Sanction en cas de défaut : amende pénale jusqu'à 45 000 €."
+          usedIn="guides/terrasse-piscine-bois"
+        />
+
+        <SourceItem
+          name="NF P90-306 à NF P90-309 — Dispositifs de sécurité piscines"
+          url="https://www.boutique.afnor.org/fr-fr/recherche/resultats?keyword=NF+P90-306"
+          description="Quatre normes couvrant les quatre dispositifs reconnus : NF P90-306 (barrières de protection, hauteur min 1,10 m), NF P90-307 (alarmes d'immersion), NF P90-308 (couvertures), NF P90-309 (abris). Au moins un de ces dispositifs est obligatoire. Le respect de la norme est attesté par la mention explicite sur le produit."
+          usedIn="guides/terrasse-piscine-bois"
         />
 
         <hr className="content-divider" />
