@@ -3,8 +3,8 @@ const OG_SUBTITLE = 'Poteaux classe 4 + lames';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=simulateur&icon=cloture`;
 
 export const metadata = {
-  title: 'Simulateur clôture bois : poteaux, rails, lames au mètre',
-  description: 'Calculez gratuitement poteaux, rails et lames de votre clôture bois (10, 15, 20 ml — hauteur 1,20 à 1,80 m). Classes d\'emploi, entraxes, devis comparé Castorama / Brico Dépôt / Leroy Merlin.',
+  title: 'Calculateur clôture bois gratuit — poteaux + lames au mètre',
+  description: 'Poteaux classe 4, rails et lames pour votre clôture 10, 15 ou 20 ml (hauteur 1,20 à 1,80 m). Conforme DTU 31.1, comparatif prix Leroy Merlin / Castorama / Brico Dépôt. À partir de ~26 €/ml en pin traité.',
   alternates: { canonical: 'https://www.diy-builder.fr/cloture' },
   openGraph: {
     title: 'Simulateur clôture bois gratuit — DIY Builder',
