@@ -27,7 +27,7 @@
  */
 
 /** Date de la dernière mise à jour des prix — changer à chaque révision */
-export const PRICES_DATE = '2026-05-17';
+export const PRICES_DATE = '2026-05-25';
 
 export const MATERIAL_PRICES = [
   // ── Ossature bois générique ─────────────────────────────────────
@@ -88,7 +88,7 @@ export const MATERIAL_PRICES = [
 
   // Vis inox A2 4×40 lot 200 — Castorama direct : 19,90€
   // LM : vis inox A2 4×40 boîte 200 ≈ 21,50€ (index Google)
-  { id: 'vis_inox_a2',         label: 'Vis inox A2 4×40 mm (lot 200)',          category: 'Quincaillerie', unit: 'lot',  scraped: true,  prices: { leroymerlin: 21.5, castorama: 18.5, bricodepot: 17.5, manomano: 9.79 } },
+  { id: 'vis_inox_a2',         label: 'Vis inox A2 4×40 mm (lot 200)',          category: 'Quincaillerie', unit: 'lot',  scraped: true,  prices: { leroymerlin: 21.5, castorama: 19.1, bricodepot: 17.5, manomano: 9.79 } },
 
   // Équerre d'assemblage charpente — LM direct : 0,99€/pcs (équerre 40×40×40mm galva Alberts)
   // Lot 25 = 0,80€/pcs — prix unitaire retenu
@@ -130,7 +130,7 @@ export const MATERIAL_PRICES = [
   // Poutres pergola — mis à jour mai 2026
   // LM : Bastaing sapin 50×150mm 4m = 19,90€ → 4,98€/ml (scraping direct Chrome 2026-05-07-v2 ; précédent 3m=16,90€→5,63€/ml)
   // Casto : ne stocke pas de 150×50mm ; estimation marché ≈ 5,50€/ml (scraped: false)
-  { id: 'poutre_pergola_150',  label: 'Poutre pergola 150×50 mm',              section: '150×50',   unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.98, castorama: 5.5, bricodepot: 6.2, manomano: 6.98 } },
+  { id: 'poutre_pergola_150',  label: 'Poutre pergola 150×50 mm',              section: '150×50',   unit: 'm lin.', scraped: true, prices: { leroymerlin: 5.63, castorama: 5.5, bricodepot: 6.2, manomano: 6.98 } },
   { id: 'traverse_pergola_80', label: 'Traverse pergola 80×50 mm',             section: '80×50',    unit: 'm lin.', scraped: true, prices: { leroymerlin: 4.2, castorama: 3.9, bricodepot: 3.6, manomano: 6.72 } },
 
   // Pied de poteau platine — Castorama direct : platine poteau 100/150mm = 25,90€
