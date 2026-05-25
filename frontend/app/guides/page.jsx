@@ -298,6 +298,13 @@ export default function GuidesPage() {
               {' '}— tableau des seuils 5/20/40 m², Cerfa par tranche, zones ABF et
               PLU, calendrier réel d&apos;instruction.
             </li>
+            <li style={{ marginBottom: '10px' }}>
+              <Link href="/guides/terrasse-piscine-bois" className="content-link">
+                Terrasse bois autour d&apos;une piscine
+              </Link>
+              {' '}— essences résistantes au chlore (ipé, cumaru, garapa), antidérapance
+              R11, pente 1 %, sécurité NF P90-306, budget par essence pour 30 m².
+            </li>
           </ul>
         </section>
 

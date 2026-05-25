@@ -9,7 +9,7 @@ const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_
 export const metadata = {
   title: 'Comparer plusieurs devis travaux : la méthode complète 2026',
   description:
-    'Vous avez 2 ou 3 devis et vous doutez ? Méthode de lecture critique en 30 minutes : 8 mentions obligatoires, marges normales par poste, écarts de prix qui se justifient et signaux d\'arnaque à repérer.',
+    '2 ou 3 devis et vous doutez ? Méthode en 30 minutes : 8 mentions obligatoires, marges par poste, écarts de prix sains et signaux d\'arnaque à repérer.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/comparer-devis-travaux' },
   openGraph: {
     title: 'Comparer plusieurs devis travaux : la méthode complète 2026 | DIY Builder',
@@ -94,7 +94,7 @@ const faqJsonLd = {
       name: 'Quel taux de TVA s\'applique aux travaux dans un logement ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Trois taux possibles selon la nature des travaux et l\'âge du logement : 5,5 % pour les travaux d\'amélioration énergétique éligibles (isolation, chaudière performante, conformes art. 200 quater du CGI) ; 10 % pour la rénovation, l\'amélioration ou l\'entretien d\'un logement achevé depuis plus de 2 ans ; 20 % pour les constructions neuves, les logements de moins de 2 ans et les travaux d\'agrandissement de plus de 10 % de surface.',
+        text: 'Trois taux possibles selon la nature des travaux et l\'âge du logement : 5,5 % pour les travaux d\'amélioration énergétique éligibles (isolation, chaudière performante, conformes art. 278-0 bis A du CGI) ; 10 % pour la rénovation, l\'amélioration ou l\'entretien d\'un logement achevé depuis plus de 2 ans ; 20 % pour les constructions neuves, les logements de moins de 2 ans et les travaux d\'agrandissement de plus de 10 % de surface.',
       },
     },
   ],
@@ -267,7 +267,7 @@ export default function ComparerDevisTravauxPage() {
             </tr>
             <tr>
               <td>Modalités de paiement</td>
-              <td>L441-3 Code commerce</td>
+              <td>L111-1 Code conso.</td>
               <td>Acomptes, échelonnement, délai final</td>
             </tr>
           </tbody>
@@ -609,7 +609,7 @@ export default function ComparerDevisTravauxPage() {
         <p className="content-body">
           Trois taux possibles selon la nature des travaux et l&apos;âge du logement : 5,5 % pour les
           travaux d&apos;amélioration énergétique éligibles (isolation, chaudière performante, conformes
-          art. 200 quater du CGI) ; 10 % pour la rénovation, l&apos;amélioration ou l&apos;entretien
+          art. 278-0 bis A du CGI) ; 10 % pour la rénovation, l&apos;amélioration ou l&apos;entretien
           d&apos;un logement achevé depuis plus de 2 ans ; 20 % pour les constructions neuves, les
           logements de moins de 2 ans et les travaux d&apos;agrandissement de plus de 10 % de surface.
         </p>

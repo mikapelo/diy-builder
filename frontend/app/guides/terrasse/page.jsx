@@ -357,7 +357,12 @@ export default function GuideTerrassePage() {
           <Link href="/guides/prix-terrasse-bois-m2-2026" className="content-link">
             comparatif prix terrasse bois 2026
           </Link>
-          {' '}— quatre essences × quatre enseignes, avec et sans pose artisan.
+          {' '}— quatre essences × quatre enseignes, avec et sans pose artisan. Si la terrasse
+          entoure une piscine, voir aussi le{' '}
+          <Link href="/guides/terrasse-piscine-bois" className="content-link">
+            guide terrasse piscine
+          </Link>
+          {' '}(essences résistantes au chlore, antidérapance R11, sécurité NF P90-306).
         </p>
 
         <div className="content-cta-box">

@@ -9,7 +9,7 @@ const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_
 export const metadata = {
   title: 'Prix terrasse bois au m² en 2026 : comparatif détaillé',
   description:
-    'Comparatif chiffré du prix au m² d\'une terrasse bois en mai 2026 : pin traité, douglas, ipé, composite — par enseigne (Leroy Merlin, Castorama, Brico Dépôt, ManoMano). Avec ou sans pose artisan.',
+    'Comparatif prix terrasse bois au m² en 2026 : pin, douglas, ipé, composite par enseigne (LM, Casto, BD, ManoMano). Avec ou sans pose artisan.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026' },
   openGraph: {
     title: 'Prix terrasse bois au m² en 2026 — comparatif essence × enseigne | DIY Builder',
@@ -385,10 +385,12 @@ export default function PrixTerrasseBoisM2Page() {
           ne demande rien. Sur 25 ans amortis, le coût annuel devient comparable au pin.
         </p>
         <p className="content-body">
-          Restriction réglementaire : l&apos;ipé non certifié FSC est interdit à l&apos;import depuis 2022
-          dans le cadre du règlement européen RBUE (règlement Bois de l&apos;Union européenne). Les enseignes
-          françaises ne vendent que du certifié — ce qui élimine les revendeurs informels mais limite la
-          variété d&apos;origines disponibles.
+          Restriction réglementaire : l&apos;ipé importé dans l&apos;Union européenne doit faire
+          l&apos;objet d&apos;une diligence raisonnée pour exclure les origines illégales, dans le
+          cadre du règlement européen RBUE n°995/2010 (entré en application le 3 mars 2013). Les
+          enseignes françaises vendent en pratique exclusivement de l&apos;ipé certifié FSC ou
+          PEFC, ce qui élimine les revendeurs informels mais limite la variété d&apos;origines
+          disponibles.
         </p>
 
         <h2 className="content-h2">Bois composite — entre 75 et 90 €/m² pour zéro entretien</h2>

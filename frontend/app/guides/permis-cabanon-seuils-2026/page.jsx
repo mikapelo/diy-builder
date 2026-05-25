@@ -7,9 +7,9 @@ const OG_SUBTITLE = 'Seuils, Cerfa, zones ABF · service-public.fr';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cabanon`;
 
 export const metadata = {
-  title: 'Permis et déclaration pour un cabanon en 2026 : seuils et Cerfa',
+  title: 'Permis cabanon 2026 : seuils, Cerfa et délais d\'instruction',
   description:
-    'Quels seuils déclenchent une déclaration préalable, un permis de construire ou aucune démarche pour votre cabanon en 2026 ? Tableau complet, Cerfa à remplir, délais et zones spéciales (ABF, PLU, Natura 2000).',
+    'Seuils 5/20/40 m², Cerfa par tranche, délais et zones spéciales (ABF, PLU, Natura 2000) pour construire un cabanon en 2026. Tableau complet.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/permis-cabanon-seuils-2026' },
   openGraph: {
     title: 'Permis et déclaration pour un cabanon en 2026 — Guide complet | DIY Builder',
@@ -78,7 +78,7 @@ const faqJsonLd = {
       name: 'Quel Cerfa pour la déclaration préalable d\'un cabanon ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Cerfa n°13703*09 — Déclaration préalable pour une maison individuelle et/ou ses annexes. Disponible gratuitement sur service-public.fr. À déposer en mairie en 2 exemplaires papier ou de plus en plus souvent en ligne via le téléservice GNAU (Guichet Numérique des Autorisations d\'Urbanisme) selon les communes. Délai d\'instruction : 1 mois, 2 mois en site patrimonial remarquable.',
+        text: 'Cerfa n°13703 — Déclaration préalable pour une maison individuelle et/ou ses annexes. Disponible gratuitement sur service-public.fr. À déposer en mairie en 2 exemplaires papier ou de plus en plus souvent en ligne via le téléservice GNAU (Guichet Numérique des Autorisations d\'Urbanisme) selon les communes. Délai d\'instruction : 1 mois, 2 mois en site patrimonial remarquable.',
       },
     },
     {
@@ -180,28 +180,28 @@ export default function PermisCabanonSeuils2026Page() {
               <td>5 à 20 m²</td>
               <td>Déclaration préalable</td>
               <td>Déclaration préalable</td>
-              <td>13703*09</td>
+              <td>13703</td>
               <td>1 mois</td>
             </tr>
             <tr>
               <td>20 à 40 m²</td>
               <td>Déclaration préalable</td>
               <td>Permis de construire</td>
-              <td>13703*09 ou 13406*12</td>
+              <td>13703 ou 13406</td>
               <td>1 ou 2 mois</td>
             </tr>
             <tr>
               <td>&gt; 40 m²</td>
               <td>Permis de construire</td>
               <td>Permis de construire</td>
-              <td>13406*12</td>
+              <td>13406</td>
               <td>2 mois</td>
             </tr>
             <tr>
               <td>&gt; 150 m² (total habitation)</td>
               <td>Permis + architecte obligatoire</td>
               <td>Permis + architecte obligatoire</td>
-              <td>13406*12</td>
+              <td>13406</td>
               <td>2 mois</td>
             </tr>
           </tbody>
@@ -251,9 +251,10 @@ export default function PermisCabanonSeuils2026Page() {
           </li>
         </ul>
 
-        <h2 className="content-h2">5 à 20 m² — Déclaration préalable (Cerfa 13703*09)</h2>
+        <h2 className="content-h2">5 à 20 m² — Déclaration préalable (Cerfa 13703)</h2>
         <p className="content-snippet">
-          Le formulaire Cerfa 13703*09 est l&apos;outil de la tranche 5–20 m². Téléchargeable
+          Le formulaire Cerfa 13703 (vérifier la version en vigueur sur service-public.fr) est
+          l&apos;outil de la tranche 5–20 m². Téléchargeable
           gratuitement sur service-public.fr, à déposer en mairie en deux exemplaires papier ou
           via le téléservice GNAU. Délai d&apos;instruction&nbsp;: 1 mois, prolongé à 2 mois en
           site patrimonial remarquable. Pièces standard&nbsp;: plan de situation, plan masse,
@@ -313,7 +314,7 @@ export default function PermisCabanonSeuils2026Page() {
           La tranche 20–40 m² est la plus piégeuse. En zone urbaine (U) du PLU, la déclaration
           préalable suffit. Hors zone U ou si la commune n&apos;a pas de PLU, le permis de
           construire devient obligatoire. Un même cabanon de 25 m² peut donc relever de Cerfa
-          13703*09 (1 mois d&apos;instruction) ou de Cerfa 13406*12 (2 mois d&apos;instruction)
+          13703 (1 mois d&apos;instruction) ou de Cerfa 13406 (2 mois d&apos;instruction)
           selon le zonage. La consultation du PLU est gratuite en mairie ou en ligne sur le
           Géoportail de l&apos;urbanisme.
         </p>
@@ -333,10 +334,10 @@ export default function PermisCabanonSeuils2026Page() {
           avant le dépôt évite cette perte de temps.
         </p>
 
-        <h2 className="content-h2">Plus de 40 m² — Permis de construire (Cerfa 13406*12)</h2>
+        <h2 className="content-h2">Plus de 40 m² — Permis de construire (Cerfa 13406)</h2>
         <p className="content-snippet">
           Au-delà de 40 m² de surface de plancher, le permis de construire est obligatoire
-          quelle que soit la zone. Cerfa 13406*12, dépôt en mairie ou via GNAU, 2 mois
+          quelle que soit la zone. Cerfa 13406, dépôt en mairie ou via GNAU, 2 mois
           d&apos;instruction (3 mois en zone protégée). Si la surface totale habitation atteint
           150 m² après ajout du cabanon, le recours à un architecte devient obligatoire
           (article R431-2 du Code de l&apos;urbanisme).
@@ -496,7 +497,7 @@ export default function PermisCabanonSeuils2026Page() {
 
         <h3 className="content-h3">Quel Cerfa pour la déclaration préalable d&apos;un cabanon ?</h3>
         <p className="content-body">
-          Cerfa n°13703*09 — Déclaration préalable pour une maison individuelle et/ou ses
+          Cerfa n°13703 — Déclaration préalable pour une maison individuelle et/ou ses
           annexes. Disponible gratuitement sur service-public.fr. À déposer en mairie en 2
           exemplaires papier ou de plus en plus souvent en ligne via le téléservice GNAU
           (Guichet Numérique des Autorisations d&apos;Urbanisme) selon les communes. Délai
