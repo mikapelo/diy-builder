@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -143,6 +144,18 @@ export default function GuideSoiMemeOuPro() {
           <span>·</span>
           <span><Link href="/sources">Sources DTU</Link></span>
         </p>
+
+        <div className="content-hero">
+          <Image
+            src="/images/guides/soi-meme-ou-pro/hero.png"
+            alt="Établi en bois en plein air avec outillage DIY étalé : perceuse-visseuse 18V, scie circulaire, scie sauteuse, niveau laser, équerre, mètre, gants et lunettes — ambiance jardin lumière dorée"
+            width={1672}
+            height={941}
+            priority
+            sizes="(max-width: 768px) 100vw, 860px"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12, margin: '0 0 32px 0' }}
+          />
+        </div>
 
         <p className="content-lead">
           Cinq critères suffisent à trancher : la surface du chantier, le risque structurel,

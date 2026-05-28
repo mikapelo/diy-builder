@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -138,6 +139,18 @@ export default function ComparerDevisTravauxPage() {
           <span>·</span>
           <span><Link href="/sources">Sources juridiques</Link></span>
         </p>
+
+        <div className="content-hero">
+          <Image
+            src="/images/guides/comparer-devis-travaux/hero.png"
+            alt="Trois devis travaux étalés sur une table de jardin extérieure avec stylo, calculatrice et tasse de café, ambiance dorée de fin d'après-midi"
+            width={1672}
+            height={941}
+            priority
+            sizes="(max-width: 768px) 100vw, 860px"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12, margin: '0 0 32px 0' }}
+          />
+        </div>
 
         <p className="content-lead">
           Recevoir trois devis pour les mêmes travaux et voir 1&nbsp;800&nbsp;€ d&apos;écart entre le

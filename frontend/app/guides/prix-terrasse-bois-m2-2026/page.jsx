@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -138,6 +139,18 @@ export default function PrixTerrasseBoisM2Page() {
           <span>·</span>
           <span><Link href="/sources">Sources DTU</Link></span>
         </p>
+
+        <div className="content-hero">
+          <Image
+            src="/images/guides/prix-terrasse-bois-m2-2026/hero.png"
+            alt="Échantillons de lames de terrasse en quatre essences (pin autoclave, douglas, ipé, composite) alignés avec étiquettes prix et mètre déroulé, ambiance jardin lumière dorée"
+            width={1672}
+            height={941}
+            priority
+            sizes="(max-width: 768px) 100vw, 860px"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12, margin: '0 0 32px 0' }}
+          />
+        </div>
 
         <p className="content-lead">
           Les annonces 25–40 €/m² en grande surface de bricolage cachent un piège classique : le prix porte

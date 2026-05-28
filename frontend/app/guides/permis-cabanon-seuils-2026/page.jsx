@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -138,6 +139,18 @@ export default function PermisCabanonSeuils2026Page() {
           <span>·</span>
           <span><Link href="/sources">Sources juridiques</Link></span>
         </p>
+
+        <div className="content-hero">
+          <Image
+            src="/images/guides/permis-cabanon-seuils-2026/hero.png"
+            alt="Trois cabanons de jardin de tailles croissantes alignés sur une pelouse — 5 m², 12 m² et 25 m² — pour illustrer les seuils urbanisme déclaration et permis"
+            width={1672}
+            height={941}
+            priority
+            sizes="(max-width: 768px) 100vw, 860px"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12, margin: '0 0 32px 0' }}
+          />
+        </div>
 
         <p className="content-lead">
           Construire un cabanon de jardin en France 2026 répond à trois seuils&nbsp;: 5&nbsp;m²,

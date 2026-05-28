@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -138,6 +139,18 @@ export default function TerrassePiscineBoisPage() {
           <span>·</span>
           <span><Link href="/sources">Sources DTU et juridiques</Link></span>
         </p>
+
+        <div className="content-hero">
+          <Image
+            src="/images/guides/terrasse-piscine-bois/hero.png"
+            alt="Terrasse en bois ipé autour d'une piscine résidentielle avec eau turquoise, lames parallèles avec espacement de drainage, ambiance estivale lumière dorée"
+            width={1672}
+            height={941}
+            priority
+            sizes="(max-width: 768px) 100vw, 860px"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12, margin: '0 0 32px 0' }}
+          />
+        </div>
 
         <p className="content-lead">
           Une terrasse bois autour d&apos;une piscine cumule trois contraintes qu&apos;une terrasse de

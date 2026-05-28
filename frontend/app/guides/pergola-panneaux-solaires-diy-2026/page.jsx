@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -142,6 +143,18 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           <span>·</span>
           <span><Link href="/sources">Sources techniques</Link></span>
         </p>
+
+        <div className="content-hero">
+          <Image
+            src="/images/guides/pergola-panneaux-solaires-diy-2026/hero.png"
+            alt="Pergola autoportée en bois pin clair 4×3 m avec quatre panneaux photovoltaïques montés sur la toiture, dans un jardin résidentiel français avec haie verte et lumière dorée de fin d'après-midi"
+            width={1672}
+            height={941}
+            priority
+            sizes="(max-width: 768px) 100vw, 860px"
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12, margin: '0 0 32px 0' }}
+          />
+        </div>
 
         <p className="content-lead">
           Greffer un kit photovoltaïque sur une pergola que vous construisez vous-même
