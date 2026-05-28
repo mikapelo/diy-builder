@@ -271,49 +271,155 @@ export default function GuidesPage() {
         </section>
 
         <section>
-          <h2 className="content-h2">Aller plus loin&nbsp;: comparatifs et analyses</h2>
+          <h2 className="content-h2">Aller plus loin</h2>
           <p className="content-body">
-            Pour creuser un sujet précis avant de vous lancer, ces analyses complémentaires reprennent
-            une question fréquente avec des chiffres réels et des comparaisons enseigne par enseigne.
+            Cinq analyses pour creuser un point précis — prix au m², lecture critique
+            d&apos;un devis, démarches administratives, contraintes spécifiques.
           </p>
-          <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
-            <li style={{ marginBottom: '10px' }}>
-              <Link href="/guides/prix-terrasse-bois-m2-2026" className="content-link">
-                Prix d&apos;une terrasse bois au m² en 2026
-              </Link>
-              {' '}— comparatif essence × enseigne (pin, douglas, ipé, composite) en mai 2026,
-              avec et sans pose artisan.
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <Link href="/guides/comparer-devis-travaux" className="content-link">
-                Comparer plusieurs devis travaux
-              </Link>
-              {' '}— méthode 2026, 8 mentions obligatoires, écarts de prix normaux,
-              5 vérifications gratuites sur l&apos;entreprise.
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <Link href="/guides/permis-cabanon-seuils-2026" className="content-link">
-                Permis et déclaration pour construire un cabanon en 2026
-              </Link>
-              {' '}— tableau des seuils 5/20/40 m², Cerfa par tranche, zones ABF et
-              PLU, calendrier réel d&apos;instruction.
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <Link href="/guides/terrasse-piscine-bois" className="content-link">
-                Terrasse bois autour d&apos;une piscine
-              </Link>
-              {' '}— essences résistantes au chlore (ipé, cumaru, garapa), antidérapance
-              R11, pente 1 %, sécurité NF P90-306, budget par essence pour 30 m².
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <Link href="/guides/pergola-panneaux-solaires-diy-2026" className="content-link">
-                Pergola avec panneaux solaires&nbsp;: guide DIY 2026
-              </Link>
-              {' '}— faisabilité structure (charge 14 à 16 kg/m²), démarches Consuel et
-              Enedis, comparatif kits plug &amp; play (Beem, Sunology, Sunethic), aides 2026
-              et ROI sur 25 ans.
-            </li>
-          </ul>
+          <div className="editorial-stack">
+
+            <Link href="/guides/prix-terrasse-bois-m2-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/prix-terrasse-bois-m2-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Analyse · Prix</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 9 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Mai 2026</span>
+                </div>
+                <h3 className="editorial-title">Prix d&apos;une terrasse bois au m² en 2026</h3>
+                <p className="editorial-desc">
+                  Comparatif essence × enseigne (pin, douglas, ipé, composite) en mai 2026,
+                  avec et sans pose artisan, prix scrapés Leroy Merlin, Brico Dépôt, Castorama.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/comparer-devis-travaux" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/comparer-devis-travaux/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Devis</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 7 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Mai 2026</span>
+                </div>
+                <h3 className="editorial-title">Comparer plusieurs devis travaux</h3>
+                <p className="editorial-desc">
+                  Méthode 2026, 8 mentions obligatoires, écarts de prix normaux entre
+                  artisans, 5 vérifications gratuites sur l&apos;entreprise avant signature.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/permis-cabanon-seuils-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/permis-cabanon-seuils-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Urbanisme</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 10 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Mai 2026</span>
+                </div>
+                <h3 className="editorial-title">Permis et déclaration pour construire un cabanon en 2026</h3>
+                <p className="editorial-desc">
+                  Tableau des seuils 5/20/40 m², Cerfa par tranche, zones ABF et PLU,
+                  calendrier réel d&apos;instruction selon votre commune.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/terrasse-piscine-bois" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/terrasse-piscine-bois/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Analyse · Terrasse</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 8 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Mai 2026</span>
+                </div>
+                <h3 className="editorial-title">Terrasse bois autour d&apos;une piscine</h3>
+                <p className="editorial-desc">
+                  Essences résistantes au chlore (ipé, cumaru, garapa), antidérapance R11,
+                  pente 1 %, sécurité NF P90-306, budget par essence pour 30 m².
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/pergola-panneaux-solaires-diy-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/pergola-panneaux-solaires-diy-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Solaire</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 12 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Mai 2026</span>
+                </div>
+                <h3 className="editorial-title">Pergola avec panneaux solaires&nbsp;: guide DIY 2026</h3>
+                <p className="editorial-desc">
+                  Faisabilité structure (charge 14 à 16 kg/m²), démarches Consuel et Enedis,
+                  comparatif kits plug &amp; play (Beem, Sunology, Sunethic), aides 2026 et
+                  ROI sur 25 ans.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+          </div>
         </section>
 
         <section>
