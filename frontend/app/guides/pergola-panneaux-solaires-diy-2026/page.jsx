@@ -951,33 +951,25 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           </p>
         </div>
 
-        <h2 className="content-h2">Pour aller plus loin</h2>
+        <aside className="content-related">
+          <h3>Voir aussi</h3>
+          <ul>
+            <li><Link href="/pergola">Simulateur pergola DIY</Link> — structure, sections de bois, BOM et budget avec ou sans panneaux solaires</li>
+            <li><Link href="/guides/pergola">Guide pergola complet</Link> — essence, pente, fondations, étanchéité, entretien 20 ans</li>
+            <li><Link href="/guides/comparer-devis-travaux">Comparer plusieurs devis travaux</Link> — lecture critique d&apos;un devis installateur RGE QualiPV</li>
+            <li><Link href="/guides/soi-meme-ou-pro">Soi-même ou faire faire&nbsp;?</Link> — grille de décision DIY vs pro selon niveau et contraintes</li>
+            <li><Link href="/sources">Sources techniques et juridiques</Link> — Code urbanisme, NF C 15-100, Eurocode 1, arrêté tarif EDF OA</li>
+          </ul>
+        </aside>
 
-        <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
-          <li style={{ marginBottom: '10px' }}>
-            <Link href="/pergola"><strong>Simulateur pergola DIY</strong></Link>&nbsp;— calcul
-            structure, sections de bois, BOM et budget pour votre projet réel. Avec ou sans
-            panneaux solaires en surimpression.
-          </li>
-          <li style={{ marginBottom: '10px' }}>
-            <Link href="/guides/pergola"><strong>Guide pergola complet</strong></Link>&nbsp;—
-            choix essence bois, pente, fondations, étanchéité et entretien sur 20 ans.
-          </li>
-          <li style={{ marginBottom: '10px' }}>
-            <Link href="/guides/comparer-devis-travaux"><strong>Comparer plusieurs devis travaux</strong></Link>&nbsp;—
-            méthode pour lire un devis installateur RGE QualiPV et repérer les marges
-            anormales sur le photovoltaïque.
-          </li>
-          <li style={{ marginBottom: '10px' }}>
-            <Link href="/guides/soi-meme-ou-pro"><strong>Soi-même ou faire faire&nbsp;?</strong></Link>&nbsp;—
-            grille de décision DIY vs pro selon votre niveau, vos contraintes et votre budget.
-          </li>
-          <li style={{ marginBottom: '10px' }}>
-            <Link href="/sources"><strong>Sources techniques et juridiques</strong></Link>&nbsp;—
-            références complètes (Code de l&apos;urbanisme, NF C 15-100, Eurocode 1, arrêté
-            tarif rachat EDF OA).
-          </li>
-        </ul>
+        <footer className="content-byline">
+          <p>
+            <strong>L&apos;équipe DIY Builder</strong> — Article publié le 27 mai 2026.
+            {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
+            {' '}<Link href="/sources">Sources techniques</Link> ·
+            {' '}<Link href="/contact">Signaler une erreur</Link>
+          </p>
+        </footer>
       </div>
     </ContentLayout>
   );
