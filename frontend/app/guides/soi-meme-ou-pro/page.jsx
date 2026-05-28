@@ -69,7 +69,7 @@ const faqJsonLd = {
       name: 'Est-ce vraiment moins cher de faire soi-même ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Sur les matériaux seuls, oui : souvent 40 à 60 % de moins qu'un artisan tout compris. Sur le total réel, l'écart se resserre quand on intègre l'outillage à acheter, les chutes, les reprises et le temps. Pour une terrasse de 15 m² en pin classe 4, le simulateur DIY Builder donne 550 à 700 € de matériaux (prix scrapés Leroy Merlin / Brico Dépôt / Castorama, mai 2026), auxquels s'ajoutent 350 à 900 € d'outillage si vous partez de zéro, contre 1 500 à 2 200 € chez un artisan main d'œuvre comprise. À partir du deuxième projet, l'outillage est amorti et l'autoconstruction devient nettement gagnante.",
+        text: "Sur les matériaux seuls, oui : souvent 40 à 60 % de moins qu'un artisan tout compris. Sur le total réel, l'écart se resserre quand on intègre l'outillage à acheter, les chutes, les reprises et le temps. Pour une terrasse de 15 m² en pin classe 4, le simulateur DIY Builder donne 550 à 700 € de matériaux (prix scrapés Leroy Merlin / Brico Dépôt / Castorama, mai 2026), auxquels s'ajoutent 340 à 820 € d'outillage si vous partez de zéro, contre 1 200 à 2 100 € chez un artisan main d'œuvre comprise (tarif 2026 : 80 à 140 €/m² pose incluse). À partir du deuxième projet, l'outillage est amorti et l'autoconstruction devient nettement gagnante.",
       },
     },
     {
@@ -320,9 +320,12 @@ export default function GuideSoiMemeOuPro() {
           </tbody>
         </table>
         <p className="content-body">
-          Pour les projets béton, ajoutez une bétonnière 100 L : 30 €/jour en location,
-          ou 150 € d&apos;occasion. Pour les fondations profondes, une tarière thermique
-          se loue 50 à 80 €/jour, indispensable à partir de 6 plots à 60 cm de profondeur.
+          Pour les projets béton, ajoutez une bétonnière 100 L&nbsp;: 27 à 55 €/jour en
+          location selon enseigne (Kiloutou, Loxam ou Leroy Merlin via LOXAM), ou 150 €
+          d&apos;occasion entre particuliers. Pour les fondations profondes, une tarière
+          thermique se loue 80 à 180 €/jour (79 € minimum chez Kiloutou, jusqu&apos;à
+          180 € chez Loxam pour les modèles puissants), indispensable à partir de 6 plots
+          à 60 cm de profondeur.
         </p>
         <p className="content-body">
           La logique d&apos;amortissement, sur un exemple concret : pour une terrasse de 15 m²
@@ -330,10 +333,12 @@ export default function GuideSoiMemeOuPro() {
           <Link href="/calculateur" className="content-link">simulateur</Link>{' '}
           donne 550 à 700 € de matériaux selon l&apos;enseigne (prix scrapés Leroy Merlin,
           Brico Dépôt, Castorama). Ajoutez 400 € d&apos;outillage si vous n&apos;avez qu&apos;une
-          perceuse, le total monte à 1 000 €, contre 1 500 à 2 200 € chez un artisan tout
-          compris. Vous restez gagnant, mais l&apos;écart est moins spectaculaire que ce qu&apos;on
-          croit. À partir du deuxième chantier (pergola, clôture, nouvelle terrasse chez un
-          proche), l&apos;outillage est déjà payé : c&apos;est là que le gain devient net.
+          perceuse, le total monte à 1 000 €, contre 1 200 à 2 100 € chez un artisan tout
+          compris (80 à 140 €/m² pose comprise en pin classe 4, source Travaux.com et
+          Prix-pose.com mai 2026). Vous restez gagnant, mais l&apos;écart est moins
+          spectaculaire que ce qu&apos;on croit. À partir du deuxième chantier (pergola,
+          clôture, nouvelle terrasse chez un proche), l&apos;outillage est déjà payé&nbsp;:
+          c&apos;est là que le gain devient net.
         </p>
 
         <h2 className="content-h2">Critère 4 — La garantie décennale, ce qu&apos;elle couvre vraiment</h2>
@@ -539,10 +544,12 @@ export default function GuideSoiMemeOuPro() {
             décent. À amortir sur la durée de vie de vos projets.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Déchets à évacuer</strong> : emballages, chutes de bois, pots de lasure
-            vides, sacs ciment. Pour une terrasse, une remorque à la déchèterie suffit
-            (gratuit à 30 € selon la commune). Pour un cabanon avec démolition d&apos;un ancien
-            abri, comptez une benne : 250 à 400 € pour 3 à 5 m³.
+            <strong>Déchets à évacuer</strong>&nbsp;: emballages, chutes de bois, pots de
+            lasure vides, sacs ciment. Pour une terrasse, une remorque à la déchèterie
+            suffit (gratuit à 30 € selon la commune). Pour un cabanon avec démolition
+            d&apos;un ancien abri, comptez une benne&nbsp;: 200 à 450 € pour 3 à 5 m³,
+            jusqu&apos;à 525 € en Île-de-France pour 10 m³ de DIB selon prestataire
+            (Ecodrop, Goodcollect, mai 2026).
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Reprises</strong> : sur le premier projet d&apos;un bricoleur, comptez
@@ -623,10 +630,10 @@ export default function GuideSoiMemeOuPro() {
           de 15 m² en pin classe 4, le{' '}
           <Link href="/calculateur" className="content-link">simulateur DIY Builder</Link>{' '}
           donne 550 à 700 € de matériaux (prix scrapés Leroy Merlin, Brico Dépôt et Castorama,
-          mai 2026), auxquels s&apos;ajoutent 350 à 900 € d&apos;outillage si vous partez de
-          zéro, contre 1 500 à 2 200 € chez un artisan main d&apos;œuvre comprise. À partir
-          du deuxième projet, l&apos;outillage est amorti et l&apos;autoconstruction devient
-          nettement gagnante.
+          mai 2026), auxquels s&apos;ajoutent 340 à 820 € d&apos;outillage si vous partez de
+          zéro, contre 1 200 à 2 100 € chez un artisan main d&apos;œuvre comprise (tarif
+          2026&nbsp;: 80 à 140 €/m² pose incluse). À partir du deuxième projet, l&apos;outillage
+          est amorti et l&apos;autoconstruction devient nettement gagnante.
         </p>
 
         <h3 className="content-h3">Quels projets sont vraiment risqués en autoconstruction ?</h3>

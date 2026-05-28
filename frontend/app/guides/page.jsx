@@ -305,6 +305,14 @@ export default function GuidesPage() {
               {' '}— essences résistantes au chlore (ipé, cumaru, garapa), antidérapance
               R11, pente 1 %, sécurité NF P90-306, budget par essence pour 30 m².
             </li>
+            <li style={{ marginBottom: '10px' }}>
+              <Link href="/guides/pergola-panneaux-solaires-diy-2026" className="content-link">
+                Pergola avec panneaux solaires&nbsp;: guide DIY 2026
+              </Link>
+              {' '}— faisabilité structure (charge 14 à 16 kg/m²), démarches Consuel et
+              Enedis, comparatif kits plug &amp; play (Beem, Sunology, Sunethic), aides 2026
+              et ROI sur 25 ans.
+            </li>
           </ul>
         </section>
 
