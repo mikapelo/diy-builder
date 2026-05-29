@@ -113,9 +113,9 @@ export default function AProposPage() {
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Comparatif de prix par enseigne</strong> : les prix Leroy Merlin,
-            Castorama, Brico Dépôt et ManoMano sont mis à jour mensuellement par scraping
-            automatisé. Ils sont datés dans le code — vous voyez toujours la date du
-            dernier relevé.
+            Castorama, Brico Dépôt et ManoMano sont rafraîchis chaque lundi par scraping
+            automatisé (GitHub Action). Ils sont datés dans le code — vous voyez toujours
+            la date du dernier relevé.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Export PDF</strong> : la liste de matériaux et l&apos;estimatif budgétaire
@@ -138,10 +138,12 @@ export default function AProposPage() {
         </p>
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Pas de réseau d&apos;artisans</strong> : DIY Builder ne gère pas de
-            réseau d&apos;artisans et ne réalise pas les travaux. À votre demande, nous
-            pouvons recueillir votre projet pour vous orienter vers une solution de
-            réalisation.
+            <strong>Pas d&apos;annuaire d&apos;artisans</strong> : DIY Builder ne référence pas
+            directement d&apos;artisans dans un annuaire public et ne réalise pas les travaux.
+            En revanche, lorsque vous le demandez explicitement via le formulaire dédié,
+            votre dossier projet peut être transmis à une solution partenaire de mise en
+            relation travaux ou à un professionnel compatible avec votre zone. Cette
+            transmission a lieu uniquement après votre consentement.
           </li>
           <li style={{ marginBottom: '10px' }}>
             <strong>Pas de boutique propre</strong> : les liens vers les enseignes renvoient

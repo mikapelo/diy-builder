@@ -508,8 +508,8 @@ export default function TerrassePiscineBoisPage() {
           <p className="content-cta-box-label">Calculateur en direct</p>
           <p className="content-cta-box-title">Devis matériaux pour vos dimensions exactes</p>
           <p className="content-cta-box-desc">
-            Notre simulateur terrasse calcule la nomenclature précise par essence et compare les
-            quatre enseignes en temps réel.
+            Notre simulateur terrasse calcule la nomenclature précise par essence et compare
+            les quatre enseignes (prix rafraîchis chaque lundi).
           </p>
           <a href="/calculateur" className="btn-primary">
             Lancer le simulateur{' '}

@@ -370,7 +370,7 @@ export default function GuideTerrassePage() {
           <p className="content-cta-box-label">Comparateur d&apos;enseignes</p>
           <p className="content-cta-box-title">Obtenez un devis précis</p>
           <p className="content-cta-box-desc">
-            Comparez les prix Leroy Merlin, Brico Dépôt et Castorama en temps réel.
+            Comparez les prix sur 4 enseignes (Leroy Merlin, Castorama, Brico Dépôt, ManoMano) — prix rafraîchis chaque lundi.
           </p>
           <a href="/calculateur" className="btn-primary">
             Calculer ma terrasse{' '}

@@ -116,8 +116,8 @@ const REASONS = [
     ),
   },
   {
-    heading: '100 % gratuit, financé par affiliation transparente',
-    text: <>Les liens vers les enseignes utilisent des codes affiliés — c&apos;est ce qui finance le site. <Link href="/charte-affiliation">Lire la charte d&apos;affiliation</Link>.</>,
+    heading: '100 % gratuit, avec liens commerciaux signalés',
+    text: <>Certains liens vers les enseignes sont affiliés et clairement marqués. À ce jour, seul Amazon rémunère DIY Builder ; les liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano ne génèrent aucune commission. <Link href="/charte-affiliation">Lire la charte d&apos;affiliation</Link>.</>,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>

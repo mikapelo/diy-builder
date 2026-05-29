@@ -21,6 +21,16 @@ const CABANON_PRESETS = [
   ]},
 ];
 
+/* ── Libellé des dimensions par module — évite le « terrasse » qui traînait
+   par copier-coller sur clôture/pergola/cabanon (audit cohérence 2026-05-29). */
+const DIM_SUBTITLES = {
+  terrasse: 'Largeur et profondeur de la terrasse',
+  cabanon:  'Largeur et profondeur du cabanon',
+  pergola:  'Largeur et profondeur de la pergola',
+  cloture:  'Longueur et hauteur de la clôture',
+  dalle:    'Largeur et profondeur de la dalle',
+};
+
 /* ── Seuil administratif — icônes Phosphor ──────────────────────── */
 // Sources : Code de l'urbanisme R.421-2, R.421-9, R.421-14, R.421-17.
 // Seuils identiques cabanon / pergola non adossée : ≤5m² sans formalité,
@@ -172,13 +182,25 @@ function InputStepper({ label, value, setValue, min = 0.5, max = 20, step = 0.5 
    LiveSummary — Mini-résumé matériaux mis à jour en temps réel
    S'adapte au module : terrasse / cabanon / pergola / clôture
 ─────────────────────────────────────────────────────────────────── */
-function LiveSummary({ area, projectType, liveStats }) {
+function LiveSummary({ area, width, projectType, liveStats }) {
   const items = buildLiveItems(area, projectType, liveStats);
+  /* Clôture : la grandeur naturelle est le mètre linéaire (longueur),
+     pas la surface vue de face. On affiche les ml en grand. */
+  const isCloture = projectType === 'cloture';
   return (
     <div className="ctrl-live-summary" aria-live="polite" aria-atomic="true">
       <div className="ctrl-live-surface">
-        <span className="ctrl-live-surface-val">{area}</span>
-        <span className="ctrl-live-surface-unit">m²</span>
+        {isCloture ? (
+          <>
+            <span className="ctrl-live-surface-val">{Math.round((width || 0) * 10) / 10}</span>
+            <span className="ctrl-live-surface-unit">ml</span>
+          </>
+        ) : (
+          <>
+            <span className="ctrl-live-surface-val">{area}</span>
+            <span className="ctrl-live-surface-unit">m²</span>
+          </>
+        )}
       </div>
       {items.length > 0 && (
         <div className="ctrl-live-items">
@@ -272,7 +294,7 @@ export default function DeckControls({
         <div>
           <h2 className="sim-section-title-lg">Dimensions</h2>
           <p className="sim-section-subtitle">
-            {showHeight ? 'Choisissez un format ou personnalisez' : 'Largeur et profondeur de la terrasse'}
+            {showHeight ? 'Choisissez un format ou personnalisez' : DIM_SUBTITLES[projectType] || DIM_SUBTITLES.terrasse}
           </p>
         </div>
       </div>
@@ -358,7 +380,7 @@ export default function DeckControls({
         </div>
       )}
 
-      <LiveSummary area={area} projectType={projectType} liveStats={liveStats} />
+      <LiveSummary area={area} width={width} projectType={projectType} liveStats={liveStats} />
 
       {/* ── Indicateur seuil administratif — cabanon uniquement ── */}
       {seuil && (

@@ -267,7 +267,8 @@ export default function MethodologiePage() {
             seuils réglementaires (urbanisme, RE 2020 si applicable) n&apos;ont pas changé.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Révision prix</strong> : mensuelle pour <code>lib/materialPrices.js</code>,
+            <strong>Révision prix</strong> : hebdomadaire pour <code>lib/materialPrices.js</code>
+            (GitHub Action <code>update-prices.yml</code>, chaque lundi 6h UTC),
             indépendante du cycle éditorial des articles.
           </li>
         </ul>

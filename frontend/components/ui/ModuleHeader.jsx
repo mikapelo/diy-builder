@@ -10,27 +10,27 @@
 const MODULE_META = {
   terrasse: {
     title: 'Terrasse bois',
-    sub: 'Dimensions · matériaux · budget — temps réel',
+    sub: 'Dimensions · matériaux · budget — calcul instantané',
   },
   cabanon: {
     title: 'Cabanon bois',
-    sub: 'Ossature · matériaux · fondations — temps réel',
+    sub: 'Ossature · matériaux · fondations — calcul instantané',
   },
   pergola: {
     title: 'Pergola bois',
-    sub: 'Poteaux · poutres · chevrons — temps réel',
+    sub: 'Poteaux · poutres · chevrons — calcul instantané',
   },
   cloture: {
     title: 'Clôture bois',
-    sub: 'Poteaux · rails · lames — temps réel',
+    sub: 'Poteaux · rails · lames — calcul instantané',
   },
   bardage: {
     title: 'Bardage extérieur bois',
-    sub: 'Lames · tasseaux · fixations inox — temps réel',
+    sub: 'Lames · tasseaux · fixations inox — calcul instantané',
   },
   dalle: {
     title: 'Dalle béton extérieure',
-    sub: 'Béton C25/30 · joints · armature — temps réel',
+    sub: 'Béton C25/30 · joints · armature — calcul instantané',
   },
 };
 

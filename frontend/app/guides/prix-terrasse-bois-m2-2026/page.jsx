@@ -524,7 +524,7 @@ export default function PrixTerrasseBoisM2Page() {
         </p>
 
         <div className="content-cta-box">
-          <p className="content-cta-box-label">Comparateur en temps réel</p>
+          <p className="content-cta-box-label">Comparateur 4 enseignes</p>
           <p className="content-cta-box-title">Obtenez les prix actuels pour vos dimensions</p>
           <p className="content-cta-box-desc">
             Notre simulateur recalcule la nomenclature exacte selon votre projet et compare les

@@ -789,7 +789,7 @@ export default function HeroSection({ splitContent = null }) {
             <div className="v6-bento-card">
               <div className="v6-bento-num">03</div>
               <h3>Comparez les prix</h3>
-              <p>Prix comparés en temps réel chez 3 grandes enseignes.</p>
+              <p>Prix relevés chaque semaine chez 4 enseignes — date affichée à chaque comparatif.</p>
               <div className="v6-bento-visual">
                 <div style={{ width: '100%' }}>
                   {[
