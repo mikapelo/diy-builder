@@ -2610,6 +2610,23 @@
   font-family: 'Inter', sans-serif;
 }
 
+/* ── Consentement RGPD — carte Pro ── */
+.pa-pivot-rgpd {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #8a7e6f;
+  font-family: 'Inter', sans-serif;
+}
+.pa-pivot-rgpd a {
+  color: #8a7e6f;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.pa-pivot-rgpd a:hover {
+  color: #5a4e43;
+}
+
 /* ── Bloc artisan dans SaveProjectModal ── */
 .modal-artisan-info {
   background: linear-gradient(135deg, #FDFCF8 0%, #F8F4EA 100%);

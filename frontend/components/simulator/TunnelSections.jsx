@@ -3,7 +3,7 @@
 /**
  * TunnelSections.jsx — Blocs résultats empilés verticalement
  *
- * 7 sections : Résumé → Matériaux → Budget → Temps → Outils → Actions → Lead artisan
+ * 7 sections : Résumé → Actions (PDF/Pro) → Matériaux → Budget → Temps → Outils → Guide
  *
  * Extrait de DeckSimulator.jsx (Phase B — décomposition orchestrateur).
  */
@@ -50,12 +50,22 @@ export default function TunnelSections({
         />
       </section>
 
-      {/* 2. Matériaux */}
+      {/* 2. Pivot DIY / Pro — point de conversion */}
+      <section className="sim-tunnel-section sim-tunnel-climax">
+        <ProjectActions
+          projectType={projectType}
+          onOpenSaveModal={onOpenSaveModal}
+          onExportPDF={onExportPDF}
+          pdfStatus={pdfStatus}
+        />
+      </section>
+
+      {/* 3. Matériaux */}
       <section className="sim-tunnel-section">
         <MaterialsList materials={materials} projectType={projectType} />
       </section>
 
-      {/* 3. Budget & comparatif */}
+      {/* 4. Budget & comparatif */}
       <section className="sim-tunnel-section">
         <BudgetComparator
           area={area}
@@ -66,7 +76,7 @@ export default function TunnelSections({
         />
       </section>
 
-      {/* 3.2 Temps de réalisation + checklist PDF */}
+      {/* 5. Temps de réalisation + checklist PDF */}
       <section className="sim-tunnel-section">
         <TimeEstimate
           projectType={projectType}
@@ -74,22 +84,12 @@ export default function TunnelSections({
         />
       </section>
 
-      {/* 3.5 Outils recommandés (affiliation) */}
+      {/* 6. Outils recommandés (affiliation) */}
       <section className="sim-tunnel-section">
         <ProjectTools projectType={projectType} />
       </section>
 
-      {/* 4. Pivot DIY / Pro — point de conversion */}
-      <section className="sim-tunnel-section sim-tunnel-climax">
-        <ProjectActions
-          projectType={projectType}
-          onOpenSaveModal={onOpenSaveModal}
-          onExportPDF={onExportPDF}
-          pdfStatus={pdfStatus}
-        />
-      </section>
-
-      {/* 6. Guide contextuel — lien SEO vers le guide du module */}
+      {/* 7. Guide contextuel — lien SEO vers le guide du module */}
       {GUIDE_LINKS[projectType] && (
         <section className="sim-tunnel-section">
           <div className="result-block guide-link-block">

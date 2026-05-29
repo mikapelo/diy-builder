@@ -8,6 +8,7 @@
  *   'artisan' — formulaire complet (nom, tél, cp, message) → ArtisanLeadModal
  */
 
+import Link from 'next/link';
 import { trackDevisClick } from '@/hooks/useAnalytics.js';
 
 const DIY_INCLUDES = [
@@ -116,6 +117,15 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
             <span className="material-symbols-outlined" style={{ fontSize: 17 }}>send</span>
             Être recontacté pour mon projet
           </button>
+
+          <p className="pa-pivot-rgpd">
+            En envoyant ce formulaire, vous acceptez d&rsquo;être recontacté au sujet de votre projet.
+            Si vous choisissez l&rsquo;option professionnel, vos informations peuvent être transmises
+            à un partenaire de mise en relation travaux ou à un professionnel compatible avec votre
+            demande. Vous pouvez demander la suppression de vos données à tout moment via{' '}
+            <Link href="/contact">notre page contact</Link>. Voir aussi notre{' '}
+            <Link href="/politique-confidentialite">politique de confidentialité</Link>.
+          </p>
         </div>
 
       </div>
