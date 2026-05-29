@@ -17,17 +17,24 @@ import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import JsonLd from '@/components/ui/JsonLd';
+import { getUnitPrice, STORES, PRICES_DATE } from '@/lib/materialPrices';
 
 // ── Constantes DTU 13.3 (inline pour éviter l'import engine) ──────────
 const EPAISSEUR = { pietonne: 0.10, vehicule: 0.12, pl: 0.20 };
-const SAC_VOLUME = 0.017;       // m³ par sac 35 kg
-const TOUPIE_SEUIL = 3;         // m³ → bascule vers camion toupie
+const SAC_VOLUME = 0.017;       // m³ rendu par sac de 35 kg (béton prêt à gâcher)
+const TOUPIE_SEUIL = 3;         // m³ → au-delà, la livraison toupie devient plus économique que les sacs
 const FORME_EP = 0.10;          // épaisseur forme drainante (m)
-const TREILLIS_MAJORATION = 1.15; // 15 % de recouvrement
-const TREILLIS_PANNEAU = 3.24;  // m² par panneau ST25 standard (1.8×1.8m)
-const PRIX_SAC = 7.5;           // € / sac 35 kg (Castorama ref, mai 2026)
-const PRIX_TOUPIE = 170;        // € / m³ béton C25/30 prêt-à-l'emploi livré (LM 185 / BD 160, moyenne)
-const PRIX_TREILLIS = 8;        // € / m² treillis ST25 (LM ST25C = 6,93 €/m², mai 2026)
+const TREILLIS_MAJORATION = 1.15; // +15 % de recouvrement entre panneaux (DTU 13.3 §5.4)
+const TREILLIS_PANNEAU = 7.2;   // m² par panneau ST25C (3 × 2,4 m) — matériau treillis_st25c
+
+// Prix lus dans materialPrices.js — alimenté par le scraper hebdo (backend/scrapers + GitHub Action
+// « Update prices cache »). Aucun prix en dur ici : on référence les IDs du catalogue scrapé.
+const DALLE_STORES = ['leroymerlin', 'castorama', 'bricodepot'];
+const MAT_BETON    = 'beton_c20_25';     // béton C20/25 livré (€/m³)
+const MAT_TREILLIS = 'treillis_st25c';   // treillis soudé ST25C, panneau 3×2,4 m (€/pièce)
+const MAT_GRAVIER  = 'gravier_0_31_5';   // gravier 0/31,5 couche de forme (€/m³)
+const STORE_NAME = Object.fromEntries(STORES.map((s) => [s.id, s.name]));
+const STORE_LOGO = Object.fromEntries(STORES.map((s) => [s.id, s.logo]));
 
 // ── Étapes du tutoriel ─────────────────────────────────────────────────
 const STEPS = [
@@ -257,22 +264,42 @@ function DalleCalculateur() {
   const [withTreillis, setWithTreillis] = useState(true);
 
   const result = useMemo(() => {
-    const surface    = +(width * depth).toFixed(2);
-    const epaisseur  = EPAISSEUR[usage];
+    const surface     = +(width * depth).toFixed(2);
+    const epaisseur   = EPAISSEUR[usage];
     const volumeBeton = +(surface * epaisseur).toFixed(3);
     const needsToupie = volumeBeton >= TOUPIE_SEUIL;
-    const sacsBeton  = needsToupie ? 0 : Math.ceil(volumeBeton / SAC_VOLUME);
+    const sacsBeton   = Math.ceil(volumeBeton / SAC_VOLUME);
     const volumeForme = +(surface * FORME_EP).toFixed(3);
-    const treillisM2 = withTreillis ? +(surface * TREILLIS_MAJORATION).toFixed(2) : 0;
-    const treillisNb = withTreillis ? Math.ceil(treillisM2 / TREILLIS_PANNEAU) : 0;
-    const coutBeton  = needsToupie
-      ? +(volumeBeton * PRIX_TOUPIE).toFixed(0)
-      : +(sacsBeton * PRIX_SAC).toFixed(0);
-    const coutTreillis = +(treillisM2 * PRIX_TREILLIS).toFixed(0);
-    const coutTotal  = coutBeton + coutTreillis;
+    const treillisM2  = withTreillis ? +(surface * TREILLIS_MAJORATION).toFixed(2) : 0;
+    const treillisNb  = withTreillis ? Math.ceil(treillisM2 / TREILLIS_PANNEAU) : 0;
+
+    // Lignes matériau → quantité + ID scrapé (materialPrices.js)
+    const items = [
+      { key: 'beton', label: 'Béton C20/25 livré', qty: volumeBeton, unit: 'm³', mat: MAT_BETON },
+      ...(withTreillis
+        ? [{ key: 'treillis', label: 'Treillis ST25C (3×2,4 m)', qty: treillisNb, unit: 'pann.', mat: MAT_TREILLIS }]
+        : []),
+      { key: 'gravier', label: 'Gravier 0/31,5 (forme)', qty: volumeForme, unit: 'm³', mat: MAT_GRAVIER },
+    ];
+
+    // Coût par enseigne — prix scrapés ; lineCost = null si l'enseigne ne référence pas le produit
+    const stores = DALLE_STORES.map((sid) => {
+      const lines = items.map((it) => {
+        const unitPrice = getUnitPrice(it.mat, sid);
+        const lineCost = unitPrice != null ? Math.round(it.qty * unitPrice) : null;
+        return { key: it.key, unitPrice, lineCost };
+      });
+      const complete = lines.every((l) => l.lineCost != null);
+      const total = lines.reduce((s, l) => s + (l.lineCost ?? 0), 0);
+      return { sid, lines, complete, total };
+    });
+
+    const completeTotals = stores.filter((s) => s.complete).map((s) => s.total);
+    const bestTotal = completeTotals.length ? Math.min(...completeTotals) : null;
+    const hasPartial = stores.some((s) => !s.complete);
 
     return { surface, epaisseur, volumeBeton, needsToupie, sacsBeton, volumeForme,
-             treillisM2, treillisNb, coutBeton, coutTreillis, coutTotal };
+             treillisM2, treillisNb, items, stores, bestTotal, hasPartial };
   }, [width, depth, usage, withTreillis]);
 
   return (
@@ -341,76 +368,82 @@ function DalleCalculateur() {
           </div>
         </div>
 
-        {/* Résultats */}
+        {/* Résultats — tableau comparatif enseignes */}
         <div className="dalle-calc-results">
           <div className="dalle-result-header">
             <span className="dalle-result-surface">{result.surface} m²</span>
-            <span className="dalle-result-ep">dalle {(result.epaisseur * 100).toFixed(0)} cm</span>
+            <span className="dalle-result-ep">
+              dalle {(result.epaisseur * 100).toFixed(0)} cm · {result.volumeBeton} m³ de béton
+            </span>
           </div>
 
-          <div className="dalle-result-rows">
-            {/* Béton */}
-            <div className="dalle-result-section">
-              <div className="dalle-result-section-title">Béton C25/30</div>
-              <div className="dalle-result-row">
-                <span>Volume</span>
-                <strong>{result.volumeBeton} m³</strong>
-              </div>
-              {result.needsToupie ? (
-                <div className="dalle-result-row highlight-toupie">
-                  <span>Livraison toupie</span>
-                  <strong>≥ 3 m³ → camion</strong>
-                </div>
-              ) : (
-                <div className="dalle-result-row">
-                  <span>Sacs 35 kg</span>
-                  <strong>{result.sacsBeton} sacs</strong>
-                </div>
-              )}
-              <div className="dalle-result-row cost">
-                <span>Coût béton estimé</span>
-                <strong>{result.coutBeton} €</strong>
-              </div>
-            </div>
+          <div className="dpt-scroll">
+            <table className="dalle-price-table">
+              <thead>
+                <tr>
+                  <th className="dpt-mat">Matériau</th>
+                  <th className="dpt-qty">Quantité</th>
+                  {result.stores.map((st) => {
+                    const best = st.complete && st.total === result.bestTotal;
+                    return (
+                      <th key={st.sid} className={`dpt-store${best ? ' dpt-best' : ''}`}>
+                        {/* eslint-disable-next-line @next/next/no-img-element -- logo SVG enseigne, next/image n'optimise pas les SVG */}
+                        <img src={`/brands/${STORE_LOGO[st.sid]}.svg`} alt={STORE_NAME[st.sid]} className="dpt-logo" />
+                        {best && <span className="dpt-best-tag">Moins cher</span>}
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {result.items.map((it) => (
+                  <tr key={it.key}>
+                    <td className="dpt-mat">{it.label}</td>
+                    <td className="dpt-qty">{it.qty} {it.unit}</td>
+                    {result.stores.map((st) => {
+                      const l = st.lines.find((x) => x.key === it.key);
+                      return (
+                        <td key={st.sid} className="dpt-price">
+                          {l && l.lineCost != null ? `${l.lineCost} €` : <span className="dpt-na">—</span>}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td className="dpt-mat">Total matériaux</td>
+                  <td className="dpt-qty" />
+                  {result.stores.map((st) => {
+                    const best = st.complete && st.total === result.bestTotal;
+                    return (
+                      <td key={st.sid} className={`dpt-total${best ? ' dpt-best' : ''}`}>
+                        {st.total} €{!st.complete && <span className="dpt-star">*</span>}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tfoot>
+            </table>
+          </div>
 
-            {/* Forme */}
-            <div className="dalle-result-section">
-              <div className="dalle-result-section-title">Forme drainante</div>
-              <div className="dalle-result-row">
-                <span>Gravier 0/31.5 (10 cm)</span>
-                <strong>{result.volumeForme} m³</strong>
-              </div>
-            </div>
-
-            {/* Treillis */}
-            {withTreillis && (
-              <div className="dalle-result-section">
-                <div className="dalle-result-section-title">Treillis ST25 (ø5 — 150×150)</div>
-                <div className="dalle-result-row">
-                  <span>Surface achat (+15 % recouv.)</span>
-                  <strong>{result.treillisM2} m²</strong>
-                </div>
-                <div className="dalle-result-row">
-                  <span>Panneaux 1.8×1.8 m</span>
-                  <strong>{result.treillisNb} panneaux</strong>
-                </div>
-                <div className="dalle-result-row cost">
-                  <span>Coût treillis estimé</span>
-                  <strong>{result.coutTreillis} €</strong>
-                </div>
-              </div>
+          <div className="dalle-result-notes">
+            <p>
+              Béton chiffré au tarif <strong>livré au m³</strong>. Sous {TOUPIE_SEUIL} m³, il se vend surtout
+              en sacs prêts à gâcher (≈ {result.sacsBeton} sacs de 35 kg), souvent un peu plus cher au m³.
+            </p>
+            {result.hasPartial && (
+              <p>
+                <span className="dpt-star">*</span> Total partiel — Castorama ne référence pas le béton livré
+                ni le gravier en big bag (treillis seul).
+              </p>
             )}
-
-            {/* Total */}
-            <div className="dalle-result-total">
-              <span>Total matériaux estimé</span>
-              <strong>{result.coutTotal} €</strong>
-            </div>
+            <p className="dalle-result-source">
+              Prix relevés le {PRICES_DATE}, rafraîchis automatiquement (Leroy Merlin · Castorama · Brico Dépôt).
+              Hors main-d&apos;œuvre, location de matériel et joints de fractionnement.
+            </p>
           </div>
-
-          <p className="dalle-result-note">
-            Hors main-d&apos;œuvre, livraison et outillage. Prix indicatifs mai 2026.
-          </p>
         </div>
       </div>
     </div>
@@ -509,7 +542,7 @@ export default function DalleTutorielPage() {
 
       <Footer />
 
-      <style jsx>{`
+      <style jsx global>{`
         /* ── Hero ── */
         .dalle-hero { margin-bottom: 48px; }
         .dalle-hero-image { margin-bottom: 28px; }
@@ -597,13 +630,13 @@ export default function DalleTutorielPage() {
           font-family: 'Manrope', system-ui, sans-serif;
         }
         .dalle-calc-grid {
-          display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+          display: grid; grid-template-columns: 1fr; gap: 28px;
         }
         @media (max-width: 640px) {
           .dalle-calc-grid { grid-template-columns: 1fr; }
           .dalle-calc { padding: 20px; }
         }
-        .dalle-calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-content: start; }
+        .dalle-calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-content: start; min-width: 0; }
         .dalle-input-group { display: flex; flex-direction: column; gap: 6px; }
         .dalle-label {
           font-size: 12px; font-weight: 600; color: #6a5f50; text-transform: uppercase;
@@ -640,7 +673,7 @@ export default function DalleTutorielPage() {
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
         /* Résultats */
-        .dalle-calc-results { display: flex; flex-direction: column; gap: 0; }
+        .dalle-calc-results { display: flex; flex-direction: column; gap: 0; min-width: 0; }
         .dalle-result-header {
           display: flex; align-items: baseline; gap: 12px;
           margin-bottom: 16px; padding-bottom: 16px;
@@ -653,34 +686,59 @@ export default function DalleTutorielPage() {
         .dalle-result-ep {
           font-size: 14px; color: #8a7e6f; font-family: 'Manrope', system-ui, sans-serif;
         }
-        .dalle-result-rows { display: flex; flex-direction: column; gap: 12px; }
-        .dalle-result-section {
-          background: #faf7f2; border-radius: 10px; padding: 12px 14px;
-          border: 1px solid #e8e0d4;
+        /* Tableau comparatif enseignes */
+        .dpt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; min-width: 0; }
+        .dalle-price-table {
+          width: 100%; min-width: 440px; border-collapse: collapse;
+          font-family: 'Manrope', system-ui, sans-serif; font-size: 13px;
         }
-        .dalle-result-section-title {
-          font-size: 11px; font-weight: 700; color: #8a7e6f; text-transform: uppercase;
-          letter-spacing: 0.5px; margin-bottom: 8px; font-family: 'IBM Plex Mono', monospace;
+        .dalle-price-table thead th {
+          background: #1B3022; color: #fff; padding: 11px 12px;
+          font-weight: 600; font-size: 12px; vertical-align: middle;
         }
-        .dalle-result-row {
-          display: flex; justify-content: space-between; align-items: center;
-          font-size: 13px; color: #3a3530; font-family: 'Manrope', system-ui, sans-serif;
-          padding: 3px 0;
+        .dalle-price-table thead th:first-child { border-radius: 8px 0 0 0; }
+        .dalle-price-table thead th:last-child { border-radius: 0 8px 0 0; }
+        .dpt-mat { text-align: left; }
+        .dpt-qty { text-align: right; white-space: nowrap; color: #6a5f50; }
+        .dpt-store { text-align: center; }
+        .dpt-store.dpt-best { background: #C9971E; }
+        .dpt-logo {
+          height: 22px; width: auto; max-width: 104px; object-fit: contain;
+          display: inline-block; background: #fff; padding: 4px 8px;
+          border-radius: 5px; vertical-align: middle;
         }
-        .dalle-result-row strong { color: #1a1c1b; font-weight: 600; }
-        .dalle-result-row.cost strong { color: #1B3022; }
-        .dalle-result-row.highlight-toupie strong { color: #c84a1a; }
-        .dalle-result-total {
-          display: flex; justify-content: space-between; align-items: center;
-          padding: 14px 16px; background: #1B3022; border-radius: 10px;
-          font-size: 15px; font-weight: 700; color: #fff;
-          font-family: 'Manrope', system-ui, sans-serif; margin-top: 4px;
+        .dpt-best-tag {
+          display: block; margin-top: 4px; font-size: 9px; font-weight: 700;
+          letter-spacing: 0.04em; text-transform: uppercase; color: #1B3022;
+          font-family: 'IBM Plex Mono', monospace;
         }
-        .dalle-result-total strong { font-size: 20px; font-family: 'DM Serif Display', Georgia, serif; }
-        .dalle-result-note {
-          font-size: 11px; color: #a09880; margin-top: 10px;
+        .dalle-price-table tbody td {
+          padding: 11px 12px; border-bottom: 1px solid #ece4d2; color: #3a3530;
+        }
+        .dalle-price-table tbody td.dpt-mat { font-weight: 600; color: #1a1c1b; }
+        .dalle-price-table tbody td.dpt-price {
+          text-align: center; font-variant-numeric: tabular-nums;
+        }
+        .dalle-price-table tbody tr:hover td { background: #faf7f0; }
+        .dpt-na { color: #c0b8a8; }
+        .dalle-price-table tfoot td {
+          padding: 14px 12px; font-weight: 700; border-top: 2px solid #1B3022;
+        }
+        .dalle-price-table tfoot td.dpt-total {
+          text-align: center; color: #1a1c1b;
+          font-family: 'DM Serif Display', Georgia, serif; font-size: 18px;
+        }
+        .dalle-price-table tfoot td.dpt-total.dpt-best {
+          color: #1B3022; background: #fbf3df; border-radius: 0 0 8px 8px;
+        }
+        .dpt-star { color: #c84a1a; font-weight: 700; }
+        .dalle-result-notes { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+        .dalle-result-notes p {
+          font-size: 12px; color: #6a5f50; line-height: 1.55; margin: 0;
           font-family: 'Manrope', system-ui, sans-serif;
         }
+        .dalle-result-notes strong { color: #1a1c1b; }
+        .dalle-result-source { color: #8a7e6f !important; font-size: 11px !important; }
 
         /* ── CTA artisan ── */
         .dalle-cta-artisan {
