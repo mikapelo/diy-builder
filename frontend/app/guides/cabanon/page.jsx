@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
+import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 
 const OG_TITLE = 'Construire un cabanon ossature bois';
 const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
@@ -557,6 +558,8 @@ export default function GuideCabanonPage() {
           plus un pare-vapeur côté chaud. C&apos;est une décision à prendre avant de commander les
           montants — pas après, quand vous réalisez que 45 × 90 mm ne loge pas 100 mm d&apos;isolant.
         </p>
+
+        <GuideToolsBlock module="cabanon" />
 
         <aside className="content-related">
           <h3>Voir aussi</h3>

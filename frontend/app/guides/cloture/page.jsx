@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
+import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 
 const OG_TITLE = 'Construire une clôture bois';
 const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
@@ -446,6 +447,8 @@ export default function GuideClotureBois() {
             dix secondes par lame — ne sautez pas cette étape.
           </li>
         </ul>
+
+        <GuideToolsBlock module="cloture" />
 
         <aside className="content-related">
           <h3>Voir aussi</h3>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
+import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 
 const OG_TITLE = 'Construire une pergola bois';
 const OG_SUBTITLE = 'DTU 31.1 + sections + ancrage';
@@ -406,6 +407,8 @@ export default function GuidePergolaBois() {
             de matériaux.
           </li>
         </ul>
+
+        <GuideToolsBlock module="pergola" />
 
         <aside className="content-related">
           <h3>Voir aussi</h3>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
+import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 
 const OG_TITLE = 'Construire une terrasse bois';
 const OG_SUBTITLE = 'DTU 51.4 + lambourdes + budget';
@@ -415,6 +416,8 @@ export default function GuideTerrassePage() {
           5 cm minimum sous les lambourdes pour assurer la ventilation. Ce dégagement seul
           prolonge la durée de vie de la structure de 5 à 10 ans.
         </p>
+
+        <GuideToolsBlock module="terrasse" />
 
         <aside className="content-related">
           <h3>Voir aussi</h3>
