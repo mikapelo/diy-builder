@@ -122,6 +122,10 @@ const nextConfig = {
     return [
       // Migration /dalle → /guides/dalle (cohérence cluster guides, 2026-05-24)
       { source: '/dalle', destination: '/guides/dalle', permanent: true },
+      // Module bardage retiré du périmètre — 308 permanent vers home plutôt que
+      // 307 + robots Disallow (qui empêche Google de re-crawler et bloque la
+      // dé-indexation). GSC 2026-05-29 : « Page avec redirection ».
+      { source: '/bardage', destination: '/', permanent: true },
     ];
   },
 
