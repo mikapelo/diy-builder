@@ -413,6 +413,46 @@ const TOOL_TIERS = {
     ],
   },
 
+  'truelle': {
+    name: 'Truelle de maçon',
+    icon: 'construction',
+    tiers: [
+      {
+        key: 'polyvalent',
+        label: 'Polyvalent',
+        recommended: true,
+        brand: 'Bahco',
+        model: '2301B0000 Catalan 165',
+        price: 18,
+        specs: ['Lame Catalan 165 mm', 'Acier forgé bruni', 'Manche bi-matière', 'Marque pro Espagne'],
+        amazonAsin: 'B00TT4NU0K',
+        amazonQuery: 'Bahco 2301B0000 truelle Catalan 165 maçon',
+        lmQuery: 'truelle maçon bahco 165',
+        prime: true,
+      },
+    ],
+  },
+
+  'taloche': {
+    name: 'Taloche maçon',
+    icon: 'crop_square',
+    tiers: [
+      {
+        key: 'polyvalent',
+        label: 'Polyvalent',
+        recommended: true,
+        brand: 'Vinmer',
+        model: '010013 plastique 35×27',
+        price: 12,
+        specs: ['Plateau plastique 35×27 cm', 'Manche bois', 'Lissage de finition', 'Surface ≈ 10-15 m²'],
+        amazonAsin: 'B00U63D0DU',
+        amazonQuery: 'Vinmer 010013 taloche maçon plastique 35x27',
+        lmQuery: 'taloche maçon plastique',
+        prime: true,
+      },
+    ],
+  },
+
   'cordeau-macon': {
     name: 'Cordeau de maçon',
     icon: 'gesture',
@@ -487,6 +527,12 @@ const PROJECT_TOOL_REFS = {
     { id: 'perceuse-visseuse', desc: 'Fixation des rails et vissage des lames — 18V suffit, 2 batteries recommandées sur une clôture de 20+ m.' },
     { id: 'cordeau-macon',    desc: 'Alignement des poteaux sur toute la longueur — indispensable pour une ligne parfaite sans dévers visible.' },
     { id: 'niveau-bulle',     desc: 'Aplomb de chaque poteau après scellement — à contrôler systématiquement avant que le béton prenne.' },
+  ],
+  dalle: [
+    { id: 'niveau-bulle',  desc: 'Vérifier la planéité de la forme drainante et du coffrage avant de couler — une dalle non plane se voit à l\'œil et concentre l\'eau au mauvais endroit.' },
+    { id: 'cordeau-macon', desc: 'Aligner les piquets et le coffrage périphérique, et tracer la pente d\'écoulement de 1 cm/m vers l\'extérieur de la dalle.' },
+    { id: 'truelle',       desc: 'Étaler le béton dans les coins et le raccorder aux bords du coffrage avant le tirage à la règle — la lame Catalan attrape bien les angles.' },
+    { id: 'taloche',       desc: 'Talochage de finition après tirage à la règle : serre la surface et ferme la peau du béton avant la prise. Plaque 35×27 cm pour 10–15 m².' },
   ],
 };
 

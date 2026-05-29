@@ -18,6 +18,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import JsonLd from '@/components/ui/JsonLd';
 import { getUnitPrice, STORES, PRICES_DATE } from '@/lib/materialPrices';
+import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 
 // ── Constantes DTU 13.3 (inline pour éviter l'import engine) ──────────
 const EPAISSEUR = { pietonne: 0.10, vehicule: 0.12, pl: 0.20 };
@@ -528,6 +529,18 @@ export default function DalleTutorielPage() {
         {/* ── Calculateur ── */}
         <DalleCalculateur />
 
+        {/* ── Outillage du chantier (4 outils Amazon vérifiés) ── */}
+        <GuideToolsBlock module="dalle" />
+
+        {/* Note honnête : 2 outils essentiels sans ASIN photo fiable, donc hors bloc */}
+        <p className="dalle-tools-note">
+          <strong>À louer plutôt qu&apos;à acheter</strong> selon le volume&nbsp;:
+          une <strong>règle de maçon alu 2 m</strong> pour tirer le béton (10–15&nbsp;€/j),
+          et une <strong>bétonnière 140 L</strong> au-delà de 1 m³ (25–40&nbsp;€/j en GSB ou loueur).
+          Sous {TOUPIE_SEUIL} m³ on s&apos;en sort à la pelle dans un grand seau pour mélanger les sacs ;
+          au-delà, la livraison toupie évite tout l&apos;équipement.
+        </p>
+
         {/* ── Byline ── */}
         <footer className="content-byline">
           <p>
@@ -764,6 +777,20 @@ export default function DalleTutorielPage() {
         }
         .dalle-result-notes strong { color: #1a1c1b; }
         .dalle-result-source { color: #8a7e6f !important; font-size: 11px !important; }
+
+        /* ── Note hors-bloc : outils sans ASIN fiable ── */
+        .dalle-tools-note {
+          margin: 0 0 32px;
+          padding: 14px 18px;
+          background: #faf7f0;
+          border-left: 3px solid #C9971E;
+          border-radius: 0 8px 8px 0;
+          font-family: 'Manrope', system-ui, sans-serif;
+          font-size: 13px;
+          color: #4a4540;
+          line-height: 1.6;
+        }
+        .dalle-tools-note strong { color: #1a1c1b; font-weight: 700; }
 
         /* ── CTA artisan ── */
         .dalle-cta-artisan {

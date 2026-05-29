@@ -28,6 +28,7 @@ const MODULE_SUBTITLE = {
   cabanon:  'L’essentiel pour débiter l’ossature, assembler et vérifier l’aplomb des montants.',
   pergola:  'De quoi forer les ancrages, fixer dans le béton et couper les sections proprement.',
   cloture:  'Forage des poteaux, alignement au cordeau et vissage des lames sans coulures.',
+  dalle:    'L\'essentiel pour aligner le coffrage, étaler le béton dans les angles et serrer la surface au talochage.',
 };
 
 /* ── Flèche externe ── */
