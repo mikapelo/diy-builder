@@ -386,10 +386,11 @@ function DalleCalculateur() {
                   {result.stores.map((st) => {
                     const best = st.complete && st.total === result.bestTotal;
                     return (
-                      <th key={st.sid} className={`dpt-store${best ? ' dpt-best' : ''}`}>
+                      <th key={st.sid} className={`dpt-store${best ? ' dpt-best' : ''}${!st.complete ? ' dpt-partial' : ''}`}>
                         {/* eslint-disable-next-line @next/next/no-img-element -- logo SVG enseigne, next/image n'optimise pas les SVG */}
                         <img src={`/brands/${STORE_LOGO[st.sid]}.svg`} alt={STORE_NAME[st.sid]} className="dpt-logo" />
                         {best && <span className="dpt-best-tag">Moins cher</span>}
+                        {!st.complete && <span className="dpt-partial-tag">Offre incomplète</span>}
                       </th>
                     );
                   })}
@@ -402,9 +403,12 @@ function DalleCalculateur() {
                     <td className="dpt-qty">{it.qty} {it.unit}</td>
                     {result.stores.map((st) => {
                       const l = st.lines.find((x) => x.key === it.key);
+                      const hasPrice = l && l.lineCost != null;
                       return (
                         <td key={st.sid} className="dpt-price">
-                          {l && l.lineCost != null ? `${l.lineCost} €` : <span className="dpt-na">—</span>}
+                          {hasPrice
+                            ? `${l.lineCost} €`
+                            : <span className="dpt-na" title={`${STORE_NAME[st.sid]} ne référence pas ce produit`}>non vendu</span>}
                         </td>
                       );
                     })}
@@ -417,9 +421,16 @@ function DalleCalculateur() {
                   <td className="dpt-qty" />
                   {result.stores.map((st) => {
                     const best = st.complete && st.total === result.bestTotal;
+                    if (!st.complete) {
+                      return (
+                        <td key={st.sid} className="dpt-total dpt-total--na" title="Cette enseigne ne propose pas tous les matériaux nécessaires.">
+                          <span className="dpt-na-label">n.d.</span>
+                        </td>
+                      );
+                    }
                     return (
                       <td key={st.sid} className={`dpt-total${best ? ' dpt-best' : ''}`}>
-                        {st.total} €{!st.complete && <span className="dpt-star">*</span>}
+                        {st.total} €
                       </td>
                     );
                   })}
@@ -435,8 +446,8 @@ function DalleCalculateur() {
             </p>
             {result.hasPartial && (
               <p>
-                <span className="dpt-star">*</span> Total partiel — Castorama ne référence pas le béton livré
-                ni le gravier en big bag (treillis seul).
+                <strong>Castorama</strong> ne référence pas le béton livré au m³ ni le gravier 0/31,5 en big bag&nbsp;:
+                impossible de comparer une offre complète sur ce comparatif. Le treillis y reste compétitif.
               </p>
             )}
             <p className="dalle-result-source">
@@ -702,6 +713,7 @@ export default function DalleTutorielPage() {
         .dpt-qty { text-align: right; white-space: nowrap; color: #6a5f50; }
         .dpt-store { text-align: center; }
         .dpt-store.dpt-best { background: #C9971E; }
+        .dpt-store.dpt-partial { background: #354036; opacity: 0.92; }
         .dpt-logo {
           height: 22px; width: auto; max-width: 104px; object-fit: contain;
           display: inline-block; background: #fff; padding: 4px 8px;
@@ -712,6 +724,11 @@ export default function DalleTutorielPage() {
           letter-spacing: 0.04em; text-transform: uppercase; color: #1B3022;
           font-family: 'IBM Plex Mono', monospace;
         }
+        .dpt-partial-tag {
+          display: block; margin-top: 4px; font-size: 9px; font-weight: 600;
+          letter-spacing: 0.04em; text-transform: uppercase; color: #d8c4a0;
+          font-family: 'IBM Plex Mono', monospace;
+        }
         .dalle-price-table tbody td {
           padding: 11px 12px; border-bottom: 1px solid #ece4d2; color: #3a3530;
         }
@@ -720,7 +737,11 @@ export default function DalleTutorielPage() {
           text-align: center; font-variant-numeric: tabular-nums;
         }
         .dalle-price-table tbody tr:hover td { background: #faf7f0; }
-        .dpt-na { color: #c0b8a8; }
+        .dpt-na {
+          color: #a09880; font-size: 11px; font-style: italic;
+          font-family: 'Manrope', system-ui, sans-serif;
+          cursor: help; border-bottom: 1px dashed #d8d0c4;
+        }
         .dalle-price-table tfoot td {
           padding: 14px 12px; font-weight: 700; border-top: 2px solid #1B3022;
         }
@@ -731,7 +752,11 @@ export default function DalleTutorielPage() {
         .dalle-price-table tfoot td.dpt-total.dpt-best {
           color: #1B3022; background: #fbf3df; border-radius: 0 0 8px 8px;
         }
-        .dpt-star { color: #c84a1a; font-weight: 700; }
+        .dalle-price-table tfoot td.dpt-total--na {
+          color: #8a7e6f; font-family: 'Manrope', system-ui, sans-serif;
+          font-size: 14px; font-style: italic; cursor: help;
+        }
+        .dpt-na-label { border-bottom: 1px dashed #d8d0c4; }
         .dalle-result-notes { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
         .dalle-result-notes p {
           font-size: 12px; color: #6a5f50; line-height: 1.55; margin: 0;
