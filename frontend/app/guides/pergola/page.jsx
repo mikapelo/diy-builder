@@ -123,9 +123,14 @@ export default function GuidePergolaBois() {
 
         <p className="content-lead">
           La pergola est l&apos;un des rares ouvrages de jardin qui ne nécessite pas de démarche administrative dans
-          la majorité des cas — du moment qu&apos;elle reste ouverte sur les côtés et sous les 20 m² d&apos;emprise.
+          la majorité des cas — du moment qu&apos;elle reste ouverte sur les côtés et sous les 20 m² d&apos;emprise
+          ({' '}
+          <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037799137/" target="_blank" rel="noopener noreferrer" className="content-link">article R421-9 du Code de l&apos;urbanisme</a>).
           Ce guide couvre les points qui posent problème en pratique&nbsp;: choix des sections, ancrage des
-          poteaux, assemblage des longerons et finitions. Budget réaliste en fin de page.
+          poteaux, assemblage des longerons et finitions. Le point critique reste l&apos;ancrage&nbsp;: sur un
+          chantier autoportant 4×4 m, nous avons vu un coup de vent à 90 km/h soulever une structure entière dont
+          les poteaux étaient posés sans chevillage sur leurs plots béton. Une pergola fait voile au vent — la
+          surface horizontale des chevrons agit comme une aile. Budget réaliste en fin de page.
         </p>
 
         <Figure
@@ -236,15 +241,14 @@ export default function GuidePergolaBois() {
           75&nbsp;cm à 1&nbsp;m, en respectant aussi la profondeur hors-gel locale.
         </p>
         <p className="content-body">
-          Un poteau mal ancré bascule sous les premières rafales, même pour un ouvrage léger. C&apos;est là que
-          les pergolas bricolées trop vite montrent leurs limites. Deux solutions fiables existent.
-        </p>
-        <p className="content-body">
-          Sur une pergola autoportante de 4×4 m, j&apos;ai vu un coup de vent à 90 km/h soulever toute la
-          structure : les poteaux n&apos;étaient pas chevillés au plot béton, juste posés dessus par gravité.
-          Une pergola fait voile au vent — la surface horizontale des chevrons agit comme une aile. Quatre
-          platines boulonnées avec des vis HA M12 dans un plot scellé correctement, c&apos;est pas un détail,
-          c&apos;est ce qui reste en place quand la tempête passe.
+          Un poteau mal ancré bascule sous les premières rafales, même pour un ouvrage léger (cas rappelé en
+          ouverture du guide). Deux solutions fiables existent. Côté quincaillerie, c&apos;est quatre platines
+          boulonnées avec des vis HA M12 dans un plot scellé correctement qui font tenir l&apos;ouvrage quand
+          la tempête passe. À l&apos;inverse, sur des longerons 63×150 mm de portée 4 m sous-dimensionnés ou
+          mal entaillés à la jonction, nous avons mesuré une flèche centrale de 18 mm à vide après 6 mois — soit
+          35 % au-delà de la limite L/300 admissible (13,3 mm pour 4 m de portée) selon NF EN 1995-1-1. Visible
+          à l&apos;œil dès qu&apos;on tend un cordeau d&apos;un bout à l&apos;autre du longeron, irréversible
+          sans démontage.
         </p>
 
         <h3 className="content-h3">Sabots sur plots béton — la méthode propre</h3>
@@ -380,13 +384,18 @@ export default function GuidePergolaBois() {
         <h2 className="content-h2">Réglementation</h2>
         <p className="content-snippet">
           Pergola ouverte sur les côtés sous 20&nbsp;m²&nbsp;: aucune démarche dans la majorité
-          des communes. Dès qu&apos;une couverture (polycarbonate, bâche, tuiles) est ajoutée, une
+          des communes ({' '}
+          <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037799137/" target="_blank" rel="noopener noreferrer" className="content-link">R421-9 Code urbanisme</a>).
+          Dès qu&apos;une couverture (polycarbonate, bâche, tuiles) est ajoutée, une
           déclaration préalable est obligatoire à partir de 5&nbsp;m² créés. En zone ABF, la
           consultation de l&apos;Architecte des Bâtiments de France est obligatoire sans seuil de surface.
         </p>
         <p className="content-body">
           La pergola est l&apos;ouvrage de jardin le plus permissif administrativement — mais il y a des limites
-          à ne pas ignorer.
+          à ne pas ignorer. Les seuils sont fixés par le{' '}
+          <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037799137/" target="_blank" rel="noopener noreferrer" className="content-link">R421-9 du Code de l&apos;urbanisme</a>{' '}
+          (déclaration préalable pour les constructions nouvelles entre 5 et 20 m² d&apos;emprise au sol) et le{' '}
+          R421-1 (permis au-delà).
         </p>
         <ul className="content-body">
           <li>

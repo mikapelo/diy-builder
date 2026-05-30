@@ -275,10 +275,11 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
         <h2 className="content-h2">2. Structure&nbsp;: ce qui change avec des panneaux en toiture</h2>
         <p className="content-snippet">
           Ajouter des panneaux photovoltaïques sur une pergola DIY ajoute une charge
-          permanente de 14 à 16 kg/m² et une prise au vent supplémentaire en sous-face.
-          Une pergola dimensionnée pour une couverture polycarbonate ou un voile d&apos;ombrage
-          ne convient pas telle quelle&nbsp;: il faut majorer la section des chevrons et
-          renforcer les ancrages au sol.
+          permanente de 14 à 16 kg/m² et un effort de soulèvement au vent qui n&apos;existe pas
+          sur une pergola nue. Le dimensionnement bois de base (sections, ancrages, entraxes)
+          ne change pas — il est traité en détail dans notre{' '}
+          <Link href="/guides/pergola" className="content-link">guide pergola pilier</Link>.
+          Cette section ne couvre que le delta spécifique aux panneaux.
         </p>
 
         <p className="content-body">
@@ -291,52 +292,23 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           altitude 800 m).
         </p>
 
-        <table className="content-table">
-          <thead>
-            <tr>
-              <th>Portée chevron</th>
-              <th>Section sans panneaux</th>
-              <th>Section avec panneaux</th>
-              <th>Coût bois/ml supplémentaire</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2,5 m</td>
-              <td>60×40 mm</td>
-              <td>80×50 mm</td>
-              <td>+ 8 à 12 € HT</td>
-            </tr>
-            <tr>
-              <td>3 m</td>
-              <td>80×50 mm</td>
-              <td>80×50 mm (suffisant)</td>
-              <td>+ 0 €</td>
-            </tr>
-            <tr>
-              <td>3,5 m</td>
-              <td>80×50 mm</td>
-              <td>100×50 mm</td>
-              <td>+ 12 à 18 € HT</td>
-            </tr>
-            <tr>
-              <td>4 m</td>
-              <td>100×50 mm</td>
-              <td>100×75 mm</td>
-              <td>+ 25 à 35 € HT</td>
-            </tr>
-          </tbody>
-        </table>
+        <p className="content-body">
+          Concrètement, sur une pergola déjà dimensionnée correctement selon le pilier
+          (chevrons 80×50 mm jusqu&apos;à 3,5 m de portée, entraxe 40-60 cm), aucun
+          surdimensionnement n&apos;est nécessaire pour des panneaux en surimpression.
+          Deux ajustements seulement&nbsp;: descendre l&apos;entraxe chevrons à 60 cm
+          maximum (vs 70-80 cm pour une couverture légère type voile d&apos;ombrage),
+          et renforcer l&apos;ancrage au sol contre l&apos;effort de soulèvement.
+        </p>
 
         <p className="content-body">
-          L&apos;entraxe des chevrons doit aussi descendre à 60 cm maximum quand la pergola
-          accueille des panneaux, contre 70 à 80 cm pour une couverture légère. Cela revient
-          à ajouter un à deux chevrons sur une pergola 4×3 m, soit 25 à 50 € de bois en plus.
-          Côté ancrage au sol, les platines de scellement de poteaux doivent être dimensionnées
-          en arrachement&nbsp;: un panneau exposé au vent en zone 2 (Bretagne, Nord, façade
-          atlantique) génère un effort de soulèvement de 70 à 90 kg par mètre carré de
-          panneau, ce qui implique des tire-fond M12 minimum et des fondations béton de
-          50 cm de profondeur par poteau, pas des plots à visser.
+          Côté ancrage au sol précisément, c&apos;est là que l&apos;ajout de panneaux change
+          la donne. Un panneau exposé au vent en zone 2 (Bretagne, Nord, façade atlantique)
+          génère un effort de soulèvement de 70 à 90 kg par mètre carré de panneau, ce qui
+          implique des tire-fond M12 minimum et des fondations béton de 50 cm de profondeur
+          par poteau, jamais des plots à visser. Sur une pergola purement décorative sans
+          panneaux, le scellement standard suffit&nbsp;; avec panneaux, c&apos;est non
+          négociable.
         </p>
 
         <p className="content-body">
@@ -430,12 +402,15 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
         </p>
 
         <p className="content-body">
-          La convention de raccordement Enedis (CRAE pour l&apos;autoconsommation, CR pour la
+          La convention de raccordement{' '}
+          <a href="https://www.enedis.fr/raccordement-installation-production-electricite" target="_blank" rel="noopener noreferrer" className="content-link">Enedis</a>{' '}
+          (CRAE pour l&apos;autoconsommation, CR pour la
           revente totale) est gratuite et se demande en ligne sur le portail Enedis. Délai
           réel d&apos;obtention&nbsp;: 6 à 12 semaines selon région. La revente du surplus à
           EDF Obligation d&apos;Achat se fait au tarif d&apos;achat T2 2026 de
-          0,04 €/kWh pour les installations sous 9 kWc (révisé chaque trimestre par la
-          Commission de Régulation de l&apos;Énergie). Ce tarif a chuté de plus de 68 % en
+          0,04 €/kWh pour les installations sous 9 kWc (révisé chaque trimestre par la{' '}
+          <a href="https://www.cre.fr/documents/open-data/arretes-tarifaires-photovoltaiques-en-metropole.html" target="_blank" rel="noopener noreferrer" className="content-link">Commission de Régulation de l&apos;Énergie</a>).
+          Ce tarif a chuté de plus de 68 % en
           18 mois et un projet d&apos;arrêté d&apos;avril 2026 prévoit même de le ramener à
           0,011 €/kWh. Le contrat OA est de 20 ans, le tarif est figé à la date de demande
           complète de raccordement (DCR).
@@ -674,8 +649,11 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
         <h2 className="content-h2">6. Aides 2026 — beaucoup plus restrictives qu&apos;avant</h2>
         <p className="content-snippet">
           Trois dispositifs accompagnent l&apos;installation solaire photovoltaïque
-          résidentielle en 2026, encadrés par l&apos;article 278-0 bis du Code général des
-          impôts et l&apos;arrêté du 8 septembre 2025&nbsp;: la TVA réduite à 5,5 %, la prime
+          résidentielle en 2026, encadrés par l&apos;
+          <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622738" target="_blank" rel="noopener noreferrer" className="content-link">article 278-0 bis du Code général des impôts</a>{' '}
+          et l&apos;
+          <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052212417" target="_blank" rel="noopener noreferrer" className="content-link">arrêté du 8 septembre 2025</a>{' '}
+          (JORF n° 209)&nbsp;: la TVA réduite à 5,5 %, la prime
           à l&apos;autoconsommation versée par EDF Obligation d&apos;Achat, et le tarif de
           rachat du surplus injecté. Les conditions techniques se sont fortement durcies
           depuis le 1ᵉʳ octobre 2025, ce qui rend la TVA 5,5 % difficilement accessible
@@ -744,7 +722,10 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           intra-foyer (sans passer par la revente surplus à 0,04 €/kWh) est valorisée au
           tarif Bleu plein, soit 0,1940 €/kWh, donc 4,85 fois plus que la revente. Les
           tarifs et primes étant révisés chaque trimestre par la CRE, vérifier la grille en
-          vigueur au moment de votre projet sur photovoltaique.info.
+          vigueur au moment de votre projet sur{' '}
+          <a href="https://www.cre.fr/documents/open-data/arretes-tarifaires-photovoltaiques-en-metropole.html" target="_blank" rel="noopener noreferrer" className="content-link">le portail CRE des arrêtés tarifaires</a>{' '}
+          ou{' '}
+          <a href="https://www.photovoltaique.info/fr/tarifs-dachat-et-autoconsommation/tarifs-dachat/arrete-tarifaire-en-vigueur/tarifs-de-vente-et-primes-autoconsommation-100kwc/" target="_blank" rel="noopener noreferrer" className="content-link">photovoltaique.info</a>.
         </p>
 
         <h2 className="content-h2">7. Rentabilité sur 25 ans — DIY ou pro au tarif 2026</h2>

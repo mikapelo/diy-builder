@@ -347,8 +347,11 @@ export default function GuideSoiMemeOuPro() {
           donne 550 à 700 € de matériaux selon l&apos;enseigne (prix scrapés Leroy Merlin,
           Brico Dépôt, Castorama). Ajoutez 400 € d&apos;outillage si vous n&apos;avez qu&apos;une
           perceuse, le total monte à 1 000 €, contre 1 200 à 2 100 € chez un artisan tout
-          compris (80 à 140 €/m² pose comprise en pin classe 4, source Travaux.com et
-          Prix-pose.com mai 2026). Vous restez gagnant, mais l&apos;écart est moins
+          compris (80 à 140 €/m² pose comprise en pin classe 4, sources&nbsp;:{' '}
+          <a href="https://www.travaux.com/jardin-et-exterieur/guide-des-prix/prix-de-la-pose-dune-terrasse-en-bois" target="_blank" rel="noopener noreferrer" className="content-link">Travaux.com</a>{' '}
+          (résineux 80-150 €/m²) et{' '}
+          <a href="https://www.prix-pose.com/terrasse-bois" target="_blank" rel="noopener noreferrer" className="content-link">Prix-pose.com</a>{' '}
+          (pin 80-140 €/m² pose incluse), relevés mai 2026). Vous restez gagnant, mais l&apos;écart est moins
           spectaculaire que ce qu&apos;on croit. À partir du deuxième chantier (pergola,
           clôture, nouvelle terrasse chez un proche), l&apos;outillage est déjà payé&nbsp;:
           c&apos;est là que le gain devient net.
