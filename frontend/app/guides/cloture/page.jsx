@@ -448,6 +448,13 @@ export default function GuideClotureBois() {
           </li>
         </ul>
 
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: les liens vers Amazon ci-dessous sont sponsorisés
+          (programme Partenaires Amazon). Si vous achetez via ces liens, DIY Builder peut percevoir une
+          commission, sans surcoût pour vous. Notre sélection technique reste indépendante — voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
+        </p>
+
         <GuideToolsBlock module="cloture" />
 
         <aside className="content-related">

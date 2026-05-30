@@ -530,6 +530,13 @@ export default function DalleTutorielPage() {
         <DalleCalculateur />
 
         {/* ── Outillage du chantier (4 outils Amazon vérifiés) ── */}
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: les liens vers Amazon ci-dessous sont sponsorisés
+          (programme Partenaires Amazon). Si vous achetez via ces liens, DIY Builder peut percevoir une
+          commission, sans surcoût pour vous. Notre sélection technique reste indépendante — voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
+        </p>
+
         <GuideToolsBlock module="dalle" />
 
         {/* Note honnête : 2 outils essentiels sans ASIN photo fiable, donc hors bloc */}

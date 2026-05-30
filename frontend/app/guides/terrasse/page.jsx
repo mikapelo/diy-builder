@@ -417,7 +417,24 @@ export default function GuideTerrassePage() {
           prolonge la durée de vie de la structure de 5 à 10 ans.
         </p>
 
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: les liens vers Amazon ci-dessous sont sponsorisés
+          (programme Partenaires Amazon). Si vous achetez via ces liens, DIY Builder peut percevoir une
+          commission, sans surcoût pour vous. Notre sélection technique reste indépendante — voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
+        </p>
+
         <GuideToolsBlock module="terrasse" />
+
+        <h2 className="content-h2">Approfondir votre projet terrasse</h2>
+        <p className="content-body">
+          Trois angles complémentaires si vous voulez creuser un aspect précis :
+        </p>
+        <ul className="content-body">
+          <li><strong><Link href="/guides/prix-terrasse-bois-m2-2026">Prix terrasse bois m² 2026</Link></strong> — comparatif chiffré 4 essences × 4 enseignes (LM, Casto, BD, ManoMano) avec écarts en %.</li>
+          <li><strong><Link href="/guides/terrasse-piscine-bois">Terrasse bois autour d&apos;une piscine</Link></strong> — antidérapance R11, NF P90-306, essences résistantes au chlore et au sel.</li>
+          <li><strong><Link href="/guides/soi-meme-ou-pro">Faire soi-même ou faire faire</Link></strong> — 5 critères chiffrés pour décider DIY vs artisan selon votre projet.</li>
+        </ul>
 
         <aside className="content-related">
           <h3>Voir aussi</h3>

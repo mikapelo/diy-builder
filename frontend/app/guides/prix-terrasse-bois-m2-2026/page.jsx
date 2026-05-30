@@ -282,7 +282,7 @@ export default function PrixTerrasseBoisM2Page() {
 
         <h2 className="content-h2">Douglas — 20 à 25 % plus cher pour une durée de vie équivalente</h2>
         <p className="content-snippet">
-          Le douglas, résineux français à durabilité naturelle classe 3-4 sans traitement chimique,
+          Le douglas, résineux français à durabilité naturelle classe 3 (norme EN 350-2 — durabilité naturelle modérée) sans traitement chimique,
           coûte environ 40 % de plus que le pin sur la lame seule. Total matériaux pour 12&nbsp;m²&nbsp;:
           630&nbsp;€ chez Brico Dépôt (53&nbsp;€/m²) à 775&nbsp;€ chez Castorama (65&nbsp;€/m²).
           Sans entretien, il grisaille en 2-3 saisons — un rendu ardoise apprécié par beaucoup.

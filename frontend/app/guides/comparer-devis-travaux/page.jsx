@@ -169,7 +169,7 @@ export default function ComparerDevisTravauxPage() {
           Trois devis ne se comparent que s&apos;ils chiffrent exactement les mêmes prestations.
           Surface précise, matériaux nommés, finition, évacuation des gravats, raccordements,
           délais&nbsp;: chaque ligne doit figurer chez les trois artisans. Sans alignement préalable,
-          comparer les totaux revient à comparer des poires et des pommes — 60 % des litiges
+          comparer les totaux revient à comparer des poires et des pommes — la majorité des litiges
           devis-facture trouvent leur origine ici.
         </p>
         <p className="content-body">

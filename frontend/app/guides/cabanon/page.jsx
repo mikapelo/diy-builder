@@ -484,39 +484,18 @@ export default function GuideCabanonPage() {
           Moins de 5&nbsp;m²&nbsp;: aucune démarche. De 5 à 20&nbsp;m²&nbsp;: déclaration préalable
           (Cerfa 13703, délai 1 mois en mairie). Plus de 20&nbsp;m²&nbsp;: permis de construire
           obligatoire (délai 2 mois). Ces seuils valent en zones PLU — vérifiez aussi les secteurs
-          ABF et Natura 2000 avant de commander.
+          ABF et Natura 2000 avant de commander le bois.
         </p>
-        <p className="content-body">
-          En France, les démarches dépendent directement de la surface de plancher :
-        </p>
-        <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '16px' }}>
-          <li style={{ marginBottom: '10px' }}>
-            <strong>Moins de 5 m² :</strong> rien à déclarer, quel que soit l&apos;emplacement. C&apos;est
-            la seule tranche vraiment libre.
-          </li>
-          <li style={{ marginBottom: '10px' }}>
-            <strong>5 à 20 m² :</strong> déclaration préalable de travaux, formulaire Cerfa 13703,
-            à déposer en mairie. Délai d&apos;instruction : 1 mois. Ne sautez pas cette étape — un
-            voisin mécontent peut déclencher un contrôle et une mise en demeure de démolir.
-          </li>
-          <li style={{ marginBottom: '10px' }}>
-            <strong>Plus de 20 m² :</strong> permis de construire obligatoire, délai d&apos;instruction
-            2 mois. Au-delà de 150 m² (peu probable pour un cabanon), recours à un architecte
-            obligatoire.
-          </li>
-        </ul>
-        <p className="content-body">
-          Ces seuils valent en zones couvertes par un PLU. Hors zones urbanisées, les règles
-          diffèrent. Et certaines zones sont piégeuses : abords de monuments historiques, zones
-          Natura 2000, secteurs avec plan de prévention des risques — elles peuvent imposer des
-          matériaux, des couleurs de bardage ou une hauteur maximale. Appelez le service urbanisme
-          de votre mairie avant de commander le bois, pas après. Pour le détail complet (tableau
-          des seuils 5/20/40 m², Cerfa par tranche, calendrier d&apos;instruction, zones ABF),
-          consultez notre{' '}
-          <Link href="/guides/permis-cabanon-seuils-2026" className="content-link">
-            guide complet permis et déclaration cabanon 2026
-          </Link>.
-        </p>
+
+        <div className="content-cta-box" role="complementary" aria-label="Guide réglementation cabanon">
+          <p className="content-cta-box-label">Guide dédié</p>
+          <p className="content-cta-box-title">Permis cabanon 2026 : seuils, Cerfa et délais</p>
+          <p className="content-cta-box-desc">Tableau complet des seuils 5/20/40 m² selon zone urbanisme, Cerfa par tranche, zones ABF et jurisprudence.</p>
+          <Link href="/guides/permis-cabanon-seuils-2026" className="btn-primary">
+            Lire le guide réglementation{' '}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </Link>
+        </div>
 
         <h2 className="content-h2">Questions fréquentes</h2>
         <p className="content-snippet">
@@ -557,6 +536,13 @@ export default function GuideCabanonPage() {
           radicalement le confort thermique et acoustique. Surcoût : 15 à 25 €/m² pour la laine
           plus un pare-vapeur côté chaud. C&apos;est une décision à prendre avant de commander les
           montants — pas après, quand vous réalisez que 45 × 90 mm ne loge pas 100 mm d&apos;isolant.
+        </p>
+
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: les liens vers Amazon ci-dessous sont sponsorisés
+          (programme Partenaires Amazon). Si vous achetez via ces liens, DIY Builder peut percevoir une
+          commission, sans surcoût pour vous. Notre sélection technique reste indépendante — voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
         </p>
 
         <GuideToolsBlock module="cabanon" />

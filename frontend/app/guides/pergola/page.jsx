@@ -408,7 +408,23 @@ export default function GuidePergolaBois() {
           </li>
         </ul>
 
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: les liens vers Amazon ci-dessous sont sponsorisés
+          (programme Partenaires Amazon). Si vous achetez via ces liens, DIY Builder peut percevoir une
+          commission, sans surcoût pour vous. Notre sélection technique reste indépendante — voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
+        </p>
+
         <GuideToolsBlock module="pergola" />
+
+        <h2 className="content-h2">Approfondir votre projet pergola</h2>
+        <p className="content-body">
+          Deux angles complémentaires selon votre projet :
+        </p>
+        <ul className="content-body">
+          <li><strong><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola avec panneaux solaires DIY 2026</Link></strong> — structure bois + kit PV, démarches Consuel/Enedis, ROI réaliste, aides 2026.</li>
+          <li><strong><Link href="/guides/soi-meme-ou-pro">Faire soi-même ou faire faire</Link></strong> — comparatif DIY vs artisan : coût, temps, garanties, critères de décision.</li>
+        </ul>
 
         <aside className="content-related">
           <h3>Voir aussi</h3>
