@@ -3,6 +3,7 @@ import { getRedis } from '@/lib/redis';
 import { checkRateLimit, tooManyRequestsResponse } from '@/lib/rateLimit';
 
 const RESEND_API = 'https://api.resend.com/emails';
+const RESEND_AUDIENCES_API = 'https://api.resend.com/audiences';
 
 const PROJECT_LABELS = {
   terrasse: 'Terrasse',
@@ -35,6 +36,34 @@ function sanitizeFilename(name, projectType) {
   if (!name || typeof name !== 'string') return fallback;
   const cleaned = name.replace(/[^a-z0-9._-]/gi, '_').slice(0, 80);
   return cleaned.length > 0 ? cleaned : fallback;
+}
+
+/**
+ * Ajoute le contact à l'audience Resend (newsletter freemium PDF).
+ * Skip silencieusement si RESEND_AUDIENCE_ID absent ou si l'appel échoue.
+ * Base légale : intérêt légitime (téléchargement = manifestation d'intérêt explicite).
+ * L'opt-out reste géré par Resend (lien désabonnement auto dans chaque broadcast).
+ */
+async function addToAudience(email) {
+  const audienceId = process.env.RESEND_AUDIENCE_ID;
+  if (!audienceId || !process.env.RESEND_API_KEY) return;
+  try {
+    const res = await fetch(`${RESEND_AUDIENCES_API}/${audienceId}/contacts`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, unsubscribed: false }),
+    });
+    // Resend renvoie 200 si ajouté OU 422 si déjà présent → ok dans les 2 cas
+    if (!res.ok && res.status !== 422) {
+      const err = await res.text();
+      console.warn('[/api/leads] Resend audience add failed:', res.status, err);
+    }
+  } catch (e) {
+    console.warn('[/api/leads] Resend audience exception:', e.message);
+  }
 }
 
 async function sendEmail({ to, subject, html, attachments }) {
@@ -144,6 +173,11 @@ export async function POST(req) {
       // Redis non disponible en dev local — on ne bloque pas l'envoi email
       console.warn('[/api/leads] Redis unavailable:', redisErr.message);
     }
+
+    /* ── 4. Ajout à l'audience Resend (newsletter freemium PDF) ──
+       Non bloquant : si RESEND_AUDIENCE_ID absent, skip silencieusement.
+       Permet d'envoyer des broadcasts (séquence J+3/J+10/J+30) sans cron custom. */
+    await addToAudience(email);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
