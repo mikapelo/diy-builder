@@ -107,15 +107,21 @@ export async function POST(req) {
       `,
     });
 
-    /* ── 2. Notification lead à l'owner ── */
+    /* ── 2. Notification téléchargement PDF à l'owner ──
+       Note : ce n'est PAS un lead pro vendable, juste un opt-in freemium.
+       Les vraies demandes artisan passent par /api/artisan-lead (sujet [Artisan]). */
     await sendEmail({
       to: notifyEmail,
-      subject: `[Lead] ${email} — ${safeLabel}${dimsStr ? ` ${dimsStr}` : ''}`,
+      subject: `[PDF] ${email} — ${safeLabel}${dimsStr ? ` ${dimsStr}` : ''}`,
       html: `
         <p style="font-family: Inter, sans-serif; font-size: 14px; color: #1a1c1b;">
-          Nouveau lead PDF :<br/>
+          Nouveau téléchargement PDF (contact opt-in freemium) :<br/>
           <strong>${escHtml(email)}</strong><br/>
           Projet : ${escHtml(label)}${dimsStr ? ` — ${escHtml(dimsStr)}` : ''}
+        </p>
+        <p style="font-family: Inter, sans-serif; font-size: 12px; color: #66625a; margin-top: 12px;">
+          Pour voir l'historique des téléchargements :
+          <a href="https://www.diy-builder.fr/admin/leads">dashboard admin</a>
         </p>
       `,
     });

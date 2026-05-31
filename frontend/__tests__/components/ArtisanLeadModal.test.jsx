@@ -21,6 +21,8 @@ import ArtisanLeadModal from '@/components/simulator/ArtisanLeadModal';
 // Mock useAnalytics pour éviter le tracking dans les tests
 vi.mock('@/hooks/useAnalytics.js', () => ({
   trackLeadSubmitted: vi.fn(),
+  trackArtisanModalOpen: vi.fn(),
+  trackArtisanModalAbandon: vi.fn(),
 }));
 
 beforeEach(() => {

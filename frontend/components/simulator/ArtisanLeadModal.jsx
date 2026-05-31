@@ -16,9 +16,9 @@
  *   initialEmail — string (pré-remplit le champ email)
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import useFocusTrap from '@/hooks/useFocusTrap';
-import { trackLeadSubmitted } from '@/hooks/useAnalytics.js';
+import { trackLeadSubmitted, trackArtisanModalOpen, trackArtisanModalAbandon } from '@/hooks/useAnalytics.js';
 
 const PROJECT_LABELS = {
   terrasse: 'Terrasse bois',
@@ -37,22 +37,35 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
   const [status,  setStatus]  = useState('idle');   // idle | submitting | success | error
   const [errors,  setErrors]  = useState({});
 
-  // Réinitialiser quand on ouvre
+  // Réinitialiser quand on ouvre + tracker l'ouverture
   useEffect(() => {
     if (open) {
       setForm({ ...INITIAL, email: initialEmail });
       setStatus('idle');
       setErrors({});
+      trackArtisanModalOpen({ module: projectType });
     }
-  }, [open, initialEmail]);
+  }, [open, initialEmail, projectType]);
 
-  // Fermer sur Escape
+  // Handler de fermeture : tracker l'abandon si pas de submit succès
+  const handleClose = useCallback(() => {
+    // Capturer le status local : si pas 'success', c'est un abandon
+    setStatus((current) => {
+      if (current !== 'success') {
+        trackArtisanModalAbandon({ module: projectType, stage: current });
+      }
+      return current;
+    });
+    onClose();
+  }, [projectType, onClose]);
+
+  // Fermer sur Escape (utilise handleClose pour tracker l'abandon)
   useEffect(() => {
     if (!open) return;
-    const handler = (e) => { if (e.key === 'Escape') onClose(); };
+    const handler = (e) => { if (e.key === 'Escape') handleClose(); };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [open, onClose]);
+  }, [open, handleClose]);
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   const setConsent = (e) => setForm((f) => ({ ...f, consent: e.target.checked }));
@@ -94,7 +107,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
   const isLoading = status === 'submitting';
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={handleClose}>
       <div
         ref={panelRef}
         className="modal-panel artisan-modal-panel"
@@ -103,8 +116,12 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
         aria-label="Être recontacté pour mon projet"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Bouton fermer */}
-        <button className="modal-close" onClick={onClose} aria-label="Fermer">
+        {/* Bouton fermer : si succès, ferme proprement (pas d'event abandon) ; sinon track abandon */}
+        <button
+          className="modal-close"
+          onClick={status === 'success' ? onClose : handleClose}
+          aria-label="Fermer"
+        >
           <span className="material-symbols-outlined">close</span>
         </button>
 
@@ -313,7 +330,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                 <button
                   type="button"
                   className="modal-btn modal-btn--outline"
-                  onClick={onClose}
+                  onClick={handleClose}
                   disabled={isLoading}
                   style={{ flex: 1 }}
                 >

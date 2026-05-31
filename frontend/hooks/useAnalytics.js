@@ -17,6 +17,8 @@
  *   trackViewModeChange(props)    — event 6 : view-mode-change
  *   trackAffiliateClick(props)    — event 7 : affiliate-click
  *   trackLeadSubmitted(props)     — event 8 : lead-submitted
+ *   trackArtisanModalOpen(props)  — event 9 : artisan-modal-open
+ *   trackArtisanModalAbandon(props) — event 10 : artisan-modal-abandon
  */
 
 /**
@@ -82,4 +84,18 @@ export function trackAffiliateClick({ store, project }) {
  *  @param {{ module: string }} props */
 export function trackLeadSubmitted({ module }) {
   trackEvent('lead-submitted', { module });
+}
+
+/** Event 9 — artisan-modal-open : modal ArtisanLeadModal ouvert (= CTA Pro cliqué + modal monté)
+ *  À comparer à 'devis-click' pour détecter le drop entre clic CTA et affichage modal.
+ *  @param {{ module: string }} props */
+export function trackArtisanModalOpen({ module }) {
+  trackEvent('artisan-modal-open', { module });
+}
+
+/** Event 10 — artisan-modal-abandon : modal fermé sans submit succès
+ *  stage indique à quelle étape l'utilisateur a abandonné.
+ *  @param {{ module: string, stage: 'idle' | 'submitting' | 'error' }} props */
+export function trackArtisanModalAbandon({ module, stage }) {
+  trackEvent('artisan-modal-abandon', { module, stage });
 }

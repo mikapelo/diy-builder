@@ -37,7 +37,7 @@ function exportCSV(leads) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `leads-diy-builder-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.download = `telechargements-pdf-diy-builder-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -71,7 +71,7 @@ function LoginScreen({ onLogin, error, serverError, loading }) {
       }}>
         <div style={{ fontSize: 32, marginBottom: 8 }}>🔐</div>
         <h1 style={{ fontSize: 20, fontWeight: 700, color: '#1a1c1b', margin: '0 0 4px' }}>DIY Builder Admin</h1>
-        <p style={{ fontSize: 13, color: '#9c9188', margin: '0 0 24px' }}>Dashboard leads</p>
+        <p style={{ fontSize: 13, color: '#9c9188', margin: '0 0 24px' }}>Téléchargements PDF</p>
         <input
           type="password"
           placeholder="Mot de passe"
@@ -215,7 +215,7 @@ export default function LeadsDashboard() {
           <span style={{ fontSize: 22 }}>🏗️</span>
           <div>
             <span style={{ fontSize: 16, fontWeight: 700, color: '#1a1c1b' }}>DIY Builder</span>
-            <span style={{ fontSize: 13, color: '#9c9188', marginLeft: 8 }}>/ Leads</span>
+            <span style={{ fontSize: 13, color: '#9c9188', marginLeft: 8 }}>/ Téléchargements PDF</span>
           </div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
@@ -246,9 +246,24 @@ export default function LeadsDashboard() {
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
 
+        {/* Encart explicatif sémantique : ces données = opt-in freemium, PAS leads pro vendables */}
+        <div style={{
+          background: '#fef9e7', border: '1px solid #f0d98c', borderRadius: 12,
+          padding: '14px 18px', marginBottom: 24, fontSize: 13, color: '#665012',
+          display: 'flex', gap: 12, alignItems: 'flex-start',
+        }}>
+          <span style={{ fontSize: 18, lineHeight: 1 }}>ℹ️</span>
+          <div>
+            <strong>Contacts opt-in PDF (freemium)</strong> — emails captés en échange du téléchargement
+            du devis PDF. Usage&nbsp;: nurturing newsletter, pas revente lead. Les vraies demandes
+            artisan (formulaire complet nom/tél/CP) sont envoyées par mail uniquement et n&apos;apparaissent
+            pas ici (dashboard dédié à venir).
+          </div>
+        </div>
+
         {/* Stats */}
         <div style={{ display: 'flex', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
-          <StatCard label="Total leads" value={total} />
+          <StatCard label="Total téléchargements" value={total} />
           <StatCard label="Aujourd'hui" value={todayCount} />
           <StatCard label="7 derniers jours" value={weekCount} />
           {Object.entries(countByProject).map(([type, count]) => (
@@ -300,7 +315,7 @@ export default function LeadsDashboard() {
           <div style={{ textAlign: 'center', padding: 60, color: '#ef4444' }}>{error}</div>
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 60, color: '#9c9188' }}>
-            Aucun lead trouvé
+            Aucun téléchargement
           </div>
         ) : (
           <div style={{
