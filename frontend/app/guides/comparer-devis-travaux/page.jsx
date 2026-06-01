@@ -8,13 +8,13 @@ const OG_SUBTITLE = 'Méthode 2026 · mentions obligatoires · écarts normaux';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide`;
 
 export const metadata = {
-  title: 'Comparer plusieurs devis travaux : la méthode complète 2026',
+  title: 'Comparer 3 devis travaux : 8 vérifications obligatoires (2026)',
   description:
-    '2 ou 3 devis et vous doutez ? Méthode en 30 minutes : 8 mentions obligatoires, marges par poste, écarts de prix sains et signaux d\'arnaque à repérer.',
+    '2 ou 3 devis et vous doutez ? En 30 min : 8 mentions légales, écarts de prix normaux par poste, signaux d\'arnaque à repérer avant signature.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/comparer-devis-travaux' },
   openGraph: {
-    title: 'Comparer plusieurs devis travaux : la méthode complète 2026 | DIY Builder',
-    description: 'Vous avez 2 ou 3 devis et vous doutez ? Méthode de lecture critique : mentions légales, marges par poste, écarts de prix normaux, signaux d\'arnaque.',
+    title: 'Comparer 3 devis travaux : 8 vérifications obligatoires (2026) | DIY Builder',
+    description: 'Méthode de lecture critique en 30 min : 8 mentions légales, marges par poste, écarts de prix normaux, signaux d\'arnaque à repérer avant signature.',
     url: 'https://www.diy-builder.fr/guides/comparer-devis-travaux',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Comparer plusieurs devis travaux — DIY Builder' }],

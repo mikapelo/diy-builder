@@ -8,13 +8,13 @@ const OG_SUBTITLE = 'Comparatif essence × enseigne · chiffres recalculés';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
 
 export const metadata = {
-  title: 'Prix terrasse bois au m² en 2026 : comparatif détaillé',
+  title: 'Prix terrasse bois 2026 : 80 à 290 €/m² par essence',
   description:
-    'Comparatif prix terrasse bois au m² en 2026 : pin, douglas, ipé, composite par enseigne (LM, Casto, BD, ManoMano). Avec ou sans pose artisan.',
+    'Tarifs réels mai 2026 : pin classe 4 dès 80 €/m², douglas 110 €, ipé 290 €. Comparatif Leroy Merlin, Castorama, Brico Dépôt + coût pose artisan.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026' },
   openGraph: {
-    title: 'Prix terrasse bois au m² en 2026 — comparatif essence × enseigne | DIY Builder',
-    description: 'Comparatif chiffré du prix au m² d\'une terrasse bois en mai 2026 : pin, douglas, ipé, composite, par enseigne, avec ou sans artisan.',
+    title: 'Prix terrasse bois 2026 : 80 à 290 €/m² par essence | DIY Builder',
+    description: 'Tarifs réels mai 2026 par essence et par enseigne : pin classe 4 dès 80 €/m², douglas 110 €, ipé 290 €. Avec ou sans pose artisan, écarts chiffrés.',
     url: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Comparatif prix terrasse bois 2026 — DIY Builder' }],
