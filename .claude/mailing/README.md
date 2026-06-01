@@ -3,6 +3,15 @@
 Workflow newsletter pour les contacts opt-in PDF (téléchargements devis).
 Pas un funnel pro vendable (cf. `/admin/leads` encart).
 
+**Templates rédigés avec** (cf. `.claude/skills-mapping.md`) :
+- `marketing-skills:emails` — méthodologie séquence nurture (subject lines AB,
+  preview text, structure Hook/Context/Value/CTA, longueur cible, one job/email,
+  value before ask, KPIs benchmarks)
+- `editorial-seo-fr` — règles anti-IA FR (zéro phrase-gabarit, voix tranchée,
+  chiffres précis sourcés, observations terrain), zéro anglicisme
+- `marketing-skills:copywriting` — verbe CTA action + outcome, hiérarchie
+  primaire/secondaire
+
 ---
 
 ## Architecture
