@@ -439,6 +439,7 @@ export default function GuidePergolaBois() {
           <h3>Voir aussi</h3>
           <ul>
             <li><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola avec panneaux solaires DIY 2026</Link> — structure, démarches Consuel/Enedis, aides 2026, ROI</li>
+            <li><Link href="/guides/carport-solaire-bois-recharger-voiture-electrique-2026">Carport solaire bois pour voiture électrique</Link> — structure couverte, recharge VE, budget et ROI 2026</li>
             <li><Link href="/guides/cabanon">Guide cabanon</Link> — assemblage similaire (charpente bois)</li>
             <li><Link href="/guides/cloture">Guide clôture</Link> — ancrage poteaux similaire</li>
             <li><Link href="/faq">FAQ</Link> — 24 questions techniques (sections, classes, prix)</li>

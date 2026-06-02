@@ -54,9 +54,6 @@ export const metadata = {
   description:
     'Construire un carport solaire en bois pour recharger sa voiture électrique : structure DTU, démarches Enedis-Consuel, budget DIY vs pro et ROI réaliste 2026.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/carport-solaire-bois-recharger-voiture-electrique-2026' },
-  // ⚠️ PHASE A — noindex tant que contenu non rédigé + non fact-checké.
-  //    RETIRER ce bloc au go-live (Phase B) une fois tous les chiffres vérifiés.
-  robots: { index: false, follow: false },
   openGraph: {
     title: 'Carport solaire bois pour VE — Guide 2026 | DIY Builder',
     description:
@@ -83,25 +80,20 @@ const breadcrumbJsonLd = {
   ],
 };
 
-/* ⚠️ PHASE B — activer ces 2 schémas une fois le contenu rédigé + fact-checké.
-   articleJsonLd : renseigner datePublished/dateModified réelles au go-live.
-   faqJsonLd     : les 10 réponses contiennent des chiffres → NE PAS émettre
-                   tant qu'elles ne sont pas vérifiées sur source officielle.
-
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'Construire un carport solaire en bois pour recharger sa voiture électrique : guide 2026',
   description:
-    'Structure DTU 31.1, démarches Enedis-Consuel, budget DIY vs pro et ROI réaliste 2026 pour un carport solaire bois qui recharge une voiture électrique.',
+    'Structure bois, démarches Enedis-Consuel, budget DIY vs pro et ROI réaliste 2026 pour un carport solaire bois qui recharge une voiture électrique.',
   author: { '@type': 'Organization', name: 'DIY Builder', url: 'https://www.diy-builder.fr' },
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
     logo: { '@type': 'ImageObject', url: 'https://www.diy-builder.fr/images/logo-512.png' },
   },
-  datePublished: '<JOUR_PUBLI>',
-  dateModified: '<JOUR_PUBLI>',
+  datePublished: '2026-06-02',
+  dateModified: '2026-06-02',
   mainEntityOfPage: 'https://www.diy-builder.fr/guides/carport-solaire-bois-recharger-voiture-electrique-2026',
   image: OG_URL,
   about: ['Carport solaire', 'Photovoltaïque', 'Voiture électrique', 'Autoconsommation'],
@@ -110,16 +102,74 @@ const articleJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [ ... 10 questions du brief §G, réponses fact-checkées ... ],
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Faut-il un permis de construire pour un carport solaire de 15 m² ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Non, une déclaration préalable de travaux suffit. Le permis de construire n’est exigé qu’au-delà de 20 m² d’emprise au sol (ou 40 m² en zone urbaine couverte par un PLU). Mais comme un carport crée une toiture, la déclaration préalable est systématique, même sous 5 m². En zone protégée (Architecte des Bâtiments de France), un avis supplémentaire s’ajoute.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Peut-on installer un carport solaire bois soi-même légalement ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Oui pour la structure bois et la pose des panneaux. La partie électrique peut aussi être réalisée soi-même, mais l’installation raccordée au réseau doit obtenir une attestation Consuel (visa Bleu) qui vérifie la conformité à la norme NF C 15-100. En revanche, la TVA réduite et la prime à l’autoconsommation exigent une pose par un installateur certifié RGE.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Combien produit un carport solaire de 3 kWc à l’année ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Selon l’outil PVGIS de la Commission européenne (calcul de juin 2026), un carport 3 kWc plein sud produit environ 3 000 kWh/an à Lille, 3 600 kWh/an à Lyon et 4 500 kWh/an à Marseille à la pente d’un carport (15°). En inclinant à 30°, on gagne quelques pour cent, jusqu’à 4 771 kWh/an à Marseille.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quelle borne de recharge installer sur un carport solaire ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Pour un carport 3 kWc, une borne de 7,4 kW (32 A monophasé) est le bon compromis : elle recharge environ 45 à 50 km d’autonomie par heure. Le point décisif n’est pas la puissance mais le pilotage solaire : une borne pilotée ne charge la voiture qu’avec le surplus produit, au lieu de tirer sur le réseau.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'La TVA 5,5 % s’applique-t-elle si je pose moi-même mon carport solaire ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Non. La TVA réduite à 5,5 % est réservée à la pose par un installateur certifié RGE QualiPV, et soumise à des conditions strictes depuis l’arrêté du 8 septembre 2025 (bilan carbone des modules, système de gestion d’énergie). En autoconstruction, vous restez à 20 %, ou 10 % en résidence principale au titre de l’article 278-0 bis du Code général des impôts.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Combien coûte le raccordement Enedis pour un carport solaire ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Si vous avez déjà un compteur Linky, la mise en service de l’injection du surplus est une simple prestation d’une cinquantaine d’euros. Un raccordement neuf complet (sans branchement existant, ou avec renforcement) coûte beaucoup plus et varie selon le chantier : demandez le devis exact à Enedis. L’autoconsommation totale sans injection, elle, est gratuite.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quel est le délai entre la commande et la mise en service ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Comptez 2 à 4 mois en général. Ce délai cumule la déclaration préalable en mairie (environ 1 mois d’instruction), la convention d’autoconsommation Enedis, l’obtention de l’attestation Consuel et la mise en service du raccordement. Une zone protégée (ABF) ou un raccordement neuf allonge ce délai.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Le bois du carport solaire doit-il être classe 3 ou classe 4 ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Classe 4 pour tout élément au contact du sol ou exposé à une humidité permanente, typiquement les poteaux scellés. Classe 3 suffit pour les éléments hors sol (longerons, chevrons) protégés des remontées d’eau. Le pin autoclave classe 4 et le douglas traité sont les essences les plus courantes pour une structure extérieure durable.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Peut-on revendre le surplus d’électricité produit par un carport solaire ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Oui, via un contrat d’obligation d’achat avec EDF OA. Le tarif de rachat du surplus est de 0,04 €/kWh pour les installations jusqu’à 9 kWc au 2e trimestre 2026 (barème CRE), garanti 20 ans. C’est cinq fois moins que ce que vous économisez en autoconsommant : mieux vaut consommer sa production que la revendre.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Comment se passe le contrôle Consuel sur un carport solaire ?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Vous remplissez l’attestation de conformité « visa Bleu » (Cerfa 15523) qui certifie le respect de la norme NF C 15-100, puis le Consuel peut procéder à un contrôle. Le coût est de 201,17 € TTC en version électronique (barème applicable depuis le 2 septembre 2025). Sans cette attestation, pas de raccordement au réseau.' },
+    },
+  ],
 };
-*/
 
 export default function CarportSolaireBoisVE2026Page() {
   return (
     <ContentLayout>
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, '\\u003c') }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c') }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c') }}
       />
 
       <div className="content-container">
@@ -138,8 +188,7 @@ export default function CarportSolaireBoisVE2026Page() {
         </h1>
 
         <p className="content-meta">
-          {/* PHASE B — renseigner la date réelle de publication au go-live */}
-          <span><strong>Publié le JJ MMMM 2026</strong></span>
+          <span><strong>Publié le 2 juin 2026</strong></span>
           <span>·</span>
           <span>L&apos;équipe DIY Builder</span>
           <span>·</span>
@@ -148,8 +197,6 @@ export default function CarportSolaireBoisVE2026Page() {
           <span><Link href="/sources">Sources techniques</Link></span>
         </p>
 
-        {/* PHASE B — hero 1672×941 golden hour (prompt brief §H), à générer puis déposer dans
-            frontend/public/images/guides/carport-solaire-bois-recharger-voiture-electrique-2026/hero.png
         <div className="content-hero">
           <Image
             src="/images/guides/carport-solaire-bois-recharger-voiture-electrique-2026/hero.png"
@@ -161,7 +208,6 @@ export default function CarportSolaireBoisVE2026Page() {
             style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12, margin: '0 0 32px 0' }}
           />
         </div>
-        */}
 
         <p className="content-lead">
           Un carport solaire en bois abrite la voiture et la recharge avec l&apos;énergie de
@@ -809,8 +855,7 @@ export default function CarportSolaireBoisVE2026Page() {
 
         <footer className="content-byline">
           <p>
-            {/* PHASE B — renseigner la date réelle de publication */}
-            <strong>L&apos;équipe DIY Builder</strong> — Article publié le JJ MMMM 2026.
+              <strong>L&apos;équipe DIY Builder</strong> — Article publié le 2 juin 2026.
             {' '}<Link href="/methodologie">Notre méthodologie</Link> ·
             {' '}<Link href="/sources">Sources techniques</Link> ·
             {' '}<Link href="/contact">Signaler une erreur</Link>
