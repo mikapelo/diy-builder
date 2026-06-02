@@ -404,7 +404,236 @@ D'ici là, les scripts custom restent la voie active sur DIY Builder.
 
 ---
 
-## Annexe — Variables d'env complètes pour DIY Builder
+## Partie 8 — Compléter avec le skill `claude-blog:blog-google`
+
+Les scripts custom de la Partie 1 couvrent **GSC seul**. Pour aller plus loin
+(PageSpeed Insights, Core Web Vitals avec historique 25 semaines, NLP entity
+analysis pour E-E-A-T, GA4, Knowledge Graph, YouTube, Google Ads Keyword
+Planner), le skill `claude-blog:blog-google` est l'outil natif Claude
+recommandé. Installation déjà présente sur la machine au moment où ce doc
+est écrit (`/Users/pelo/.claude/plugins/claude-blog/skills/blog-google`).
+
+### Architecture du skill
+
+```
+~/.config/claude-seo/google-api.json         ← config partagée avec claude-seo
+                          │
+                          ▼ lu par
+~/.claude/plugins/claude-blog/skills/blog-google/scripts/run.py
+                          │
+                          ▼ appelle
+Google Cloud APIs (au choix selon le tier d'auth)
+```
+
+### 4 tiers d'auth progressifs
+
+| Tier | Credentials | APIs débloquées | Setup |
+|---|---|---|---|
+| **0** | API Key Google Cloud | PageSpeed, CrUX, CrUX History, Knowledge Graph, YouTube | 5 min |
+| **1** | + Service Account JSON | + Search Console + Indexing API | +5 min |
+| **2** | + GA4 Property ID | + GA4 organic traffic | +2 min |
+| **3** | + Google Ads Manager Account + Developer Token | + Keyword Planner | +1 j (validation Google) |
+
+**Pour DIY Builder, Tier 0 suffit** : on a déjà GSC via les scripts Node
+custom, donc pas besoin du Tier 1. Et on est sur Umami (pas GA4) donc Tier 2
+inutile. Tier 3 = pas notre stack actuel.
+
+### Setup Tier 0 (l'utile)
+
+#### 8.1 Activer les APIs sur le projet GCP existant
+
+```bash
+# Vérifier que le compte gcloud est connecté
+gcloud auth list
+# Si rien : gcloud auth login (browser flow)
+
+# Définir le projet
+gcloud config set project diy-builder-gsc
+
+# Activer les 5 APIs Tier 0
+gcloud services enable \
+  pagespeedonline.googleapis.com \
+  chromeuxreport.googleapis.com \
+  kgsearch.googleapis.com \
+  youtube.googleapis.com \
+  language.googleapis.com
+
+# Activer aussi l'API Keys API (pour la création de clé via CLI)
+gcloud services enable apikeys.googleapis.com
+```
+
+#### 8.2 Créer une API key restreinte (recommandé)
+
+**Option A — Via gcloud CLI** :
+```bash
+# Création
+gcloud services api-keys create \
+  --display-name="claude-blog-google-tier0" \
+  --api-target="service=pagespeedonline.googleapis.com" \
+  --api-target="service=chromeuxreport.googleapis.com" \
+  --api-target="service=kgsearch.googleapis.com" \
+  --api-target="service=youtube.googleapis.com" \
+  --api-target="service=language.googleapis.com"
+
+# Lister pour récupérer le name complet
+gcloud services api-keys list \
+  --filter="displayName=claude-blog-google-tier0" \
+  --format="value(name)"
+
+# Extraire la keyString
+gcloud services api-keys get-key-string <name-extracted-above>
+```
+
+**Option B — Via UI Google Cloud Console** (plus simple) :
+1. https://console.cloud.google.com/apis/credentials
+2. **Create Credentials** → **API key**
+3. Cliquer sur la clé créée → **Restrict key**
+4. Sous **API restrictions**, sélectionner les 5 APIs Tier 0
+5. **Save**
+6. Copier la `AIzaSy...` (38 caractères)
+
+#### 8.3 Créer le fichier de config
+
+```bash
+mkdir -p ~/.config/claude-seo
+
+cat > ~/.config/claude-seo/google-api.json <<EOF
+{
+  "api_key": "AIzaSy...VOTRE_CLE...",
+  "default_property": "sc-domain:diy-builder.fr"
+}
+EOF
+
+# Permissions strictes (lecture user only)
+chmod 600 ~/.config/claude-seo/google-api.json
+```
+
+#### 8.4 Test fonctionnel
+
+```bash
+# Vérifier les credentials
+python3 ~/.claude/plugins/claude-blog/skills/blog-google/scripts/run.py google_auth --check
+
+# PageSpeed Insights sur la home
+python3 ~/.claude/plugins/claude-blog/skills/blog-google/scripts/run.py pagespeed \
+  --url "https://www.diy-builder.fr"
+
+# CrUX avec historique 25 semaines
+python3 ~/.claude/plugins/claude-blog/skills/blog-google/scripts/run.py crux-history \
+  --url "https://www.diy-builder.fr"
+
+# NLP entity analysis sur un guide (E-E-A-T signal)
+python3 ~/.claude/plugins/claude-blog/skills/blog-google/scripts/run.py nlp \
+  --text "$(cat /Users/pelo/Downloads/diy-builder-scraper3/frontend/app/guides/cabanon/page.jsx | head -200)"
+```
+
+#### 8.5 Invocation par Claude
+
+Dans une nouvelle session, Claude peut invoquer le skill via 2 voies :
+
+**Voie 1 — Tool `Skill`** (recommandé, déclenche la procédure complète) :
+```
+User : audit Core Web Vitals des piliers
+Claude → Skill tool: claude-blog:blog-google
+         args: "crux-history --url https://www.diy-builder.fr/guides/pergola"
+```
+
+**Voie 2 — Tool `Bash`** (plus direct, sans la couche skill) :
+```
+node /chemin/run.py crux --url ...
+```
+
+### Comparaison stratégique scripts custom vs blog-google
+
+| Critère | Scripts custom (Partie 1-2) | Skill `blog-google` (Partie 8) |
+|---|---|---|
+| **GSC performance/pages/queries** | ✅ Voie active | ⚠️ Doublon (Tier 1) |
+| **Bing Webmaster** | ✅ Voie unique | ❌ Pas couvert |
+| **PageSpeed Insights** | ❌ | ✅ |
+| **CrUX 25 sem historique** | ❌ | ✅ |
+| **NLP entity (E-E-A-T)** | ❌ | ✅ |
+| **YouTube research** | ❌ | ✅ |
+| **Knowledge Graph entity** | ❌ | ✅ |
+| **GA4 organic** (futur) | ❌ | ✅ Tier 2 |
+| **Keyword Planner** (futur) | ❌ | ✅ Tier 3 |
+| **Maintenance** | Code dans le repo, maîtrisé | Plugin externe AgriciDaniel |
+| **Stack** | Node natif | Python (`run.py`) |
+| **Format sortie** | CLI custom | JSON + Markdown standardisé |
+
+### Verdict hybride DIY Builder
+
+**Garder les scripts custom** pour les audits routiniers GSC + Bing (rythme
+hebdomadaire). C'est rapide, versionné, maîtrisé.
+
+**Utiliser `blog-google` Tier 0** pour les audits ponctuels où nos scripts
+ne couvrent pas :
+- Audit PageSpeed avant une refonte de page
+- Suivi mensuel CrUX (Core Web Vitals) pour repérer les régressions
+- Audit NLP entity sur un nouvel article (signal E-E-A-T pour Google Quality Raters)
+- Research YouTube pour embed dans un futur guide
+
+Pas de migration. Pas de remplacement. **Ajout en complément**.
+
+### Sécurité
+
+| Credential | Stockage | Permissions |
+|---|---|---|
+| `~/.config/claude-seo/google-api.json` | Hors repo | 600 |
+| API key restreinte aux 5 APIs Tier 0 | — | Limite l'exploitation si fuite |
+| Gitignore | `.config/claude-seo/*` côté repo (par sécurité même si hors repo) | — |
+
+### Pièges connus blog-google
+
+| Piège | Symptôme | Fix |
+|---|---|---|
+| API non activée sur le projet GCP | 403 `SERVICE_DISABLED` | `gcloud services enable <api>.googleapis.com` |
+| API key non restreinte au bon set d'APIs | 403 `API_KEY_HTTP_REFERRER_BLOCKED` ou `PERMISSION_DENIED` | Re-vérifier les API restrictions dans UI Console |
+| Cloud NLP demande billing | `UREQ_PROJECT_BILLING_NOT_FOUND` à l'activation | Activer billing card sur le projet GCP OU exclure `language.googleapis.com` du set |
+| Quota PageSpeed dépassé | 429 | 25 000 req/jour gratuit, normalement large |
+| Quota CrUX dépassé | 429 | 100 req/100 secondes — espacer les appels |
+| CrUX renvoie "no data" | Pas un bug, le site est trop petit | Seuil ~5000 visites Chrome / 28 jours requis par Google. Attendre que le trafic grimpe. |
+| Python 3.x version trop ancienne | `SyntaxError` | Python 3.10+ recommandé |
+| `pagespeed_check.py:285 KeyError audit_details` | Bug du skill (v1.9.1) | Utiliser https://pagespeed.web.dev manuellement OU attendre fix mainteneur |
+| Argument `--url` rejeté | Le skill attend URL en arg positionnel, pas en flag | `script "https://..."` au lieu de `script --url "..."` |
+| `youtube_search` invalide sans sous-commande | Le script attend `{search|video|channel}` en 1er argument | `youtube_search search "query"` |
+
+### État réel observé sur DIY Builder (2026-06-02)
+
+| Test | État | Détails |
+|---|---|---|
+| Auth check Tier 0 | ✅ | API key restreinte aux 4 APIs (PSI, CrUX, KG, YouTube) |
+| YouTube search | ✅ | 3 vidéos retournées avec metadata complète (vues, likes, durée) en JSON |
+| PageSpeed Insights | ❌ | Bug skill `KeyError audit_details` dans `pagespeed_check.py:285`. Workaround : utiliser pagespeed.web.dev en UI directe |
+| CrUX (current) | ❌ data | Site trop petit, ~210 visiteurs uniques/mois Umami vs seuil ~5000 Chrome/28j |
+| CrUX history | ❌ data | Idem, attendre 6-12 mois |
+| NLP entity (Cloud NLP) | ⏭ pas testé | API exclue du Tier 0 (billing requis). À ajouter quand billing card configurée si besoin |
+
+**Verdict pratique** : à ce stade, le skill `blog-google` est utile pour
+**YouTube research uniquement** côté DIY Builder. Les fonctionnalités SEO
+plus avancées (PSI, CrUX, NLP) demandent soit un fix mainteneur (PSI),
+soit du temps (CrUX), soit le billing GCP (NLP).
+
+Pour les audits Core Web Vitals dans l'attente du seuil CrUX,
+**Google PageSpeed Insights en UI directe** (https://pagespeed.web.dev)
+reste la voie active. Saisir l'URL, copier-coller le score dans la session
+Claude. Pas idéal mais fonctionnel.
+
+### Configuration en place sur cette machine (2026-06-02)
+
+- ✅ APIs activées : `pagespeedonline`, `chromeuxreport`, `kgsearch`, `youtube`, `apikeys`
+- ⏭ API non activée : `language.googleapis.com` (NLP, billing requis)
+- ✅ API key restreinte créée : `claude-blog-google-tier0`
+  (`uid 5fe40d19-c351-4dcc-b7ac-f71f43c4ae09` dans le projet `diy-builder-gsc`)
+- ✅ Config locale : `~/.config/claude-seo/google-api.json` (chmod 600)
+
+La valeur de l'API key n'est **pas dans ce document** par sécurité.
+Elle est dans `~/.config/claude-seo/google-api.json` uniquement.
+Pour la rotation : Google Cloud Console → API & Services → Credentials →
+trouver `claude-blog-google-tier0` → Régénérer.
+
+
+
+
 
 ```bash
 # frontend/.env.local (gitignored)
