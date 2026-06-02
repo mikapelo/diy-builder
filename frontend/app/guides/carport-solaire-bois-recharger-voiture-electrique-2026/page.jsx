@@ -185,54 +185,177 @@ export default function CarportSolaireBoisVE2026Page() {
 
         {/* ════════════ H2.1 ════════════ */}
         <h2 className="content-h2">1. Pourquoi un carport solaire bois plutôt qu&apos;en alu ou en acier&nbsp;?</h2>
-        {/* PHASE B — content-snippet (45 mots) + corps + tableau d'arbitrage.
-            H3 : bois (NF DTU 31.1) · acier (ancrage/corrosion) · alu (coût ×2-3, durée 50 ans) · arbitrage.
-            Chiffres CIBLE à fact-checker :
-              • alu coût ×2-3 du bois → relevé fournisseurs (à sourcer, sinon fourchette)
-              • durée de vie alu 50 ans vs bois traité classe 4 25-30 ans → doc fabricant / DTU
-            Différenciateur SERP : justifier le BOIS (vs Carport-solaire.com / EDF Solutions). */}
-        <p className="content-snippet">{/* PHASE B */}</p>
+        <p className="content-snippet">
+          Le bois reste le choix le plus accessible pour un carport solaire&nbsp;: il
+          utilise des sections de charpente standard, se monte avec de l&apos;outillage
+          courant et revient nettement moins cher que l&apos;aluminium. L&apos;acier et
+          l&apos;alu ne se justifient qu&apos;en bord de mer ou quand on cherche une
+          garantie de très longue durée sans entretien.
+        </p>
+        <p className="content-body">
+          Une structure de carport reprend exactement la logique d&apos;une pergola
+          couverte&nbsp;: des poteaux, des longerons, des chevrons, mais avec une toiture
+          qui porte des panneaux. Le bois y a trois atouts concrets. Il se travaille avec
+          des sections de charpente que toutes les enseignes tiennent en stock (poteaux
+          carrés, longerons, chevrons), il se pose à deux personnes avec une visseuse et
+          un niveau, et un charpentier local sait le monter sans matériel spécifique. À
+          surface égale, une ossature bois revient couramment bien moins cher qu&apos;une
+          structure aluminium équivalente.
+        </p>
+        <p className="content-body">
+          L&apos;acier galvanisé tient des portées plus longues sans poteau intermédiaire,
+          mais il impose un ancrage béton lourd et reste sensible à la corrosion en bord
+          de mer si la galvanisation est entaillée à la pose. L&apos;aluminium ne rouille
+          pas et dure plusieurs décennies sans entretien, mais son prix d&apos;achat est
+          nettement supérieur à celui du bois&nbsp;: c&apos;est le matériau des carports
+          solaires «&nbsp;prêts à poser&nbsp;» du commerce, qui facturent autant le design
+          que la matière.
+        </p>
+        <p className="content-body">
+          L&apos;arbitrage tient en quatre questions&nbsp;: votre climat (le bord de mer
+          pousse vers l&apos;alu), votre budget (le bois gagne), votre envie de manipuler
+          du bois traité, et la durée pendant laquelle vous gardez la maison. Pour un
+          projet d&apos;autoconstruction où l&apos;on cherche le meilleur rapport
+          coût/maîtrise, le bois traité classe 4 est le point de départ logique — et c&apos;est
+          la structure que calcule notre{' '}
+          <Link href="/pergola" className="content-link">simulateur pergola</Link>.
+        </p>
 
         {/* ════════════ H2.2 ════════════ */}
         <h2 className="content-h2">2. Combien produit réellement un carport solaire de 3 kWc en France&nbsp;?</h2>
-        {/* PHASE B — content-snippet (50 mots) + corps.
-            H3 : base 1 kWc · 3 régions · orientation · pente.
-            Chiffres CIBLE — SOURCE OFFICIELLE OBLIGATOIRE (PVGIS, recalcul ponctuel) :
-              • 1 kWc France = 950-1 350 kWh/an → PVGIS re.jrc.ec.europa.eu/pvg_tools
-              • Lille 3 kWc sud 30° = 2 850 kWh/an → PVGIS (RECALCULER au jour J)
-              • Lyon = 3 450 kWh/an → PVGIS (RECALCULER)
-              • Marseille = 4 050 kWh/an → PVGIS (RECALCULER)
-              • -10 % par 15° d'écart au sud → PVGIS / ADEME
-            ⚠️ Ces productions DOIVENT être recalculées sur PVGIS le jour de la rédaction. */}
-        <p className="content-snippet">{/* PHASE B */}</p>
+        <p className="content-snippet">
+          Un carport solaire de 3 kWc orienté plein sud produit, selon l&apos;outil PVGIS de
+          la Commission européenne (calcul de juin 2026), entre 3 000 kWh/an à Lille et
+          4 500 kWh/an à Marseille à la pente d&apos;un carport monopente (15°). En inclinant
+          à 30°, on gagne quelques pour cent&nbsp;: jusqu&apos;à 4 771 kWh/an à Marseille.
+          L&apos;ombre portée et l&apos;orientation pèsent plus que la région.
+        </p>
+        <p className="content-body">
+          La référence de base&nbsp;: en France métropolitaine, 1 kWc installé produit de
+          l&apos;ordre de 1 000 à 1 500 kWh par an selon la latitude et l&apos;ensoleillement.
+          Pour un carport de 3 kWc — sept panneaux d&apos;environ 430 Wc, soit à peu près
+          14 m² de toiture — voici les productions réelles recalculées sur{' '}
+          <a href="https://re.jrc.ec.europa.eu/pvg_tools/fr/" target="_blank" rel="noopener noreferrer" className="content-link">PVGIS</a>{' '}
+          (base de données de la Commission européenne, relevé de juin 2026), plein sud,
+          pertes système de 14&nbsp;%&nbsp;:
+        </p>
+
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>Ville</th>
+              <th>Pente 15° (carport monopente)</th>
+              <th>Pente 30° (inclinaison optimale)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lille</td>
+              <td>2 997 kWh/an</td>
+              <td>3 174 kWh/an</td>
+            </tr>
+            <tr>
+              <td>Lyon</td>
+              <td>3 603 kWh/an</td>
+              <td>3 800 kWh/an</td>
+            </tr>
+            <tr>
+              <td>Marseille</td>
+              <td>4 488 kWh/an</td>
+              <td>4 771 kWh/an</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p className="content-body">
+          Deux enseignements. D&apos;abord, l&apos;écart nord-sud est réel mais pas
+          écrasant&nbsp;: Marseille produit environ 50&nbsp;% de plus que Lille, pas le
+          double. Ensuite, la pente plate d&apos;un carport (10 à 15°) ne coûte que 4 à
+          6&nbsp;% de production par rapport à l&apos;inclinaison optimale de 30° — un
+          compromis acceptable, d&apos;autant qu&apos;une pente faible améliore la
+          production d&apos;été, justement quand on roule et qu&apos;on climatise.
+        </p>
+        <p className="content-body">
+          Ce qui fait vraiment chuter la production, c&apos;est l&apos;orientation et
+          l&apos;ombre. Chaque écart notable par rapport au plein sud retire plusieurs pour
+          cent sur l&apos;année, et une orientation est ou ouest fait perdre 15 à 20&nbsp;%.
+          Une ombre portée d&apos;arbre ou de cheminée sur ne serait-ce qu&apos;un panneau,
+          aux heures de pointe, pénalise toute la chaîne si l&apos;onduleur est central —
+          d&apos;où l&apos;intérêt des micro-onduleurs, détaillé plus bas.
+        </p>
 
         {/* ════════════ H2.3 ════════════ */}
         <h2 className="content-h2">3. Combien d&apos;autonomie pour la voiture, vraiment&nbsp;?</h2>
-        {/* PHASE B — content-snippet (45 mots) + corps. Convertir kWh → km.
-            H3 : conversion par modèle · scénario Lyon+Zoé · piège (charge 10h-16h) · borne pilotée.
-            Chiffres CIBLE — fiches WLTP constructeurs (sourcer chaque modèle) :
-              • Zoé 17, Tesla M3 16, e-208 17, Dacia Spring 14, Kona 15 kWh/100km → fiches constructeur
-              • « 20 000 km/an Lyon 3 kWc + Zoé » → calcul dérivé PVGIS Lyon (cohérence H2.2)
-              • revente surplus 0,04 €/kWh → CRE (cohérence H2.7) */}
-        <p className="content-snippet">{/* PHASE B */}</p>
+        <p className="content-snippet">
+          Une voiture électrique citadine consomme 14 à 18 kWh aux 100 km en cycle WLTP. Un
+          carport 3 kWc à Lyon produit environ 3 600 kWh/an&nbsp;: de quoi parcourir près de
+          21 000 km avec une Renault Zoé — mais seulement si la voiture charge en journée,
+          quand le soleil produit. La nuance change tout le calcul.
+        </p>
+        <p className="content-body">
+          Le calcul de base est simple. La Renault Zoé homologue une consommation WLTP de
+          17,2 kWh/100 km en version R110 (17,7 en R135). À Lyon, un carport 3 kWc produit
+          3 603 kWh/an à 15° de pente. En théorie, 3 603 ÷ 17,2 × 100 ≈ 20 900 km par an —
+          plus que le kilométrage annuel moyen d&apos;un automobiliste français. La plupart
+          des citadines et compactes électriques se situent dans la même fourchette WLTP,
+          de 14 kWh/100 km pour les plus sobres à 18 pour les plus lourdes.
+        </p>
+        <p className="content-body">
+          Mais ce «&nbsp;en théorie&nbsp;» cache le vrai piège du solaire pour la recharge.
+          Un panneau ne produit qu&apos;en journée, avec un pic entre 10 h et 16 h. Si votre
+          voiture est au bureau à ces heures-là, elle ne profite pas de votre production&nbsp;:
+          vous injectez le surplus sur le réseau à 0,04 €/kWh (tarif de rachat T2 2026, voir
+          plus bas), puis vous rachetez l&apos;électricité le soir au tarif plein. Le gain
+          réel s&apos;effondre.
+        </p>
+        <p className="content-body">
+          La solution est une borne pilotée par la production solaire (suivi de la puissance
+          disponible en temps réel)&nbsp;: elle ne charge la voiture que lorsque les panneaux
+          produisent un surplus, et module la puissance pour coller à la production. C&apos;est
+          ce qui distingue un carport solaire utile d&apos;un gadget — un point développé dans
+          la section suivante sur le choix de la borne.
+        </p>
 
         {/* CTA 2 — milieu (après équipements H2.5) : voir plus bas, juste après H2.5 */}
 
         {/* ════════════ H2.4 ════════════ */}
         <h2 className="content-h2">4. Structure bois&nbsp;: sections, plan et matériaux</h2>
-        {/* PHASE B — content-snippet (50 mots) + corps + tableau 6 (récap matériaux).
-            VALEUR TECHNIQUE DIY Builder — reprendre le simulateur pergola.
-            H3 : dimensions courantes · sections DTU 31.1 · toiture/charge panneaux+neige · ancrage · essence.
-            Chiffres CIBLE — DTU 31.1 / Eurocode (CSTB) :
-              • poteaux 120×120 mm (3 m / 1,80 m sous structure) → NF DTU 31.1 (vérifier CSTB)
-              • longerons 75×175, chevrons 80×50 entraxe 50 cm → DTU 31.1 / NF EN 1995-1-1
-              • charge panneaux ~20 kg/m² + neige jusqu'à 120 kg/m² zone 3 → Eurocode 1 NF EN 1991-1
-              • plots béton 40×40 cm à 80 cm hors-gel → DTU fondations
-            Liens : /guides/pergola (pilier) + /pergola (simulateur). */}
-        <p className="content-snippet">{/* PHASE B */}</p>
-        {/* maillage H2.4 — à intégrer dans le corps rédigé :
-            <Link href="/guides/pergola">guide complet pergola bois DTU 31.1</Link>
-            <Link href="/pergola">simulateur pergola DIY Builder</Link> */}
+        <p className="content-snippet">
+          Un carport pour une voiture mesure environ 5×3 m (15 m²), deux voitures 5×6 m. La
+          structure se dimensionne comme une pergola couverte, avec deux différences&nbsp;:
+          la toiture porte les panneaux (de l&apos;ordre de 15 à 20 kg/m² avec les rails) et
+          doit encaisser la charge de neige de votre région. Ancrage sur plots béton
+          hors-gel, bois traité classe 4 au contact du sol.
+        </p>
+        <p className="content-body">
+          La structure d&apos;un carport est celle d&apos;une pergola monopente que l&apos;on
+          couvre&nbsp;: des poteaux ancrés au sol, des longerons qui les relient, des
+          chevrons qui portent la toiture. Notre{' '}
+          <Link href="/pergola" className="content-link">simulateur pergola</Link>{' '}
+          calcule directement ces sections selon les dimensions et la portée, et le{' '}
+          <Link href="/guides/pergola" className="content-link">guide pergola complet</Link>{' '}
+          détaille le choix des essences, l&apos;ancrage et l&apos;entretien. Cette section ne
+          couvre que ce qui change avec une toiture solaire.
+        </p>
+        <p className="content-body">
+          Le premier point dur, c&apos;est la charge. Aux panneaux et à leurs rails de
+          fixation — de l&apos;ordre de 15 à 20 kg/m² de charge permanente — s&apos;ajoute la
+          charge climatique de neige et de vent, imposée par l&apos;Eurocode 1 (NF EN 1991).
+          Cette charge varie fortement selon la zone de neige&nbsp;: de quelques dizaines de
+          kg/m² en plaine à plus de 100 kg/m² en altitude. Concrètement, une toiture de
+          carport doit être dimensionnée pour la neige de votre commune, pas seulement pour
+          le poids des panneaux — c&apos;est le calcul que fait le simulateur en fonction de
+          la portée.
+        </p>
+        <p className="content-body">
+          Le second point dur, c&apos;est l&apos;ancrage. Une toiture pleine de panneaux
+          offre une prise au vent qu&apos;une pergola ajourée n&apos;a pas&nbsp;: l&apos;effort
+          de soulèvement impose des fondations béton sérieuses (plots coulés sous la
+          profondeur hors-gel de la région) et des sabots galvanisés, jamais de simples plots
+          à visser. Côté bois, le contact avec le sol exige une essence traitée classe 4
+          (pin autoclave ou douglas traité)&nbsp;; la classe 3 suffit pour les éléments hors
+          sol, jamais pour un poteau scellé.
+        </p>
 
         {/* ════════════ H2.5 ════════════ */}
         <h2 className="content-h2">5. Panneaux, onduleur et bornes&nbsp;: comment choisir</h2>
