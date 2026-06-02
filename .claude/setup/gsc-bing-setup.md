@@ -631,6 +631,110 @@ Elle est dans `~/.config/claude-seo/google-api.json` uniquement.
 Pour la rotation : Google Cloud Console → API & Services → Credentials →
 trouver `claude-blog-google-tier0` → Régénérer.
 
+---
+
+## Partie 9 — IndexNow (Bing + Yandex + Seznam + Naver)
+
+**Pas Google.** IndexNow est un protocole de notification d'URL pour les
+moteurs de recherche **sauf Google** (qui a son propre Indexing API,
+limité à 10 URLs/jour vs **10 000/jour pour Bing IndexNow**).
+
+Particulièrement utile après un gros refactor SEO (ex: fix /liste GSC
+du 2026-06-01 sur 9 URLs) pour pousser la re-crawl sans attendre le
+crawl naturel (10-30 jours).
+
+### Architecture (3 pièces)
+
+```
+1. Clé hex (32 chars min)        2. Fichier de vérification       3. Script Node
+   stockée en .env.local             frontend/public/<key>.txt        scripts/indexnow-submit.js
+                                     servi publiquement
+   INDEXNOW_KEY=<key>             contenu = la clé en plain text  POST api.indexnow.org/indexnow
+                                                                       body : { host, key, keyLocation, urlList }
+```
+
+⚠️ La clé est **publique par design** (exigence du protocole : exposée à
+`https://<host>/<key>.txt`). C'est un « shared secret » identifiant
+l'éditeur, pas un secret cryptographique. Donc OK de la commit dans le repo.
+
+### Setup (15 min)
+
+```bash
+# 1. Générer une clé hex
+openssl rand -hex 16
+# → ex: 8dd4d9d4ed4f018c0361801d741b4198
+
+# 2. Créer le fichier de vérification public
+echo -n "8dd4d9d4ed4f018c0361801d741b4198" > frontend/public/8dd4d9d4ed4f018c0361801d741b4198.txt
+
+# 3. Ajouter la variable dans frontend/.env.local
+echo 'INDEXNOW_KEY=8dd4d9d4ed4f018c0361801d741b4198' >> frontend/.env.local
+
+# 4. Commit + push (le .txt doit être déployé pour que IndexNow valide)
+git add frontend/public/<key>.txt scripts/indexnow-submit.js
+git commit -m "feat(seo): câblage IndexNow"
+git push origin main
+
+# 5. Attendre que Vercel ait fini de déployer (~45s)
+# Vérifier que la clé est servie :
+curl https://www.diy-builder.fr/<key>.txt
+# → doit retourner exactement la clé en plain text
+```
+
+### Commandes habituelles
+
+```bash
+# Vérifier que la clé est servie publiquement
+node scripts/indexnow-submit.js --test
+
+# Soumettre 1 ou plusieurs URLs (jusqu'à 10 000)
+node scripts/indexnow-submit.js /guides/pergola
+node scripts/indexnow-submit.js /cabanon /pergola /cloture
+
+# Soumettre toutes les URLs du sitemap (post gros refactor)
+node scripts/indexnow-submit.js --sitemap
+```
+
+### Codes HTTP de réponse
+
+| Code | Sens |
+|---|---|
+| 200 | URLs acceptées et traitées immédiatement |
+| 202 | URLs acceptées — traitement asynchrone |
+| 400 | Format URL invalide |
+| 403 | Clé pas servie publiquement ou clé invalide |
+| 422 | URLs dupliquées ou hors domaine |
+| 429 | Rate limit dépassé (réessayer plus tard) |
+
+### État opérationnel (2026-06-02)
+
+- ✅ Clé `8dd4d9d4ed4f018c0361801d741b4198` générée (commit `61b0c0d`)
+- ✅ Fichier `frontend/public/8dd4d9d4ed4f018c0361801d741b4198.txt` déployé
+- ✅ Servi en live : `https://www.diy-builder.fr/8dd4d9d4ed4f018c0361801d741b4198.txt`
+- ✅ Script `scripts/indexnow-submit.js` en place
+- ✅ Premier batch soumis avec succès : 23 URLs du sitemap (HTTP 200)
+  → re-crawl Bing/Yandex/Seznam/Naver imminent
+
+### Workflow recommandé
+
+| Quand | Action |
+|---|---|
+| Modification d'une page guide | `node scripts/indexnow-submit.js /guides/<slug>` |
+| Nouveau article publié | `node scripts/indexnow-submit.js /guides/<slug>` |
+| Gros refactor SEO (≥5 URLs touchées) | `node scripts/indexnow-submit.js --sitemap` |
+| Suspicion clé compromise | Régénérer (`openssl rand -hex 16`) + recréer fichier .txt + push + ré-update `.env.local` |
+
+### Pièges connus IndexNow
+
+| Piège | Symptôme | Fix |
+|---|---|---|
+| Clé pas servie en live | HTTP 403 sur l'API | Vérifier `curl https://<host>/<key>.txt` retourne la clé |
+| Vercel pas encore déployé | HTTP 403 transitoire | Attendre 45-60s après push avant de tester |
+| URL hors domaine soumise | HTTP 422 | Vérifier que toutes les URLs sont sur le même domaine que la clé |
+| Sitemap manquant | `--sitemap` plante | Vérifier `https://<host>/sitemap.xml` accessible |
+| Bing ne réindexe pas | Pas d'effet visible | Normal : IndexNow accélère mais Bing décide quand re-crawler (heures à jours) |
+| Google ne réagit pas | Pas dans GSC | Normal : Google n'a jamais rejoint IndexNow. Indexing API ou attendre crawl naturel. |
+
 
 
 
