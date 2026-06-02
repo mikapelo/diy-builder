@@ -163,22 +163,27 @@ export default function CarportSolaireBoisVE2026Page() {
         </div>
         */}
 
-        {/* ─── INTRO (lead snippet-ready, ~50 mots) ──────────────────────────
-            PHASE B — rédiger. Chiffres à fact-checker AVANT injection :
-              • amortissement 8-15 ans → résultat des calculs ROI H2.8 (PVGIS + tarifs CRE/EDF)
-              • « 2 m² de toiture » → cadrage rédactionnel, OK
-            Aucun chiffre tant que les sources H2.8 ne sont pas capturées + datées. */}
         <p className="content-lead">
-          {/* PHASE B : intro 50 mots, réponse-first, sans chiffre non vérifié */}
+          Un carport solaire en bois abrite la voiture et la recharge avec l&apos;énergie de
+          sa propre toiture. Pour 3 kWc, comptez 6 500 à 9 000 € en autoconstruction, et une
+          production de 3 000 kWh/an à Lille à près de 4 500 kWh/an à Marseille (calcul PVGIS,
+          juin 2026). La rentabilité, elle, dépend surtout de l&apos;autoconsommation&nbsp;:
+          d&apos;une douzaine d&apos;années dans le meilleur cas à plus de vingt ans dans le
+          pire. Ce guide détaille la structure bois, les sept démarches administratives et le
+          budget réel — sans gonfler les chiffres.
         </p>
 
-        {/* ─── ENCART « À RETENIR » (fin d'intro) ────────────────────────────
-            PHASE B — bloc récap. Chiffres CIBLE (à fact-checker, brief §encart) :
-              • budget 6 500 € (DIY) à 18 000 € (RGE) → tableaux 2 (sources prix)
-              • production 2 850 (Lille) à 4 050 kWh/an (Marseille) → PVGIS
-              • amortissement 8 à 15 ans → calculs H2.8
-              • 7 démarches, 2 à 4 mois → tableau 4 (service-public/Enedis/Consuel) */}
-        {/* <div className="content-disclaimer"> ... À RETENIR ... </div> */}
+        {/* ─── ENCART « À RETENIR » ─── */}
+        <div className="content-takeaway">
+          <p className="content-takeaway-title">À retenir</p>
+          <ul>
+            <li>Carport bois 3 kWc + borne&nbsp;: 6 500 € (autoconstruction) à 18 000 € (installateur RGE clé en main).</li>
+            <li>Production&nbsp;: 3 000 kWh/an à Lille, jusqu&apos;à 4 800 kWh/an à Marseille (PVGIS, pente 15 à 30°).</li>
+            <li>Amortissement&nbsp;: ~12 ans (DIY, sud, forte autoconsommation), au-delà de 20 ans si l&apos;installation est chère et peu autoconsommée.</li>
+            <li>Sept démarches obligatoires, 2 à 4 mois de délai&nbsp;; Consuel à 201,17 € TTC.</li>
+            <li>La TVA réduite et la prime à l&apos;autoconsommation ne sont accessibles qu&apos;avec une pose par installateur RGE.</li>
+          </ul>
+        </div>
 
         {/* CTA 1 — fin intro : DIYer qui veut chiffrer la structure */}
         <CTALead projectHref="/pergola" projectLabel="la structure du carport" />
@@ -359,68 +364,327 @@ export default function CarportSolaireBoisVE2026Page() {
 
         {/* ════════════ H2.5 ════════════ */}
         <h2 className="content-h2">5. Panneaux, onduleur et bornes&nbsp;: comment choisir</h2>
-        {/* PHASE B — content-snippet (45 mots) + corps + tableau 5 (bornes).
-            H3 : panneaux mono 400-450 Wc · marques EU vs Asie · onduleur central vs micro · borne · borne pilotée.
-            Chiffres CIBLE — fiches produit / spécifs (sourcer, marques citées factuellement, pas d'attaque) :
-              • 7 panneaux 430 Wc pour 3 kWc, ~14 m² → calcul direct
-              • bornes 3,7 / 7,4 / 11 kW vitesses charge → specs constructeurs
-              • borne pilotée ~800-1 200 € → relevé marché (fourchette datée)
-            Marques EN CONSTAT FACTUEL uniquement (principe non-négociable §2 editorial-seo-fr).
-            Lien : /guides/pergola-panneaux-solaires-diy-2026 (satellite cousin). */}
-        <p className="content-snippet">{/* PHASE B */}</p>
+        <p className="content-snippet">
+          Pour 3 kWc, comptez sept panneaux monocristallins d&apos;environ 430 Wc (à peu près
+          14 m²), un onduleur central ou des micro-onduleurs, et une borne de recharge de
+          7,4 kW pilotée par la production solaire. C&apos;est ce pilotage, plus que la
+          puissance brute, qui rend un carport solaire réellement utile pour la voiture.
+        </p>
+        <p className="content-body">
+          Les panneaux monocristallins de 400 à 450 Wc sont le standard 2026&nbsp;: sept
+          modules suffisent pour atteindre 3 kWc. Les références européennes (par exemple
+          Voltec, DualSun) coûtent plus cher que les modules asiatiques de premier rang
+          (Trina, Jinko, LONGi), pour un rendement comparable&nbsp;; le choix se joue sur la
+          garantie, l&apos;origine et le bilan carbone (ce dernier conditionne l&apos;accès à
+          la TVA réduite, voir plus bas).
+        </p>
+        <p className="content-body">
+          Sur l&apos;onduleur, deux écoles. L&apos;onduleur central (Solax, Fronius) est moins
+          cher mais aligne toute la chaîne sur le panneau le plus faible&nbsp;: une ombre sur
+          un seul module pénalise toute la production. Les micro-onduleurs (Enphase) coûtent
+          plus cher mais rendent chaque panneau indépendant — un vrai avantage sur un carport,
+          souvent exposé à l&apos;ombre d&apos;un arbre ou de la maison à certaines heures.
+        </p>
+        <p className="content-body">
+          La borne, enfin, est le maillon décisif. Sa puissance détermine la vitesse de
+          recharge&nbsp;:
+        </p>
 
-        {/* CTA 2 — Pro/Otovo. ⚠️ Otovo NON activé à ce jour → fallback /contact.
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>Puissance borne</th>
+              <th>Vitesse de charge indicative</th>
+              <th>Pour quel usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3,7 kW (16 A mono)</td>
+              <td>~25 km/h</td>
+              <td>Petit rouleur, moins de 50 km/jour</td>
+            </tr>
+            <tr>
+              <td>7,4 kW (32 A mono)</td>
+              <td>~45 à 50 km/h</td>
+              <td>Trajet domicile-travail</td>
+            </tr>
+            <tr>
+              <td>11 kW (16 A tri)</td>
+              <td>~75 à 80 km/h</td>
+              <td>Gros rouleur (surplus tiré du réseau)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p className="content-body">
+          Sur un carport 3 kWc, une borne 7,4 kW est le bon compromis. Mais le point clé
+          n&apos;est pas la puissance&nbsp;: c&apos;est le pilotage solaire. Une borne pilotée
+          (Wallbox, Schneider, Hager) lit la production en temps réel et ne charge la voiture
+          qu&apos;avec le surplus disponible, au lieu de tirer sur le réseau. Comptez de
+          l&apos;ordre de 800 à 1 200 € pour une borne pilotée, contre 400 à 700 € pour une
+          borne simple. Sur le principe du couplage panneaux + structure, notre{' '}
+          <Link href="/guides/pergola-panneaux-solaires-diy-2026" className="content-link">guide pergola + panneaux solaires</Link>{' '}
+          détaille les kits photovoltaïques compatibles avec une ossature bois.
+        </p>
+
+        {/* CTA 2 — Pro/Otovo. ⚠️ Otovo NON activé à ce jour → fallback simulateur.
             PHASE B : si Otovo signé, remplacer par <AffiliateLink> conforme loi 2023-451
             (mention « Lien partenaire affilié » + chip). Sinon garder le fallback ci-dessous. */}
         <CTALead projectHref="/pergola" projectLabel="ma structure ou comparer des devis" />
 
         {/* ════════════ H2.6 ════════════ */}
-        <h2 className="content-h2">6. Démarches administratives&nbsp;: 7 étapes obligatoires</h2>
-        {/* PHASE B — content-snippet (55 mots) + corps + tableau 4 (7 démarches).
-            VALEUR YMYL — ce qui freine les particuliers. Réponse-first.
-            Chiffres/réfs CIBLE — SOURCES OFFICIELLES OBLIGATOIRES :
-              • DP mairie Cerfa n° 13703*12 → service-public.fr/F17578 (vérifier version)
-              • Convention autoconso Enedis (gratuite, 1 mois) → enedis.fr
-              • Consuel visa Bleu = 186,31 € HT → consuel.fr/tarifs (VÉRIFIER)
-              • Raccordement Enedis PV-AC = 49,80 € HT → enedis.fr/catalogue (VÉRIFIER)
-              • Mise en service RGE QualiPV (TVA 5,5 % / prime) → arrêté 8 sept 2025 Légifrance
-              • Case 7BD Cerfa 2042 RICI → impots.gouv.fr
-            Lien : /guides/permis-cabanon-seuils-2026 (YMYL urbanisme). */}
-        <p className="content-snippet">{/* PHASE B */}</p>
+        <h2 className="content-h2">6. Démarches administratives&nbsp;: les 7 étapes</h2>
+        <p className="content-snippet">
+          Un carport solaire raccordé au réseau enchaîne sept démarches&nbsp;: déclaration
+          préalable en mairie, convention d&apos;autoconsommation Enedis, contrat de rachat
+          du surplus, attestation Consuel (201,17 € TTC en 2026), mise en service du
+          raccordement, et — si vous visez la TVA réduite ou la prime — pose par un
+          installateur certifié RGE. Comptez 2 à 4 mois entre la commande et la mise en
+          service.
+        </p>
+        <p className="content-body">
+          C&apos;est l&apos;étape qui décourage le plus de candidats à l&apos;autoconstruction,
+          alors qu&apos;elle est surtout une affaire de patience et d&apos;ordre. Voici la
+          séquence&nbsp;:
+        </p>
+
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Démarche</th>
+              <th>Coût</th>
+              <th>Quand</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Déclaration préalable de travaux en mairie (création de toiture)</td>
+              <td>Gratuit</td>
+              <td>Toujours</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Convention d&apos;autoconsommation Enedis</td>
+              <td>Gratuit</td>
+              <td>Si raccordement réseau</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Contrat de rachat du surplus (EDF OA)</td>
+              <td>Gratuit</td>
+              <td>Si revente du surplus</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Attestation Consuel «&nbsp;visa Bleu&nbsp;» (Cerfa 15523)</td>
+              <td>201,17 € TTC</td>
+              <td>Toujours (sécurité électrique)</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Mise en service de l&apos;injection (Enedis)</td>
+              <td>~50 € sur Linky existant</td>
+              <td>Si surplus injecté</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Pose / mise en service par installateur RGE QualiPV</td>
+              <td>Incluse dans la prestation</td>
+              <td>Si TVA 5,5 % ou prime visées</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Déclaration aux impôts (prime à l&apos;autoconsommation)</td>
+              <td>Gratuit</td>
+              <td>Si demande de prime</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p className="content-body">
+          Trois points méritent une précision. La déclaration préalable de travaux se dépose
+          en mairie (formulaire de DP à télécharger sur{' '}
+          <a href="https://www.service-public.fr/particuliers/vosdroits/F17578" target="_blank" rel="noopener noreferrer" className="content-link">service-public.fr</a>)&nbsp;:
+          un carport crée une toiture, il la déclenche systématiquement. En zone protégée
+          (périmètre Architecte des Bâtiments de France), l&apos;instruction s&apos;allonge et
+          l&apos;orientation des panneaux peut être imposée. Pour les seuils d&apos;urbanisme
+          d&apos;une construction de jardin, voir notre{' '}
+          <Link href="/guides/permis-cabanon-seuils-2026" className="content-link">guide des seuils de déclaration et permis</Link>.
+        </p>
+        <p className="content-body">
+          L&apos;attestation Consuel «&nbsp;visa Bleu&nbsp;» (Cerfa 15523) est obligatoire pour
+          toute installation de production raccordée&nbsp;: elle coûte 201,17 € TTC en version
+          électronique selon le barème Consuel applicable depuis le 2 septembre 2025, et impose
+          le respect de la norme NF C 15-100. Côté Enedis, distinguez deux cas&nbsp;: si vous
+          avez déjà un compteur Linky, la mise en service de l&apos;injection du surplus est une
+          simple prestation d&apos;une cinquantaine d&apos;euros&nbsp;; un raccordement neuf
+          complet (sans branchement existant ou avec renforcement) coûte beaucoup plus et varie
+          selon le chantier — demandez le devis exact à Enedis. Enfin, point décisif&nbsp;: la
+          TVA réduite et la prime à l&apos;autoconsommation exigent une pose par un installateur
+          certifié RGE QualiPV — un carport monté soi-même y reste inéligible, ce que détaille
+          la section budget.
+        </p>
 
         {/* ════════════ H2.7 ════════════ */}
         <h2 className="content-h2">7. Budget réel&nbsp;: DIY, kit prêt à poser et installateur RGE</h2>
-        {/* PHASE B — content-snippet (50 mots) + corps + tableaux 1, 2, 3.
-            H3 : DIY · kit prêt à poser · installateur RGE · TVA · aides.
-            Chiffres CIBLE — sources prix + Légifrance/CRE :
-              • DIY 6 500-9 000 € / kit 8 000-12 000 € / RGE 12 000-18 000 € (3 kWc)
-                → relevés marché datés (fourchettes défendables, pas de prix inventé)
-              • TVA 5,5 % conditions → arrêté 8 sept 2025 (Légifrance) ; 10 % → CGI 278-0 bis ; 20 % rés. secondaire
-              • Prime autoconso 80 €/kWc < 3 kWc → CRE T2 2026
-            ⚠️ Tarifs kits (tableau 1 Cover Green / Carport-solaire.com / Beem) = fact-check au jour J
-               (évolution rapide), sinon retirer du tableau. */}
-        <p className="content-snippet">{/* PHASE B */}</p>
+        <p className="content-snippet">
+          Pour un carport solaire 3 kWc avec borne, comptez en ordre de grandeur 2026&nbsp;:
+          6 500 à 9 000 € en autoconstruction (structure bois + composants), 8 000 à 12 000 €
+          en kit prêt à poser, et 12 000 à 18 000 € en installation clé en main par un
+          professionnel RGE. La TVA réduite et la prime à l&apos;autoconsommation ne sont
+          accessibles qu&apos;avec la pose RGE.
+        </p>
+        <p className="content-body">
+          Les fourchettes ci-dessous sont des ordres de grandeur à affiner par des devis&nbsp;:
+          les prix des panneaux, des bornes et de la pose évoluent vite. La part structure
+          bois, en revanche, se chiffre précisément avec notre{' '}
+          <Link href="/pergola" className="content-link">simulateur</Link>, qui s&apos;appuie
+          sur les prix relevés chaque semaine en grande surface de bricolage.
+        </p>
 
-        {/* ─── ENCART « AVERTISSEMENT » (avant H2.8) ─────────────────────────
-            PHASE B — bloc rouge atténué (content-disclaimer). OBLIGATOIRE YMYL.
-            Mentionner projet d'arrêté 02/04/2026 (suppression prime + surplus 0,011 €/kWh),
-            lien Légifrance, daté T2 2026, « texte non encore en vigueur ».
-            → vérifier l'état réglementaire au jour de la publi (peut avoir été voté). */}
-        {/* <div className="content-disclaimer"> ... AVERTISSEMENT projet d'arrêté ... </div> */}
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>Scénario (3 kWc + borne)</th>
+              <th>Coût indicatif 2026</th>
+              <th>TVA</th>
+              <th>Prime &amp; aides</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Autoconstruction (bois local + composants)</td>
+              <td>6 500 à 9 000 €</td>
+              <td>20 %</td>
+              <td>Aucune</td>
+            </tr>
+            <tr>
+              <td>Kit prêt à poser (pose perso)</td>
+              <td>8 000 à 12 000 €</td>
+              <td>20 %</td>
+              <td>Aucune</td>
+            </tr>
+            <tr>
+              <td>Installateur RGE clé en main</td>
+              <td>12 000 à 18 000 €</td>
+              <td>5,5 % si conditions réunies, sinon 10 %</td>
+              <td>Prime 80 €/kWc (240 € pour 3 kWc)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p className="content-body">
+          Le paradoxe est réel&nbsp;: l&apos;autoconstruction coûte le moins cher à l&apos;achat,
+          mais c&apos;est la seule voie qui n&apos;ouvre aucune aide. La TVA réduite à 5,5 % et
+          la prime à l&apos;autoconsommation sont réservées à la pose par un installateur
+          certifié RGE QualiPV. Pire, la TVA 5,5 % est devenue presque inaccessible depuis
+          l&apos;arrêté du 8 septembre 2025, qui impose un bilan carbone des modules très
+          strict (certification Certisolis) et un système de gestion d&apos;énergie&nbsp;: la
+          plupart des installations résidentielles restent donc à 10 % (en résidence
+          principale, au titre de l&apos;article 278-0 bis du Code général des impôts) ou à
+          20 %.
+        </p>
+        <p className="content-body">
+          Quant à la prime à l&apos;autoconsommation, elle s&apos;élève à 80 €/kWc pour les
+          installations jusqu&apos;à 9 kWc au deuxième trimestre 2026 (source CRE), soit 240 €
+          pour 3 kWc — un montant modeste au regard de l&apos;écart de prix entre
+          autoconstruction et pose RGE. Autrement dit&nbsp;: en autoconstruction, vous perdez
+          240 € de prime et l&apos;accès à la TVA réduite, mais vous économisez plusieurs
+          milliers d&apos;euros de main-d&apos;œuvre. L&apos;arbitrage penche vers le DIY pour
+          qui sait câbler une installation conforme — à condition de regarder la rentabilité
+          réelle, abordée juste après.
+        </p>
+
+        {/* ─── ENCART « AVERTISSEMENT » (avant H2.8) — OBLIGATOIRE YMYL ─── */}
+        <div className="content-disclaimer">
+          <strong>Avertissement&nbsp;:</strong> un projet d&apos;arrêté transmis au Conseil
+          supérieur de l&apos;énergie le 2 avril 2026 prévoit de supprimer la prime à
+          l&apos;autoconsommation et de ramener le tarif de rachat du surplus à 1,1 c€/kWh
+          (contre 4 c€/kWh actuellement). Texte non encore en vigueur à la date de
+          publication&nbsp;: s&apos;il était adopté, il allongerait sensiblement les durées
+          d&apos;amortissement ci-dessous. Vérifiez l&apos;état réglementaire au moment de
+          votre projet sur Légifrance et le site de la CRE.
+        </div>
 
         {/* ════════════ H2.8 ════════════ */}
         <h2 className="content-h2">8. Rentabilité&nbsp;: amortissement selon région et autoconsommation</h2>
-        {/* PHASE B — content-snippet (55 mots) + corps + tableau 3 (ROI).
-            ⚠️ Titre VOLONTAIREMENT neutralisé (le brief disait « 8 ans Lyon à 15 ans Lille ») :
-               ces chiffres sont des RÉSULTATS de calcul → à recalculer + sourcer avant d'entrer
-               dans le titre ET le corps.
-            Hypothèses CIBLE — SOURCES OFFICIELLES :
-              • tarif Bleu EDF ~0,1940 €/kWh (mai 2026) → edf.fr (VÉRIFIER, révision semestrielle)
-              • surplus EDF OA 0,04 €/kWh T2 2026 → CRE (VÉRIFIER)
-              • 3 scénarios optimiste/moyen/pessimiste → calculs dérivés PVGIS + tarifs
-            Claims INTERDITS (brief §K) : « 100 % autonome », « amortissable 5 ans », « TVA 5,5 % pour tous », « prime garantie ».
-            Formulations défendables : « couvre 30 à 70 % des besoins », « amortissement 8 à 15 ans selon région et autoconso ». */}
-        <p className="content-snippet">{/* PHASE B */}</p>
+        <p className="content-snippet">
+          Soyons francs&nbsp;: aux tarifs de 2026, un carport solaire de 3 kWc ne s&apos;amortit
+          vraiment que dans un cas — autoconstruction bon marché, région ensoleillée et forte
+          autoconsommation, soit une douzaine d&apos;années. Une installation chère, au nord,
+          avec peu d&apos;autoconsommation peut dépasser vingt ans, voire la durée de vie des
+          panneaux. La rentabilité tient à l&apos;autoconsommation, pas à la revente.
+        </p>
+        <p className="content-body">
+          Le principe du calcul&nbsp;: chaque kWh que vous consommez directement vous évite de
+          l&apos;acheter au tarif réglementé (0,1940 €/kWh, option Base 6 kVA, grille EDF du
+          1ᵉʳ février 2026)&nbsp;; chaque kWh injecté sur le réseau ne vous rapporte que le
+          tarif de rachat du surplus (0,04 €/kWh, barème CRE du 2ᵉ trimestre 2026). L&apos;écart
+          est de 1 à 5&nbsp;: autoconsommer vaut près de cinq fois plus que revendre. C&apos;est
+          pourquoi la rentabilité dépend d&apos;abord de la part que vous consommez sur place,
+          bien plus que de la région.
+        </p>
+
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>Scénario (3 kWc)</th>
+              <th>Coût</th>
+              <th>Production</th>
+              <th>Gain an 1</th>
+              <th>Amortissement*</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DIY · Marseille · autoconso 60 %</td>
+              <td>7 000 €</td>
+              <td>4 488 kWh</td>
+              <td>~594 €</td>
+              <td>~12 ans</td>
+            </tr>
+            <tr>
+              <td>Kit · Lyon · autoconso 50 %</td>
+              <td>10 000 €</td>
+              <td>3 603 kWh</td>
+              <td>~422 €</td>
+              <td>~24 ans</td>
+            </tr>
+            <tr>
+              <td>RGE · Lille · autoconso 40 %</td>
+              <td>13 760 € (après prime)</td>
+              <td>2 997 kWh</td>
+              <td>~305 €</td>
+              <td>plus de 40 ans</td>
+            </tr>
+          </tbody>
+        </table>
+        <p className="content-body" style={{ fontSize: '0.9em', opacity: 0.8 }}>
+          *Amortissement simple, à tarifs constants 2026, sans actualisation. La hausse
+          passée du prix de l&apos;électricité raccourcirait ces durées&nbsp;; le projet
+          d&apos;arrêté d&apos;avril 2026 (voir avertissement ci-dessus) les allongerait.
+        </p>
+
+        <p className="content-body">
+          Trois enseignements honnêtes. D&apos;abord, le solaire pour recharger sa voiture
+          n&apos;est pas un placement miracle&nbsp;: au prix de l&apos;électricité de 2026 et
+          avec un surplus racheté à 0,04 €/kWh, les durées d&apos;amortissement sont longues
+          dès que l&apos;installation coûte cher. Ensuite, le levier décisif est
+          l&apos;autoconsommation&nbsp;: une voiture qui charge en journée, une borne pilotée
+          et une consommation domestique diurne font basculer le calcul bien plus qu&apos;un
+          déménagement à Marseille. Enfin, l&apos;autoconstruction est ce qui sauve la
+          rentabilité&nbsp;: en divisant le coût initial, elle ramène l&apos;amortissement
+          dans la durée de vie des panneaux (25 à 30 ans).
+        </p>
+        <p className="content-body">
+          Notre conseil&nbsp;: ne construisez pas un carport solaire d&apos;abord pour
+          l&apos;argent, mais pour l&apos;usage — abriter la voiture et la recharger avec une
+          énergie que vous maîtrisez. La rentabilité vient en prime quand le projet est
+          bon marché et bien autoconsommé, pas l&apos;inverse.
+        </p>
 
         {/* CTA 3 — fin article : double choix DIY / Pro */}
         <CTALead projectHref="/pergola" projectLabel="mon carport solaire" />
@@ -431,34 +695,90 @@ export default function CarportSolaireBoisVE2026Page() {
             Chaque réponse contient des chiffres → fact-check obligatoire avant rédaction. */}
         <div className="content-faq">
           <h3 className="content-h3">Faut-il un permis de construire pour un carport solaire de 15 m²&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — DP vs PC, seuils urbanisme → service-public.fr */}</p>
+          <p className="content-body">
+            Non, une déclaration préalable de travaux suffit. Le permis de construire
+            n&apos;est exigé qu&apos;au-delà de 20 m² d&apos;emprise au sol (ou 40 m² en zone
+            urbaine couverte par un PLU). Mais comme un carport crée une toiture, la
+            déclaration préalable est systématique, même sous 5 m². En zone protégée
+            (Architecte des Bâtiments de France), un avis supplémentaire s&apos;ajoute.
+          </p>
 
           <h3 className="content-h3">Peut-on installer un carport solaire bois soi-même légalement&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — DIY structure OK ; raccordement réseau = Consuel obligatoire */}</p>
+          <p className="content-body">
+            Oui pour la structure bois et la pose des panneaux. La partie électrique peut
+            aussi être réalisée soi-même, mais l&apos;installation raccordée au réseau doit
+            obtenir une attestation Consuel (visa Bleu) qui vérifie la conformité à la norme
+            NF C 15-100. En revanche, la TVA réduite et la prime à l&apos;autoconsommation
+            exigent une pose par un installateur certifié RGE.
+          </p>
 
           <h3 className="content-h3">Combien produit un carport solaire de 3 kWc à l&apos;année&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — fourchette régionale → PVGIS (cohérence H2.2) */}</p>
+          <p className="content-body">
+            Selon l&apos;outil PVGIS de la Commission européenne (calcul de juin 2026), un
+            carport 3 kWc plein sud produit environ 3 000 kWh/an à Lille, 3 600 kWh/an à Lyon
+            et 4 500 kWh/an à Marseille à la pente d&apos;un carport (15°). En inclinant à 30°,
+            on gagne quelques pour cent, jusqu&apos;à 4 771 kWh/an à Marseille.
+          </p>
 
           <h3 className="content-h3">Quelle borne de recharge installer sur un carport solaire&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — 3,7 / 7,4 / 11 kW selon usage → specs (cohérence H2.5) */}</p>
+          <p className="content-body">
+            Pour un carport 3 kWc, une borne de 7,4 kW (32 A monophasé) est le bon compromis&nbsp;:
+            elle recharge environ 45 à 50 km d&apos;autonomie par heure. Le point décisif n&apos;est
+            pas la puissance mais le pilotage solaire&nbsp;: une borne pilotée ne charge la
+            voiture qu&apos;avec le surplus produit, au lieu de tirer sur le réseau.
+          </p>
 
           <h3 className="content-h3">La TVA 5,5 % s&apos;applique-t-elle si je pose moi-même mon carport solaire&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — non, pose RGE QualiPV requise → arrêté 8 sept 2025 Légifrance */}</p>
+          <p className="content-body">
+            Non. La TVA réduite à 5,5 % est réservée à la pose par un installateur certifié RGE
+            QualiPV, et soumise à des conditions strictes depuis l&apos;arrêté du 8 septembre
+            2025 (bilan carbone des modules, système de gestion d&apos;énergie). En
+            autoconstruction, vous restez à 20 %, ou 10 % en résidence principale au titre de
+            l&apos;article 278-0 bis du Code général des impôts.
+          </p>
 
           <h3 className="content-h3">Combien coûte le raccordement Enedis pour un carport solaire&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — montant € HT → enedis.fr/catalogue (VÉRIFIER) */}</p>
+          <p className="content-body">
+            Si vous avez déjà un compteur Linky, la mise en service de l&apos;injection du
+            surplus est une simple prestation d&apos;une cinquantaine d&apos;euros. Un
+            raccordement neuf complet (sans branchement existant, ou avec renforcement) coûte
+            beaucoup plus et varie selon le chantier&nbsp;: demandez le devis exact à Enedis.
+            L&apos;autoconsommation totale sans injection, elle, est gratuite.
+          </p>
 
           <h3 className="content-h3">Quel est le délai entre la commande et la mise en service&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — 2 à 4 mois → cohérence tableau 4 (Enedis/Consuel) */}</p>
+          <p className="content-body">
+            Comptez 2 à 4 mois en général. Ce délai cumule la déclaration préalable en mairie
+            (environ 1 mois d&apos;instruction), la convention d&apos;autoconsommation Enedis,
+            l&apos;obtention de l&apos;attestation Consuel et la mise en service du
+            raccordement. Une zone protégée (ABF) ou un raccordement neuf allonge ce délai.
+          </p>
 
           <h3 className="content-h3">Le bois du carport solaire doit-il être classe 3 ou classe 4&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — classe 4 au contact sol, classe 3 hors sol → DTU / norme EN 335 */}</p>
+          <p className="content-body">
+            Classe 4 pour tout élément au contact du sol ou exposé à une humidité permanente —
+            typiquement les poteaux scellés. Classe 3 suffit pour les éléments hors sol
+            (longerons, chevrons) protégés des remontées d&apos;eau. Le pin autoclave classe 4
+            et le douglas traité sont les essences les plus courantes pour une structure
+            extérieure durable.
+          </p>
 
           <h3 className="content-h3">Peut-on revendre le surplus d&apos;électricité produit par un carport solaire&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — EDF OA, tarif T2 2026 → CRE (cohérence H2.7/H2.8) */}</p>
+          <p className="content-body">
+            Oui, via un contrat d&apos;obligation d&apos;achat avec EDF OA. Le tarif de rachat
+            du surplus est de 0,04 €/kWh pour les installations jusqu&apos;à 9 kWc au 2ᵉ
+            trimestre 2026 (barème CRE), garanti 20 ans. C&apos;est cinq fois moins que ce que
+            vous économisez en autoconsommant&nbsp;: mieux vaut consommer sa production que la
+            revendre.
+          </p>
 
           <h3 className="content-h3">Comment se passe le contrôle Consuel sur un carport solaire&nbsp;?</h3>
-          <p className="content-body">{/* PHASE B — visa Bleu, NF C 15-100 → consuel.fr */}</p>
+          <p className="content-body">
+            Vous remplissez l&apos;attestation de conformité «&nbsp;visa Bleu&nbsp;» (Cerfa 15523)
+            qui certifie le respect de la norme NF C 15-100, puis le Consuel peut procéder à un
+            contrôle. Le coût est de 201,17 € TTC en version électronique (barème applicable
+            depuis le 2 septembre 2025). Sans cette attestation, pas de raccordement au réseau.
+          </p>
         </div>
 
         {/* ════════════ MAILLAGE INTERNE (brief §E) ════════════ */}

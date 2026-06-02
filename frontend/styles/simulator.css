@@ -3433,6 +3433,37 @@
   max-width: 640px;
 }
 
+/* Encart « À retenir » — synthèse des points clés en tête de guide */
+.content-takeaway {
+  font-family: 'Manrope', system-ui, sans-serif;
+  background: rgba(201, 151, 30, 0.06);
+  border: 1px solid rgba(201, 151, 30, 0.25);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 28px 0 36px;
+  max-width: 720px;
+}
+.content-takeaway-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v6-primary, #C9971E);
+  margin: 0 0 10px;
+}
+.content-takeaway ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.content-takeaway li {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--v6-ink, #2a2a2a);
+  margin-bottom: 8px;
+}
+.content-takeaway li:last-child { margin-bottom: 0; }
+
 .content-h2 {
   font-family: 'DM Serif Display', Georgia, serif;
   font-size: 22px;
