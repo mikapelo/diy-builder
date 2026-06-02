@@ -8,9 +8,9 @@ const OG_SUBTITLE = 'Seuils, Cerfa, zones ABF · service-public.fr';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cabanon`;
 
 export const metadata = {
-  title: 'Permis cabanon 2026 : seuils, Cerfa et délais d\'instruction',
+  title: 'Cabanon 2026 : permis ou pas ? Seuils 5/20/40 m²',
   description:
-    'Seuils 5/20/40 m², Cerfa par tranche, délais et zones spéciales (ABF, PLU, Natura 2000) pour construire un cabanon en 2026. Tableau complet.',
+    '5 m² : aucune démarche. 20 m² : déclaration. 40 m² : permis. La grille de décision 2026 avec Cerfa, délais d\'instruction et zones ABF / PLU.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/permis-cabanon-seuils-2026' },
   openGraph: {
     title: 'Permis et déclaration pour un cabanon en 2026 — Guide complet | DIY Builder',
