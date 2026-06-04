@@ -115,7 +115,7 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
             }}
           >
             <span className="material-symbols-outlined" style={{ fontSize: 17 }}>send</span>
-            Être recontacté pour mon projet
+            Demander un devis gratuit
           </button>
 
           <p className="pa-pivot-rgpd">

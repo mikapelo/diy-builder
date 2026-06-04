@@ -562,10 +562,10 @@ export default function DalleTutorielPage() {
         <div className="dalle-cta-artisan">
           <div className="dalle-cta-text">
             <strong>Vous préférez confier la réalisation ?</strong>
-            <span>Transmettez-nous votre projet calculé pour être recontacté(e).</span>
+            <span>Transmettez votre projet calculé pour recevoir un devis, sans engagement.</span>
           </div>
           <Link href="/" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
-            Être recontacté pour mon projet
+            Demander un devis gratuit
           </Link>
         </div>
 

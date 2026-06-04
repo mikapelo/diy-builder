@@ -113,7 +113,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
         className="modal-panel artisan-modal-panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Être recontacté pour mon projet"
+        aria-label="Demander un devis gratuit"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Bouton fermer : si succès, ferme proprement (pas d'event abandon) ; sinon track abandon */}
@@ -147,9 +147,9 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               <div className="artisan-modal-header-icon">
                 <span className="material-symbols-outlined">engineering</span>
               </div>
-              <h3 className="modal-title">Être recontacté pour mon projet</h3>
+              <h3 className="modal-title">Demander un devis gratuit</h3>
               <p className="modal-subtitle">
-                Transmettez-nous votre projet calculé pour être recontacté(e).
+                Transmettez votre projet calculé pour recevoir un devis, sans engagement.
               </p>
             </div>
 
