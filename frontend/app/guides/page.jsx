@@ -273,8 +273,9 @@ export default function GuidesPage() {
         <section>
           <h2 className="content-h2">Aller plus loin</h2>
           <p className="content-body">
-            Cinq analyses pour creuser un point précis — prix au m², lecture critique
-            d&apos;un devis, démarches administratives, contraintes spécifiques.
+            Sept analyses pour creuser un point précis — prix au m², lecture critique
+            d&apos;un devis, démarches administratives, réglementation de voisinage et
+            projets spécifiques.
           </p>
           <div className="editorial-stack">
 
@@ -414,6 +415,62 @@ export default function GuidesPage() {
                   Faisabilité structure (charge 14 à 16 kg/m²), démarches Consuel et Enedis,
                   comparatif kits plug &amp; play (Beem, Sunology, Sunethic), aides 2026 et
                   ROI sur 25 ans.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/carport-solaire-bois-recharger-voiture-electrique-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/carport-solaire-bois-recharger-voiture-electrique-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Carport solaire</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 12 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Carport solaire bois pour recharger sa voiture électrique</h3>
+                <p className="editorial-desc">
+                  Structure bois DTU 31.1, production PVGIS par ville, sept démarches
+                  Enedis-Consuel, budget autoconstruction contre installateur RGE et ROI honnête.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/hauteur-cloture-loi-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/hauteur-cloture-loi-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Réglementation</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 10 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Hauteur de clôture&nbsp;: ce que dit la loi en 2026</h3>
+                <p className="editorial-desc">
+                  Pas de maximum national&nbsp;: rôle du PLU, servitude de vue, trouble anormal
+                  de voisinage (loi 2024) et recours en cas de litige sur la hauteur.
                 </p>
               </div>
               <div className="editorial-arrow" aria-hidden="true">→</div>

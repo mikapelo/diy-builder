@@ -128,7 +128,7 @@ Tous via le plugin `aaron-seo-geo` :
 
 ## Reste non couvert / décisions
 
-- **Hero images** : pas de bascule sur `claude-blog:blog-image` à ce stade — la voie « user génère via Midjourney + dépose dans `/Users/pelo/Downloads/PNG articles/` » fonctionne et garantit le style golden hour cohérent.
+- **Hero images** : `claude-blog:blog-image` exige le MCP **nanobanana (Gemini)** qui **n'est PAS connecté** (constaté 04/06) — son activation demande `/blog image setup` + clé API Google AI Studio. Tant qu'il n'est pas posé, voie validée = « user génère via Midjourney + dépose dans `/Users/pelo/Downloads/PNG articles/` (nommé au slug) », puis recadrage **ffmpeg** (pas d'ImageMagick installé) en 1672×941 : `ffmpeg -i src.png -vf "scale=1672:941:force_original_aspect_ratio=increase,crop=1672:941" -y hero.png`. Garantit le style golden hour cohérent.
 - **JSON-LD** : pas de bascule sur les skills de génération automatique — les schémas sont écrits à la main dans chaque article (HowTo, FAQPage, BreadcrumbList, Article) parce qu'ils sont **fact-check dépendants** (totalTime, estimatedCost, sources).
 - **Sunology/Otovo** : pas de skill affiliation spécifique — pilotage manuel via `project_amazon_monetisation.md` + `project_affiliation_refus.md`.
 - **Scraper** : `data:analyze` peut compléter mais ne remplace pas les sélecteurs Playwright/ScrapingBee custom (anti-bot, sélecteurs propriétaires).

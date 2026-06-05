@@ -407,6 +407,13 @@ export default function GuideClotureBois() {
             exigent un dégagement triangulaire à hauteur limitée.
           </li>
         </ul>
+        <p className="content-body">
+          La hauteur, les litiges de voisinage et les recours méritent un développement à part&nbsp;:
+          notre guide{' '}
+          <Link href="/guides/hauteur-cloture-loi-2026" className="content-link">hauteur de clôture et loi 2026</Link>{' '}
+          détaille pourquoi il n&apos;existe pas de maximum national, ce que le PLU peut imposer, la
+          servitude de vue et le trouble anormal de voisinage (article 1253 du Code civil, 2024).
+        </p>
 
         <h2 className="content-h2">Les erreurs courantes (et comment les éviter)</h2>
         <p className="content-snippet">
