@@ -3,18 +3,18 @@ import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 
-const OG_TITLE = 'Prix terrasse bois au m² en 2026';
+const OG_TITLE = 'Prix terrasse bois au m² en France 2026';
 const OG_SUBTITLE = 'Comparatif essence × enseigne · chiffres recalculés';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
 
 export const metadata = {
-  title: 'Prix terrasse bois 2026 : 80 à 290 €/m² par essence',
+  title: 'Prix terrasse bois au m² en France 2026 : 80 à 290 €',
   description:
-    'Tarifs réels mai 2026 : pin classe 4 dès 80 €/m², douglas 110 €, ipé 290 €. Comparatif Leroy Merlin, Castorama, Brico Dépôt + coût pose artisan.',
+    'Prix d\'une terrasse bois au m² en France en 2026 : pin dès 80 €, douglas 110 €, ipé 290 €. Comparatif Leroy Merlin, Castorama, Brico Dépôt et pose artisan.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026' },
   openGraph: {
-    title: 'Prix terrasse bois 2026 : 80 à 290 €/m² par essence | DIY Builder',
-    description: 'Tarifs réels mai 2026 par essence et par enseigne : pin classe 4 dès 80 €/m², douglas 110 €, ipé 290 €. Avec ou sans pose artisan, écarts chiffrés.',
+    title: 'Prix terrasse bois au m² en France 2026 : 80 à 290 € | DIY Builder',
+    description: 'Prix d\'une terrasse bois au m² en France en 2026, par essence et par enseigne : pin dès 80 €, douglas 110 €, ipé 290 €. Avec ou sans pose artisan.',
     url: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Comparatif prix terrasse bois 2026 — DIY Builder' }],
@@ -28,9 +28,9 @@ export const metadata = {
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'Prix d\'une terrasse bois au m² en 2026 : comparatif essence × enseigne',
+  headline: 'Prix d\'une terrasse bois au m² en France en 2026 : comparatif essence × enseigne',
   description:
-    'Le prix réel d\'une terrasse bois en mai 2026, recalculé à partir de notre base de prix scrapée chez Leroy Merlin, Castorama, Brico Dépôt et ManoMano. Comparatif par essence (pin, douglas, ipé, composite) et par enseigne, avec et sans pose artisan.',
+    'Le prix réel d\'une terrasse bois au m² en France en 2026, recalculé à partir de notre base de prix relevée chez Leroy Merlin, Castorama, Brico Dépôt et ManoMano. Comparatif par essence (pin, douglas, ipé, composite) et par enseigne, avec et sans pose artisan.',
   author: { '@type': 'Organization', name: 'DIY Builder', url: 'https://www.diy-builder.fr' },
   publisher: {
     '@type': 'Organization',
@@ -128,7 +128,7 @@ export default function PrixTerrasseBoisM2Page() {
           <span className="content-breadcrumb-current">Prix au m² 2026</span>
         </nav>
 
-        <h1 className="content-h1">Prix d&apos;une terrasse bois au m² en 2026 : comparatif essence × enseigne</h1>
+        <h1 className="content-h1">Prix d&apos;une terrasse bois au m² en France en 2026 : comparatif essence × enseigne</h1>
 
         <p className="content-meta">
           <span><strong>Publié le 24 mai 2026</strong></span>
@@ -156,11 +156,11 @@ export default function PrixTerrasseBoisM2Page() {
           Les annonces 25–40 €/m² en grande surface de bricolage cachent un piège classique : le prix porte
           uniquement sur la lame, jamais sur l&apos;addition complète. Une fois lambourdes, plots, visserie inox
           et bande bitume comptés, le total tourne plutôt entre 43 et 65 €/m² selon l&apos;essence — et l&apos;écart
-          entre Brico Dépôt et Leroy Merlin atteint 23 % sur un projet de 12 m². Cet article compare les
-          prix réels en mai 2026 sur quatre essences (pin traité, douglas, ipé, composite) et quatre enseignes
+          entre Brico Dépôt et Leroy Merlin atteint 23 % sur un projet de 12 m². Cet article compare le
+          prix réel d&apos;une terrasse bois au m² en France, en 2026, sur quatre essences (pin traité, douglas, ipé, composite) et quatre enseignes
           (Leroy Merlin, Castorama, Brico Dépôt, ManoMano), avec et sans pose par un artisan. Tous les chiffres
           sont recalculés à partir de notre{' '}
-          <Link href="/methodologie" className="content-link">base de prix scrapée</Link> sur une terrasse
+          <Link href="/methodologie" className="content-link">base de prix relevée</Link> sur une terrasse
           rectangulaire de 12 m² (4 × 3 m), structure complète incluse.
         </p>
 

@@ -354,7 +354,9 @@ export default function GuideSoiMemeOuPro() {
           (pin 80-140 €/m² pose incluse), relevés mai 2026). Vous restez gagnant, mais l&apos;écart est moins
           spectaculaire que ce qu&apos;on croit. À partir du deuxième chantier (pergola,
           clôture, nouvelle terrasse chez un proche), l&apos;outillage est déjà payé&nbsp;:
-          c&apos;est là que le gain devient net.
+          c&apos;est là que le gain devient net. Pour comparer le prix au m² essence par
+          essence et enseigne par enseigne avant de trancher, voyez notre{' '}
+          <Link href="/guides/prix-terrasse-bois-m2-2026" className="content-link">comparatif détaillé du prix d&apos;une terrasse bois au m²</Link>.
         </p>
 
         <h2 className="content-h2">Critère 4 — La garantie décennale, ce qu&apos;elle couvre vraiment</h2>
