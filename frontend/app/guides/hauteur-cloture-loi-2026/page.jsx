@@ -376,8 +376,8 @@ export default function HauteurClotureLoi2026Page() {
         </p>
         <p className="content-body">
           Posée pile sur la ligne séparative et servant les deux fonds, la clôture devient{' '}
-          <strong>mitoyenne</strong>. L&apos;article 653 du Code civil présume mitoyen tout mur qui
-          sépare deux propriétés. Concrètement, la hauteur, les frais de construction et l&apos;entretien
+          <strong>mitoyenne</strong>. L&apos;article 653 du Code civil présume mitoyen tout mur de séparation
+          entre cours, jardins ou bâtiments. Concrètement, la hauteur, les frais de construction et l&apos;entretien
           se partagent à parts égales, et chaque voisin a voix au chapitre. En ville, l&apos;article 663
           va plus loin&nbsp;: il permet de contraindre un voisin à participer à la clôture séparant les
           deux fonds. Avant de bâtir une clôture mitoyenne, un accord écrit — même une simple lettre
@@ -432,8 +432,8 @@ export default function HauteurClotureLoi2026Page() {
         <p className="content-body">
           Cette règle a longtemps été une construction des tribunaux. La doctrine remonte à un arrêt
           célèbre de 1915&nbsp;: un propriétaire avait dressé d&apos;immenses carcasses de bois hérissées
-          de pointes dans le seul but de nuire à son voisin, et la Cour de cassation l&apos;avait
-          condamné pour abus de droit. Depuis, on ne peut pas construire «&nbsp;pour embêter&nbsp;».
+          de pointes dans le seul but de nuire à son voisin, et la Cour de cassation a confirmé sa
+          condamnation pour abus de droit. Depuis, on ne peut pas construire «&nbsp;pour embêter&nbsp;».
           La <strong>loi du 15 avril 2024</strong> a franchi une étape supplémentaire en codifiant le
           principe&nbsp;: l&apos;article 1253 du Code civil dispose désormais que celui qui est à
           l&apos;origine d&apos;un trouble «&nbsp;excédant les inconvénients normaux de voisinage&nbsp;»
