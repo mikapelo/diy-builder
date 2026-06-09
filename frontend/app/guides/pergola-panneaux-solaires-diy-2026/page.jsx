@@ -10,7 +10,7 @@ const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_
 export const metadata = {
   title: 'Pergola avec panneaux solaires : guide DIY 2026 (prix, aides, démarches)',
   description:
-    'Construire une pergola DIY et y greffer un kit solaire en 2026 : prix réel, réglementation (1,8 m, Consuel, Enedis), aides cumulables et verdict honnête DIY ou pro.',
+    'Construire une pergola DIY et y greffer un kit solaire en 2026 : prix réel, réglementation (1,8 m, Consuel, Enedis), aides 2026 réduites et verdict honnête DIY ou pro.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/pergola-panneaux-solaires-diy-2026' },
   openGraph: {
     title: 'Pergola avec panneaux solaires : guide DIY 2026 | DIY Builder',
@@ -31,7 +31,7 @@ const articleJsonLd = {
   '@type': 'Article',
   headline: 'Pergola avec panneaux solaires : guide DIY 2026 (prix, aides, faisabilité)',
   description:
-    'Comparatif honnête entre pergola DIY + kit solaire plug & play et pergola solaire intégrée en 2026. Charges structure, démarches Consuel/Enedis, aides cumulables (TVA 5,5 %, prime autoconsommation) et ROI sur 25 ans.',
+    'Comparatif honnête entre pergola DIY + kit solaire plug & play et pergola solaire intégrée en 2026. Charges structure, démarches Consuel/Enedis, aides 2026 (TVA 5,5 %, prime à l’autoconsommation supprimée en juin 2026) et ROI sur 25 ans.',
   author: { '@type': 'Organization', name: 'DIY Builder', url: 'https://www.diy-builder.fr' },
   publisher: {
     '@type': 'Organization',
@@ -39,7 +39,7 @@ const articleJsonLd = {
     logo: { '@type': 'ImageObject', url: 'https://www.diy-builder.fr/images/logo-512.png' },
   },
   datePublished: '2026-05-27',
-  dateModified: '2026-05-27',
+  dateModified: '2026-06-09',
   mainEntityOfPage: 'https://www.diy-builder.fr/guides/pergola-panneaux-solaires-diy-2026',
   image: OG_URL,
   about: ['Pergola', 'Panneaux solaires photovoltaïques', 'Autoconsommation'],
@@ -89,7 +89,7 @@ const faqJsonLd = {
       name: 'Le DIY fait-il vraiment perdre les aides 2026 (TVA 5,5 %, prime autoconsommation, MaPrimeRénov\') ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Oui pour la prime à l’autoconsommation et le tarif de rachat surplus EDF OA, qui exigent une pose par entreprise certifiée et un contrat CRAE Enedis. La prime est de 80 €/kWc jusqu’à 9 kWc au T2 2026 (240 € pour 3 kWc), versée sur 5 ans. La TVA 5,5 % (article 278-0 bis du Code général des impôts) est théoriquement réservée à la pose pro mais elle est devenue presque inaccessible depuis l’arrêté du 8 septembre 2025 : bilan carbone modules inférieur à 530 kgCO2eq/kWc certifié Certisolis PPE2-V2, système de gestion d’énergie obligatoire, pose par professionnel certifié à partir du 1er mars 2026. MaPrimeRénov\' ne concerne pas le photovoltaïque pur (uniquement le solaire thermique). Sur un projet 3 kWc à 8 000 € TTC installé avec TVA 5,5 % effectivement accessible, le manque à gagner DIY cumulé est de l’ordre de 1 200 à 1 400 € — sans la TVA 5,5 %, le DIY perd seulement 240 € de prime plus la revente surplus marginale (0,04 €/kWh au T2 2026).',
+        text: 'Depuis l’arrêté tarifaire du 4 juin 2026, la prime à l’autoconsommation est supprimée et le tarif de rachat du surplus EDF OA est tombé à 0,011 €/kWh (1,1 c€) : ces deux avantages, réservés à une pose par entreprise certifiée, ont disparu ou sont devenus marginaux. Reste la TVA 5,5 % (article 278-0 bis du Code général des impôts), théoriquement réservée à la pose pro mais devenue presque inaccessible depuis l’arrêté du 8 septembre 2025 : bilan carbone modules inférieur à 530 kgCO2eq/kWc certifié Certisolis PPE2-V2, système de gestion d’énergie obligatoire, pose par professionnel certifié à partir du 1er mars 2026. MaPrimeRénov\' ne concerne pas le photovoltaïque pur (uniquement le solaire thermique). Concrètement, sur un projet 3 kWc à 8 000 € TTC, le seul écart d’aides encore possible entre DIY et pro est la TVA 5,5 % : de l’ordre de 1 000 à 1 200 € quand elle est accessible, nul quand elle ne l’est pas.',
       },
     },
     {
@@ -137,6 +137,8 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
         <p className="content-meta">
           <span><strong>Publié le 27 mai 2026</strong></span>
           <span>·</span>
+          <span>Mis à jour le 9 juin 2026</span>
+          <span>·</span>
           <span>L&apos;équipe DIY Builder</span>
           <span>·</span>
           <span><Link href="/methodologie">Méthodologie</Link></span>
@@ -160,12 +162,12 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           Greffer un kit photovoltaïque sur une pergola que vous construisez vous-même
           revient quatre à six fois moins cher qu&apos;une pergola solaire intégrée prête à
           poser&nbsp;: 1 280 à 4 120 € contre 9 600 à 14 400 € pour 12 m² (et jusqu&apos;à
-          20 000 € sur des surfaces de 15-20 m² ou en haut de gamme). Le DIY fait perdre
-          la TVA réduite à 5,5 % et la prime à l&apos;autoconsommation, soit 700 à 1 200 €
-          d&apos;aides en moins selon profil. Mais la TVA 5,5 % est devenue presque
-          inaccessible depuis l&apos;arrêté du 8 septembre 2025 (critères environnementaux
-          stricts, EMS obligatoire), et le tarif de rachat surplus EDF OA est tombé à
-          0,04 €/kWh au T2 2026 — l&apos;arbitrage Pro perd beaucoup de son avantage.
+          20 000 € sur des surfaces de 15-20 m² ou en haut de gamme). Depuis l&apos;arrêté
+          tarifaire du 4 juin 2026, la prime à l&apos;autoconsommation est supprimée et le
+          rachat du surplus EDF OA est tombé à 0,011 €/kWh&nbsp;: le DIY ne « perd » donc
+          presque plus d&apos;aides face au Pro, hormis la TVA 5,5 % — elle-même devenue
+          presque inaccessible depuis l&apos;arrêté du 8 septembre 2025 (critères
+          environnementaux stricts, EMS obligatoire). L&apos;arbitrage Pro a perdu l&apos;essentiel de son avantage.
           Ce guide chiffre la structure, déroule les démarches Consuel + Enedis et
           compare les kits plug &amp; play français disponibles en 2026.
         </p>
@@ -210,9 +212,9 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
               <td>5,5 % si critères arrêté 8 sept 2025 réunis (rare)</td>
             </tr>
             <tr>
-              <td>Prime autoconsommation T2 2026</td>
-              <td>Non éligible</td>
-              <td>80 €/kWc jusqu&apos;à 9 kWc</td>
+              <td>Prime autoconsommation</td>
+              <td>Supprimée (4 juin 2026)</td>
+              <td>Supprimée (4 juin 2026)</td>
             </tr>
             <tr>
               <td>Raccordement réseau</td>
@@ -222,7 +224,7 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
             <tr>
               <td>Revente surplus EDF OA</td>
               <td>Non</td>
-              <td>0,04 €/kWh T2 2026 (≤ 9 kWc)</td>
+              <td>0,011 €/kWh (≤ 9 kWc, arrêté 4 juin 2026)</td>
             </tr>
             <tr>
               <td>Démarche urbanisme</td>
@@ -237,15 +239,15 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
             <tr>
               <td>ROI moyen au tarif 2026</td>
               <td>8 à 11 ans (autoconso seule)</td>
-              <td>12 à 14 ans (avec aides accessibles)</td>
+              <td>12 à 15 ans (autoconso, prime supprimée)</td>
             </tr>
           </tbody>
         </table>
 
         <p className="content-body">
-          Le DIY gagne sur les petites puissances (0,5 à 1 kWc) où la prime à
-          l&apos;autoconsommation reste modeste (80 €/kWc, soit 240 € pour 3 kWc) et où
-          la TVA 5,5 % est en pratique inaccessible (l&apos;arrêté du 8 septembre 2025 exige
+          Le DIY gagne sur les petites puissances (0,5 à 1 kWc), d&apos;autant plus depuis
+          que la prime à l&apos;autoconsommation a été supprimée (arrêté du 4 juin 2026) et que
+          la TVA 5,5 % reste en pratique inaccessible (l&apos;arrêté du 8 septembre 2025 exige
           un bilan carbone des modules inférieur à 530 kgCO2eq/kWc certifié Certisolis
           PPE2-V2, condition que très peu de références remplissent début 2026). Le Pro
           reprend l&apos;avantage à partir de 6 kWc, lorsque la production absorbe une grosse
@@ -256,11 +258,13 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
         </p>
 
         <div className="content-disclaimer">
-          <strong>Avertissement&nbsp;:</strong> un projet d&apos;arrêté transmis au Conseil
-          supérieur de l&apos;énergie le 2 avril 2026 prévoit la suppression de la prime à
-          l&apos;autoconsommation et l&apos;abaissement du tarif de rachat surplus à
-          0,011 €/kWh. Texte non encore en vigueur à la date de publication ; vérifier
-          l&apos;état réglementaire au moment du projet.
+          <strong>Mise à jour (juin 2026)&nbsp;:</strong>{' '}
+          <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054190669" target="_blank" rel="noopener noreferrer" className="content-link">l&apos;arrêté tarifaire S21</a> a été
+          publié au Journal officiel le 4 juin 2026. Il supprime la prime à
+          l&apos;autoconsommation et abaisse le tarif de rachat du surplus à 0,011 €/kWh
+          (contre 0,04 € auparavant). Les barèmes « T2 2026 » cités plus haut ne s&apos;appliquent
+          donc plus aux nouvelles demandes ; le tarif reste figé à la date de demande complète
+          pour les dossiers déjà déposés.
         </div>
 
         <p className="content-body">
@@ -407,13 +411,13 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           (CRAE pour l&apos;autoconsommation, CR pour la
           revente totale) est gratuite et se demande en ligne sur le portail Enedis. Délai
           réel d&apos;obtention&nbsp;: 6 à 12 semaines selon région. La revente du surplus à
-          EDF Obligation d&apos;Achat se fait au tarif d&apos;achat T2 2026 de
-          0,04 €/kWh pour les installations sous 9 kWc (révisé chaque trimestre par la{' '}
+          EDF Obligation d&apos;Achat se fait désormais au tarif de
+          0,011 €/kWh (1,1 c€) pour les installations sous 9 kWc, depuis l&apos;arrêté tarifaire publié au Journal officiel le 4 juin 2026 (barème révisé par la{' '}
           <a href="https://www.cre.fr/documents/open-data/arretes-tarifaires-photovoltaiques-en-metropole.html" target="_blank" rel="noopener noreferrer" className="content-link">Commission de Régulation de l&apos;Énergie</a>).
-          Ce tarif a chuté de plus de 68 % en
-          18 mois et un projet d&apos;arrêté d&apos;avril 2026 prévoit même de le ramener à
-          0,011 €/kWh. Le contrat OA est de 20 ans, le tarif est figé à la date de demande
-          complète de raccordement (DCR).
+          Ce tarif a chuté de plus de 90 % en
+          deux ans (0,1269 € début 2025, puis 0,04 €, désormais 0,011 €). Le contrat OA est de
+          20 ans, le tarif figé à la date de demande complète de raccordement (DCR)&nbsp;: un
+          dossier déposé avant la réforme conserve son barème.
         </p>
 
         <CTALead projectHref="/pergola" projectLabel="ma pergola" />
@@ -646,25 +650,24 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           les aides RGE QualiPV exclusives à l&apos;installateur pro, détaillées plus bas.
         </p>
 
-        <h2 className="content-h2">6. Aides 2026 — beaucoup plus restrictives qu&apos;avant</h2>
+        <h2 className="content-h2">6. Aides 2026 — prime supprimée, TVA 5,5 % quasi inaccessible</h2>
         <p className="content-snippet">
           Trois dispositifs accompagnent l&apos;installation solaire photovoltaïque
           résidentielle en 2026, encadrés par l&apos;
           <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622738" target="_blank" rel="noopener noreferrer" className="content-link">article 278-0 bis du Code général des impôts</a>{' '}
           et l&apos;
           <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052212417" target="_blank" rel="noopener noreferrer" className="content-link">arrêté du 8 septembre 2025</a>{' '}
-          (JORF n° 209)&nbsp;: la TVA réduite à 5,5 %, la prime
-          à l&apos;autoconsommation versée par EDF Obligation d&apos;Achat, et le tarif de
-          rachat du surplus injecté. Les conditions techniques se sont fortement durcies
-          depuis le 1ᵉʳ octobre 2025, ce qui rend la TVA 5,5 % difficilement accessible
-          en pratique.
+          (JORF n° 209)&nbsp;: depuis l&apos;arrêté tarifaire du 4 juin 2026, la prime à
+          l&apos;autoconsommation est supprimée et le rachat du surplus est tombé à
+          0,011 €/kWh. Il ne reste donc, en pratique, que la TVA réduite à 5,5 % — elle-même
+          difficilement accessible depuis le durcissement des conditions au 1ᵉʳ octobre 2025.
         </p>
 
         <table className="content-table">
           <thead>
             <tr>
               <th>Aide</th>
-              <th>Montant T2 2026</th>
+              <th>Montant (juin 2026)</th>
               <th>Conditions cumulatives</th>
               <th>DIY éligible ?</th>
             </tr>
@@ -678,13 +681,13 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
             </tr>
             <tr>
               <td>Prime à l&apos;autoconsommation</td>
-              <td>80 €/kWc jusqu&apos;à 9 kWc (soit 240 € pour 3 kWc, 720 € pour 9 kWc)</td>
-              <td>Pose en toiture · contrat CRAE Enedis · attestation Consuel · entreprise certifiée</td>
-              <td>Non</td>
+              <td>Supprimée le 4 juin 2026 (était 80 €/kWc, soit 720 € pour 9 kWc)</td>
+              <td>N&apos;existe plus dans le nouvel arrêté tarifaire S21</td>
+              <td>Sans objet</td>
             </tr>
             <tr>
               <td>Tarif rachat surplus EDF OA</td>
-              <td>0,04 €/kWh garanti 20 ans (≤ 9 kWc, T2 2026)</td>
+              <td>0,011 €/kWh garanti 20 ans (≤ 9 kWc, arrêté 4 juin 2026)</td>
               <td>Contrat OA · installation conforme NF EN 50438 · Consuel obtenu</td>
               <td>Non</td>
             </tr>
@@ -707,20 +710,20 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           Le point dur des aides 2026 est la TVA 5,5 %&nbsp;: début 2026, seules quelques
           références (Voltec Solar et Jinko Solar partielles) disposent de la certification
           Certisolis PPE2-V2 exigée par l&apos;arrêté du 8 septembre 2025. La plupart des
-          installations résidentielles restent donc à 20 % de TVA. Sur une installation
-          3 kWc à 8 000 € TTC pro avec TVA 5,5 % accessible et prime autoconso, le cumul
-          d&apos;aides faciales tourne autour de 1 200 à 1 400 €&nbsp;: 240 € de prime,
-          1 080 € d&apos;écart TVA (= 8 000 × 14,5 %), revente surplus de l&apos;ordre de
-          30 à 50 €/an (au tarif T2 2026 de 0,04 €/kWh). Sans la TVA 5,5 %, le cumul tombe
-          à 240 € de prime + revente surplus, soit moins de 1 000 € sur 20 ans actualisés.
+          installations résidentielles restent donc à 20 % de TVA. Depuis la suppression de
+          la prime à l&apos;autoconsommation (arrêté du 4 juin 2026), la seule aide encore
+          possible sur une installation 3 kWc à 8 000 € TTC pro est l&apos;écart de TVA 5,5 %,
+          soit environ 1 080 € (= 8 000 × 14,5 %) — et seulement quand elle est accessible. La
+          revente du surplus, elle, ne rapporte plus que 0,011 €/kWh, de l&apos;ordre de 10 €/an
+          pour un foyer autoconsommant l&apos;essentiel de sa production.
         </p>
 
         <p className="content-body">
-          Cette équation laisse peu de marge au Pro contre le DIY au tarif T2 2026. Le Pro
+          Cette équation laisse peu de marge au Pro contre le DIY au tarif de 2026. Le Pro
           retrouve un vrai avantage à partir de 6 kWc avec autoconsommation dirigée vers une
           pompe à chaleur ou un véhicule électrique&nbsp;: la production absorbée
-          intra-foyer (sans passer par la revente surplus à 0,04 €/kWh) est valorisée au
-          tarif Bleu plein, soit 0,1940 €/kWh, donc 4,85 fois plus que la revente. Les
+          intra-foyer (sans passer par la revente surplus à 0,011 €/kWh) est valorisée au
+          tarif Bleu plein, soit 0,1940 €/kWh, donc près de 18 fois plus que la revente. Les
           tarifs et primes étant révisés chaque trimestre par la CRE, vérifier la grille en
           vigueur au moment de votre projet sur{' '}
           <a href="https://www.cre.fr/documents/open-data/arretes-tarifaires-photovoltaiques-en-metropole.html" target="_blank" rel="noopener noreferrer" className="content-link">le portail CRE des arrêtés tarifaires</a>{' '}
@@ -734,7 +737,7 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           modules) avec une dégradation linéaire de 0,5 % par an. Le calcul de rentabilité
           ci-dessous intègre l&apos;investissement initial, les aides 2026 effectivement
           accessibles, la production annuelle, le coût évité d&apos;électricité au tarif
-          Bleu et la revente du surplus au tarif EDF OA T2 2026.
+          Bleu et la revente du surplus au tarif EDF OA en vigueur (arrêté du 4 juin 2026).
         </p>
 
         <table className="content-table">
@@ -769,36 +772,36 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
               <td>Pro 3 kWc avec TVA 5,5 % accessible</td>
               <td>6 920 € (après 1 080 € aides)</td>
               <td>3 300 kWh</td>
-              <td>488 € (70 % autoconso + surplus 0,04 €/kWh)</td>
-              <td>14,2 ans</td>
-              <td>≈ + 5 300 €</td>
+              <td>459 € (70 % autoconso + surplus 0,011 €/kWh)</td>
+              <td>15,1 ans</td>
+              <td>≈ + 4 300 €</td>
             </tr>
             <tr>
               <td>Pro 6 kWc avec TVA 5,5 % accessible</td>
               <td>11 500 € (après 2 200 € aides)</td>
               <td>6 600 kWh</td>
-              <td>975 € (60 % autoconso + surplus)</td>
-              <td>11,8 ans</td>
-              <td>≈ + 12 800 €</td>
+              <td>797 € (60 % autoconso + surplus 0,011 €/kWh)</td>
+              <td>14,4 ans</td>
+              <td>≈ + 10 000 €</td>
             </tr>
           </tbody>
         </table>
 
         <p className="content-body">
-          Au tarif T2 2026, le ROI est en réalité de 9 à 14 ans selon la configuration —
+          Au tarif de 2026, le ROI est en réalité de 9 à 15 ans selon la configuration —
           loin des 6 à 7 ans annoncés dans la plupart des publicités d&apos;installateurs,
           chiffrages qui datent souvent de l&apos;époque où le tarif rachat surplus était à
-          0,13 €/kWh (T4 2024) et où la TVA 10 % s&apos;appliquait largement. La chute du
-          tarif EDF OA à 0,04 €/kWh (T2 2026) et le durcissement des conditions TVA 5,5 %
-          rendent la revente du surplus marginale&nbsp;: 990 kWh × 0,04 € = 39,60 €/an pour
-          un Pro 3 kWc autoconsommant 70 %. La vraie valeur du solaire en 2026 est dans
+          0,13 €/kWh (fin 2024) et où la TVA 10 % s&apos;appliquait largement. Avec l&apos;arrêté
+          du 4 juin 2026, le tarif EDF OA tombe à 0,011 €/kWh et la prime à l&apos;autoconsommation
+          disparaît&nbsp;: la revente du surplus devient quasi nulle — 990 kWh × 0,011 € ≈ 11 €/an
+          pour un Pro 3 kWc autoconsommant 70 %. La vraie valeur du solaire en 2026 est dans
           l&apos;autoconsommation directe au tarif Bleu, pas dans la revente.
         </p>
 
         <p className="content-body">
           Hypothèses retenues&nbsp;: tarif Bleu EDF option Base mai 2026 à 0,1940 €/kWh
-          TTC pour un compteur 6 kVA (source EDF), tarif rachat surplus EDF OA T2 2026 à
-          0,04 €/kWh pour les installations sous 9 kWc (source CRE), dégradation modules
+          TTC pour un compteur 6 kVA (source EDF), tarif rachat surplus EDF OA à 0,011 €/kWh
+          depuis l&apos;arrêté du 4 juin 2026 (source CRE), dégradation modules
           de 0,5 %/an, revalorisation tarif Bleu de 3 %/an (hypothèse prudente vs +18 %
           constatés 2022-2024). Le gain net 25 ans intègre cette revalorisation et la
           dégradation, et soustrait l&apos;investissement initial. Sensibilité forte au
@@ -809,7 +812,7 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
         <h2 className="content-h2">8. Notre verdict — DIY ou pro&nbsp;?</h2>
         <p className="content-snippet">
           Trois critères tranchent objectivement&nbsp;: la puissance souhaitée, votre niveau
-          de bricolage et votre profil de consommation. Au tarif T2 2026, le DIY 0,5 à
+          de bricolage et votre profil de consommation. Au tarif de 2026, le DIY 0,5 à
           1 kWc plug &amp; play est le plus rentable au ratio invest/temps. Le Pro reprend
           un avantage net à partir de 6 kWc lorsque l&apos;autoconsommation absorbe une
           grosse charge domestique (pompe à chaleur, véhicule électrique). Entre 1 et
@@ -907,17 +910,16 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
 
           <h3 className="content-h3">Le DIY fait-il vraiment perdre les aides 2026 (TVA 5,5 %, prime autoconsommation, MaPrimeRénov&apos;)&nbsp;?</h3>
           <p className="content-body">
-            Oui pour la prime à l&apos;autoconsommation et le tarif de rachat surplus EDF OA,
-            qui exigent une pose par entreprise certifiée et un contrat CRAE Enedis. La
-            prime est de 80 €/kWc jusqu&apos;à 9 kWc au T2 2026 (240 € pour 3 kWc), versée
-            sur 5 ans. La TVA 5,5 % (article 278-0 bis du CGI) est devenue presque
-            inaccessible depuis l&apos;arrêté du 8 septembre 2025&nbsp;: bilan carbone
-            modules &lt; 530 kgCO2eq/kWc certifié Certisolis PPE2-V2, EMS obligatoire,
-            pose par pro certifié à partir du 1ᵉʳ mars 2026. MaPrimeRénov&apos; ne concerne
-            pas le photovoltaïque pur. Sur 3 kWc à 8 000 € TTC pro avec TVA 5,5 %
-            effectivement accessible, le manque à gagner DIY cumulé est d&apos;environ
-            1 200 à 1 400 €&nbsp;; sans la TVA 5,5 %, seulement 240 € de prime plus la
-            revente surplus marginale (0,04 €/kWh au T2 2026).
+            Depuis l&apos;arrêté tarifaire du 4 juin 2026, la prime à l&apos;autoconsommation
+            est supprimée et le rachat du surplus EDF OA est tombé à 0,011 €/kWh&nbsp;: ces deux
+            leviers, réservés à une pose par entreprise certifiée, ont disparu ou sont devenus
+            marginaux. La TVA 5,5 % (article 278-0 bis du CGI) reste, mais elle est presque
+            inaccessible depuis l&apos;arrêté du 8 septembre 2025&nbsp;: bilan carbone modules
+            &lt; 530 kgCO2eq/kWc certifié Certisolis PPE2-V2, EMS obligatoire, pose par pro
+            certifié à partir du 1ᵉʳ mars 2026. MaPrimeRénov&apos; ne concerne pas le
+            photovoltaïque pur. Concrètement, sur 3 kWc à 8 000 € TTC, le seul écart d&apos;aides
+            encore possible entre DIY et pro est la TVA 5,5 % — de l&apos;ordre de 1 000 à 1 200 €
+            quand elle est accessible, nul sinon.
           </p>
 
           <h3 className="content-h3">Quelle orientation et quelle pente choisir pour une pergola solaire DIY en France&nbsp;?</h3>

@@ -36,8 +36,8 @@
      12. Prime autoconsommation (€/kWc) .......... CRE T2 2026
      13. DTU 31.1 sections poteaux ............... CSTB / e-cahiers.cstb.fr
      14. Cerfa DP n° (vérifier version courante) . service-public.fr/F17578
-     + ⚠️ projet d'arrêté 02/04/2026 (suppression prime, surplus 0,011 €/kWh)
-       → vérifier état réglementaire au jour de la publi (Légifrance + CRE)
+     + ✅ CONFIRMÉ — arrêté tarifaire S21 publié au JO le 04/06/2026 : prime
+       autoconsommation SUPPRIMÉE, surplus rachat 0,011 €/kWh (était 0,04). Refresh 09/06/2026.
    ════════════════════════════════════════════════════════════════════════ */
 
 import Link from 'next/link';
@@ -93,7 +93,7 @@ const articleJsonLd = {
     logo: { '@type': 'ImageObject', url: 'https://www.diy-builder.fr/images/logo-512.png' },
   },
   datePublished: '2026-06-02',
-  dateModified: '2026-06-02',
+  dateModified: '2026-06-09',
   mainEntityOfPage: 'https://www.diy-builder.fr/guides/carport-solaire-bois-recharger-voiture-electrique-2026',
   image: OG_URL,
   about: ['Carport solaire', 'Photovoltaïque', 'Voiture électrique', 'Autoconsommation'],
@@ -111,7 +111,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'Peut-on installer un carport solaire bois soi-même légalement ?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Oui pour la structure bois et la pose des panneaux. La partie électrique peut aussi être réalisée soi-même, mais l’installation raccordée au réseau doit obtenir une attestation Consuel (visa Bleu) qui vérifie la conformité à la norme NF C 15-100. En revanche, la TVA réduite et la prime à l’autoconsommation exigent une pose par un installateur certifié RGE.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Oui pour la structure bois et la pose des panneaux. La partie électrique peut aussi être réalisée soi-même, mais l’installation raccordée au réseau doit obtenir une attestation Consuel (visa Bleu) qui vérifie la conformité à la norme NF C 15-100. En revanche, la TVA réduite exige une pose par un installateur certifié RGE ; la prime à l’autoconsommation, elle, a été supprimée par l’arrêté tarifaire du 4 juin 2026, quel que soit le poseur.' },
     },
     {
       '@type': 'Question',
@@ -146,7 +146,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'Peut-on revendre le surplus d’électricité produit par un carport solaire ?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Oui, via un contrat d’obligation d’achat avec EDF OA. Le tarif de rachat du surplus est de 0,04 €/kWh pour les installations jusqu’à 9 kWc au 2e trimestre 2026 (barème CRE), garanti 20 ans. C’est cinq fois moins que ce que vous économisez en autoconsommant : mieux vaut consommer sa production que la revendre.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Oui, via un contrat d’obligation d’achat avec EDF OA. Mais depuis l’arrêté tarifaire du 4 juin 2026, ce tarif est tombé à 0,011 €/kWh (1,1 c€) pour les installations jusqu’à 9 kWc, garanti 20 ans — contre 0,04 € auparavant. La revente du surplus ne rapporte donc presque plus rien : mieux vaut consommer sa production que la revendre.' },
     },
     {
       '@type': 'Question',
@@ -190,6 +190,8 @@ export default function CarportSolaireBoisVE2026Page() {
         <p className="content-meta">
           <span><strong>Publié le 2 juin 2026</strong></span>
           <span>·</span>
+          <span>Mis à jour le 9 juin 2026</span>
+          <span>·</span>
           <span>L&apos;équipe DIY Builder</span>
           <span>·</span>
           <span><Link href="/methodologie">Méthodologie</Link></span>
@@ -227,7 +229,7 @@ export default function CarportSolaireBoisVE2026Page() {
             <li>Production&nbsp;: 3 000 kWh/an à Lille, jusqu&apos;à 4 800 kWh/an à Marseille (PVGIS, pente 15 à 30°).</li>
             <li>Amortissement&nbsp;: ~12 ans (DIY, sud, forte autoconsommation), au-delà de 20 ans si l&apos;installation est chère et peu autoconsommée.</li>
             <li>Sept démarches obligatoires, 2 à 4 mois de délai&nbsp;; Consuel à 201,17 € TTC.</li>
-            <li>La TVA réduite et la prime à l&apos;autoconsommation ne sont accessibles qu&apos;avec une pose par installateur RGE.</li>
+            <li>La TVA réduite n&apos;est accessible qu&apos;avec une pose par installateur RGE&nbsp;; la prime à l&apos;autoconsommation est supprimée depuis le 4 juin 2026, et la revente du surplus est tombée à 0,011 €/kWh.</li>
           </ul>
         </div>
 
@@ -355,7 +357,7 @@ export default function CarportSolaireBoisVE2026Page() {
           Mais ce «&nbsp;en théorie&nbsp;» cache le vrai piège du solaire pour la recharge.
           Un panneau ne produit qu&apos;en journée, avec un pic entre 10 h et 16 h. Si votre
           voiture est au bureau à ces heures-là, elle ne profite pas de votre production&nbsp;:
-          vous injectez le surplus sur le réseau à 0,04 €/kWh (tarif de rachat T2 2026, voir
+          vous injectez le surplus sur le réseau à 0,011 €/kWh seulement (tarif de rachat depuis l&apos;arrêté du 4 juin 2026, voir
           plus bas), puis vous rachetez l&apos;électricité le soir au tarif plein. Le gain
           réel s&apos;effondre.
         </p>
@@ -485,7 +487,7 @@ export default function CarportSolaireBoisVE2026Page() {
           Un carport solaire raccordé au réseau enchaîne sept démarches&nbsp;: déclaration
           préalable en mairie, convention d&apos;autoconsommation Enedis, contrat de rachat
           du surplus, attestation Consuel (201,17 € TTC en 2026), mise en service du
-          raccordement, et — si vous visez la TVA réduite ou la prime — pose par un
+          raccordement, et — si vous visez la TVA réduite — pose par un
           installateur certifié RGE. Comptez 2 à 4 mois entre la commande et la mise en
           service.
         </p>
@@ -539,13 +541,13 @@ export default function CarportSolaireBoisVE2026Page() {
               <td>6</td>
               <td>Pose / mise en service par installateur RGE QualiPV</td>
               <td>Incluse dans la prestation</td>
-              <td>Si TVA 5,5 % ou prime visées</td>
+              <td>Si TVA 5,5 % visée</td>
             </tr>
             <tr>
               <td>7</td>
-              <td>Déclaration aux impôts (prime à l&apos;autoconsommation)</td>
+              <td>Déclaration des revenus de revente du surplus aux impôts</td>
               <td>Gratuit</td>
-              <td>Si demande de prime</td>
+              <td>Si revente (selon régime fiscal)</td>
             </tr>
           </tbody>
         </table>
@@ -569,9 +571,9 @@ export default function CarportSolaireBoisVE2026Page() {
           simple prestation d&apos;une cinquantaine d&apos;euros&nbsp;; un raccordement neuf
           complet (sans branchement existant ou avec renforcement) coûte beaucoup plus et varie
           selon le chantier — demandez le devis exact à Enedis. Enfin, point décisif&nbsp;: la
-          TVA réduite et la prime à l&apos;autoconsommation exigent une pose par un installateur
-          certifié RGE QualiPV — un carport monté soi-même y reste inéligible, ce que détaille
-          la section budget.
+          TVA réduite exige une pose par un installateur certifié RGE QualiPV — un carport
+          monté soi-même y reste inéligible (la prime à l&apos;autoconsommation, elle, a été
+          supprimée le 4 juin 2026), ce que détaille la section budget.
         </p>
 
         {/* ════════════ H2.7 ════════════ */}
@@ -580,8 +582,8 @@ export default function CarportSolaireBoisVE2026Page() {
           Pour un carport solaire 3 kWc avec borne, comptez en ordre de grandeur 2026&nbsp;:
           6 500 à 9 000 € en autoconstruction (structure bois + composants), 8 000 à 12 000 €
           en kit prêt à poser, et 12 000 à 18 000 € en installation clé en main par un
-          professionnel RGE. La TVA réduite et la prime à l&apos;autoconsommation ne sont
-          accessibles qu&apos;avec la pose RGE.
+          professionnel RGE. La TVA réduite n&apos;est accessible qu&apos;avec la pose RGE&nbsp;;
+          la prime à l&apos;autoconsommation, elle, est supprimée depuis le 4 juin 2026.
         </p>
         <p className="content-body">
           Les fourchettes ci-dessous sont des ordres de grandeur à affiner par des devis&nbsp;:
@@ -597,7 +599,7 @@ export default function CarportSolaireBoisVE2026Page() {
               <th>Scénario (3 kWc + borne)</th>
               <th>Coût indicatif 2026</th>
               <th>TVA</th>
-              <th>Prime &amp; aides</th>
+              <th>Aides 2026</th>
             </tr>
           </thead>
           <tbody>
@@ -617,16 +619,16 @@ export default function CarportSolaireBoisVE2026Page() {
               <td>Installateur RGE clé en main</td>
               <td>12 000 à 18 000 €</td>
               <td>5,5 % si conditions réunies, sinon 10 %</td>
-              <td>Prime 80 €/kWc (240 € pour 3 kWc)</td>
+              <td>Prime supprimée le 4 juin 2026</td>
             </tr>
           </tbody>
         </table>
 
         <p className="content-body">
           Le paradoxe est réel&nbsp;: l&apos;autoconstruction coûte le moins cher à l&apos;achat,
-          mais c&apos;est la seule voie qui n&apos;ouvre aucune aide. La TVA réduite à 5,5 % et
-          la prime à l&apos;autoconsommation sont réservées à la pose par un installateur
-          certifié RGE QualiPV. Pire, la TVA 5,5 % est devenue presque inaccessible depuis
+          mais c&apos;est la seule voie qui n&apos;ouvre aucune aide. La TVA réduite à 5,5 %
+          est réservée à la pose par un installateur certifié RGE QualiPV&nbsp;; la prime à
+          l&apos;autoconsommation, elle, a été supprimée le 4 juin 2026. Pire, la TVA 5,5 % est devenue presque inaccessible depuis
           l&apos;arrêté du 8 septembre 2025, qui impose un bilan carbone des modules très
           strict (certification Certisolis) et un système de gestion d&apos;énergie&nbsp;: la
           plupart des installations résidentielles restent donc à 10 % (en résidence
@@ -634,25 +636,26 @@ export default function CarportSolaireBoisVE2026Page() {
           20 %.
         </p>
         <p className="content-body">
-          Quant à la prime à l&apos;autoconsommation, elle s&apos;élève à 80 €/kWc pour les
-          installations jusqu&apos;à 9 kWc au deuxième trimestre 2026 (source CRE), soit 240 €
-          pour 3 kWc — un montant modeste au regard de l&apos;écart de prix entre
-          autoconstruction et pose RGE. Autrement dit&nbsp;: en autoconstruction, vous perdez
-          240 € de prime et l&apos;accès à la TVA réduite, mais vous économisez plusieurs
-          milliers d&apos;euros de main-d&apos;œuvre. L&apos;arbitrage penche vers le DIY pour
-          qui sait câbler une installation conforme — à condition de regarder la rentabilité
-          réelle, abordée juste après.
+          Quant à la prime à l&apos;autoconsommation, elle a été supprimée par l&apos;arrêté
+          tarifaire du 4 juin 2026 — elle valait encore 80 €/kWc, soit 240 € pour 3 kWc, jusque-là.
+          Le seul avantage qui reste à la pose RGE est donc la TVA réduite, quand elle est
+          accessible. Autrement dit&nbsp;: en autoconstruction, vous ne perdez presque plus
+          d&apos;aides face au pro, tout en économisant plusieurs milliers d&apos;euros de
+          main-d&apos;œuvre. L&apos;arbitrage penche vers le DIY pour qui sait câbler une
+          installation conforme — à condition de regarder la rentabilité réelle, abordée juste
+          après.
         </p>
 
-        {/* ─── ENCART « AVERTISSEMENT » (avant H2.8) — OBLIGATOIRE YMYL ─── */}
+        {/* ─── ENCART « MISE À JOUR » (avant H2.8) — OBLIGATOIRE YMYL ─── */}
         <div className="content-disclaimer">
-          <strong>Avertissement&nbsp;:</strong> un projet d&apos;arrêté transmis au Conseil
-          supérieur de l&apos;énergie le 2 avril 2026 prévoit de supprimer la prime à
-          l&apos;autoconsommation et de ramener le tarif de rachat du surplus à 1,1 c€/kWh
-          (contre 4 c€/kWh actuellement). Texte non encore en vigueur à la date de
-          publication&nbsp;: s&apos;il était adopté, il allongerait sensiblement les durées
-          d&apos;amortissement ci-dessous. Vérifiez l&apos;état réglementaire au moment de
-          votre projet sur Légifrance et le site de la CRE.
+          <strong>Mise à jour (juin 2026)&nbsp;:</strong>{' '}
+          <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054190669" target="_blank" rel="noopener noreferrer" className="content-link">l&apos;arrêté tarifaire S21</a> a été
+          publié au Journal officiel le 4 juin 2026. Il supprime la prime à
+          l&apos;autoconsommation et ramène le tarif de rachat du surplus à 1,1 c€/kWh
+          (0,011 €/kWh, contre 0,04 € auparavant). Les durées d&apos;amortissement ci-dessous
+          intègrent désormais ce nouveau tarif. Le tarif reste figé à la date de demande
+          complète de raccordement&nbsp;: un dossier déposé avant la réforme conserve son
+          barème.
         </div>
 
         {/* ════════════ H2.8 ════════════ */}
@@ -668,8 +671,8 @@ export default function CarportSolaireBoisVE2026Page() {
           Le principe du calcul&nbsp;: chaque kWh que vous consommez directement vous évite de
           l&apos;acheter au tarif réglementé (0,1940 €/kWh, option Base 6 kVA, grille EDF du
           1ᵉʳ février 2026)&nbsp;; chaque kWh injecté sur le réseau ne vous rapporte que le
-          tarif de rachat du surplus (0,04 €/kWh, barème CRE du 2ᵉ trimestre 2026). L&apos;écart
-          est de 1 à 5&nbsp;: autoconsommer vaut près de cinq fois plus que revendre. C&apos;est
+          tarif de rachat du surplus (0,011 €/kWh, arrêté du 4 juin 2026). L&apos;écart
+          est désormais de 1 à 18&nbsp;: autoconsommer vaut près de dix-huit fois plus que revendre. C&apos;est
           pourquoi la rentabilité dépend d&apos;abord de la part que vous consommez sur place,
           bien plus que de la région.
         </p>
@@ -689,35 +692,35 @@ export default function CarportSolaireBoisVE2026Page() {
               <td>DIY · Marseille · autoconso 60 %</td>
               <td>7 000 €</td>
               <td>4 488 kWh</td>
-              <td>~594 €</td>
-              <td>~12 ans</td>
+              <td>~542 €</td>
+              <td>~13 ans</td>
             </tr>
             <tr>
               <td>Kit · Lyon · autoconso 50 %</td>
               <td>10 000 €</td>
               <td>3 603 kWh</td>
-              <td>~422 €</td>
-              <td>~24 ans</td>
+              <td>~369 €</td>
+              <td>~27 ans</td>
             </tr>
             <tr>
               <td>RGE · Lille · autoconso 40 %</td>
-              <td>13 760 € (après prime)</td>
+              <td>14 000 € (prime supprimée)</td>
               <td>2 997 kWh</td>
-              <td>~305 €</td>
-              <td>plus de 40 ans</td>
+              <td>~252 €</td>
+              <td>plus de 50 ans</td>
             </tr>
           </tbody>
         </table>
         <p className="content-body" style={{ fontSize: '0.9em', opacity: 0.8 }}>
           *Amortissement simple, à tarifs constants 2026, sans actualisation. La hausse
-          passée du prix de l&apos;électricité raccourcirait ces durées&nbsp;; le projet
-          d&apos;arrêté d&apos;avril 2026 (voir avertissement ci-dessus) les allongerait.
+          passée du prix de l&apos;électricité raccourcirait ces durées&nbsp;; le nouveau
+          tarif de rachat du surplus (arrêté du 4 juin 2026, voir avertissement ci-dessus) y est déjà intégré.
         </p>
 
         <p className="content-body">
           Trois enseignements honnêtes. D&apos;abord, le solaire pour recharger sa voiture
           n&apos;est pas un placement miracle&nbsp;: au prix de l&apos;électricité de 2026 et
-          avec un surplus racheté à 0,04 €/kWh, les durées d&apos;amortissement sont longues
+          avec un surplus racheté à seulement 0,011 €/kWh, les durées d&apos;amortissement sont longues
           dès que l&apos;installation coûte cher. Ensuite, le levier décisif est
           l&apos;autoconsommation&nbsp;: une voiture qui charge en journée, une borne pilotée
           et une consommation domestique diurne font basculer le calcul bien plus qu&apos;un
@@ -754,8 +757,8 @@ export default function CarportSolaireBoisVE2026Page() {
             Oui pour la structure bois et la pose des panneaux. La partie électrique peut
             aussi être réalisée soi-même, mais l&apos;installation raccordée au réseau doit
             obtenir une attestation Consuel (visa Bleu) qui vérifie la conformité à la norme
-            NF C 15-100. En revanche, la TVA réduite et la prime à l&apos;autoconsommation
-            exigent une pose par un installateur certifié RGE.
+            NF C 15-100. En revanche, la TVA réduite exige une pose par un installateur
+            certifié RGE&nbsp;; la prime à l&apos;autoconsommation a été supprimée le 4 juin 2026.
           </p>
 
           <h3 className="content-h3">Combien produit un carport solaire de 3 kWc à l&apos;année&nbsp;?</h3>
@@ -811,11 +814,11 @@ export default function CarportSolaireBoisVE2026Page() {
 
           <h3 className="content-h3">Peut-on revendre le surplus d&apos;électricité produit par un carport solaire&nbsp;?</h3>
           <p className="content-body">
-            Oui, via un contrat d&apos;obligation d&apos;achat avec EDF OA. Le tarif de rachat
-            du surplus est de 0,04 €/kWh pour les installations jusqu&apos;à 9 kWc au 2ᵉ
-            trimestre 2026 (barème CRE), garanti 20 ans. C&apos;est cinq fois moins que ce que
-            vous économisez en autoconsommant&nbsp;: mieux vaut consommer sa production que la
-            revendre.
+            Oui, via un contrat d&apos;obligation d&apos;achat avec EDF OA. Mais depuis
+            l&apos;arrêté tarifaire du 4 juin 2026, ce tarif est tombé à 0,011 €/kWh (1,1 c€)
+            pour les installations jusqu&apos;à 9 kWc, garanti 20 ans — contre 0,04 € auparavant.
+            La revente du surplus ne rapporte donc presque plus rien&nbsp;: mieux vaut consommer
+            sa production que la revendre.
           </p>
 
           <h3 className="content-h3">Comment se passe le contrôle Consuel sur un carport solaire&nbsp;?</h3>
