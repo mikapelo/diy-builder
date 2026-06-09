@@ -363,6 +363,34 @@ export default function GuidesPage() {
               <div className="editorial-arrow" aria-hidden="true">→</div>
             </Link>
 
+            <Link href="/guides/taxe-abri-jardin-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/taxe-abri-jardin-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Fiscalité</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 8 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Taxe abri de jardin 2026 : calcul et montant</h3>
+                <p className="editorial-desc">
+                  Valeur forfaitaire 892 €/m² en baisse, calcul pas à pas, seuils 5 m²/1,80 m,
+                  abattement et exonération communale. Exemples chiffrés.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
             <Link href="/guides/permis-cabanon-seuils-2026" className="editorial-card">
               <div className="editorial-image">
                 <Image

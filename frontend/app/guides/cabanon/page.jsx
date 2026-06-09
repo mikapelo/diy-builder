@@ -497,6 +497,12 @@ export default function GuideCabanonPage() {
           </Link>
         </div>
 
+        <p className="content-body">
+          Au-delà des autorisations d&apos;urbanisme, un abri de plus de 5&nbsp;m² déclenche aussi une{' '}
+          <Link href="/guides/taxe-abri-jardin-2026" className="content-link">taxe d&apos;aménagement</Link>{' '}
+          — notre guide en détaille le calcul, le montant 2026 (en baisse) et les cas d&apos;exonération.
+        </p>
+
         <h2 className="content-h2">Questions fréquentes</h2>
         <p className="content-snippet">
           Pente de toit&nbsp;: 20–30&nbsp;% recommandé (15&nbsp;% minimum technique). Pour un cabanon
