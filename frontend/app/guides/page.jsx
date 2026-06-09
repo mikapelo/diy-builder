@@ -307,6 +307,34 @@ export default function GuidesPage() {
               <div className="editorial-arrow" aria-hidden="true">→</div>
             </Link>
 
+            <Link href="/guides/prix-pergola-bioclimatique-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/prix-pergola-bioclimatique-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Analyse · Prix</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 8 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Prix d&apos;une pergola bioclimatique en 2026</h3>
+                <p className="editorial-desc">
+                  Coût au m² (400 à 1 500 €), budget d&apos;un modèle 12-15 m², surcoût des
+                  options (motorisation, LED, capteurs) et 5 postes cachés du devis.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
             <Link href="/guides/comparer-devis-travaux" className="editorial-card">
               <div className="editorial-image">
                 <Image

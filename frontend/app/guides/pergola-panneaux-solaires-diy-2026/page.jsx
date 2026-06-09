@@ -940,6 +940,7 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
             <li><Link href="/pergola">Simulateur pergola DIY</Link> — structure, sections de bois, BOM et budget avec ou sans panneaux solaires</li>
             <li><Link href="/guides/pergola">Guide pergola complet</Link> — essence, pente, fondations, étanchéité, entretien 20 ans</li>
             <li><Link href="/guides/comparer-devis-travaux">Comparer plusieurs devis travaux</Link> — lecture critique d&apos;un devis installateur RGE QualiPV</li>
+            <li><Link href="/guides/prix-pergola-bioclimatique-2026">Prix d&apos;une pergola bioclimatique 2026</Link> — coût au m², options et postes cachés du devis</li>
             <li><Link href="/guides/soi-meme-ou-pro">Soi-même ou faire faire&nbsp;?</Link> — grille de décision DIY vs pro selon niveau et contraintes</li>
             <li><Link href="/sources">Sources techniques et juridiques</Link> — Code urbanisme, NF C 15-100, Eurocode 1, arrêté tarif EDF OA</li>
           </ul>

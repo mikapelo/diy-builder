@@ -21,6 +21,7 @@ export default function sitemap() {
     { url: `${baseUrl}/guides/permis-cabanon-seuils-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/guides/terrasse-piscine-bois`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/guides/pergola-panneaux-solaires-diy-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/guides/prix-pergola-bioclimatique-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/guides/carport-solaire-bois-recharger-voiture-electrique-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/guides/hauteur-cloture-loi-2026`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     // Note : pages /liste avec query strings retirées du sitemap.

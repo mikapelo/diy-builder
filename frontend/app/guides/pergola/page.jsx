@@ -431,6 +431,7 @@ export default function GuidePergolaBois() {
           Deux angles complémentaires selon votre projet :
         </p>
         <ul className="content-body">
+          <li><strong><Link href="/guides/prix-pergola-bioclimatique-2026">Prix d&apos;une pergola bioclimatique 2026</Link></strong> — coût au m², surcoût des options (motorisation, LED, capteurs) et 5 postes cachés du devis.</li>
           <li><strong><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola avec panneaux solaires DIY 2026</Link></strong> — structure bois + kit PV, démarches Consuel/Enedis, ROI réaliste, aides 2026.</li>
           <li><strong><Link href="/guides/soi-meme-ou-pro">Faire soi-même ou faire faire</Link></strong> — comparatif DIY vs artisan : coût, temps, garanties, critères de décision.</li>
         </ul>
