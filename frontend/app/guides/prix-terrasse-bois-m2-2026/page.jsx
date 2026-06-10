@@ -8,13 +8,13 @@ const OG_SUBTITLE = 'Comparatif essence × enseigne · chiffres recalculés';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
 
 export const metadata = {
-  title: 'Prix terrasse bois au m² en France 2026 : 80 à 290 €',
+  title: 'Prix terrasse bois au m² 2026 : le vrai prix dès 43 €/m²',
   description:
-    'Prix d\'une terrasse bois au m² en France en 2026 : pin dès 80 €, douglas 110 €, ipé 290 €. Comparatif Leroy Merlin, Castorama, Brico Dépôt et pose artisan.',
+    'Le vrai prix au m² d\'une terrasse bois en 2026 : pin 43-53 €, douglas 53-65 €, ipé 103-125 € hors pose. L\'étiquette du rayon cache 60 % du coût réel.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026' },
   openGraph: {
-    title: 'Prix terrasse bois au m² en France 2026 : 80 à 290 € | DIY Builder',
-    description: 'Prix d\'une terrasse bois au m² en France en 2026, par essence et par enseigne : pin dès 80 €, douglas 110 €, ipé 290 €. Avec ou sans pose artisan.',
+    title: 'Prix terrasse bois au m² 2026 : le vrai prix dès 43 €/m² | DIY Builder',
+    description: 'Le vrai prix au m² d\'une terrasse bois en 2026 : pin 43-53 €, douglas 53-65 €, ipé 103-125 € hors pose, et le coût que l\'étiquette du rayon cache.',
     url: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Comparatif prix terrasse bois 2026 — DIY Builder' }],
