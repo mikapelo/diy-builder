@@ -102,11 +102,11 @@ const withPWA = require('next-pwa')({
 const DREI_HDR_CDN = 'https://market-assets.fra1.cdn.digitaloceanspaces.com';
 const CSP_DIRECTIVES = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is https://connect.facebook.net",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is https://umami-three-rose-32.vercel.app https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   `img-src 'self' data: blob: ${DREI_HDR_CDN} https://www.facebook.com https://*.fbcdn.net`,
-  `connect-src 'self' ${DREI_HDR_CDN} https://cloud.umami.is https://api.umami.is https://*.facebook.com`,
+  `connect-src 'self' ${DREI_HDR_CDN} https://cloud.umami.is https://umami-three-rose-32.vercel.app https://api.umami.is https://*.facebook.com`,
   "frame-ancestors 'none'",
   "frame-src 'self' https://www.facebook.com",
   "base-uri 'self'",

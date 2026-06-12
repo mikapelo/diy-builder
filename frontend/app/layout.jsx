@@ -76,6 +76,8 @@ export const viewport = {
 };
 
 const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+// Self-host : NEXT_PUBLIC_UMAMI_SRC surcharge le script Cloud (défaut = Cloud, donc zéro régression si non défini)
+const UMAMI_SRC = process.env.NEXT_PUBLIC_UMAMI_SRC || 'https://cloud.umami.is/script.js';
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 export default function RootLayout({ children }) {
@@ -118,7 +120,7 @@ export default function RootLayout({ children }) {
           <Script
             defer
             data-website-id={UMAMI_WEBSITE_ID}
-            src="https://cloud.umami.is/script.js"
+            src={UMAMI_SRC}
             strategy="afterInteractive"
           />
         )}
