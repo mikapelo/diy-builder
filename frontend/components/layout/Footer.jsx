@@ -101,9 +101,6 @@ export default function Footer() {
           </Link>.
         </p>
 
-        {/* Vérification de propriété réseau Awin — texte temporaire, à retirer après validation (global-partnercompliance@awin.com) */}
-        <p className="text-white/60 text-xs mb-6">Hello Awin</p>
-
         {/* Bottom row: Legal + Status */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-[11px] uppercase tracking-[.12em] text-white/60 font-semibold">
