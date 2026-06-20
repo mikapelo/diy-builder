@@ -19,6 +19,7 @@
  *   trackLeadSubmitted(props)     — event 8 : lead-submitted
  *   trackArtisanModalOpen(props)  — event 9 : artisan-modal-open
  *   trackArtisanModalAbandon(props) — event 10 : artisan-modal-abandon
+ *   trackAwinClick(props)         — event 11 : awin-click
  */
 
 /**
@@ -98,4 +99,10 @@ export function trackArtisanModalOpen({ module }) {
  *  @param {{ module: string, stage: 'idle' | 'submitting' | 'error' }} props */
 export function trackArtisanModalAbandon({ module, stage }) {
   trackEvent('artisan-modal-abandon', { module, stage });
+}
+
+/** Event 11 — awin-click : clic vers un produit partenaire Awin (Aosom, Plots discount)
+ *  @param {{ merchant: string, module: string, product?: string }} props */
+export function trackAwinClick({ merchant, module, product = '' }) {
+  trackEvent('awin-click', { merchant, module, product });
 }

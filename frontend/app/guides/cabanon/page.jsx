@@ -3,6 +3,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
+import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
 const OG_TITLE = 'Construire un cabanon ossature bois';
 const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
@@ -552,6 +553,8 @@ export default function GuideCabanonPage() {
         </p>
 
         <GuideToolsBlock module="cabanon" />
+
+        <AffiliatePartnerBlock module="cabanon" placement="guide" />
 
         <aside className="content-related">
           <h3>Voir aussi</h3>

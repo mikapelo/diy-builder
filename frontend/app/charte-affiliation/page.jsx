@@ -126,13 +126,14 @@ export default function CharteAffiliationPage() {
 
         <h2 className="content-h2">Programmes d&apos;affiliation actifs</h2>
         <p className="content-body">
-          Un seul programme d&apos;affiliation est actif à ce jour&nbsp;: Amazon Partenaires.
+          Deux programmes d&apos;affiliation sont actifs à ce jour&nbsp;: Amazon Partenaires
+          (outillage) et le réseau Awin, via les marchands Aosom et Plots discount.
           Les liens vers les autres enseignes (Leroy Merlin, Castorama, Brico Dépôt,
           ManoMano) ne génèrent aucune rémunération. Cette section est mise à jour
           si la situation évolue.
         </p>
 
-        <h3 className="content-h3">Amazon Partenaires (seul programme actif)</h3>
+        <h3 className="content-h3">Amazon Partenaires (outillage)</h3>
         <p className="content-body">
           DIY Builder participe au Programme Partenaires d&apos;Amazon EU, conçu pour permettre
           à des sites de percevoir une rémunération grâce à la création de liens vers Amazon.fr.
@@ -151,6 +152,27 @@ export default function CharteAffiliationPage() {
           <li style={{ marginBottom: '8px' }}>
             <strong>Taux de commission&nbsp;:</strong> variable par catégorie (bricolage&nbsp;:
             généralement 3–5&nbsp;%)
+          </li>
+        </ul>
+
+        <h3 className="content-h3">Awin — Aosom et Plots discount (programmes actifs)</h3>
+        <p className="content-body">
+          DIY Builder est éditeur affilié sur le réseau Awin. Deux marchands sont intégrés
+          à ce jour&nbsp;: <strong>Aosom</strong> (pergolas, abris et mobilier de jardin prêts
+          à poser) et <strong>Plots discount</strong> (plots réglables de terrasse). Ces produits
+          apparaissent comme alternative prête à poser ou comme complément au matériel calculé par
+          les simulateurs, toujours signalés comme liens sponsorisés.
+        </p>
+        <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '16px' }}>
+          <li style={{ marginBottom: '8px' }}>
+            <strong>Plateforme&nbsp;:</strong> réseau d&apos;affiliation Awin (éditeur DIY Builder)
+          </li>
+          <li style={{ marginBottom: '8px' }}>
+            <strong>Durée du cookie&nbsp;:</strong> 14 jours (Aosom)&nbsp;; variable selon le marchand
+          </li>
+          <li style={{ marginBottom: '8px' }}>
+            <strong>Taux de commission&nbsp;:</strong> variable par marchand, versé par Awin —
+            sans surcoût pour vous
           </li>
         </ul>
 

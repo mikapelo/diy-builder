@@ -3,6 +3,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
+import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
 const OG_TITLE = 'Construire une terrasse bois';
 const OG_SUBTITLE = 'DTU 51.4 + lambourdes + budget';
@@ -425,6 +426,8 @@ export default function GuideTerrassePage() {
         </p>
 
         <GuideToolsBlock module="terrasse" />
+
+        <AffiliatePartnerBlock module="terrasse" placement="guide" />
 
         <h2 className="content-h2">Approfondir votre projet terrasse</h2>
         <p className="content-body">

@@ -16,7 +16,9 @@ import BudgetComparator from './BudgetComparator';
 import TimeEstimate     from './TimeEstimate';
 import ProjectTools     from './ProjectTools';
 import ProjectActions   from './ProjectActions';
+import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 import { useScrollTunnel } from '@/hooks/useScrollTunnel';
+import { fitsAwinPartnerArea } from '@/lib/awinProducts';
 
 const GUIDE_LINKS = {
   terrasse: { href: '/guides/terrasse', label: 'Guide complet : construire une terrasse bois',  desc: 'Choix du bois, calcul des lambourdes, étapes de pose, budget détaillé.' },
@@ -88,6 +90,13 @@ export default function TunnelSections({
       <section className="sim-tunnel-section">
         <ProjectTools projectType={projectType} />
       </section>
+
+      {/* 6 bis. Partenaire Awin — pergola/terrasse (toujours) ; cabanon gaté à ≤ simMaxArea */}
+      {fitsAwinPartnerArea(projectType, area) && (
+        <section className="sim-tunnel-section">
+          <AffiliatePartnerBlock module={projectType} placement="sim" />
+        </section>
+      )}
 
       {/* 7. Guide contextuel — lien SEO vers le guide du module */}
       {GUIDE_LINKS[projectType] && (
