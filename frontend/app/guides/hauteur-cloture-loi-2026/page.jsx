@@ -599,6 +599,7 @@ export default function HauteurClotureLoi2026Page() {
             <li><Link href="/cloture">Simulateur de clôture</Link> — nombre de poteaux, rails et lames selon votre hauteur, avec comparatif des prix par enseigne</li>
             <li><Link href="/guides/cloture-solaire-brise-vue-photovoltaique-2026">Clôture solaire : le brise-vue photovoltaïque</Link> — quand la clôture produit de l&apos;électricité : rendement vertical et règles 2026</li>
             <li><Link href="/guides/cloture-composite-ou-bois">Clôture composite ou bois</Link> — comparatif prix, durée de vie et entretien pour choisir la matière</li>
+            <li><Link href="/guides/prix-cloture-au-metre-2026">Prix d&apos;une clôture au mètre 2026</Link> — tarifs par matériau, coût de pose et postes cachés d&apos;un devis</li>
             <li><Link href="/guides/permis-cabanon-seuils-2026">Permis et déclaration préalable au jardin</Link> — les seuils d&apos;urbanisme pour un abri ou un cabanon</li>
             <li><Link href="/guides/comparer-devis-travaux">Comparer les devis travaux</Link> — si vous confiez la pose à un professionnel</li>
             <li><Link href="/sources">Sources juridiques et techniques</Link> — Code civil, Code de l&apos;urbanisme, Service-Public, Légifrance</li>

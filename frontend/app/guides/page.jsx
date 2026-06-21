@@ -273,7 +273,7 @@ export default function GuidesPage() {
         <section>
           <h2 className="content-h2">Aller plus loin</h2>
           <p className="content-body">
-            Douze analyses pour creuser un point précis — prix au m², lecture critique
+            Treize analyses pour creuser un point précis — prix au m², lecture critique
             d&apos;un devis, démarches administratives, réglementation de voisinage,
             production solaire au jardin, comparatif de matériaux et projets spécifiques.
           </p>
@@ -583,6 +583,34 @@ export default function GuidesPage() {
                 <p className="editorial-desc">
                   Prix au mètre, durée de vie, entretien, vieillissement et écologie : le match
                   honnête WPC contre bois, avec le coût réel sur 15 ans.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/prix-cloture-au-metre-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/prix-cloture-au-metre-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Analyse · Prix</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 9 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Prix d&apos;une clôture au mètre en 2026</h3>
+                <p className="editorial-desc">
+                  Tableau par matériau (grillage, bois, composite, alu, gabion), coût de pose,
+                  postes cachés et 3 budgets clés en main chiffrés.
                 </p>
               </div>
               <div className="editorial-arrow" aria-hidden="true">→</div>

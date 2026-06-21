@@ -632,6 +632,7 @@ export default function ComparerDevisTravauxPage() {
           <ul>
             <li><Link href="/guides/soi-meme-ou-pro">Soi-même ou faire faire</Link> — cinq critères de décision avant même de demander un devis</li>
             <li><Link href="/guides/prix-terrasse-bois-m2-2026">Prix terrasse au m² 2026</Link> — base de comparaison artisan</li>
+            <li><Link href="/guides/prix-cloture-au-metre-2026">Prix d&apos;une clôture au mètre 2026</Link> — base de comparaison pour un devis de clôture</li>
             <li><Link href="/guides">Tous les guides projets</Link> — six guides bois et béton</li>
             <li><Link href="/sources">Sources juridiques citées</Link> — Code conso, Code civil, Code assurances</li>
           </ul>

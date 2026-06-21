@@ -497,6 +497,7 @@ export default function ClotureCompositeOuBoisPage() {
             <li><Link href="/guides/hauteur-cloture-loi-2026">Hauteur de clôture et loi 2026</Link> — PLU, mitoyenneté et déclaration avant de poser, quel que soit le matériau</li>
             <li><Link href="/guides/comparer-devis-travaux">Comparer des devis de clôture</Link> — faire chiffrer la pose par un pro et lire le devis sans se faire avoir</li>
             <li><Link href="/guides/terrasse-composite-ou-bois">Terrasse composite ou bois</Link> — le même match de matières, côté terrasse cette fois</li>
+            <li><Link href="/guides/prix-cloture-au-metre-2026">Prix d&apos;une clôture au mètre 2026</Link> — combien coûte chaque matériau, tous types confondus, et les postes cachés</li>
             <li><Link href="/sources">Sources techniques</Link> — NF EN 335, FCBA, ADEME, Silvadec, Ootravaux</li>
           </ul>
         </aside>
