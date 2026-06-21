@@ -128,6 +128,46 @@ export const AWIN_PARTNERS = {
     ],
   },
 
+  // Article « terrasse composite ou bois » : lames de platelage WPC (alternative aux
+  // lames bois que le calculateur dimensionne). Woodstore24 = lames massives 3D
+  // (gris clair/foncé 10,95 €/m) + premium coextrudée (15,50 €/m). Prix au MÈTRE LINÉAIRE.
+  // CADRAGE : autopose, lame seule (hors structure). Placement article uniquement.
+  'terrasse-composite': {
+    merchant: 'woodstore',
+    variant: 'alternative',
+    eyebrow: 'Alternative composite',
+    title: 'Les lames composite sans le saturateur',
+    subtitle:
+      'Votre calculateur dimensionne une terrasse en lames bois, à saturer tous les ans ou deux. Pour des lames composite (WPC) qui ne grisent pas et ne se saturent jamais, voici une sélection chez Woodstore24, de la lame massive structurée à la lame premium coextrudée. Ce n’est pas du bois massif, mais ça ne demande qu’un nettoyage — prix au mètre linéaire.',
+    cta: 'Voir chez Woodstore24',
+    products: [
+      {
+        name: 'Lame terrasse WPC massive 22×143 mm — gris clair, structure 3D',
+        price: '10,95',
+        priceSuffix: '/ mètre',
+        rating: null,
+        url: 'https://woodstore24.fr/wpc-terrassendiele-massivdiele-hellgrau-holzstruktur-22-mm-starke-x-143-mm-breite-3d-oberflache-in-den-langen-3-m-3-6-m-4-2-m-und-4-8-m.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/ba024d481b803908c2ed2d2ae49e042a/3/d/3d-gun23138.2_2_4.jpg',
+      },
+      {
+        name: 'Lame terrasse WPC massive 22×143 mm — gris foncé, structure 3D',
+        price: '10,95',
+        priceSuffix: '/ mètre',
+        rating: null,
+        url: 'https://woodstore24.fr/wpc-terrassendiele-massivdiele-dunkelgrau-holzstruktur-22-mm-starke-x-143-mm-breite-3d-oberflache-in-den-langen-3-m-3-6-m-4-2-m-und-4-8-m.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/ba024d481b803908c2ed2d2ae49e042a/3/d/3d-gun23138.1_2.jpg',
+      },
+      {
+        name: 'Lame terrasse WPC premium coextrudée 23×220 mm — Smooth Cream',
+        price: '15,50',
+        priceSuffix: '/ mètre',
+        rating: null,
+        url: 'https://woodstore24.fr/wpc-3-d-premium-coextrud-lame-massive-23-mm-s-x-220-mm-l-smooth-cream-en-longueurs-de-2-4-m-et-4-m.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/ba024d481b803908c2ed2d2ae49e042a/p/r/premium-produktbild-coex-beige.jpg',
+      },
+    ],
+  },
+
   // Fit limité : les abris Aosom plafonnent à ~5 m² (cabanon simulé jusqu'à 16 m²).
   // → cadrage honnête « petit abri de rangement » + simMaxArea gate le bloc côté simulateur.
   cabanon: {
@@ -214,6 +254,39 @@ export const AWIN_PARTNERS = {
         rating: null,
         url: 'https://woodstore24.fr/wpc-cloture-anthracite-kit-complet-avec-elements-de-design-20-mm-epaisseur-x-1800-mm-largeur-x-1850-mm-hautes-visibilite-cloture-embrochable-systeme-de-cloture-modulaire-inclus-profil-de-depart-et-de-fin-serie-woodonorderney-sans-poteau.html',
         img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/w/d/wdndesigelement.2.png',
+      },
+    ],
+  },
+
+  // Article YMYL « clôture solaire » : modules photovoltaïques bifaciaux verticaux qui
+  // remplacent les lames d'un brise-vue (« Solarzaun »). Woodstore24 = un des rares
+  // distributeurs FR. Catalogue réel = 2 réfs (panneau seul 192 € → kit + poteaux 474 €).
+  // CADRAGE STRICT : autopose → TVA 20 %, aucune aide ; CACSI Enedis requise même sans
+  // injection. Placement article uniquement (le simulateur clôture dimensionne du BOIS).
+  'cloture-solaire': {
+    merchant: 'woodstore',
+    variant: 'alternative',
+    eyebrow: 'Kit clôture solaire',
+    title: 'Le brise-vue qui produit du courant',
+    subtitle:
+      'Plutôt que des lames opaques, ces travées reçoivent des modules photovoltaïques bifaciaux verticaux (380 Wc) : la clôture masque la vue et produit de l’électricité. Woodstore24 les distribue en kit, du panneau seul à l’ensemble avec poteaux aluminium. À poser soi-même comme un brise-vue — le raccordement suit les règles solaire détaillées plus haut.',
+    cta: 'Voir chez Woodstore24',
+    products: [
+      {
+        name: 'Panneau clôture solaire bifacial 380 Wc — sans poteaux',
+        price: '192,00',
+        priceSuffix: '/ module',
+        rating: null,
+        url: 'https://woodstore24.fr/kit-complet-cloture-solaire-comme-protection-visuelle-380-w-biface-1767-mm-h-x-1040-mm-l-x-7-4-mm-s-sans-cadre-avec-adaptateur-sans-poteaux.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/ba024d481b803908c2ed2d2ae49e042a/s/o/solarmoduleinzelnd.png',
+      },
+      {
+        name: 'Kit complet clôture solaire 380 Wc — poteaux aluminium inclus',
+        price: '474,00',
+        priceSuffix: '/ travée',
+        rating: null,
+        url: 'https://woodstore24.fr/kit-complet-cloture-solaire-comme-protection-visuelle-verre-de-securite-bifacial-panneau-solaire-380-w-y-compris-poteaux-en-aluminium-et-accessoires-necessaires-version-horizontale.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/ba024d481b803908c2ed2d2ae49e042a/k/o/komplettset_solarzaun_als_sichtschutz_002__1.png',
       },
     ],
   },

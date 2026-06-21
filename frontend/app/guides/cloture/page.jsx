@@ -474,6 +474,12 @@ export default function GuideClotureBois() {
               <Link href="/guides/hauteur-cloture-loi-2026">Hauteur de clôture : ce que dit la loi 2026</Link> — limites de hauteur, mitoyenneté et règles de voisinage avant de poser
             </li>
             <li>
+              <Link href="/guides/cloture-solaire-brise-vue-photovoltaique-2026">Clôture solaire : le brise-vue qui produit de l&apos;électricité</Link> — remplacer les lames par des panneaux photovoltaïques verticaux, rendement et règles 2026
+            </li>
+            <li>
+              <Link href="/guides/cloture-composite-ou-bois">Clôture composite ou bois</Link> — comparatif prix, durée de vie, entretien et écologie pour choisir la matière
+            </li>
+            <li>
               <Link href="/guides/pergola">Guide pergola</Link> — ancrage de poteaux porteurs dans les mêmes configurations de sol
             </li>
             <li>

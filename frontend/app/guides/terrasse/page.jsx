@@ -442,6 +442,7 @@ export default function GuideTerrassePage() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/terrasse-composite-ou-bois">Terrasse composite ou bois</Link> — comparatif prix au m², durée de vie, entretien et glissance pour choisir la matière</li>
             <li><Link href="/guides/cabanon">Guide cabanon</Link> — ossature et toiture mono-pente</li>
             <li><Link href="/guides/pergola">Guide pergola</Link> — poteaux et chevrons</li>
             <li><Link href="/faq">FAQ</Link> — 24 questions techniques (entraxes, prix, réglementation)</li>

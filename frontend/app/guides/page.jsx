@@ -273,9 +273,9 @@ export default function GuidesPage() {
         <section>
           <h2 className="content-h2">Aller plus loin</h2>
           <p className="content-body">
-            Sept analyses pour creuser un point précis — prix au m², lecture critique
-            d&apos;un devis, démarches administratives, réglementation de voisinage et
-            projets spécifiques.
+            Douze analyses pour creuser un point précis — prix au m², lecture critique
+            d&apos;un devis, démarches administratives, réglementation de voisinage,
+            production solaire au jardin, comparatif de matériaux et projets spécifiques.
           </p>
           <div className="editorial-stack">
 
@@ -447,6 +447,34 @@ export default function GuidesPage() {
               <div className="editorial-arrow" aria-hidden="true">→</div>
             </Link>
 
+            <Link href="/guides/terrasse-composite-ou-bois" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/terrasse-composite-ou-bois/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Comparatif · Terrasse</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 10 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Terrasse composite ou bois&nbsp;: le comparatif 2026</h3>
+                <p className="editorial-desc">
+                  Prix au m², durée de vie, entretien, glissance et chaleur pieds nus : le match
+                  honnête WPC contre bois (pin, douglas, ipé), coût sur 15 ans inclus.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
             <Link href="/guides/pergola-panneaux-solaires-diy-2026" className="editorial-card">
               <div className="editorial-image">
                 <Image
@@ -499,6 +527,62 @@ export default function GuidesPage() {
                 <p className="editorial-desc">
                   Structure bois DTU 31.1, production PVGIS par ville, sept démarches
                   Enedis-Consuel, budget autoconstruction contre installateur RGE et ROI honnête.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/cloture-solaire-brise-vue-photovoltaique-2026" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/cloture-solaire-brise-vue-photovoltaique-2026/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Clôture solaire</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 11 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Clôture solaire&nbsp;: le brise-vue qui produit de l&apos;électricité</h3>
+                <p className="editorial-desc">
+                  Rendement réel du photovoltaïque vertical (données PVGIS), bifacial est-ouest,
+                  règles 2026 du kit à brancher (CACSI, Consuel) et budget honnête.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/cloture-composite-ou-bois" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/cloture-composite-ou-bois/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Comparatif · Clôture</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 10 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Clôture composite ou bois&nbsp;: le comparatif 2026</h3>
+                <p className="editorial-desc">
+                  Prix au mètre, durée de vie, entretien, vieillissement et écologie : le match
+                  honnête WPC contre bois, avec le coût réel sur 15 ans.
                 </p>
               </div>
               <div className="editorial-arrow" aria-hidden="true">→</div>

@@ -21,7 +21,7 @@ import { getAwinPartner, buildAwinUrl, AWIN_SNAPSHOT_DATE } from '@/lib/awinProd
 import { trackAwinClick } from '@/hooks/useAnalytics';
 
 /* Icône de repli par module si l'image marchand ne charge pas */
-const FALLBACK_ICON = { pergola: 'pergola', terrasse: 'deck', cloture: 'fence', carport: 'solar_power' };
+const FALLBACK_ICON = { pergola: 'pergola', terrasse: 'deck', cloture: 'fence', carport: 'solar_power', 'cloture-solaire': 'solar_power', 'terrasse-composite': 'deck' };
 
 /* ── Flèche externe (même tracé que le bloc outils, cohérence) ── */
 function ArrowExternal() {

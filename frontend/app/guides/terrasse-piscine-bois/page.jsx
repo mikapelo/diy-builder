@@ -596,6 +596,7 @@ export default function TerrassePiscineBoisPage() {
           <ul>
             <li><Link href="/guides/terrasse">Guide terrasse complet</Link> — DTU 51.4, lambourdes, plots, pose des lames</li>
             <li><Link href="/guides/prix-terrasse-bois-m2-2026">Prix terrasse au m² 2026</Link> — comparatif essence × enseigne</li>
+            <li><Link href="/guides/terrasse-composite-ou-bois">Terrasse composite ou bois</Link> — bois ou WPC : durée de vie, entretien, glissance et chaleur au soleil</li>
             <li><Link href="/guides/soi-meme-ou-pro">Soi-même ou faire faire</Link> — critères de décision</li>
             <li><Link href="/calculateur">Calculateur terrasse bois</Link> — devis matériaux + plan 3D</li>
           </ul>

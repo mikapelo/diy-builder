@@ -459,8 +459,8 @@ export default function PrixTerrasseBoisM2Page() {
 
         <p className="content-body">
           Deux inconvénients réels du composite à intégrer dans le choix : la lame chauffe sous le soleil
-          direct (températures de surface mesurées jusqu&apos;à 70 °C en été dans le Midi contre 50-55 °C
-          pour le bois), et le rendu plastique reste reconnaissable de près malgré les progrès des
+          direct (les teintes foncées peuvent devenir inconfortables pieds nus en plein été, plus que
+          le bois), et le rendu plastique reste reconnaissable de près malgré les progrès des
           finitions imitation bois. Sur 25 ans d&apos;usage, le composite reste compétitif face à un pin
           re-traité tous les 2 ans, et bat l&apos;ipé en investissement initial.
         </p>
@@ -679,6 +679,7 @@ export default function PrixTerrasseBoisM2Page() {
           <h3>Voir aussi</h3>
           <ul>
             <li><Link href="/guides/terrasse">Guide terrasse complet</Link> — DTU 51.4, calculs, étapes</li>
+            <li><Link href="/guides/terrasse-composite-ou-bois">Terrasse composite ou bois</Link> — comparatif des deux matières : durée de vie, entretien, glissance et coût sur 15 ans</li>
             <li><Link href="/guides/soi-meme-ou-pro">Soi-même ou faire faire</Link> — cinq critères de décision</li>
             <li><Link href="/calculateur">Calculateur terrasse</Link> — devis matériaux + plan</li>
             <li><Link href="/sources">Sources DTU citées</Link> — DTU 51.4 et RBUE</li>

@@ -127,7 +127,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'La TVA 5,5 % s’applique-t-elle si je pose moi-même mon carport solaire ?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Non. La TVA réduite à 5,5 % est réservée à la pose par un installateur certifié RGE QualiPV, et soumise à des conditions strictes depuis l’arrêté du 8 septembre 2025 (bilan carbone des modules, système de gestion d’énergie). En autoconstruction, vous restez à 20 %, ou 10 % en résidence principale au titre de l’article 278-0 bis du Code général des impôts.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Non. La TVA réduite à 5,5 % est réservée à la pose par un installateur certifié RGE QualiPV, et soumise à des conditions strictes depuis l’arrêté du 8 septembre 2025 (bilan carbone des modules, système de gestion d’énergie). En autoconstruction, vous restez à 20 % : le taux réduit de 5,5 % (article 278-0 bis du Code général des impôts) exige une pose par un professionnel qualifié.' },
     },
     {
       '@type': 'Question',
@@ -619,7 +619,7 @@ export default function CarportSolaireBoisVE2026Page() {
             <tr>
               <td>Installateur RGE clé en main</td>
               <td>12 000 à 18 000 €</td>
-              <td>5,5 % si conditions réunies, sinon 10 %</td>
+              <td>5,5 % si conditions réunies, sinon 20 %</td>
               <td>Prime supprimée le 4 juin 2026</td>
             </tr>
           </tbody>
@@ -631,10 +631,10 @@ export default function CarportSolaireBoisVE2026Page() {
           est réservée à la pose par un installateur certifié RGE QualiPV&nbsp;; la prime à
           l&apos;autoconsommation, elle, a été supprimée le 4 juin 2026. Pire, la TVA 5,5 % est devenue presque inaccessible depuis
           l&apos;arrêté du 8 septembre 2025, qui impose un bilan carbone des modules très
-          strict (certification Certisolis) et un système de gestion d&apos;énergie&nbsp;: la
-          plupart des installations résidentielles restent donc à 10 % (en résidence
-          principale, au titre de l&apos;article 278-0 bis du Code général des impôts) ou à
-          20 %.
+          strict (certification Certisolis) et un système de gestion d&apos;énergie&nbsp;: une
+          installation montée soi-même reste donc à 20 %, le taux réduit de 5,5 % au titre de
+          l&apos;article 278-0 bis du Code général des impôts exigeant une pose par un
+          professionnel qualifié.
         </p>
         <p className="content-body">
           Quant à la prime à l&apos;autoconsommation, elle a été supprimée par l&apos;arrêté
@@ -783,8 +783,8 @@ export default function CarportSolaireBoisVE2026Page() {
             Non. La TVA réduite à 5,5 % est réservée à la pose par un installateur certifié RGE
             QualiPV, et soumise à des conditions strictes depuis l&apos;arrêté du 8 septembre
             2025 (bilan carbone des modules, système de gestion d&apos;énergie). En
-            autoconstruction, vous restez à 20 %, ou 10 % en résidence principale au titre de
-            l&apos;article 278-0 bis du Code général des impôts.
+            autoconstruction, vous restez à 20 %&nbsp;: le taux réduit de 5,5 % (article 278-0 bis
+            du Code général des impôts) exige une pose par un professionnel qualifié.
           </p>
 
           <h3 className="content-h3">Combien coûte le raccordement Enedis pour un carport solaire&nbsp;?</h3>
@@ -849,6 +849,7 @@ export default function CarportSolaireBoisVE2026Page() {
             <li><Link href="/pergola">Simulateur pergola DIY</Link> — la structure d&apos;un carport couvert se calcule comme une pergola&nbsp;: sections, BOM, budget</li>
             <li><Link href="/guides/pergola">Guide pergola complet</Link> — essence, pente, fondations, sections DTU 31.1</li>
             <li><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola + panneaux solaires DIY 2026</Link> — démarches Consuel/Enedis et aides détaillées</li>
+            <li><Link href="/guides/cloture-solaire-brise-vue-photovoltaique-2026">Clôture solaire : le brise-vue photovoltaïque</Link> — produire à la verticale, le bifacial est-ouest et les règles du kit à brancher</li>
             <li><Link href="/guides/prix-pergola-bioclimatique-2026">Prix d&apos;une pergola bioclimatique au m²</Link> — fourchette de coût et postes cachés d&apos;un devis de structure couverte</li>
             <li><Link href="/guides/permis-cabanon-seuils-2026">Permis et déclaration préalable</Link> — seuils d&apos;urbanisme pour une construction de jardin</li>
             <li><Link href="/sources">Sources techniques et juridiques</Link> — DTU 31.1, CRE, Enedis, Consuel, Légifrance</li>
