@@ -94,7 +94,7 @@ const articleJsonLd = {
     logo: { '@type': 'ImageObject', url: 'https://www.diy-builder.fr/images/logo-512.png' },
   },
   datePublished: '2026-06-02',
-  dateModified: '2026-06-09',
+  dateModified: '2026-06-21',
   mainEntityOfPage: 'https://www.diy-builder.fr/guides/carport-solaire-bois-recharger-voiture-electrique-2026',
   image: OG_URL,
   about: ['Carport solaire', 'Photovoltaïque', 'Voiture électrique', 'Autoconsommation'],
@@ -191,7 +191,7 @@ export default function CarportSolaireBoisVE2026Page() {
         <p className="content-meta">
           <span><strong>Publié le 2 juin 2026</strong></span>
           <span>·</span>
-          <span>Mis à jour le 9 juin 2026</span>
+          <span>Mis à jour le 21 juin 2026</span>
           <span>·</span>
           <span>L&apos;équipe DIY Builder</span>
           <span>·</span>
@@ -830,6 +830,81 @@ export default function CarportSolaireBoisVE2026Page() {
             depuis le 2 septembre 2025). Sans cette attestation, pas de raccordement au réseau.
           </p>
         </div>
+
+        {/* ════════════ H2 — CARPORT BOIS OU ALUMINIUM (section comparative T2) ════════════ */}
+        <h2 className="content-h2">Carport bois ou aluminium&nbsp;: lequel choisir&nbsp;?</h2>
+        <p className="content-snippet">
+          Le bois gagne au budget&nbsp;: un carport bois posé revient à 1 500-2 800 € pour une
+          voiture, moins encore en autoconstruction — mais il se lasure tous les 2 à 4 ans.
+          L&apos;aluminium coûte plus cher (à partir d&apos;environ 4 950 € pour un kit prêt pour
+          le solaire) et ne se répare pas pièce par pièce, mais il ne rouille pas, ne demande aucun
+          entretien sur 30 à 40 ans et tient en bord de mer. On paie l&apos;alu pour la
+          tranquillité, pas pour le prix d&apos;achat.
+        </p>
+        <p className="content-body">
+          Ce guide construit en bois parce que c&apos;est la voie la plus accessible et la seule
+          vraiment autoconstructible (voir la première section). Mais beaucoup hésitent avec un kit
+          aluminium prêt à poser&nbsp;: voici le match honnête, au-delà du seul prix d&apos;achat.
+        </p>
+        <p className="content-body">
+          <strong>Le bois</strong> reste le choix du budget et de l&apos;autoconstruction. Un
+          carport bois prêt à poser se trouve autour de 1 500 à 2 800 € pour une voiture, jusqu&apos;à
+          5 000 € pour deux&nbsp;; l&apos;ossature montée soi-même revient à une fraction de ce
+          prix — la matière seule, que notre{' '}
+          <Link href="/pergola" className="content-link">simulateur</Link>{' '}
+          chiffre selon les sections. En contrepartie&nbsp;: une lasure ou un saturateur tous les 2
+          à 4 ans, et une durée de vie de 15 à 30 ans selon l&apos;entretien (le pin autoclave
+          classe 4 reste la vraie référence au contact du sol). Atout discret&nbsp;: le bois se
+          répare pièce par pièce et se travaille à l&apos;outillage courant.
+        </p>
+        <p className="content-body">
+          <strong>L&apos;aluminium</strong> inverse l&apos;équation. Les kits d&apos;entrée de gamme
+          démarrent vers 1 100 à 2 500 €, mais les modèles robustes «&nbsp;prêts pour le
+          solaire&nbsp;» — comme ceux du bloc ci-dessous — montent à environ 4 950 € pour une voiture
+          et 7 490 € pour deux, structure nue. C&apos;est plus cher qu&apos;un carport bois&nbsp;; ce
+          qu&apos;on achète, c&apos;est l&apos;absence d&apos;entretien&nbsp;: l&apos;alu ne rouille
+          pas (couche d&apos;oxyde auto-protectrice), tient 30 à 40 ans, se nettoie deux fois
+          l&apos;an, et son thermolaquage encaisse les embruns du littoral. Le montage est rapide
+          (kit pré-percé, visé), mais c&apos;est un produit fermé, peu modifiable, souvent importé
+          avec un délai de livraison de plusieurs semaines. En fin de vie, l&apos;aluminium se
+          recycle à 100 % sans perte de qualité.
+        </p>
+
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>Choisir le bois si…</th>
+              <th>Choisir l&apos;aluminium si…</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Budget serré ou autoconstruction</td>
+              <td>Vous voulez zéro entretien sur 30-40 ans</td>
+            </tr>
+            <tr>
+              <td>Rendu chaleureux, intégration au jardin</td>
+              <td>Vous êtes en bord de mer (embruns)</td>
+            </tr>
+            <tr>
+              <td>Réparabilité pièce par pièce</td>
+              <td>Montage rapide par kit + design moderne</td>
+            </tr>
+            <tr>
+              <td>Vous acceptez la lasure tous les 2-4 ans</td>
+              <td>Toiture solaire intégrée «&nbsp;prête à brancher&nbsp;»</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p className="content-body">
+          Le point de bascule est franc&nbsp;: à l&apos;achat, le bois gagne presque toujours, et
+          l&apos;autoconstruction creuse encore l&apos;écart. L&apos;aluminium se justifie quand on
+          raisonne sur trente ans — plus de lasure, plus de reprise — ou quand le bord de mer, le
+          montage express ou un toit solaire intégré emportent la décision. Si c&apos;est votre cas,
+          les kits aluminium ci-dessous (structure nue ou toit solaire intégré) sont une base
+          sérieuse&nbsp;; sinon, le bois de ce guide garde le meilleur rapport coût-maîtrise.
+        </p>
 
         {/* ════════════ PARTENAIRE AWIN — Woodstore24 (alternative kit) ════════════ */}
         <p className="content-affiliate-disclo">
