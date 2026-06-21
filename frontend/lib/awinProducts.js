@@ -1,15 +1,16 @@
 /**
- * awinProducts.js — Partenaires affiliés Awin (Aosom, Plots discount)
+ * awinProducts.js — Partenaires affiliés Awin (Aosom, Plots discount, Woodstore24)
  *
  * Tracking Awin via deep-link cread.php : Awin attribue le clic côté réseau
  * (clickref = notre sous-tag), pas d'UTM custom sur l'URL marchand.
  *   https://www.awin1.com/cread.php?awinmid={MID}&awinaffid={AFFID}&clickref={ref}&ued={URL}
  *
  * Éditeur DIY Builder : awinaffid 2934749.
- * Marchands rejoints : Aosom FR (mid 19184), Plots discount FR (mid 109434).
+ * Marchands rejoints : Aosom FR (mid 19184), Plots discount FR (mid 109434),
+ * Woodstore24 FR (mid 57469).
  *
- * Produits relevés en direct le 2026-06-20 — prix indicatifs, susceptibles
- * d'évoluer (promos fréquentes côté Aosom). Réveiller le snapshot si périmé.
+ * Produits relevés en direct le 2026-06-21 — prix indicatifs, susceptibles
+ * d'évoluer (promos fréquentes côté Aosom/Woodstore24). Réveiller le snapshot si périmé.
  * Sélection éditoriale : pas de catalogue, 4 produits curés par module.
  */
 
@@ -18,9 +19,10 @@ const AWIN_AFFID = '2934749';
 export const AWIN_MERCHANTS = {
   aosom: { name: 'Aosom', mid: '19184', site: 'aosom.fr' },
   plots: { name: 'Plots discount', mid: '109434', site: 'plots-discount.com' },
+  woodstore: { name: 'Woodstore24', mid: '57469', site: 'woodstore24.fr' },
 };
 
-export const AWIN_SNAPSHOT_DATE = '2026-06-20';
+export const AWIN_SNAPSHOT_DATE = '2026-06-21';
 
 /**
  * Construit le deep-link Awin (format cread.php) vers une URL marchand.
@@ -165,6 +167,98 @@ export const AWIN_PARTNERS = {
         rating: '4.7',
         url: 'https://www.aosom.fr/item/outsunny-abri-de-jardin-3-2-m-remise-a-outils-avec-kit-de-fondation-en-acier-galvanise-avec-portes-coulissantes-vert~1PDTFI9BHTO00.html',
         img: 'https://img.aosomcdn.com/thumbnail/100/n1/product/2025/01/22/uAb8a71948d2c1dd0.jpg',
+      },
+    ],
+  },
+
+  // Le simulateur clôture dimensionne une clôture BOIS (poteaux/rails/lames).
+  // Woodstore24 propose des kits brise-vue composite WPC à clipser entre poteaux :
+  // alternative sans entretien (pas de lasure), prix au panneau (≈ une travée).
+  cloture: {
+    merchant: 'woodstore',
+    variant: 'alternative',
+    eyebrow: 'Alternative composite',
+    title: 'Le brise-vue sans la lasure',
+    subtitle:
+      'Votre simulateur dimensionne une clôture en bois, à lasurer tous les deux ou trois ans. Pour un brise-vue composite (WPC) qui ne grise pas et ne se lasure jamais, voici des kits à clipser entre poteaux chez Woodstore24. Ce n’est pas du bois massif, mais ça se pose en un week-end et ça ne demande qu’un coup de jet de temps en temps.',
+    cta: 'Voir chez Woodstore24',
+    products: [
+      {
+        name: 'Kit brise-vue composite 1,82 m — brun',
+        price: '109,50',
+        priceSuffix: '/ panneau',
+        rating: null,
+        url: 'https://woodstore24.fr/xxl-kit-complet-cloture-light-wpc-ecran-cloture-a-emboiter-20-mm-epaisseur-x-1800-mm-largeur-x-1825-mm-haut-systeme-de-cloture-modulaire-en-marron-y-compris-profil-de-finition-serie-woodonorderney-sans-poteau.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/n/o/norderney_komplettset_braun_2.png',
+      },
+      {
+        name: 'Kit brise-vue composite 1,85 m — anthracite',
+        price: '119,50',
+        priceSuffix: '/ panneau',
+        rating: null,
+        url: 'https://woodstore24.fr/xxl-kit-complet-cloture-opaque-cloture-a-emboiter-20-mm-epaisseur-x-1800-mm-largeur-x-1850-mm-haut-systeme-de-cloture-modulaire-en-anthracite-y-compris-profil-de-depart-et-de-fin-serie-woodonorderney-sans-poteau.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/n/o/norderney_komplettset_anthrazit_1-1.png',
+      },
+      {
+        name: 'Kit brise-vue composite 1,85 m — gris',
+        price: '119,50',
+        priceSuffix: '/ panneau',
+        rating: null,
+        url: 'https://woodstore24.fr/xxl-kit-complet-cloture-opaque-cloture-a-emboiter-20-mm-epaisseur-x-1800-mm-largeur-x-1850-mm-haut-systeme-de-cloture-modulaire-en-gris-y-compris-profil-de-depart-et-de-fin-serie-woodonorderney-sans-poteau.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/n/o/norderney_komplettset_grau_3.png',
+      },
+      {
+        name: 'Kit brise-vue composite + élément design — anthracite',
+        price: '169,00',
+        priceSuffix: '/ panneau',
+        rating: null,
+        url: 'https://woodstore24.fr/wpc-cloture-anthracite-kit-complet-avec-elements-de-design-20-mm-epaisseur-x-1800-mm-largeur-x-1850-mm-hautes-visibilite-cloture-embrochable-systeme-de-cloture-modulaire-inclus-profil-de-depart-et-de-fin-serie-woodonorderney-sans-poteau.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/w/d/wdndesigelement.2.png',
+      },
+    ],
+  },
+
+  // Page YMYL « carport solaire bois » : le contenu détaille la construction d'une
+  // ossature bois + raccordement Consuel/Enedis. Bloc 'alternative' = kit alu prêt à
+  // monter à toit solaire intégré (Woodstore24). CADRAGE STRICT : aluminium (pas bois),
+  // raccordement = électricien, aucune aide ni ROI (les aides citées côté marchand sont
+  // ALLEMANDES, hors périmètre FR). Placement article uniquement (jamais simulateur).
+  carport: {
+    merchant: 'woodstore',
+    variant: 'alternative',
+    eyebrow: 'Alternative en kit',
+    title: 'Le carport solaire livré en kit',
+    subtitle:
+      'Notre simulateur dimensionne une ossature bois à construire, panneaux à ajouter ensuite. Si vous préférez un ensemble complet, Woodstore24 propose des carports en aluminium à toit solaire intégré (environ 4 à 6 kWc), livrés en kit avec les modules. Ce n’est pas du bois, et le raccordement au réseau reste un travail d’électricien — mais l’ossature et les panneaux arrivent ensemble.',
+    cta: 'Voir chez Woodstore24',
+    products: [
+      {
+        name: 'Carport solaire aluminium 1 voiture — 9 modules',
+        price: '7 140,00',
+        rating: null,
+        url: 'https://woodstore24.fr/carport-en-kit-aluminium-avec-toit-solaire-pour-1-voiture-puiss0ance-des-modules-440-w-9-modules-par-carport-dimensions-du-caport-5200-x-3540-x-3000-mm-modules-en-verre-440-w-module-avec-cadre-en-aluminium-des-deux-cotes.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/1/_/1.einzelcarport.jpg',
+      },
+      {
+        name: 'Carport solaire aluminium 2 voitures — 15 modules',
+        price: '10 668,00',
+        rating: null,
+        url: 'https://woodstore24.fr/carport-en-kit-aluminium-avec-toit-solaire-pour-2-voitures-puissance-des-modules-440-w-15-modules-par-carport-dimensions-du-caport-5200-x-5850-x-3000-mm-modules-en-verre-440-w-module-avec-cadre-en-aluminium-des-deux-cotes.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/ba024d481b803908c2ed2d2ae49e042a/1/_/1.doppelcarport_002_.jpg',
+      },
+      {
+        name: 'Carport aluminium 1 voiture — structure seule',
+        price: '4 950,00',
+        rating: null,
+        url: 'https://woodstore24.fr/carport-en-kit-pour-1-voiture-aluminium-sans-panneaux-solaires-dimensions-du-carport-5200-x-3540-x-3000-mm.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/e/i/einzelcarport_ohnesolar_002__1.jpg',
+      },
+      {
+        name: 'Carport aluminium 2 voitures — structure seule',
+        price: '7 490,00',
+        rating: null,
+        url: 'https://woodstore24.fr/carport-en-kit-pour-2-voitures-aluminium-sans-panneaux-solaires-dimensions-du-carport-5200-x-5850-x-3000-mm.html',
+        img: 'https://woodstore24.fr/media/catalog/product/cache/026236701dd809f82ecca10eab2b30e2/d/o/doppelcarport_ohnesolar_002_.jpg',
       },
     ],
   },

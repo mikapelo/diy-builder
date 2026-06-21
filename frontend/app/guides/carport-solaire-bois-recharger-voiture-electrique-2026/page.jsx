@@ -44,6 +44,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
+import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
 const OG_TITLE = 'Carport solaire bois pour VE — Guide 2026';
 const OG_SUBTITLE = 'Structure DTU · Enedis-Consuel · budget · ROI réel';
@@ -830,6 +831,17 @@ export default function CarportSolaireBoisVE2026Page() {
           </p>
         </div>
 
+        {/* ════════════ PARTENAIRE AWIN — Woodstore24 (alternative kit) ════════════ */}
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: le bloc ci-dessous renvoie vers
+          Woodstore24 (réseau Awin) par des liens sponsorisés. Si vous achetez via ces liens,
+          DIY Builder peut percevoir une commission, sans surcoût pour vous. Notre contenu
+          technique reste indépendant — voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
+        </p>
+
+        <AffiliatePartnerBlock module="carport" placement="guide" />
+
         {/* ════════════ MAILLAGE INTERNE (brief §E) ════════════ */}
         <aside className="content-related">
           <h3>Voir aussi</h3>
@@ -837,24 +849,11 @@ export default function CarportSolaireBoisVE2026Page() {
             <li><Link href="/pergola">Simulateur pergola DIY</Link> — la structure d&apos;un carport couvert se calcule comme une pergola&nbsp;: sections, BOM, budget</li>
             <li><Link href="/guides/pergola">Guide pergola complet</Link> — essence, pente, fondations, sections DTU 31.1</li>
             <li><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola + panneaux solaires DIY 2026</Link> — démarches Consuel/Enedis et aides détaillées</li>
+            <li><Link href="/guides/prix-pergola-bioclimatique-2026">Prix d&apos;une pergola bioclimatique au m²</Link> — fourchette de coût et postes cachés d&apos;un devis de structure couverte</li>
             <li><Link href="/guides/permis-cabanon-seuils-2026">Permis et déclaration préalable</Link> — seuils d&apos;urbanisme pour une construction de jardin</li>
             <li><Link href="/sources">Sources techniques et juridiques</Link> — DTU 31.1, CRE, Enedis, Consuel, Légifrance</li>
           </ul>
         </aside>
-
-        {/* ════════════ DISCLOSURE AFFILIATION (brief §K) ════════════ */}
-        {/* PHASE B — activer si liens Amazon/Otovo présents dans la version finale */}
-        {/*
-        <p className="content-disclosure">
-          <em>
-            Cet article contient des liens vers Amazon (programme Partenaires Amazon — outillage)
-            et un lien partenaire vers Otovo pour la mise en relation avec des installateurs RGE.
-            Si vous achetez via ces liens, DIY Builder peut percevoir une commission, sans surcoût
-            pour vous. Notre verdict éditorial reste indépendant&nbsp;:
-            voir notre <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
-          </em>
-        </p>
-        */}
 
         <footer className="content-byline">
           <p>

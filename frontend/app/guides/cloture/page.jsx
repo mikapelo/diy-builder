@@ -3,6 +3,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
+import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
 const OG_TITLE = 'Construire une clôture bois';
 const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
@@ -103,7 +104,7 @@ export default function GuideClotureBois() {
           <span className="content-breadcrumb-current">Clôture bois</span>
         </nav>
 
-        <h1 className="content-h1">Construire une clôture bois</h1>
+        <h1 className="content-h1">Construire une clôture bois : poteaux, rails, lames et budget</h1>
 
         <p className="content-meta">
           <span><strong>Mis à jour le 16 mai 2026</strong></span>
@@ -464,11 +465,19 @@ export default function GuideClotureBois() {
 
         <GuideToolsBlock module="cloture" />
 
+        <AffiliatePartnerBlock module="cloture" placement="guide" />
+
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
             <li>
+              <Link href="/guides/hauteur-cloture-loi-2026">Hauteur de clôture : ce que dit la loi 2026</Link> — limites de hauteur, mitoyenneté et règles de voisinage avant de poser
+            </li>
+            <li>
               <Link href="/guides/pergola">Guide pergola</Link> — ancrage de poteaux porteurs dans les mêmes configurations de sol
+            </li>
+            <li>
+              <Link href="/guides/comparer-devis-travaux">Comparer des devis de clôture</Link> — faire chiffrer la pose par un pro et lire le devis sans se faire avoir
             </li>
             <li>
               <Link href="/faq">FAQ</Link> — 24 questions techniques sur la clôture, les prix et la réglementation

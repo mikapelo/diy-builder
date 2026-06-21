@@ -64,8 +64,22 @@ describe('getAwinPartner / hasAwinPartner', () => {
     expect(cab.simMaxArea).toBe(6);
   });
 
+  it('résout cloture (Woodstore24) sans plafond de surface', () => {
+    const clo = getAwinPartner('cloture');
+    expect(clo.merchant).toBe('woodstore');
+    expect(clo.merchantInfo.mid).toBe('57469');
+    expect(clo.variant).toBe('alternative');
+    expect(clo.simMaxArea).toBeUndefined();
+  });
+
+  it('résout carport (Woodstore24, placement article)', () => {
+    const car = getAwinPartner('carport');
+    expect(car.merchant).toBe('woodstore');
+    expect(car.merchantInfo.mid).toBe('57469');
+    expect(car.variant).toBe('alternative');
+  });
+
   it('retourne null pour un module sans partenaire', () => {
-    expect(getAwinPartner('cloture')).toBeNull();
     expect(getAwinPartner('dalle')).toBeNull();
     expect(getAwinPartner('inconnu')).toBeNull();
   });
@@ -74,18 +88,21 @@ describe('getAwinPartner / hasAwinPartner', () => {
     expect(hasAwinPartner('pergola')).toBe(true);
     expect(hasAwinPartner('terrasse')).toBe(true);
     expect(hasAwinPartner('cabanon')).toBe(true);
-    expect(hasAwinPartner('cloture')).toBe(false);
+    expect(hasAwinPartner('cloture')).toBe(true);
+    expect(hasAwinPartner('carport')).toBe(true);
     expect(hasAwinPartner('dalle')).toBe(false);
   });
 
-  it('fitsAwinPartnerArea : pas de plafond pergola/terrasse, gate cabanon ≤ 6 m²', () => {
+  it('fitsAwinPartnerArea : pas de plafond pergola/terrasse/cloture, gate cabanon ≤ 6 m²', () => {
     expect(fitsAwinPartnerArea('pergola', 999)).toBe(true);
     expect(fitsAwinPartnerArea('terrasse', 999)).toBe(true);
+    expect(fitsAwinPartnerArea('cloture', 2)).toBe(true);
+    expect(fitsAwinPartnerArea('cloture', 999)).toBe(true);
     expect(fitsAwinPartnerArea('cabanon', 5)).toBe(true);
     expect(fitsAwinPartnerArea('cabanon', 6)).toBe(true);
     expect(fitsAwinPartnerArea('cabanon', 16)).toBe(false);
     expect(fitsAwinPartnerArea('cabanon', undefined)).toBe(false);
-    expect(fitsAwinPartnerArea('cloture', 2)).toBe(false);
+    expect(fitsAwinPartnerArea('dalle', 2)).toBe(false);
   });
 });
 
@@ -102,7 +119,7 @@ describe('intégrité des données partenaires', () => {
       for (const p of partner.products) {
         expect(typeof p.name).toBe('string');
         expect(p.name.length).toBeGreaterThan(3);
-        expect(p.price).toMatch(/^\d+,\d{2}$/);
+        expect(p.price).toMatch(/^\d{1,3}(\s\d{3})*,\d{2}$/);
         expect(p.url).toMatch(/^https:\/\//);
         expect(p.img).toMatch(/^https:\/\//);
       }
@@ -118,6 +135,12 @@ describe('intégrité des données partenaires', () => {
     }
     for (const p of AWIN_PARTNERS.terrasse.products) {
       expect(p.url).toContain('plots-discount.com');
+    }
+    for (const p of AWIN_PARTNERS.cloture.products) {
+      expect(p.url).toContain('woodstore24.fr');
+    }
+    for (const p of AWIN_PARTNERS.carport.products) {
+      expect(p.url).toContain('woodstore24.fr');
     }
   });
 

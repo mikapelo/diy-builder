@@ -409,6 +409,7 @@ export default function PrixPergolaBioclimatiquePage() {
           <ul>
             <li><Link href="/pergola">Simulateur de pergola</Link> — chiffre la structure porteuse (poteaux, longerons, chevrons) poste par poste</li>
             <li><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola avec panneaux solaires 2026</Link> — faisabilité, démarches Consuel/Enedis et aides après la réforme</li>
+            <li><Link href="/guides/carport-solaire-bois-recharger-voiture-electrique-2026">Carport solaire&nbsp;: structure couverte et budget</Link> — le coût d&apos;un carport bois équipé pour la recharge d&apos;une voiture électrique</li>
             <li><Link href="/guides/comparer-devis-travaux">Comparer des devis de travaux</Link> — les écarts de prix et les vérifications gratuites avant de signer</li>
             <li><Link href="/guides/soi-meme-ou-pro">Faire soi-même ou faire appel à un pro</Link> — le break-even honnête selon le chantier</li>
             <li><Link href="/guides/permis-cabanon-seuils-2026">Permis et déclaration préalable</Link> — seuils d&apos;urbanisme pour une construction de jardin</li>

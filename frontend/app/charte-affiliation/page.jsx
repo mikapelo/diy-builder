@@ -4,7 +4,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 export const metadata = {
   title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
   description:
-    'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates est le seul programme actif. Liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano sans rémunération. Mécanisme de suivi, durée des cookies, règles éditoriales. Conformité Loi 2023-451 et Code conso L121-1.',
+    'Transparence complète sur l\'affiliation DIY Builder : Amazon Partenaires et le réseau Awin (Aosom, Plots discount, Woodstore24) sont actifs. Liens vers Leroy Merlin, Castorama, Brico Dépôt et ManoMano sans rémunération. Mécanisme de suivi, durée des cookies, règles éditoriales. Conformité Loi 2023-451 et Code conso L121-1.',
   alternates: { canonical: 'https://www.diy-builder.fr/charte-affiliation' },
   openGraph: {
     title: 'Charte d\'affiliation DIY Builder : comment ça marche, ce qu\'on gagne',
@@ -36,7 +36,7 @@ const webPageJsonLd = {
   url: 'https://www.diy-builder.fr/charte-affiliation',
   description:
     'Transparence complète sur l\'affiliation DIY Builder : Amazon Associates seul programme actif, mécanisme de suivi, règles éditoriales.',
-  dateModified: '2026-05-16',
+  dateModified: '2026-06-21',
   publisher: {
     '@type': 'Organization',
     name: 'DIY Builder',
@@ -68,7 +68,7 @@ export default function CharteAffiliationPage() {
         </h1>
 
         <p className="content-meta">
-          <span><strong>Mis à jour le 16 mai 2026</strong></span>
+          <span><strong>Mis à jour le 21 juin 2026</strong></span>
           <span>·</span>
           <span>L&apos;équipe DIY Builder</span>
           <span>·</span>
@@ -127,10 +127,10 @@ export default function CharteAffiliationPage() {
         <h2 className="content-h2">Programmes d&apos;affiliation actifs</h2>
         <p className="content-body">
           Deux programmes d&apos;affiliation sont actifs à ce jour&nbsp;: Amazon Partenaires
-          (outillage) et le réseau Awin, via les marchands Aosom et Plots discount.
-          Les liens vers les autres enseignes (Leroy Merlin, Castorama, Brico Dépôt,
-          ManoMano) ne génèrent aucune rémunération. Cette section est mise à jour
-          si la situation évolue.
+          (outillage) et le réseau Awin, via les marchands Aosom, Plots discount et
+          Woodstore24. Les liens vers les autres enseignes (Leroy Merlin, Castorama,
+          Brico Dépôt, ManoMano) ne génèrent aucune rémunération. Cette section est mise
+          à jour si la situation évolue.
         </p>
 
         <h3 className="content-h3">Amazon Partenaires (outillage)</h3>
@@ -155,11 +155,12 @@ export default function CharteAffiliationPage() {
           </li>
         </ul>
 
-        <h3 className="content-h3">Awin — Aosom et Plots discount (programmes actifs)</h3>
+        <h3 className="content-h3">Awin — Aosom, Plots discount et Woodstore24 (programmes actifs)</h3>
         <p className="content-body">
-          DIY Builder est éditeur affilié sur le réseau Awin. Deux marchands sont intégrés
+          DIY Builder est éditeur affilié sur le réseau Awin. Trois marchands sont intégrés
           à ce jour&nbsp;: <strong>Aosom</strong> (pergolas, abris et mobilier de jardin prêts
-          à poser) et <strong>Plots discount</strong> (plots réglables de terrasse). Ces produits
+          à poser), <strong>Plots discount</strong> (plots réglables de terrasse) et{' '}
+          <strong>Woodstore24</strong> (clôtures composite WPC et brise-vue). Ces produits
           apparaissent comme alternative prête à poser ou comme complément au matériel calculé par
           les simulateurs, toujours signalés comme liens sponsorisés.
         </p>
