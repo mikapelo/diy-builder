@@ -27,7 +27,7 @@
  */
 
 /** Date de la dernière mise à jour des prix — changer à chaque révision */
-export const PRICES_DATE = '2026-05-25';
+export const PRICES_DATE = '2026-06-22';
 
 export const MATERIAL_PRICES = [
   // ── Ossature bois générique ─────────────────────────────────────
@@ -88,7 +88,7 @@ export const MATERIAL_PRICES = [
 
   // Vis inox A2 4×40 lot 200 — Castorama direct : 19,90€
   // LM : vis inox A2 4×40 boîte 200 ≈ 21,50€ (index Google)
-  { id: 'vis_inox_a2',         label: 'Vis inox A2 4×40 mm (lot 200)',          category: 'Quincaillerie', unit: 'lot',  scraped: true,  prices: { leroymerlin: 21.5, castorama: 19.1, bricodepot: 17.5, manomano: 9.79 } },
+  { id: 'vis_inox_a2',         label: 'Vis inox A2 4×40 mm (lot 200)',          category: 'Quincaillerie', unit: 'lot',  scraped: true,  prices: { leroymerlin: 21.5, castorama: 20.3, bricodepot: 17.5, manomano: 9.79 } },
 
   // Équerre d'assemblage charpente — LM direct : 0,99€/pcs (équerre 40×40×40mm galva Alberts)
   // Lot 25 = 0,80€/pcs — prix unitaire retenu
@@ -184,7 +184,7 @@ export const MATERIAL_PRICES = [
   // Casto : Ondufilm 4m×5m (20m²) = 19,90€ → 1,00€/m² (scraping direct 2026-05-07)
   //   (correction : 18,50€ était le prix total du rouleau pris pour un prix/m²)
   // BD : estimation 0,32€/m²
-  { id: 'polyane_200',         label: 'Film polyane 200 µ (sous dalle)',        category: 'Fondations', unit: 'm²',  scraped: true, prices: { leroymerlin: 0.4, castorama: 1, bricodepot: 0.32 } },
+  { id: 'polyane_200',         label: 'Film polyane 200 µ (sous dalle)',        category: 'Fondations', unit: 'm²',  scraped: true, prices: { leroymerlin: 0.4, castorama: 1.04, bricodepot: 0.32 } },
 
   // Gravier 0/31,5 couche de forme — big bag 1500kg ≈ 1m³ compacté
   // LM : big bag 0/31,5 ≈ 45€/m³ (URL confirmée, prix estimé 2026)
