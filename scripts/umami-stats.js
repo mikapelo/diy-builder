@@ -150,7 +150,8 @@ function help() {
   const token = await login();
   switch (cmd) {
     case 'stats':     return cmdStats(token, parseDays(args[0]));
-    case 'pages':     return cmdMetric(token, parseDays(args[0]), 'url', 'Top pages');
+    // Umami v3 : le type metrics est 'path' (l'ancien 'url' renvoie HTTP 400 bad-request)
+    case 'pages':     return cmdMetric(token, parseDays(args[0]), 'path', 'Top pages');
     case 'referrers': return cmdMetric(token, parseDays(args[0]), 'referrer', 'Top référents');
     case 'events':    return cmdMetric(token, parseDays(args[0]), 'event', 'Événements');
     case 'realtime':  return cmdRealtime(token);
