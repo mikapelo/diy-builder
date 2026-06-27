@@ -407,6 +407,7 @@ export default function PrixPergolaBioclimatiquePage() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/tonnelle-ou-pergola-difference">Tonnelle ou pergola&nbsp;?</Link> — l&apos;alternative démontable à toile, bien moins chère qu&apos;une pergola fixe</li>
             <li><Link href="/pergola">Simulateur de pergola</Link> — chiffre la structure porteuse (poteaux, longerons, chevrons) poste par poste</li>
             <li><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola avec panneaux solaires 2026</Link> — faisabilité, démarches Consuel/Enedis et aides après la réforme</li>
             <li><Link href="/guides/carport-solaire-bois-recharger-voiture-electrique-2026">Carport solaire&nbsp;: structure couverte et budget</Link> — le coût d&apos;un carport bois équipé pour la recharge d&apos;une voiture électrique</li>

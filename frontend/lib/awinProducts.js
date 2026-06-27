@@ -219,6 +219,51 @@ export const AWIN_PARTNERS = {
     ],
   },
 
+  // DeubaXXL (mid 21192) — tonnelles / pavillons de jardin À TOILE (relevé live 2026-06-28).
+  // Structure légère démontable → variante 'alternative' à la pergola fixe (le simulateur pergola
+  // dimensionne du bois ancré). Du pliable d'appoint au pavillon rigide. Catalogue : 12 vraies
+  // tonnelles (hors accessoires), 68,99-219,99 €. Placement article uniquement. Images wsrv ~420px.
+  'tonnelle': {
+    merchant: 'deuba',
+    variant: 'alternative',
+    snapshotDate: '2026-06-28',
+    eyebrow: 'Alternative démontable',
+    title: 'La tonnelle, l’ombrage sans le chantier',
+    subtitle:
+      'Votre simulateur dimensionne une pergola fixe, à ancrer au sol. Pour de l’ombrage saisonnier ou une réception, une tonnelle à toile se monte sans fondation et se range l’hiver — du pliable d’appoint au pavillon à toit rigide. Ce n’est pas une structure permanente, mais c’est en place en une heure chez DeubaXXL.',
+    cta: 'Voir chez DeubaXXL',
+    products: [
+      {
+        name: 'Tonnelle pliable Capri 3 × 3 m — bleu',
+        price: '68,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/tonnelle-de-jardin-capri-bleu-3x3m-pliable/100946/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/29/e5/0c/d72cebc77a24eee4333600cf3e96b67e_01-2-100946-on-fs-m-amz-high.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Tonnelle pop-up 3 × 6 m — pavillon de réception',
+        price: '142,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/tonnelle-de-jardin-bleu-3x6m-pop-up-pavillon-reglable/107100/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/88/cd/ef/1fe5d67556e451da7a27358166bc6178_de-107100d-3-1.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Tonnelle rigide Lorca 3 × 3 m — anthracite, toile hydrofuge',
+        price: '155,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/tonnelle-de-jardin-lorca-anthracite-3x3m/108722/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/63/bd/b3/01_01_108722_fs-m_de.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Pavillon rigide Topas 4 × 3 m — anthracite, double toit',
+        price: '219,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/tonnelle-de-jardin-topas-anthracite-4x3m/994678/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/c3/57/72/a_de_994678g.jpg&w=420&q=82&output=jpg',
+      },
+    ],
+  },
+
   // Fit limité : les abris Aosom plafonnent à ~5 m² (cabanon simulé jusqu'à 16 m²).
   // → cadrage honnête « petit abri de rangement » + simMaxArea gate le bloc côté simulateur.
   cabanon: {

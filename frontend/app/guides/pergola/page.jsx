@@ -442,6 +442,7 @@ export default function GuidePergolaBois() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/tonnelle-ou-pergola-difference">Tonnelle ou pergola&nbsp;: quelle différence</Link> — structure démontable à toile ou abri fixe, prix et réglementation</li>
             <li><Link href="/guides/pergola-panneaux-solaires-diy-2026">Pergola avec panneaux solaires DIY 2026</Link> — structure, démarches Consuel/Enedis, aides 2026, ROI</li>
             <li><Link href="/guides/carport-solaire-bois-recharger-voiture-electrique-2026">Carport solaire bois pour voiture électrique</Link> — structure couverte, recharge VE, budget et ROI 2026</li>
             <li><Link href="/guides/cabanon">Guide cabanon</Link> — assemblage similaire (charpente bois)</li>

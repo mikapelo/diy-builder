@@ -937,6 +937,7 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/tonnelle-ou-pergola-difference">Tonnelle ou pergola</Link> — différences, prix et choix entre structure légère à toile et pergola fixe</li>
             <li><Link href="/pergola">Simulateur pergola DIY</Link> — structure, sections de bois, BOM et budget avec ou sans panneaux solaires</li>
             <li><Link href="/guides/pergola">Guide pergola complet</Link> — essence, pente, fondations, étanchéité, entretien 20 ans</li>
             <li><Link href="/guides/carport-solaire-bois-recharger-voiture-electrique-2026">Carport solaire bois pour recharger un véhicule électrique</Link> — même structure couverte, dimensionnée pour la recharge à domicile</li>
