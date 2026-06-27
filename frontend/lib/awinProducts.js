@@ -169,6 +169,56 @@ export const AWIN_PARTNERS = {
     ],
   },
 
+  // DeubaXXL (mid 21192) — dalles/caillebotis À CLIPSER pour terrasse et balcon (relevé live
+  // 2026-06-28). Produit fini posé sur sol existant, sans vis ni dalle béton → variante
+  // 'alternative' à la terrasse construite. Catalogue Deuba = le plus profond (acacia FSC,
+  // eucalyptus, WPC/composite, lots 11→66 dalles 30×30). Placement article uniquement.
+  // Images 3000px → wsrv.nl ~420px, repli icône 'grid_view'.
+  'dalle-clipsable': {
+    merchant: 'deuba',
+    variant: 'alternative',
+    snapshotDate: '2026-06-28',
+    eyebrow: 'Alternative sans travaux',
+    title: 'Clipser plutôt que construire',
+    subtitle:
+      'Votre calculateur dimensionne une terrasse bois sur lambourdes, à visser. Pour un balcon ou une terrasse d’appoint, ces dalles à clipser se posent sur le sol existant en une après-midi et se démontent quand vous partez. Ce n’est pas une terrasse structurelle, mais c’est en place ce week-end — bois, composite ou WPC chez DeubaXXL.',
+    cta: 'Voir chez DeubaXXL',
+    products: [
+      {
+        name: 'Dalle composite clipsable terracotta — lot de 11 (≈1 m²)',
+        price: '41,99',
+        priceSuffix: '/ lot',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/11x-dalles-en-composite-clipsables-terracotta-30x30cm/994369/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/db/70/d8/01_994369_fs-m.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Dalle bois acacia FSC clipsable — lot de 33 (≈3 m²)',
+        price: '78,99',
+        priceSuffix: '/ lot',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/dalle-en-bois-d-acacia-certifiee-fsc-lot-de-33-30x30cm/993129/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/d1/51/3a/01_993129_fs-m.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Dalle bois eucalyptus — 33 dalles pour 3 m²',
+        price: '89,99',
+        priceSuffix: '/ lot',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/33x-dalles-de-terrasse-pour-3m2-en-bois-d-eucalyptus-30x30cm/990480/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/5e/9d/b3/aa20ab87d1b6f6eaa922944b74c11e23_a-de-990480g4.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Dalle WPC clipsable anthracite — lot de 66 (≈6 m²)',
+        price: '213,99',
+        priceSuffix: '/ lot',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/66x-dalle-de-terrasse-clipsable-en-wpc-30x30cm-anthracite/995156/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/96/18/8a/01_995156_fs-m.jpg&w=420&q=82&output=jpg',
+      },
+    ],
+  },
+
   // Fit limité : les abris Aosom plafonnent à ~5 m² (cabanon simulé jusqu'à 16 m²).
   // → cadrage honnête « petit abri de rangement » + simMaxArea gate le bloc côté simulateur.
   cabanon: {

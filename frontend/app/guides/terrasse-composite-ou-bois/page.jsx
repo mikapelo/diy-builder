@@ -485,6 +485,7 @@ export default function TerrasseCompositeOuBoisPage() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/dalle-clipsable-terrasse-balcon-sans-travaux">Dalle clipsable pour balcon</Link> — l&apos;alternative sans travaux, emboîtable sur sol existant</li>
             <li><Link href="/guides/terrasse">Guide de la terrasse bois</Link> — lambourdes, plots, entraxes et pose des lames pas à pas</li>
             <li><Link href="/calculateur">Calculateur de terrasse</Link> — quantitatifs et budget lame par lame selon vos dimensions et l&apos;essence</li>
             <li><Link href="/guides/prix-terrasse-bois-m2-2026">Prix d&apos;une terrasse bois au m² en 2026</Link> — le détail des prix par essence, enseigne par enseigne</li>

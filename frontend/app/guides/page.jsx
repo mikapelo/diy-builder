@@ -273,11 +273,38 @@ export default function GuidesPage() {
         <section>
           <h2 className="content-h2">Aller plus loin</h2>
           <p className="content-body">
-            Quatorze analyses pour creuser un point précis — prix au m², lecture critique
+            Quinze analyses pour creuser un point précis — prix au m², lecture critique
             d&apos;un devis, démarches administratives, réglementation de voisinage,
             production solaire au jardin, comparatif de matériaux et projets spécifiques.
           </p>
           <div className="editorial-stack">
+
+            <Link href="/guides/dalle-clipsable-terrasse-balcon-sans-travaux" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/dalle-clipsable-terrasse-balcon-sans-travaux/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Terrasse</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 8 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Dalle clipsable : terrasse et balcon sans travaux</h3>
+                <p className="editorial-desc">
+                  Pose sans vis ni béton sur sol existant : matériaux, supports, prix au m² et quantité — la terrasse de balcon en une après-midi.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
 
             <Link href="/guides/prix-terrasse-bois-m2-2026" className="editorial-card">
               <div className="editorial-image">

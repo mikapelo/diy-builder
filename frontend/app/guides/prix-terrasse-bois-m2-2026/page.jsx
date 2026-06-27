@@ -678,6 +678,7 @@ export default function PrixTerrasseBoisM2Page() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/dalle-clipsable-terrasse-balcon-sans-travaux">Dalle clipsable terrasse et balcon</Link> — bien moins cher qu&apos;une terrasse construite, sans chantier</li>
             <li><Link href="/guides/terrasse">Guide terrasse complet</Link> — DTU 51.4, calculs, étapes</li>
             <li><Link href="/guides/terrasse-composite-ou-bois">Terrasse composite ou bois</Link> — comparatif des deux matières : durée de vie, entretien, glissance et coût sur 15 ans</li>
             <li><Link href="/guides/soi-meme-ou-pro">Soi-même ou faire faire</Link> — cinq critères de décision</li>
