@@ -273,7 +273,7 @@ export default function GuidesPage() {
         <section>
           <h2 className="content-h2">Aller plus loin</h2>
           <p className="content-body">
-            Treize analyses pour creuser un point précis — prix au m², lecture critique
+            Quatorze analyses pour creuser un point précis — prix au m², lecture critique
             d&apos;un devis, démarches administratives, réglementation de voisinage,
             production solaire au jardin, comparatif de matériaux et projets spécifiques.
           </p>
@@ -358,6 +358,33 @@ export default function GuidesPage() {
                 <p className="editorial-desc">
                   Méthode 2026, 8 mentions obligatoires, écarts de prix normaux entre
                   artisans, 5 vérifications gratuites sur l&apos;entreprise avant signature.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/abri-de-jardin-metal-bois-ou-resine" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/abri-de-jardin-metal-bois-ou-resine/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Comparatif · Abri</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 9 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Abri de jardin : métal, bois ou résine ?</h3>
+                <p className="editorial-desc">
+                  Durée de vie, prix, entretien et coût réel sur 10 ans&nbsp;: le bon matériau selon votre usage, plus la règle taxe et déclaration.
                 </p>
               </div>
               <div className="editorial-arrow" aria-hidden="true">→</div>

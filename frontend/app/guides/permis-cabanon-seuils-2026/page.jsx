@@ -542,6 +542,7 @@ export default function PermisCabanonSeuils2026Page() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/abri-de-jardin-metal-bois-ou-resine">Abri métal, bois ou résine</Link> — quel matériau choisir&nbsp;: prix, durée de vie et usage</li>
             <li><Link href="/guides/taxe-abri-jardin-2026">Taxe abri de jardin 2026</Link> — le volet fiscal&nbsp;: calcul, montant et exonération de la taxe d&apos;aménagement</li>
             <li><Link href="/guides/cabanon">Guide cabanon complet</Link> — DTU 31.2, calculs, étapes de construction</li>
             <li><Link href="/guides/soi-meme-ou-pro">Soi-même ou faire faire</Link> — cinq critères de décision</li>

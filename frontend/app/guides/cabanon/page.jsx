@@ -559,6 +559,7 @@ export default function GuideCabanonPage() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/abri-de-jardin-metal-bois-ou-resine">Abri de jardin métal, bois ou résine</Link> — le comparatif des matériaux pour choisir un abri prêt à poser ou le construire</li>
             <li><Link href="/guides/terrasse">Guide terrasse</Link> — plots et lambourdes (sol cabanon)</li>
             <li><Link href="/guides/pergola">Guide pergola</Link> — assemblage poteaux/longerons</li>
             <li><Link href="/faq">FAQ</Link> — 24 questions techniques (sections, classes, RE 2020)</li>

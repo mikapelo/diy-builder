@@ -380,6 +380,7 @@ export default function TaxeAbriJardin2026Page() {
         <aside className="content-related">
           <h3>Voir aussi</h3>
           <ul>
+            <li><Link href="/guides/abri-de-jardin-metal-bois-ou-resine">Abri métal, bois ou résine</Link> — le comparatif des matériaux et leur coût réel sur 10 ans</li>
             <li><Link href="/guides/cabanon">Guide du cabanon</Link> — ossature, bardage, couverture et budget d&apos;un abri de jardin</li>
             <li><Link href="/guides/permis-cabanon-seuils-2026">Permis et déclaration préalable</Link> — les seuils d&apos;urbanisme (5, 20, 40 m²) et les démarches</li>
             <li><Link href="/cabanon">Simulateur de cabanon</Link> — chiffre l&apos;abri poste par poste avant de déposer le dossier</li>
