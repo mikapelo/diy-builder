@@ -436,6 +436,17 @@ export default function PrixClotureAuMetrePage() {
         </div>
 
         {/* ════════════ FAQ ════════════ */}
+        {/* ════════════ PARTENAIRE AWIN — Woodstore24 (brise-vue WPC) ════════════ */}
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: le bloc ci-dessous renvoie vers
+          Woodstore24 (réseau Awin) par des liens sponsorisés. Si vous achetez via ces liens,
+          DIY Builder peut percevoir une commission, sans surcoût pour vous. Notre tableau de prix
+          reste indépendant et multi-matériaux — voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
+        </p>
+
+        <AffiliatePartnerBlock module="cloture" placement="guide" />
+
         <h2 className="content-h2">Questions fréquentes</h2>
         <div className="content-faq">
           <h3 className="content-h3">Combien coûte une clôture au mètre en 2026&nbsp;?</h3>
@@ -512,17 +523,6 @@ export default function PrixClotureAuMetrePage() {
             simulateur de clôture, qui compare en plus les prix par enseigne.
           </p>
         </div>
-
-        {/* ════════════ PARTENAIRE AWIN — Woodstore24 (brise-vue WPC) ════════════ */}
-        <p className="content-affiliate-disclo">
-          <strong>Transparence affiliation</strong>&nbsp;: le bloc ci-dessous renvoie vers
-          Woodstore24 (réseau Awin) par des liens sponsorisés. Si vous achetez via ces liens,
-          DIY Builder peut percevoir une commission, sans surcoût pour vous. Notre tableau de prix
-          reste indépendant et multi-matériaux — voir notre{' '}
-          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
-        </p>
-
-        <AffiliatePartnerBlock module="cloture" placement="guide" />
 
         {/* ════════════ MAILLAGE INTERNE ════════════ */}
         <aside className="content-related">

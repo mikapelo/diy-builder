@@ -375,6 +375,8 @@ export default function GuideClotureBois() {
           sur vos quantités exactes.
         </p>
 
+        <AffiliatePartnerBlock module="cloture" placement="guide" />
+
         <h2 className="content-h2">Réglementation — ce qu&apos;il faut vérifier avant de commander</h2>
         <p className="content-snippet">
           Dans la plupart des communes, une clôture en limite de propriété peut atteindre 2&nbsp;m
@@ -464,8 +466,6 @@ export default function GuideClotureBois() {
         </p>
 
         <GuideToolsBlock module="cloture" />
-
-        <AffiliatePartnerBlock module="cloture" placement="guide" />
 
         <aside className="content-related">
           <h3>Voir aussi</h3>

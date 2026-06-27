@@ -382,6 +382,8 @@ export default function GuideTerrassePage() {
           </a>
         </div>
 
+        <AffiliatePartnerBlock module="terrasse" placement="guide" />
+
         <h2 className="content-h2">Questions fréquentes</h2>
         <p className="content-snippet">
           Terrasse de plain-pied sous 60&nbsp;cm&nbsp;: aucun permis requis. Au-delà de 20&nbsp;m²
@@ -426,8 +428,6 @@ export default function GuideTerrassePage() {
         </p>
 
         <GuideToolsBlock module="terrasse" />
-
-        <AffiliatePartnerBlock module="terrasse" placement="guide" />
 
         <h2 className="content-h2">Approfondir votre projet terrasse</h2>
         <p className="content-body">

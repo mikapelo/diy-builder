@@ -480,6 +480,8 @@ export default function GuideCabanonPage() {
           les charpentiers qualifiés sont en tension, prenez date tôt.
         </p>
 
+        <AffiliatePartnerBlock module="cabanon" placement="guide" />
+
         <h2 className="content-h2">Réglementation</h2>
         <p className="content-snippet">
           Moins de 5&nbsp;m²&nbsp;: aucune démarche. De 5 à 20&nbsp;m²&nbsp;: déclaration préalable
@@ -553,8 +555,6 @@ export default function GuideCabanonPage() {
         </p>
 
         <GuideToolsBlock module="cabanon" />
-
-        <AffiliatePartnerBlock module="cabanon" placement="guide" />
 
         <aside className="content-related">
           <h3>Voir aussi</h3>

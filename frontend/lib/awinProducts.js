@@ -1,5 +1,5 @@
 /**
- * awinProducts.js — Partenaires affiliés Awin (Aosom, Plots discount, Woodstore24)
+ * awinProducts.js — Partenaires affiliés Awin (Aosom, Plots discount, Woodstore24, DeubaXXL)
  *
  * Tracking Awin via deep-link cread.php : Awin attribue le clic côté réseau
  * (clickref = notre sous-tag), pas d'UTM custom sur l'URL marchand.
@@ -7,7 +7,7 @@
  *
  * Éditeur DIY Builder : awinaffid 2934749.
  * Marchands rejoints : Aosom FR (mid 19184), Plots discount FR (mid 109434),
- * Woodstore24 FR (mid 57469).
+ * Woodstore24 FR (mid 57469), DeubaXXL FR (mid 21192).
  *
  * Produits relevés en direct le 2026-06-21 — prix indicatifs, susceptibles
  * d'évoluer (promos fréquentes côté Aosom/Woodstore24). Réveiller le snapshot si périmé.
@@ -20,6 +20,7 @@ export const AWIN_MERCHANTS = {
   aosom: { name: 'Aosom', mid: '19184', site: 'aosom.fr' },
   plots: { name: 'Plots discount', mid: '109434', site: 'plots-discount.com' },
   woodstore: { name: 'Woodstore24', mid: '57469', site: 'woodstore24.fr' },
+  deuba: { name: 'DeubaXXL', mid: '21192', site: 'deubaxxl.fr' },
 };
 
 export const AWIN_SNAPSHOT_DATE = '2026-06-21';
@@ -207,6 +208,55 @@ export const AWIN_PARTNERS = {
         rating: '4.7',
         url: 'https://www.aosom.fr/item/outsunny-abri-de-jardin-3-2-m-remise-a-outils-avec-kit-de-fondation-en-acier-galvanise-avec-portes-coulissantes-vert~1PDTFI9BHTO00.html',
         img: 'https://img.aosomcdn.com/thumbnail/100/n1/product/2025/01/22/uAb8a71948d2c1dd0.jpg',
+      },
+    ],
+  },
+
+  // DeubaXXL (mid 21192) — abris de jardin MÉTAL prêts à poser (relevé live 2026-06-27).
+  // Catalogue Deuba = métal uniquement (pas de bois → ne concurrence pas un marchand
+  // chalets type GartenHaus). Placement : pages guides taxe-abri-jardin + permis-cabanon
+  // (sujets fiscaux/réglementaires, aucun bloc affilié auparavant). Variante 'alternative'
+  // = produit fini, pas un matériau du build. Tailles libellées en m² pour aider le lecteur
+  // à choisir selon le seuil (5 m² taxe / permis) expliqué dans l'article.
+  // Images : Deuba sert du 3000px (~2,5 Mo brut) → redimensionnées ~420px via wsrv.nl
+  // (proxy Cloudflare) pour la perf ; repli icône 'cottage' si le proxy échoue (onError).
+  'abri-metal': {
+    merchant: 'deuba',
+    variant: 'alternative',
+    snapshotDate: '2026-06-27',
+    eyebrow: 'Alternative en kit',
+    title: 'Ranger sans construire',
+    subtitle:
+      'Construire un cabanon en ossature bois demande du temps et un peu d’outillage. Si le besoin se limite à ranger tondeuse, vélos ou outils, un abri métal prêt à poser (de 2,7 à 8 m²) se monte en une journée et revient souvent moins cher. À vous de choisir la taille selon le seuil qui vous concerne — au-delà, la construction reprend l’avantage.',
+    cta: 'Voir chez DeubaXXL',
+    products: [
+      {
+        name: 'Abri de jardin métal 2,7 m² (200×135 cm) — vert',
+        price: '176,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/abri-de-jardin-vert-en-metal-200x135x190cm/990739/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/c3/0b/95/01-990739-on-fs-amz-high-de-1-_3.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Abri de jardin métal 5,3 m² (260×205 cm) — vert',
+        price: '269,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/abri-de-jardin-vert-en-metal-260x205x180cm/990742/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/2d/17/4c/01-990742-on-fs-amz-high-de-1-_2.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Abri de jardin métal 8 m² (312×257 cm) — anthracite',
+        price: '374,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/abri-de-jardin-anthracite-en-metal-312x257x177-5cm/990745/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/74/60/dc/01_1_990745_on_fs-m_amz_high.jpg&w=420&q=82&output=jpg',
+      },
+      {
+        name: 'Abri de jardin métal 8,2 m² (260×315 cm) — vert',
+        price: '412,99',
+        rating: null,
+        url: 'https://www.deubaxxl.fr/abri-de-jardin-vert-en-metal-260x315x180cm/990744/',
+        img: 'https://wsrv.nl/?url=ssl:www.deubaxxl.fr/media/41/c0/f6/01_990744_on_fs_b2b_low.jpg&w=420&q=82&output=jpg',
       },
     ],
   },

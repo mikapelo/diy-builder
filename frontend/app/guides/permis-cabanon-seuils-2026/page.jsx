@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
+import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
 const OG_TITLE = 'Permis et déclaration pour un cabanon 2026';
 const OG_SUBTITLE = 'Seuils, Cerfa, zones ABF · service-public.fr';
@@ -263,6 +264,8 @@ export default function PermisCabanonSeuils2026Page() {
             standard, mais réel pour un mât d&apos;antenne ou un pigeonnier.
           </li>
         </ul>
+
+        <AffiliatePartnerBlock module="abri-metal" placement="guide" />
 
         <h2 className="content-h2">5 à 20 m² — Déclaration préalable (Cerfa 13703)</h2>
         <p className="content-snippet">

@@ -362,6 +362,18 @@ export default function TerrasseCompositeOuBoisPage() {
         </p>
 
         {/* ════════════ H2.6 ════════════ */}
+        {/* ════════════ PARTENAIRE AWIN — Woodstore24 (lames terrasse WPC) ════════════ */}
+        <p className="content-affiliate-disclo">
+          <strong>Transparence affiliation</strong>&nbsp;: le bloc ci-dessous renvoie vers
+          Woodstore24 (réseau Awin) par des liens sponsorisés. Si vous achetez via ces liens,
+          DIY Builder peut percevoir une commission, sans surcoût pour vous. Notre comparatif
+          reste indépendant — nous ne recommandons pas le composite plutôt que le bois, nous
+          donnons les chiffres pour que vous décidiez. Voir notre{' '}
+          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
+        </p>
+
+        <AffiliatePartnerBlock module="terrasse-composite" placement="guide" />
+
         <h2 className="content-h2">Écologie&nbsp;: renouvelable, recyclable… et le cas des exotiques</h2>
         <p className="content-snippet">
           Le bois local l&apos;emporte&nbsp;: renouvelable, il stocke environ une tonne de CO₂ par
@@ -468,18 +480,6 @@ export default function TerrasseCompositeOuBoisPage() {
             compromis du moment.
           </p>
         </div>
-
-        {/* ════════════ PARTENAIRE AWIN — Woodstore24 (lames terrasse WPC) ════════════ */}
-        <p className="content-affiliate-disclo">
-          <strong>Transparence affiliation</strong>&nbsp;: le bloc ci-dessous renvoie vers
-          Woodstore24 (réseau Awin) par des liens sponsorisés. Si vous achetez via ces liens,
-          DIY Builder peut percevoir une commission, sans surcoût pour vous. Notre comparatif
-          reste indépendant — nous ne recommandons pas le composite plutôt que le bois, nous
-          donnons les chiffres pour que vous décidiez. Voir notre{' '}
-          <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
-        </p>
-
-        <AffiliatePartnerBlock module="terrasse-composite" placement="guide" />
 
         {/* ════════════ MAILLAGE INTERNE ════════════ */}
         <aside className="content-related">

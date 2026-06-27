@@ -382,6 +382,8 @@ export default function GuidePergolaBois() {
           utilisez le simulateur.
         </p>
 
+        <AffiliatePartnerBlock module="pergola" placement="guide" />
+
         <h2 className="content-h2">Réglementation</h2>
         <p className="content-snippet">
           Pergola ouverte sur les côtés sous 20&nbsp;m²&nbsp;: aucune démarche dans la majorité
@@ -426,8 +428,6 @@ export default function GuidePergolaBois() {
         </p>
 
         <GuideToolsBlock module="pergola" />
-
-        <AffiliatePartnerBlock module="pergola" placement="guide" />
 
         <h2 className="content-h2">Approfondir votre projet pergola</h2>
         <p className="content-body">

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
+import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
 const OG_TITLE = 'Taxe abri de jardin 2026';
 const OG_SUBTITLE = 'Calcul · montant · exonération';
@@ -302,6 +303,8 @@ export default function TaxeAbriJardin2026Page() {
           non déclarées ont été détectées en 2023. Mieux vaut déclarer que régulariser sous
           contrainte.
         </p>
+
+        <AffiliatePartnerBlock module="abri-metal" placement="guide" />
 
         <h2 className="content-h2">Quand et comment payer la taxe</h2>
         <p className="content-body">

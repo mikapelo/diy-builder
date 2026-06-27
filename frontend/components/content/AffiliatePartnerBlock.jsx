@@ -21,7 +21,7 @@ import { getAwinPartner, buildAwinUrl, AWIN_SNAPSHOT_DATE } from '@/lib/awinProd
 import { trackAwinClick } from '@/hooks/useAnalytics';
 
 /* Icône de repli par module si l'image marchand ne charge pas */
-const FALLBACK_ICON = { pergola: 'pergola', terrasse: 'deck', cloture: 'fence', carport: 'solar_power', 'cloture-solaire': 'solar_power', 'terrasse-composite': 'deck' };
+const FALLBACK_ICON = { pergola: 'pergola', terrasse: 'deck', cloture: 'fence', carport: 'solar_power', 'cloture-solaire': 'solar_power', 'terrasse-composite': 'deck', 'abri-metal': 'cottage' };
 
 /* ── Flèche externe (même tracé que le bloc outils, cohérence) ── */
 function ArrowExternal() {
@@ -106,6 +106,7 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
   const { merchantInfo, products, variant, eyebrow, title, subtitle, cta } = partner;
   const clickref = `${module}-${variant}-${placement}`;
   const icon = FALLBACK_ICON[module] || 'shopping_bag';
+  const snapDate = partner.snapshotDate || AWIN_SNAPSHOT_DATE;
 
   return (
     <section className={`guide-tools guide-tools--partner guide-tools--${variant}`} aria-label={`Produits partenaires — ${merchantInfo.name}`}>
@@ -132,7 +133,7 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
       <p className="guide-tools-note">
         Liens affiliés Awin (marchand&nbsp;{merchantInfo.name})&nbsp;: un achat via ces liens peut nous
         rémunérer, sans surcoût pour vous. Sélection éditoriale indépendante — prix indicatifs relevés
-        le&nbsp;{AWIN_SNAPSHOT_DATE}.{' '}
+        le&nbsp;{snapDate}.{' '}
         <Link href="/charte-affiliation">Notre charte</Link>.
       </p>
     </section>
