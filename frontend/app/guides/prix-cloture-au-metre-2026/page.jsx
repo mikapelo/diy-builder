@@ -532,6 +532,7 @@ export default function PrixClotureAuMetrePage() {
             <li><Link href="/guides/cloture">Guide de la clôture bois</Link> — sections, ancrage classe 4 et pose pas à pas</li>
             <li><Link href="/guides/cloture-composite-ou-bois">Clôture composite ou bois</Link> — au-delà du prix : durée de vie, entretien et écologie</li>
             <li><Link href="/guides/hauteur-cloture-loi-2026">Hauteur de clôture et loi 2026</Link> — PLU, mitoyenneté et déclaration préalable</li>
+            <li><Link href="/guides/brise-vue-quel-type-choisir">Quel brise-vue choisir pour occulter</Link> — toile, canisse, bois ou composite selon le support, et le surcoût de l&apos;occultation</li>
             <li><Link href="/guides/comparer-devis-travaux">Comparer des devis de travaux</Link> — lire un devis de clôture sans se faire avoir</li>
             <li><Link href="/sources">Sources techniques</Link> — agrégateurs de devis, service-public, normes</li>
           </ul>

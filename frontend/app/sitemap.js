@@ -32,6 +32,7 @@ export default function sitemap() {
     { url: `${baseUrl}/guides/abri-de-jardin-metal-bois-ou-resine`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/guides/dalle-clipsable-terrasse-balcon-sans-travaux`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/guides/tonnelle-ou-pergola-difference`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/guides/brise-vue-quel-type-choisir`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     // Note : pages /liste avec query strings retirées du sitemap.
     // XML sitemap n'accepte pas les `&` non-encodés (erreur d'analyse
     // syntaxique Search Console) et les query strings ne sont pas des

@@ -494,6 +494,7 @@ export default function ClotureCompositeOuBoisPage() {
             <li><Link href="/guides/cloture">Guide de la clôture bois</Link> — sections, ancrage classe 4, pose pas à pas et budget de la structure</li>
             <li><Link href="/cloture">Simulateur de clôture</Link> — quantitatifs et prix par enseigne pour chiffrer une clôture bois au poteau près</li>
             <li><Link href="/guides/cloture-solaire-brise-vue-photovoltaique-2026">Clôture solaire : le brise-vue photovoltaïque</Link> — la troisième voie, quand la clôture produit aussi de l&apos;électricité</li>
+            <li><Link href="/guides/brise-vue-quel-type-choisir">Quel brise-vue pour occulter sa clôture</Link> — toile, canisse, bois ou composite selon le support, taux d&apos;occultation et règles</li>
             <li><Link href="/guides/hauteur-cloture-loi-2026">Hauteur de clôture et loi 2026</Link> — PLU, mitoyenneté et déclaration avant de poser, quel que soit le matériau</li>
             <li><Link href="/guides/comparer-devis-travaux">Comparer des devis de clôture</Link> — faire chiffrer la pose par un pro et lire le devis sans se faire avoir</li>
             <li><Link href="/guides/terrasse-composite-ou-bois">Terrasse composite ou bois</Link> — le même match de matières, côté terrasse cette fois</li>

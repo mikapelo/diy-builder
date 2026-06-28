@@ -273,7 +273,7 @@ export default function GuidesPage() {
         <section>
           <h2 className="content-h2">Aller plus loin</h2>
           <p className="content-body">
-            Seize analyses pour creuser un point précis — prix au m², lecture critique
+            Dix-sept analyses pour creuser un point précis — prix au m², lecture critique
             d&apos;un devis, démarches administratives, réglementation de voisinage,
             production solaire au jardin, comparatif de matériaux et projets spécifiques.
           </p>
@@ -720,6 +720,34 @@ export default function GuidesPage() {
                 <p className="editorial-desc">
                   Pas de maximum national&nbsp;: rôle du PLU, servitude de vue, trouble anormal
                   de voisinage (loi 2024) et recours en cas de litige sur la hauteur.
+                </p>
+              </div>
+              <div className="editorial-arrow" aria-hidden="true">→</div>
+            </Link>
+
+            <Link href="/guides/brise-vue-quel-type-choisir" className="editorial-card">
+              <div className="editorial-image">
+                <Image
+                  src="/images/guides/brise-vue-quel-type-choisir/hero.png"
+                  alt=""
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 768px) 100vw, 180px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="editorial-content">
+                <div className="editorial-meta">
+                  <span className="editorial-eyebrow">Guide · Clôture</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Lecture 9 min</span>
+                  <span className="editorial-meta-sep">·</span>
+                  <span className="editorial-readtime">Juin 2026</span>
+                </div>
+                <h3 className="editorial-title">Brise-vue&nbsp;: quel type choisir</h3>
+                <p className="editorial-desc">
+                  Toile, canisse, bois ou composite&nbsp;: le bon occultant selon votre support
+                  (clôture, grillage, balcon), avec prix 2026, occultation et règles.
                 </p>
               </div>
               <div className="editorial-arrow" aria-hidden="true">→</div>

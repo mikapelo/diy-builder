@@ -480,6 +480,9 @@ export default function GuideClotureBois() {
               <Link href="/guides/cloture-composite-ou-bois">Clôture composite ou bois</Link> — comparatif prix, durée de vie, entretien et écologie pour choisir la matière
             </li>
             <li>
+              <Link href="/guides/brise-vue-quel-type-choisir">Brise-vue : quel type choisir selon le support</Link> — toile, canisse, panneau bois ou composite pour occulter, et la règle de prise au vent
+            </li>
+            <li>
               <Link href="/guides/prix-cloture-au-metre-2026">Prix d&apos;une clôture au mètre 2026</Link> — le tableau complet par matériau, la pose et les postes cachés d&apos;un devis
             </li>
             <li>
