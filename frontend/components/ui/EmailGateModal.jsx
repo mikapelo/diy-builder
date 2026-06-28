@@ -17,6 +17,7 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
   const [loading, setLoading] = useState(false);
 
   const panelRef = useRef(null);
+  const submittedRef = useRef(false);   // garde anti double-soumission (synchrone)
   const titleId = useId();
   const descId = useId();
   const errId = useId();
@@ -37,7 +38,12 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
   };
   const label = PROJECT_LABELS[projectType] ?? projectType;
 
-  async function handleSubmit(e) {
+  /* Le POST vers /api/leads (avec le PDF en pièce jointe) est effectué UNE seule
+     fois par usePDFExport, après génération du PDF. Cette modale se contente de
+     valider l'email puis de déléguer via onConfirm. Un POST ici dupliquait le
+     lead Redis, l'email de confirmation et la notification owner — et envoyait
+     même un premier email sans le PDF (bug double-write). */
+  function handleSubmit(e) {
     e.preventDefault();
     setError('');
 
@@ -46,19 +52,9 @@ export default function EmailGateModal({ projectType, dims, onConfirm, onClose, 
       return;
     }
 
+    if (submittedRef.current) return;   // anti double-soumission (le PDF se génère déjà)
+    submittedRef.current = true;
     setLoading(true);
-    try {
-      await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, projectType, dims }),
-      });
-      // On sauvegarde même si l'API échoue — le téléchargement ne doit pas être bloqué
-    } catch (_) {
-      // silencieux — on ne bloque pas le téléchargement pour une erreur réseau
-    } finally {
-      setLoading(false);
-    }
 
     localStorage.setItem('diy_lead_email', email);
     onConfirm(email);
