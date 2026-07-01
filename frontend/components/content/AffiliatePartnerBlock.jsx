@@ -64,7 +64,7 @@ function PartnerVisual({ img, name, icon }) {
 }
 
 /* ── Carte produit partenaire ── */
-function ProductCard({ product, merchant, module, clickref, cta, icon }) {
+function ProductCard({ product, merchant, module, clickref, cta, icon, badge }) {
   const href = buildAwinUrl(product.url, merchant.mid, clickref);
   const rating = product.rating ? Number(product.rating) : null;
   return (
@@ -72,12 +72,14 @@ function ProductCard({ product, merchant, module, clickref, cta, icon }) {
       <PartnerVisual img={product.img} name={product.name} icon={icon} />
       <div className="guide-tool-body">
         <span className="guide-tool-name">{product.name}</span>
-        {rating != null && (
+        {rating != null ? (
           <span className="amazon-rating amazon-rating--compact" title={`Note ${product.rating}/5 (relevé ${AWIN_SNAPSHOT_DATE})`}>
             <Stars value={rating} />
             <span className="amazon-rating-value">{rating.toFixed(1)}</span>
           </span>
-        )}
+        ) : badge ? (
+          <span className="guide-tool-badge">{badge}</span>
+        ) : null}
         <div className="guide-tool-foot">
           <span className="guide-tool-price">
             {product.price}&nbsp;€{product.priceSuffix && <span className="guide-tool-price-suffix"> {product.priceSuffix}</span>}
@@ -103,7 +105,7 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
   const partner = getAwinPartner(module);
   if (!partner?.products?.length) return null;
 
-  const { merchantInfo, products, variant, eyebrow, title, subtitle, cta } = partner;
+  const { merchantInfo, products, variant, eyebrow, title, subtitle, cta, badge } = partner;
   const clickref = `${module}-${variant}-${placement}`;
   const icon = FALLBACK_ICON[module] || 'shopping_bag';
   const snapDate = partner.snapshotDate || AWIN_SNAPSHOT_DATE;
@@ -126,6 +128,7 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
             clickref={clickref}
             cta={cta}
             icon={icon}
+            badge={badge}
           />
         ))}
       </div>

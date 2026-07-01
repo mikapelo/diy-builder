@@ -4096,6 +4096,26 @@
   font-weight: 600;
   color: #6b5f4f;
 }
+/* Badge bénéfice — signal de confiance sur les cartes sans note (rating null).
+   Reprend l'accent de l'eyebrow partenaire : vert (alternative) / or (complement). */
+.guide-tool-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  padding: 2px 8px;
+  margin: 2px 0 0;
+  border-radius: 999px;
+  background: rgba(92, 122, 74, .10);
+  color: #4a6539;
+}
+.guide-tools--complement .guide-tool-badge {
+  background: rgba(169, 138, 60, .14);
+  color: #8a6d1f;
+}
 /* Accent CTA + icône de repli par variante (sobre, pas le doré criard).
    Teintes au repos = contraste AA texte blanc (≥ 4.5:1) ; survol plus foncé. */
 .guide-tools--alternative .guide-tool-cta { background: #5c7a4a; }

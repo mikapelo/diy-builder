@@ -52,7 +52,7 @@ export const AWIN_PARTNERS = {
     title: 'La pergola sans le chantier',
     subtitle:
       'Vous avez chiffré une pergola en bois à monter vous-même. Pour un modèle livré prêt à poser — métal, aluminium ou toile rétractable — voici une sélection chez Aosom. Ce n’est pas du bois sur mesure, mais c’est en place en un week-end.',
-    cta: 'Voir chez Aosom',
+    cta: 'Voir les modèles',
     products: [
       {
         name: 'Pergola bois 3×4 m pour plantes grimpantes',
@@ -92,7 +92,8 @@ export const AWIN_PARTNERS = {
     title: 'Les plots réglables de votre terrasse',
     subtitle:
       'Votre simulateur a calculé le nombre de plots. Voici des plots réglables Solidor et Jouplast, livrés à l’unité — la hauteur se règle de 23 à 463 mm selon votre support (lambourdes bois ou dalles).',
-    cta: 'Voir chez Plots discount',
+    badge: 'Hauteur réglable',
+    cta: 'Voir les plots',
     products: [
       {
         name: 'Plot terrasse bois 23 à 440 mm — Solidor',
@@ -140,7 +141,8 @@ export const AWIN_PARTNERS = {
     title: 'Les lames composite sans le saturateur',
     subtitle:
       'Votre calculateur dimensionne une terrasse en lames bois, à saturer tous les ans ou deux. Pour des lames composite (WPC) qui ne grisent pas et ne se saturent jamais, voici une sélection chez Woodstore24, de la lame massive structurée à la lame premium coextrudée. Ce n’est pas du bois massif, mais ça ne demande qu’un nettoyage — prix au mètre linéaire.',
-    cta: 'Voir chez Woodstore24',
+    badge: 'Sans entretien',
+    cta: 'Voir les coloris',
     products: [
       {
         name: 'Lame terrasse WPC massive 22×143 mm — gris clair, structure 3D',
@@ -182,7 +184,8 @@ export const AWIN_PARTNERS = {
     title: 'Clipser plutôt que construire',
     subtitle:
       'Votre calculateur dimensionne une terrasse bois sur lambourdes, à visser. Pour un balcon ou une terrasse d’appoint, ces dalles à clipser se posent sur le sol existant en une après-midi et se démontent quand vous partez. Ce n’est pas une terrasse structurelle, mais c’est en place ce week-end — bois, composite ou WPC chez DeubaXXL.',
-    cta: 'Voir chez DeubaXXL',
+    badge: 'Pose sans vis',
+    cta: 'Voir les lots',
     products: [
       {
         name: 'Dalle composite clipsable terracotta — lot de 11 (≈1 m²)',
@@ -231,7 +234,8 @@ export const AWIN_PARTNERS = {
     title: 'La tonnelle, l’ombrage sans le chantier',
     subtitle:
       'Votre simulateur dimensionne une pergola fixe, à ancrer au sol. Pour de l’ombrage saisonnier ou une réception, une tonnelle à toile se monte sans fondation et se range l’hiver — du pliable d’appoint au pavillon à toit rigide. Ce n’est pas une structure permanente, mais c’est en place en une heure chez DeubaXXL.',
-    cta: 'Voir chez DeubaXXL',
+    badge: 'Sans fondation',
+    cta: 'Voir les modèles',
     products: [
       {
         name: 'Tonnelle pliable Capri 3 × 3 m — bleu',
@@ -274,7 +278,7 @@ export const AWIN_PARTNERS = {
     title: 'Juste besoin de ranger ?',
     subtitle:
       'Le simulateur dimensionne un cabanon en ossature bois. Si votre besoin se limite à ranger outils, vélos ou mobilier, un abri prêt à poser (bois, résine ou acier, jusqu’à ~5 m²) revient souvent moins cher qu’une construction. Au-delà, mieux vaut construire.',
-    cta: 'Voir chez Aosom',
+    cta: 'Voir les abris',
     products: [
       {
         name: 'Abri de jardin bois sapin, 2 étagères',
@@ -323,7 +327,8 @@ export const AWIN_PARTNERS = {
     title: 'Ranger sans construire',
     subtitle:
       'Construire un cabanon en ossature bois demande du temps et un peu d’outillage. Si le besoin se limite à ranger tondeuse, vélos ou outils, un abri métal prêt à poser (de 2,7 à 8 m²) se monte en une journée et revient souvent moins cher. À vous de choisir la taille selon le seuil qui vous concerne — au-delà, la construction reprend l’avantage.',
-    cta: 'Voir chez DeubaXXL',
+    badge: 'Livré en kit',
+    cta: 'Voir les abris',
     products: [
       {
         name: 'Abri de jardin métal 2,7 m² (200×135 cm) — vert',
@@ -366,7 +371,8 @@ export const AWIN_PARTNERS = {
     title: 'Le brise-vue sans la lasure',
     subtitle:
       'Votre simulateur dimensionne une clôture en bois, à lasurer tous les deux ou trois ans. Pour un brise-vue composite (WPC) qui ne grise pas et ne se lasure jamais, voici des kits à clipser entre poteaux chez Woodstore24. Ce n’est pas du bois massif, mais ça se pose en un week-end et ça ne demande qu’un coup de jet de temps en temps.',
-    cta: 'Voir chez Woodstore24',
+    badge: 'Sans lasure',
+    cta: 'Voir les coloris',
     products: [
       {
         name: 'Kit brise-vue composite 1,82 m — brun',
@@ -415,7 +421,8 @@ export const AWIN_PARTNERS = {
     title: 'Le brise-vue qui produit du courant',
     subtitle:
       'Plutôt que des lames opaques, ces travées reçoivent des modules photovoltaïques bifaciaux verticaux (380 Wc) : la clôture masque la vue et produit de l’électricité. Woodstore24 les distribue en kit, du panneau seul à l’ensemble avec poteaux aluminium. À poser soi-même comme un brise-vue — le raccordement suit les règles solaire détaillées plus haut.',
-    cta: 'Voir chez Woodstore24',
+    badge: 'Bifacial 380 Wc',
+    cta: 'Voir le kit',
     products: [
       {
         name: 'Panneau clôture solaire bifacial 380 Wc — sans poteaux',
@@ -448,7 +455,8 @@ export const AWIN_PARTNERS = {
     title: 'Le carport solaire livré en kit',
     subtitle:
       'Notre simulateur dimensionne une ossature bois à construire, panneaux à ajouter ensuite. Si vous préférez un ensemble complet, Woodstore24 propose des carports en aluminium à toit solaire intégré (environ 4 à 6 kWc), livrés en kit avec les modules. Ce n’est pas du bois, et le raccordement au réseau reste un travail d’électricien — mais l’ossature et les panneaux arrivent ensemble.',
-    cta: 'Voir chez Woodstore24',
+    badge: 'Livré en kit',
+    cta: 'Voir les kits',
     products: [
       {
         name: 'Carport solaire aluminium 1 voiture — 9 modules',
