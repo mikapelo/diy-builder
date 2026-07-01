@@ -64,7 +64,7 @@ function PartnerVisual({ img, name, icon }) {
 }
 
 /* ── Carte produit partenaire ── */
-function ProductCard({ product, merchant, module, clickref, cta, icon, badge }) {
+function ProductCard({ product, merchant, module, clickref, cta, icon, badge, placement }) {
   const href = buildAwinUrl(product.url, merchant.mid, clickref);
   const rating = product.rating ? Number(product.rating) : null;
   return (
@@ -73,7 +73,7 @@ function ProductCard({ product, merchant, module, clickref, cta, icon, badge }) 
       <div className="guide-tool-body">
         <span className="guide-tool-name">{product.name}</span>
         {rating != null ? (
-          <span className="amazon-rating amazon-rating--compact" title={`Note ${product.rating}/5 (relevé ${AWIN_SNAPSHOT_DATE})`}>
+          <span className="amazon-rating amazon-rating--compact" aria-label={`Note ${product.rating} sur 5`} title={`Note ${product.rating}/5 (relevé ${AWIN_SNAPSHOT_DATE})`}>
             <Stars value={rating} />
             <span className="amazon-rating-value">{rating.toFixed(1)}</span>
           </span>
@@ -90,7 +90,7 @@ function ProductCard({ product, merchant, module, clickref, cta, icon, badge }) 
             rel="noopener noreferrer sponsored"
             className="guide-tool-cta"
             aria-label={`${cta} : ${product.name}`}
-            onClick={() => trackAwinClick({ merchant: merchant.name, module, product: product.name })}
+            onClick={() => trackAwinClick({ merchant: merchant.name, module, product: product.name, placement })}
           >
             {cta}
             <ArrowExternal />
@@ -128,6 +128,7 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
             cta={cta}
             icon={icon}
             badge={badge}
+            placement={placement}
           />
         ))}
       </div>

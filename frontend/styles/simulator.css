@@ -2123,6 +2123,12 @@
 .store-card--best .store-cta:hover {
   background: white;
 }
+/* Focus clavier visible sur le CTA du comparateur (buybox) — comblait WCAG 2.4.7.
+   Anneau sombre fixe (≥3:1), additif/clavier seul, n'affecte pas le badge best. */
+.store-cta:focus-visible {
+  outline: 2px solid #1a1c1b;
+  outline-offset: 2px;
+}
 
 /* ── Budget & Comparatif fusionné ── */
 .bc-section-label {
@@ -4057,6 +4063,13 @@
   transition: background .15s ease;
 }
 .guide-tool-cta:hover { background: #b0831a; }
+/* Focus clavier visible sur le CTA affilié — comblait un échec WCAG 2.4.7.
+   Anneau sombre fixe (≥3:1 sur fonds clairs des cartes), pas currentColor
+   (= blanc, invisible). Additif/clavier seul → sûr pour blocs Awin + Amazon. */
+.guide-tool-cta:focus-visible {
+  outline: 2px solid #1a1c1b;
+  outline-offset: 2px;
+}
 .guide-tools-note {
   font-family: 'Manrope', system-ui, sans-serif;
   font-size: 12px;
