@@ -103,6 +103,6 @@ export function trackArtisanModalAbandon({ module, stage }) {
 
 /** Event 11 — awin-click : clic vers un produit partenaire Awin (Aosom, Plots discount)
  *  @param {{ merchant: string, module: string, product?: string }} props */
-export function trackAwinClick({ merchant, module, product = '' }) {
-  trackEvent('awin-click', { merchant, module, product });
+export function trackAwinClick({ merchant, module, product = '', placement = 'block' }) {
+  trackEvent('awin-click', { merchant, module, product, placement });
 }

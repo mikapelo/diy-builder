@@ -4,6 +4,7 @@ import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
+import AffiliateInline from '@/components/content/AffiliateInline';
 
 const OG_TITLE = 'Construire une pergola bois';
 const OG_SUBTITLE = 'DTU 31.1 + sections + ancrage';
@@ -191,6 +192,13 @@ export default function GuidePergolaBois() {
           <li><strong>Pin traité autoclave classe 3</strong>&nbsp;: économique, disponible partout, efficace — c&apos;est le choix le plus répandu pour un premier chantier.</li>
           <li><strong>Mélèze</strong>&nbsp;: résistance naturelle élevée, grain serré, aspect premium. Compte environ 30 % de plus au linéaire que le douglas.</li>
         </ul>
+
+        <p className="content-body">
+          Choisir les sections, scier et assembler demande du temps et un peu d&apos;outillage. Si vous
+          préférez ne pas construire, il existe aussi{' '}
+          <AffiliateInline module="pergola">des pergolas livrées prêtes à poser</AffiliateInline>, que
+          nous présentons plus bas.
+        </p>
 
         <h2 className="content-h2">Combien de matériaux pour une pergola 4×3 m&nbsp;?</h2>
 

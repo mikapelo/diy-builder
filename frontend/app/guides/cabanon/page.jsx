@@ -4,6 +4,7 @@ import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
+import AffiliateInline from '@/components/content/AffiliateInline';
 
 const OG_TITLE = 'Construire un cabanon ossature bois';
 const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
@@ -284,6 +285,13 @@ export default function GuideCabanonPage() {
             suffit largement.
           </li>
         </ul>
+
+        <p className="content-body">
+          Cette ossature demande du temps et un peu d&apos;outillage. Si votre besoin se limite à
+          ranger outils ou vélos, il existe aussi{' '}
+          <AffiliateInline module="cabanon">de petits abris prêts à poser</AffiliateInline>, que nous
+          présentons plus bas.
+        </p>
 
         <h2 className="content-h2">Calcul des matériaux</h2>
 

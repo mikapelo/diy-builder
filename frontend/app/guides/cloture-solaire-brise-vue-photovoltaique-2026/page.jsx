@@ -3,6 +3,7 @@ import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
+import AffiliateInline from '@/components/content/AffiliateInline';
 
 const OG_TITLE = 'Clôture solaire 2026';
 const OG_SUBTITLE = 'Brise-vue photovoltaïque · rendement · règles · budget';
@@ -385,6 +386,12 @@ export default function ClotureSolairePage() {
           <Link href="/guides/hauteur-cloture-loi-2026" className="content-link">hauteur, PLU et déclaration de clôture</Link>{' '}
           et{' '}
           <Link href="/guides/permis-cabanon-seuils-2026" className="content-link">seuils de déclaration préalable</Link>.
+        </p>
+
+        <p className="content-body">
+          Ces kits restent rares en France&nbsp;: quelques revendeurs spécialisés les distribuent, comme{' '}
+          <AffiliateInline module="cloture-solaire">Woodstore24, du panneau seul au kit avec poteaux</AffiliateInline>.
+          Le raccordement, lui, suit les règles ci-dessus.
         </p>
 
         {/* ════════════ H2.5 ════════════ */}
