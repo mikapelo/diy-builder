@@ -4135,6 +4135,14 @@
 .guide-tools--complement .guide-tool-cta:hover { background: #6f5618; }
 /* Note de divulgation : contraste AA (la mention loi 2023-451 doit rester lisible) */
 .guide-tools--partner .guide-tools-note { color: #6b5f4f; }
+/* Disclosure minimaliste, discrète (bas-droite) — garde le minimum légal
+   (marqueur affilié + prix indicatifs + lien charte). */
+.guide-tools-note--mini {
+  font-size: 11px;
+  text-align: right;
+  margin-top: 10px;
+  opacity: .85;
+}
 
 /* Section légale */
 .content-legal-section { margin-bottom: 32px; }

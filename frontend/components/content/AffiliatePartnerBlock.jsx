@@ -108,7 +108,6 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
   const { merchantInfo, products, variant, eyebrow, title, subtitle, cta, badge } = partner;
   const clickref = `${module}-${variant}-${placement}`;
   const icon = FALLBACK_ICON[module] || 'shopping_bag';
-  const snapDate = partner.snapshotDate || AWIN_SNAPSHOT_DATE;
 
   return (
     <section className={`guide-tools guide-tools--partner guide-tools--${variant}`} aria-label={`Produits partenaires — ${merchantInfo.name}`}>
@@ -133,11 +132,9 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
         ))}
       </div>
 
-      <p className="guide-tools-note">
-        Liens affiliés Awin (marchand&nbsp;{merchantInfo.name})&nbsp;: un achat via ces liens peut nous
-        rémunérer, sans surcoût pour vous. Sélection éditoriale indépendante — prix indicatifs relevés
-        le&nbsp;{snapDate}.{' '}
-        <Link href="/charte-affiliation">Notre charte</Link>.
+      <p className="guide-tools-note guide-tools-note--mini">
+        Liens affiliés Awin · prix indicatifs ·{' '}
+        <Link href="/charte-affiliation">charte</Link>
       </p>
     </section>
   );
