@@ -3984,11 +3984,12 @@
   border: 1px solid #ece4d2;
   border-radius: 10px;
   padding: 13px;
-  transition: box-shadow .15s ease, border-color .15s ease;
+  transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
 }
 .guide-tool-card:hover {
   border-color: #e0c878;
-  box-shadow: 0 3px 12px rgba(120, 90, 20, .10);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(120, 90, 20, .14);
 }
 .guide-tool-visual {
   flex-shrink: 0;
@@ -4042,9 +4043,11 @@
 }
 .guide-tool-price {
   font-family: 'Manrope', system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 21px;
   font-weight: 800;
   color: #1a1c1b;
+  line-height: 1.1;
+  letter-spacing: -.01em;
   white-space: nowrap;
 }
 .guide-tool-cta {
@@ -4060,7 +4063,7 @@
   padding: 7px 12px;
   border-radius: 7px;
   white-space: nowrap;
-  transition: background .15s ease;
+  transition: background .15s ease, box-shadow .18s ease;
 }
 .guide-tool-cta:hover { background: #b0831a; }
 /* Focus clavier visible sur le CTA affilié — comblait un échec WCAG 2.4.7.
@@ -4112,9 +4115,9 @@
   color: #8a6d1f;
 }
 .guide-tool-price-suffix {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  color: #6b5f4f;
+  color: #8a8270;
 }
 /* Badge bénéfice — signal de confiance sur les cartes sans note (rating null).
    Reprend l'accent de l'eyebrow partenaire : vert (alternative) / or (complement). */
@@ -4146,6 +4149,13 @@
 .guide-tools--alternative .guide-tool-visual--icon .material-symbols-outlined { color: #3f5a2e; }
 .guide-tools--complement .guide-tool-cta { background: #8a6d1f; }
 .guide-tools--complement .guide-tool-cta:hover { background: #6f5618; }
+/* Micro-interactions survol (validées en preview) : flèche qui glisse + halo
+   sous le CTA, teinté par variante. Le lift de carte est géré au :hover plus haut. */
+.guide-tool-cta svg { transition: transform .18s ease; }
+.guide-tool-card:hover .guide-tool-cta svg { transform: translateX(3px); }
+.guide-tool-card:hover .guide-tool-cta { box-shadow: 0 6px 16px rgba(201, 151, 30, .38); }
+.guide-tools--alternative .guide-tool-card:hover { box-shadow: 0 10px 22px rgba(92, 122, 74, .18); }
+.guide-tools--alternative .guide-tool-card:hover .guide-tool-cta { box-shadow: 0 6px 16px rgba(92, 122, 74, .40); }
 /* Note de divulgation : contraste AA (la mention loi 2023-451 doit rester lisible) */
 .guide-tools--partner .guide-tools-note { color: #6b5f4f; }
 /* Disclosure minimaliste, discrète (bas-droite) — garde le minimum légal
@@ -5406,6 +5416,9 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .guide-tool-card:hover { transform: none; }
+  .guide-tool-card:hover .guide-tool-cta svg { transform: none; }
 
   .reveal,
   .reveal-up,
