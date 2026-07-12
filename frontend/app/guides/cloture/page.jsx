@@ -4,6 +4,7 @@ import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
+import Callout from '@/components/content/Callout';
 
 const OG_TITLE = 'Construire une clôture bois';
 const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
@@ -247,6 +248,12 @@ export default function GuideClotureBois() {
           à plat sans couronne — l&apos;eau s&apos;infiltre, le poteau gèle-dégèle, il part progressivement.
           Les lames se désolidarisent et les rails se fendent, et il faut tout reprendre.
         </p>
+
+        <Callout type="warn">
+          Une clôture qui penche après le premier hiver, c&apos;est presque toujours l&apos;ancrage&nbsp;:
+          fouille trop peu profonde ou béton coulé à plat. Minimum 60&nbsp;cm de profondeur et aplomb
+          vérifié sur deux faces avant de couler.
+        </Callout>
 
         <h3 className="content-h3">Béton d&apos;ancrage direct</h3>
         <p className="content-body">

@@ -26,6 +26,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
+import Callout from '@/components/content/Callout';
 
 const OG_TITLE = 'Hauteur de clôture : la loi 2026';
 const OG_SUBTITLE = 'PLU · servitude de vue · voisinage · recours';
@@ -412,6 +413,12 @@ export default function HauteurClotureLoi2026Page() {
           vous, vous pouvez en principe ériger une clôture pour vous protéger des regards — sous
           réserve, toujours, du PLU et de ce qui suit sur le trouble anormal de voisinage.
         </p>
+
+        <Callout type="info" title="Idée reçue">
+          La servitude de vue vise les ouvertures (fenêtre, balcon), pas la hauteur d&apos;une
+          clôture&nbsp;: 1,90&nbsp;m pour une vue droite, 0,60&nbsp;m pour une vue oblique. Un panneau
+          plein ou un brise-vue, lui, relève du droit de se clore.
+        </Callout>
 
         {/* ════════════ H2.6 ════════════ */}
         <h2 className="content-h2">6. Quand une clôture conforme devient un trouble anormal de voisinage</h2>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
+import Callout from '@/components/content/Callout';
 
 const OG_TITLE = 'Terrasse bois autour d\'une piscine';
 const OG_SUBTITLE = 'Essences, antidérapance, sécurité NF P90-306';
@@ -394,6 +395,14 @@ export default function TerrassePiscineBoisPage() {
           45 000 € — peu de condamnations dans les faits, mais la responsabilité civile et
           pénale du propriétaire est engagée en cas d&apos;accident.
         </p>
+
+        <Callout type="warn">
+          Une piscine enterrée ou semi-enterrée privée doit avoir au moins un dispositif normalisé
+          (barrière, alarme, couverture ou abri) — loi du 3&nbsp;janvier 2003. La terrasse bois n&apos;en
+          dispense pas&nbsp;: l&apos;absence de dispositif expose à une amende pénale jusqu&apos;à
+          45&nbsp;000&nbsp;€.
+        </Callout>
+
         <p className="content-body">
           Les quatre dispositifs reconnus :
         </p>

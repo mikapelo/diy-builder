@@ -5,6 +5,7 @@ import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 import AffiliateInline from '@/components/content/AffiliateInline';
+import Callout from '@/components/content/Callout';
 
 const OG_TITLE = 'Construire un cabanon ossature bois';
 const OG_SUBTITLE = 'DTU 31.2 + budget + matériaux';
@@ -390,6 +391,11 @@ export default function GuideCabanonPage() {
           terrain pentu ou pour une installation déplaçable. Dans tous les cas : le bois ne touche
           jamais la terre nue.
         </p>
+
+        <Callout type="warn">
+          Le bois ne touche jamais la terre nue&nbsp;: un montant enterré directement pourrit en
+          quelques années. Toujours passer par une dalle, des plots béton ou des plots acier.
+        </Callout>
 
         <h3 className="content-h3">2. Lisse basse</h3>
         <p className="content-body">
