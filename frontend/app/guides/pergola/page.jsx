@@ -5,6 +5,7 @@ import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 import AffiliateInline from '@/components/content/AffiliateInline';
+import Callout from '@/components/content/Callout';
 
 const OG_TITLE = 'Construire une pergola bois';
 const OG_SUBTITLE = 'DTU 31.1 + sections + ancrage';
@@ -260,6 +261,12 @@ export default function GuidePergolaBois() {
           sans démontage.
         </p>
 
+        <Callout type="warn">
+          Un poteau simplement posé sur son plot — sans platine boulonnée ni scellement — peut être
+          soulevé par une rafale, même sur une pergola légère. C&apos;est ce qui casse le plus
+          d&apos;ouvrages&nbsp;: ne faites pas l&apos;impasse sur l&apos;ancrage.
+        </Callout>
+
         <h3 className="content-h3">Sabots sur plots béton — la méthode propre</h3>
         <p className="content-body">
           Coulez d&apos;abord un plot béton de 30×30 cm à la profondeur hors-gel, puis noyez un sabot galvanisé
@@ -267,6 +274,11 @@ export default function GuidePergolaBois() {
           ce qui élimine tout risque de pourriture à la base. Autre avantage&nbsp;: l&apos;installation est
           réversible si vous déplacez la pergola un jour.
         </p>
+
+        <Callout type="pro">
+          Privilégiez le sabot sur plot&nbsp;: le poteau ne touche jamais le sol — pas de pourriture par
+          capillarité — et vous pouvez démonter la pergola sans casser le béton.
+        </Callout>
 
         <h3 className="content-h3">Scellement direct dans le béton</h3>
         <p className="content-body">

@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ArticleToc from '@/components/content/ArticleToc';
 
 /**
  * ContentLayout — Wrapper pour les pages de contenu (guides, FAQ, légales).
@@ -23,6 +24,7 @@ export default function ContentLayout({ children }) {
       />
       <main className="content-page">
         {children}
+        <ArticleToc />
       </main>
       <Footer />
     </>
