@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
@@ -150,6 +151,10 @@ export default function GuideTerrassePage() {
           l&apos;abri 1 à 2 semaines avant la pose — cette étape n&apos;est jamais indiquée sur l&apos;étiquette
           en GSB, et elle change tout.
         </p>
+
+        <Callout type="pro">
+          Un bois d&apos;autoclave fraîchement livré arrive encore gorgé d&apos;eau&nbsp;: posé tel quel, il gauchit en séchant et les vis finissent par s&apos;arracher. Laissez les lames se stabiliser à l&apos;abri une à deux semaines avant la pose — un délai que l&apos;étiquette en GSB ne mentionne jamais, mais qui change tout pour la tenue de l&apos;ouvrage.
+        </Callout>
 
         <h3 className="content-h3">Douglas — naturellement durable, sans compromis sur le rendu</h3>
         <p className="content-body">
@@ -419,6 +424,10 @@ export default function GuideTerrassePage() {
           5 cm minimum sous les lambourdes pour assurer la ventilation. Ce dégagement seul
           prolonge la durée de vie de la structure de 5 à 10 ans.
         </p>
+
+        <Callout type="warn">
+          Ne posez jamais les lambourdes directement sur la terre, même avec un bois traité classe 4&nbsp;: le contact avec un sol humide crée une stagnation permanente que l&apos;imprégnation ne suffit pas à arrêter. La pose sur plots, avec un dégagement de 5&nbsp;cm minimum sous les lambourdes pour la ventilation, n&apos;est pas une option — c&apos;est ce qui protège la structure dans la durée.
+        </Callout>
 
         <p className="content-affiliate-disclo">
           <strong>Transparence affiliation</strong>&nbsp;: les liens vers Amazon ci-dessous sont sponsorisés

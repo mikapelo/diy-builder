@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Prix pergola bioclimatique 2026';
@@ -250,6 +251,10 @@ export default function PrixPergolaBioclimatiquePage() {
           changez de catégorie de prix.
         </p>
 
+        <Callout type="pro">
+          Pour garder la main sur le budget, partez d&apos;une pergola nue simplement motorisée&nbsp;: elle reste dans le bas de la fourchette. Ajoutez ensuite l&apos;éclairage, les stores ou le chauffage un poste à la fois, en vérifiant à chaque option le saut de prix qu&apos;elle déclenche.
+        </Callout>
+
         <h2 className="content-h2">Ce qui fait vraiment varier le prix</h2>
         <p className="content-body">
           Six facteurs expliquent l&apos;écart entre deux devis pour la même surface. Les
@@ -306,6 +311,10 @@ export default function PrixPergolaBioclimatiquePage() {
           à masquer ou une vraie pièce de vie extérieure. Pour abriter un salon de jardin l&apos;été
           et rien de plus, la toile suffit largement.
         </p>
+
+        <Callout type="info" title="Quand le surcoût se justifie">
+          Les lames orientables ne servent pas qu&apos;à faire de l&apos;ombre&nbsp;: elles modulent l&apos;ensoleillement heure par heure, évacuent la pluie dans des chéneaux intégrés et se referment au premier coup de vent. C&apos;est ce qui justifie le surcoût pour un usage quatre saisons&nbsp;; pour un simple abri d&apos;été, une toile rétractable suffit.
+        </Callout>
 
         <h2 className="content-h2">Faire poser, monter un kit ou tout construire soi-même</h2>
         <p className="content-body">

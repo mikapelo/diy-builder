@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -294,6 +295,13 @@ export default function ClotureCompositeOuBoisPage() {
           n&apos;enlève rien à la solidité mécanique. Beaucoup de clôtures «&nbsp;fatiguées&nbsp;» le
           sont à l&apos;œil, pas à la structure.
         </p>
+
+        <Callout type="info" title="Idée reçue">
+          Une clôture bois qui grise n&apos;est pas une clôture en fin de vie. Le grisaillement est
+          un phénomène de surface, purement esthétique&nbsp;: le bois laissé sans traitement garde
+          toute sa solidité mécanique. Beaucoup de clôtures qui paraissent «&nbsp;fatiguées&nbsp;» le
+          sont à l&apos;œil, pas à la structure.
+        </Callout>
         <p className="content-body">
           Le composite vieillit autrement. Il ne grise pas, mais il s&apos;éclaircit un peu la
           première année sous l&apos;effet des UV — un «&nbsp;bronzage&nbsp;» inverse qui se
@@ -331,6 +339,13 @@ export default function ClotureCompositeOuBoisPage() {
           oublie de lasurer pendant huit ans grise, et la rattraper demande un ponçage avant de
           relasurer.
         </p>
+
+        <Callout type="pro">
+          Ne laissez pas filer le cycle de lasure. Une clôture qu&apos;on oublie de lasurer pendant
+          des années finit par griser, et la rattraper impose alors un ponçage complet avant de
+          pouvoir relasurer. Repasser une lasure ou un saturateur au rythme prévu évite ce ponçage
+          de rattrapage.
+        </Callout>
 
         {/* ════════════ H2.5 ════════════ */}
         <h2 className="content-h2">Le coût réel sur 15 ans&nbsp;: le calcul honnête</h2>

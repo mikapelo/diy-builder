@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -324,6 +325,10 @@ export default function PermisCabanonSeuils2026Page() {
           de non-opposition à la mairie pour avoir un document écrit en cas de contrôle
           ultérieur.
         </p>
+
+        <Callout type="pro" title="Le certificat de non-opposition">
+          Même en cas d&apos;accord tacite — la mairie ne répond pas au bout d&apos;un mois —, réclamez un certificat de non-opposition. C&apos;est le seul document écrit qui prouve, en cas de contrôle ultérieur, que votre cabanon a bien été autorisé.
+        </Callout>
 
         <h2 className="content-h2">20 à 40 m² — DP en zone U, permis ailleurs</h2>
         <p className="content-snippet">

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -403,6 +404,13 @@ export default function TerrasseCompositeOuBoisPage() {
           résineux local saturé en teinte foncée, qui imite le rendu exotique sans le poids
           écologique.
         </p>
+
+        <Callout type="warn" title="Exotiques sous CITES">
+          L&apos;ipé et le cumaru sont désormais inscrits à l&apos;annexe II de la CITES&nbsp;: leur
+          commerce impose une traçabilité renforcée. Une terrasse en ipé reste possible, mais
+          seulement en bois certifié FSC, justificatifs d&apos;origine à l&apos;appui&nbsp;; sinon,
+          un résineux local ou le composite prennent le relais.
+        </Callout>
 
         {/* ════════════ FAQ ════════════ */}
         <h2 className="content-h2">Questions fréquentes</h2>

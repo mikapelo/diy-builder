@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Prix terrasse bois au m² en France 2026';
@@ -179,6 +180,10 @@ export default function PrixTerrasseBoisM2Page() {
           lambourde, et la visserie qui tient tout ensemble. Manquer une couche dans le devis mental, c&apos;est
           se retrouver à 25 % au-dessus du budget au moment de passer en caisse.
         </p>
+
+        <Callout type="info" title="Idée reçue">
+          Le prix affiché au rayon ne paie que la lame que l&apos;on voit. Une terrasse repose en réalité sur quatre couches — la lame, la lambourde, le plot et la visserie — et en oublier une seule dans son estimation, c&apos;est se retrouver au-dessus du budget une fois en caisse.
+        </Callout>
         <p className="content-body">
           Pour 12 m² de terrasse rectangulaire (4 m × 3 m) en pin traité classe 4, voici la nomenclature
           réelle d&apos;après le DTU 51.4 — entraxe lambourdes 40 cm, lames 145×27 mm de 3,6 m, plots tous les
@@ -603,6 +608,10 @@ export default function PrixTerrasseBoisM2Page() {
           composite, ajustements de coupe plus précis. Un artisan habitué à ces essences vous facturera
           50-65 €/m² au lieu des 40-50 €/m² du pin traité courant.
         </p>
+
+        <Callout type="pro">
+          Sur les essences denses comme l&apos;ipé, pré-percez chaque point de fixation avant de visser&nbsp;; sur le composite, fixez les lames avec les clips dédiés plutôt qu&apos;en vissage traversant. Un assemblage plus lent, mais net et durable.
+        </Callout>
 
         <h2 className="content-h2">Les coûts cachés qui font dérailler le budget en réel</h2>
         <p className="content-snippet">

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -258,6 +259,13 @@ export default function TonnelleOuPergolaPage() {
           laissée dehors toute l&apos;année, repliée humide, elle moisit et se fatigue vite.
         </p>
 
+        <Callout type="warn">
+          Une tonnelle à toile n&apos;est pas un abri tout-temps. Dès un vent marqué — de l&apos;ordre
+          de 30 à 40&nbsp;km/h sur les modèles grand public — repliez-la ou démontez-la, et ne comptez
+          jamais dessus pour porter la neige. La laisser affronter une tempête, c&apos;est risquer
+          d&apos;y perdre la structure comme la toile.
+        </Callout>
+
         {/* ════════════ H2.3 ════════════ */}
         <h2 className="content-h2">Qu&apos;est-ce qu&apos;une pergola&nbsp;?</h2>
         <p className="content-snippet">
@@ -324,6 +332,13 @@ export default function TonnelleOuPergolaPage() {
           — elle se comporte comme une pergola, prix compris. Retenez le bon repère&nbsp;: ce qui
           compte n&apos;est pas l&apos;étiquette, mais l&apos;ancrage et la permanence.
         </p>
+
+        <Callout type="info" title="Le bon repère">
+          Ne vous fiez pas au mot sur l&apos;étiquette. Une «&nbsp;tonnelle&nbsp;» autoportée à toit
+          rigide, vissée au sol, se comporte comme une pergola. Les deux seuls critères qui tranchent
+          vraiment&nbsp;: l&apos;ancrage et la permanence. Fixé au sol et à demeure, c&apos;est une
+          pergola&nbsp;; posé, lesté et rangeable, c&apos;est une tonnelle.
+        </Callout>
 
         {/* ════════════ H2.5 ════════════ */}
         <h2 className="content-h2">Prix&nbsp;: combien coûte une tonnelle vs une pergola&nbsp;?</h2>

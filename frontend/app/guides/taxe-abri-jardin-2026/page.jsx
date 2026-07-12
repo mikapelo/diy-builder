@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -243,6 +244,11 @@ export default function TaxeAbriJardin2026Page() {
           de surface close et couverte, <strong>et</strong> au moins 1,80 m de hauteur sous le point
           le plus haut. Si l&apos;une manque, pas de taxe.
         </p>
+
+        <Callout type="warn">
+          Un abri n&apos;est taxable que s&apos;il franchit les deux seuils à la fois&nbsp;: plus de 5&nbsp;m² au sol <strong>et</strong> au moins 1,80&nbsp;m sous le point le plus haut. Si une seule de ces conditions manque, aucune taxe d&apos;aménagement n&apos;est due.
+        </Callout>
+
         <ul className="content-body">
           <li><strong>Abri ≤ 5 m²</strong>&nbsp;: ni déclaration préalable, ni taxe d&apos;aménagement.</li>
           <li><strong>Abri entre 5 et 20 m²</strong>&nbsp;: déclaration préalable en mairie, et taxe due (sauf exonération communale).</li>
@@ -277,6 +283,11 @@ export default function TaxeAbriJardin2026Page() {
           reste sous 100 m², une partie de l&apos;abri peut profiter de l&apos;abattement. Dans le
           doute, le service urbanisme de votre mairie tranche.
         </p>
+
+        <Callout type="info" title="Idée reçue">
+          L&apos;abattement de 50&nbsp;% n&apos;est pas automatique. Il ne couvre que les 100 premiers m² de la résidence principale et de ses annexes&nbsp;: si votre maison dépasse déjà cette surface taxable, le quota est épuisé et l&apos;abri est taxé sur la valeur pleine.
+        </Callout>
+
         <p className="content-body">
           Pour estimer en amont la surface et le coût matière de votre futur abri — avant même de
           parler taxe — notre{' '}

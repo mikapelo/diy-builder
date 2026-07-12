@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Comparer plusieurs devis travaux';
@@ -330,6 +331,10 @@ export default function ComparerDevisTravauxPage() {
           dépasse 10 % du chiffrage initial, un avenant écrit est obligatoire avant intervention.&quot;
           Cette phrase évite les factures finales doublées par des &quot;ajustements&quot; unilatéraux.
         </p>
+
+        <Callout type="pro" title="La clause qui bloque les dépassements">
+          Faites inscrire dans le devis qu&apos;au-delà de 10&nbsp;% de dépassement dû à un imprévu, un avenant écrit et signé devient obligatoire avant toute reprise des travaux. Cette clause d&apos;une seule ligne bloque les «&nbsp;ajustements&nbsp;» unilatéraux qui gonflent la facture finale.
+        </Callout>
 
         <h2 className="content-h2">Quels écarts de prix sont normaux entre 3 artisans ?</h2>
         <p className="content-snippet">

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -411,6 +412,10 @@ export default function BriseVueQuelTypeChoisirPage() {
           n&apos;est pas un compromis esthétique&nbsp;: c&apos;est ce qui empêche la clôture de finir au
           sol après le premier coup de vent.
         </p>
+
+        <Callout type="warn" title="Effet voile">
+          Plus un brise-vue occulte, plus il fait voile&nbsp;: un écran plein transmet toute la poussée du vent à ses poteaux. En site exposé, un modèle un peu transparent — ou un ancrage nettement surdimensionné — évite de retrouver la clôture au sol après le premier coup de vent.
+        </Callout>
         <p className="content-body">
           Si vous tenez à occulter à fond malgré l&apos;exposition, il faut surdimensionner
           l&apos;ancrage&nbsp;: plots béton profonds (souvent 40 à 60&nbsp;cm, davantage en terrain
@@ -531,6 +536,10 @@ export default function BriseVueQuelTypeChoisirPage() {
           au cutter. Une toile bien tendue, attachée sur trois lignes (haut, milieu, bas), tient
           nettement mieux au vent qu&apos;une toile fixée seulement en haut.
         </p>
+
+        <Callout type="pro">
+          Sur un grillage souple, fixez la toile sur trois lignes — en haut, au milieu et en bas — plutôt qu&apos;en haut seulement. Bien tendue et attachée aux trois niveaux, elle résiste bien mieux au vent qu&apos;une pose accrochée par le seul rebord supérieur.
+        </Callout>
         <p className="content-body">
           Sur un <strong>grillage rigide</strong>, pas de toile&nbsp;: les lames occultantes se glissent
           verticalement entre les fils soudés, rang par rang, puis se bloquent avec les clips fournis. Le

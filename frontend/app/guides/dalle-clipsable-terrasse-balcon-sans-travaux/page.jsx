@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -189,6 +190,10 @@ export default function DalleClipsablePage() {
           locataire, qui restitue son balcon intact, et le copropriétaire, qui ne touche ni à
           l&apos;étanchéité ni à la structure.
         </p>
+
+        <Callout type="info">
+          Posée sans vis ni colle, une dalle clipsable se dépose aussi vite qu&apos;elle se pose&nbsp;: le revêtement reste entièrement amovible. C&apos;est l&apos;argument décisif en location — vous restituez le balcon intact — comme en copropriété, où l&apos;on ne touche ni à l&apos;étanchéité ni à la structure.
+        </Callout>
         <p className="content-body">
           C&apos;est aussi sa limite&nbsp;: une dalle clipsable habille un sol, elle ne fait pas
           terrasse à elle seule. Pour une vraie terrasse au sol, posée sur lambourdes et plots, avec
@@ -274,6 +279,10 @@ export default function DalleClipsablePage() {
           autoportantes prévues pour. Quelle que soit la surface, la règle d&apos;or est la
           planéité&nbsp;: au-delà de 5 mm d&apos;écart, mieux vaut ragréer avant de poser.
         </p>
+
+        <Callout type="warn">
+          La planéité du support n&apos;est pas une option&nbsp;: au-delà de 5&nbsp;mm d&apos;écart, les dalles bougent et se déboîtent. Sur un sol qui n&apos;est pas parfaitement plan, mieux vaut ragréer avant de poser plutôt que de rattraper les défauts après coup.
+        </Callout>
         <p className="content-body">
           Un point de vocabulaire enfin, pour éviter la confusion la plus fréquente&nbsp;: la
           «&nbsp;dalle clipsable&nbsp;» (légère, emboîtable, 30 × 30) n&apos;est pas la

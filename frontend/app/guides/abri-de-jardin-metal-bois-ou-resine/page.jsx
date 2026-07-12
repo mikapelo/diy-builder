@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -273,6 +274,10 @@ export default function AbriMetalBoisResinePage() {
           points n&apos;est rédhibitoire.
         </p>
 
+        <Callout type="pro" title="Le geste pro anti-condensation">
+          Quel que soit le matériau, deux gestes de pose changent tout&nbsp;: surélevez l&apos;abri sur des plots ou une dalle, et ménagez une ventilation haute et basse. Le premier le coupe de l&apos;humidité du sol&nbsp;; le second évacue l&apos;air humide qui, en refroidissant la nuit contre la tôle, forme la condensation. Un abri surélevé et bien ventilé vieillit nettement mieux.
+        </Callout>
+
         <h3 className="content-h3">Le métal «&nbsp;imitation bois&nbsp;», le compromis esthétique</h3>
         <p className="content-body">
           Le reproche le plus fréquent fait au métal est son allure industrielle. Les fabricants y
@@ -311,6 +316,11 @@ export default function AbriMetalBoisResinePage() {
           bois isolée. Sa durée de vie suit l&apos;épaisseur des parois&nbsp;: un chalet à parois fines
           (12-16 mm) vieillit vite, des madriers épais tiennent 20 ans et plus, avec entretien.
         </p>
+
+        <Callout type="info" title="Idée reçue">
+          On croit souvent que la solidité d&apos;un abri se joue d&apos;abord sur le matériau. En réalité, l&apos;épaisseur des parois pèse tout autant&nbsp;: une paroi trop fine se déforme ou vrille, qu&apos;elle soit en tôle, en madriers ou en résine, alors qu&apos;une paroi épaisse tient dans les trois cas. Regardez l&apos;épaisseur annoncée avant de trancher sur la matière.
+        </Callout>
+
         <p className="content-body">
           La contrepartie est l&apos;entretien. Pour conserver sa teinte et sa protection, le bois
           demande une lasure ou un saturateur tous les 2 à 3 ans&nbsp;; faute de quoi il prend une

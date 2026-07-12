@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Faire soi-même ou faire faire';
@@ -273,6 +274,14 @@ export default function GuideSoiMemeOuPro() {
           c&apos;est précisément ce différé qui rend la défaillance coûteuse.
         </p>
 
+        <Callout type="info" title="La règle du différé">
+          Plus le délai entre l&apos;erreur et sa conséquence visible s&apos;allonge,
+          plus la tâche réclame de la compétence. Sur une terrasse posée au sol, un
+          défaut se voit tout de suite&nbsp;: on refait, sans gravité. Sur une ossature
+          porteuse, le problème n&apos;apparaît que des saisons plus tard — et
+          c&apos;est précisément ce délai qui rend la reprise coûteuse.
+        </Callout>
+
         <h2 className="content-h2">Critère 3 — L&apos;outillage qu&apos;on oublie de compter</h2>
         <p className="content-snippet">
           Un kit décent pour des projets bois coûte 340 à 820 € : perceuse-visseuse 18V,
@@ -423,6 +432,14 @@ export default function GuideSoiMemeOuPro() {
           les deux activités. Un appel rapide à la compagnie d&apos;assurance confirme la
           validité du contrat.
         </p>
+
+        <Callout type="pro" title="Vérifier une attestation décennale">
+          Avant de confier un ouvrage, demandez l&apos;attestation décennale et vérifiez
+          la période de validité (les contrats se renouvellent chaque année), la compagnie
+          d&apos;assurance, et surtout les types de travaux réellement couverts. Un artisan
+          qui se présente à la fois comme peintre et maçon n&apos;est pas forcément assuré
+          pour les deux&nbsp;; un simple appel à sa compagnie lève le doute.
+        </Callout>
         <p className="content-body">
           Pour un projet où la décennale n&apos;est pas en jeu (terrasse posée sur plots,
           clôture, pergola autoportée, cabanon de moins de 20 m² sans fondations

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Pergola avec panneaux solaires : guide DIY 2026';
@@ -315,6 +316,10 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           négociable.
         </p>
 
+        <Callout type="warn" title="Ancrage renforcé&nbsp;: non négociable">
+          Une pergola nue peut se contenter d&apos;un scellement standard. Dès qu&apos;elle porte des panneaux, le vent génère un effort de soulèvement qui change la donne&nbsp;: fondations béton par poteau et ancrage renforcé deviennent obligatoires, et les plots à visser sont à proscrire.
+        </Callout>
+
         <p className="content-body">
           Côté orientation, la pente recommandée est de 15 à 30° avec inclinaison plein sud,
           ce qui correspond à la pente standard d&apos;une pergola mono-pente classique. Une
@@ -404,6 +409,10 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           strict de la norme NF C 15-100 avec section de câble adaptée, parafoudre type 2
           et disjoncteur dédié.
         </p>
+
+        <Callout type="info" title="Consuel&nbsp;: tous les kits ne le déclenchent pas">
+          Un kit plug &amp; play branché sur une prise extérieure n&apos;impose pas l&apos;attestation Consuel. En revanche, dès qu&apos;un onduleur est câblé au tableau électrique, le Consuel redevient obligatoire.
+        </Callout>
 
         <p className="content-body">
           La convention de raccordement{' '}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -265,6 +266,12 @@ export default function PrixClotureAuMetrePage() {
           <Link href="/guides/cloture-composite-ou-bois" className="content-link">comparatif clôture composite ou bois</Link>{' '}
           pèse durée de vie, entretien et écologie.
         </p>
+
+        <Callout type="pro">
+          Besoin d&apos;intimité sans faire exploser le budget&nbsp;? Partez sur un grillage rigide à
+          panneaux, puis ajoutez-y des lames occultantes&nbsp;: vous obtenez le même effet
+          qu&apos;une clôture pleine, pour bien moins cher.
+        </Callout>
 
         {/* ════════════ H2.2 ════════════ */}
         <h2 className="content-h2">La hauteur change tout&nbsp;: +30 à +50&nbsp;% de 1,20 à 2 m</h2>

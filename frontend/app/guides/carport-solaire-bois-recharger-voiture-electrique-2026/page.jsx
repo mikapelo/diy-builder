@@ -43,6 +43,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -370,6 +371,13 @@ export default function CarportSolaireBoisVE2026Page() {
           la section suivante sur le choix de la borne.
         </p>
 
+        <Callout type="pro">
+          Sur un carport solaire, ce qui compte n&apos;est pas la puissance brute de la borne
+          mais son pilotage. Une borne pilotée par la production suit en temps réel le surplus
+          disponible et ne recharge la voiture qu&apos;avec l&apos;énergie des panneaux, au lieu
+          de puiser sur le réseau dès qu&apos;ils ne produisent plus.
+        </Callout>
+
         {/* CTA 2 — milieu (après équipements H2.5) : voir plus bas, juste après H2.5 */}
 
         {/* ════════════ H2.4 ════════════ */}
@@ -410,6 +418,13 @@ export default function CarportSolaireBoisVE2026Page() {
           (pin autoclave ou douglas traité)&nbsp;; la classe 3 suffit pour les éléments hors
           sol, jamais pour un poteau scellé.
         </p>
+
+        <Callout type="warn" title="Classe 4 au contact du sol">
+          Pour tout élément en contact avec le sol — à commencer par les poteaux scellés — le
+          bois doit être traité classe 4, comme le pin autoclave ou le douglas traité. La
+          classe 3 ne convient qu&apos;aux pièces hors sol (longerons, chevrons)&nbsp;: elle
+          n&apos;a jamais sa place sur un poteau enterré.
+        </Callout>
 
         {/* ════════════ H2.5 ════════════ */}
         <h2 className="content-h2">5. Panneaux, onduleur et bornes&nbsp;: comment choisir</h2>
