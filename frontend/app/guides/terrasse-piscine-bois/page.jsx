@@ -3,6 +3,7 @@ import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import CTALead from '@/components/landing/CTALead';
 import Callout from '@/components/content/Callout';
+import PullQuote from '@/components/content/PullQuote';
 
 const OG_TITLE = 'Terrasse bois autour d\'une piscine';
 const OG_SUBTITLE = 'Essences, antidérapance, sécurité NF P90-306';
@@ -255,6 +256,10 @@ export default function TerrassePiscineBoisPage() {
           18-24 mois. Sur 25 ans, le surcoût d&apos;entretien et de remplacement à mi-parcours
           dépasse le surcoût d&apos;achat initial d&apos;un ipé.
         </p>
+
+        <PullQuote>
+          Autour d&apos;une piscine chlorée, le pin traité tient 6-8 ans&nbsp;; l&apos;ipé, <strong>30 à 50 ans</strong> sans entretien.
+        </PullQuote>
 
         <h2 className="content-h2">Antidérapance — la règle qui n&apos;est pas optionnelle</h2>
         <p className="content-snippet">

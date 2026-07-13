@@ -5,6 +5,7 @@ import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 import Callout from '@/components/content/Callout';
+import PullQuote from '@/components/content/PullQuote';
 
 const OG_TITLE = 'Construire une clôture bois';
 const OG_SUBTITLE = 'Poteaux, rails, lames + budget';
@@ -164,6 +165,10 @@ export default function GuideClotureBois() {
           Ne jamais enterrer du pin classe 2 ou non traité — la pourriture s&apos;installe en deux à trois
           hivers en sol humide.
         </p>
+
+        <PullQuote>
+          Tout poteau enterré exige du bois traité <strong>classe&nbsp;4</strong>&nbsp;: sinon la pourriture s&apos;installe en deux à trois hivers.
+        </PullQuote>
 
         <h3 className="content-h3">Rails horizontaux</h3>
         <p className="content-body">

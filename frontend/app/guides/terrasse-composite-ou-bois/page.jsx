@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
@@ -303,6 +304,10 @@ export default function TerrasseCompositeOuBoisPage() {
           propriétaires finissent d&apos;ailleurs par accepter ce gris argenté et arrêter le
           saturateur&nbsp;; c&apos;est un choix légitime, qui change le calcul du coût réel.
         </p>
+
+        <PullQuote>
+          Pour garder sa teinte, le bois réclame un saturateur <strong>tous les 1 à 2 ans</strong>&nbsp;; le composite, jamais.
+        </PullQuote>
 
         {/* ════════════ H2.4 ════════════ */}
         <h2 className="content-h2">Glissance et chaleur&nbsp;: les critères propres à la terrasse</h2>

@@ -43,6 +43,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
@@ -744,6 +745,11 @@ export default function CarportSolaireBoisVE2026Page() {
           rentabilité&nbsp;: en divisant le coût initial, elle ramène l&apos;amortissement
           dans la durée de vie des panneaux (25 à 30 ans).
         </p>
+
+        <PullQuote>
+          Sur un carport solaire, autoconsommer un&nbsp;kWh vaut près de <strong>dix-huit fois</strong> plus que le revendre au réseau.
+        </PullQuote>
+
         <p className="content-body">
           Notre conseil&nbsp;: ne construisez pas un carport solaire d&apos;abord pour
           l&apos;argent, mais pour l&apos;usage — abriter la voiture et la recharger avec une

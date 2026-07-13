@@ -3584,6 +3584,22 @@
 .content-box--pro { background: rgba(92, 122, 74, .08); border-left: 3px solid #5c7a4a; }
 .content-box--pro .content-box-title { color: #3f5a2e; }
 
+/* Exergue — citation d'un chiffre/règle clé en serif, casse le mur de texte
+   (PullQuote.jsx). Filet vert, pas de fond → poids visuel léger vs encadrés. */
+.content-pullquote {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: #26221c;
+  line-height: 1.32;
+  letter-spacing: -.01em;
+  border-left: 3px solid #5c7a4a;
+  padding: 4px 0 4px 20px;
+  margin: 28px 0;
+  max-width: 600px;
+}
+.content-pullquote strong { font-weight: 400; color: #4a6539; }
+
 /* ── Sommaire d'article (ArticleToc.jsx) — encadré inline (mobile/tablette)
    + rail collant dans la marge droite (desktop ≥ 1240px), surlignage au scroll. */
 .article-toc-inline {

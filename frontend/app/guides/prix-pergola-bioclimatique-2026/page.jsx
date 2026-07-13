@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Callout from '@/components/content/Callout';
+import PullQuote from '@/components/content/PullQuote';
 import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Prix pergola bioclimatique 2026';
@@ -226,6 +227,10 @@ export default function PrixPergolaBioclimatiquePage() {
           vise presque toujours une petite surface, sans option, sans dalle et sans pose. Le
           total réel d&apos;un projet complet se lit plus bas, dans le budget détaillé.
         </p>
+
+        <PullQuote>
+          «&nbsp;à partir de <strong>400&nbsp;€/m²</strong>&nbsp;»&nbsp;: le prix d&apos;appel vise une petite surface, sans option, sans dalle ni pose.
+        </PullQuote>
 
         <h2 className="content-h2">Le budget réel d&apos;une pergola de 12 à 15 m²</h2>
         <p className="content-snippet">

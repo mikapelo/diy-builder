@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
@@ -382,6 +383,11 @@ export default function TonnelleOuPergolaPage() {
           belle saison puis rangée échappe aux démarches — à condition de ne pas l&apos;ancrer sur une
           dalle béton, ce qui lui ferait perdre son caractère temporaire.
         </p>
+
+        <PullQuote>
+          Une tonnelle démontable installée <strong>moins de 3&nbsp;mois</strong> est dispensée de toute formalité d&apos;urbanisme.
+        </PullQuote>
+
         <p className="content-body">
           Pour la pergola, fixe par nature, ce sont les seuils habituels qui s&apos;appliquent&nbsp;:
           aucune formalité en dessous de 5 m² d&apos;emprise au sol, déclaration préalable de 5 à

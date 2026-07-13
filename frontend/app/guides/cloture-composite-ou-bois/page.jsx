@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
@@ -285,6 +286,11 @@ export default function ClotureCompositeOuBoisPage() {
           ce n&apos;est pas une durée de vie mesurée&nbsp;: c&apos;est un engagement du fabricant,
           qui en dit long sur sa confiance, mais qui reste une promesse commerciale.
         </p>
+
+        <PullQuote>
+          Une garantie de <strong>25&nbsp;ans</strong>, ce n&apos;est pas une durée de vie prouvée&nbsp;: c&apos;est une promesse commerciale.
+        </PullQuote>
+
         <p className="content-body">
           Côté bois, la durée dépend de l&apos;essence et du traitement, selon les professionnels du
           secteur&nbsp;: le pin autoclave classe 4 tient 15 à 20 ans avec une lasure régulière, le

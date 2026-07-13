@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -402,6 +403,11 @@ export default function PrixTerrasseBoisM2Page() {
           re-traitements (saturateur tous les 2-3 ans) plus un remplacement complet à mi-parcours. L&apos;ipé
           ne demande rien. Sur 25 ans amortis, le coût annuel devient comparable au pin.
         </p>
+
+        <PullQuote>
+          L&apos;ipé tient <strong>30 à 50 ans</strong> sans entretien, contre 15 à 20 ans pour le pin traité.
+        </PullQuote>
+
         <p className="content-body">
           Restriction réglementaire : l&apos;ipé importé dans l&apos;Union européenne doit faire
           l&apos;objet d&apos;une diligence raisonnée pour exclure les origines illégales, dans le

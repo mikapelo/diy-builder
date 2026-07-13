@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
@@ -447,6 +448,10 @@ export default function PermisCabanonSeuils2026Page() {
           construction reste en place plus de 3 mois. Le seul critère qui exempte vraiment de
           déclaration, c&apos;est la durée d&apos;installation effective sur le terrain.
         </p>
+
+        <PullQuote>
+          Démontable n&apos;est pas un passe-droit&nbsp;: au-delà de <strong>3 mois</strong> sur le terrain, les seuils 5/20/40&nbsp;m² s&apos;appliquent pleinement.
+        </PullQuote>
 
         <h2 className="content-h2">Le calendrier réel d&apos;une déclaration</h2>
         <p className="content-snippet">

@@ -25,6 +25,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import CTALead from '@/components/landing/CTALead';
 import Callout from '@/components/content/Callout';
 
@@ -456,6 +457,10 @@ export default function HauteurClotureLoi2026Page() {
           donc être à la fois autorisée par la mairie et condamnée par le tribunal. La hauteur «&nbsp;dans
           les clous&nbsp;» n&apos;est pas un blanc-seing.
         </p>
+
+        <PullQuote>
+          Conforme au PLU, une clôture qui prive le voisin de soleil reste attaquable — <strong>loi du 15&nbsp;avril 2024</strong>.
+        </PullQuote>
 
         {/* ════════════ H2.7 ════════════ */}
         <h2 className="content-h2">7. Litige sur la hauteur&nbsp;: les recours, dans l&apos;ordre</h2>

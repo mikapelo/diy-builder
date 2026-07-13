@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
@@ -177,6 +178,11 @@ export default function GuideTerrassePage() {
           aux rayures et aux UV. Le prix (80–150 €/m²) et l&apos;obligation d&apos;une certification FSC
           réduisent leur usage à des projets où la durabilité long terme justifie l&apos;investissement.
         </p>
+
+        <PullQuote>
+          Ipé et teck, classe&nbsp;1&nbsp;: <strong>30 à 50&nbsp;ans</strong> de terrasse sans le moindre traitement.
+        </PullQuote>
+
         <p className="content-body">
           Contrainte technique à ne pas négliger : leur dureté exige des forets carbure et un
           pré-perçage systématique. Visser sans pré-percer, c&apos;est la fissure garantie, même

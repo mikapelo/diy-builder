@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -462,6 +463,11 @@ export default function GuideSoiMemeOuPro() {
           en lecture, ou en travail rémunéré. Pour quelqu&apos;un qui facture 30 €/h en
           freelance, 2 weekends intenses représentent près de 1 000 € d&apos;opportunité perdue.
         </p>
+
+        <PullQuote>
+          Pour un indépendant à 30&nbsp;€/h, deux weekends de chantier valent près de <strong>1&nbsp;000&nbsp;€</strong> d&apos;opportunité perdue.
+        </PullQuote>
+
         <p className="content-body">
           Cela étant, le faire-soi-même n&apos;est pas qu&apos;une activité subie. Pour beaucoup,
           c&apos;est du loisir actif, de l&apos;apprentissage manuel, un résultat tangible

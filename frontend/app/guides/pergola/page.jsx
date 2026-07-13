@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
@@ -356,6 +357,10 @@ export default function GuidePergolaBois() {
           dix fois plus vite que le bois de fil&nbsp;: elles méritent deux couches. Renouvelez le traitement
           tous les 2 à 3 ans.
         </p>
+
+        <PullQuote>
+          Une coupe transversale boit l&apos;eau <strong>dix fois plus vite</strong> que le bois de fil&nbsp;: elle mérite deux couches.
+        </PullQuote>
 
         <h2 className="content-h2">Budget matériaux</h2>
         <p className="content-snippet">

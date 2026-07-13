@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 import AffiliateInline from '@/components/content/AffiliateInline';
@@ -455,6 +456,11 @@ export default function ClotureSolairePage() {
           quinze ans ou plus — sauf si la clôture était de toute façon au budget, auquel cas seul
           le surcoût des panneaux est à amortir, et le calcul redevient favorable.
         </p>
+
+        <PullQuote>
+          Autoconsommer un kWh vaut près de <strong>dix-huit fois</strong> plus que revendre le surplus au réseau.
+        </PullQuote>
+
         <p className="content-body">
           Notre position, la même que pour le{' '}
           <Link href="/guides/carport-solaire-bois-recharger-voiture-electrique-2026" className="content-link">carport solaire</Link>&nbsp;:

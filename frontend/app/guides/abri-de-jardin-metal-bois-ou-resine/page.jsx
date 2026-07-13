@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Callout from '@/components/content/Callout';
+import PullQuote from '@/components/content/PullQuote';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
 
@@ -460,6 +461,10 @@ export default function AbriMetalBoisResinePage() {
           et les cas d&apos;exonération dans notre{' '}
           <Link href="/guides/taxe-abri-jardin-2026" className="content-link">guide de la taxe sur les abris de jardin</Link>.
         </p>
+
+        <PullQuote>
+          Base de calcul 2026 de la taxe d&apos;aménagement&nbsp;: <strong>892&nbsp;€/m²</strong> hors Île-de-France, avant les taux locaux.
+        </PullQuote>
 
         {/* ════════════ H2.8 ════════════ */}
         <h2 className="content-h2">Notre verdict&nbsp;: quel matériau choisir&nbsp;?</h2>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
@@ -291,6 +292,11 @@ export default function PrixClotureAuMetrePage() {
           d&apos;environ 40-80 €/ml posé en 1 m à 65-130 €/ml en 1,90 m — la borne basse grimpe de
           plus de moitié.
         </p>
+
+        <PullQuote>
+          À matériau égal, passer de 1,20&nbsp;m à 2&nbsp;m renchérit la clôture de <strong>+30 à +50&nbsp;%</strong>.
+        </PullQuote>
+
         <p className="content-body">
           La leçon pratique&nbsp;: ne comparez jamais deux prix au mètre sans vérifier la hauteur de
           référence. Un devis «&nbsp;à 55 €/ml&nbsp;» pour du 1 m et un autre «&nbsp;à 75 €/ml&nbsp;»

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
 import Callout from '@/components/content/Callout';
+import PullQuote from '@/components/content/PullQuote';
 import CTALead from '@/components/landing/CTALead';
 
 const OG_TITLE = 'Comparer plusieurs devis travaux';
@@ -392,6 +393,10 @@ export default function ComparerDevisTravauxPage() {
           cours de chantier ; (3) il rogne sur des étapes (préparation, finitions, garanties) qui se
           paient à long terme par des reprises coûteuses.
         </p>
+
+        <PullQuote>
+          Un écart de <strong>15 à 25&nbsp;%</strong> entre trois devis est sain&nbsp;: le moins cher est rarement le meilleur.
+        </PullQuote>
 
         <h2 className="content-h2">Les marges réelles par poste — décortiquer le total</h2>
         <p className="content-snippet">

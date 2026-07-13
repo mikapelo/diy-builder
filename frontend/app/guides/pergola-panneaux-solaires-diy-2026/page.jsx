@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ContentLayout from '@/components/layout/ContentLayout';
+import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 
@@ -658,6 +659,10 @@ export default function PergolaPanneauxSolairesDiy2026Page() {
           puissance. Le DIY reste imbattable sur le coût brut. La différence se rattrape sur
           les aides RGE QualiPV exclusives à l&apos;installateur pro, détaillées plus bas.
         </p>
+
+        <PullQuote>
+          À surface égale, l&apos;intégré coûte <strong>5 fois</strong> le budget DIY — pour seulement 3 fois la puissance.
+        </PullQuote>
 
         <h2 className="content-h2">6. Aides 2026 — prime supprimée, TVA 5,5 % quasi inaccessible</h2>
         <p className="content-snippet">
