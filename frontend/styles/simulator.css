@@ -3723,6 +3723,27 @@
   align-items: center;
   gap: 8px;
 }
+/* Bloc lead guides : action primaire (devis, ouvre la modale) + lien alt (calculer). */
+.content-cta-box-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.content-cta-box-actions .btn-primary { margin: 0; }
+.content-cta-box-alt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9A7318;
+  text-decoration: none;
+}
+.content-cta-box-alt:hover { color: #7a5c00; text-decoration: underline; text-underline-offset: 2px; }
+.content-cta-box-alt svg { transition: transform .18s ease; }
+.content-cta-box-alt:hover svg { transform: translateX(3px); }
 
 /* Tableaux */
 .content-table {
