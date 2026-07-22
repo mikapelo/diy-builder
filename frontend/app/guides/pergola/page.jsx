@@ -5,6 +5,7 @@ import Figure from '@/components/ui/Figure';
 import CTALead from '@/components/landing/CTALead';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
+import BomAffiliateBlock from '@/components/content/BomAffiliateBlock';
 import AffiliateInline from '@/components/content/AffiliateInline';
 import Callout from '@/components/content/Callout';
 
@@ -451,6 +452,8 @@ export default function GuidePergolaBois() {
           commission, sans surcoût pour vous. Notre sélection technique reste indépendante — voir notre{' '}
           <Link href="/charte-affiliation">charte d&apos;affiliation</Link>.
         </p>
+
+        <BomAffiliateBlock module="pergola" placement="guide" />
 
         <GuideToolsBlock module="pergola" />
 

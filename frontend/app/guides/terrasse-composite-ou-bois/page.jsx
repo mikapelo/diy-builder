@@ -5,6 +5,7 @@ import PullQuote from '@/components/content/PullQuote';
 import Callout from '@/components/content/Callout';
 import CTALead from '@/components/landing/CTALead';
 import AffiliatePartnerBlock from '@/components/content/AffiliatePartnerBlock';
+import BomAffiliateBlock from '@/components/content/BomAffiliateBlock';
 
 const OG_TITLE = 'Terrasse composite ou bois ?';
 const OG_SUBTITLE = 'Prix au m² · durée de vie · entretien · glissance';
@@ -379,6 +380,8 @@ export default function TerrasseCompositeOuBoisPage() {
         </p>
 
         <AffiliatePartnerBlock module="terrasse-composite" placement="guide" />
+
+        <BomAffiliateBlock module="terrasse" placement="guide" />
 
         <h2 className="content-h2">Écologie&nbsp;: renouvelable, recyclable… et le cas des exotiques</h2>
         <p className="content-snippet">
