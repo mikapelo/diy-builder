@@ -16,8 +16,11 @@
  *   node scripts/awin-stats.js accounts                 # compte(s) accessibles
  *   node scripts/awin-stats.js programmes [joined|pending|rejected]  # marchands (déf. joined)
  *   node scripts/awin-stats.js commission <mid>         # groupes de commission d'un marchand
- *   node scripts/awin-stats.js transactions [30d]       # transactions récentes (commission)
- *   node scripts/awin-stats.js performance [30d]        # clics + conversions + € par marchand
+ *   node scripts/awin-stats.js transactions [30d] [all] # transactions (commission) — DIY Builder seul (all = 2 sites)
+ *   node scripts/awin-stats.js performance [30d] [all]  # clics + commissions par marchand — DIY Builder seul (all = 2 sites)
+ *
+ * ⚠️ Compte Awin PARTAGÉ diy-builder.fr + bornemaison.fr : par défaut on ne montre que
+ *    diy-builder.fr (transactions filtrées par publisherUrl ; clics restreints aux marchands OURS).
  *
  * Quota API Awin : 100 requêtes / minute (publisher).
  * Doc : https://wiki.awin.com/index.php/Publisher_API
@@ -48,8 +51,16 @@ if (!env.AWIN_API_TOKEN) {
 const TOKEN    = env.AWIN_API_TOKEN;
 const API_BASE = 'https://api.awin.com';
 
+// ⚠️ Compte Awin 2934749 PARTAGÉ entre diy-builder.fr et bornemaison.fr.
+// Les endpoints renvoient TOUT le compte et estampillent `siteName`/`publisherName`
+// avec le site primaire (« DIY Builder ») même pour une vente de l'autre site.
+// → transactions : seul `publisherUrl` dit la vraie source, on filtre dessus.
+// → clics (reports/advertiser, pas de champ site) : on restreint aux marchands intégrés (OURS).
+// Ajouter `all` en argument pour voir tous les sites (ex. `transactions 30d all`).
+const SITE_HOST = env.AWIN_SITE_HOST || 'diy-builder';
+
 // Marchands intégrés au site (lib/awinProducts.js) — mis en évidence dans `programmes`.
-const OURS = { '19184': 'Aosom', '109434': 'Plots discount', '57469': 'Woodstore24' };
+const OURS = { '19184': 'Aosom', '109434': 'Plots discount', '57469': 'Woodstore24', '21192': 'DeubaXXL' };
 
 // ─── Helpers ───────────────────────────────────────────────────────
 const pad  = (v, w) => String(v).padEnd(w);
@@ -139,37 +150,51 @@ async function cmdTransactions(arg) {
     timezone:  'Europe/Paris',
     dateType:  'transaction',
   };
-  const list = await awin(`/publishers/${pid}/transactions/`, params);
-  console.log(`\nTransactions (${days} j) : ${list.length}`);
-  let pend = 0, conf = 0;
+  const showAll = process.argv.slice(2).includes('all');
+  const raw  = await awin(`/publishers/${pid}/transactions/`, params);
+  const list = showAll ? raw : raw.filter(t => (t.publisherUrl || '').includes(SITE_HOST));
+  const hidden = raw.length - list.length;
+  console.log(`\nTransactions (${days} j)${showAll ? ' — TOUS SITES' : ` — ${SITE_HOST}`} : ${list.length}`);
+  // Awin `commissionStatus` : pending (à valider) · approved (validé, sera payé) · declined (refusé).
+  let pend = 0, conf = 0, dec = 0;
   for (const t of list) {
     const c = Number(t.commissionAmount?.amount ?? t.commissionAmount ?? 0);
-    if (t.commissionStatus === 'confirmed') conf += c; else pend += c;
-    console.log(`  ${pad(t.transactionDate?.slice(0, 10) || '', 11)} mid ${pad(t.advertiserId, 7)} ${pad(t.commissionStatus, 10)} ${eur(c)}`);
+    const s = t.commissionStatus;
+    if (s === 'approved' || s === 'confirmed') conf += c;
+    else if (s === 'declined') dec += c;
+    else pend += c;
+    const host = (t.publisherUrl || '—').replace(/^https?:\/\//, '').replace(/\/$/, '');
+    console.log(`  ${pad(t.transactionDate?.slice(0, 10) || '', 11)} mid ${pad(t.advertiserId, 7)} ${pad(s, 10)} ${padL(eur(c), 10)}  ${host}`);
   }
-  console.log(`\n  Confirmé : ${eur(conf)}   En attente : ${eur(pend)}`);
+  console.log(`\n  Validé (approved) : ${eur(conf)}   En attente : ${eur(pend)}${dec ? '   Refusé : ' + eur(dec) : ''}`);
+  if (!showAll && hidden > 0) console.log(`  (${hidden} transaction(s) d'autres sites masquée(s) — 'transactions ${days}d all' pour tout voir)`);
 }
 
 async function cmdPerformance(arg) {
   const pid    = await resolvePublisherId();
   const days   = parseDays(arg, 30);
   const region = env.AWIN_REGION || 'FR';
-  const list = await awin(`/publishers/${pid}/reports/advertiser`, {
+  const showAll = process.argv.slice(2).includes('all');
+  const raw = await awin(`/publishers/${pid}/reports/advertiser`, {
     startDate: dateNDaysAgo(days), endDate: dateNDaysAgo(0), region, timezone: 'Europe/Paris',
   });
-  console.log(`\nPerformance (${days} j, région ${region}) — éditeur ${pid}\n`);
+  const list = showAll ? raw : raw.filter(r => OURS[String(r.advertiserId)]);
+  const hidden = raw.length - list.length;
+  console.log(`\nPerformance (${days} j, région ${region})${showAll ? ' — TOUS SITES' : ' — marchands DIY Builder'} — éditeur ${pid}\n`);
   if (!list.length) {
-    console.log('  (aucun clic ni conversion sur la période — intégration récente)');
+    console.log('  (aucun clic ni conversion sur la période)');
     return;
   }
-  console.log(`  ${pad('marchand', 24)} ${padL('clics', 7)} ${padL('ventes', 7)} ${padL('confirmé', 12)} ${padL('attente', 12)}`);
-  console.log('  ' + '─'.repeat(66));
-  let tc = 0;
+  // colonnes commission (confirmedComm/pendingComm) — PAS la valeur du panier (confirmedValue).
+  console.log(`  ${pad('marchand', 24)} ${padL('clics', 7)} ${padL('ventes', 7)} ${padL('comm.ok', 11)} ${padL('comm.att', 11)}`);
+  console.log('  ' + '─'.repeat(64));
+  let tc = 0, cc = 0, pc = 0;
   for (const r of list) {
-    tc += r.clicks || 0;
-    console.log(`  ${pad((r.advertiserName || r.advertiserId).slice(0, 23), 24)} ${padL(r.clicks || 0, 7)} ${padL((r.pendingNo || 0) + (r.confirmedNo || 0), 7)} ${padL(eur(r.confirmedValue), 12)} ${padL(eur(r.pendingValue), 12)}`);
+    tc += r.clicks || 0; cc += r.confirmedComm || 0; pc += r.pendingComm || 0;
+    console.log(`  ${pad((r.advertiserName || r.advertiserId).slice(0, 23), 24)} ${padL(r.clicks || 0, 7)} ${padL((r.pendingNo || 0) + (r.confirmedNo || 0), 7)} ${padL(eur(r.confirmedComm), 11)} ${padL(eur(r.pendingComm), 11)}`);
   }
-  console.log(`\n  Total clics : ${tc}`);
+  console.log(`\n  Total : ${tc} clics · comm. validée ${eur(cc)} · en attente ${eur(pc)}`);
+  if (!showAll && hidden > 0) console.log(`  (${hidden} marchand(s) hors périmètre DIY Builder masqué(s) — 'performance ${days}d all' pour tout voir)`);
 }
 
 function help() {
@@ -178,8 +203,10 @@ function help() {
   node scripts/awin-stats.js accounts
   node scripts/awin-stats.js programmes [joined|pending|rejected]
   node scripts/awin-stats.js commission <mid>
-  node scripts/awin-stats.js transactions [30d]
-  node scripts/awin-stats.js performance [30d]
+  node scripts/awin-stats.js transactions [30d] [all]   # défaut : diy-builder.fr seul
+  node scripts/awin-stats.js performance [30d] [all]    # défaut : marchands DIY Builder
+
+  Compte Awin partagé 2 sites → 'all' pour inclure bornemaison.fr.
 `);
 }
 
