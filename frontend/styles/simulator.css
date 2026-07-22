@@ -4133,12 +4133,12 @@
 }
 .guide-tool-card {
   display: flex;
-  gap: 13px;
-  align-items: flex-start;
+  flex-direction: column;
   background: #fff;
   border: 1px solid #ece4d2;
   border-radius: 10px;
   padding: 13px;
+  text-decoration: none;
   transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
 }
 .guide-tool-card:hover {
@@ -4146,6 +4146,23 @@
   transform: translateY(-3px);
   box-shadow: 0 10px 22px rgba(120, 90, 20, .14);
 }
+/* Toute la carte est cliquable (<a>) — focus clavier sur la carte (WCAG 2.4.7). */
+.guide-tool-card:focus-visible { outline: 2px solid #1a1c1b; outline-offset: 2px; }
+/* Carte mise en avant « Meilleur choix » (auto : mieux notée du bloc). */
+.guide-tool-featured-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  margin: 0 0 9px;
+  border-radius: 999px;
+  background: rgba(201, 151, 30, .15);
+  color: #8a6300;
+}
+.guide-tool-top { display: flex; gap: 13px; align-items: flex-start; }
 .guide-tool-visual {
   flex-shrink: 0;
   width: 62px;
@@ -4189,12 +4206,13 @@
   line-height: 1.3;
   margin-bottom: 2px;
 }
-.guide-tool-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 7px;
+.guide-tool-pricerow { margin-top: 12px; line-height: 1.1; }
+.guide-tool-pricenote {
+  display: block;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 11px;
+  color: #9a917f;
+  margin-top: 3px;
 }
 .guide-tool-price {
   font-family: 'Manrope', system-ui, sans-serif;
@@ -4206,28 +4224,44 @@
   white-space: nowrap;
 }
 .guide-tool-cta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
   background: var(--v6-primary, #C9971E);
   color: #fff;
   font-family: 'Manrope', system-ui, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  padding: 7px 12px;
-  border-radius: 7px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-top: 10px;
   white-space: nowrap;
   transition: background .15s ease, box-shadow .18s ease;
 }
 .guide-tool-cta:hover { background: #b0831a; }
+.guide-tool-merchantline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 11px;
+  color: #8a8270;
+  margin-top: 8px;
+}
 /* Focus clavier visible sur le CTA affilié — comblait un échec WCAG 2.4.7.
    Anneau sombre fixe (≥3:1 sur fonds clairs des cartes), pas currentColor
    (= blanc, invisible). Additif/clavier seul → sûr pour blocs Awin + Amazon. */
-.guide-tool-cta:focus-visible {
-  outline: 2px solid #1a1c1b;
-  outline-offset: 2px;
-}
+/* Liseré de la carte « Meilleur choix » — teinté par contexte (or Amazon / vert-or Awin). */
+.guide-tool-card--featured { border-color: #C9971E; border-width: 1.5px; }
+.guide-tools--alternative .guide-tool-card--featured { border-color: #5c7a4a; }
+.guide-tools--complement .guide-tool-card--featured { border-color: #8a6d1f; }
+.guide-tools--alternative .guide-tool-featured-badge { background: rgba(92, 122, 74, .12); color: #3f5a2e; }
+.guide-tools--complement .guide-tool-featured-badge { background: rgba(169, 138, 60, .16); color: #7a5c00; }
 .guide-tools-note {
   font-family: 'Manrope', system-ui, sans-serif;
   font-size: 12px;

@@ -63,41 +63,50 @@ function PartnerVisual({ img, name, icon }) {
   );
 }
 
-/* ── Carte produit partenaire ── */
-function ProductCard({ product, merchant, module, clickref, cta, icon, badge, placement }) {
+/* ── Carte produit partenaire — buy box (carte entièrement cliquable, CTA pleine largeur) ── */
+function ProductCard({ product, merchant, module, clickref, cta, icon, badge, placement, featured }) {
   const href = buildAwinUrl(product.url, merchant.mid, clickref);
   const rating = product.rating ? Number(product.rating) : null;
+  const snapshotFR = AWIN_SNAPSHOT_DATE.split('-').reverse().slice(0, 2).join('/');
   return (
-    <div className="guide-tool-card">
-      <PartnerVisual img={product.img} name={product.name} icon={icon} />
-      <div className="guide-tool-body">
-        <span className="guide-tool-name">{product.name}</span>
-        {rating != null ? (
-          <span className="amazon-rating amazon-rating--compact" aria-label={`Note ${product.rating} sur 5`} title={`Note ${product.rating}/5 (relevé ${AWIN_SNAPSHOT_DATE})`}>
-            <Stars value={rating} />
-            <span className="amazon-rating-value">{rating.toFixed(1)}</span>
-          </span>
-        ) : badge ? (
-          <span className="guide-tool-badge">{badge}</span>
-        ) : null}
-        <div className="guide-tool-foot">
-          <span className="guide-tool-price">
-            {product.price}&nbsp;€{product.priceSuffix && <span className="guide-tool-price-suffix"> {product.priceSuffix}</span>}
-          </span>
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            className="guide-tool-cta"
-            aria-label={`${cta} : ${product.name}`}
-            onClick={() => trackAwinClick({ merchant: merchant.name, module, product: product.name, placement })}
-          >
-            {cta}
-            <ArrowExternal />
-          </a>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      className={`guide-tool-card${featured ? ' guide-tool-card--featured' : ''}`}
+      aria-label={`${cta} : ${product.name} — ${merchant.name}`}
+      onClick={() => trackAwinClick({ merchant: merchant.name, module, product: product.name, placement })}
+    >
+      {featured && <span className="guide-tool-featured-badge">Meilleur choix</span>}
+      <div className="guide-tool-top">
+        <PartnerVisual img={product.img} name={product.name} icon={icon} />
+        <div className="guide-tool-body">
+          <span className="guide-tool-name">{product.name}</span>
+          {rating != null ? (
+            <span className="amazon-rating amazon-rating--compact" aria-label={`Note ${product.rating} sur 5`} title={`Note ${product.rating}/5 (relevé ${AWIN_SNAPSHOT_DATE})`}>
+              <Stars value={rating} />
+              <span className="amazon-rating-value">{rating.toFixed(1)}</span>
+            </span>
+          ) : badge ? (
+            <span className="guide-tool-badge">{badge}</span>
+          ) : null}
         </div>
       </div>
-    </div>
+      <div className="guide-tool-pricerow">
+        <span className="guide-tool-price">
+          {product.price}&nbsp;€{product.priceSuffix && <span className="guide-tool-price-suffix"> {product.priceSuffix}</span>}
+        </span>
+        <span className="guide-tool-pricenote">prix indicatif · relevé le {snapshotFR}</span>
+      </div>
+      <span className="guide-tool-cta">
+        {cta}
+        <ArrowExternal />
+      </span>
+      <span className="guide-tool-merchantline">
+        <span className="material-symbols-outlined" style={{ fontSize: 13 }} aria-hidden="true">storefront</span>
+        Sur {merchant.name}
+      </span>
+    </a>
   );
 }
 
@@ -109,6 +118,13 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
   const clickref = `${module}-${variant}-${placement}`;
   const icon = FALLBACK_ICON[module] || 'shopping_bag';
 
+  /* Carte « Meilleur choix » = produit le mieux noté du bloc (si des notes existent). */
+  let featuredIdx = -1, bestRating = -1;
+  products.forEach((p, i) => {
+    const r = p.rating ? Number(p.rating) : null;
+    if (r != null && r > bestRating) { bestRating = r; featuredIdx = i; }
+  });
+
   return (
     <section className={`guide-tools guide-tools--partner guide-tools--${variant}`} aria-label={`Produits partenaires — ${merchantInfo.name}`}>
       <div className="guide-tools-head">
@@ -118,7 +134,7 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
       </div>
 
       <div className="guide-tools-grid">
-        {products.map((product) => (
+        {products.map((product, i) => (
           <ProductCard
             key={product.url}
             product={product}
@@ -129,6 +145,7 @@ export default function AffiliatePartnerBlock({ module, placement = 'guide' }) {
             icon={icon}
             badge={badge}
             placement={placement}
+            featured={i === featuredIdx}
           />
         ))}
       </div>

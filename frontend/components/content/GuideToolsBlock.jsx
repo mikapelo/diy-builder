@@ -110,31 +110,47 @@ function ToolVisual({ asin, icon, name }) {
   );
 }
 
-/* ── Carte outil compacte ── */
-function ToolCard({ pick, subtag }) {
+/* ── Index de la carte la mieux notée (badge « Meilleur choix »), -1 si aucune note ── */
+function bestRatedIndex(picks) {
+  let idx = -1, bestR = -1, bestC = -1;
+  picks.forEach((p, i) => {
+    const data = getRating(p.amazonAsin);
+    if (!data || data.rating == null) return;
+    const r = data.rating, c = data.count || 0;
+    if (r > bestR || (r === bestR && c > bestC)) { bestR = r; bestC = c; idx = i; }
+  });
+  return idx;
+}
+
+/* ── Carte outil — buy box (carte entièrement cliquable, CTA pleine largeur) ── */
+function ToolCard({ pick, subtag, featured }) {
   const href = buildAmazonUrl(pick.amazonQuery, pick.amazonAsin, subtag);
   return (
-    <div className="guide-tool-card">
-      <ToolVisual asin={pick.amazonAsin} icon={pick.icon} name={`${pick.brand} ${pick.model}`} />
-      <div className="guide-tool-body">
-        <span className="guide-tool-name">{pick.name}</span>
-        <span className="guide-tool-model">{pick.brand} {pick.model}</span>
-        <RatingBadge asin={pick.amazonAsin} />
-        <div className="guide-tool-foot">
-          <span className="guide-tool-price">~{pick.price}&nbsp;€</span>
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            className="guide-tool-cta"
-            aria-label={`Voir ${pick.brand} ${pick.model} sur Amazon`}
-          >
-            Voir sur Amazon
-            <ArrowExternal />
-          </a>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      className={`guide-tool-card${featured ? ' guide-tool-card--featured' : ''}`}
+      aria-label={`Voir ${pick.brand} ${pick.model} sur Amazon`}
+    >
+      {featured && <span className="guide-tool-featured-badge">Meilleur choix</span>}
+      <div className="guide-tool-top">
+        <ToolVisual asin={pick.amazonAsin} icon={pick.icon} name={`${pick.brand} ${pick.model}`} />
+        <div className="guide-tool-body">
+          <span className="guide-tool-name">{pick.name}</span>
+          <span className="guide-tool-model">{pick.brand} {pick.model}</span>
+          <RatingBadge asin={pick.amazonAsin} />
         </div>
       </div>
-    </div>
+      <div className="guide-tool-pricerow">
+        <span className="guide-tool-price">~{pick.price}&nbsp;€</span>
+        <span className="guide-tool-pricenote">prix indicatif</span>
+      </div>
+      <span className="guide-tool-cta">
+        Voir sur Amazon
+        <ArrowExternal />
+      </span>
+    </a>
   );
 }
 
@@ -152,6 +168,7 @@ export default function GuideToolsBlock({ module }) {
   if (!picks.length) return null;
 
   const subtag = `${module}-guide`;
+  const featuredIdx = bestRatedIndex(picks);
 
   return (
     <section className="guide-tools" aria-label="Outillage recommandé pour ce chantier">
@@ -164,8 +181,8 @@ export default function GuideToolsBlock({ module }) {
       </div>
 
       <div className="guide-tools-grid">
-        {picks.map((pick) => (
-          <ToolCard key={pick.id} pick={pick} subtag={subtag} />
+        {picks.map((pick, i) => (
+          <ToolCard key={pick.id} pick={pick} subtag={subtag} featured={i === featuredIdx} />
         ))}
       </div>
 
