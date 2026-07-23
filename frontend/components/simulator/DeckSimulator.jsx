@@ -118,6 +118,14 @@ function SimulatorContent({ projectType }) {
     return arr;
   }, [width, windowPreset]);
 
+  /* CA-1 : sur les petites façades, la fenêtre demandée ne tient pas après la
+     porte et est écartée silencieusement. On le remonte à l'UI pour ne jamais
+     laisser le contrôle « Fenêtre » sélectionné sans effet 3D ni au BOM. */
+  const windowDropped = useMemo(() => {
+    const requested = (WINDOW_PRESETS[windowPreset]?.width ?? 0) > 0;
+    return requested && !openings.some((o) => o.type === 'window');
+  }, [openings, windowPreset]);
+
   /* ── Engine ── */
   const engineOptions = useMemo(() => {
     if (isTerasse(projectType)) return {};
@@ -144,14 +152,19 @@ function SimulatorContent({ projectType }) {
 
   // Rangées de lames : nombre de passes sur la largeur depth
   const boardRows   = Math.floor(depth / (BOARD_WIDTH + BOARD_GAP)) + 1;
-  // Lames commerciales (LAME_COMMERCIAL_LEN = 3,6 m, longueur GSB) : rangées × largeur × 5% chutes
-  // BOARD_LEN (3,0m) régit les coupes 3D ; pour le BOM on compte des unités achetables (3,6m)
-  const boards = isTerasse(projectType) ? Math.ceil(boardRows * width * 1.05 / LAME_COMMERCIAL_LEN) : 0;
+  // Quantités BRUTES (sans majoration). La marge coupe/chute est appliquée une
+  // seule fois, par costCalculator (WOOD_WASTE_FACTOR = 1,10 sur les matériaux
+  // bois). Un ×1,05 en dur ici recréait un double-compte (1,05 × 1,10 ≈ 1,155)
+  // sur le poste lames et désynchronisait le stat viewer du devis.
+  // LAME_COMMERCIAL_LEN (3,6 m, unité achetable GSB) ; BOARD_LEN (3,0 m) régit
+  // séparément les coupes 3D dans deckGeometry.
+  const boards = isTerasse(projectType) ? Math.ceil(boardRows * width / LAME_COMMERCIAL_LEN) : 0;
   const screws      = isTerasse(projectType) ? boardRows * allJoistCount * 2 : 0;
   // Entretoises : portée = width (lambourdes), entraxe ENTR_SPACING — aligné deckGeometry.buildEntretoises
   const cbPositions = Math.floor(width / ENTR_SPACING);
   const entretoises = isTerasse(projectType) ? cbPositions * Math.max(joistCount - 1, 0) : 0;
-  const bandeMl     = isTerasse(projectType) ? Math.ceil(allJoistCount * depth * 1.05) : 0;
+  // Bande bitume brute (bande_bitume est hors WOOD_MATERIAL_IDS : pas de majoration bois).
+  const bandeMl     = isTerasse(projectType) ? Math.ceil(allJoistCount * depth) : 0;
 
   /* ── Dalle ── */
   const slab = useMemo(
@@ -205,6 +218,7 @@ function SimulatorContent({ projectType }) {
             showWindow={!isTerasse(projectType) && !isPergola(projectType) && !isCloture(projectType)}
             windowPreset={windowPreset} setWindowPreset={setWindowPreset}
             windowPresets={WINDOW_PRESETS}
+            windowDropped={windowDropped}
             projectType={projectType}
             liveStats={materials}
           />

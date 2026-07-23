@@ -31,11 +31,14 @@ export function callEngine(project, w, d) {
       const dblJoistCount = new Set(raw.doubleJoistSegs?.map(s => +s.xPos.toFixed(6)) ?? []).size;
       const allJoistCount = joistCount + dblJoistCount;
       const boardRows = Math.floor(d / (BOARD_WIDTH + BOARD_GAP)) + 1;
-      const boards = Math.ceil(boardRows * w * 1.05 / LAME_COMMERCIAL_LEN);
+      // Quantités brutes — la majoration coupe/chute (×1,10) est appliquée une
+      // seule fois par costCalculator (WOOD_WASTE_FACTOR). Doit rester identique
+      // au calcul de DeckSimulator : pas de ×1,05 en dur (double-compte).
+      const boards = Math.ceil(boardRows * w / LAME_COMMERCIAL_LEN);
       const screws = boardRows * allJoistCount * 2;
       const cbPositions = Math.floor(w / ENTR_SPACING);
       const entretoises = cbPositions * Math.max(joistCount - 1, 0);
-      const bande = Math.ceil(allJoistCount * d * 1.05);
+      const bande = Math.ceil(allJoistCount * d);
       return { boards, joists: allJoistCount, pads, screws, entretoises, bande };
     }
     case 'cabanon': return generateCabanon(w, d, {});

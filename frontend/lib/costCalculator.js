@@ -262,7 +262,11 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
     }
 
     /* Voliges supprimées — remplacées par entretoises de toiture pour petits cabanons.
-     * La ligne de coût est conservée commentée ici pour référence si besoin. */
+     * La ligne de coût est conservée commentée ici pour référence si besoin.
+     * ⚠️ Avant de la réactiver : structure.voliges = roofArea porte DÉJÀ ROOF_COEF
+     * (×1,10, cabanonConstants) et volige_18mm ∈ WOOD_MATERIAL_IDS → la ligne
+     * recevrait un 2e ×1,10 ici (≈1,21). Passer une quantité brute, ou exclure
+     * volige_18mm du wood-waste. (ROOF_COEF ≠ WOOD_WASTE_FACTOR : ne pas le retirer.) */
 
     if (structure.membrane > 0) {
       push({

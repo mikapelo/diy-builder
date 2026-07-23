@@ -778,6 +778,17 @@
 .ctrl-input-group:hover .ctrl-range::-webkit-slider-thumb { opacity: 1; }
 .ctrl-input-group:hover .ctrl-range-wrap { height: 6px; }
 
+/* A11Y : focus clavier visible sur le curseur. L'input .ctrl-range est
+   opacity:0 (superposé à la piste dorée visible) : ni son outline ni son thumb
+   ne peuvent s'afficher. On matérialise donc le focus sur .ctrl-range-wrap, le
+   seul élément opaque — piste épaissie (comme au hover) + anneau net. */
+.ctrl-range-wrap:has(.ctrl-range:focus-visible) {
+  height: 6px;
+  outline: 2px solid var(--green, #2F6B3C);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
 /* ── Camera preset buttons ── */
 .cam-presets {
   display: flex; gap: 4px;
@@ -1162,12 +1173,28 @@
   transition: border-color 0.15s, background 0.15s;
   user-select: none;
 }
+/* A11Y : visually-hidden au lieu de display:none — garde le radio dans l'ordre
+   de tabulation et focusable au clavier (WCAG 2.1.1). */
 .ctrl-radio input[type="radio"] {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .ctrl-radio:hover {
   border-color: var(--green-light);
   background: var(--green-pale);
+}
+/* Anneau de focus visible quand on tabule sur le radio interne. */
+.ctrl-radio:has(input[type="radio"]:focus-visible) {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-color: var(--green);
 }
 .ctrl-radio--active {
   border-color: var(--green);
@@ -1178,6 +1205,26 @@
 .ctrl-radio-icon {
   font-size: 16px;
   line-height: 1;
+}
+
+/* CA-1 : note quand la fenêtre demandée ne tient pas sur la façade. */
+.ctrl-window-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #7A5A12;
+  background: #FBF5E6;
+  border: 1px solid #E8D29A;
+  border-radius: 8px;
+}
+.ctrl-window-note i {
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 /* ── Mode toggle (Formats / Sur mesure — view switches) ── */

@@ -264,6 +264,7 @@ export default function DeckControls({
   windowPreset = 'none',
   setWindowPreset,
   windowPresets = {},
+  windowDropped = false,
   projectType = 'terrasse',
   /* résumé live matériaux — calculé dans DeckSimulator */
   liveStats = null,
@@ -425,6 +426,13 @@ export default function DeckControls({
               </label>
             ))}
           </div>
+          {windowDropped && (
+            <p className="ctrl-window-note" role="status">
+              <i className="ph-fill ph-warning-circle" aria-hidden="true" />
+              Fenêtre trop large pour cette façade — elle n’est ni dessinée ni comptée.
+              Élargissez le cabanon ou choisissez une fenêtre plus petite.
+            </p>
+          )}
         </div>
       )}
 

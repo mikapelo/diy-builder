@@ -9,6 +9,7 @@
  */
 import { describe, it, expect } from 'vitest';
 import { callEngine, LAME_COMMERCIAL_LEN } from '@/lib/listeBOM.js';
+import { BOARD_WIDTH, BOARD_GAP } from '@/lib/deckConstants.js';
 
 describe('callEngine — projet inconnu', () => {
   it('retourne null', () => {
@@ -54,6 +55,21 @@ describe('callEngine — terrasse', () => {
 
   it('LAME_COMMERCIAL_LEN exporté = 3.6 m', () => {
     expect(LAME_COMMERCIAL_LEN).toBeCloseTo(3.6, 5);
+  });
+
+  /* Régression T-2 (audit 2026-07-01) : les lames étaient majorées ×1,05 ici ET
+     ×1,10 par costCalculator (lame_terrasse ∈ WOOD_MATERIAL_IDS), soit ≈1,155 —
+     en contradiction avec la doctrine « majoration totale = exactement 10 % ».
+     boards doit être la quantité BRUTE ; la marge coupe/chute vit uniquement
+     dans costCalculator. Ce test casse si un multiplicateur revient en dur. */
+  it('boards = quantité brute, sans double-majoration (T-2)', () => {
+    for (const [w, d] of [[4, 4], [5.5, 3.5], [4, 3]]) {
+      const boardRows = Math.floor(d / (BOARD_WIDTH + BOARD_GAP)) + 1;
+      const raw = Math.ceil((boardRows * w) / LAME_COMMERCIAL_LEN);
+      const doubled = Math.ceil((boardRows * w * 1.05) / LAME_COMMERCIAL_LEN);
+      expect(raw).toBeLessThan(doubled);              // le cas mord bien
+      expect(callEngine('terrasse', w, d).boards).toBe(raw);
+    }
   });
 
   it('petite terrasse 1×1 — quantités non négatives', () => {

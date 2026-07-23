@@ -1913,21 +1913,9 @@ i[class*="ph-thin"] {
   color: var(--g-brique) !important;
 }
 
-[data-theme="g-v2"] .budget-tier--recommended::before {
-  content: "Recommandé";
-  position: absolute;
-  top: -11px;
-  left: 18px;
-  font-family: var(--g-mono);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--g-marine);
-  padding: 3px 10px;
-  border-radius: 3px;
-}
+/* V-1 : le badge « Recommandé » est déjà rendu par le <span>.budget-recommended-badge
+   réel (thémé g-v2 plus haut, l.779). L'ancien pseudo ::before dupliquait le libellé
+   et se chevauchait avec lui (screenshot audit) — supprimé. */
 
 [data-theme="g-v2"] .budget-tier:not(.budget-tier--recommended) .budget-tier-price {
   font-size: 26px !important;
