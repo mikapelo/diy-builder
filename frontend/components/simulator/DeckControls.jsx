@@ -65,8 +65,12 @@ const PERGOLA_BOUNDS = { wMin: 2.0, wMax: 10.0, dMin: 2.0, dMax: 6.0 };
 const BARDAGE_BOUNDS = { wMin: 1.0, wMax: 20.0, dMin: 1.0, dMax: 6.0 };
 const DALLE_BOUNDS   = { wMin: 1.0, wMax: 20.0, dMin: 1.0, dMax: 20.0 };
 
-function boundsFor(projectType, showHeight) {
-  if (projectType === 'cloture')  return { wMin: 1, wMax: 30, dMin: 0.8, dMax: 2.2 };
+export function boundsFor(projectType, showHeight) {
+  // Clôture : d = hauteur. Pas de 10 cm — au pas de 0,5 m la grille du curseur
+  // ne vaudrait que 0,80 / 1,30 / 1,80 m, et les hauteurs usuelles (1,50 · 2,00 m)
+  // seraient inatteignables au curseur, qui afficherait alors un thumb en
+  // désaccord avec le champ chiffré.
+  if (projectType === 'cloture')  return { wMin: 1, wMax: 30, dMin: 0.8, dMax: 2.2, dStep: 0.1 };
   if (projectType === 'pergola')  return PERGOLA_BOUNDS;
   if (projectType === 'bardage')  return BARDAGE_BOUNDS;
   if (projectType === 'dalle')    return DALLE_BOUNDS;
@@ -363,6 +367,7 @@ export default function DeckControls({
           setValue={setDepth}
           min={bounds.dMin}
           max={bounds.dMax}
+          step={bounds.dStep ?? 0.5}
         />
       </div>
 

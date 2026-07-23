@@ -59,7 +59,7 @@ function SimulatorContent({ projectType }) {
     height, setHeight, viewMode, setViewMode,
     foundationType, setFoundationType,
     slabThickness, setSlabThickness,
-  } = useDeckSimulatorState();
+  } = useDeckSimulatorState(projectType);
 
   const canvasWrapRef = useRef(null);
   const [windowPreset, setWindowPreset] = useState('60x60');
@@ -188,7 +188,7 @@ function SimulatorContent({ projectType }) {
           structure={structure}
           foundationType={foundationType}
           width={width} depth={depth} area={area}
-          boards={boards} joists={joistCount} pads={pads}
+          boards={boards} joists={allJoistCount} pads={pads}
           viewMode={viewMode} setViewMode={setViewMode}
           canvasWrapRef={canvasWrapRef}
         />

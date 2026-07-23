@@ -191,10 +191,13 @@ export const PROJECT_LABELS = {
   cloture:  { label: 'Clôture bois', unit: 'm (long.) × m (haut.)', dim1: 'Longueur', dim2: 'Hauteur' },
 };
 
-/** Dimensions par défaut par module (w, d) */
+/** Dimensions par défaut par module (w, d) — source unique du 1er rendu simulateur.
+ *  Consommé par useDeckSimulatorState ; chaque couple DOIT rester dans les bornes
+ *  du module déclarées par boundsFor() (DeckControls.jsx), invariant sous test.
+ *  Pour la clôture, d = hauteur : plafond légal courant 2,60 m, borne UI 2,20 m. */
 export const PROJECT_DEFAULTS = {
-  terrasse: { w: 4,  d: 3   },
-  cabanon:  { w: 3,  d: 4   },
-  pergola:  { w: 4,  d: 3   },
-  cloture:  { w: 15, d: 1.5 },
+  terrasse: { w: 5.5, d: 3.5 },
+  cabanon:  { w: 4,   d: 3   },  // = preset « 4 × 3 » (12 m², DP) ; bornes cabanon w ≤ 5, d ≤ 4
+  pergola:  { w: 5.5, d: 3.5 },
+  cloture:  { w: 15,  d: 1.5 },  // 15 m de long × 1,50 m de haut
 };

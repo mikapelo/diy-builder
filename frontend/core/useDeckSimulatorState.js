@@ -11,20 +11,29 @@
  *
  * Le BOM et le budget ne sont jamais encodés — intentionnellement.
  *
+ * Les dimensions initiales viennent de PROJECT_DEFAULTS (par module) : un trio
+ * global envoyait la clôture à 3,50 m de haut, au-dessus de sa borne UI (2,20 m)
+ * et du plafond légal courant, et le cabanon à 5,50 m de large pour un max de 5 m.
+ *
  * Usage :
- *   const { width, depth, setWidth, ... } = useDeckSimulatorState();
+ *   const { width, depth, setWidth, ... } = useDeckSimulatorState('cloture');
  */
 import { useState, useEffect } from 'react';
 import { readSimulatorUrlParams } from '@/hooks/useSimulatorUrl';
+import { PROJECT_DEFAULTS } from '@/lib/seoSchemas.js';
 
-/* ── Valeurs par défaut — identiques SSR et client initial ── */
-const DEFAULT_W = 5.5;
-const DEFAULT_D = 3.5;
+/* ── Hauteur : commune cabanon/pergola, seuls modules à l'exposer ── */
 const DEFAULT_H = 2.3;
 
-export function useDeckSimulatorState() {
-  const [width,          setWidth]          = useState(DEFAULT_W);
-  const [depth,          setDepth]          = useState(DEFAULT_D);
+/**
+ * @param {string} projectType — fixe pour la durée de vie de la page
+ *   (une route = un module), donc lu une seule fois à l'initialisation.
+ */
+export function useDeckSimulatorState(projectType = 'terrasse') {
+  const defaults = PROJECT_DEFAULTS[projectType] ?? PROJECT_DEFAULTS.terrasse;
+
+  const [width,          setWidth]          = useState(defaults.w);
+  const [depth,          setDepth]          = useState(defaults.d);
   const [height,         setHeight]         = useState(DEFAULT_H);
   const [viewMode,       setViewMode]       = useState('assembled');
   const [foundationType, setFoundationType] = useState('ground'); // 'ground' | 'slab'
