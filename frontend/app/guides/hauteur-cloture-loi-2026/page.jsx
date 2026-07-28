@@ -34,12 +34,12 @@ const OG_SUBTITLE = 'PLU · servitude de vue · voisinage · recours';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=cloture`;
 
 export const metadata = {
-  title: 'Hauteur de clôture : ce que dit la loi en 2026',
+  title: 'Hauteur maximale d’une clôture : la règle 2026 (PLU, recours)',
   description:
-    'Hauteur de clôture en 2026 : pourquoi il n’existe pas de maximum légal national, ce qu’impose le PLU, la servitude de vue, le trouble anormal de voisinage (loi 2024) et les recours en cas de litige.',
+    'Hauteur maximum d’une clôture en 2026 : pourquoi il n’existe pas de maximum légal national, ce qu’impose le PLU, la servitude de vue, le trouble anormal de voisinage (loi 2024) et les recours.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/hauteur-cloture-loi-2026' },
   openGraph: {
-    title: 'Hauteur de clôture : ce que dit la loi en 2026 | DIY Builder',
+    title: 'Hauteur maximale d’une clôture : ce que dit la loi en 2026 | DIY Builder',
     description:
       'Pas de hauteur maximale nationale : le PLU prime, l’usage local complète, et une clôture trop haute reste attaquable au titre du trouble anormal de voisinage (art. 1253 du Code civil, 2024).',
     url: 'https://www.diy-builder.fr/guides/hauteur-cloture-loi-2026',
@@ -66,7 +66,7 @@ const breadcrumbJsonLd = {
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'Hauteur de clôture : ce que dit la loi en 2026',
+  headline: 'Hauteur maximum d’une clôture : ce que dit vraiment la loi',
   description:
     'Règles de hauteur d’une clôture en France : absence de maximum national, rôle du PLU et de l’usage local, servitude de vue, trouble anormal de voisinage codifié en 2024 et voies de recours.',
   author: { '@type': 'Organization', name: 'DIY Builder', url: 'https://www.diy-builder.fr' },
@@ -162,7 +162,7 @@ export default function HauteurClotureLoi2026Page() {
         </nav>
 
         <h1 className="content-h1">
-          Hauteur de clôture : ce que dit vraiment la loi en 2026
+          Hauteur maximum d&apos;une clôture : ce que dit vraiment la loi
         </h1>
 
         <p className="content-meta">

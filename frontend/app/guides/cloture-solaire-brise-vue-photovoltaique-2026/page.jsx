@@ -134,7 +134,7 @@ export default function ClotureSolairePage() {
         </nav>
 
         <h1 className="content-h1">
-          Clôture solaire : produire de l&apos;électricité avec un brise-vue photovoltaïque (2026)
+          Clôture solaire : le brise-vue photovoltaïque vertical qui produit de l&apos;électricité (2026)
         </h1>
 
         <p className="content-meta">

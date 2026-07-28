@@ -10,12 +10,12 @@ const OG_SUBTITLE = 'Essences, antidérapance, sécurité NF P90-306';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
 
 export const metadata = {
-  title: 'Terrasse bois autour d\'une piscine 2026 : guide complet',
+  title: 'Terrasse bois autour d\'une piscine : quelles lames choisir (2026)',
   description:
-    'Quel bois résiste au chlore et aux UV ? Antidérapance R11, pente 1 %, sécurité NF P90-306. Budget par essence pour 30 m² de plage piscine.',
+    'Quelles lames de terrasse choisir autour d\'une piscine ? Bois résistant au chlore et aux UV, antidérapance R11, sécurité NF P90-306, budget par essence.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/terrasse-piscine-bois' },
   openGraph: {
-    title: 'Terrasse bois autour d\'une piscine : le guide 2026 | DIY Builder',
+    title: 'Terrasse bois autour d\'une piscine : quelles lames choisir | DIY Builder',
     description: 'Essences résistantes au chlore, antidérapance R11, sécurité NF P90-306, drainage. Budget par essence et erreurs à éviter pour la plage piscine.',
     url: 'https://www.diy-builder.fr/guides/terrasse-piscine-bois',
     type: 'article',
@@ -30,7 +30,7 @@ export const metadata = {
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'Terrasse bois autour d\'une piscine : guide essences, antidérapance et sécurité 2026',
+  headline: 'Quel bois pour une terrasse de piscine : lames, antidérapance et sécurité 2026',
   description:
     'Choix des essences résistantes au chlore et aux UV, antidérapance obligatoire R11, pente d\'évacuation, conformité NF P90-306 (barrière), drainage et budget par essence pour une plage de piscine bois.',
   author: { '@type': 'Organization', name: 'DIY Builder', url: 'https://www.diy-builder.fr' },
@@ -130,7 +130,7 @@ export default function TerrassePiscineBoisPage() {
           <span className="content-breadcrumb-current">Terrasse piscine bois</span>
         </nav>
 
-        <h1 className="content-h1">Terrasse bois autour d&apos;une piscine : essences, antidérapance, sécurité</h1>
+        <h1 className="content-h1">Quel bois pour une terrasse de piscine : lames, antidérapance, sécurité</h1>
 
         <p className="content-meta">
           <span><strong>Publié le 25 mai 2026</strong></span>

@@ -93,7 +93,7 @@ export default function GuideCabanonPage() {
           <span className="content-breadcrumb-current">Cabanon</span>
         </nav>
 
-        <h1 className="content-h1">Comment construire un cabanon ossature bois</h1>
+        <h1 className="content-h1">Comment construire un cabanon ossature bois à toit monopente</h1>
 
         <p className="content-meta">
           <span><strong>Mis à jour le 16 mai 2026</strong></span>
