@@ -377,7 +377,7 @@ export default function TechnicalPlan({ width, depth }) {
       <div className="tp-info">
         <span>Lames 145×28 — débit en {width > BOARD_LEN ? `${BOARD_LEN} m` : 'longueur'}</span>
         <span className="tp-info-sep">·</span>
-        <span>Lambourdes 45×70 — e=40 cm</span>
+        <span>Lambourdes 60×70 — e=40 cm</span>
         <span className="tp-info-sep">·</span>
         <span>Plots 200×200 — e=60 cm</span>
         <span className="tp-info-sep">·</span>

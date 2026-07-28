@@ -89,13 +89,13 @@ export function generateTerrassePDF(doc, { dims, materials, foundationType, proj
   y = sectionTitle(doc, 'Liste de materiaux', y);
 
   const matRows = [
-    ['Lames 145×28 mm',        `${boards} pcs`,   'Pin traité classe 4 - longueur 3 m'],
-    ['Lambourdes 45×70 mm',    `${joists} pcs`,   'Longueur 3 m'],
+    ['Lames 145×28 mm',        `${boards} pcs`,   'Pin traité classe 4 - vendues en 3,6 m'],
+    ['Lambourdes 60×70 mm',    `${joists} pcs`,   'Longueur 3 m'],
     ['Plots réglables',        `${pads} plots`,   '200×200×60 mm - béton'],
     ['Vis inox A2',            `${screws} vis`,   'Ø 5×60 mm - 2 vis / appui'],
     ['Bande bitume',           `${bande} ml`,     'Interposition lambourde / plot'],
     ...(entretoises > 0
-      ? [['Entretoises 45×70 mm', `${entretoises} pcs`, 'Entre lambourdes']]
+      ? [['Entretoises 60×70 mm', `${entretoises} pcs`, 'Entre lambourdes']]
       : []),
   ];
 
