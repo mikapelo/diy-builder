@@ -97,7 +97,7 @@ const faqJsonLd = {
       name: 'Quand fait-il sens de passer par un artisan plutôt que de poser soi-même ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Au-delà de 25 m² ou si la pente du terrain dépasse 5 %. La pose représente alors environ 30 à 36 % du budget total et un artisan qualifié garantit la planéité (±5 mm sous règle de 2 m, DTU 51.4) que la plupart des bricoleurs ne tiennent pas sans niveau laser. Pour une petite terrasse rectangulaire sur sol plat, la pose soi-même reste rentable.',
+        text: 'Au-delà de 25 m² ou si la pente du terrain dépasse 5 %. La pose représente alors environ 30 à 36 % du budget total et un artisan qualifié engage sa responsabilité sur la planéité de l\'ouvrage fini, celle que la plupart des bricoleurs ne tiennent pas sans niveau laser. Pour une petite terrasse rectangulaire sur sol plat, la pose soi-même reste rentable.',
       },
     },
   ],
@@ -703,8 +703,8 @@ export default function PrixTerrasseBoisM2Page() {
         <h3 className="content-h3">Quand fait-il sens de passer par un artisan plutôt que de poser soi-même ?</h3>
         <p className="content-body">
           Au-delà de 25 m² ou si la pente du terrain dépasse 5 %, la pose représente environ 30 à 36 % du
-          budget total et un artisan qualifié garantit la planéité (±5 mm sous règle de 2 m, DTU 51.4)
-          que la plupart des bricoleurs ne tiennent pas sans niveau laser. Pour une petite terrasse
+          budget total et un artisan qualifié engage sa responsabilité sur la planéité de l&apos;ouvrage
+          fini — celle que la plupart des bricoleurs ne tiennent pas sans niveau laser. Pour une petite terrasse
           rectangulaire sur sol plat, la pose soi-même reste rentable — économie de 480-720 € sur
           12 m². Voir notre comparateur{' '}
           <Link href="/guides/soi-meme-ou-pro" className="content-link">faire soi-même ou faire faire</Link>

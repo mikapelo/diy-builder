@@ -59,7 +59,7 @@ const howToJsonLd = {
       '@type': 'HowToStep',
       position: 3,
       name: 'Installer les lambourdes',
-      text: "Visser les lambourdes (40×60 mm minimum) sur les plots avec des vis inox 6×60. Vérifier la planéité à chaque pose et respecter l'entraxe de 40 cm.",
+      text: "Visser les lambourdes sur les plots avec des vis inox. Le NF DTU 51.4 impose une largeur minimale de 45 mm en résineux, et de 60 mm (vis de 5 mm) ou 68 mm (vis de 6 mm) là où deux lames se rejoignent. Vérifier le niveau à chaque pose et respecter l'entraxe de 40 cm.",
     },
     {
       '@type': 'HowToStep',
@@ -269,10 +269,12 @@ export default function GuideTerrassePage() {
         <h2 className="content-h2">Les 5 étapes de construction dans le bon ordre</h2>
         <p className="content-snippet">
           Sol nivelé à 1&nbsp;cm/m de pente, plots réglables tous les 60&nbsp;cm sous chaque
-          lambourde (70&nbsp;cm maximum, NF DTU 51.4), lambourdes
-          40×60&nbsp;mm minimum, lames perpendiculaires avec 5&nbsp;mm de
-          jeu de dilatation, finition huile ou lasure. La tolérance de planéité est de
-          ±5&nbsp;mm sous une règle de 2&nbsp;m (DTU 51.4).
+          lambourde (70&nbsp;cm maximum, NF DTU 51.4), lambourdes d&apos;au moins
+          45&nbsp;mm de largeur en résineux, lames perpendiculaires avec 5&nbsp;mm de
+          jeu de dilatation, finition huile ou lasure. Le NF DTU 51.4 ne fixe pas de tolérance
+          de planéité sous règle de 2&nbsp;m : il renvoie les tolérances du support aux normes
+          du support concerné — sur dalle béton de maison individuelle, le NF DTU 13.3 P1-1-2
+          admet 7&nbsp;mm sous une règle de 2&nbsp;m.
         </p>
 
         <h3 className="content-h3">1. Préparer le sol — l&apos;étape qu&apos;on bâcle toujours</h3>
@@ -289,27 +291,42 @@ export default function GuideTerrassePage() {
           à démonter la moitié de la terrasse.
         </p>
 
-        <h3 className="content-h3">2. Poser les plots — planéité ±5 mm sous une règle de 2 m</h3>
+        <h3 className="content-h3">2. Poser les plots — le niveau se rattrape ici, pas après</h3>
         <p className="content-body">
           Plots réglables en acier galvanisé ou plots béton coulés, alignés sous chaque lambourde
           avec un entraxe d&apos;appuis de 60 cm — 70 cm est le maximum admis par le NF DTU 51.4,
           et seulement en pose sur 3 appuis ou plus. Utilisez un niveau laser rotatif — le cordeau fonctionne, mais il
-          fléchit sur les grandes longueurs. La tolérance admissible est de ±3 mm sur l&apos;ensemble
-          de la surface. Sur terrain meuble, coulez une semelle béton 20 × 20 × 10 cm sous chaque
-          plot pour répartir les charges et éviter l&apos;enfoncement hivernal.
+          fléchit sur les grandes longueurs. Les tolérances de l&apos;ouvrage fini relèvent du
+          Tableau 16 du NF DTU 51.4, que nous ne reproduisons pas faute d&apos;avoir pu le vérifier
+          dans la norme : visez le plan le plus juste que votre niveau permet, l&apos;écart se paie
+          plus tard en désaffleurement entre lames. Sur terrain meuble, coulez une semelle béton
+          20 × 20 × 10 cm sous chaque plot pour répartir les charges et éviter l&apos;enfoncement hivernal.
         </p>
 
         <h3 className="content-h3">3. Installer les lambourdes — la section, pas un détail</h3>
         <p className="content-body">
-          Section minimale 40 × 60 mm, mais préférez 60 × 70 mm dès que la terrasse dépasse 15 m² :
-          c&apos;est la hauteur de la lambourde qui fait la portée. Une 40 × 60 en résineux C18 plafonne
-          à 68 cm entre appuis, une 60 × 70 atteint les 70 cm du NF DTU 51.4 — au-delà, ce n&apos;est
-          plus une lambourde mais une solive (NF DTU 31.1). Côté lames, l&apos;entraxe entre lambourdes
-          dépend de l&apos;épaisseur : 42 cm pour une lame de 21 mm en résineux C18, 53 cm pour une lame
-          de 27 mm — d&apos;où les 40 cm retenus ici, valables dans les deux cas. Vissez sur les plots avec des vis inox
-          6 × 60 mm, deux par extrémité. Vérifiez la planéité à la règle de 2 m avant chaque
-          nouvelle pose — rattraper 5 mm de dévers en milieu de chantier, c&apos;est possible ;
-          rattraper 15 mm en fin de pose, c&apos;est souvent tout refaire.
+          Le NF DTU 51.4 (§&nbsp;5.5.3.6.1) raisonne d&apos;abord en largeur, et il la déduit du nombre
+          de vis qui traversent la lambourde. En partie courante, une seule vis suffit : la largeur
+          minimale est de 45&nbsp;mm en résineux, 40&nbsp;mm seulement pour un feuillu de classe D40
+          ou mieux. Là où deux lames se rejoignent, il faut deux vis côte à côte, et la largeur
+          minimale grimpe à 60&nbsp;mm pour de la vis de 5&nbsp;mm, 68&nbsp;mm pour de la vis de
+          6&nbsp;mm. C&apos;est le vrai argument en faveur du 60 × 70 : une lambourde de 60&nbsp;mm de
+          large impose des vis de 5&nbsp;mm aux jonctions de lames — avec des vis de 6&nbsp;mm, la
+          norme demande 68&nbsp;mm de large.
+        </p>
+        <p className="content-body">
+          La hauteur, elle, n&apos;est pas tabulée : la norme la fait dépendre de la profondeur de
+          pénétration de la vis (§&nbsp;5.5.3.6.2), et renvoie le dimensionnement à l&apos;Eurocode 5
+          en classe de service 3, avec une flèche finale plafonnée à 1/200 de la portée et une
+          flèche instantanée à 1/300 (§&nbsp;5.5.3.6.3). Retenez le principe plutôt qu&apos;un chiffre :
+          au-delà de 70 cm entre appuis, ce n&apos;est plus une lambourde mais une solive, et vous
+          sortez du domaine du NF DTU 51.4. Les entraxes entre lambourdes que publie la norme sont
+          présentés comme des <em>exemples</em> de dimensionnement, pas comme des minima
+          réglementaires : les 40 cm retenus dans ce guide sont un choix prudent, valable pour les
+          lames de 21 et de 27 mm courantes, pas une valeur imposée. Vissez sur les plots avec des
+          vis inox, deux par extrémité, et vérifiez le niveau avant chaque nouvelle pose —
+          rattraper 5 mm de dévers en milieu de chantier, c&apos;est possible ; rattraper 15 mm en
+          fin de pose, c&apos;est souvent tout refaire.
         </p>
 
         <h3 className="content-h3">4. Poser les lames — l&apos;espacement de 5 mm n&apos;est pas décoratif</h3>
