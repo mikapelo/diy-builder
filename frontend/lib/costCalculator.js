@@ -26,6 +26,19 @@ import { formatLength } from './formatters.js';
  * ──────────────────────────────────────────────────────────────────── */
 import { STUD_SPACING, DEFAULT_HEIGHT } from '@/lib/cabanonConstants.js';
 
+/* ── Constantes terrasse — conversion blocs → longueurs commerciales ──
+ * Les entretoises sont des blocs courts taillés entre deux lambourdes ;
+ * elles s'achètent sous forme de lambourdes de 3 m qu'on recoupe.
+ * ──────────────────────────────────────────────────────────────────── */
+import { JOIST_ENTRAXE, JOIST_W, JOIST_LEN } from '@/lib/deckConstants.js';
+
+/**
+ * Conditionnement du lot de vis inox A2 dans materialPrices
+ * (`vis_inox_a2` — « lot 200 »). Le prix catalogue est celui de la boîte
+ * entière : diviser le nombre de vis par 200, pas par 100.
+ */
+const VIS_INOX_A2_LOT = 200;
+
 /**
  * Majoration coupe/chute bois — 10% conservateur (DTU recommande 10-15%)
  * Appliquée à tous les matériaux bois (vendus en ml, m², ou pcs).
@@ -377,7 +390,7 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
       push({
         materialId: 'vis_inox_a2',
         label: 'Vis inox A2',
-        quantity: Math.ceil(structure.screws / 100),
+        quantity: Math.ceil(structure.screws / VIS_INOX_A2_LOT),
         unit: 'lot',
         unitPrice: resolvePrice('vis_inox_a2', storeId),
         category: 'Fixation',
@@ -396,10 +409,17 @@ export function calculateDetailedCost(structure, storeId, projectType, priceList
     }
 
     if (structure.entretoises > 0) {
+      /* Une entretoise est un bloc taillé entre deux lambourdes
+         (≈ entraxe − largeur lambourde), pas une lambourde entière :
+         on convertit le nombre de blocs en longueurs de 3 m à acheter. */
+      const entretoiseLen = JOIST_ENTRAXE - JOIST_W;
+      const entretoiseStock = Math.ceil(
+        (structure.entretoises * entretoiseLen) / JOIST_LEN,
+      );
       push({
         materialId: 'lambourde_60x70',
-        label: 'Entretoises 60×70',
-        quantity: structure.entretoises,
+        label: `Entretoises 60×70 (${structure.entretoises} blocs)`,
+        quantity: entretoiseStock,
         unit: 'pcs',
         unitPrice: resolvePrice('lambourde_60x70', storeId),
         category: 'Structure',

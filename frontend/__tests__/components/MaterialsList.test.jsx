@@ -118,13 +118,15 @@ describe('MaterialsList — terrasse', () => {
 
   it("n'affiche pas les entretoises si qty = 0", () => {
     render(<MaterialsList materials={TERRASSE_MATS} projectType="terrasse" />);
-    expect(screen.queryByText('Entretoises 60×70')).not.toBeInTheDocument();
+    expect(screen.queryByText(/Entretoises 60×70/)).not.toBeInTheDocument();
   });
 
-  it('affiche les entretoises si qty > 0', () => {
+  it('affiche les entretoises si qty > 0, avec le nombre de blocs', () => {
     const mats = { ...TERRASSE_MATS, entretoises: 6 };
     render(<MaterialsList materials={mats} projectType="terrasse" />);
-    expect(screen.getByText('Entretoises 60×70')).toBeInTheDocument();
+    // Le libellé rappelle les blocs taillés ; la quantité facturée est en
+    // longueurs de 3 m (6 blocs de ~34 cm → 1 lambourde).
+    expect(screen.getByText('Entretoises 60×70 (6 blocs)')).toBeInTheDocument();
   });
 
   it('affiche le sélecteur enseigne', () => {
