@@ -10,13 +10,13 @@ const OG_SUBTITLE = 'Comparatif essence × enseigne · chiffres recalculés';
 const OG_URL = `https://www.diy-builder.fr/api/og?title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}&type=guide&icon=terrasse`;
 
 export const metadata = {
-  title: 'Prix terrasse bois au m² 2026 : le vrai prix dès 43 €/m²',
+  title: 'Prix terrasse bois au m² 2026 : 90 à 180 €/m² tout compris',
   description:
-    'Le vrai prix au m² d\'une terrasse bois en 2026 : pin 43-53 €, douglas 53-65 €, ipé 103-125 € hors pose. L\'étiquette du rayon cache 60 % du coût réel.',
+    'Le vrai prix au m² d\'une terrasse bois en 2026 : pin 90-107 €, douglas 99-119 €, ipé 150-180 € hors pose. Structure comprise — les plots pèsent jusqu\'à la moitié du budget.',
   alternates: { canonical: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026' },
   openGraph: {
-    title: 'Prix terrasse bois au m² 2026 : le vrai prix dès 43 €/m² | DIY Builder',
-    description: 'Le vrai prix au m² d\'une terrasse bois en 2026 : pin 43-53 €, douglas 53-65 €, ipé 103-125 € hors pose, et le coût que l\'étiquette du rayon cache.',
+    title: 'Prix terrasse bois au m² 2026 : 90 à 180 €/m² tout compris | DIY Builder',
+    description: 'Le vrai prix au m² d\'une terrasse bois en 2026 : pin 90-107 €, douglas 99-119 €, ipé 150-180 € hors pose, structure et plots compris.',
     url: 'https://www.diy-builder.fr/guides/prix-terrasse-bois-m2-2026',
     type: 'article',
     images: [{ url: OG_URL, width: 1200, height: 630, alt: 'Comparatif prix terrasse bois 2026 — DIY Builder' }],
@@ -65,7 +65,7 @@ const faqJsonLd = {
       name: 'Quel est le prix au m² d\'une terrasse bois en 2026 ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Hors pose, comptez 43 à 53 €/m² en pin traité autoclave classe 4, 53 à 65 €/m² en douglas, 103 à 125 €/m² en ipé. Avec la pose artisan, ajoutez 40 à 60 €/m². Ces fourchettes sont issues de notre base de prix mai 2026 (Brico Dépôt en bas, Leroy Merlin en haut) pour une terrasse rectangulaire de 12 m², lambourdes incluses.',
+        text: 'Hors pose, comptez 90 à 107 €/m² en pin traité autoclave classe 4, 99 à 119 €/m² en douglas, 150 à 180 €/m² en ipé. Avec la pose artisan, ajoutez 40 à 60 €/m². Ces fourchettes sont issues de notre base de prix mai 2026 (Brico Dépôt en bas, Leroy Merlin en haut) pour une terrasse rectangulaire de 12 m², structure complète incluse : lambourdes, entretoises, bande bitume et les 71 plots qu\'impose l\'entraxe d\'appuis de 60 cm du NF DTU 51.4.',
       },
     },
     {
@@ -73,7 +73,7 @@ const faqJsonLd = {
       name: 'Quelle enseigne est la moins chère pour une terrasse pin ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Brico Dépôt sur les volumes standard : 517 € pour 12 m² de pin traité (lames + lambourdes + plots + visserie), contre 634 € en Leroy Merlin et 637 € en Castorama (mai 2026). L\'écart représente environ 23 % entre le moins cher et le plus cher pour des produits techniquement équivalents.',
+        text: 'Brico Dépôt sur les volumes standard : 1 077 € pour 12 m² de pin traité (lames + lambourdes + plots + visserie), contre 1 283 € en Leroy Merlin et 1 138 € en Castorama (mai 2026). L\'écart représente environ 19 % entre le moins cher et le plus cher pour des produits techniquement équivalents.',
       },
     },
     {
@@ -81,7 +81,7 @@ const faqJsonLd = {
       name: 'Pourquoi le bois composite n\'est pas systématiquement plus cher que l\'ipé ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Le composite (~75 à 90 €/m²) est plus cher que le pin et le douglas, mais reste sous l\'ipé (~103 à 125 €/m²). Sa durée de vie de 25 à 30 ans sans entretien le rend compétitif sur 20 ans, surtout face aux essences qui demandent un saturateur tous les 2 ans.',
+        text: 'Le composite (~121 à 145 €/m²) est plus cher que le pin et le douglas, mais reste sous l\'ipé (~150 à 180 €/m²). Sa durée de vie de 25 à 30 ans sans entretien le rend compétitif sur 20 ans, surtout face aux essences qui demandent un saturateur tous les 2 ans.',
       },
     },
     {
@@ -89,7 +89,7 @@ const faqJsonLd = {
       name: 'Que comprend exactement le prix au m² annoncé en GSB ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Quasiment jamais le total. Les étiquettes 25-40 €/m² en GSB visent la lame matière seule, sans la structure (lambourdes, plots), sans la visserie inox A2, sans la bande bitume. Le total réel se situe entre 43 et 65 €/m² selon l\'essence — soit environ 60 % de plus que l\'étiquette de la lame.',
+        text: 'Quasiment jamais le total. Les étiquettes 25-40 €/m² en GSB visent la lame matière seule, sans la structure (lambourdes, plots), sans la visserie inox A2, sans la bande bitume. Le total réel se situe entre 90 et 180 €/m² selon l\'essence — soit trois à quatre fois l\'étiquette de la lame, le poste plots pesant à lui seul 34 à 52 % du budget.',
       },
     },
     {
@@ -97,7 +97,7 @@ const faqJsonLd = {
       name: 'Quand fait-il sens de passer par un artisan plutôt que de poser soi-même ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Au-delà de 25 m² ou si la pente du terrain dépasse 5 %. La pose représente alors plus de 40 % du budget total et un artisan qualifié garantit la planéité (±5 mm sous règle de 2 m, DTU 51.4) que la plupart des bricoleurs ne tiennent pas sans niveau laser. Pour une petite terrasse rectangulaire sur sol plat, la pose soi-même reste rentable.',
+        text: 'Au-delà de 25 m² ou si la pente du terrain dépasse 5 %. La pose représente alors environ 30 à 36 % du budget total et un artisan qualifié garantit la planéité (±5 mm sous règle de 2 m, DTU 51.4) que la plupart des bricoleurs ne tiennent pas sans niveau laser. Pour une petite terrasse rectangulaire sur sol plat, la pose soi-même reste rentable.',
       },
     },
   ],
@@ -157,8 +157,8 @@ export default function PrixTerrasseBoisM2Page() {
         <p className="content-lead">
           Les annonces 25–40 €/m² en grande surface de bricolage cachent un piège classique : le prix porte
           uniquement sur la lame, jamais sur l&apos;addition complète. Une fois lambourdes, plots, visserie inox
-          et bande bitume comptés, le total tourne plutôt entre 43 et 65 €/m² selon l&apos;essence — et l&apos;écart
-          entre Brico Dépôt et Leroy Merlin atteint 23 % sur un projet de 12 m². Cet article compare le
+          et bande bitume comptés, le total tourne plutôt entre 90 et 180 €/m² selon l&apos;essence — et l&apos;écart
+          entre Brico Dépôt et Leroy Merlin atteint 19 % sur un projet de 12 m². Cet article compare le
           prix réel d&apos;une terrasse bois au m² en France, en 2026, sur quatre essences (pin traité, douglas, ipé, composite) et quatre enseignes
           (Leroy Merlin, Castorama, Brico Dépôt, ManoMano), avec et sans pose par un artisan. Tous les chiffres
           sont recalculés à partir de notre{' '}
@@ -169,17 +169,17 @@ export default function PrixTerrasseBoisM2Page() {
         <h2 className="content-h2">Ce qui se cache derrière le prix au m² affiché en magasin</h2>
         <p className="content-snippet">
           L&apos;étiquette 30&nbsp;€/m² d&apos;une lame pin traité ne couvre que la lame elle-même.
-          Une terrasse posée demande aussi des lambourdes (~95&nbsp;€/12&nbsp;m²),
-          des plots réglables (~125&nbsp;€), une boîte de vis inox A2 (~43&nbsp;€) et une bande bitume
-          de protection sous lambourdes (~34&nbsp;€). Total réel pour 12&nbsp;m² en pin&nbsp;: 517 à
-          637&nbsp;€ selon l&apos;enseigne, soit 43 à 53&nbsp;€/m² hors pose.
+          Une terrasse posée demande aussi des lambourdes et entretoises (~139 à 245&nbsp;€/12&nbsp;m²),
+          71 plots réglables (~390 à 630&nbsp;€), des vis inox A2 (~29 à 65&nbsp;€) et une bande bitume
+          de protection sous lambourdes (~35 à 93&nbsp;€). Total réel pour 12&nbsp;m² en pin&nbsp;: 1&nbsp;077 à
+          1&nbsp;283&nbsp;€ selon l&apos;enseigne, soit 90 à 107&nbsp;€/m² hors pose.
         </p>
         <p className="content-body">
           Quand un magasin affiche &quot;à partir de 25 €/m²&quot;, l&apos;information vise un client qui s&apos;arrête
           au rayon lames. Une terrasse en place demande quatre couches de matériaux que personne ne pose
           séparément : la lame visible, la lambourde qui porte la lame, le plot ou la semelle qui porte la
           lambourde, et la visserie qui tient tout ensemble. Manquer une couche dans le devis mental, c&apos;est
-          se retrouver à 25 % au-dessus du budget au moment de passer en caisse.
+          se retrouver au triple du budget au moment de passer en caisse.
         </p>
 
         <Callout type="info" title="Idée reçue">
@@ -187,43 +187,50 @@ export default function PrixTerrasseBoisM2Page() {
         </Callout>
         <p className="content-body">
           Pour 12 m² de terrasse rectangulaire (4 m × 3 m) en pin traité classe 4, voici la nomenclature
-          réelle d&apos;après le DTU 51.4 — entraxe lambourdes 40 cm, lames 145×27 mm de 3,6 m, plots tous les
-          1,5 m, visserie inox A2 obligatoire en extérieur :
+          réelle d&apos;après le NF DTU 51.4 — entraxe lambourdes 40 cm, lames 145×27 mm de 3,6 m,
+          appuis tous les 60 cm sous chaque lambourde, visserie inox A2 obligatoire en extérieur :
         </p>
         <ul className="content-body" style={{ paddingLeft: '24px', marginBottom: '24px' }}>
           <li style={{ marginBottom: '10px' }}>
             <strong>26 lames de terrasse</strong> 145×27 mm × 3,6 m — surface couverte 13,2 m² avec
-            10 % de chute, conforme DTU 51.4 §6.3
+            10 % de chute
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>8 lambourdes</strong> 60×70 mm classe 4 en 3 m — porteur sous lames, section minimale
-            DTU 51.4 §6.2
+            <strong>13 lambourdes</strong> 60×70 mm classe 4 en 3 m — 11 lambourdes courantes à entraxe
+            40 cm, plus 2 doublées au droit des coupes de lames
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>14 plots réglables</strong> — entraxe 1,5 m dans les deux sens (DTU)
+            <strong>20 entretoises</strong> taillées dans 3 lambourdes de 3 m — 2 files d&apos;entretoisement
+            sur 4 m de portée
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>28 m linéaires de bande bitume</strong> sous lambourde — protection contre la remontée
+            <strong>71 plots réglables</strong> — l&apos;entraxe d&apos;appuis sous lambourde est plafonné à
+            70 cm par le NF DTU 51.4 (60 cm en pose sur 2 appuis). Sur une lambourde de 3 m, cela impose
+            6 lignes d&apos;appuis à 60 cm : 11 lambourdes × 6 = 66 plots, plus 5 sous les jonctions
+          </li>
+          <li style={{ marginBottom: '10px' }}>
+            <strong>39 m linéaires de bande bitume</strong> sous lambourde — protection contre la remontée
             d&apos;humidité
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>1 boîte de 500 vis inox A2</strong> 5×60 mm — 2 vis par lame × par lambourde
+            <strong>546 vis inox A2</strong> 5×60 mm, soit 3 boîtes de 200 — 2 vis par lame × par lambourde
           </li>
         </ul>
 
         <h2 className="content-h2">Pin traité autoclave — l&apos;option économique de 95 % des chantiers</h2>
         <p className="content-snippet">
           Pin sylvestre traité en autoclave classe 4 — la lame standard du marché français. Total
-          matériaux pour 12&nbsp;m² au 24 mai 2026 : 517&nbsp;€ chez Brico Dépôt (43&nbsp;€/m²),
-          560&nbsp;€ chez ManoMano (47&nbsp;€/m²), 634&nbsp;€ chez Leroy Merlin (53&nbsp;€/m²),
-          637&nbsp;€ chez Castorama (53&nbsp;€/m²). L&apos;écart entre l&apos;enseigne la moins chère
-          et la plus chère atteint 23 % pour la même nomenclature.
+          matériaux pour 12&nbsp;m² au 24 mai 2026 : 1&nbsp;077&nbsp;€ chez Brico Dépôt (90&nbsp;€/m²),
+          1&nbsp;137&nbsp;€ chez ManoMano (95&nbsp;€/m²), 1&nbsp;138&nbsp;€ chez Castorama (95&nbsp;€/m²),
+          1&nbsp;283&nbsp;€ chez Leroy Merlin (107&nbsp;€/m²). L&apos;écart entre l&apos;enseigne la moins chère
+          et la plus chère atteint 19 % pour la même nomenclature.
         </p>
         <p className="content-body">
           Le pin traité couvre la majorité des terrasses en France parce que son rapport prix-durée de vie
           reste imbattable. La lame courante (145×27 mm × 3,6 m) coûte 10,90 € en Brico Dépôt et 13,23 € en
           Castorama (avril 2026), soit un écart de 21 % au pied du rayon. Sur 26 lames, la facture lame seule
-          oscille entre 283 € (Brico Dépôt) et 344 € (Castorama).
+          oscille entre 288 € (Brico Dépôt) et 349 € (Castorama) — soit à peine plus du quart de l&apos;addition.
+          Le reste, c&apos;est la structure, et le plot en est de loin le premier poste.
         </p>
 
         <table className="content-table">
@@ -231,8 +238,8 @@ export default function PrixTerrasseBoisM2Page() {
             <tr>
               <th>Enseigne</th>
               <th>Lames (26)</th>
-              <th>Lambourdes (8)</th>
-              <th>Plots (14)</th>
+              <th>Lambourdes + entretoises (13 + 3)</th>
+              <th>Plots (71)</th>
               <th>Bande + vis</th>
               <th>Total 12 m²</th>
               <th>€/m²</th>
@@ -241,64 +248,73 @@ export default function PrixTerrasseBoisM2Page() {
           <tbody>
             <tr>
               <td>Brico Dépôt</td>
-              <td>283 €</td>
-              <td>63 €</td>
-              <td>111 €</td>
-              <td>60 €</td>
-              <td><strong>517 €</strong></td>
-              <td>43 €</td>
+              <td>288 €</td>
+              <td>139 €</td>
+              <td>561 €</td>
+              <td>90 €</td>
+              <td><strong>1 077 €</strong></td>
+              <td>90 €</td>
             </tr>
             <tr>
               <td>ManoMano</td>
-              <td>312 €</td>
-              <td>101 €</td>
-              <td>105 €</td>
-              <td>42 €</td>
-              <td><strong>560 €</strong></td>
-              <td>47 €</td>
+              <td>317 €</td>
+              <td>223 €</td>
+              <td>533 €</td>
+              <td>64 €</td>
+              <td><strong>1 137 €</strong></td>
+              <td>95 €</td>
             </tr>
             <tr>
               <td>Leroy Merlin</td>
-              <td>338 €</td>
-              <td>95 €</td>
-              <td>125 €</td>
-              <td>76 €</td>
-              <td><strong>634 €</strong></td>
-              <td>53 €</td>
+              <td>330 €</td>
+              <td>209 €</td>
+              <td>632 €</td>
+              <td>111 €</td>
+              <td><strong>1 283 €</strong></td>
+              <td>107 €</td>
             </tr>
             <tr>
               <td>Castorama</td>
-              <td>344 €</td>
-              <td>111 €</td>
-              <td>77 €</td>
-              <td>105 €</td>
-              <td><strong>637 €</strong></td>
-              <td>53 €</td>
+              <td>349 €</td>
+              <td>245 €</td>
+              <td>391 €</td>
+              <td>154 €</td>
+              <td><strong>1 138 €</strong></td>
+              <td>95 €</td>
             </tr>
           </tbody>
         </table>
 
         <p className="content-body">
-          Brico Dépôt domine sur les lames et les lambourdes (gammes Maximat ou équivalent), Castorama est
-          en revanche compétitif sur les plots Blooma. Leroy Merlin reste central sur Starblock pour la
-          visserie inox A2, qui pèse 76 € sur le total contre 60 € en Brico Dépôt. L&apos;enseigne ManoMano
-          se positionne entre les deux, avec un avantage sur la visserie (17 € pour la boîte de 500 vs
-          42 € en Leroy Merlin) mais des prix lames un peu plus hauts que Brico Dépôt.
+          Totaux calculés sur les montants non arrondis : une colonne peut différer d&apos;un euro du total
+          affiché. Brico Dépôt domine sur les lames et les lambourdes (gammes Maximat ou équivalent),
+          Castorama est en revanche nettement le moins cher sur les plots Blooma — 5,50 € contre 8,90 € en
+          Leroy Merlin, soit 241 € d&apos;écart sur les 71 plots à lui seul. C&apos;est ce qui permet à
+          Castorama d&apos;afficher le total le plus bas après Brico Dépôt malgré les lames les plus chères
+          du panel.
         </p>
+        <Callout type="warn" title="Le plot est le vrai poste de dépense">
+          Sur ce chantier, les plots pèsent 391 à 632 € — 34 à 52 % du budget matériaux, devant les lames.
+          C&apos;est la conséquence directe du NF DTU 51.4 : un appui tous les 60 cm sous chaque lambourde,
+          donc 71 plots pour 12 m². La plupart des devis en ligne annoncent 15 à 20 plots et sous-estiment
+          l&apos;addition d&apos;un facteur trois. Si le budget coince, c&apos;est le premier levier :
+          des plots réglables d&apos;entrée de gamme à ~3 € ramènent le total pin autour de 730 à 865 €
+          (61 à 72 €/m²) — à condition de vérifier leur charge admissible.
+        </Callout>
 
-        <h2 className="content-h2">Douglas — 20 à 25 % plus cher pour une durée de vie équivalente</h2>
+        <h2 className="content-h2">Douglas — 11 à 12 % plus cher pour une durée de vie équivalente</h2>
         <p className="content-snippet">
           Le douglas, résineux français à durabilité naturelle classe 3 (norme EN 350-2 — durabilité naturelle modérée) sans traitement chimique,
           coûte environ 40 % de plus que le pin sur la lame seule. Total matériaux pour 12&nbsp;m²&nbsp;:
-          630&nbsp;€ chez Brico Dépôt (53&nbsp;€/m²) à 775&nbsp;€ chez Castorama (65&nbsp;€/m²).
-          Sans entretien, il grisaille en 2-3 saisons — un rendu ardoise apprécié par beaucoup.
+          1&nbsp;192&nbsp;€ chez Brico Dépôt (99&nbsp;€/m²) à 1&nbsp;434&nbsp;€ chez Leroy Merlin
+          (119&nbsp;€/m²). Sans entretien, il grisaille en 2-3 saisons — un rendu ardoise apprécié par beaucoup.
         </p>
         <p className="content-body">
-          Le calcul change pour le douglas parce que la lame représente une part plus grande du total.
           La lame douglas 145×27 mm coûte de l&apos;ordre de 18,20 € en Leroy Merlin et 15,25 € en Brico Dépôt,
           soit un surcoût de 40 % par rapport au pin. Le reste de la nomenclature (lambourdes, plots,
           visserie) ne change pas — on garde du pin traité classe 4 en lambourde, qui n&apos;est pas exposé
-          à la vue.
+          à la vue. C&apos;est précisément pour cela que le surcoût final n&apos;est que de 11 à 12 % : la lame
+          ne pèse qu&apos;un tiers de l&apos;addition, et passer au douglas ne change rien aux 71 plots.
         </p>
 
         <table className="content-table">
@@ -313,44 +329,44 @@ export default function PrixTerrasseBoisM2Page() {
           <tbody>
             <tr>
               <td>Brico Dépôt</td>
-              <td>~630 €</td>
-              <td>53 €</td>
-              <td>+22 %</td>
+              <td>~1 192 €</td>
+              <td>99 €</td>
+              <td>+11 %</td>
             </tr>
             <tr>
               <td>ManoMano</td>
-              <td>~685 €</td>
-              <td>57 €</td>
-              <td>+22 %</td>
+              <td>~1 264 €</td>
+              <td>105 €</td>
+              <td>+11 %</td>
             </tr>
             <tr>
               <td>Leroy Merlin</td>
-              <td>~770 €</td>
-              <td>64 €</td>
-              <td>+21 %</td>
+              <td>~1 434 €</td>
+              <td>119 €</td>
+              <td>+12 %</td>
             </tr>
             <tr>
               <td>Castorama</td>
-              <td>~775 €</td>
-              <td>65 €</td>
-              <td>+22 %</td>
+              <td>~1 278 €</td>
+              <td>107 €</td>
+              <td>+12 %</td>
             </tr>
           </tbody>
         </table>
 
         <p className="content-body">
-          Le surcoût douglas vs pin tourne autour de 22 % toutes enseignes confondues. C&apos;est la
-          différence entre un projet à 517 € et un projet à 630 € pour 12 m² — soit 113 €. Sur 25 ans
+          Le surcoût douglas vs pin tourne autour de 11 à 12 % toutes enseignes confondues. C&apos;est la
+          différence entre un projet à 1 077 € et un projet à 1 192 € pour 12 m² — soit 115 €. Sur 25 ans
           de durée de vie comparable, la différence est négligeable. Le vrai argument du douglas, c&apos;est
           l&apos;absence de traitement chimique (cuivre azolé) et la patine grise qu&apos;il prend naturellement
           après 2 à 3 saisons.
         </p>
 
-        <h2 className="content-h2">Ipé et bois exotiques — le triple du prix pour une durée de vie multipliée par 2</h2>
+        <h2 className="content-h2">Ipé et bois exotiques — 70 % de plus pour une durée de vie multipliée par 2</h2>
         <p className="content-snippet">
           L&apos;ipé, le teck et le cumaru atteignent 80 à 150&nbsp;€/m² pour la lame seule. Total matériaux
-          pour 12&nbsp;m²&nbsp;: 1&nbsp;232&nbsp;€ chez Brico Dépôt (103&nbsp;€/m²) à 1&nbsp;505&nbsp;€
-          chez Castorama (125&nbsp;€/m²). En contrepartie, durabilité 30-50 ans sans entretien et certification
+          pour 12&nbsp;m²&nbsp;: 1&nbsp;803&nbsp;€ chez Brico Dépôt (150&nbsp;€/m²) à 2&nbsp;163&nbsp;€
+          chez Leroy Merlin (180&nbsp;€/m²). En contrepartie, durabilité 30-50 ans sans entretien et certification
           FSC obligatoire pour rester dans la légalité. Densité élevée — pré-perçage systématique.
         </p>
         <p className="content-body">
@@ -372,27 +388,27 @@ export default function PrixTerrasseBoisM2Page() {
           <tbody>
             <tr>
               <td>Brico Dépôt</td>
-              <td>~1 232 €</td>
-              <td>103 €</td>
-              <td>+138 %</td>
+              <td>~1 803 €</td>
+              <td>150 €</td>
+              <td>+67 %</td>
             </tr>
             <tr>
               <td>ManoMano</td>
-              <td>~1 344 €</td>
-              <td>112 €</td>
-              <td>+140 %</td>
+              <td>~1 933 €</td>
+              <td>161 €</td>
+              <td>+70 %</td>
             </tr>
             <tr>
               <td>Leroy Merlin</td>
-              <td>~1 488 €</td>
-              <td>124 €</td>
-              <td>+135 %</td>
+              <td>~2 163 €</td>
+              <td>180 €</td>
+              <td>+69 %</td>
             </tr>
             <tr>
               <td>Castorama</td>
-              <td>~1 505 €</td>
-              <td>125 €</td>
-              <td>+136 %</td>
+              <td>~2 020 €</td>
+              <td>168 €</td>
+              <td>+77 %</td>
             </tr>
           </tbody>
         </table>
@@ -417,11 +433,11 @@ export default function PrixTerrasseBoisM2Page() {
           disponibles.
         </p>
 
-        <h2 className="content-h2">Bois composite — entre 75 et 90 €/m² pour zéro entretien</h2>
+        <h2 className="content-h2">Bois composite — entre 121 et 145 €/m² pour zéro entretien</h2>
         <p className="content-snippet">
           Le composite (60 % fibre bois, 40 % polymère HDPE), souvent rebaptisé WPC, vise les acheteurs
-          qui ne veulent pas entretenir. Total matériaux pour 12&nbsp;m²&nbsp;: 885&nbsp;€ chez
-          Brico Dépôt (74&nbsp;€/m²) à 1&nbsp;084&nbsp;€ chez Castorama (90&nbsp;€/m²). Durée de vie
+          qui ne veulent pas entretenir. Total matériaux pour 12&nbsp;m²&nbsp;: 1&nbsp;451&nbsp;€ chez
+          Brico Dépôt (121&nbsp;€/m²) à 1&nbsp;743&nbsp;€ chez Leroy Merlin (145&nbsp;€/m²). Durée de vie
           25-30 ans, mais aspect plastique reconnaissable et chaleur restituée par temps chaud.
         </p>
         <p className="content-body">
@@ -443,27 +459,27 @@ export default function PrixTerrasseBoisM2Page() {
           <tbody>
             <tr>
               <td>Brico Dépôt</td>
-              <td>~885 €</td>
-              <td>74 €</td>
-              <td>+71 %</td>
+              <td>~1 451 €</td>
+              <td>121 €</td>
+              <td>+35 %</td>
             </tr>
             <tr>
               <td>ManoMano</td>
-              <td>~966 €</td>
-              <td>80 €</td>
-              <td>+72 %</td>
+              <td>~1 549 €</td>
+              <td>129 €</td>
+              <td>+36 %</td>
             </tr>
             <tr>
               <td>Leroy Merlin</td>
-              <td>~1 074 €</td>
-              <td>89 €</td>
-              <td>+69 %</td>
+              <td>~1 743 €</td>
+              <td>145 €</td>
+              <td>+36 %</td>
             </tr>
             <tr>
               <td>Castorama</td>
-              <td>~1 084 €</td>
-              <td>90 €</td>
-              <td>+70 %</td>
+              <td>~1 592 €</td>
+              <td>133 €</td>
+              <td>+40 %</td>
             </tr>
           </tbody>
         </table>
@@ -478,10 +494,11 @@ export default function PrixTerrasseBoisM2Page() {
 
         <h2 className="content-h2">Tableau de synthèse — quatre essences × quatre enseignes pour 12 m²</h2>
         <p className="content-snippet">
-          Le pin traité reste l&apos;option la plus accessible (43-53&nbsp;€/m² hors pose), suivi du
-          douglas (+22 %), du composite (+70 %) et de l&apos;ipé (+135 %). L&apos;écart entre la solution
-          la moins chère (pin Brico Dépôt à 517&nbsp;€) et la plus chère (ipé Castorama à 1&nbsp;505&nbsp;€)
-          atteint un facteur 2,9 pour la même surface posée.
+          Le pin traité reste l&apos;option la plus accessible (90-107&nbsp;€/m² hors pose), suivi du
+          douglas (+11 %), du composite (+36 %) et de l&apos;ipé (+70 %). L&apos;écart entre la solution
+          la moins chère (pin Brico Dépôt à 1&nbsp;077&nbsp;€) et la plus chère (ipé Leroy Merlin à
+          2&nbsp;163&nbsp;€) atteint un facteur 2,0 pour la même surface posée — deux fois moins qu&apos;on
+          ne l&apos;imagine, parce que la structure identique sous les lames écrase les écarts d&apos;essence.
         </p>
 
         <table className="content-table">
@@ -497,38 +514,40 @@ export default function PrixTerrasseBoisM2Page() {
           <tbody>
             <tr>
               <td><strong>Pin traité cl.4</strong></td>
-              <td>517 € (43 €/m²)</td>
-              <td>560 € (47 €/m²)</td>
-              <td>634 € (53 €/m²)</td>
-              <td>637 € (53 €/m²)</td>
+              <td>1 077 € (90 €/m²)</td>
+              <td>1 137 € (95 €/m²)</td>
+              <td>1 283 € (107 €/m²)</td>
+              <td>1 138 € (95 €/m²)</td>
             </tr>
             <tr>
               <td><strong>Douglas</strong></td>
-              <td>630 € (53 €/m²)</td>
-              <td>685 € (57 €/m²)</td>
-              <td>770 € (64 €/m²)</td>
-              <td>775 € (65 €/m²)</td>
+              <td>1 192 € (99 €/m²)</td>
+              <td>1 264 € (105 €/m²)</td>
+              <td>1 434 € (119 €/m²)</td>
+              <td>1 278 € (107 €/m²)</td>
             </tr>
             <tr>
               <td><strong>Composite WPC</strong></td>
-              <td>885 € (74 €/m²)</td>
-              <td>966 € (80 €/m²)</td>
-              <td>1 074 € (89 €/m²)</td>
-              <td>1 084 € (90 €/m²)</td>
+              <td>1 451 € (121 €/m²)</td>
+              <td>1 549 € (129 €/m²)</td>
+              <td>1 743 € (145 €/m²)</td>
+              <td>1 592 € (133 €/m²)</td>
             </tr>
             <tr>
               <td><strong>Ipé certifié FSC</strong></td>
-              <td>1 232 € (103 €/m²)</td>
-              <td>1 344 € (112 €/m²)</td>
-              <td>1 488 € (124 €/m²)</td>
-              <td>1 505 € (125 €/m²)</td>
+              <td>1 803 € (150 €/m²)</td>
+              <td>1 933 € (161 €/m²)</td>
+              <td>2 163 € (180 €/m²)</td>
+              <td>2 020 € (168 €/m²)</td>
             </tr>
           </tbody>
         </table>
 
         <p className="content-body">
-          Les douglas et composites Castorama et Leroy Merlin se tiennent à 1 ou 2 € près. Brico Dépôt
-          conserve un avantage de 13 à 23 % toutes essences confondues, mais le réseau Brico Dépôt couvre
+          Castorama passe devant Leroy Merlin sur toutes les essences grâce à son plot Blooma à 5,50 € :
+          l&apos;écart se joue moins sur la lame que sur les 71 plots. Brico Dépôt
+          conserve un avantage de 19 à 20 % sur l&apos;enseigne la plus chère, toutes essences confondues,
+          mais le réseau Brico Dépôt couvre
           moins le territoire — il faut vérifier le magasin le plus proche avant de fonder son devis.
           ManoMano se positionne en deuxième moins cher dans tous les cas, mais avec des délais de
           livraison plus longs (5-10 jours ouvrés pour le bois, contre retrait immédiat en GSB).
@@ -550,13 +569,14 @@ export default function PrixTerrasseBoisM2Page() {
           </a>
         </div>
 
-        <h2 className="content-h2">Avec un artisan, le budget double — la pose coûte autant que les matériaux</h2>
+        <h2 className="content-h2">Avec un artisan, comptez 30 à 36 % de plus — moins que le poste plots</h2>
         <p className="content-snippet">
           Tarif moyen pose terrasse bois en France 2026 : 40 à 60 €/m² selon région et complexité du
           terrain. Pour 12 m², la pose ajoute donc 480 à 720 €, soit un projet artisan complet de
-          1&nbsp;000 à 1&nbsp;350 € en pin traité, 1&nbsp;110 à 1&nbsp;495 € en douglas, 1&nbsp;720 à
-          2&nbsp;225 € en ipé. La pose représente entre 43 % et 50 % du budget total pour les essences
-          courantes.
+          1&nbsp;557 à 2&nbsp;003 € en pin traité, 1&nbsp;672 à 2&nbsp;154 € en douglas, 2&nbsp;523 à
+          3&nbsp;123 € en ipé. La pose représente entre 29 % et 36 % du budget total pour les essences
+          courantes — nettement moins que ce qu&apos;on lit ailleurs, parce que la fourniture est
+          elle-même plus lourde qu&apos;annoncé.
         </p>
         <p className="content-body">
           La main-d&apos;œuvre artisan se facture en France en 2026 entre 60 et 90 €/h pour un charpentier
@@ -579,31 +599,31 @@ export default function PrixTerrasseBoisM2Page() {
           <tbody>
             <tr>
               <td>Pin traité</td>
-              <td>517-637 €</td>
+              <td>1 077-1 283 €</td>
               <td>480-720 €</td>
-              <td>1 000-1 360 €</td>
-              <td>83-113 €</td>
+              <td>1 557-2 003 €</td>
+              <td>130-167 €</td>
             </tr>
             <tr>
               <td>Douglas</td>
-              <td>630-775 €</td>
+              <td>1 192-1 434 €</td>
               <td>480-720 €</td>
-              <td>1 110-1 495 €</td>
-              <td>93-125 €</td>
+              <td>1 672-2 154 €</td>
+              <td>139-180 €</td>
             </tr>
             <tr>
               <td>Composite</td>
-              <td>885-1 084 €</td>
+              <td>1 451-1 743 €</td>
               <td>540-780 €</td>
-              <td>1 425-1 865 €</td>
-              <td>119-156 €</td>
+              <td>1 991-2 523 €</td>
+              <td>166-210 €</td>
             </tr>
             <tr>
               <td>Ipé certifié FSC</td>
-              <td>1 232-1 505 €</td>
+              <td>1 803-2 163 €</td>
               <td>720-960 €</td>
-              <td>1 950-2 465 €</td>
-              <td>163-205 €</td>
+              <td>2 523-3 123 €</td>
+              <td>210-260 €</td>
             </tr>
           </tbody>
         </table>
@@ -646,25 +666,26 @@ export default function PrixTerrasseBoisM2Page() {
 
         <h3 className="content-h3">Quel est le prix au m² d&apos;une terrasse bois en 2026 ?</h3>
         <p className="content-body">
-          Hors pose, comptez 43 à 53 €/m² en pin traité autoclave classe 4, 53 à 65 €/m² en douglas,
-          103 à 125 €/m² en ipé. Avec la pose artisan, ajoutez 40 à 60 €/m². Ces fourchettes sont issues
+          Hors pose, comptez 90 à 107 €/m² en pin traité autoclave classe 4, 99 à 119 €/m² en douglas,
+          150 à 180 €/m² en ipé. Avec la pose artisan, ajoutez 40 à 60 €/m². Ces fourchettes sont issues
           de notre base de prix mai 2026 (Brico Dépôt en bas, Leroy Merlin en haut) pour une terrasse
-          rectangulaire de 12 m², lambourdes incluses.
+          rectangulaire de 12 m², structure complète incluse : lambourdes, entretoises, bande bitume et
+          les 71 plots qu&apos;impose l&apos;entraxe d&apos;appuis de 60 cm du NF DTU 51.4.
         </p>
 
         <h3 className="content-h3">Quelle enseigne est la moins chère pour une terrasse pin ?</h3>
         <p className="content-body">
-          Brico Dépôt sur les volumes standard : 517 € pour 12 m² de pin traité (lames + lambourdes +
-          plots + visserie), contre 634 € en Leroy Merlin et 637 € en Castorama. L&apos;écart représente
-          environ 23 % entre le moins cher et le plus cher pour des produits techniquement équivalents.
-          ManoMano se positionne à 560 € avec une visserie nettement moins chère mais des délais de
+          Brico Dépôt sur les volumes standard : 1 077 € pour 12 m² de pin traité (lames + lambourdes +
+          plots + visserie), contre 1 283 € en Leroy Merlin et 1 138 € en Castorama. L&apos;écart représente
+          environ 19 % entre le moins cher et le plus cher pour des produits techniquement équivalents.
+          ManoMano se positionne à 1 137 € avec une visserie nettement moins chère mais des délais de
           livraison plus longs.
         </p>
 
         <h3 className="content-h3">Pourquoi le bois composite n&apos;est pas systématiquement plus cher que l&apos;ipé ?</h3>
         <p className="content-body">
-          Le composite (~75 à 90 €/m²) est plus cher que le pin et le douglas, mais reste sous l&apos;ipé
-          (~103 à 125 €/m²). Sa durée de vie de 25 à 30 ans sans entretien le rend compétitif sur 20 ans,
+          Le composite (~121 à 145 €/m²) est plus cher que le pin et le douglas, mais reste sous l&apos;ipé
+          (~150 à 180 €/m²). Sa durée de vie de 25 à 30 ans sans entretien le rend compétitif sur 20 ans,
           surtout face aux essences qui demandent un saturateur tous les 2 ans. Sa fabrication à partir
           de fibre bois recyclée et de polymère HDPE le rapproche d&apos;un produit semi-industriel, ce qui
           réduit sa volatilité de prix par rapport aux essences nobles importées.
@@ -674,14 +695,14 @@ export default function PrixTerrasseBoisM2Page() {
         <p className="content-body">
           Quasiment jamais le total. Les étiquettes 25-40 €/m² en GSB visent la lame matière seule, sans
           la structure (lambourdes, plots), sans la visserie inox A2, sans la bande bitume sous lambourde.
-          Le total réel se situe entre 43 et 65 €/m² selon l&apos;essence — soit environ 60 % de plus que
-          l&apos;étiquette de la lame. L&apos;arbitrage économique réel se fait sur le total nomenclature,
-          pas sur le prix lame seul.
+          Le total réel se situe entre 90 et 180 €/m² selon l&apos;essence — soit trois à quatre fois
+          l&apos;étiquette de la lame, le poste plots pesant à lui seul 34 à 52 % du budget.
+          L&apos;arbitrage économique réel se fait sur le total nomenclature, pas sur le prix lame seul.
         </p>
 
         <h3 className="content-h3">Quand fait-il sens de passer par un artisan plutôt que de poser soi-même ?</h3>
         <p className="content-body">
-          Au-delà de 25 m² ou si la pente du terrain dépasse 5 %, la pose représente plus de 40 % du
+          Au-delà de 25 m² ou si la pente du terrain dépasse 5 %, la pose représente environ 30 à 36 % du
           budget total et un artisan qualifié garantit la planéité (±5 mm sous règle de 2 m, DTU 51.4)
           que la plupart des bricoleurs ne tiennent pas sans niveau laser. Pour une petite terrasse
           rectangulaire sur sol plat, la pose soi-même reste rentable — économie de 480-720 € sur

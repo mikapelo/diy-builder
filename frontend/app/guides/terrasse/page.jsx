@@ -39,8 +39,8 @@ const howToJsonLd = {
   estimatedCost: {
     '@type': 'MonetaryAmount',
     currency: 'EUR',
-    minValue: '500',
-    maxValue: '1400',
+    minValue: '1077',
+    maxValue: '2163',
   },
   step: [
     {
@@ -53,7 +53,7 @@ const howToJsonLd = {
       '@type': 'HowToStep',
       position: 2,
       name: 'Poser les plots béton',
-      text: "Disposer les plots réglables tous les 1,5 m en longueur et en largeur. Utiliser un niveau laser ou un cordeau pour aligner parfaitement l'ensemble.",
+      text: "Disposer les plots réglables sous chaque lambourde, avec un entraxe d'appuis de 60 cm (70 cm maximum selon le NF DTU 51.4). Utiliser un niveau laser ou un cordeau pour aligner parfaitement l'ensemble.",
     },
     {
       '@type': 'HowToStep',
@@ -126,10 +126,11 @@ export default function GuideTerrassePage() {
 
         <h2 className="content-h2">Quelle essence choisir selon votre budget et votre usage ?</h2>
         <p className="content-snippet">
-          Le pin traité autoclave classe 4 (25–40&nbsp;€/m²) tient 15–20 ans et couvre 95&nbsp;%
-          des terrasses françaises. Le douglas naturellement durable (35–55&nbsp;€/m²) grisaille
-          après 2–3 saisons sans entretien. Les bois exotiques comme l&apos;ipé (80–150&nbsp;€/m²)
-          atteignent 30–50 ans sans traitement&nbsp;— certifiés FSC obligatoire.
+          Le pin traité autoclave classe 4 (25–40&nbsp;€/m² de lame seule) tient 15–20 ans et couvre
+          95&nbsp;% des terrasses françaises. Le douglas naturellement durable (35–55&nbsp;€/m²)
+          grisaille après 2–3 saisons sans entretien. Les bois exotiques comme l&apos;ipé
+          (80–150&nbsp;€/m²) atteignent 30–50 ans sans traitement&nbsp;— certifiés FSC obligatoire.
+          Ces prix ne couvrent que la lame&nbsp;: la structure sous les pieds double l&apos;addition.
         </p>
         <p className="content-body">
           Tout part de là. L&apos;essence que vous choisissez va dicter le prix, le comportement du
@@ -203,8 +204,9 @@ export default function GuideTerrassePage() {
 
         <p className="content-snippet">
           Pour 12&nbsp;m² de terrasse&nbsp;: comptez surface&nbsp;×&nbsp;1,10 pour les lames (10&nbsp;%
-          de chute), 11 lambourdes à entraxe 40&nbsp;cm sur 4&nbsp;m, 15–20 plots réglables et environ
-          500 vis inox A2 5×60&nbsp;mm. La surcommande initiale coûte toujours moins cher qu&apos;un
+          de chute), 11 lambourdes à entraxe 40&nbsp;cm sur 4&nbsp;m, environ 70 plots réglables
+          (un appui tous les 60&nbsp;cm sous chaque lambourde) et environ 550 vis inox A2
+          5×60&nbsp;mm. La surcommande initiale coûte toujours moins cher qu&apos;un
           réassort en cours de chantier.
         </p>
         <p className="content-body">
@@ -220,17 +222,26 @@ export default function GuideTerrassePage() {
           <li style={{ marginBottom: '10px' }}>
             <strong>Lambourdes :</strong> entraxe 40 cm sur 4 m de largeur → (4 / 0,40) + 1 = 11
             lambourdes, chacune courant sur 3 m. La lambourde de rive compte comme les autres :
-            ne l&apos;oubliez pas.
+            ne l&apos;oubliez pas. Ajoutez 2 lambourdes doublées au droit des coupes de lames —
+            chaque about doit reposer sur son propre appui — soit 13 pièces à commander.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Plots réglables :</strong> tous les 1,5 m en longueur et en largeur — pour
-            12 m², prévoyez 15 à 20 plots selon la configuration du terrain et la présence ou
-            non d&apos;une lambourde centrale de raidissage.
+            <strong>Plots réglables :</strong> c&apos;est le poste le plus sous-estimé. La règle
+            n&apos;est pas une grille au sol mais un entraxe d&apos;appuis le long de chaque
+            lambourde : 70 cm maximum en pose sur 3 appuis ou plus, 60 cm en pose sur 2 appuis
+            (NF DTU 51.4). Au-delà, la pièce n&apos;est plus une lambourde mais une solive, qui
+            relève du NF DTU 31.1. Pour une lambourde de 3 m, 4 intervalles donneraient 75 cm —
+            hors norme : il en faut 5, soit 6 lignes d&apos;appuis à 60 cm. Résultat pour 12 m² :
+            11 lambourdes × 6 lignes = 66 plots, plus 5 plots sous les jonctions de lambourdes
+            (une jonction se centre toujours sur une tête de plot) = <strong>71 plots</strong>.
+            Comptez 5 à 6 plots par m², pas 1 ou 2.
           </li>
           <li style={{ marginBottom: '10px' }}>
-            <strong>Vis inox :</strong> 2 vis par lame par lambourde (DTU 51.4 §6). Pour des
-            lames de 2,4 m sur 11 lambourdes, comptez 350 à 500 vis 5 × 60 mm inox A2 selon
-            la longueur des lames. Prenez A4 si la terrasse est en bord de mer.
+            <strong>Vis inox :</strong> 2 vis par lame et par lambourde (lame de 145 mm →
+            2 points de fixation, NF DTU 51.4). Sur 3 m de profondeur, une lame de 145 mm plus
+            3 mm de jeu donne 21 rangées ; 21 × 13 lambourdes × 2 = <strong>546 vis</strong>
+            5 × 60 mm inox A2. Prévoyez une boîte de 600. Prenez de l&apos;A4 si la terrasse est
+            en bord de mer.
           </li>
         </ul>
         <p className="content-body">
@@ -257,8 +268,9 @@ export default function GuideTerrassePage() {
 
         <h2 className="content-h2">Les 5 étapes de construction dans le bon ordre</h2>
         <p className="content-snippet">
-          Sol nivelé à 1&nbsp;cm/m de pente, plots réglables tous les 1,5&nbsp;m, lambourdes
-          40×60&nbsp;mm minimum (NF DTU 51.4 §6.2), lames perpendiculaires avec 5&nbsp;mm de
+          Sol nivelé à 1&nbsp;cm/m de pente, plots réglables tous les 60&nbsp;cm sous chaque
+          lambourde (70&nbsp;cm maximum, NF DTU 51.4), lambourdes
+          40×60&nbsp;mm minimum, lames perpendiculaires avec 5&nbsp;mm de
           jeu de dilatation, finition huile ou lasure. La tolérance de planéité est de
           ±5&nbsp;mm sous une règle de 2&nbsp;m (DTU 51.4).
         </p>
@@ -279,8 +291,9 @@ export default function GuideTerrassePage() {
 
         <h3 className="content-h3">2. Poser les plots — planéité ±5 mm sous une règle de 2 m</h3>
         <p className="content-body">
-          Plots réglables en acier galvanisé ou plots béton coulés, espacement 1,5 m maximum dans
-          les deux directions. Utilisez un niveau laser rotatif — le cordeau fonctionne, mais il
+          Plots réglables en acier galvanisé ou plots béton coulés, alignés sous chaque lambourde
+          avec un entraxe d&apos;appuis de 60 cm — 70 cm est le maximum admis par le NF DTU 51.4,
+          et seulement en pose sur 3 appuis ou plus. Utilisez un niveau laser rotatif — le cordeau fonctionne, mais il
           fléchit sur les grandes longueurs. La tolérance admissible est de ±3 mm sur l&apos;ensemble
           de la surface. Sur terrain meuble, coulez une semelle béton 20 × 20 × 10 cm sous chaque
           plot pour répartir les charges et éviter l&apos;enfoncement hivernal.
@@ -288,9 +301,12 @@ export default function GuideTerrassePage() {
 
         <h3 className="content-h3">3. Installer les lambourdes — la section, pas un détail</h3>
         <p className="content-body">
-          Section minimale 40 × 60 mm selon NF DTU 51.4, mais préférez 45 × 70 mm dès que la terrasse dépasse 15 m²
-          ou que l&apos;entraxe des plots atteint 1,5 m. La norme précise également que l&apos;entraxe entre lambourdes
-          ne doit pas dépasser 50 cm pour des lames de 21 mm (NF DTU 51.4 §6.2). Vissez sur les plots avec des vis inox
+          Section minimale 40 × 60 mm, mais préférez 60 × 70 mm dès que la terrasse dépasse 15 m² :
+          c&apos;est la hauteur de la lambourde qui fait la portée. Une 40 × 60 en résineux C18 plafonne
+          à 68 cm entre appuis, une 60 × 70 atteint les 70 cm du NF DTU 51.4 — au-delà, ce n&apos;est
+          plus une lambourde mais une solive (NF DTU 31.1). Côté lames, l&apos;entraxe entre lambourdes
+          dépend de l&apos;épaisseur : 42 cm pour une lame de 21 mm en résineux C18, 53 cm pour une lame
+          de 27 mm — d&apos;où les 40 cm retenus ici, valables dans les deux cas. Vissez sur les plots avec des vis inox
           6 × 60 mm, deux par extrémité. Vérifiez la planéité à la règle de 2 m avant chaque
           nouvelle pose — rattraper 5 mm de dévers en milieu de chantier, c&apos;est possible ;
           rattraper 15 mm en fin de pose, c&apos;est souvent tout refaire.
@@ -320,15 +336,25 @@ export default function GuideTerrassePage() {
         <h2 className="content-h2">Budget matériaux : ce que vous allez vraiment dépenser</h2>
         <p className="content-snippet">
           Pour 12&nbsp;m² de terrasse, total matériaux (lames + lambourdes + plots + visserie)&nbsp;:
-          comptez ~540&nbsp;€ en pin traité (45&nbsp;€/m²), ~720&nbsp;€ en douglas (60&nbsp;€/m²)
-          ou ~1&nbsp;400&nbsp;€ en ipé (115&nbsp;€/m²). Hors livraison et outillage.
+          comptez 1&nbsp;080 à 1&nbsp;280&nbsp;€ en pin traité (90 à 107&nbsp;€/m²), 1&nbsp;190 à
+          1&nbsp;430&nbsp;€ en douglas (99 à 119&nbsp;€/m²) ou 1&nbsp;800 à 2&nbsp;160&nbsp;€ en ipé
+          (150 à 180&nbsp;€/m²). Hors livraison et outillage.
           Avec pose par artisan, ajoutez 40–60&nbsp;€/m² de main-d&apos;œuvre.
         </p>
         <p className="content-body">
           Les prix ci-dessous sont le total matériaux (lames, lambourdes 60×70 cl.4, plots réglables,
-          vis inox A2, bande bitume), recalculés en mai 2026 d&apos;après les prix réels de notre
-          base (Leroy Merlin, Castorama, Brico Dépôt). Hors outillage et livraison.
+          vis inox A2, bande bitume, entretoises), calculés par notre simulateur d&apos;après les prix
+          réels de notre base (Leroy Merlin, Castorama, Brico Dépôt, ManoMano). Hors outillage et
+          livraison.
         </p>
+        <Callout type="warn" title="Le poste plots pèse plus lourd qu&apos;on ne croit">
+          Une terrasse sur plots réglables demande un appui tous les 60 cm sous chaque lambourde —
+          71 plots pour 12 m², pas 15. À 5,50–8,90 € le plot réglable, ce seul poste représente
+          390 à 630 €, soit 34 à 52 % du budget matériaux. C&apos;est le premier levier d&apos;économie :
+          avec des plots d&apos;entrée de gamme à ~3 €, le total pin retombe autour de 730 à 865 €
+          (61 à 72 €/m²). Beaucoup de devis trouvés en ligne sont bas parce qu&apos;ils comptent
+          trois à cinq fois trop peu de plots.
+        </Callout>
 
         <table className="content-table">
           <thead>
@@ -343,20 +369,20 @@ export default function GuideTerrassePage() {
             <tr>
               <td>Économique</td>
               <td>Pin traité autoclave</td>
-              <td>~45 €/m²</td>
-              <td>~540 € (430 € en Brico Dépôt à 630 € en Leroy Merlin)</td>
+              <td>90–107 €/m²</td>
+              <td>1 077 € en Brico Dépôt à 1 283 € en Leroy Merlin</td>
             </tr>
             <tr>
               <td>Standard</td>
               <td>Douglas</td>
-              <td>~60 €/m²</td>
-              <td>~720 €</td>
+              <td>99–119 €/m²</td>
+              <td>1 192 € à 1 434 €</td>
             </tr>
             <tr>
               <td>Premium</td>
               <td>Ipé / Teck</td>
-              <td>~115 €/m²</td>
-              <td>~1 400 €</td>
+              <td>150–180 €/m²</td>
+              <td>1 803 € à 2 163 €</td>
             </tr>
           </tbody>
         </table>
