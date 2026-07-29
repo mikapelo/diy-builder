@@ -7,7 +7,9 @@
  *   - 6 étapes illustrées (SVG inline)
  *   - Calculateur de matériaux (surface × épaisseur → béton, forme, treillis)
  *
- * Source : NF DTU 13.3 P1-1 (décembre 2021)
+ * Source : NF DTU 13.3 P1-1-1 (décembre 2021) — dallages extérieurs, hors maisons
+ * individuelles. Les valeurs du calculateur sont des bonnes pratiques de mise en oeuvre
+ * domestique, pas les prescriptions d'un dallage sous maitrise d'oeuvre.
  */
 
 import { useState, useCallback, useMemo } from 'react';
@@ -25,7 +27,7 @@ const EPAISSEUR = { pietonne: 0.10, vehicule: 0.12, pl: 0.20 };
 const SAC_VOLUME = 0.017;       // m³ rendu par sac de 35 kg (béton prêt à gâcher)
 const TOUPIE_SEUIL = 3;         // m³ → au-delà, la livraison toupie devient plus économique que les sacs
 const FORME_EP = 0.10;          // épaisseur forme drainante (m)
-const TREILLIS_MAJORATION = 1.15; // +15 % de recouvrement entre panneaux (DTU 13.3 §5.4)
+const TREILLIS_MAJORATION = 1.15; // +15 % de recouvrement entre panneaux (pratique de pose)
 const TREILLIS_PANNEAU = 7.2;   // m² par panneau ST25C (3 × 2,4 m) — matériau treillis_st25c
 
 // Prix lus dans materialPrices.js — alimenté par le scraper hebdo (backend/scrapers + GitHub Action
@@ -42,9 +44,9 @@ const STEPS = [
   {
     id: 1,
     title: 'Terrassement & délimitation',
-    snippet: 'Décaissez sur 20 cm minimum (10 cm de forme drainante + 10 cm de dalle). Compactez le fond à 95 % Proctor (DTU 13.3 §7.1) à la dame ou à la plaque vibrante. Ménagez une pente de 1 cm/m vers l\'extérieur pour l\'évacuation des eaux.',
+    snippet: 'Décaissez sur 20 cm minimum (10 cm de forme drainante + 10 cm de dalle). Compactez le fond à la dame ou à la plaque vibrante. Le NF DTU 13.3 P1-1-1 contrôle le support (§ 7.1) via des objectifs de densification : q4 vaut 95 % de l’Optimum Proctor Normal, q3 en vaut 98,5 %. Ménagez une pente de 1 cm/m vers l\'extérieur pour l\'évacuation des eaux.',
     desc: 'Piquetez le périmètre, puis décaissez sur 20 cm minimum (10 cm forme + 10 cm dalle). Compactez le fond à la dame ou à la plaque vibrante. Vérifiez la planéité avec un niveau laser.',
-    note: 'DTU 13.3 §7.1 — Sol support compacté à 95 % Proctor.',
+    note: 'NF DTU 13.3 P1-1-1 § 7.1 — Contrôle du support : q4 = 95 % OPN, q3 = 98,5 % OPN.',
     svg: (
       <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         {/* Ciel / surface */}
@@ -77,9 +79,9 @@ const STEPS = [
   {
     id: 2,
     title: 'Forme drainante',
-    snippet: '10 cm de gravier concassé 0/31.5 ou de tout-venant propre, obligatoirement compacté (DTU 13.3 §7.3). Cette couche répartit les charges sur le sol support et coupe la remontée capillaire. Sans elle, le béton travaille en flexion sur sol meuble et fissure à court terme.',
+    snippet: '10 cm de gravier concassé 0/31.5 ou de tout-venant propre, obligatoirement compacté. Cette couche répartit les charges sur le sol support et coupe la remontée capillaire. Sans elle, le béton travaille en flexion sur sol meuble et fissure à court terme.',
     desc: 'Répandez 10 cm de gravier concassé 0/31.5 ou de tout-venant propre sur toute la surface. Réglez à la règle et compactez. Cette couche répartit les charges et draine les eaux de remontée capillaire.',
-    note: 'DTU 13.3 §7.3 — Épaisseur minimale 10 cm, granulats lavés.',
+    note: 'Pratique courante : 10 cm de granulats lavés. Quand le NF DTU 13.3 impose une couche de forme, il la veut à 0,20 m minimum.',
     svg: (
       <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         {/* Sol support */}
@@ -142,9 +144,9 @@ const STEPS = [
   {
     id: 4,
     title: 'Treillis soudé ST25',
-    snippet: 'Treillis ST25 (maille 150×150 mm, ø 6 mm) posé sur cales 4 cm — enrobage mini 3 cm (DTU 13.3 §5.4), recommandé dès 10 m². Recouvrement entre panneaux : 20 cm minimum (2 mailles). Poser le treillis à même la forme annule son efficacité structurelle.',
-    desc: 'Posez les panneaux de treillis soudé ST25 (maille 150×150 mm, ø 6 mm) sur des cales plastique de 4 cm. Le recouvrement entre panneaux doit être d\'au moins 20 cm (2 mailles). Ne posez pas le treillis à même la forme.',
-    note: 'DTU 13.3 §5.4 — Enrobage mini 3 cm. Treillis recommandé dès 10 m².',
+    snippet: 'Treillis ST25 (maille 150×150 mm, ø 7 mm) posé sur cales 4 cm, recommandé dès 10 m². Le NF DTU 13.3 ne fixe pas d’enrobage chiffré : il renvoie à la NF EN 1992-1-1. Retenez le principe — le treillis doit être noyé dans le béton, jamais posé à même la forme. Recouvrement entre panneaux : 20 cm minimum (2 mailles). Poser le treillis à même la forme annule son efficacité structurelle.',
+    desc: 'Posez les panneaux de treillis soudé ST25 (maille 150×150 mm, ø 7 mm) sur des cales plastique de 4 cm. Le recouvrement entre panneaux doit être d\'au moins 20 cm (2 mailles). Ne posez pas le treillis à même la forme.',
+    note: 'Enrobage renvoyé à la NF EN 1992-1-1 par le NF DTU 13.3. Treillis recommandé dès 10 m².',
     svg: (
       <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         {/* Coupe transversale */}
@@ -213,9 +215,9 @@ const STEPS = [
   {
     id: 6,
     title: 'Cure & joints de fractionnement',
-    snippet: 'Cure 48 h minimum sous bâche (ou produit de cure) pour éviter le desséchement rapide. Joints de fractionnement sciés à 1/3 de l\'épaisseur après 7 jours — DTU 13.3 §6 limite à 25 m² entre joints pour une dalle piétonne, 40 m² pour un usage véhicule.',
-    desc: 'Protégez la dalle 48h minimum (bâche plastique ou produit de cure) contre le dessèchement trop rapide. Après 7 jours, sciez les joints de fractionnement à 1/3 de l\'épaisseur de la dalle pour maîtriser la fissuration.',
-    note: 'DTU 13.3 §6 — Surface max entre joints : 25 m² (piéton) / 40 m² (véhicule).',
+    snippet: 'Cure 48 h minimum sous bâche (ou produit de cure) pour éviter le desséchement rapide. Joints de fractionnement sciés à 1/3 de l\'épaisseur après 7 jours. Le NF DTU 13.3 P1-1-1 (§ 5.6.6) raisonne en longueur, pas en surface : le plus grand côté d\'un panneau ne dépasse pas 5 m ± 10 % à l\'air libre, 6 m sous abri — et uniquement pour du béton non armé. Avec un treillis, la norme indique que les joints sciés ne sont pas nécessaires.',
+    desc: 'Protégez la dalle 48h minimum (bâche plastique ou produit de cure) contre le dessèchement trop rapide. Après 7 jours, sciez les joints de fractionnement à 1/3 de l\'épaisseur pour maîtriser la fissuration — utile sur une dalle non armée, superflu dès lors que la dalle est armée d\'un treillis.',
+    note: 'NF DTU 13.3 P1-1-1 § 5.6.6 — Panneau de 5 m de côté max à l\'air libre (6 m sous abri), béton non armé. Béton armé : joints sciés non nécessaires.',
     svg: (
       <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         {/* Vue de dessus — dalle avec joints */}
@@ -251,7 +253,7 @@ const howToJsonLd = {
   '@type': 'HowTo',
   name: 'Couler une dalle béton extérieure',
   description:
-    'Tutoriel illustré pour réaliser une dalle béton conforme NF DTU 13.3 : terrassement, forme drainante, coffrage, treillis soudé ST25, coulage et joints de fractionnement.',
+    'Tutoriel illustré pour réaliser une dalle béton extérieure : terrassement, forme drainante, coffrage, treillis soudé ST25, coulage et joints de fractionnement. Règles de mise en oeuvre éclairées par le NF DTU 13.3 P1-1-1.',
   totalTime: 'P2D',
   estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', minValue: '300', maxValue: '1500' },
   step: STEPS.map((s) => ({ '@type': 'HowToStep', position: s.id, name: s.title, text: s.desc })),
@@ -306,7 +308,7 @@ function DalleCalculateur() {
   return (
     <div className="dalle-calc">
       <h2 className="dalle-calc-title">Calculateur de matériaux</h2>
-      <p className="dalle-calc-sub">Surface · épaisseur DTU · béton · treillis</p>
+      <p className="dalle-calc-sub">Surface · épaisseur · béton · treillis</p>
 
       <div className="dalle-calc-grid">
         {/* Inputs */}
@@ -364,7 +366,7 @@ function DalleCalculateur() {
                 onChange={e => setWithTreillis(e.target.checked)}
               />
               <span>Inclure le treillis soudé ST25</span>
-              {result.surface >= 10 && <span className="dalle-badge-dtu">DTU recommandé</span>}
+              {result.surface >= 10 && <span className="dalle-badge-dtu">Treillis recommandé</span>}
             </label>
           </div>
         </div>
@@ -490,11 +492,11 @@ export default function DalleTutorielPage() {
               style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 12 }}
             />
           </div>
-          <span className="dalle-hero-badge">Guide technique · NF DTU 13.3</span>
+          <span className="dalle-hero-badge">Guide technique · éclairé par le NF DTU 13.3</span>
           <h1 className="dalle-hero-title">Couler une dalle béton extérieure</h1>
           <p className="dalle-hero-desc">
             Cour, parking, allée, abri voiture — 6 étapes illustrées pour réaliser
-            une dalle conforme DTU : terrassement, forme drainante, coffrage,
+            une dalle extérieure durable : terrassement, forme drainante, coffrage,
             treillis soudé, coulage et joints de fractionnement.
           </p>
           <div className="dalle-hero-chips">
