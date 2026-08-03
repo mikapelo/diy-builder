@@ -27,7 +27,7 @@
  */
 
 /** Date de la dernière mise à jour des prix — changer à chaque révision */
-export const PRICES_DATE = '2026-06-22';
+export const PRICES_DATE = '2026-08-03';
 
 export const MATERIAL_PRICES = [
   // ── Ossature bois générique ─────────────────────────────────────
