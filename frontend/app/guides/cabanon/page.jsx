@@ -294,6 +294,10 @@ export default function GuideCabanonPage() {
           présentons plus bas.
         </p>
 
+        {/* CTA devis remonté après la 1re section (audit CTA 25/08) :
+            il n'existait qu'à 93 % de la page, après tous les CTA concurrents. */}
+        <CTALead projectHref="/cabanon" projectLabel="mon cabanon" />
+
         <h2 className="content-h2">Calcul des matériaux</h2>
 
         <Figure

@@ -196,6 +196,10 @@ export default function GuideClotureBois() {
           <li><strong>Joint mousse sous platine</strong>&nbsp;: si vous utilisez des sabots sur dallage, intercalez un joint élastomère entre la platine et le béton pour couper la remontée capillaire. Ça coûte rien et ça double la durée de vie de la base du poteau.</li>
         </ul>
 
+        {/* CTA devis remonté après la 1re section (audit CTA 25/08) :
+            il n'existait qu'à 93 % de la page, après tous les CTA concurrents. */}
+        <CTALead projectHref="/cloture" projectLabel="ma clôture" />
+
         <h2 className="content-h2">Calcul des matériaux — exemple 10 m linéaires</h2>
 
         <Figure

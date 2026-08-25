@@ -217,6 +217,10 @@ export default function PrixTerrasseBoisM2Page() {
           </li>
         </ul>
 
+        {/* CTA devis remonté après la 1re section (audit CTA 25/08) :
+            il n'existait qu'à 93 % de la page, après tous les CTA concurrents. */}
+        <CTALead projectHref="/calculateur" projectLabel="ma terrasse" />
+
         <h2 className="content-h2">Pin traité autoclave — l&apos;option économique de 95 % des chantiers</h2>
         <p className="content-snippet">
           Pin sylvestre traité en autoclave classe 4 — la lame standard du marché français. Total

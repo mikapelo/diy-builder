@@ -27,7 +27,9 @@ croissance du trafic s'est réalisé, et au-delà.
 
 ### Activité produit (28 j)
 
-- **88 simulations** lancées (×2,2 en trois semaines)
+- **35 exports PDF** de nomenclature
+  ⚠️ Le chiffre « 88 simulations » qui figurait ici est **retiré** : le compteur
+  n'était branché que sur le cabanon (audit du 25/08, corrigé depuis).
 - **35 exports PDF** de nomenclature
 - 9 clics « devis », 9 ouvertures de la modale artisan, **2 leads envoyés**
 - Taux modale → lead : **22 %**
@@ -104,7 +106,7 @@ et est-ce eux ou l'artisan final qui est le destinataire au sens RGPD.
 | **D'où vient votre trafic ?** | 100 % SEO organique, Google et Bing. Aucun achat de trafic, aucune co-inscription, aucune base achetée. 8 551 impressions sur 28 jours, position moyenne 8,2. |
 | **Vos leads sont-ils exclusifs ?** | Oui, aucun n'a jamais été transmis à quiconque. Pas de multi-diffusion. |
 | **Quelle est la qualification ?** | Le prospect a construit son projet en 3D avant de nous écrire : dimensions exactes, nomenclature matériaux, budget comparé sur 4 enseignes. Il arrive avec un ordre de grandeur en tête. Le premier lead : une SCI, 24,75 m², projet à ~3 500 € pose comprise. |
-| **Taux de transformation visiteur → lead ?** | Faible et je l'assume : ~40 simulations pour 1 lead sur la période. Le point de friction est identifié et en cours de traitement. |
+| **Taux de transformation visiteur → lead ?** | Faible et je l'assume : sur les pages simulateur, 1,9 % des vues aboutissent à une demande de devis ; sur les guides, 0,43 %. Le point de friction est identifié — le formulaire arrivait à 93 % de la page sur les guides — et corrigé depuis le 25/08. |
 | **Quelle intégration ?** | Aujourd'hui le lead part par courriel. Je peux livrer en API, webhook ou fichier — c'est du Next.js, la route existe déjà, l'ajout d'un envoi vers votre point d'entrée est rapide. Dites-moi votre format. |
 | **Délai de transmission ?** | Temps réel possible : la soumission déclenche déjà un envoi immédiat. |
 | **Quels départements ?** | France métropolitaine, sans ciblage géographique — l'audience suit le SEO. Le premier lead vient du Jura. C'est un point à surveiller si vous avez des zones saturées ou au contraire en tension. |

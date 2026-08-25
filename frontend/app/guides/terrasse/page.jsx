@@ -190,6 +190,10 @@ export default function GuideTerrassePage() {
           avec des vis inox costaud.
         </p>
 
+        {/* CTA devis remonté après la 1re section (audit CTA 25/08) :
+            il n'existait qu'à 93 % de la page, après tous les CTA concurrents. */}
+        <CTALead projectHref="/calculateur" projectLabel="ma terrasse" />
+
         <h2 className="content-h2">Calculer les quantités sans se tromper</h2>
 
         <Figure

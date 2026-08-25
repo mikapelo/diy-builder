@@ -230,6 +230,10 @@ export default function PermisCabanonSeuils2026Page() {
           rallongés. Voir plus bas pour le détail de ces zones.
         </p>
 
+        {/* CTA devis remonté après la 1re section (audit CTA 25/08) :
+            il n'existait qu'à 93 % de la page, après tous les CTA concurrents. */}
+        <CTALead projectHref="/cabanon" projectLabel="mon cabanon" />
+
         <h2 className="content-h2">Moins de 5 m² — la seule tranche vraiment libre</h2>
         <p className="content-snippet">
           Un cabanon de moins de 5&nbsp;m² de surface de plancher ET d&apos;emprise au sol, hors

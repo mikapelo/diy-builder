@@ -261,6 +261,10 @@ export default function TerrassePiscineBoisPage() {
           Autour d&apos;une piscine chlorée, le pin traité tient 6-8 ans&nbsp;; l&apos;ipé, <strong>30 à 50 ans</strong> sans entretien.
         </PullQuote>
 
+        {/* CTA devis remonté après la 1re section (audit CTA 25/08) :
+            il n'existait qu'à 93 % de la page, après tous les CTA concurrents. */}
+        <CTALead projectHref="/calculateur" projectLabel="ma terrasse" />
+
         <h2 className="content-h2">Antidérapance — la règle qui n&apos;est pas optionnelle</h2>
         <p className="content-snippet">
           La classification DIN 51130 définit 5 niveaux d&apos;adhérence (R9 à R13). Pour une plage
