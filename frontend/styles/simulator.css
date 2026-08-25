@@ -2982,8 +2982,13 @@
   background: rgba(26,28,27,0.40);
   backdrop-filter: blur(6px);
   display: flex;
-  align-items: center;
+  /* flex-start + `margin:auto` sur le panneau : centre quand il y a la place,
+     et laisse défiler sans rogner le haut quand le panneau dépasse la fenêtre
+     (align-items:center coupe le début du contenu débordant). */
+  align-items: flex-start;
   justify-content: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   z-index: 1000;
   padding: 24px;
   animation: modalFadeIn 0.2s ease-out;
@@ -3000,6 +3005,7 @@
   padding: 32px;
   max-width: 440px;
   width: 100%;
+  margin: auto;
   box-shadow: 0 20px 40px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.04);
   animation: modalSlideUp 0.25s ease-out;
 }

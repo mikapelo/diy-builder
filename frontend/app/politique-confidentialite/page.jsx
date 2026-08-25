@@ -1,4 +1,5 @@
 import ContentLayout from '@/components/layout/ContentLayout';
+import { LEAD_PARTNERS, CONSENT_VERSION } from '@/lib/leadConsent';
 
 export const metadata = {
   title: 'Politique de confidentialité — DIY Builder',
@@ -19,7 +20,7 @@ export default function PolitiqueConfidentialite() {
 
         <h1 className="content-h1">Politique de confidentialité</h1>
         <p className="content-lead">
-          Dernière mise à jour : avril 2026. Conforme au Règlement (UE) 2016/679 (RGPD).
+          Dernière mise à jour : août 2026. Conforme au Règlement (UE) 2016/679 (RGPD).
         </p>
 
         <div className="content-legal-section">
@@ -42,7 +43,20 @@ export default function PolitiqueConfidentialite() {
             <tbody>
               <tr>
                 <td>Adresse email</td>
-                <td>Recueil de votre demande de mise en relation, traitement par DIY Builder</td>
+                <td>Envoi du devis PDF demandé et de la confirmation de votre demande</td>
+                <td>Consentement explicite</td>
+              </tr>
+              <tr>
+                <td>Nom, téléphone, code postal</td>
+                <td>
+                  Demande de devis : transmission au professionnel partenaire chargé
+                  de vous établir un devis et de vous recontacter
+                </td>
+                <td>Consentement explicite</td>
+              </tr>
+              <tr>
+                <td>Caractéristiques du projet (type, dimensions, précisions libres)</td>
+                <td>Qualification de la demande, chiffrage des matériaux</td>
                 <td>Consentement explicite</td>
               </tr>
               <tr>
@@ -65,16 +79,60 @@ export default function PolitiqueConfidentialite() {
           </p>
         </div>
 
-        <div className="content-legal-section">
+        <div className="content-legal-section" id="partenaires">
           <h2 className="content-legal-h2">Destinataires des données</h2>
           <p className="content-legal-p">
-            Les données ne sont pas vendues ni cédées à des tiers à des fins commerciales.
+            DIY Builder ne réalise pas les travaux. Lorsque vous remplissez le formulaire
+            <strong> « Demander un devis gratuit »</strong>, votre demande n&apos;a de sens que
+            transmise à un professionnel : c&apos;est l&apos;objet même du consentement que vous
+            donnez en cochant la case, au moment de la collecte.
           </p>
           <p className="content-legal-p">
-            Lorsque vous demandez à être recontacté(e), vos coordonnées et les informations de votre projet
-            sont recueillies par DIY Builder. Elles ne sont transmises à un partenaire spécialisé qu&apos;avec
-            votre consentement explicite, et vous pouvez retirer ce consentement ou demander la suppression
-            de vos données à tout moment.
+            <strong>Périmètre de cette transmission.</strong> Vos coordonnées — votre numéro de
+            téléphone en particulier — ne sont ni publiées, ni diffusées, ni versées à un fichier
+            de prospection. Elles sont communiquées au seul professionnel partenaire chargé
+            d&apos;établir votre devis, pour cet usage et pour lui seul. Aucune autre demande de
+            devis, aucun autre secteur, aucun démarchage sans rapport avec votre projet.
+          </p>
+          <p className="content-legal-p">
+            Vous pouvez retirer votre consentement, demander la liste des destinataires effectifs
+            de votre demande ou la suppression de vos données à tout moment, à
+            <strong> contact@diy-builder.fr</strong>.
+          </p>
+
+        </div>
+
+        <div className="content-legal-section">
+          <h2 className="content-legal-h2">Liste des partenaires destinataires</h2>
+          <p className="content-legal-p">
+            Cette liste est exhaustive et tenue à jour. Elle fait foi à la date indiquée.
+          </p>
+          {LEAD_PARTNERS.length === 0 ? (
+            <p className="content-legal-p">
+              <strong>À ce jour, aucun partenaire n&apos;est destinataire.</strong> Aucune demande
+              de devis n&apos;a été transmise à un tiers. Toute mise en service d&apos;un partenaire
+              sera publiée ici, avec sa raison sociale, avant toute transmission.
+            </p>
+          ) : (
+            <ul>
+              {LEAD_PARTNERS.map((p) => (
+                <li key={p.name} className="content-legal-p">
+                  <strong>{p.name}</strong> — {p.role} ({p.country})
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="content-legal-p">
+            Version du texte de consentement en vigueur : <strong>{CONSENT_VERSION}</strong>.
+          </p>
+        </div>
+
+        <div className="content-legal-section">
+          <h2 className="content-legal-h2">Sous-traitants techniques</h2>
+          <p className="content-legal-p">
+            Ces prestataires traitent les données pour notre compte, sur instruction, et n&apos;en
+            disposent pas pour leur propre usage : <strong>Vercel Inc.</strong> (hébergement et
+            base Redis de conservation des demandes) et <strong>Resend</strong> (envoi des emails).
           </p>
         </div>
 

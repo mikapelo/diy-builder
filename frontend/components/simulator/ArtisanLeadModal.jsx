@@ -5,8 +5,11 @@
  *
  * Formulaire : nom, téléphone (requis), code postal (requis), email, message,
  * consentement explicite (requis). Soumission → POST /api/artisan-lead →
- * email Resend vers l'owner. DIY Builder recueille la demande ; aucune donnée
- * n'est transmise à un tiers sans accord explicite.
+ * email Resend vers l'owner + archivage Redis.
+ *
+ * Le consentement est recueilli AU MOMENT DE LA COLLECTE et porte sur la
+ * transmission elle-même : la demande de devis n'a de sens que transmise à un
+ * professionnel. Texte et version : @/lib/leadConsent (source unique).
  *
  * Props :
  *   open         — boolean
@@ -19,6 +22,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import useFocusTrap from '@/hooks/useFocusTrap';
 import { trackLeadSubmitted, trackArtisanModalOpen, trackArtisanModalAbandon } from '@/hooks/useAnalytics.js';
+import { CONSENT_VERSION, CONSENT_TEXT, CONSENT_GUARANTEE, PARTNERS_URL } from '@/lib/leadConsent';
 
 const PROJECT_LABELS = {
   terrasse: 'Terrasse bois',
@@ -75,7 +79,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
     if (!form.phone.trim() || form.phone.trim().length < 8) e.phone = 'Numéro requis';
     if (!form.zipCode.trim() || form.zipCode.trim().length < 4) e.zipCode = 'Code postal requis';
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Email invalide';
-    if (!form.consent) e.consent = 'Votre accord est nécessaire pour traiter la demande';
+    if (!form.consent) e.consent = 'Votre accord est nécessaire pour transmettre votre demande';
     return e;
   }
 
@@ -90,7 +94,8 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
       const res = await fetch('/api/artisan-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, projectType, dims }),
+        // consentVersion : archivé côté serveur comme preuve du texte accepté
+        body: JSON.stringify({ ...form, projectType, dims, consentVersion: CONSENT_VERSION }),
       });
       if (!res.ok) throw new Error('Erreur serveur');
       trackLeadSubmitted({ module: projectType });
@@ -308,13 +313,20 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
                     aria-describedby={errors.consent ? 'alm-consent-err' : undefined}
                     style={{ marginTop: 2, flexShrink: 0 }}
                   />
-                  <span>
-                    J&apos;accepte que mes coordonnées et les informations de mon projet
-                    soient recueillies par DIY Builder afin d&apos;être recontacté(e) au sujet
-                    de sa réalisation. Elles pourront, avec mon accord, être transmises à
-                    un partenaire spécialisé.
-                  </span>
+                  <span>{CONSENT_TEXT}</span>
                 </label>
+                {/* Lien hors du <label> : à l'intérieur, un clic cocherait la case. */}
+                <a
+                  href={PARTNERS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block', marginTop: 6, marginLeft: 28,
+                    fontSize: 11, color: 'var(--text-3, #6b6259)', textDecoration: 'underline',
+                  }}
+                >
+                  Qui reçoit ma demande&nbsp;?
+                </a>
                 {errors.consent && (
                   <span id="alm-consent-err" role="alert" className="modal-error">{errors.consent}</span>
                 )}
@@ -347,8 +359,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
 
               <p style={{ fontSize: 11, color: 'var(--text-4, #9c9188)', textAlign: 'center', margin: '8px 0 0', lineHeight: 1.5 }}>
-                Vos coordonnées sont recueillies par DIY Builder et ne sont transmises à aucun
-                tiers sans votre accord explicite. Aucun démarchage commercial.
+                {CONSENT_GUARANTEE}
               </p>
             </form>
           </>

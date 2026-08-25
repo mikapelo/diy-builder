@@ -17,6 +17,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ArtisanLeadModal from '@/components/simulator/ArtisanLeadModal';
+import { CONSENT_TEXT, CONSENT_GUARANTEE, CONSENT_VERSION, PARTNERS_URL } from '@/lib/leadConsent';
 
 // Mock useAnalytics pour éviter le tracking dans les tests
 vi.mock('@/hooks/useAnalytics.js', () => ({
@@ -139,5 +140,58 @@ describe('ArtisanLeadModal — flux nominal', () => {
     await waitFor(() => {
       expect(screen.getByText(/Une erreur est survenue/i)).toBeInTheDocument();
     });
+  });
+});
+
+/**
+ * Consentement RGPD — la transmission à un partenaire est l'objet même de la
+ * demande de devis. Ces tests verrouillent trois choses : le texte affiché ne
+ * peut pas diverger de la source unique, la preuve part avec le lead, et le
+ * lien vers la liste des destinataires ne coche pas la case par accident.
+ */
+describe('ArtisanLeadModal — consentement RGPD', () => {
+  const openModal = () =>
+    render(<ArtisanLeadModal open onClose={vi.fn()} projectType="terrasse" dims={{ width: 4, depth: 3 }} />);
+
+  it('le texte affiché est celui de lib/leadConsent (aucune divergence possible)', () => {
+    openModal();
+    expect(screen.getByText(CONSENT_TEXT)).toBeInTheDocument();
+    expect(screen.getByText(CONSENT_GUARANTEE)).toBeInTheDocument();
+  });
+
+  it('la transmission n\'est plus subordonnée à un accord ultérieur', () => {
+    openModal();
+    // « avec mon accord » rendait tout lead incessible : l'accord n'était jamais recueilli
+    expect(CONSENT_TEXT).not.toMatch(/avec mon accord/i);
+    expect(CONSENT_TEXT).toMatch(/transmises à un professionnel partenaire/i);
+  });
+
+  it('le numéro de téléphone est explicitement hors diffusion et hors démarchage', () => {
+    openModal();
+    expect(CONSENT_GUARANTEE).toMatch(/numéro de téléphone/i);
+    expect(CONSENT_GUARANTEE).toMatch(/ni publié, ni diffusé/i);
+    expect(CONSENT_GUARANTEE).toMatch(/démarchage/i);
+  });
+
+  it('lien « Qui reçoit ma demande ? » hors du label → ne coche pas la case', () => {
+    openModal();
+    const link = screen.getByRole('link', { name: /Qui reçoit ma demande/i });
+    expect(link).toHaveAttribute('href', PARTNERS_URL);
+    expect(link.closest('label')).toBeNull();
+    fireEvent.click(link);
+    expect(document.getElementById('alm-consent').checked).toBe(false);
+  });
+
+  it('submit → consent et consentVersion partent dans le payload', async () => {
+    openModal();
+    fireEvent.change(document.getElementById('alm-phone'), { target: { value: '0612345678' } });
+    fireEvent.change(document.getElementById('alm-zip'), { target: { value: '39000' } });
+    fireEvent.click(document.getElementById('alm-consent'));
+    fireEvent.submit(document.querySelector('form'));
+
+    await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
+    const body = JSON.parse(global.fetch.mock.calls[0][1].body);
+    expect(body.consent).toBe(true);
+    expect(body.consentVersion).toBe(CONSENT_VERSION);
   });
 });
