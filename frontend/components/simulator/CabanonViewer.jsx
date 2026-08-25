@@ -12,7 +12,7 @@
  * NE PAS modifier les calculs.
  */
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { trackViewModeChange, trackSimulationStart } from '@/hooks/useAnalytics.js';
+import { trackViewModeChange } from '@/hooks/useAnalytics.js';
 import useIsMobile             from '@/hooks/useIsMobile';
 import { Canvas }              from '@react-three/fiber';
 import { OrbitControls }       from '@react-three/drei';
@@ -41,15 +41,6 @@ export default function CabanonViewer({ structure, foundationType = 'ground' }) 
     const t = setTimeout(() => setShowHint(false), 4000);
     return () => clearTimeout(t);
   }, [showHint]);
-
-  /* simulation-start — une fois par session quand la géométrie est prête */
-  const simStartFired = useRef(false);
-  useEffect(() => {
-    if (simStartFired.current || !structure?.geometry) return;
-    simStartFired.current = true;
-    const { width, depth } = structure.geometry.dimensions;
-    trackSimulationStart({ module: 'cabanon', width, depth });
-  }, [structure]);
 
   /* Changement de mode — track côté utilisateur uniquement (pas ExportBridge) */
   const handleModeChange = useCallback((key) => {

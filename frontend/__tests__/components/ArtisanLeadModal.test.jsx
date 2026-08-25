@@ -25,6 +25,7 @@ vi.mock('@/hooks/useAnalytics.js', () => ({
   trackArtisanModalOpen: vi.fn(),
   trackArtisanModalAbandon: vi.fn(),
 }));
+import { trackArtisanModalAbandon } from '@/hooks/useAnalytics.js';
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -193,5 +194,56 @@ describe('ArtisanLeadModal — consentement RGPD', () => {
     const body = JSON.parse(global.fetch.mock.calls[0][1].body);
     expect(body.consent).toBe(true);
     expect(body.consentVersion).toBe(CONSENT_VERSION);
+  });
+});
+
+/**
+ * Abandon réel — audit CTA du 25/08/2026 : sur 9 ouvertures, 2 leads et
+ * seulement 2 abandons tracés. Le compteur ne partait que sur croix, Échap ou
+ * clic sur le fond ; fermer l'onglet ou naviguer ne laissait aucune trace.
+ */
+describe('ArtisanLeadModal — abandon à la sortie de page', () => {
+  const openModal = () =>
+    render(<ArtisanLeadModal open onClose={vi.fn()} projectType="pergola" dims={{ width: 4, depth: 3 }} />);
+
+  it('quitter la page sans envoyer → abandon tracé', () => {
+    openModal();
+    window.dispatchEvent(new Event('pagehide'));
+    expect(trackArtisanModalAbandon).toHaveBeenCalledWith({ module: 'pergola', stage: 'idle' });
+  });
+
+  it('un seul abandon même si la sortie se répète', () => {
+    openModal();
+    window.dispatchEvent(new Event('pagehide'));
+    window.dispatchEvent(new Event('pagehide'));
+    expect(trackArtisanModalAbandon).toHaveBeenCalledTimes(1);
+  });
+
+  it('fermeture puis sortie de page ne comptent pas deux abandons', () => {
+    openModal();
+    fireEvent.click(screen.getByLabelText('Fermer'));
+    window.dispatchEvent(new Event('pagehide'));
+    expect(trackArtisanModalAbandon).toHaveBeenCalledTimes(1);
+  });
+
+  it('après un envoi réussi, quitter la page n\'est PAS un abandon', async () => {
+    openModal();
+    fireEvent.change(document.getElementById('alm-phone'), { target: { value: '0612345678' } });
+    fireEvent.change(document.getElementById('alm-zip'), { target: { value: '39000' } });
+    fireEvent.click(document.getElementById('alm-consent'));
+    fireEvent.submit(document.querySelector('form'));
+    await waitFor(() => expect(screen.getByText(/Demande envoyée/i)).toBeInTheDocument());
+
+    window.dispatchEvent(new Event('pagehide'));
+    expect(trackArtisanModalAbandon).not.toHaveBeenCalled();
+  });
+
+  it('modale fermée → plus aucun écouteur actif', () => {
+    const { rerender } = render(
+      <ArtisanLeadModal open onClose={vi.fn()} projectType="pergola" dims={null} />,
+    );
+    rerender(<ArtisanLeadModal open={false} onClose={vi.fn()} projectType="pergola" dims={null} />);
+    window.dispatchEvent(new Event('pagehide'));
+    expect(trackArtisanModalAbandon).not.toHaveBeenCalled();
   });
 });

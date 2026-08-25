@@ -41,27 +41,52 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
   const [status,  setStatus]  = useState('idle');   // idle | submitting | success | error
   const [errors,  setErrors]  = useState({});
 
+  /* Un seul abandon compté par ouverture — sinon une fermeture suivie d'un
+     `pagehide` en produirait deux. */
+  const abandonSentRef = useRef(false);
+  /* Miroir de `status` lisible depuis un écouteur natif, qui ne voit pas les
+     re-rendus React. */
+  const statusRef = useRef(status);
+  statusRef.current = status;
+
   // Réinitialiser quand on ouvre + tracker l'ouverture
   useEffect(() => {
     if (open) {
       setForm({ ...INITIAL, email: initialEmail });
       setStatus('idle');
       setErrors({});
+      abandonSentRef.current = false;
       trackArtisanModalOpen({ module: projectType });
     }
   }, [open, initialEmail, projectType]);
+
+  const sendAbandon = useCallback((stage) => {
+    if (abandonSentRef.current || stage === 'success') return;
+    abandonSentRef.current = true;
+    trackArtisanModalAbandon({ module: projectType, stage });
+  }, [projectType]);
 
   // Handler de fermeture : tracker l'abandon si pas de submit succès
   const handleClose = useCallback(() => {
     // Capturer le status local : si pas 'success', c'est un abandon
     setStatus((current) => {
-      if (current !== 'success') {
-        trackArtisanModalAbandon({ module: projectType, stage: current });
-      }
+      sendAbandon(current);
       return current;
     });
     onClose();
-  }, [projectType, onClose]);
+  }, [sendAbandon, onClose]);
+
+  /* Sortie sans fermer la modale — onglet fermé ou navigation.
+     Sans ça, 5 sorties sur 7 restaient invisibles (audit CTA 25/08) : le
+     compteur ne partait que sur croix, Échap ou clic sur le fond.
+     `pagehide` et non `visibilitychange` : un simple changement d'onglet
+     n'est pas un abandon. */
+  useEffect(() => {
+    if (!open) return;
+    const onLeave = () => sendAbandon(statusRef.current);
+    window.addEventListener('pagehide', onLeave);
+    return () => window.removeEventListener('pagehide', onLeave);
+  }, [open, sendAbandon]);
 
   // Fermer sur Escape (utilise handleClose pour tracker l'abandon)
   useEffect(() => {

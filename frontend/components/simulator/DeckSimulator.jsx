@@ -32,6 +32,7 @@ import { STUD_SPACING, CORNER_ZONE, SECTION } from '@/lib/cabanonConstants.js';
 import { ExportBridgeProvider, useExportBridge } from './shared/ExportContext';
 import { usePDFExport } from '@/hooks/usePDFExport';
 import { useSimulatorUrl } from '@/hooks/useSimulatorUrl';
+import useSimulationStart from '@/hooks/useSimulationStart';
 
 const isTerasse = (t) => t === 'terrasse';
 const isPergola = (t) => t === 'pergola';
@@ -68,6 +69,10 @@ function SimulatorContent({ projectType }) {
   // h uniquement pour les modules avec hauteur configurable
   const hasHeight = !isTerasse(projectType) && !isCloture(projectType);
   useSimulatorUrl(width, depth, hasHeight ? height : undefined);
+
+  // simulation-start — ici et non dans un viewer : les quatre modules passent par
+  // SimulatorContent, qui seul connaît le vrai `projectType` (audit CTA 25/08)
+  useSimulationStart(projectType, width, depth);
 
   /* ── Modales ── */
   const [saveModalOpen, setSaveModalOpen] = useState(false);

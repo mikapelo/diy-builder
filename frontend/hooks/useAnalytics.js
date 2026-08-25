@@ -89,6 +89,12 @@ export function trackLeadSubmitted({ module }) {
 
 /** Event 9 — artisan-modal-open : modal ArtisanLeadModal ouvert (= CTA Pro cliqué + modal monté)
  *  À comparer à 'devis-click' pour détecter le drop entre clic CTA et affichage modal.
+ *
+ *  Réponse au 2026-08-25, sur 28 jours : **aucun drop** — 9 et 9, page pour page.
+ *  Le couple reste en place comme détecteur de régression (un CTA qui n'ouvrirait
+ *  plus la modale se verrait aussitôt), mais les deux ne forment PAS une étape de
+ *  tunnel : les compter comme « 9 clics → 9 ouvertures = 100 % » compte deux fois
+ *  le même geste. Le tunnel réel est : vue → devis-click → lead-submitted.
  *  @param {{ module: string }} props */
 export function trackArtisanModalOpen({ module }) {
   trackEvent('artisan-modal-open', { module });
