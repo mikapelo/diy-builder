@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import Script from 'next/script';
 import { Manrope, Inter, DM_Serif_Display, IBM_Plex_Mono } from 'next/font/google';
 import CookieConsent from '@/components/ui/CookieConsent';
+import ScrollDepthTracker from '@/components/ui/ScrollDepthTracker';
 
 // next/font/google — self-hosted, zéro CLS, pas de render-blocking (audit perf)
 const manrope = Manrope({
@@ -108,6 +109,7 @@ export default function RootLayout({ children }) {
         <a href="#main-content" className="skip-link">Aller au contenu principal</a>
         <div id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
           {children}
+          <ScrollDepthTracker />
         </div>
 
         {/*

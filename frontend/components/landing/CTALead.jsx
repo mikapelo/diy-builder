@@ -63,7 +63,7 @@ export default function CTALead({ projectHref = '/', projectLabel = 'mon projet'
           <button
             type="button"
             className="btn-primary"
-            onClick={() => { trackDevisClick({ module: trackModule }); setOpen(true); }}
+            onClick={() => { trackDevisClick({ module: trackModule, placement: 'guide' }); setOpen(true); }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M22 2 11 13" /><path d="M22 2 15 22l-4-9-9-4Z" />

@@ -13,12 +13,13 @@
  * DeckSimulator orchestre les données (engine + foundation) et assemble le layout.
  */
 
-import { useRef, useMemo, useState, useCallback } from 'react';
+import { useRef, useMemo, useState, useCallback, useEffect } from 'react';
 import ViewerRouter      from './ViewerRouter';
 import DeckControls      from './DeckControls';
 import TunnelSections    from './TunnelSections';
 import SaveProjectModal  from './SaveProjectModal';
 import ArtisanLeadModal  from './ArtisanLeadModal';
+import PostExportUpsell  from './PostExportUpsell';
 import EmailGateModal    from '@/components/ui/EmailGateModal';
 import { BOARD_WIDTH, BOARD_GAP, ENTR_SPACING } from '@/lib/deckConstants.js';
 
@@ -31,6 +32,7 @@ import { useDeckSimulatorState } from '@/core/useDeckSimulatorState.js';
 import { STUD_SPACING, CORNER_ZONE, SECTION } from '@/lib/cabanonConstants.js';
 import { ExportBridgeProvider, useExportBridge } from './shared/ExportContext';
 import { usePDFExport } from '@/hooks/usePDFExport';
+import { trackDevisClick } from '@/hooks/useAnalytics.js';
 import { useSimulatorUrl } from '@/hooks/useSimulatorUrl';
 import useSimulationStart from '@/hooks/useSimulationStart';
 
@@ -80,6 +82,11 @@ function SimulatorContent({ projectType }) {
   const [artisanModalOpen, setArtisanModalOpen] = useState(false);
   const [artisanInitialEmail, setArtisanInitialEmail] = useState('');
   const [emailGateOpen, setEmailGateOpen] = useState(false);
+  /* Proposition de devis après le téléchargement du dossier. `pendingUpsell`
+     retient l'email le temps que la génération aboutisse — on ne propose rien
+     si le PDF a échoué. */
+  const [pendingUpsell, setPendingUpsell] = useState(null);
+  const [upsellOpen, setUpsellOpen] = useState(false);
 
   /* Ref stable vers handleGatedExportPDF — évite la dépendance circulaire
      handleOpenSaveModal → handleGatedExportPDF (défini après dans le flux hooks) */
@@ -106,6 +113,26 @@ function SimulatorContent({ projectType }) {
     setSaveModalOpen(false);
     setArtisanModalOpen(true);
   }, []);
+
+  /* Un refus vaut pour toute la session : on ne repropose pas à chaque export. */
+  const UPSELL_DECLINED_KEY = 'upsell-devis-refuse';
+  const upsellDeclined = () => {
+    try { return sessionStorage.getItem(UPSELL_DECLINED_KEY) === '1'; }
+    catch { return false; }
+  };
+
+  const handleUpsellDecline = useCallback(() => {
+    try { sessionStorage.setItem(UPSELL_DECLINED_KEY, '1'); } catch { /* stockage bloqué */ }
+    setUpsellOpen(false);
+    setPendingUpsell(null);
+  }, []);
+
+  const handleUpsellAccept = useCallback(() => {
+    setUpsellOpen(false);
+    trackDevisClick({ module: projectType, placement: 'post-pdf' });
+    handleArtisanUpsell(pendingUpsell);
+    setPendingUpsell(null);
+  }, [projectType, pendingUpsell, handleArtisanUpsell]);
 
   /* ── Openings dynamiques (cabanon) ── */
   const openings = useMemo(() => {
@@ -194,6 +221,15 @@ function SimulatorContent({ projectType }) {
   }, []);
   gatedExportRef.current = handleGatedExportPDF;
 
+  /* La proposition n'apparaît qu'après un export RÉUSSI : `handleExportPDF`
+     intercepte ses erreurs et se résout dans tous les cas, seul `pdfStatus`
+     distingue les deux issues. */
+  useEffect(() => {
+    if (pdfStatus !== 'done' || pendingUpsell === null) return;
+    if (upsellDeclined()) { setPendingUpsell(null); return; }
+    setUpsellOpen(true);
+  }, [pdfStatus, pendingUpsell]);
+
   const slabTotal = slab?.totalPrice ?? 0;
 
   return (
@@ -266,11 +302,19 @@ function SimulatorContent({ projectType }) {
           defaultEmail={typeof window !== 'undefined' ? (localStorage.getItem('diy_lead_email') ?? '') : ''}
           onConfirm={(email) => {
             setEmailGateOpen(false);
+            setPendingUpsell(email ?? '');
             handleExportPDF(email);
           }}
           onClose={() => setEmailGateOpen(false)}
         />
       )}
+      <PostExportUpsell
+        open={upsellOpen}
+        onDecline={handleUpsellDecline}
+        onAccept={handleUpsellAccept}
+        projectType={projectType}
+        dims={dims}
+      />
     </div>
   );
 }

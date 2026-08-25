@@ -10,6 +10,7 @@
 
 import Link from 'next/link';
 import { trackDevisClick } from '@/hooks/useAnalytics.js';
+import { CONSENT_GUARANTEE, PARTNERS_URL } from '@/lib/leadConsent';
 
 const DIY_INCLUDES = [
   { icon: 'picture_as_pdf', label: 'PDF 4 pages (plans + coupes)' },
@@ -110,7 +111,7 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
             type="button"
             className="pa-pivot-cta pa-pivot-cta--pro"
             onClick={() => {
-              trackDevisClick({ module: projectType });
+              trackDevisClick({ module: projectType, placement: 'simulateur' });
               onOpenSaveModal('artisan');
             }}
           >
@@ -118,13 +119,13 @@ export default function ProjectActions({ projectType, onOpenSaveModal, onExportP
             Demander un devis gratuit
           </button>
 
+          {/* Aligné sur @/lib/leadConsent — disait « peuvent être transmises »,
+              formulation conditionnelle abandonnée le 25/08 avec la refonte du
+              consentement : la transmission est l'objet même de la demande. */}
           <p className="pa-pivot-rgpd">
-            En envoyant ce formulaire, vous acceptez d&rsquo;être recontacté au sujet de votre projet.
-            Si vous choisissez l&rsquo;option professionnel, vos informations peuvent être transmises
-            à un partenaire de mise en relation travaux ou à un professionnel compatible avec votre
-            demande. Vous pouvez demander la suppression de vos données à tout moment via{' '}
-            <Link href="/contact">notre page contact</Link>. Voir aussi notre{' '}
-            <Link href="/politique-confidentialite">politique de confidentialité</Link>.
+            {CONSENT_GUARANTEE}{' '}
+            <Link href={PARTNERS_URL}>Qui reçoit ma demande&nbsp;?</Link> ·{' '}
+            <Link href="/politique-confidentialite">Politique de confidentialité</Link>
           </p>
         </div>
 

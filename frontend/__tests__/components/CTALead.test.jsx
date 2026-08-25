@@ -32,7 +32,7 @@ describe('CTALead — avec simulateur associé', () => {
   it('ouvre la modale et trace le module réel', () => {
     render(<CTALead projectHref="/cloture" projectLabel="ma clôture" />);
     fireEvent.click(bouton());
-    expect(trackDevisClick).toHaveBeenCalledWith({ module: 'cloture' });
+    expect(trackDevisClick).toHaveBeenCalledWith({ module: 'cloture', placement: 'guide' });
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
@@ -54,7 +54,7 @@ describe('CTALead — sans simulateur associé (pages génériques)', () => {
   it('ouvre bien la modale et la trace sous « generique »', () => {
     render(<CTALead projectHref="/" projectLabel="mon projet" />);
     fireEvent.click(bouton());
-    expect(trackDevisClick).toHaveBeenCalledWith({ module: 'generique' });
+    expect(trackDevisClick).toHaveBeenCalledWith({ module: 'generique', placement: 'guide' });
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 

@@ -46,10 +46,15 @@ export function trackPDFExport({ module }) {
   trackEvent('pdf-export', { module });
 }
 
-/** Event 3 — devis-click : clic "Demander une mise en relation"
- *  @param {{ module: string }} props */
-export function trackDevisClick({ module }) {
-  trackEvent('devis-click', { module });
+/** Event 3 — devis-click : clic sur un CTA « Demander un devis gratuit »
+ *  `placement` répond à « quelle surface produit les demandes ? » sans passer
+ *  par une analyse d'URL : 'simulateur' (bloc pivot des résultats), 'guide'
+ *  (CTALead en article), 'accueil' (section artisan), 'post-pdf' (proposition
+ *  qui suit le téléchargement du dossier). Dimension introduite le 2026-08-25 :
+ *  les relevés antérieurs n'en portent aucune.
+ *  @param {{ module: string, placement?: string }} props */
+export function trackDevisClick({ module, placement = 'bloc' }) {
+  trackEvent('devis-click', { module, placement });
 }
 
 /** Event 4 — module-selected : changement de module dans ProjectSwitch
