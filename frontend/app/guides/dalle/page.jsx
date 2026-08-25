@@ -21,6 +21,7 @@ import Footer from '@/components/layout/Footer';
 import JsonLd from '@/components/ui/JsonLd';
 import { getUnitPrice, STORES, PRICES_DATE } from '@/lib/materialPrices';
 import GuideToolsBlock from '@/components/content/GuideToolsBlock';
+import CTALead from '@/components/landing/CTALead';
 
 // ── Constantes DTU 13.3 (inline pour éviter l'import engine) ──────────
 const EPAISSEUR = { pietonne: 0.10, vehicule: 0.12, pl: 0.20 };
@@ -560,16 +561,12 @@ export default function DalleTutorielPage() {
           </p>
         </footer>
 
-        {/* ── CTA réalisation ── */}
-        <div className="dalle-cta-artisan">
-          <div className="dalle-cta-text">
-            <strong>Vous préférez confier la réalisation ?</strong>
-            <span>Transmettez votre projet calculé pour recevoir un devis, sans engagement.</span>
-          </div>
-          <Link href="/" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
-            Demander un devis gratuit
-          </Link>
-        </div>
+        {/* ── CTA réalisation ──
+            Était un <Link href="/"> : libellé « Demander un devis gratuit » mais
+            renvoi à l'accueil, sans modale ni événement. 36 vues, 0 clic sur
+            28 j (audit CTA du 25/08). Une dalle sert de base à plusieurs types
+            de projet — pas de simulateur imposé, la modale s'ouvre sans type. */}
+        <CTALead projectHref="/" projectLabel="mon projet" />
 
       </main>
 
@@ -800,20 +797,6 @@ export default function DalleTutorielPage() {
           line-height: 1.6;
         }
         .dalle-tools-note strong { color: #1a1c1b; font-weight: 700; }
-
-        /* ── CTA artisan ── */
-        .dalle-cta-artisan {
-          display: flex; align-items: center; justify-content: space-between;
-          gap: 20px; padding: 24px 28px;
-          background: #f5f0e8; border: 1.5px solid #d8cfc0;
-          border-radius: 14px;
-        }
-        @media (max-width: 600px) {
-          .dalle-cta-artisan { flex-direction: column; align-items: flex-start; }
-        }
-        .dalle-cta-text { display: flex; flex-direction: column; gap: 4px; }
-        .dalle-cta-text strong { font-size: 15px; color: #1a1c1b; font-family: 'Manrope', system-ui, sans-serif; }
-        .dalle-cta-text span { font-size: 13px; color: #6a5f50; font-family: 'Manrope', system-ui, sans-serif; }
       `}</style>
     </div>
   );

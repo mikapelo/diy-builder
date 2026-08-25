@@ -261,3 +261,48 @@ face à Leadrs et LeadValue.
   l'ordre et le poids, pas la suppression.
 - **Ne pas retoucher la formulation du consentement** — refondue et mise en production
   le 25/08, elle est le socle de la cessibilité des leads.
+
+---
+
+## 8. Suite donnée — P0, P1 et P2 traités le 25/08
+
+| Lot | Objet | Commit |
+|---|---|---|
+| **P0** | `simulation-start` dans les 4 modules · abandon réel sur `pagehide` · récit du doublon corrigé · « 10 % » retiré des 2 fiches d'appel | `78bf299` |
+| **P1** | `CTALead` remonté à ~21 % sur 7 guides (cabanon, pergola, cloture, terrasse, terrasse-piscine-bois, prix-terrasse-bois-m2-2026, permis-cabanon-seuils-2026) | `2ed667b` |
+| **P2** | CTA générique fonctionnel · `/guides/dalle` réparé · accueil · bannière conditionnelle | *ce commit* |
+
+### Détail du P2
+
+1. **`CTALead` ouvre désormais la modale même sans simulateur associé.** Trois pages
+   n'affichaient qu'un lien : `/guides`, `/guides/soi-meme-ou-pro` et
+   `/guides/comparer-devis-travaux` — soit, pour les deux dernières, les pages à plus
+   forte intention « confier à un pro » du site, **sans aucun CTA devis**. Le type de
+   projet est alors absent : la modale retombe sur « Projet bois », l'API neutralise le
+   champ, et le suivi utilise `module: 'generique'`.
+2. **`/guides/dalle`** : le `<Link href="/">` déguisé en CTA devis est remplacé par
+   `CTALead`. La CSS `.dalle-cta-artisan` devenue orpheline est supprimée.
+3. **Accueil** : la section artisan vendait la mise en relation puis renvoyait au
+   simulateur en haut de page (« Calculer mon projet », `scrollIntoView`). Le devis
+   devient l'action principale, le calcul reste offert en action secondaire
+   (`.v6-artisan-alt`, contraste vérifié à **6,84:1**, AA sur texte normal).
+4. **Bannière « dossier projet »** conditionnée à `dims`. Sans projet calculé, la modale
+   ne prétend plus joindre un dossier et invite à décrire dimensions et contraintes —
+   ce qui sert aussi la qualité du lead vendu.
+
+Cohérence de mesure : `devis-click` et `artisan-modal-open` portent désormais le **même**
+`module` sur tous les points d'entrée, condition pour que le couple garde sa valeur de
+détecteur de décrochage.
+
+**Vérifié en direct** sur les quatre correctifs (serveur local) : modale ouverte et
+événements appariés sur `/guides/dalle`, `/guides/soi-meme-ou-pro`,
+`/guides/comparer-devis-travaux` et l'accueil. Lint, build, **427/427 tests**.
+
+### Ce qui reste ouvert
+
+- Les pages guides font 70 000 à 100 000 px. Remonter le CTA à 21 % aide, mais
+  l'exposition reste le facteur limitant — un dispositif persistant (barre ou rappel
+  latéral) toucherait bien plus de monde. C'est un vrai changement de design : à
+  maquetter et valider avant de coder.
+- Écart 93 événements / 78 vues sur `/cabanon` : non élucidé (cf. § 0).
+- Mesurer à J+28, soit vers le **22/09/2026**, avec les nouveaux compteurs.

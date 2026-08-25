@@ -648,7 +648,7 @@ export default function ComparerDevisTravauxPage() {
           </ul>
         </aside>
 
-        <CTALead projectHref="/guides/soi-meme-ou-pro" projectLabel="mon projet" />
+        <CTALead projectHref="/" projectLabel="mon projet" />
 
         <footer className="content-byline">
           <p>

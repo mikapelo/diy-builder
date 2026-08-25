@@ -1173,6 +1173,28 @@
   animation: v6-pulse-green 2.5s ease-in-out infinite;
 }
 /* Lead callout — aboutissement du tunnel, s'affiche juste au-dessus des 3 args */
+/* Action secondaire de la section artisan — le calcul reste offert, mais le
+   devis passe devant (audit CTA du 25/08 : 130 vues d'accueil, 0 clic devis) */
+.v6-artisan-alt {
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(241,241,239,.62);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.v6-artisan-alt:hover { color: rgba(241,241,239,.92); }
+.v6-artisan-alt:focus-visible {
+  outline: 2px solid var(--brand-gold, #C9971E);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 .v6-artisan-lead {
   position: relative;
   margin: 0 0 24px;

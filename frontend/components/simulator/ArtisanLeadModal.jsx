@@ -49,6 +49,10 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
   const statusRef = useRef(status);
   statusRef.current = status;
 
+  /* Les guides sans simulateur associé ouvrent la modale sans type de projet.
+     Umami recevrait `undefined` — on nomme ce cas pour pouvoir l'isoler. */
+  const trackModule = projectType ?? 'generique';
+
   // Réinitialiser quand on ouvre + tracker l'ouverture
   useEffect(() => {
     if (open) {
@@ -56,15 +60,15 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
       setStatus('idle');
       setErrors({});
       abandonSentRef.current = false;
-      trackArtisanModalOpen({ module: projectType });
+      trackArtisanModalOpen({ module: trackModule });
     }
-  }, [open, initialEmail, projectType]);
+  }, [open, initialEmail, trackModule]);
 
   const sendAbandon = useCallback((stage) => {
     if (abandonSentRef.current || stage === 'success') return;
     abandonSentRef.current = true;
-    trackArtisanModalAbandon({ module: projectType, stage });
-  }, [projectType]);
+    trackArtisanModalAbandon({ module: trackModule, stage });
+  }, [trackModule]);
 
   // Handler de fermeture : tracker l'abandon si pas de submit succès
   const handleClose = useCallback(() => {
@@ -123,7 +127,7 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
         body: JSON.stringify({ ...form, projectType, dims, consentVersion: CONSENT_VERSION }),
       });
       if (!res.ok) throw new Error('Erreur serveur');
-      trackLeadSubmitted({ module: projectType });
+      trackLeadSubmitted({ module: trackModule });
       setStatus('success');
     } catch {
       setStatus('error');
@@ -179,7 +183,9 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
               <h3 className="modal-title">Demander un devis gratuit</h3>
               <p className="modal-subtitle">
-                Transmettez votre projet calculé pour recevoir un devis, sans engagement.
+                {dims
+                  ? 'Transmettez votre projet calculé pour recevoir un devis, sans engagement.'
+                  : 'Recevez un devis pour votre projet, sans engagement.'}
               </p>
             </div>
 
@@ -191,11 +197,21 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
               </div>
             )}
 
-            {/* Bannière dossier projet */}
+            {/* Bannière dossier projet — uniquement s'il existe vraiment.
+                Ouverte depuis un guide, la modale n'a aucune dimension : annoncer
+                un dossier joint était faux pour l'utilisateur comme pour l'artisan
+                qui reçoit le lead (audit CTA du 25/08). */}
             <div className="modal-bom-banner">
-              <span className="material-symbols-outlined" style={{ fontSize: 16, flexShrink: 0 }}>inventory_2</span>
+              <span className="material-symbols-outlined" style={{ fontSize: 16, flexShrink: 0 }}>
+                {dims ? 'inventory_2' : 'edit_note'}
+              </span>
               <span>
-                Votre <strong>dossier projet</strong> (matériaux, budget) accompagne votre demande.
+                {dims ? (
+                  <>Votre <strong>dossier projet</strong> (matériaux, budget) accompagne votre demande.</>
+                ) : (
+                  <>Décrivez vos <strong>dimensions et contraintes</strong> ci-dessous&nbsp;: plus la
+                  demande est précise, plus le devis le sera.</>
+                )}
               </span>
             </div>
 
