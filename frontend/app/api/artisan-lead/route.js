@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server';
+import { getRedis } from '@/lib/redis';
 import { checkRateLimit, tooManyRequestsResponse } from '@/lib/rateLimit';
+import { CONSENT_VERSION, CONSENT_TEXT } from '@/lib/leadConsent';
 
 const RESEND_API = 'https://api.resend.com/emails';
+
+// TTL Redis — 1 an, aligné sur la durée annoncée dans la politique de confidentialité
+const ARTISAN_LEAD_TTL_SECONDS = 365 * 24 * 3600;
+
+// Garde de volume sur le champ libre — évite de stocker un payload non borné
+const MAX_MESSAGE_CHARS = 2000;
 
 const PROJECT_LABELS = {
   terrasse: 'Terrasse bois',
@@ -49,7 +57,8 @@ export async function POST(req) {
   if (!rl.ok) return tooManyRequestsResponse(rl.retryAfter);
 
   try {
-    const { name, email, phone, zipCode, message, projectType, dims } = await req.json();
+    const { name, email, phone, zipCode, message, projectType, dims, consent, consentVersion } =
+      await req.json();
 
     // Validation minimale
     if (!phone || phone.trim().length < 8) {
@@ -58,6 +67,12 @@ export async function POST(req) {
     if (!zipCode || zipCode.trim().length < 4) {
       return NextResponse.json({ error: 'Code postal requis' }, { status: 400 });
     }
+    // Consentement vérifié côté serveur : la case cochée dans la modale est
+    // contournable. Un lead sans accord prouvé n'est pas transmissible et
+    // contaminerait le lot — on le refuse à l'entrée.
+    if (consent !== true) {
+      return NextResponse.json({ error: 'Consentement requis' }, { status: 400 });
+    }
     // Whitelist projectType — évite injection via libellé custom (audit M2)
     const safeProject = VALID_PROJECTS.has(projectType) ? projectType : null;
     const label       = safeProject ? PROJECT_LABELS[safeProject] : 'Projet bois';
@@ -65,7 +80,39 @@ export async function POST(req) {
     const surfaceStr  = dims?.area ? ` — ${Number(dims.area).toFixed(2)} m²` : '';
     const notifyTo    = process.env.LEAD_NOTIFY_EMAIL ?? 'contact@diy-builder.fr';
 
-    /* ── 1. Notification owner ── */
+    /* ── 1. Archivage Redis — AVANT les emails ──
+       Volontairement en premier : une panne Resend ne doit plus faire perdre le
+       lead. C'est ce qui a rendu la 2ᵉ demande d'août non identifiable.
+       Le texte de consentement est archivé avec le lead (art. 7.1 RGPD : la
+       charge de la preuve du consentement pèse sur le responsable). */
+    try {
+      const redis = getRedis();
+      const ts = Date.now();
+      const lead = {
+        name:        name ? String(name).trim() : null,
+        email:       email ? String(email).trim() : null,
+        phone:       String(phone).trim(),
+        zipCode:     String(zipCode).trim(),
+        message:     message ? String(message).slice(0, MAX_MESSAGE_CHARS) : null,
+        projectType: safeProject,
+        dims:        dims ?? null,
+        createdAt:   new Date(ts).toISOString(),
+        consent: {
+          given:   true,
+          // Version renvoyée par le client, retombée sur celle du serveur si absente
+          version: typeof consentVersion === 'string' ? consentVersion : CONSENT_VERSION,
+          text:    CONSENT_TEXT,
+        },
+      };
+      await redis.set(`artisan-lead:${ts}`, JSON.stringify(lead), 'EX', ARTISAN_LEAD_TTL_SECONDS);
+      // Index dédié : ces leads sont vendables, ceux de /api/leads ne le sont pas
+      await redis.zadd('artisan-leads:index', ts, `artisan-lead:${ts}`);
+    } catch (redisErr) {
+      // Redis absent en dev local — on ne bloque pas l'envoi des emails
+      console.warn('[/api/artisan-lead] Redis unavailable:', redisErr.message);
+    }
+
+    /* ── 2. Notification owner ── */
     // Subject : strip CRLF pour éviter l'injection de headers email (audit M2)
     const safeLabel    = String(label).replace(/[\r\n]+/g, ' ');
     const safeZipShort = String(zipCode).replace(/[\r\n]+/g, ' ').slice(0, 32);
@@ -97,7 +144,7 @@ export async function POST(req) {
       `,
     });
 
-    /* ── 2. Confirmation client (si email fourni) ── */
+    /* ── 3. Confirmation client (si email fourni) ── */
     if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       const firstName = name ? String(name).split(' ')[0] : '';
       await sendEmail({

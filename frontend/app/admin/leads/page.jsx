@@ -24,22 +24,52 @@ function formatDate(iso) {
   });
 }
 
-function exportCSV(leads) {
-  const header = 'Date,Email,Projet,Largeur (m),Profondeur (m)';
-  const rows = leads.map((l) => [
-    formatDate(l.createdAt),
-    l.email,
-    PROJECT_LABELS[l.projectType] ?? l.projectType ?? '—',
-    l.dims?.width ?? '',
-    l.dims?.depth ?? '',
-  ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(','));
-  const blob = new Blob([[header, ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
+function downloadCSV(header, rows, filename) {
+  const body = rows.map((r) => r.map((v) => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
+  const blob = new Blob([[header, ...body].join('\n')], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `telechargements-pdf-diy-builder-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.download = `${filename}-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
   URL.revokeObjectURL(url);
+}
+
+function exportCSV(leads) {
+  downloadCSV(
+    'Date,Email,Projet,Largeur (m),Profondeur (m)',
+    leads.map((l) => [
+      formatDate(l.createdAt),
+      l.email,
+      PROJECT_LABELS[l.projectType] ?? l.projectType ?? '—',
+      l.dims?.width ?? '',
+      l.dims?.depth ?? '',
+    ]),
+    'telechargements-pdf-diy-builder',
+  );
+}
+
+/* Export des demandes de devis — colonnes alignées sur ce qu'attend une
+   plateforme de leads (identité, contact, zone, projet, preuve de consentement). */
+function exportArtisanCSV(leads) {
+  downloadCSV(
+    'Date,Nom,Telephone,Email,Code postal,Projet,Largeur (m),Profondeur (m),Surface (m2),Message,Consentement,Version consentement',
+    leads.map((l) => [
+      formatDate(l.createdAt),
+      l.name ?? '',
+      l.phone ?? '',
+      l.email ?? '',
+      l.zipCode ?? '',
+      PROJECT_LABELS[l.projectType] ?? l.projectType ?? '—',
+      l.dims?.width ?? '',
+      l.dims?.depth ?? '',
+      l.dims?.area ?? '',
+      (l.message ?? '').replace(/\r?\n/g, ' '),
+      l.consent?.given ? 'oui' : 'non',
+      l.consent?.version ?? '',
+    ]),
+    'demandes-devis-diy-builder',
+  );
 }
 
 /* ── Stats cards ── */
@@ -110,10 +140,84 @@ function LoginScreen({ onLogin, error, serverError, loading }) {
   );
 }
 
+/* ── Table des demandes de devis (leads pro, consentis et transmissibles) ── */
+function ArtisanTable({ leads }) {
+  if (leads.length === 0) {
+    return (
+      <div style={{ textAlign: 'center', padding: 60, color: '#9c9188' }}>
+        Aucune demande de devis
+      </div>
+    );
+  }
+  const cell = { padding: '12px 16px', verticalAlign: 'top' };
+  return (
+    <div style={{ background: '#fff', border: '1px solid #e5e2d8', borderRadius: 12, overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+        <thead>
+          <tr style={{ background: '#f8f5ef', borderBottom: '1px solid #e5e2d8' }}>
+            {['Date', 'Contact', 'Téléphone', 'CP', 'Projet', 'Dimensions', 'Précisions', 'Accord'].map((h) => (
+              <th key={h} style={{
+                padding: '12px 16px', textAlign: 'left', fontWeight: 600,
+                color: '#66625a', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em',
+                whiteSpace: 'nowrap',
+              }}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {leads.map((l, i) => (
+            <tr key={`${l.createdAt}-${l.phone}-${i}`}
+                style={{ borderBottom: i < leads.length - 1 ? '1px solid #f0ede6' : 'none' }}>
+              <td style={{ ...cell, color: '#9c9188', whiteSpace: 'nowrap' }}>{formatDate(l.createdAt)}</td>
+              <td style={cell}>
+                <div style={{ color: '#1a1c1b', fontWeight: 600 }}>{l.name || '—'}</div>
+                {l.email && <div style={{ color: '#66625a', fontSize: 12 }}>{l.email}</div>}
+              </td>
+              <td style={{ ...cell, color: '#1a1c1b', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                <a href={`tel:${String(l.phone ?? '').replace(/\s/g, '')}`} style={{ color: '#1a1c1b' }}>
+                  {l.phone || '—'}
+                </a>
+              </td>
+              <td style={{ ...cell, color: '#66625a' }}>{l.zipCode || '—'}</td>
+              <td style={cell}>
+                <span style={{
+                  display: 'inline-block', padding: '3px 10px', borderRadius: 20,
+                  fontSize: 11, fontWeight: 600, color: '#fff', whiteSpace: 'nowrap',
+                  background: PROJECT_COLORS[l.projectType] ?? '#9c9188',
+                }}>
+                  {PROJECT_LABELS[l.projectType] ?? l.projectType ?? '—'}
+                </span>
+              </td>
+              <td style={{ ...cell, color: '#66625a', whiteSpace: 'nowrap' }}>
+                {l.dims ? `${l.dims.width} × ${l.dims.depth} m` : '—'}
+                {l.dims?.area ? <div style={{ fontSize: 11, color: '#9c9188' }}>{Number(l.dims.area).toFixed(2)} m²</div> : null}
+              </td>
+              <td style={{ ...cell, color: '#66625a', maxWidth: 260, whiteSpace: 'pre-wrap' }}>
+                {l.message || '—'}
+              </td>
+              <td style={{ ...cell, whiteSpace: 'nowrap' }}>
+                {l.consent?.given ? (
+                  <span title={`Version ${l.consent.version ?? '?'}`} style={{ color: '#2B5D3A', fontWeight: 600 }}>
+                    ✓ {l.consent.version ?? '—'}
+                  </span>
+                ) : (
+                  <span style={{ color: '#ef4444', fontWeight: 600 }}>✗</span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 /* ── Main Dashboard ── */
 export default function LeadsDashboard() {
   const [auth, setAuth] = useState(null);
+  const [view, setView] = useState('artisan');   // artisan | pdf
   const [leads, setLeads] = useState([]);
+  const [artisanLeads, setArtisanLeads] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);       // erreur dashboard (refresh)
@@ -157,6 +261,7 @@ export default function LeadsDashboard() {
       }
       const data = await res.json();
       setLeads(data.leads ?? []);
+      setArtisanLeads(data.artisanLeads ?? []);
       setTotal(data.total ?? 0);
       setAuth(password);
     } catch (err) {
@@ -193,6 +298,13 @@ export default function LeadsDashboard() {
     return matchProject && matchSearch;
   });
 
+  const exportCount = view === 'artisan' ? artisanLeads.length : filtered.length;
+
+  // Stats demandes de devis
+  const artisanToday = artisanLeads.filter((l) => new Date(l.createdAt) >= today).length;
+  const artisanWeek  = artisanLeads.filter((l) => new Date(l.createdAt) >= thisWeek).length;
+  const artisanConsented = artisanLeads.filter((l) => l.consent?.given).length;
+
   if (!auth) {
     return (
       <LoginScreen
@@ -215,7 +327,28 @@ export default function LeadsDashboard() {
           <span style={{ fontSize: 22 }}>🏗️</span>
           <div>
             <span style={{ fontSize: 16, fontWeight: 700, color: '#1a1c1b' }}>DIY Builder</span>
-            <span style={{ fontSize: 13, color: '#9c9188', marginLeft: 8 }}>/ Téléchargements PDF</span>
+            <span style={{ fontSize: 13, color: '#9c9188', marginLeft: 8 }}>/ Leads</span>
+          </div>
+          {/* Bascule entre les deux populations — elles n'ont ni la même valeur ni le même usage */}
+          <div style={{ display: 'flex', gap: 4, marginLeft: 12 }}>
+            {[
+              { id: 'artisan', label: `Demandes de devis (${artisanLeads.length})` },
+              { id: 'pdf',     label: `Téléchargements PDF (${total})` },
+            ].map((v) => (
+              <button
+                key={v.id}
+                onClick={() => setView(v.id)}
+                style={{
+                  padding: '7px 14px',
+                  background: view === v.id ? '#1a1c1b' : '#fff',
+                  color: view === v.id ? '#fff' : '#66625a',
+                  border: `1px solid ${view === v.id ? 'transparent' : '#d1cdc6'}`,
+                  borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: 'pointer',
+                }}
+              >
+                {v.label}
+              </button>
+            ))}
           </div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
@@ -230,13 +363,13 @@ export default function LeadsDashboard() {
             ↻ Actualiser
           </button>
           <button
-            onClick={() => exportCSV(filtered)}
-            disabled={filtered.length === 0}
+            onClick={() => (view === 'artisan' ? exportArtisanCSV(artisanLeads) : exportCSV(filtered))}
+            disabled={exportCount === 0}
             style={{
               padding: '8px 16px', background: '#C9971E', color: '#fff',
               border: 'none', borderRadius: 8, fontSize: 13,
-              fontWeight: 600, cursor: filtered.length === 0 ? 'not-allowed' : 'pointer',
-              opacity: filtered.length === 0 ? 0.5 : 1,
+              fontWeight: 600, cursor: exportCount === 0 ? 'not-allowed' : 'pointer',
+              opacity: exportCount === 0 ? 0.5 : 1,
             }}
           >
             ↓ Export CSV
@@ -246,6 +379,42 @@ export default function LeadsDashboard() {
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
 
+      {view === 'artisan' ? (
+        <>
+          <div style={{
+            background: '#EAF3EC', border: '1px solid #b9d6c2', borderRadius: 12,
+            padding: '14px 18px', marginBottom: 24, fontSize: 13, color: '#2B5D3A',
+            display: 'flex', gap: 12, alignItems: 'flex-start',
+          }}>
+            <span style={{ fontSize: 18, lineHeight: 1 }}>🔨</span>
+            <div>
+              <strong>Demandes de devis</strong> — formulaire complet (nom, téléphone, code postal,
+              projet chiffré), consenties au moment de la collecte. Ce sont les leads transmissibles
+              à un partenaire. Archivées 12&nbsp;mois, puis purgées automatiquement.
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
+            <StatCard label="Total demandes" value={artisanLeads.length} />
+            <StatCard label="Aujourd'hui" value={artisanToday} />
+            <StatCard label="7 derniers jours" value={artisanWeek} />
+            <StatCard
+              label="Accord recueilli"
+              value={artisanConsented}
+              sub={artisanLeads.length ? `${Math.round((artisanConsented / artisanLeads.length) * 100)}%` : undefined}
+            />
+          </div>
+
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: 60, color: '#9c9188' }}>Chargement…</div>
+          ) : error ? (
+            <div style={{ textAlign: 'center', padding: 60, color: '#ef4444' }}>{error}</div>
+          ) : (
+            <ArtisanTable leads={artisanLeads} />
+          )}
+        </>
+      ) : (
+      <>
         {/* Encart explicatif sémantique : ces données = opt-in freemium, PAS leads pro vendables */}
         <div style={{
           background: '#fef9e7', border: '1px solid #f0d98c', borderRadius: 12,
@@ -255,9 +424,8 @@ export default function LeadsDashboard() {
           <span style={{ fontSize: 18, lineHeight: 1 }}>ℹ️</span>
           <div>
             <strong>Contacts opt-in PDF (freemium)</strong> — emails captés en échange du téléchargement
-            du devis PDF. Usage&nbsp;: nurturing newsletter, pas revente lead. Les vraies demandes
-            artisan (formulaire complet nom/tél/CP) sont envoyées par mail uniquement et n&apos;apparaissent
-            pas ici (dashboard dédié à venir).
+            du devis PDF. Usage&nbsp;: nurturing newsletter, pas revente lead. Les demandes de devis
+            complètes (nom/tél/CP) sont dans l&apos;onglet <strong>Demandes de devis</strong>.
           </div>
         </div>
 
@@ -364,6 +532,8 @@ export default function LeadsDashboard() {
             </table>
           </div>
         )}
+      </>
+      )}
       </div>
     </div>
   );

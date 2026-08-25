@@ -31,6 +31,30 @@ function checkAuth(req) {
   return eq && password.length === expected.length;
 }
 
+/**
+ * Lit un index trié Redis et hydrate les entrées correspondantes.
+ * Retourne les leads du plus récent au plus ancien.
+ */
+async function readIndex(redis, indexKey) {
+  const keys = await redis.zrange(indexKey, 0, -1, 'REV');
+  if (!keys || keys.length === 0) return [];
+
+  const pipeline = redis.pipeline();
+  keys.forEach((key) => pipeline.get(key));
+  const results = await pipeline.exec();
+
+  return results
+    .map(([err, val]) => {
+      if (err || !val) return null;
+      try {
+        return typeof val === 'string' ? JSON.parse(val) : val;
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+}
+
 export async function GET(req) {
   if (!checkAuth(req)) {
     return new Response('Unauthorized', {
@@ -42,29 +66,19 @@ export async function GET(req) {
   try {
     const redis = getRedis();
 
-    // Récupère les clés triées par score décroissant (les plus récents en premier)
-    const keys = await redis.zrange('leads:index', 0, -1, 'REV');
+    // Deux populations distinctes : contacts opt-in PDF (freemium, non vendables)
+    // et demandes de devis artisan (consenties, transmissibles à un partenaire).
+    const [leads, artisanLeads] = await Promise.all([
+      readIndex(redis, 'leads:index'),
+      readIndex(redis, 'artisan-leads:index'),
+    ]);
 
-    if (!keys || keys.length === 0) {
-      return NextResponse.json({ leads: [], total: 0 });
-    }
-
-    const pipeline = redis.pipeline();
-    keys.forEach((key) => pipeline.get(key));
-    const results = await pipeline.exec();
-
-    const leads = results
-      .map(([err, val]) => {
-        if (err || !val) return null;
-        try {
-          return typeof val === 'string' ? JSON.parse(val) : val;
-        } catch {
-          return null;
-        }
-      })
-      .filter(Boolean);
-
-    return NextResponse.json({ leads, total: leads.length });
+    return NextResponse.json({
+      leads,
+      total: leads.length,
+      artisanLeads,
+      artisanTotal: artisanLeads.length,
+    });
   } catch (err) {
     console.error('[/api/admin/leads]', err.message);
     return NextResponse.json({ error: err.message }, { status: 500 });
