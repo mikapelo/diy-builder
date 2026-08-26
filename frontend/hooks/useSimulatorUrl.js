@@ -41,9 +41,40 @@ export function readSimulatorUrlParams() {
 }
 
 /**
+ * Écrit l'URL sans déclencher de « page vue ».
+ *
+ * D-1 (audit tracking du 26/08/2026) — Umami et le routeur Next remplacent
+ * chacun `history.replaceState` par une propriété propre à l'objet `history`,
+ * et celle d'Umami envoie une page vue à chaque appel. Résultat : **1 251 des
+ * 1 677 « pages vues » simulateur sur 28 jours (75 %) étaient des crans de
+ * curseur** — la session qui a produit le lead du 26/08 en pesait 24 à elle
+ * seule. Tout taux ayant « vues simulateur » au dénominateur était faux d'un
+ * facteur 4, et le rebond du site mécaniquement sous-estimé.
+ *
+ * `History.prototype.replaceState` court-circuite les deux propriétés propres.
+ * Vérifié en direct sur la production : la méthode patchée envoie 1 page vue,
+ * la native 0, et l'URL change dans les deux cas.
+ *
+ * **`history.state` est reporté, pas écrasé.** Next y range `__NA` et
+ * `__PRIVATE_NEXTJS_INTERNALS_TREE` ; passer `null` comme le faisait l'ancien
+ * appel les effacerait — sans le patch Next pour les réinjecter, la navigation
+ * arrière du routeur casserait.
+ */
+function replaceUrlSansPageVue(newUrl) {
+  const natif = window.History?.prototype?.replaceState;
+  if (typeof natif === 'function') {
+    natif.call(window.history, window.history.state, '', newUrl);
+  } else {
+    // Environnement sans History.prototype : l'URL prime sur la mesure.
+    window.history.replaceState(window.history.state, '', newUrl);
+  }
+}
+
+/**
  * Hook qui met à jour l'URL quand les dimensions changent.
  * Utilise replaceState (pas pushState) pour ne pas polluer l'historique.
- * Debounced à 500ms pour ne pas écrire à chaque pixel de slider.
+ * Debounced à 500ms pour ne pas écrire à chaque pixel de slider — le debounce
+ * ne suffisait pas : chaque valeur STABILISÉE produisait quand même une page vue.
  *
  * @param {number} width
  * @param {number} depth
@@ -74,7 +105,8 @@ export function useSimulatorUrl(width, depth, height) {
       }
 
       const newUrl = `${window.location.pathname}?${params.toString()}`;
-      window.history.replaceState(null, '', newUrl);
+      if (newUrl === window.location.pathname + window.location.search) return;
+      replaceUrlSansPageVue(newUrl);
     }, 500);
 
     return () => clearTimeout(timerRef.current);
