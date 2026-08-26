@@ -137,15 +137,30 @@ fin des guides est effectivement peu atteinte.
 
 ## 5. Défauts de mesure trouvés
 
-### D-1 · Les « pages vues » simulateur ne sont pas des vues — 1 251 sur 1 677 sont des changements de dimension
+### D-1 · Les « pages vues » simulateur ne sont pas des vues — 1 251 sur 1 677 sont des changements de dimension — ✅ CORRIGÉ le 26/08
 
 Chaque déplacement de curseur réécrit l'URL (`?w=5.0&d=2.5&h=2.2`) et Umami
 compte une vue. **75 % des vues simulateur sur 28 j sont des mouvements de
 curseur.** La session du lead à elle seule pèse 24 « vues ».
 
-Conséquence : tout ratio dont le dénominateur est « vues simulateur » est faux
-d'un facteur ~4, et le rebond du site est mécaniquement sous-estimé. Les
-comptages en sessions de ce document ne sont pas touchés.
+Conséquence : tout ratio dont le dénominateur est « vues simulateur » était faux
+d'un facteur ~4, et le rebond du site mécaniquement sous-estimé. Les comptages en
+sessions de ce document ne sont pas touchés.
+
+**Corrigé.** Umami et le routeur Next remplacent chacun `history.replaceState`
+par une propriété **propre à l'objet `history`** ; celle d'Umami envoie une page
+vue à chaque appel, et le debounce de 500 ms limitait les écritures, pas les
+pages vues. `History.prototype.replaceState` court-circuite les deux. Vérifié en
+direct sur la production avant d'écrire une ligne : la méthode patchée envoie
+1 page vue, la native 0, l'URL change dans les deux cas.
+
+`history.state` est **reporté et non écrasé** — l'ancien appel passait `null`,
+que le patch Next réinjectait ; en le contournant, `null` effacerait `__NA` et
+`__PRIVATE_NEXTJS_INTERNALS_TREE` et casserait la navigation arrière.
+
+⚠️ **Rupture de série à ne pas mal lire** : les pages vues des quatre simulateurs
+vont chuter d'environ 75 % dans Umami. Ce n'est pas une perte de trafic, c'est la
+fin d'un gonflage. Les sessions ne bougent pas.
 
 ### D-2 · Le lead enregistré ne porte aucune source — ✅ CORRIGÉ le 26/08
 
@@ -174,21 +189,39 @@ Vérifié en direct sur les trois surfaces : `simulateur`, `guide`, et `post-pdf
 par le parcours exact du lead du 26/08 (export → proposition → formulaire
 pré-rempli), payload intercepté à chaque fois.
 
-### D-3 · Sortir de la modale par une navigation interne n'est pas compté comme un abandon
+### D-3 · Sortir de la modale par une navigation interne n'est pas compté comme un abandon — ✅ CORRIGÉ le 26/08
 
 Vu en direct à 10:28:34 : la personne quitte `/pergola` pour `/` avec la modale
 ouverte. `pagehide` ne part pas sur une navigation client Next.js, `handleClose`
-non plus — l'abandon est perdu. Sur 28 j : 13 ouvertures, 3 abandons, 3 leads →
+non plus — l'abandon était perdu. Sur 28 j : 13 ouvertures, 3 abandons, 3 leads →
 **7 sorties invisibles (54 %)**.
 
-### D-4 · La proposition post-PDF n'émet rien quand elle s'affiche ni quand on la refuse
+**Corrigé.** Le nettoyage d'un effet gardé par `open` couvre le démontage comme
+la fermeture pilotée par le parent. Au passage, `handleClose` lisait le statut
+via un `setStatus(current => …)` — un effet de bord pendant le rendu, que React
+peut rejouer ; il lit maintenant la ref, et l'ordre entre les deux chemins
+devient déterministe. Vérifié en direct : modale ouverte, clic sur un lien Next
+vers `/guides`, `artisan-modal-abandon` émis sans qu'aucun `pagehide` ne parte.
+
+### D-4 · La proposition post-PDF n'émet rien quand elle s'affiche ni quand on la refuse — ✅ CORRIGÉ le 26/08
 
 Aucun évènement sur l'affichage, aucun sur « Non merci ». Le taux d'acceptation
-de la nouvelle étape n'est donc **pas mesurable**. `pdf-export` sert de
-substitut, mais il part *avant* le `try` de génération (`usePDFExport.js:97`) :
-il compte les tentatives, pas les réussites, alors que la proposition n'apparaît
-que sur `pdfStatus === 'done'`. Substitut correct comme borne haute, faux comme
-compteur.
+de la nouvelle étape n'était donc **pas mesurable**. `pdf-export` servait de
+substitut, mais il partait *avant* le `try` de génération : il comptait les
+tentatives, pas les réussites, alors que la proposition n'apparaît que sur
+`pdfStatus === 'done'`. Substitut correct comme borne haute, faux comme compteur.
+
+**Corrigé.** `upsell-shown` et `upsell-declined` vivent dans `PostExportUpsell`,
+au plus près de ce qu'ils mesurent — les quatre sorties (« Non merci », croix,
+Échap, clic sur le fond) passent toutes par `onDecline`, donc un seul point les
+couvre. L'identité est fermée :
+
+    upsell-shown = upsell-declined + acceptations + sorties sans choix
+
+`pdf-export` part désormais **après** la génération réussie, et `pdf-export-failed`
+prend le relais sur l'échec — sans lui, un export qui casse ferait simplement
+disparaître `pdf-export` des relevés. Rupture de série assumée sur `pdf-export` :
+avant/après le 26/08 ne sont pas comparables, l'écart est celui des échecs.
 
 ### D-5 · Le digest hebdomadaire transforme une panne en zéro et déclenche une fausse alerte — ✅ CORRIGÉ le 26/08
 
@@ -217,26 +250,39 @@ indisponible », aucune alerte, cause exacte reportée.
 
 ---
 
-## 6. À faire, par ordre de valeur
+## 6. Les correctifs, par ordre de valeur
 
-1. **D-2** — enregistrer `placement` + référent dans le lead Redis. Sans ça,
-   aucune attribution n'est reproductible, et l'argument « nos leads viennent
-   d'un parcours qualifié » n'est pas démontrable devant Leadrs ou LeadValue.
-2. **D-5** — distinguer « 0 » de « indisponible » dans le digest ; ne pas
-   alerter sur donnée manquante. Une seule ligne de garde.
-3. **D-4** — deux évènements (`upsell-shown`, `upsell-declined`) pour rendre la
-   nouvelle étape mesurable, et déplacer `trackPDFExport` après la réussite.
-4. **D-3** — déclencher l'abandon au démontage de la modale, pas seulement sur
-   `pagehide`.
-5. **D-1** — cesser de réécrire l'URL à chaque cran de curseur, ou exclure les
-   vues portant `?w=` du décompte.
+1. ~~**D-2**~~ — fait le 26/08. `placement` + provenance de session archivés avec
+   le lead. C'était le plus coûteux : sans lui, aucune attribution n'était
+   reproductible, et « nos leads viennent d'un parcours qualifié » n'était pas
+   démontrable devant Leadrs ou LeadValue.
+2. ~~**D-5**~~ — fait le 26/08. Une panne de collecte ne s'écrit plus « 0 » et ne
+   déclenche plus d'alerte.
+3. ~~**D-4**~~ — fait le 26/08. `upsell-shown` / `upsell-declined` posés,
+   `pdf-export` déplacé après la réussite, `pdf-export-failed` ajouté.
+4. ~~**D-3**~~ — fait le 26/08. L'abandon part au démontage de la modale.
+5. ~~**D-1**~~ — fait le 26/08. L'URL s'écrit sans passer par le `replaceState`
+   patché ; attention à la rupture de série de −75 % sur les pages vues.
 6. **Meta** — 23 sessions, 26 % d'export, 1 lead. Comprendre ce qui a été publié
    les 29/07, 11/08 et 25-26/08 et si c'est reproductible. Le meilleur canal du
    site est celui qu'on ne pilote pas.
 
 ---
 
-## 7. Non vérifié
+## 7. État au 26/08 au soir
+
+**Les cinq défauts sont corrigés et en production.** Ce qui reste à faire n'est
+plus du code mais de la mesure : laisser tourner. Trois séries repartent de zéro
+(`pdf-export` change de définition, les pages vues simulateur perdent ~75 %,
+`upsell-shown` et `upsell-declined` n'existaient pas), et le premier taux
+d'acceptation de l'étape post-téléchargement demandera **~20 affichages** — au
+rythme actuel, deux à trois semaines. Ne rien conclure avant.
+
+Reste ouvert, hors mesure : comprendre le canal Facebook (point 6 ci-dessus).
+
+---
+
+## 8. Non vérifié
 
 Le contenu du lead en base. `/api/admin/leads` répond bien 401 (route déployée,
 persistance active depuis le 25/08 15 h 27, donc le lead de 10 h 30 le 26/08
