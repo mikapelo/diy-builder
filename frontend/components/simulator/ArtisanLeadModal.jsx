@@ -75,13 +75,13 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
     trackArtisanModalAbandon({ module: trackModule, stage });
   }, [trackModule]);
 
-  // Handler de fermeture : tracker l'abandon si pas de submit succès
+  /* Handler de fermeture : tracker l'abandon si pas de submit succès.
+     Lisait le status via un updater `setStatus(current => …)` — un effet de bord
+     pendant le rendu, que React peut rejouer. `statusRef` donne la même valeur
+     à jour sans ce détour, et l'ordre avec le nettoyage de démontage ci-dessous
+     devient déterministe : celui-ci compte, celui-là ne fait plus rien. */
   const handleClose = useCallback(() => {
-    // Capturer le status local : si pas 'success', c'est un abandon
-    setStatus((current) => {
-      sendAbandon(current);
-      return current;
-    });
+    sendAbandon(statusRef.current);
     onClose();
   }, [sendAbandon, onClose]);
 
@@ -96,6 +96,25 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
     window.addEventListener('pagehide', onLeave);
     return () => window.removeEventListener('pagehide', onLeave);
   }, [open, sendAbandon]);
+
+  /* Miroir de `sendAbandon`, pour que l'effet de démontage ci-dessous ne dépende
+     que de `open` : une identité de callback qui change refermerait l'effet et
+     compterait un abandon fantôme. */
+  const sendAbandonRef = useRef(sendAbandon);
+  sendAbandonRef.current = sendAbandon;
+
+  /* D-3 (audit tracking du 26/08/2026) — `pagehide` ne se déclenche PAS sur une
+     navigation client Next.js : quitter /pergola pour / démonte la modale sans
+     passer ni par `handleClose` ni par l'écouteur ci-dessus, et la sortie était
+     perdue. Vu en direct dans la session qui a produit le lead du 26/08, et
+     mesuré sur 28 j : 13 ouvertures, 3 abandons, 3 leads — 7 sorties invisibles.
+     Le nettoyage de cet effet couvre le démontage comme la fermeture normale ;
+     `abandonSentRef` empêche le doublon quand `handleClose` a déjà compté, et
+     `sendAbandon` ignore le cas succès. */
+  useEffect(() => {
+    if (!open) return;
+    return () => { sendAbandonRef.current(statusRef.current); };
+  }, [open]);
 
   // Fermer sur Escape (utilise handleClose pour tracker l'abandon)
   useEffect(() => {

@@ -238,12 +238,59 @@ describe('ArtisanLeadModal — abandon à la sortie de page', () => {
     expect(trackArtisanModalAbandon).not.toHaveBeenCalled();
   });
 
-  it('modale fermée → plus aucun écouteur actif', () => {
+  it('modale fermée → l\'abandon est compté une fois, et plus aucun écouteur ne traîne', () => {
     const { rerender } = render(
       <ArtisanLeadModal open onClose={vi.fn()} projectType="pergola" dims={null} />,
     );
+    // Fermeture pilotée par le parent, sans passer par handleClose : c'est bien
+    // un abandon, et depuis le 26/08 il est compté (D-3).
     rerender(<ArtisanLeadModal open={false} onClose={vi.fn()} projectType="pergola" dims={null} />);
+    expect(trackArtisanModalAbandon).toHaveBeenCalledTimes(1);
+    // Ce qui ne doit PAS arriver : un second abandon fantôme plus tard.
     window.dispatchEvent(new Event('pagehide'));
+    expect(trackArtisanModalAbandon).toHaveBeenCalledTimes(1);
+  });
+});
+
+/* D-3 (audit tracking du 26/08/2026) — `pagehide` ne se déclenche pas sur une
+   navigation client Next.js. Quitter /pergola pour / démonte la modale sans
+   passer ni par la croix ni par `pagehide` : la sortie était perdue. Vu en
+   direct dans la session du lead du 26/08, et mesuré sur 28 j — 13 ouvertures,
+   3 abandons, 3 leads, soit 7 sorties invisibles. */
+describe('ArtisanLeadModal — abandon au démontage (navigation interne)', () => {
+  const monter = (props = {}) =>
+    render(<ArtisanLeadModal open onClose={vi.fn()} projectType="pergola" dims={{ width: 4, depth: 3 }} {...props} />);
+
+  it('démontée sans envoi → abandon compté', () => {
+    const { unmount } = monter();
+    unmount();
+    expect(trackArtisanModalAbandon).toHaveBeenCalledWith({ module: 'pergola', stage: 'idle' });
+  });
+
+  it('un seul abandon si la croix a déjà compté puis la page se démonte', () => {
+    const { unmount } = monter();
+    fireEvent.click(screen.getByLabelText('Fermer'));
+    unmount();
+    expect(trackArtisanModalAbandon).toHaveBeenCalledTimes(1);
+  });
+
+  it('après un envoi réussi, le démontage n\'est PAS un abandon', async () => {
+    const { unmount } = monter();
+    fireEvent.change(document.getElementById('alm-phone'), { target: { value: '0612345678' } });
+    fireEvent.change(document.getElementById('alm-zip'), { target: { value: '39000' } });
+    fireEvent.click(document.getElementById('alm-consent'));
+    fireEvent.submit(document.querySelector('form'));
+    await waitFor(() => expect(screen.getByText(/Demande envoyée/i)).toBeInTheDocument());
+
+    unmount();
+    expect(trackArtisanModalAbandon).not.toHaveBeenCalled();
+  });
+
+  it('modale jamais ouverte → le démontage ne compte rien', () => {
+    const { unmount } = render(
+      <ArtisanLeadModal open={false} onClose={vi.fn()} projectType="pergola" dims={null} />,
+    );
+    unmount();
     expect(trackArtisanModalAbandon).not.toHaveBeenCalled();
   });
 });
