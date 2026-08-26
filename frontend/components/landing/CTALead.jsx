@@ -81,6 +81,7 @@ export default function CTALead({ projectHref = '/', projectLabel = 'mon projet'
         onClose={() => setOpen(false)}
         projectType={projectType}
         dims={null}
+        placement="guide"
       />
     </>
   );

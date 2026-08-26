@@ -17,12 +17,17 @@
  *   projectType  — string
  *   dims         — { width, depth, area }
  *   initialEmail — string (pré-remplit le champ email)
+ *   placement    — string : d'où vient le clic ('simulateur' | 'guide' |
+ *                  'accueil' | 'post-pdf'). Archivé avec le lead, en plus de
+ *                  l'événement Umami, pour que l'attribution reste lisible sans
+ *                  recoupement manuel de session. Cf @/lib/leadSource.
  */
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import useFocusTrap from '@/hooks/useFocusTrap';
 import { trackLeadSubmitted, trackArtisanModalOpen, trackArtisanModalAbandon } from '@/hooks/useAnalytics.js';
 import { CONSENT_VERSION, CONSENT_TEXT, CONSENT_GUARANTEE, PARTNERS_URL } from '@/lib/leadConsent';
+import { readEntry, normalizePlacement } from '@/lib/leadSource';
 
 const PROJECT_LABELS = {
   terrasse: 'Terrasse bois',
@@ -33,7 +38,7 @@ const PROJECT_LABELS = {
 
 const INITIAL = { name: '', phone: '', zipCode: '', email: '', message: '', consent: false };
 
-export default function ArtisanLeadModal({ open, onClose, projectType, dims, initialEmail = '' }) {
+export default function ArtisanLeadModal({ open, onClose, projectType, dims, initialEmail = '', placement }) {
   const panelRef = useRef(null);
   useFocusTrap(open, panelRef);
 
@@ -124,7 +129,14 @@ export default function ArtisanLeadModal({ open, onClose, projectType, dims, ini
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // consentVersion : archivé côté serveur comme preuve du texte accepté
-        body: JSON.stringify({ ...form, projectType, dims, consentVersion: CONSENT_VERSION }),
+        // source : bouton d'origine + provenance de la session (@/lib/leadSource)
+        body: JSON.stringify({
+          ...form,
+          projectType,
+          dims,
+          consentVersion: CONSENT_VERSION,
+          source: { placement: normalizePlacement(placement), entry: readEntry() },
+        }),
       });
       if (!res.ok) throw new Error('Erreur serveur');
       trackLeadSubmitted({ module: trackModule });

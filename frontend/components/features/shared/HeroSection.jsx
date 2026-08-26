@@ -933,6 +933,7 @@ export default function HeroSection({ splitContent = null }) {
         onClose={() => setArtisanOpen(false)}
         projectType={null}
         dims={null}
+        placement="accueil"
       />
 
     </div>

@@ -149,3 +149,45 @@ describe('POST /api/artisan-lead — validation existante préservée', () => {
     expect(res.status).toBe(400);
   });
 });
+
+/* D-2 (audit tracking du 26/08/2026) — jusqu'ici la route archivait tout SAUF
+   la provenance : attribuer un lead exigeait de reconstruire sa session à la
+   main dans Umami. Ces cas gardent le champ en place et bornent ce qui entre. */
+describe('POST /api/artisan-lead — provenance archivée', () => {
+  const SOURCE = {
+    placement: 'post-pdf',
+    entry: { referrer: 'lm.facebook.com', landing: '/', campaign: 'fbclid' },
+  };
+
+  it('archive le bouton d\'origine et le canal d\'entrée', async () => {
+    await POST(req({ ...VALID, source: SOURCE }));
+    expect(storedLead().source).toEqual({
+      placement: 'post-pdf', referrer: 'lm.facebook.com', landing: '/', campaign: 'fbclid',
+    });
+  });
+
+  it('un lead sans provenance reste valide, marqué « inconnu »', async () => {
+    const res = await POST(req(VALID));
+    expect(res.status).toBe(200);
+    expect(storedLead().source.placement).toBe('inconnu');
+  });
+
+  it('un placement inventé par le client est refusé, pas stocké tel quel', async () => {
+    await POST(req({ ...VALID, source: { placement: '<script>', entry: {} } }));
+    expect(storedLead().source.placement).toBe('inconnu');
+  });
+
+  it('une provenance non bornée est tronquée avant la base', async () => {
+    await POST(req({ ...VALID, source: { placement: 'guide', entry: { referrer: 'a'.repeat(9000) } } }));
+    expect(storedLead().source.referrer).toHaveLength(100);
+  });
+
+  it('la provenance figure dans la notification owner', async () => {
+    await POST(req({ ...VALID, source: SOURCE }));
+    const [, init] = global.fetch.mock.calls[0];
+    const html = JSON.parse(init.body).html;
+    expect(html).toContain('Origine');
+    expect(html).toContain('post-pdf');
+    expect(html).toContain('lm.facebook.com (fbclid)');
+  });
+});

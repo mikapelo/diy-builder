@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getRedis } from '@/lib/redis';
 import { checkRateLimit, tooManyRequestsResponse } from '@/lib/rateLimit';
 import { CONSENT_VERSION, CONSENT_TEXT } from '@/lib/leadConsent';
+import { sanitizeLeadSource, formatSource } from '@/lib/leadSource';
 
 const RESEND_API = 'https://api.resend.com/emails';
 
@@ -57,7 +58,7 @@ export async function POST(req) {
   if (!rl.ok) return tooManyRequestsResponse(rl.retryAfter);
 
   try {
-    const { name, email, phone, zipCode, message, projectType, dims, consent, consentVersion } =
+    const { name, email, phone, zipCode, message, projectType, dims, consent, consentVersion, source } =
       await req.json();
 
     // Validation minimale
@@ -79,6 +80,9 @@ export async function POST(req) {
     const dimsStr     = dims ? `${Number(dims.width).toFixed(2)} m × ${Number(dims.depth).toFixed(2)} m` : '';
     const surfaceStr  = dims?.area ? ` — ${Number(dims.area).toFixed(2)} m²` : '';
     const notifyTo    = process.env.LEAD_NOTIFY_EMAIL ?? 'contact@diy-builder.fr';
+    /* Provenance : bouton d'origine + entrée de session. Le client peut envoyer
+       n'importe quoi, la whitelist et les bornes sont côté serveur. */
+    const leadSource  = sanitizeLeadSource(source);
 
     /* ── 1. Archivage Redis — AVANT les emails ──
        Volontairement en premier : une panne Resend ne doit plus faire perdre le
@@ -97,6 +101,9 @@ export async function POST(req) {
         projectType: safeProject,
         dims:        dims ?? null,
         createdAt:   new Date(ts).toISOString(),
+        /* D-2 (audit tracking du 26/08/2026) : sans ces champs, l'attribution
+           d'un lead exigeait de reconstruire sa session à la main dans Umami. */
+        source:      leadSource,
         consent: {
           given:   true,
           // Version renvoyée par le client, retombée sur celle du serveur si absente
@@ -139,6 +146,8 @@ export async function POST(req) {
                 <td style="padding: 6px 0;">${escHtml(dimsStr)}${escHtml(surfaceStr)}</td></tr>` : ''}
             ${message ? `<tr><td style="padding: 6px 0; color: #66625a; vertical-align: top;">Message</td>
                 <td style="padding: 6px 0; white-space: pre-wrap;">${escHtml(message)}</td></tr>` : ''}
+            <tr><td style="padding: 6px 0; color: #66625a;">Origine</td>
+                <td style="padding: 6px 0;">${escHtml(leadSource.placement)} · ${escHtml(formatSource(leadSource))}</td></tr>
           </table>
         </div>
       `,

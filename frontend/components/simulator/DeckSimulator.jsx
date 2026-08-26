@@ -81,6 +81,10 @@ function SimulatorContent({ projectType }) {
   const [saveModalTrigger, setSaveModalTrigger] = useState('save');
   const [artisanModalOpen, setArtisanModalOpen] = useState(false);
   const [artisanInitialEmail, setArtisanInitialEmail] = useState('');
+  /* Bouton à l'origine de l'ouverture — archivé avec le lead. Doit rester
+     aligné sur le `placement` envoyé à `trackDevisClick` par le même geste,
+     sinon Umami et la base racontent deux histoires différentes. */
+  const [artisanPlacement, setArtisanPlacement] = useState('simulateur');
   const [emailGateOpen, setEmailGateOpen] = useState(false);
   /* Proposition de devis après le téléchargement du dossier. `pendingUpsell`
      retient l'email le temps que la génération aboutisse — on ne propose rien
@@ -98,6 +102,7 @@ function SimulatorContent({ projectType }) {
   const handleOpenSaveModal = useCallback((trigger) => {
     if (trigger === 'artisan') {
       setArtisanInitialEmail('');
+      setArtisanPlacement('simulateur');
       setArtisanModalOpen(true);
     } else if (trigger === 'dossier') {
       gatedExportRef.current?.();
@@ -110,6 +115,7 @@ function SimulatorContent({ projectType }) {
   /* Upsell : l'utilisateur a reçu le dossier DIY et veut maintenant un artisan */
   const handleArtisanUpsell = useCallback((email) => {
     setArtisanInitialEmail(email || '');
+    setArtisanPlacement('post-pdf');
     setSaveModalOpen(false);
     setArtisanModalOpen(true);
   }, []);
@@ -294,6 +300,7 @@ function SimulatorContent({ projectType }) {
         dims={dims}
         bom={materials}
         initialEmail={artisanInitialEmail}
+        placement={artisanPlacement}
       />
       {emailGateOpen && (
         <EmailGateModal

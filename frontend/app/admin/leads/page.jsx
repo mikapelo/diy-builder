@@ -1,6 +1,17 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { formatSource } from '@/lib/leadSource';
+
+/* Libellés des emplacements de CTA — mêmes valeurs que la dimension `placement`
+   d'Umami, écrites pour être lues. Les leads d'avant le 26/08/2026 n'en ont pas. */
+const PLACEMENT_LABELS = {
+  'simulateur': 'Bloc simulateur',
+  'guide':      'CTA en guide',
+  'accueil':    'Section accueil',
+  'post-pdf':   'Après dossier PDF',
+  'inconnu':    'Inconnue',
+};
 
 const PROJECT_LABELS = {
   terrasse: 'Terrasse',
@@ -50,10 +61,12 @@ function exportCSV(leads) {
 }
 
 /* Export des demandes de devis — colonnes alignées sur ce qu'attend une
-   plateforme de leads (identité, contact, zone, projet, preuve de consentement). */
+   plateforme de leads (identité, contact, zone, projet, preuve de consentement).
+   L'origine et le canal viennent APRÈS ce bloc : ce sont nos données
+   d'attribution, elles ne doivent pas décaler les colonnes qu'attend l'acheteur. */
 function exportArtisanCSV(leads) {
   downloadCSV(
-    'Date,Nom,Telephone,Email,Code postal,Projet,Largeur (m),Profondeur (m),Surface (m2),Message,Consentement,Version consentement',
+    'Date,Nom,Telephone,Email,Code postal,Projet,Largeur (m),Profondeur (m),Surface (m2),Message,Consentement,Version consentement,Origine,Canal',
     leads.map((l) => [
       formatDate(l.createdAt),
       l.name ?? '',
@@ -67,6 +80,8 @@ function exportArtisanCSV(leads) {
       (l.message ?? '').replace(/\r?\n/g, ' '),
       l.consent?.given ? 'oui' : 'non',
       l.consent?.version ?? '',
+      l.source?.placement ?? '',
+      l.source ? formatSource(l.source) : '',
     ]),
     'demandes-devis-diy-builder',
   );
@@ -155,7 +170,7 @@ function ArtisanTable({ leads }) {
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
         <thead>
           <tr style={{ background: '#f8f5ef', borderBottom: '1px solid #e5e2d8' }}>
-            {['Date', 'Contact', 'Téléphone', 'CP', 'Projet', 'Dimensions', 'Précisions', 'Accord'].map((h) => (
+            {['Date', 'Contact', 'Téléphone', 'CP', 'Projet', 'Dimensions', 'Origine', 'Précisions', 'Accord'].map((h) => (
               <th key={h} style={{
                 padding: '12px 16px', textAlign: 'left', fontWeight: 600,
                 color: '#66625a', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em',
@@ -191,6 +206,16 @@ function ArtisanTable({ leads }) {
               <td style={{ ...cell, color: '#66625a', whiteSpace: 'nowrap' }}>
                 {l.dims ? `${l.dims.width} × ${l.dims.depth} m` : '—'}
                 {l.dims?.area ? <div style={{ fontSize: 11, color: '#9c9188' }}>{Number(l.dims.area).toFixed(2)} m²</div> : null}
+              </td>
+              <td style={{ ...cell, color: '#66625a' }}>
+                {l.source ? (
+                  <>
+                    <div style={{ color: '#1a1c1b', whiteSpace: 'nowrap' }}>
+                      {PLACEMENT_LABELS[l.source.placement] ?? l.source.placement}
+                    </div>
+                    <div style={{ fontSize: 11, color: '#9c9188' }}>{formatSource(l.source)}</div>
+                  </>
+                ) : '—'}
               </td>
               <td style={{ ...cell, color: '#66625a', maxWidth: 260, whiteSpace: 'pre-wrap' }}>
                 {l.message || '—'}

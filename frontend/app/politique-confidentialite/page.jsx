@@ -60,6 +60,14 @@ export default function PolitiqueConfidentialite() {
                 <td>Consentement explicite</td>
               </tr>
               <tr>
+                <td>
+                  Origine de la demande (bouton utilisé, page d&apos;arrivée, domaine
+                  du site référent, marquage de campagne)
+                </td>
+                <td>Savoir quel parcours du site produit les demandes de devis</td>
+                <td>Intérêt légitime</td>
+              </tr>
+              <tr>
                 <td>Données de navigation anonymes</td>
                 <td>Amélioration du service (pages visitées, type de projet simulé)</td>
                 <td>Intérêt légitime / consentement selon outil</td>
@@ -68,6 +76,13 @@ export default function PolitiqueConfidentialite() {
           </table>
           <p className="content-legal-p">
             Aucune donnée nominative n&apos;est collectée lors de la simple utilisation du simulateur.
+          </p>
+          <p className="content-legal-p">
+            Sur l&apos;origine de la demande, nous conservons le <strong>domaine</strong> du site
+            qui vous a amené, jamais l&apos;adresse complète de la page. Des identifiants de clic
+            publicitaires (<em>fbclid</em>, <em>gclid</em>…), nous ne gardons que le nom du
+            paramètre pour savoir qu&apos;il s&apos;agissait d&apos;un lien publicitaire —
+            jamais leur valeur, qui est propre à une personne.
           </p>
         </div>
 
