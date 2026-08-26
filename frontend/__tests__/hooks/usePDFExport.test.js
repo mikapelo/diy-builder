@@ -82,6 +82,7 @@ vi.mock('@/lib/costCalculator.js', () => ({
 
 vi.mock('@/hooks/useAnalytics.js', () => ({
   trackPDFExport: vi.fn(),
+  trackPDFExportFailed: vi.fn(),
 }));
 
 import { usePDFExport } from '@/hooks/usePDFExport.js';
@@ -90,7 +91,7 @@ import { generateTerrassePDF } from '@/components/simulator/ExportPDF/terrassePD
 import { generatePergolaPDF }  from '@/components/simulator/ExportPDF/pergolaPDF.js';
 import { generateCloturePDF }  from '@/components/simulator/ExportPDF/cloturePDF.js';
 import { capture3DForExport, captureCanvasSnapshot } from '@/components/simulator/ExportPDF/canvasCapture.js';
-import { trackPDFExport } from '@/hooks/useAnalytics.js';
+import { trackPDFExport, trackPDFExportFailed } from '@/hooks/useAnalytics.js';
 
 /* ── Fixtures ─────────────────────────────────────────────────── */
 
@@ -258,5 +259,38 @@ describe('usePDFExport — fallback budget', () => {
     const callArgs = generateTerrassePDF.mock.calls[0][1];
     // bestPrice = matTotal + slabTotal — au moins >= 500
     expect(callArgs.bestPrice).toBeGreaterThanOrEqual(500);
+  });
+});
+
+/* D-4 (audit tracking du 26/08/2026) — `pdf-export` partait AVANT le `try`, donc
+   comptait les tentatives. Or la proposition post-téléchargement ne s'affiche
+   que sur un export réussi : s'en servir comme dénominateur de son taux
+   d'acceptation surestimait le nombre de propositions affichées. */
+describe('usePDFExport — l\'export n\'est compté que s\'il aboutit', () => {
+  it('génération réussie → pdf-export une fois, aucun échec', async () => {
+    const { result } = renderHook(() => usePDFExport(makeHookProps()));
+    await act(async () => { await result.current.handleExportPDF(); });
+    expect(trackPDFExport).toHaveBeenCalledWith({ module: 'cabanon' });
+    expect(trackPDFExportFailed).not.toHaveBeenCalled();
+  });
+
+  it('génération en échec → AUCUN pdf-export, un pdf-export-failed', async () => {
+    generateCabanonPDF.mockRejectedValueOnce(new Error('jsPDF a explosé'));
+    const erreur = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { result } = renderHook(() => usePDFExport(makeHookProps()));
+    await act(async () => { await result.current.handleExportPDF(); });
+
+    expect(trackPDFExport).not.toHaveBeenCalled();
+    expect(trackPDFExportFailed).toHaveBeenCalledWith({ module: 'cabanon' });
+    erreur.mockRestore();
+  });
+
+  it('l\'échec ne laisse pas le bouton bloqué sur « generating »', async () => {
+    generateCabanonPDF.mockRejectedValueOnce(new Error('boom'));
+    const erreur = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { result } = renderHook(() => usePDFExport(makeHookProps()));
+    await act(async () => { await result.current.handleExportPDF(); });
+    expect(result.current.pdfStatus).toBe('idle');
+    erreur.mockRestore();
   });
 });

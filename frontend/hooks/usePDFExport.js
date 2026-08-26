@@ -20,7 +20,7 @@
  */
 
 import { useState, useCallback } from 'react';
-import { trackPDFExport } from '@/hooks/useAnalytics.js';
+import { trackPDFExport, trackPDFExportFailed } from '@/hooks/useAnalytics.js';
 import { STORES } from '@/lib/materialPrices.js';
 import { calculateDetailedCost, calculateTotalCost, groupByCategory } from '@/lib/costCalculator.js';
 import { capture3DForExport, captureCanvasSnapshot } from '@/components/simulator/ExportPDF/canvasCapture.js';
@@ -94,7 +94,6 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
 
   const handleExportPDF = useCallback(async (email = null) => {
     setPdfStatus('generating');
-    trackPDFExport({ module: projectType });
     try {
       const { default: jsPDF } = await import('jspdf');
       const doc = new jsPDF();
@@ -186,10 +185,15 @@ export function usePDFExport({ projectType, dims, materials, config, foundationT
           doc.save(`terrasse-${dims.width}x${dims.depth}m.pdf`);
         }
       }
+      /* Compté ici, pas à l'entrée : `pdf-export` doit signifier « un dossier a
+         été livré ». C'est le dénominateur du taux d'acceptation de la
+         proposition qui suit, laquelle ne s'affiche que sur un export réussi. */
+      trackPDFExport({ module: projectType });
       setPdfStatus('done');
       setTimeout(() => setPdfStatus('idle'), 2500);
     } catch (e) {
       console.error('[usePDFExport] PDF generation error:', e);
+      trackPDFExportFailed({ module: projectType });
       setPdfStatus('idle');
     }
   }, [projectType, dims, materials, config, foundationType, slab, getBridge]);

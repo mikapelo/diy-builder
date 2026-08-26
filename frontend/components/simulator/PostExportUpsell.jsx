@@ -19,10 +19,18 @@
  *   onAccept    — () => void   (ouvre ArtisanLeadModal, email pré-rempli)
  *   projectType — string
  *   dims        — { width, depth, area }
+ *
+ * Mesure (D-4, audit du 26/08/2026) : livrée sans instrument sur ses issues, on
+ * voyait les acceptations (`devis-click` placement 'post-pdf') mais ni les
+ * affichages ni les refus — son taux d'acceptation n'était pas calculable.
+ * Les deux manquants sont émis ici, au plus près de ce qu'ils mesurent : les
+ * quatre sorties (« Non merci », croix, Échap, clic sur le fond) passent toutes
+ * par `onDecline`, donc un seul point suffit à les couvrir.
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import useFocusTrap from '@/hooks/useFocusTrap';
+import { trackUpsellShown, trackUpsellDeclined } from '@/hooks/useAnalytics.js';
 
 const PROJECT_LABELS = {
   terrasse: 'Terrasse bois',
@@ -35,12 +43,23 @@ export default function PostExportUpsell({ open, onDecline, onAccept, projectTyp
   const panelRef = useRef(null);
   useFocusTrap(open, panelRef);
 
+  /* Dénominateur du taux d'acceptation. Une seule fois par affichage : le
+     parent ne monte cette étape qu'après un export réussi et non refusé. */
+  useEffect(() => {
+    if (open) trackUpsellShown({ module: projectType });
+  }, [open, projectType]);
+
+  const refuser = useCallback(() => {
+    trackUpsellDeclined({ module: projectType });
+    onDecline();
+  }, [projectType, onDecline]);
+
   useEffect(() => {
     if (!open) return;
-    const handler = (e) => { if (e.key === 'Escape') onDecline(); };
+    const handler = (e) => { if (e.key === 'Escape') refuser(); };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [open, onDecline]);
+  }, [open, refuser]);
 
   if (!open) return null;
 
@@ -48,7 +67,7 @@ export default function PostExportUpsell({ open, onDecline, onAccept, projectTyp
   const dimsStr = dims ? `${dims.width} m × ${dims.depth} m` : '';
 
   return (
-    <div className="modal-overlay" onClick={onDecline}>
+    <div className="modal-overlay" onClick={refuser}>
       <div
         ref={panelRef}
         className="modal-panel"
@@ -57,7 +76,7 @@ export default function PostExportUpsell({ open, onDecline, onAccept, projectTyp
         aria-label="Dossier téléchargé"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal-close" onClick={onDecline} aria-label="Fermer">
+        <button className="modal-close" onClick={refuser} aria-label="Fermer">
           <span className="material-symbols-outlined">close</span>
         </button>
 
@@ -97,7 +116,7 @@ export default function PostExportUpsell({ open, onDecline, onAccept, projectTyp
           {/* Refus neutre, jamais culpabilisant — et mémorisé pour la session */}
           <button
             type="button"
-            onClick={onDecline}
+            onClick={refuser}
             style={{
               display: 'block', width: '100%', margin: '10px 0 0',
               background: 'none', border: 'none', cursor: 'pointer',
