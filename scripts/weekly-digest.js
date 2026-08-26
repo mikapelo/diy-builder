@@ -35,17 +35,27 @@ function loadEnv() {
     .filter(l => l && !l.startsWith('#')).map(l => { const i = l.indexOf('='); return [l.slice(0, i), l.slice(i + 1)]; }));
 }
 
+/* Échecs de collecte de la passe en cours — listés en fin de digest.
+   Avant le 26/08/2026 stderr était jeté : une panne devenait un « 0 » muet. */
+const FAILURES = [];
+
 // ─── Exécute un script de stats, renvoie son stdout (ou '' si échec) ──
 function run(script, args) {
+  const label = `${script} ${args.join(' ')}`.trim();
   try {
-    return execFileSync('node', [path.join('scripts', script), ...args], { cwd: ROOT, encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'ignore'] });
+    return execFileSync('node', [path.join('scripts', script), ...args], { cwd: ROOT, encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] });
   } catch (e) {
-    return (e.stdout || '') + `\n[echec ${script} ${args.join(' ')}]`;
+    const why = String(e.stderr || e.message || '').trim().split('\n').filter(Boolean).pop() || 'cause inconnue';
+    FAILURES.push({ label, why: why.slice(0, 200) });
+    return (e.stdout || '') + `\n[echec ${label}]`;
   }
 }
 
 const num = (txt, re) => { const m = txt.match(re); return m ? parseFloat(m[1].replace(',', '.')) : null; };
 const int = (txt, re) => { const m = txt.match(re); return m ? parseInt(m[1], 10) : null; };
+/* Rendu d'une valeur qui peut manquer : « — », jamais 0. Un zéro affiché est
+   une affirmation ; une collecte en panne n'en est pas une. */
+const show = (v) => (v == null ? '—' : v);
 
 // Parse les lignes de tableau GSC "clics imp CTR% pos label"
 function parseRows(txt) {
@@ -56,8 +66,21 @@ function parseRows(txt) {
   }
   return rows;
 }
-// Parse les événements Umami "  34  module-selected"
+/* Parse les événements Umami "  34  module-selected".
+ *
+ * Renvoie `null` quand la collecte a échoué, `{}` quand elle a bien tourné mais
+ * n'a rien trouvé. La distinction n'est pas cosmétique : le 24/08/2026 une
+ * panne d'appel Umami a produit un objet vide, et le digest a publié
+ * « 0 export PDF · 0 simulations » puis l'alerte « 0 interaction sur 28 j —
+ * problème d'exposition/CRO, PAS de tracking » — alors qu'il y avait ce jour-là
+ * 9 clics devis, 30 exports et 2 leads. Un zéro inventé accuse le produit et
+ * disculpe l'instrument, exactement à l'envers.
+ *
+ * L'en-tête est le témoin : umami-stats.js ne l'imprime qu'après un appel
+ * d'API réussi, et l'imprime même quand il n'y a aucune donnée.
+ */
 function parseEvents(txt) {
+  if (!/===\s*Événements/.test(txt)) return null;
   const ev = {};
   for (const line of txt.split('\n')) { const m = line.match(/^\s*(\d+)\s+([a-z0-9-]+)\s*$/i); if (m) ev[m[2]] = +m[1]; }
   return ev;
@@ -115,14 +138,21 @@ function opportunities(snap) {
   if (lowCtr.length) out.push({ t: '✍️ Pages à fort volume mais CTR faible — retravailler title/meta',
     rows: lowCtr.map(p => `${p.label} — ${p.imp} imp, CTR ${p.ctr}%, pos ${p.pos}`) });
 
-  // Funnel artisan : 0 interaction = signal CRO fort.
-  const funnel = (snap.events['devis-click'] || 0) + (snap.events['artisan-modal-open'] || 0) + (snap.events['lead-submitted'] || 0);
-  if (funnel === 0) out.push({ t: '🚨 Funnel artisan : 0 interaction sur 28 j',
-    rows: ['Aucun `devis-click` / `artisan-modal-open` / `lead-submitted`. Le lead pro est le plus haut levier de valeur — problème d\'exposition/CRO, pas de tracking.'] });
+  /* Funnel artisan : 0 interaction = signal CRO fort — mais SEULEMENT si la
+     collecte a répondu. Sur `events === null` on ne sait rien, et ne rien
+     savoir ne s'annonce pas comme un zéro. */
+  if (snap.events) {
+    const funnel = (snap.events['devis-click'] || 0) + (snap.events['artisan-modal-open'] || 0) + (snap.events['lead-submitted'] || 0);
+    if (funnel === 0) out.push({ t: '🚨 Funnel artisan : 0 interaction sur 28 j',
+      rows: ['Aucun `devis-click` / `artisan-modal-open` / `lead-submitted`. Le lead pro est le plus haut levier de valeur — problème d\'exposition/CRO, pas de tracking.'] });
+  }
 
-  // Monétisation : marchands intégrés sans clic → bloc peut-être invisible/cassé.
+  /* Monétisation : marchands intégrés sans clic → bloc peut-être invisible/cassé.
+     Même précaution que le funnel : sur une collecte Awin en échec, aucun nom ne
+     matche et les quatre marchands seraient signalés à tort. */
   const awinTxt = snap._raw.awin;
-  for (const m of ['Aosom', 'Woodstore', 'Plots', 'Deuba']) {
+  const awinOk  = /Total\s*:/.test(awinTxt);
+  for (const m of awinOk ? ['Aosom', 'Woodstore', 'Plots', 'Deuba'] : []) {
     if (!new RegExp(m, 'i').test(awinTxt)) out.push({ t: `🔌 Marchand « ${m} » : 0 clic Awin sur 30 j`, rows: ['Vérifier que le bloc affilié est bien rendu et visible sur les pages concernées.'] });
   }
   return out;
@@ -139,22 +169,27 @@ function buildDigest(snap, prev) {
 
   L.push('## SEO (Google Search Console)');
   L.push('');
-  L.push(`- **7 j** : ${snap.gsc7.clics} clics${delta(snap.gsc7.clics, p.gsc7?.clics)} · ${snap.gsc7.imp} imp · CTR ${snap.gsc7.ctr}% · pos ${snap.gsc7.pos}`);
-  L.push(`- **28 j** : ${snap.gsc28.clics} clics${delta(snap.gsc28.clics, p.gsc28?.clics)} · ${snap.gsc28.imp} imp · CTR ${snap.gsc28.ctr}% · pos ${snap.gsc28.pos}`);
-  L.push(`- **Bing 7 j** : ${snap.bing7.clics} clics · ${snap.bing7.imp} imp`);
+  L.push(`- **7 j** : ${show(snap.gsc7.clics)} clics${delta(snap.gsc7.clics, p.gsc7?.clics)} · ${show(snap.gsc7.imp)} imp · CTR ${show(snap.gsc7.ctr)}% · pos ${show(snap.gsc7.pos)}`);
+  L.push(`- **28 j** : ${show(snap.gsc28.clics)} clics${delta(snap.gsc28.clics, p.gsc28?.clics)} · ${show(snap.gsc28.imp)} imp · CTR ${show(snap.gsc28.ctr)}% · pos ${show(snap.gsc28.pos)}`);
+  L.push(`- **Bing 7 j** : ${show(snap.bing7.clics)} clics · ${show(snap.bing7.imp)} imp`);
   L.push('');
 
   L.push('## Trafic (Umami)');
   L.push('');
-  L.push(`- **7 j** : ${snap.umami7.visiteurs} visiteurs${delta(snap.umami7.visiteurs, p.umami7?.visiteurs)} · ${snap.umami7.vues} vues · rebond ${snap.umami7.rebond}%${delta(snap.umami7.rebond, p.umami7?.rebond)}`);
+  L.push(`- **7 j** : ${show(snap.umami7.visiteurs)} visiteurs${delta(snap.umami7.visiteurs, p.umami7?.visiteurs)} · ${show(snap.umami7.vues)} vues · rebond ${show(snap.umami7.rebond)}%${delta(snap.umami7.rebond, p.umami7?.rebond)}`);
   L.push('');
 
   L.push('## Monétisation');
   L.push('');
   L.push(`- **Awin (DIY Builder seul, 30 j)** : ${snap.awinClics ?? '—'} clics · ventes affiliées : voir routine cloud`);
   const ev = snap.events;
-  L.push(`- **Engagement 28 j** : ${ev['awin-click'] || 0} awin-click · ${ev['affiliate-click'] || 0} affiliate-click (Amazon) · ${ev['pdf-export'] || 0} export PDF · ${ev['simulation-start'] || 0} simulations`);
-  L.push(`- **Funnel artisan 28 j** : ${(ev['artisan-modal-open'] || 0)} ouverture(s) modale · ${(ev['lead-submitted'] || 0)} lead(s)`);
+  if (ev) {
+    L.push(`- **Engagement 28 j** : ${ev['awin-click'] || 0} awin-click · ${ev['affiliate-click'] || 0} affiliate-click (Amazon) · ${ev['pdf-export'] || 0} export PDF · ${ev['simulation-start'] || 0} simulations`);
+    L.push(`- **Funnel artisan 28 j** : ${(ev['artisan-modal-open'] || 0)} ouverture(s) modale · ${(ev['lead-submitted'] || 0)} lead(s)`);
+  } else {
+    L.push('- **Engagement 28 j** : ⚠️ indisponible — la collecte Umami a échoué, ne rien conclure de cette semaine');
+    L.push('- **Funnel artisan 28 j** : ⚠️ indisponible (même cause)');
+  }
   L.push('');
 
   const opps = opportunities(snap);
@@ -171,6 +206,17 @@ function buildDigest(snap, prev) {
   L.push(affSummary ? affSummary.replace(/\*\*/g, '') : '_check indisponible_');
   L.push('_Détail liens morts/bloqués : `.claude/tracking/affiliate-check-*.md`. Prix & promos : routine cloud hebdo._');
   L.push('');
+
+  /* Ce qui n'a pas pu être collecté. Sans cette section, une panne se lit comme
+     un résultat : c'est ce qui s'est passé le 24/08/2026. */
+  if (FAILURES.length) {
+    L.push('## ⚠️ Collectes en échec — chiffres manquants, pas nuls');
+    L.push('');
+    for (const f of FAILURES) L.push(`- \`${f.label}\` — ${f.why}`);
+    L.push('');
+    L.push('_Les indicateurs concernés sont affichés « — » ou « indisponible ». Ne pas les comparer à la semaine précédente._');
+    L.push('');
+  }
   return L.join('\n');
 }
 
